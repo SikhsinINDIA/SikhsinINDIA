@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sikhs in UAE – Membership Form</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #000000;
+      margin: 20px;
+    }
+
+    h2, h3 {
+      color: #FF9933;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th, table td {
+      border: 1px solid #000000;
+      padding: 10px;
+      text-align: left;
+    }
+
+    table th {
+      background-color: #FF9933;
+      color: #000000;
+    }
+
+    .edit-btn, .delete-btn {
+      background-color: #FF9933;
+      color: #000000;
+      border: none;
+      padding: 5px 10px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+
+    .edit-btn:hover, .delete-btn:hover {
+      background-color: #e67e00;
+    }
+
+    form {
+      margin-top: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+      border: 2px solid #FF9933;
+      background-color: #fff;
+    }
+
+    .form-row {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: #000000;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #000000;
+      border-radius: 3px;
+      color: #000000;
+    }
+
+    button {
+      background-color: #FF9933;
+      color: #000000;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background-color: #e67e00;
+    }
+
+    #status {
+      margin-top: 10px;
+      text-align: center;
+      color: #FF9933;
+      font-weight: bold;
+    }
+
+    .footnote {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 14px;
+      color: #000000;
+    }
+
+    .footnote p {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Register to Become a Member of “Sikhs in UAE” Group</h2>
+
+  <div id="recordsContainer">
+    <h3>Current Members</h3>
+    <table id="recordsTable">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Mobile</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Address</th>
+          <th>Date_Created</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="recordsTableBody">
+        <tr>
+          <td colspan="8" style="text-align: center; padding: 10px; color: #FF9933;">
+            Loading records...
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <form id="editForm">
+    <div class="form-row">
+      <label for="email">Email: <span style="color: #f00;">*</span> (mandatory)</label>
+      <input type="email" id="email" placeholder="Email (used as ID)" required />
+    </div>
+
+    <div class="form-row">
+      <label for="name">Name: <span style="color: #f00;">*</span> (mandatory)</label>
+      <input type="text" id="name" placeholder="Your Full Name" />
+    </div>
+
+    <div class="form-row">
+      <label for="password">Password: <span style="color: #f00;">*</span> (mandatory)</label>
+      <input type="password" id="password" placeholder="Choose a password" />
+    </div>
+
+    <div class="form-row">
+      <label for="mobile">Mobile: <span style="color: #f00;">*</span> (mandatory)</label>
+      <input type="tel" id="mobile" pattern="[0-9]{9,}" placeholder="Mobile number (9 digits or more)" />
+    </div>
+
+    <div class="form-row">
+      <label for="age">Age:</label>
+      <input type="number" id="age" placeholder="Your age" />
+    </div>
+
+    <div class="form-row">
+      <label for="address">Address:</label>
+      <input type="text" id="address" placeholder="Your address" maxlength="150" />
+    </div>
+
+    <div class="form-row">
+      <label for="Date_created">Date Created:</label>
+      <input type="datetime-local" id="Date_created" />
+    </div>
+
+    <div class="form-row">
+      <label for="gender">Gender:</label>
+      <select id="gender">
+        <option value="">-- Select Gender --</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+
+    <div style="margin-top: 25px; text-align: center;">
+      <button type="button" onclick="loadData()">Load Existing Data</button>
+      <button type="submit">Add / Update Data</button>
+      <button type="button" onclick="resetForm()">Clear Form</button>
+    </div>
+
+    <p id="status"></p>
+  </form>
+
+  <button 
+    type="button" 
+    onclick="goBack()" 
+    style="width: 150px; height:60px; font-size: 36px; background-color: #FF9933; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">
+    Back
+  </button>
+
+  <div class="footnote">
+    <p>NOTE: You must fill in all mandatory fields (marked with *). Please verify your details carefully before submitting. After submitting, your data is stored in our secure database and can be updated later.</p>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBGhLdEcfLYzZAWAA_je63DHnazpHHZZpQ",
+      authDomain: "sihksinuae.firebaseapp.com",
+      projectId: "sihksinuae",
+      storageBucket: "sihksinuae.firebasestorage.app",
+      messagingSenderId: "119237159141",
+      appId: "1:119237159141:web:39acb9510020a8a7808c0c",
+      measurementId: "G-RNXNN6TCB0"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+function formatDate(timestamp) {
+  if (!timestamp?.toDate) return '';
+  const date = timestamp.toDate();
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = date.toLocaleString('default', { month: 'short' }); // e.g., "Jul"
+  const year = String(date.getFullYear()).slice(-2); // e.g., "25"
+  return `${day}-${month}-${year}`;
+}
+
+
+    function loadAllRecords() {
+      const tbody = document.getElementById("recordsTableBody");
+      tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 10px; color: #FF9933;">Loading records...</td></tr>';
+
+      db.collection("sikhdatabaseuae").orderBy("Date_created", "desc").get()
+        .then(querySnapshot => {
+          if (querySnapshot.empty) {
+            tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 10px; color: #FF9933;">No records found.</td></tr>';
+            return;
+          }
+
+          let rows = '';
+          querySnapshot.forEach(doc => {
+            const data = doc.data();
+            rows += `
+              <tr>
+                <td>${data.Email || ''}</td>
+                <td>${data.Name || ''}</td>
+                <td>${data.Mobile || ''}</td>
+                <td>${data.Age || ''}</td>
+                <td>${data.Gender || ''}</td>
+                <td>${data.Address || ''}</td>
+              <td>${formatDate(data.Date_created)}</td>
+                <td>
+                  <button class="edit-btn" onclick="editRecord('${data.Email}')">Edit</button>
+                  <button class="delete-btn" onclick="deleteRecord('${data.Email}')">Delete</button>
+                </td>
+              </tr>
+            `;
+          });
+
+          tbody.innerHTML = rows;
+        })
+        .catch(error => {
+          console.error("Error fetching records:", error);
+          tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: red;">Error: ${error.message}</td></tr>`;
+        });
+    }
+
+    function loadData() {
+      const email = document.getElementById("email").value.trim();
+      if (!email) return alert("Please enter an email.");
+
+      db.collection("sikhdatabaseuae").doc(email).get()
+        .then(doc => {
+          if (!doc.exists) {
+            document.getElementById("status").innerText = "No user found with this email.";
+            clearForm(false);
+            return;
+          }
+
+          const data = doc.data();
+          document.getElementById("name").value = data.Name || "";
+          document.getElementById("password").value = data.Password || "";
+          document.getElementById("mobile").value = data.Mobile || "";
+          document.getElementById("age").value = data.Age || "";
+          document.getElementById("address").value = data.Address || "";
+          document.getElementById("gender").value = data.Gender || "";
+
+          if (data.Date_created) {
+            const dt = new Date(data.Date_created);
+            document.getElementById("Date_created").value = dt.toISOString().slice(0, 16);
+          } else {
+            document.getElementById("Date_created").value = "";
+          }
+
+          document.getElementById("status").innerText = "Loaded data for " + email;
+        })
+        .catch(error => {
+          console.error("Error loading data:", error);
+          document.getElementById("status").innerText = `Error: ${error.message}`;
+        });
+    }
+
+    function clearForm(clearEmail = true) {
+      if (clearEmail) document.getElementById("email").value = "";
+      document.getElementById("name").value = "";
+      document.getElementById("password").value = "";
+      document.getElementById("mobile").value = "";
+      document.getElementById("age").value = "";
+      document.getElementById("address").value = "";
+      document.getElementById("Date_created").value = "";
+      document.getElementById("gender").value = "";
+      document.getElementById("status").innerText = "";
+    }
+
+    function resetForm() {
+      clearForm(true);
+    }
+
+    document.getElementById("editForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const name = document.getElementById("name").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const mobile = document.getElementById("mobile").value.trim();
+      const age = document.getElementById("age").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const gender = document.getElementById("gender").value;
+      const dateInput = document.getElementById("Date_created").value;
+      const DateCreated = dateInput ? new Date(dateInput).toISOString() : new Date().toISOString();
+
+      if (!email || !name || !password || !mobile) {
+        alert("Email, Name, Password and Mobile are mandatory!");
+        return;
+      }
+      if (mobile.length < 9) {
+        alert("Mobile number should be at least 9 digits.");
+        return;
+      }
+
+      db.collection("sikhdatabaseuae").doc(email).set({
+        Email: email,
+        Name: name,
+        Password: password,
+        Mobile: mobile,
+        Age: age,
+        Address: address,
+        Date_created: DateCreated,
+        Gender: gender
+      })
+        .then(() => {
+          document.getElementById("status").innerText = "Data saved successfully.";
+          loadAllRecords();
+          clearForm(true);
+        })
+        .catch(error => {
+          console.error("Error saving data:", error);
+          document.getElementById("status").innerText = `Error saving data: ${error.message}`;
+        });
+    });
+
+    function editRecord(email) {
+      db.collection("sikhdatabaseuae").doc(email).get()
+        .then(doc => {
+          if (!doc.exists) return alert("No record found with that Email.");
+          const data = doc.data();
+
+          document.getElementById("email").value = data.Email || '';
+          document.getElementById("name").value = data.Name || '';
+          document.getElementById("password").value = data.Password || '';
+          document.getElementById("mobile").value = data.Mobile || '';
+          document.getElementById("age").value = data.Age || '';
+          document.getElementById("address").value = data.Address || '';
+          document.getElementById("gender").value = data.Gender || '';
+          if (data.Date_created) {
+            document.getElementById("Date_created").value = new Date(data.Date_created).toISOString().slice(0, 16);
+          } else {
+            document.getElementById("Date_created").value = '';
+          }
+          document.getElementById("status").innerText = `Editing record for ${email}`;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    function deleteRecord(email) {
+      if (!confirm(`Are you sure you want to delete ${email}?`)) return;
+      db.collection("sikhdatabaseuae").doc(email).delete()
+        .then(() => {
+          document.getElementById("status").innerText = `Deleted record for ${email}`;
+          loadAllRecords();
+          clearForm(true);
+        })
+        .catch(error => {
+          console.error("Error deleting record:", error);
+          document.getElementById("status").innerText = `Error deleting record: ${error.message}`;
+        });
+    }
+
+    function goBack() {
+      window.location.href = "./01_AddRecord.html";
+    }
+
+    window.onload = loadAllRecords;
+  </script>
+</body>
+</html>
+

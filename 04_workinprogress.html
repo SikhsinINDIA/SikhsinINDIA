@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Work In Progress</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #000000;
+            color: #FF9933;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #FF9933;
+            padding: 2px;
+            font-size: 60px;
+        }
+
+        .image-row {
+            margin: 30px 0;
+        }
+
+        img {
+            max-width: 80%;
+            height: auto;
+            border: 5px solid #FF9933;
+            box-shadow: 0 0 10px #FF9933;
+        }
+
+            .button {
+            background-color: #FFA500;
+            height: 100px; 
+            width: 150px; 
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 8px;
+            min-width: 220px;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #FF8C00; /* Darker orange */
+        }
+        /* Back button styling */
+        .back-button {
+            width: 150px;
+            height: 40px;
+            font-size: 24px;
+            background-color: #FFA500;
+            color: black;
+            margin: 40px auto 0 auto;
+            display: block;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #FF8C00;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1>Work In Progress</h1>
+
+    <div class="image-row">
+        <img src="pictures\08_pageunderconstruction\Under_Construction.png" alt="First Image">
+    </div>
+
+ <!-- Back Button -->
+    <button type="button" onclick="goBack()" class="back-button">
+        <b>Back</b>
+    </button>
+
+    <script>
+        function goBack() 
+        {
+            window.location.href = "./index.html";
+        }
+    </script>
+
+</body>
+</html>

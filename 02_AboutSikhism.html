@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Sikhism</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: black;
+            color: #FFA500; /* Kesari (orange/yellow) */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #FFD700; /* Brighter kesari */
+            margin-bottom: 40px;
+            font-size: 5    4px;
+        }
+        /* Container for image + button pairs */
+        .btn-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        /* Images styling */
+        .btn-row img {
+            width: auto;       /* fixed width */
+            height: 98px;      /* fixed height */
+            object-fit: cover;  /* maintain aspect ratio, crop if needed */
+            margin-right: 10px; /* space between image and button */
+            border-radius: 10px;
+            border: 2px solid #FFA500;
+        }
+        /* Buttons styling */
+        .button {
+            background-color: #FFA500;
+            height: 100px; 
+            width: 150px; 
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 8px;
+            min-width: 220px;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #FF8C00; /* Darker orange */
+        }
+        /* Back button styling */
+        .back-button {
+            width: 150px;
+            height: 40px;
+            font-size: 24px;
+            background-color: #FFA500;
+            color: black;
+            margin: 40px auto 0 auto;
+            display: block;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #FF8C00;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>About Sikhism</h1>
+     <div class="btn-row">
+<a href="./02a_SikhGurus.html">
+  <img src="pictures/01a_SikhGurus/TenGurus.jpg" alt="Sikh Gurus" style="cursor:pointer;">
+</a>
+        <button class="button" onclick="location.href='./02a_SikhGurus.html'">
+            <b>Sikh Gurus</b>
+        </button>
+    </div>
+
+<div class="btn-row">
+        <a href="./02b_PanjPyaras.html">
+         <img src="pictures/01b_PanjPyaras/PanjPyaras1.jpg" alt="Panj Pyaras" style="cursor:pointer;">
+        </a>
+
+        <button class="button" onclick="location.href='./02b_PanjPyaras.html'">
+            <b>Panj Pyaras</b>
+        </button>
+</div>
+
+<div class="btn-row">
+        <a href="./02c_ChaarSahibjade.html">
+         <img src="pictures/01c_ChaarSahibjade/ChaarSahibjade2.jpg" alt="ChaarSahibjade" style="cursor:pointer;">
+        </a>
+
+        <button class="button" onclick="location.href='./02c_ChaarSahibjade.html'">
+            <b>Chaar Sahibjade</b>
+        </button>
+</div>
+
+   <div class="btn-row">
+        <a href="./02d_Panj Takhts.html">
+            <img src="pictures/01d_PanjTakhts/PanjTakht.jpg" alt="Panj Takhts" style="cursor:pointer;">
+        </a>
+
+        <button class="button" onclick="location.href='./02d_Panj Takhts.html'">
+            <b>Panj Takhts</b>
+        </button>
+    </div>
+
+     <div class="btn-row">
+        <a href="./02e_Nitnem Path.html">
+            <img src="pictures/01e_NitnemPath/NitnemPath.png" alt="Panj Takhts" style="cursor:pointer;">
+        </a>
+
+        <button class="button" onclick="location.href='./02e_Nitnem Path.html'">
+            <b>Nitnem Path</b>
+        </button>
+    </div>
+
+    <div class="btn-row">
+        <a href="./02d_SikhFestivals.html">
+            <img src="pictures/01d_Festivals/SikhFestivals.jpg" alt="Sikh Festivals" style="cursor:pointer;">
+        </a>
+
+        <button class="button" onclick="location.href='./02d_SikhFestivals.html'">
+            <b>Sikh Festivals</b>
+        </button>
+    </div>
+
+    <div class="btn-row">
+        <a href="./02e_The Sikh Calendar    .html">
+  <img src="pictures//01e_SikhHolidays/SikhHolidays.jpeg" alt="Sikh Holidays 2025" style="cursor:pointer;">
+</a>
+
+        <button class="button" onclick="location.href='./02e_The Sikh Calendar.html'">
+            <b>Sikh Holidays-2025</b>
+        </button>
+    </div>  
+
+    <!-- Back Button -->
+    <button type="button" onclick="goBack()" class="back-button">
+        <b>Back</b>
+    </button>
+
+    <script>
+        function goBack() 
+        {
+            window.location.href = "./index.html";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sikhs in India</title>
+
+  <!-- Open Graph meta tags for social media previews -->
+  <meta property="og:title" content="Preserving Heritage, Inspiring Future" />
+  <meta property="og:description" content="A digital space celebrating the vibrant history, contributions, and culture of the Sikh community in INDIA." />
+  <meta property="og:image" content="https://sikhsininida.com/pictures/00_Index/SikhsinIndia.jpg" />
+  <meta property="og:url" content="https://sikhsinindia.com/index.html" />
+  <meta property="og:type" content="website" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    header {
+      width: 100%;
+      text-align: center;
+            margin: 0;
+    }
+
+    header img {
+      max-width: 100%;
+      height: auto;
+            margin: 0;
+    }
+
+    .ekonkar {
+      width: 100%;
+      background-color: #fcbf1e;
+      text-align: center;
+    }
+
+    .ekonkar-img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .inline-logo-text {
+      display: flex;
+      align-items: center;
+      gap: 0.1rem;
+    }
+
+    .in-text {
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .header-group h1 {
+      font-size: 2rem;
+      margin: 5px 0;
+      color: #000;
+    }
+
+    .text-stack h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #000;
+    }
+
+    .logo-sikh,
+    .logo-uae,
+    .logo-khanda {
+      height: 75px;
+      max-width: 100%;
+    }
+
+    .hero {
+      padding: 0.1rem 0.1rem;
+      text-align: center;
+      background-color: #000;
+    }
+
+    .ekonkar-text {
+      color: #fcbf1e;
+      font-size: 5rem;
+      margin: 0;
+    }
+
+    .hero h2 {
+      color: #fcbf1e;
+      font-size: 2rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 1200px;
+      margin: 0.1rem auto;
+    }
+
+    .quote-text {
+      color: #541011;
+      font-size: 1.2rem;
+      margin: 1rem auto;
+      max-width: 1700px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: #000000;
+      color: #FFA500;
+      padding: 5px 15px;
+      font-size: 28px;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 2px solid #FFA500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      background-color: #FFA500;
+      color: #000000;
+      border-color: #000000;
+      text-decoration: none;
+    }
+
+    .clipart-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .golden-temple {
+      width: 160px;
+      max-width: 100%;
+    }
+
+    .nihang-warrior {
+      width: 140px;
+      max-width: 100%;
+    }
+
+    .guru-nanak {
+      width: 150px;
+      max-width: 100%;
+    }
+
+    .clipart-row img {
+      height: auto;
+      border-radius: 8px;
+      border: 2px solid #fcbf1e;
+      max-width: 100%;
+    }
+/* .hero.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* changed from flex-start to center */
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+} */
+
+.hero.flex-container .left-content {
+  flex: 1 1 400px;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* vertically center content inside */
+  align-items: center;      /* horizontally center content inside */
+  text-align: center;
+}
+
+.hero-description {
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+    margin-bottom: 1rem;
+}
+
+.left-content > * {
+  width: 100%;          /* Make children take full width */
+  max-width: 400px;     /* Optional: constrain max width for neatness */
+    /* margin-left: auto;
+    margin-right: auto; */
+}
+
+.hero.flex-container {
+
+  flex-direction: row;
+
+  
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* Stretch both columns to equal height */
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1rem;
+}
+
+.left-content {
+    flex: 1;
+  padding: 2rem;
+  box-sizing: border-box;
+  /* border: 2px solid red; */
+}
+
+/* .right-slideshow {
+  border: 2px solid blue;
+} */
+.left-content div {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.right-slideshow {
+flex: 0 0 50%;
+  max-width: 600px;
+  background-color: #111;
+    border: none;
+  /* border: 2px solid #fcbf1e;
+  border-radius: 8px; */
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.1;
+  box-sizing: border-box;
+}
+
+.right-slideshow img {
+
+  max-width: 100%;
+    /* width: 130%; */
+  height: auto;
+  max-height: 500px; /* Optional: Limit height */
+  object-fit: contain;
+  border-radius: 2%;
+    display: block;
+    margin-top:0;
+        margin-bottom:0;
+
+}
+
+    @media (max-width: 768px) {
+
+  .hero.flex-container {
+    
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem 0.5rem;
+}
+
+  .left-content {
+
+  flex: 1;
+  padding: 2rem;
+  box-sizing: border-box;
+  max-width: 500px;
+  margin: 0;
+  padding: 0.5rem 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* vertical center inside stretched height */
+  align-items: center;
+  text-align: center;
+  }
+
+  .hero-description p {
+    padding: 0 1rem;
+  }
+
+.hero.flex-container .left-content,
+.right-slideshow {
+  flex: 1 1 100%;
+  max-width: 100%;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem; /* Optional spacing between left and right containers */
+  flex-wrap: wrap; /* Helps on smaller screens */
+  padding: 0 1rem;
+}
+
+.left-container {
+  padding: 1rem;              /* Adjust padding to be uniform */
+  margin: 0 auto;             /* Center the container */
+  max-width: 600px;           /* Prevents it from stretching too wide */
+  text-align: center;         /* Ensures inner content is centered */
+  box-sizing: border-box;     /* Includes padding in total width */
+}
+
+
+.right-slideshow img {
+  width: 100%;
+  max-height: none;
+}
+
+      .main-header {
+        padding: 0.5rem 1rem;
+      }
+
+      .header-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .header-side.left,
+      .header-side.right {
+        padding: 0;
+      }
+
+      .logo-khanda {
+        height: 50px;
+      }
+
+      .logo-sikh,
+      .logo-uae {
+        height: 50px;
+      }
+
+      .header-group {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .header-group h1 {
+        font-size: 1.5rem;
+      }
+
+      .text-stack h1,
+      .in-text {
+        font-size: 1.3rem;
+      }
+
+      .hero {
+        padding: 1rem 0.5rem;
+      }
+.hero-heading h2 {
+  margin: 0 0 0.2rem 0;
+}
+
+.hero-description p {
+  margin-top: 0;
+}
+      .ekonkar-container {
+        flex-direction: column;
+        gap: 0.1rem;
+     margin-bottom: 0;
+      }
+
+      .ekonkar-img {
+  display: block;
+       margin: 0.1rem 0 0 0;
+  max-width: 100%;
+  height: auto;
+    margin-bottom: 0;
+      }
+.ekonkar-caption p {
+  margin-top: 0;
+}
+      .ekonkar-text {
+        font-size: 3rem;
+        text-align: center;
+      }
+
+      .hero h2 {
+        font-size: 1.5rem;
+      }
+
+      .hero p,
+      .quote-text {
+        font-size: 1rem;
+        padding: 0 1rem;
+        line-height: 1.4;
+      }
+
+
+
+      .cta-button {
+        font-size: 1rem;
+        padding: 10px 20px;
+        width: 100%;
+        max-width: 300px;
+        margin: 1rem auto;
+        display: block;
+      }
+
+      .clipart-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .clipart-row img {
+        width: 70%;
+        max-width: 200px;
+      }
+
+       /* Slideshow Section */
+    .slideshow-container {
+      max-width: 100%;
+      margin: auto;
+      position: relative;
+    }
+
+    .mySlides {
+      display: none;
+    }
+
+    /* Slideshow Image Styling */
+    .mySlides img {
+      width: 100%;
+      border: 3px solid #FFA500;
+      margin-right: 0.2cm;
+    }
+
+    /* Fade Animation for Slideshow */
+    /* .fade {
+      animation-name: fade;
+      animation-duration: 10s;
+    }
+
+    @keyframes fade {
+      from {opacity: .4}
+      to {opacity: 1}
+    } */
+
+
+      footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        background-color: #FF9933;
+        border: 3px solid #FF9933;
+        color: black;
+        font-weight: bold;
+        font-size: 0.8rem;
+        text-align: center;
+        flex-wrap: wrap;
+        min-height: 60px;
+      }
+
+      footer div {
+        flex: 1 1 100%;
+        margin: 0.5rem 0;
+      }
+
+      footer img {
+        height: 60px;
+        width: auto;
+        vertical-align: middle;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <img src="./pictures/00_Index/Header.jpg" alt="Header Image" width="1432" height="auto" />
+</header>
+
+
+<section class="hero flex-container">
+<div class="left-content">
+  <div class="ekonkar-container">
+    <img src="./pictures/00_Index/IKONKAR.png" width="600" height="auto" alt="Ek Onkar Symbol" class="ekonkar-img">
+  </div>
+
+  <div class="ekonkar-caption">
+    <p>There is only one God</p>
+  </div>
+
+  <div class="hero-heading">
+    <h2>Preserving Heritage, Inspiring Future</h2>
+  </div>
+
+  <div class="hero-description">
+    <p>
+      A digital space celebrating the vibrant history, contributions, and culture of the Sikh community in INDIA.
+    </p>
+  </div>
+</div>
+
+  <div class="right-slideshow">
+  <!-- Slideshow Section -->
+      <div class="slideshow-container">
+
+        <div class="mySlides fade">
+          <img src="./pictures/00_Index/Gurbani_Quotes/100.jpg" alt="Worship Ceremony">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="./pictures/00_Index/Gurbani_Quotes/101.jpg" alt="Worship Ceremony">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="./pictures/00_Index/Gurbani_Quotes/102.jpg" alt="Worship Ceremony">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="./pictures/00_Index/Gurbani_Quotes/103.jpg" alt="Worship Ceremony">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="./pictures/00_Index/Gurbani_Quotes/104.jpg" alt="Worship Ceremony">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="./pictures/00_Index/Gurbani_Quotes/105.jpg" alt="Worship Ceremony">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="./pictures/00_Index/Gurbani_Quotes/106.jpg" alt="Worship Ceremony">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="./pictures/00_Index/Gurbani_Quotes/107.jpg" alt="Worship Ceremony">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="./pictures/00_Index/Gurbani_Quotes/108.jpg" alt="Worship Ceremony">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="./pictures/00_Index/Gurbani_Quotes/109.jpg" alt="Worship Ceremony">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="./pictures/00_Index/Gurbani_Quotes/110.jpg" alt="Worship Ceremony">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="./pictures/00_Index/Gurbani_Quotes/111.jpg" alt="Worship Ceremony">
+        </div>
+
+
+
+      </div>
+  </div>
+</section>
+
+<section class="hero">
+
+
+<a href="./01_AddRecord.html" class="cta-button" style="font-size: 30px; font-weight: bold; display: inline-block; line-height: 1;">
+  Become a Member<br>
+  <span style="font-size: 16px; font-weight: normal; line-height: 1; margin-top: -6px; display: inline-block;">(at no charge)</span>
+</a>
+  <!-- NEW SCROLLING TEXT FOR CURRENT MONTH FESTIVALS -->
+  <marquee behavior="scroll" direction="left" scrollamount="8" style="color: #fcbf1e; font-size: 2rem; margin-top: 1rem;">
+   <b> July Milestones:</b> Guru Harkrishan Sahib Ji's Gurpurab – July 7 | Martyrdom of Guru Arjan Dev Ji – July 15
+  </marquee>
+
+  <div class="clipart-row">
+    <a href="./02_AboutSikhism.html">
+      <img src="./pictures/01_Sikhism/AboutSikhism.png" style="height: 100px; width: auto;" alt="About Sikhism" class="golden-temple">
+    </a>
+    <a href="./03_Gurudwaras in India.html">
+      <img src="./pictures/02_GurudwarasinIndia/GurudwarsinIndia.jpg" style="height: 100px; width: auto;" alt="Gurudwaras in India" class="golden-temple">
+    </a>
+    <a href="./04_workinprogress.html">
+      <img src="./pictures/03_SikhProfessionals/SikhProfessionals.png" style="height: 100px; width: auto;" alt="Sikh Professionals" class="golden-temple">
+    </a>
+    <a href="./04_workinprogress.html">
+      <img src="./pictures/04_SikhMatrimonials/SikhMatrimonials.jpg" style="height: 100px; width: auto;" alt="Sikh Matrimonials" class="golden-temple">
+    </a>
+  </div>
+</section>
+
+<footer style="
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #FF9933;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  gap: 10px;
+  overflow-x: auto;
+  font-size: 14px;
+  white-space: nowrap;
+">
+  <div style="flex: 1; text-align: left;">
+    <a href="./09_ContactUs.html" style="color: black; text-decoration: none; font-weight: bold; font-size: 16px;">
+      Contact Us
+    </a>
+  </div>
+  <div style="flex: 1; text-align: center;">
+    <a href="./10_Feedback.html" style="color: black; text-decoration: none; font-weight: bold; font-size: 16px;">
+      Feedback
+    </a>
+  </div>
+  <div style="flex: 1; text-align: right; color: black; font-weight: bold; font-size: 12px;">
+    &copy; 2025 Sikhs in India. All Rights Reserved.
+  </div>
+</footer>
+<script>
+  let slideIndex = 0;
+  showSlides();
+
+  function showSlides() {
+    const slides = document.getElementsByClassName("mySlides");
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }    
+    slides[slideIndex - 1].style.display = "block";  
+    setTimeout(showSlides, 6000); // Change image every 3 seconds
+  }
+</script>
+</body>
+</html>

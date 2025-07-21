@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gurudwaras in UAE</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #FFA500; /* Kesari Orange */
+      color: #000000;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px #00000022;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      color: #000;
+      width: 300px;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      min-height: 350px; /* force equal height */
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .card h3 {
+      margin: 15px 0;
+    }
+
+    .card button {
+      background-color: #000000;
+      color: #FFA500;
+      border: 2px solid #FFA500;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: auto;
+    }
+
+    .card button:hover {
+      background-color: #FFA500;
+      color: #000000;
+      border-color: #000000;
+    }
+
+    
+  </style>
+</head>
+
+<body>
+  <h1>Gurudwaras in UAE</h1>
+
+  <div class="card-container">
+    <div class="card">
+      <img src="./pictures/02a_Gurudwara Nanak Darbaar/GURU NANAK Darbaar.jpg" alt="Gurudwara in Dubai" />
+      <h3>Nanak Darbaar Gurudwara Sahib Ji - Dubai</h3>
+<button onclick="location.href='./03a_Nanak Darbaar Gurudwara Dubai.html'">
+    Visit Page
+</button>
+    </div>
+
+    <div class="card">
+      <img src="./pictures/02b_Gurudwara Nanak Darbaar-RAK\Guru Nanak Darbar Ras Al Khaimah.jpeg" alt="Gurudwara in RAK" alt="Gurudwara in RAK" />
+      <h3>Gurunanak Darbar Gurudwara Sahib Ji, Ras Al-Khaimah </h3>
+<button onclick="location.href='./03b_Nanak Darbaar Gurudwara Ras Al Khaimah.html'">
+  Visit Page
+</button>
+    </div>
+  </div>
+
+  <!-- Back Button -->
+<button 
+  type="button" 
+  onclick="goBack()" 
+  style="width: 150px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">
+  Back
+</button>
+
+  <script>
+    function goBack() {
+      window.location.href = "./index.html";
+    }
+  </script>
+</body>
+</html>
+
+

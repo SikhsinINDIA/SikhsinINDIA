@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="commonstyles.css">
+  <style>
+    :root {
+      --primary-color: #FFA500; /* Kesari (Orange) */
+      --text-color: #000000;    /* Black */
+      --hover-bg-color: #000000;
+      --hover-text-color: #FFA500;
+      --input-border: #FFA500;
+    }
+
+    body {
+      background-color: #fffdf5;
+      color: var(--text-color);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .visible {
+      display: block;
+    }
+
+    .center-text {
+      text-align: center;
+      color: var(--text-color);
+    }
+
+    nav.nav {
+      background-color: var(--primary-color);
+      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    nav.nav a {
+      color: var(--text-color);
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    nav.nav a:hover {
+      color: var(--hover-text-color);
+    }
+
+    .contact_container {
+      display: flex;
+      flex-direction: column;
+      margin: 20px;
+    }
+
+    @media (min-width: 600px) {
+      .contact_container {
+        flex-direction: row;
+      }
+    }
+
+    .contact_container > * {
+      flex-grow: 1;
+      flex-basis: 0;
+      min-width: 0;
+      margin: 0 10px;
+    }
+
+    .quotes {
+      font-weight: bold;
+      font-size: larger;
+      padding: 1px;
+      margin: 5px;
+      text-align: center;
+      color: var(--text-color);
+    }
+
+    .contact-image {
+      display: flex;
+      margin-top: 20px;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .responsive-image {
+      width: 100%;
+      height: auto;
+      max-width: 600px;
+      object-fit: contain;
+    }
+
+    .contact-form {
+      width: 100%;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      margin-top: 30px;
+      padding-bottom: 10px;
+    }
+
+    input,
+    button,
+    textarea {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      padding: 8px;
+      width: 100%;
+      border: 2px solid var(--input-border);
+      border-radius: 4px;
+      box-sizing: border-box;
+      background-color: white;
+      color: var(--text-color);
+    }
+
+          button {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: larger;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border: 2px solid var(--text-color);
+            padding: 8px 16px;
+            transition: 0.4s;
+            width: 100%;
+          }
+
+    button:hover:enabled {
+      background-color: var(--hover-bg-color);
+      color: var(--hover-text-color);
+      border-color: var(--hover-bg-color);
+    }
+
+    @media (max-width: 600px) {
+      .contact_container {
+        margin: 20px;
+      }
+
+      form {
+        max-width: 90%;
+      }
+
+    
+   
+  </style>
+</head>
+
+<body>
+   <div class="contact_container">
+    <div class="contact-image">
+      <img src="./pictures/10_Feedback/Your-Feedback-Matters.png" class="responsive-image" alt="Your Feedback Matters">
+      <div class="quotes">
+        "Strive for continuous improvement, instead of perfection."
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h2 class="center-text">Please share your Feedback</h2>
+      <form class="contact" id="feedbackForm">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+
+        <div>
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="contact@example.com">
+        </div>
+
+        <div>
+
+          <label for="mobile">Mobile Number</label>
+          <input type="text" id="mobile" name="mobile" placeholder="mobile" required>
+        </div>
+        <div>
+          <label for="feedback">Your Feedback</label>
+          <textarea id="feedback" name="feedback" maxlength="256" required></textarea>
+        </div>
+
+        <input id="honeypot" class="hidden" type="text" />
+
+        <button type="button" onclick="sendEmail()">Submit</button>
+
+        <div id="status" class="center-text"></div>
+      </form>
+    </div>
+  </div>
+
+  <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("bR8jobS4ge96abRNK");
+   })();
+</script>
+<script src="sikhsendemail.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const mobileInput = document.getElementById("mobile");
+    const feedbackInput = document.getElementById("feedback");
+    const status = document.getElementById("status");
+
+    // Store error message elements for each input
+    const errorMessages = {};
+
+    function createErrorElement(input) {
+      const errorDiv = document.createElement("div");
+      errorDiv.className = "error-message";
+      errorDiv.style.color = "red";
+      errorDiv.style.fontSize = "0.9em";
+      errorDiv.style.marginBottom = "5px";
+      input.parentNode.appendChild(errorDiv);
+      errorMessages[input.id] = errorDiv;
+    }
+
+    // Create and store error elements
+    [nameInput, emailInput, mobileInput, feedbackInput].forEach(createErrorElement);
+
+    // Trigger all validations on load
+    validateName();
+    validateEmail();
+    validateMobile();
+    validateFeedback();
+
+    function setError(input, message) {
+      input.style.borderColor = "red";
+      errorMessages[input.id].textContent = message;
+    }
+
+    function clearError(input) {
+      input.style.borderColor = "var(--input-border)";
+      errorMessages[input.id].textContent = "";
+    }
+
+    function validateName() {
+      if (!nameInput.value.trim()) {
+        setError(nameInput, "Name is required.");
+        return false;
+      }
+      clearError(nameInput);
+      return true;
+    }
+
+    function validateEmail() {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailInput.value.trim()) {
+        setError(emailInput, "Email is required.");
+        return false;
+      } else if (!emailRegex.test(emailInput.value.trim())) {
+        setError(emailInput, "Enter a valid email (e.g. user@example.com).");
+        return false;
+      }
+      clearError(emailInput);
+      return true;
+    }
+
+    function validateMobile() {
+      const digitsOnly = mobileInput.value.replace(/\D/g, '');
+      if (!mobileInput.value.trim()) {
+        setError(mobileInput, "Mobile number is required.");
+        return false;
+      } else if (digitsOnly.length < 9) {
+        setError(mobileInput, "Mobile number must be at least 9 digits.");
+        return false;
+      }
+      clearError(mobileInput);
+      return true;
+    }
+
+    function validateFeedback() {
+      if (!feedbackInput.value.trim()) {
+        setError(feedbackInput, "Feedback is required.");
+        return false;
+      }
+      clearError(feedbackInput);
+      return true;
+    }
+
+    // Real-time validation
+    nameInput.addEventListener("input", validateName);
+    emailInput.addEventListener("input", validateEmail);
+    mobileInput.addEventListener("input", validateMobile);
+    feedbackInput.addEventListener("input", validateFeedback);
+
+    window.sendEmail = function () {
+      const isNameValid = validateName();
+      const isEmailValid = validateEmail();
+      const isMobileValid = validateMobile();
+      const isFeedbackValid = validateFeedback();
+
+      if (!(isNameValid && isEmailValid && isMobileValid && isFeedbackValid)) {
+        status.innerText = "Please correct the highlighted fields.";
+        return;
+      }
+
+      status.innerText = ""; // Clear if all valid
+
+      // Send email using EmailJS
+      const params = {
+        name: nameInput.value,
+        email: emailInput.value,
+        mobile: mobileInput.value,
+        feedback: feedbackInput.value
+      };
+
+      emailjs.send("service_n17cw2u", "template_4eznr7w", params)
+        .then(function(response) {
+          console.log("✅ SUCCESS!", response.status, response.text);
+          status.innerText = "Thank you! Your feedback has been sent.";
+          document.getElementById("feedbackForm").reset();  // Reset the form
+        })
+        .catch(function(error) {
+          console.error("❌ FAILED...", error);
+          status.innerText = "Something went wrong. Please try again.";
+        });
+    };
+  });
+</script>
+
+    <!-- Back Button -->
+<button 
+  type="button" 
+  onclick="goBack()" 
+  style="width: 150px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">
+  Back
+</button>
+
+  <script>
+    // hello
+    function goBack() {
+    window.location.href = "./index.html"; // Case-sensitive on GitHub Pages
+  }
+  </script>
+</body>
+</html>

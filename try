@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Header Image</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            width: 100%;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        header img {
+            max-width: 100%;
+            height: auto;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+   
+        <img src="Header.jpg" alt="Header Image" width="1032" height="139" />
+    </header>
+    <main>
+        <h1>Welcome!</h1>
+        <p>This is a responsive HTML page with a header image.</p>
+  
+    </main>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us - Sikhs in UAE</title>
+  <link rel="stylesheet" href="commonstyles.css" />
+  <style>
+    /* Reset some basics */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff8e1; /* very light kesari background */
+      color: #000; /* black text */
+    }
+
+    /* Header section with kesari background and black text */
+    .header {
+      background-color: #FFA500; /* Kesari/orange */
+      color: #000;
+      padding: 25px 0;
+      text-align: center;
+      font-weight: bold;
+      font-size: 2.2rem;
+      letter-spacing: 1.5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      user-select: none;
+    }
+
+    /* Container with black border and white background */
+    .container {
+      max-width: 700px;
+      margin: 30px auto;
+      background-color: #fff;
+      border: 3px solid #000;
+      border-radius: 10px;
+      padding: 25px 35px;
+      box-shadow: 0 8px 15px rgba(255, 165, 0, 0.2);
+      box-sizing: border-box;
+    }
+
+    /* Section titles */
+    .contact-info h2 {
+      color: #FFA500; /* kesari titles */
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 5px;
+      user-select: none;
+    }
+
+    /* Address and text paragraphs */
+    .contact-info p {
+      font-size: 1.1rem;
+      margin: 6px 0 14px 0;
+      color: #000;
+    }
+
+    /* Inline images next to text */
+    .contact-info img {
+      vertical-align: middle;
+      margin-right: 12px;
+      height: 28px;
+      width: auto;
+      filter: invert(0); /* ensure icons show in black by default */
+    }
+
+    /* Mobile and Email lines flex alignment */
+    .contact-info.mobile,
+    .contact-info.email {
+      display: flex;
+      align-items: center;
+    }
+
+    /* Anchor styles for email */
+    .contact-info a {
+      color: #FFA500;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      user-select: text;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer with kesari bg and black text */
+    footer {
+      background-color: #FFA500;
+      color: #000;
+      text-align: center;
+      padding: 10px 10px;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-top: 50px;
+      user-select: none;
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
+      .container {
+        margin: 20px 10px;
+        padding: 20px 15px;
+      }
+
+      .contact-info h2 {
+        font-size: 1.3rem;
+      }
+
+      .contact-info p,
+      .contact-info a {
+        font-size: 1rem;
+      }
+
+      .contact-info img {
+        height: 22px;
+        margin-right: 8px;
+      }
+    }
+   
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    Contact Us
+  </div>
+
+  <div class="container">
+    <div class="contact-info address">
+      <p>Tavinder Pal Singh Arora</p>
+      <p>B-502, Golf Enclave, Sector 21-C,</p>
+      <p>Faridanad-121001</p>
+    </div>
+
+    <div class="contact-info mobile">
+      <h2>Mobile:</h2>
+      <img src="./pictures/contactus/Mobile.png" alt="Mobile Icon" />
+      <p>+91 98016 07799</p>
+    </div>
+
+    <div class="contact-info email" style="margin-top: 30px;">
+      <h2>Email:</h2>
+      <img src="./pictures/contactus/Email.png"alt="Email Icon" />
+      <p><a href="mailto:sikhsuae@gmail.com">sikhsinindia@gmail.com</a></p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Sikhs in UAE. All Rights Reserved.
+  </footer>
+</script>
+    <!-- Back Button Back Button-->
+
+<button 
+  type="button" 
+  onclick="goBack()" 
+  style="width: 150px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">
+  Back
+</button>
+
+  <script>
+    function goBack() {
+    window.location.href = "./index.html"; // Case-sensitive on GitHub Pages
+  }
+  </script>
+</body>
+</html>
