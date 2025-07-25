@@ -12,40 +12,49 @@
       color: #FF9933;
       line-height: 1.6;
     }
+
     header {
       background-color: #FF9933;
       color: #000;
       padding: 20px;
       text-align: center;
     }
+
     header h1 {
       margin: 0;
       font-size: 2em;
     }
+
     .image-banner {
       text-align: center;
       margin: 0;
       padding: 0;
     }
-    .image-banner img {
 
-      height: 400px;
-            width: auto;
+    .image-banner img {
+      width: 100%;
+      height: auto;
+      max-height: 400px;
       object-fit: cover;
       border-bottom: 5px solid #FF9933;
     }
+
     .container {
       padding: 20px;
     }
+
     h2 {
       border-bottom: 2px solid #FF9933;
       padding-bottom: 5px;
       margin-top: 40px;
+      font-size: 1.4em;
     }
+
     ul {
       list-style-type: square;
       margin-left: 20px;
     }
+
     .btn {
       display: inline-block;
       background-color: #FF9933;
@@ -58,16 +67,20 @@
       text-decoration: none;
       border-radius: 5px;
       transition: background-color 0.3s ease;
+      font-size: 1em;
     }
+
     .btn:hover {
       background-color: #cc7a29;
     }
+
     .contact {
       margin-top: 40px;
       padding: 20px;
       background-color: #111;
       border-left: 5px solid #FF9933;
     }
+
     footer {
       background-color: #FF9933;
       color: #000;
@@ -75,25 +88,65 @@
       padding: 10px;
       margin-top: 40px;
     }
+
     a {
       color: #FF9933;
     }
+
     /* Back button styling */
-        .back-button {
-            width: 150px;
-            height: 40px;
-            font-size: 24px;
-            background-color: #FFA500;
-            color: black;
-            margin: 40px auto 0 auto;
-            display: block;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .back-button:hover {
-            background-color: #FF8C00;
-        }
+    .back-button {
+      width: 80%;
+      max-width: 200px;
+      height: 45px;
+      font-size: 18px;
+      background-color: #FFA500;
+      color: black;
+      margin: 40px auto 0 auto;
+      display: block;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      background-color: #FF8C00;
+    }
+
+    /* Responsive Tweaks */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5em;
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin: 10px auto;
+        font-size: 1em;
+      }
+
+      .container {
+        padding: 15px;
+      }
+
+      .image-banner img {
+        max-height: 300px;
+      }
+
+      .back-button {
+        width: 90%;
+        font-size: 16px;
+      }
+
+      h2 {
+        font-size: 1.2em;
+      }
+
+      p, li {
+        font-size: 1em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -147,21 +200,21 @@
     </div>
   </div>
 
-    <footer>
+  <footer>
     &copy; 2025 Shri Guru Ram Dass Blood Donation Sewa Society | Seva above self
   </footer>
-  
-<!-- Back Button -->
-    <button type="button" onclick="goBack()" class="back-button">
-        <b>Back</b>
 
-    </button>
-        <br>
-    <script>
-        function goBack() 
-        {
-            window.location.href = "./05_Sikh_Welfare.html";
-        }
-    </script>
+  <!-- Back Button -->
+  <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
+
+  <script>
+    function goBack() {
+      window.location.href = "./05_Sikh_Welfare.html";
+      // OR use this if you want browser to go back one page:
+      // window.history.back();
+    }
+  </script>
+
 </body>
 </html>
+
