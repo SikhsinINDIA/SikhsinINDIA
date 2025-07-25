@@ -33,9 +33,11 @@
 
     .image-banner img {
       width: 100%;
+      max-width: 900px; /* limits max width on large screens */
       height: auto;
-      max-height: 300px;
-      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;
       border-bottom: 5px solid #FF9933;
     }
 
@@ -131,7 +133,7 @@
       }
 
       .image-banner img {
-        max-height: 300px;
+        max-width: 100%;
       }
 
       .back-button {
@@ -206,15 +208,14 @@
 
   <!-- Back Button -->
   <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
-<br>
+  <br>
   <script>
     function goBack() {
       window.location.href = "./05_Sikh_Welfare.html";
-      // OR use this if you want browser to go back one page:
-      // window.history.back();
     }
   </script>
 
 </body>
 </html>
+
 
