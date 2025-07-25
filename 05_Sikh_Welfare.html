@@ -19,19 +19,29 @@
       font-size: 42px;
     }
 
-    /* Container for image + button */
+    /* Wrapper for all cards */
     .btn-row {
       display: flex;
+      flex-direction: column;
+      gap: 30px;
       align-items: center;
-      justify-content: center;
-      gap: 15px;
-      max-width: 100%;
-      flex-wrap: nowrap;
-      overflow: hidden;
     }
 
-    .btn-row img {
-      height: 100px;
+    /* Each image + button group */
+    .card {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: nowrap;
+      max-width: 100%;
+    }
+
+    .card img {
+      height: auto;
+      max-height: 100px;
+      max-width: 200px;
       width: auto;
       object-fit: cover;
       border-radius: 10px;
@@ -78,18 +88,19 @@
       background-color: #FF8C00;
     }
 
+    /* Mobile responsiveness */
     @media (max-width: 600px) {
       h1 {
         font-size: 28px;
       }
 
-      .btn-row {
+      .card {
         flex-direction: column;
-        align-items: center;
       }
 
-      .btn-row img {
-        height: 80px;
+      .card img {
+        max-width: 90%;
+        max-height: 150px;
       }
 
       .button {
@@ -111,13 +122,19 @@
   <h1>Sikh Welfare Organizations</h1>
 
   <div class="btn-row">
-    <img src="pictures/05_Sikh_Welfare/01_Sri_Guru_Ram_Dass_Blood_Donation/Guru_Ram_Dass_Blood_Donation_01.jpg"
-         alt="Shri Guru Ram Dass Blood Donation"
-         onclick="location.href='./05_01_Ram_Dass_Blood.html'" />
-    
-    <button class="button" onclick="location.href='./05_01_Ram_Dass_Blood.html'">
-      Shri Guru Ram Dass Blood Donation Sewa Society
-    </button>
+
+    <!-- Card 1 -->
+    <div class="card">
+      <img src="pictures/05_Sikh_Welfare/01_Sri_Guru_Ram_Dass_Blood_Donation/Guru_Ram_Dass_Blood_Donation_01.jpg"
+           alt="Shri Guru Ram Dass Blood Donation"
+           onclick="location.href='./05_01_Ram_Dass_Blood.html'" />
+      <button class="button" onclick="location.href='./05_01_Ram_Dass_Blood.html'">
+        Shri Guru Ram Dass Blood Donation Sewa Society
+      </button>
+    </div>
+
+    <!-- You can duplicate this block for more organizations -->
+
   </div>
 
   <button type="button" onclick="goBack()" class="back-button">Back</button>
@@ -130,6 +147,7 @@
 
 </body>
 </html>
+
 
 
 
