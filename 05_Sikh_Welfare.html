@@ -155,8 +155,6 @@
   <!-- Card container for mobile -->
   <div class="card-container" id="cardContainer"></div>
 
-  <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
-
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
     import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
@@ -292,11 +290,18 @@
     }
 
     fetchData();
+   </script>
+    <!-- Back Button -->
+    <button type="button" onclick="goBack()" class="back-button">
+        <b>Back</b>
+    </button>
 
-    function goBack() {
-      window.location.href = "./index.html";
-    }
-  </script>
+    <script>
+        function goBack() 
+        {
+            window.location.href = "./index.html";
+        }
+    </script>
 
 </body>
 </html>
