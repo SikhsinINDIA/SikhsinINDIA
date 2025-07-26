@@ -1,12 +1,18 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sikh Welfare Societies in India</title>
   <style>
+    /* Add border-box globally for better sizing */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: #000000;
+      background-color: #000;
       color: #FF9933;
       font-family: Arial, sans-serif;
       padding: 20px;
@@ -17,31 +23,37 @@
       color: #FF9933;
       text-align: center;
       font-size: 2rem;
+      margin-bottom: 20px;
     }
 
-    /* Table wrapper for horizontal scroll on small screens */
+    /* Scrollable container for table */
     .table-container {
       width: 100%;
       overflow-x: auto;
-      margin-top: 20px;
+      -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+      border: 1px solid #FF9933;
+      border-radius: 4px;
     }
 
     table {
-      width: 100%;
       border-collapse: collapse;
-      min-width: 700px; /* ensures horizontal scrolling on narrow screens */
+      width: auto;           /* Important: let table width be automatic */
+      min-width: 700px;      /* force minimum width to enable scroll on narrow screens */
+      table-layout: fixed;   /* evenly distributes column widths */
     }
 
     th, td {
       border: 1px solid #FF9933;
       padding: 10px;
       text-align: left;
-      white-space: nowrap; /* prevents text from wrapping */
+      white-space: nowrap; /* prevent wrapping */
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     th {
       background-color: #FF9933;
-      color: #000000;
+      color: #000;
     }
 
     td {
@@ -53,11 +65,12 @@
     }
 
     tr:hover {
-      background-color: #333333;
+      background-color: #333;
     }
 
     td.webpage-cell {
       text-align: center;
+      padding: 5px;
     }
 
     .webpage-icon {
@@ -67,12 +80,8 @@
       margin: 0 auto;
     }
 
-    /* Responsive tweaks */
+    /* Responsive icon sizes */
     @media (max-width: 768px) {
-      h1 {
-        font-size: 1.5rem;
-      }
-
       .webpage-icon {
         width: 36px;
         height: 36px;
@@ -80,17 +89,12 @@
     }
 
     @media (max-width: 480px) {
-      h1 {
-        font-size: 1.2rem;
-      }
-
       .webpage-icon {
         width: 32px;
         height: 32px;
       }
     }
-
-    /* Back button styling */
+      /* Back button styling */
     .back-button {
       width: 80%;
       max-width: 200px;
@@ -109,10 +113,10 @@
     .back-button:hover {
       background-color: #FF8C00;
     }
-    
   </style>
 </head>
 <body>
+
   <h1>Sikh Welfare Societies in India</h1>
 
   <div class="table-container">
@@ -127,12 +131,11 @@
         </tr>
       </thead>
       <tbody id="tableBody">
-        <!-- Records will appear here -->
+        <!-- Data rows inserted here -->
       </tbody>
     </table>
   </div>
 
-  <!-- Firebase Modular SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
     import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
@@ -157,6 +160,7 @@
 
       try {
         const querySnapshot = await getDocs(welfareCollection);
+
         if (querySnapshot.empty) {
           const row = document.createElement("tr");
           const cell = document.createElement("td");
@@ -177,7 +181,6 @@
 
             if (field === "Webpage" && record[field]) {
               cell.classList.add("webpage-cell");
-
               const link = document.createElement("a");
               link.href = record[field];
               link.target = "_blank";
@@ -194,7 +197,6 @@
             } else {
               cell.textContent = record[field] || "";
             }
-
             row.appendChild(cell);
           });
 
@@ -213,9 +215,8 @@
     }
 
     fetchData();
-
   </script>
-  <!-- Back Button -->
+    <!-- Back Button -->
 
     <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
   <br>
