@@ -19,7 +19,9 @@
       font-size: 2rem;
     }
 
+    /* Table wrapper for horizontal scroll on small screens */
     .table-container {
+      width: 100%;
       overflow-x: auto;
       margin-top: 20px;
     }
@@ -27,14 +29,14 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 600px; /* prevents table from squishing too much */
+      min-width: 700px; /* ensures horizontal scrolling on narrow screens */
     }
 
-    th,
-    td {
+    th, td {
       border: 1px solid #FF9933;
       padding: 10px;
       text-align: left;
+      white-space: nowrap; /* prevents text from wrapping */
     }
 
     th {
@@ -65,14 +67,10 @@
       margin: 0 auto;
     }
 
-    /* Responsive adjustments */
+    /* Responsive tweaks */
     @media (max-width: 768px) {
       h1 {
         font-size: 1.5rem;
-      }
-
-      table {
-        font-size: 0.9rem;
       }
 
       .webpage-icon {
@@ -86,33 +84,10 @@
         font-size: 1.2rem;
       }
 
-      table {
-        font-size: 0.8rem;
-      }
-
       .webpage-icon {
         width: 32px;
         height: 32px;
       }
-    }
-    /* Back button styling */
-    .back-button {
-      width: 80%;
-      max-width: 200px;
-      height: 45px;
-      font-size: 20px;
-      background-color: #FFA500;
-      color: black;
-      margin: 40px auto 0 auto;
-      display: block;
-      border: 1mm solid black;
-      color: black;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .back-button:hover {
-      background-color: #FF8C00;
     }
   </style>
 </head>
@@ -217,17 +192,7 @@
     }
 
     fetchData();
- 
- </script>
-  <!-- Back Button -->
-    <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
-  <br>
-
-<script>
-    function goBack() {
-     window.location.href = "./index.html";
-    }
- </script>
+  </script>
 </body>
 </html>
 
