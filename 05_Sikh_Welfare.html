@@ -89,6 +89,27 @@
         height: 32px;
       }
     }
+
+    /* Back button styling */
+    .back-button {
+      width: 80%;
+      max-width: 200px;
+      height: 45px;
+      font-size: 20px;
+      background-color: #FFA500;
+      color: black;
+      margin: 40px auto 0 auto;
+      display: block;
+      border: 1mm solid black;
+      color: black;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      background-color: #FF8C00;
+    }
+    
   </style>
 </head>
 <body>
@@ -192,6 +213,17 @@
     }
 
     fetchData();
+
+  </script>
+  <!-- Back Button -->
+
+    <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
+  <br>
+
+<script>
+    function goBack() {
+     window.location.href = "./03_Gurudwaras in India.html";
+    }
   </script>
 </body>
 </html>
