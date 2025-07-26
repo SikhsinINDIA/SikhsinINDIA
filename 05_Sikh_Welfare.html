@@ -1,85 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Sikh Welfare Organizations</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sikh Welfare Societies in India</title>
   <style>
     body {
-      background-color: black;
-      color: #FFA500;
+      background-color: #000000;
+      color: #FF9933;
       font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 30px;
+      padding: 20px;
+      margin: 0;
     }
 
     h1 {
-      color: #FFD700;
-      margin-bottom: 40px;
-      font-size: 42px;
-    }
-
-    /* Wrapper for all cards */
-    .btn-row {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      align-items: center;
-    }
-
-    /* Each image + button group */
-    .card {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: nowrap;
-      max-width: 100%;
-    }
-
-    .card img {
-      height: auto;
-      max-height: 100px;
-      max-width: 200px;
-      width: auto;
-      object-fit: cover;
-      border-radius: 10px;
-      border: 2px solid #FFA500;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    .button {
-      background-color: #FFA500;
-      color: black;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      border-radius: 8px;
-      width: 240px;
-      height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: #FF9933;
       text-align: center;
-      font-weight: bold;
-      flex-shrink: 0;
+      font-size: 2rem;
     }
 
-    .button:hover {
-      background-color: #FF8C00;
+    .table-container {
+      overflow-x: auto;
+      margin-top: 20px;
     }
 
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px; /* prevents table from squishing too much */
+    }
+
+    th,
+    td {
+      border: 1px solid #FF9933;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #FF9933;
+      color: #000000;
+    }
+
+    td {
+      color: #FF9933;
+    }
+
+    tr:nth-child(even) {
+      background-color: #1a1a1a;
+    }
+
+    tr:hover {
+      background-color: #333333;
+    }
+
+    td.webpage-cell {
+      text-align: center;
+    }
+
+    .webpage-icon {
+      width: 48px;
+      height: 48px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      table {
+        font-size: 0.9rem;
+      }
+
+      .webpage-icon {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.2rem;
+      }
+
+      table {
+        font-size: 0.8rem;
+      }
+
+      .webpage-icon {
+        width: 32px;
+        height: 32px;
+      }
+    }
+    /* Back button styling */
     .back-button {
-      width: 150px;
-      height: 40px;
+      width: 80%;
+      max-width: 200px;
+      height: 45px;
       font-size: 20px;
       background-color: #FFA500;
       color: black;
       margin: 40px auto 0 auto;
       display: block;
-      border: none;
+      border: 1mm solid black;
+      color: black;
       border-radius: 8px;
       cursor: pointer;
     }
@@ -87,67 +114,122 @@
     .back-button:hover {
       background-color: #FF8C00;
     }
-
-    /* Mobile responsiveness */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 28px;
-      }
-
-      .card {
-        flex-direction: column;
-      }
-
-      .card img {
-        max-width: 90%;
-        max-height: 150px;
-      }
-
-      .button {
-        width: 90%;
-        height: auto;
-        font-size: 16px;
-        padding: 10px;
-      }
-
-      .back-button {
-        width: 90%;
-        font-size: 18px;
-      }
-    }
   </style>
 </head>
 <body>
+  <h1>Sikh Welfare Societies in India</h1>
 
-  <h1>Sikh Welfare Organizations</h1>
-
-  <div class="btn-row">
-
-    <!-- Card 1 -->
-    <div class="card">
-      <img src="pictures/05_Sikh_Welfare/01_Sri_Guru_Ram_Dass_Blood_Donation/Guru_Ram_Dass_Blood_Donation_01.jpg"
-           alt="Shri Guru Ram Dass Blood Donation"
-           onclick="location.href='./05_01_Ram_Dass_Blood.html'" />
-      <button class="button" onclick="location.href='./05_01_Ram_Dass_Blood.html'">
-        Shri Guru Ram Dass Blood Donation Sewa Society
-      </button>
-    </div>
-
-    <!-- You can duplicate this block for more organizations -->
-
+  <div class="table-container">
+    <table id="recordsTable">
+      <thead>
+        <tr>
+          <th>State</th>
+          <th>City</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Webpage</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <!-- Records will appear here -->
+      </tbody>
+    </table>
   </div>
 
-  <button type="button" onclick="goBack()" class="back-button">Back</button>
+  <!-- Firebase Modular SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
-  <script>
-    function goBack() {
-      window.location.href = "./index.html";
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b",
+      measurementId: "G-LHNTFNW14H"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const welfareCollection = collection(db, "Sikh_Welfare");
+
+    async function fetchData() {
+      const tableBody = document.getElementById("tableBody");
+      tableBody.innerHTML = "";
+
+      try {
+        const querySnapshot = await getDocs(welfareCollection);
+        if (querySnapshot.empty) {
+          const row = document.createElement("tr");
+          const cell = document.createElement("td");
+          cell.colSpan = 5;
+          cell.textContent = "No records found.";
+          cell.style.textAlign = "center";
+          row.appendChild(cell);
+          tableBody.appendChild(row);
+          return;
+        }
+
+        querySnapshot.forEach((doc) => {
+          const record = doc.data();
+          const row = document.createElement("tr");
+
+          ["State", "City", "Name", "Type", "Webpage"].forEach((field) => {
+            const cell = document.createElement("td");
+
+            if (field === "Webpage" && record[field]) {
+              cell.classList.add("webpage-cell");
+
+              const link = document.createElement("a");
+              link.href = record[field];
+              link.target = "_blank";
+              link.rel = "noopener noreferrer";
+
+              const icon = document.createElement("img");
+              icon.src = "./pictures/00_Index/Click.png";
+              icon.alt = "Open Webpage";
+              icon.title = "Open Webpage";
+              icon.className = "webpage-icon";
+
+              link.appendChild(icon);
+              cell.appendChild(link);
+            } else {
+              cell.textContent = record[field] || "";
+            }
+
+            row.appendChild(cell);
+          });
+
+          tableBody.appendChild(row);
+        });
+      } catch (error) {
+        console.error("Error fetching documents: ", error);
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+        cell.colSpan = 5;
+        cell.textContent = "Error loading records.";
+        cell.style.textAlign = "center";
+        row.appendChild(cell);
+        tableBody.appendChild(row);
+      }
     }
-  </script>
 
+    fetchData();
+ 
+ </script>
+  <!-- Back Button -->
+    <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
+  <br>
+
+<script>
+    function goBack() {
+     window.location.href = "./index.html";
+    }
+ </script>
 </body>
 </html>
-
 
 
 

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sikh Welfare Organizations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: black;
+      color: #FFA500;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #FFD700;
+      margin-bottom: 40px;
+      font-size: 42px;
+    }
+
+    /* Wrapper for all cards */
+    .btn-row {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+    }
+
+    /* Each image + button group */
+    .card {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: nowrap;
+      max-width: 100%;
+    }
+
+    .card img {
+      height: auto;
+      max-height: 100px;
+      max-width: 200px;
+      width: auto;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid #FFA500;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .button {
+      background-color: #FFA500;
+      color: black;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 8px;
+      width: 240px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .button:hover {
+      background-color: #FF8C00;
+    }
+
+    .back-button {
+      width: 150px;
+      height: 40px;
+      font-size: 20px;
+      background-color: #FFA500;
+      color: black;
+      margin: 40px auto 0 auto;
+      display: block;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      background-color: #FF8C00;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .card {
+        flex-direction: column;
+      }
+
+      .card img {
+        max-width: 90%;
+        max-height: 150px;
+      }
+
+      .button {
+        width: 90%;
+        height: auto;
+        font-size: 16px;
+        padding: 10px;
+      }
+
+      .back-button {
+        width: 90%;
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sikh Welfare Organizations</h1>
+
+  <div class="btn-row">
+
+    <!-- Card 1 -->
+    <div class="card">
+      <img src="pictures/05_Sikh_Welfare/01_Sri_Guru_Ram_Dass_Blood_Donation/Guru_Ram_Dass_Blood_Donation_01.jpg"
+           alt="Shri Guru Ram Dass Blood Donation"
+           onclick="location.href='./05_01_Ram_Dass_Blood.html'" />
+      <button class="button" onclick="location.href='./05_01_Ram_Dass_Blood.html'">
+        Shri Guru Ram Dass Blood Donation Sewa Society
+      </button>
+    </div>
+
+    <!-- You can duplicate this block for more organizations -->
+
+  </div>
+
+  <button type="button" onclick="goBack()" class="back-button">Back</button>
+
+  <script>
+    function goBack() {
+      window.location.href = "./index.html";
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+
