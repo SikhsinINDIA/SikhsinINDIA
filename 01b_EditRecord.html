@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Sikhs in UAE – Membership Form</title>
+  <title>Sikhs in INDIA – Membership Form</title>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
   <style>
@@ -112,7 +112,7 @@
 </head>
 <body>
 
-  <h2>Register to Become a Member of “Sikhs in UAE” Group</h2>
+  <h2>Register to Become a Member of “Sikhs in INDIA” Group</h2>
 
   <div id="recordsContainer">
     <h3>Current Members</h3>
@@ -125,6 +125,8 @@
           <th>Age</th>
           <th>Gender</th>
           <th>Address</th>
+          <th>City</th>
+          <th>State</th>
           <th>Date_Created</th>
           <th>Actions</th>
         </tr>
@@ -171,6 +173,16 @@
     </div>
 
     <div class="form-row">
+      <label for="city">City:</label>
+      <input type="text" id="city" placeholder="Your City" maxlength="150" />
+    </div>
+
+        <div class="form-row">
+      <label for="state">State:</label>
+      <input type="text" id="state" placeholder="Your State" maxlength="150" />
+    </div>
+
+    <div class="form-row">
       <label for="Date_created">Date Created:</label>
       <input type="datetime-local" id="Date_created" />
     </div>
@@ -206,13 +218,13 @@
 
   <script>
     const firebaseConfig = {
-      apiKey: "AIzaSyBGhLdEcfLYzZAWAA_je63DHnazpHHZZpQ",
-      authDomain: "sihksinuae.firebaseapp.com",
-      projectId: "sihksinuae",
-      storageBucket: "sihksinuae.firebasestorage.app",
-      messagingSenderId: "119237159141",
-      appId: "1:119237159141:web:39acb9510020a8a7808c0c",
-      measurementId: "G-RNXNN6TCB0"
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b",
+      measurementId: "G-LHNTFNW14H"
     };
 
     firebase.initializeApp(firebaseConfig);
@@ -232,7 +244,7 @@ function formatDate(timestamp) {
       const tbody = document.getElementById("recordsTableBody");
       tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 10px; color: #FF9933;">Loading records...</td></tr>';
 
-      db.collection("sikhdatabaseuae").orderBy("Date_created", "desc").get()
+      db.collection("sikhdatabaseindia").orderBy("Date_created", "desc").get()
         .then(querySnapshot => {
           if (querySnapshot.empty) {
             tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 10px; color: #FF9933;">No records found.</td></tr>';
@@ -250,6 +262,8 @@ function formatDate(timestamp) {
                 <td>${data.Age || ''}</td>
                 <td>${data.Gender || ''}</td>
                 <td>${data.Address || ''}</td>
+                <td>${data.City || ''}</td>
+                <td>${data.State || ''}</td>
               <td>${formatDate(data.Date_created)}</td>
                 <td>
                   <button class="edit-btn" onclick="editRecord('${data.Email}')">Edit</button>
@@ -271,7 +285,7 @@ function formatDate(timestamp) {
       const email = document.getElementById("email").value.trim();
       if (!email) return alert("Please enter an email.");
 
-      db.collection("sikhdatabaseuae").doc(email).get()
+      db.collection("sikhdatabaseindia").doc(email).get()
         .then(doc => {
           if (!doc.exists) {
             document.getElementById("status").innerText = "No user found with this email.";
@@ -285,6 +299,8 @@ function formatDate(timestamp) {
           document.getElementById("mobile").value = data.Mobile || "";
           document.getElementById("age").value = data.Age || "";
           document.getElementById("address").value = data.Address || "";
+          document.getElementById("city").value = data.City || "";
+          document.getElementById("state").value = data.State || "";
           document.getElementById("gender").value = data.Gender || "";
 
           if (data.Date_created) {
@@ -309,6 +325,8 @@ function formatDate(timestamp) {
       document.getElementById("mobile").value = "";
       document.getElementById("age").value = "";
       document.getElementById("address").value = "";
+      document.getElementById("city").value = "";
+      document.getElementById("state").value = "";
       document.getElementById("Date_created").value = "";
       document.getElementById("gender").value = "";
       document.getElementById("status").innerText = "";
@@ -327,6 +345,8 @@ function formatDate(timestamp) {
       const mobile = document.getElementById("mobile").value.trim();
       const age = document.getElementById("age").value.trim();
       const address = document.getElementById("address").value.trim();
+      const city = document.getElementById("city").value.trim();
+      const state = document.getElementById("state").value.trim();
       const gender = document.getElementById("gender").value;
       const dateInput = document.getElementById("Date_created").value;
       const DateCreated = dateInput ? new Date(dateInput).toISOString() : new Date().toISOString();
@@ -340,13 +360,15 @@ function formatDate(timestamp) {
         return;
       }
 
-      db.collection("sikhdatabaseuae").doc(email).set({
+      db.collection("sikhdatabaseindia").doc(email).set({
         Email: email,
         Name: name,
         Password: password,
         Mobile: mobile,
         Age: age,
         Address: address,
+        City: city,
+        State: state,
         Date_created: DateCreated,
         Gender: gender
       })
@@ -362,7 +384,7 @@ function formatDate(timestamp) {
     });
 
     function editRecord(email) {
-      db.collection("sikhdatabaseuae").doc(email).get()
+      db.collection("sikhdatabaseindia").doc(email).get()
         .then(doc => {
           if (!doc.exists) return alert("No record found with that Email.");
           const data = doc.data();
@@ -373,6 +395,8 @@ function formatDate(timestamp) {
           document.getElementById("mobile").value = data.Mobile || '';
           document.getElementById("age").value = data.Age || '';
           document.getElementById("address").value = data.Address || '';
+          document.getElementById("city").value = data.City || '';
+          document.getElementById("state").value = data.State || '';
           document.getElementById("gender").value = data.Gender || '';
           if (data.Date_created) {
             document.getElementById("Date_created").value = new Date(data.Date_created).toISOString().slice(0, 16);
@@ -386,7 +410,7 @@ function formatDate(timestamp) {
 
     function deleteRecord(email) {
       if (!confirm(`Are you sure you want to delete ${email}?`)) return;
-      db.collection("sikhdatabaseuae").doc(email).delete()
+      db.collection("sikhdatabaseindia").doc(email).delete()
         .then(() => {
           document.getElementById("status").innerText = `Deleted record for ${email}`;
           loadAllRecords();
