@@ -5,58 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sikh Welfare Societies in India</title>
   <style>
-    /* Add border-box globally for better sizing */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
     body {
       background-color: #000;
       color: #FF9933;
       font-family: Arial, sans-serif;
-      padding: 20px;
       margin: 0;
+      padding: 20px;
     }
 
     h1 {
-      color: #FF9933;
       text-align: center;
       font-size: 2rem;
       margin-bottom: 20px;
     }
 
-    /* Scrollable container for table */
+    /* Table styles for desktop */
     .table-container {
-      width: 100%;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
       border: 1px solid #FF9933;
       border-radius: 4px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     table {
       border-collapse: collapse;
-      width: 100%;          /* fill container width */
-      min-width: 600px;     /* allow horizontal scroll if screen smaller */
-      table-layout: auto;   /* automatic column width */
+      width: 100%;
+      min-width: 600px;
+      table-layout: fixed;
     }
 
     th, td {
       border: 1px solid #FF9933;
       padding: 10px;
       text-align: left;
-      white-space: normal;        /* allow wrapping to prevent overflow */
+      white-space: normal;
       word-wrap: break-word;
       overflow-wrap: break-word;
+      max-width: 150px;
+      box-sizing: border-box;
     }
 
     th {
       background-color: #FF9933;
       color: #000;
-    }
-
-    td {
-      color: #FF9933;
     }
 
     tr:nth-child(even) {
@@ -79,18 +70,45 @@
       margin: 0 auto;
     }
 
-    /* Responsive icon sizes */
-    @media (max-width: 768px) {
-      .webpage-icon {
-        width: 36px;
-        height: 36px;
-      }
+    /* Card styles for mobile */
+    .card-container {
+      display: none; /* hide cards on desktop */
     }
 
-    @media (max-width: 480px) {
-      .webpage-icon {
-        width: 32px;
-        height: 32px;
+    .card {
+      background-color: #1a1a1a;
+      border: 1px solid #FF9933;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      color: #FF9933;
+      box-sizing: border-box;
+    }
+
+    .card strong {
+      display: inline-block;
+      width: 80px;
+      font-weight: bold;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .card a img {
+      width: 40px;
+      height: 40px;
+      vertical-align: middle;
+    }
+
+    /* Responsive switching */
+    @media (max-width: 768px) {
+      .table-container {
+        display: none; /* hide table on small screens */
+      }
+      .card-container {
+        display: block; /* show cards on small screens */
       }
     }
 
@@ -118,6 +136,7 @@
 
   <h1>Sikh Welfare Societies in India</h1>
 
+  <!-- Table container for desktop -->
   <div class="table-container">
     <table id="recordsTable">
       <thead>
@@ -129,11 +148,14 @@
           <th>Webpage</th>
         </tr>
       </thead>
-      <tbody id="tableBody">
-        <!-- Data rows inserted here -->
-      </tbody>
+      <tbody id="tableBody"></tbody>
     </table>
   </div>
+
+  <!-- Card container for mobile -->
+  <div class="card-container" id="cardContainer"></div>
+
+  <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
@@ -155,24 +177,36 @@
 
     async function fetchData() {
       const tableBody = document.getElementById("tableBody");
+      const cardContainer = document.getElementById("cardContainer");
+
       tableBody.innerHTML = "";
+      cardContainer.innerHTML = "";
 
       try {
         const querySnapshot = await getDocs(welfareCollection);
 
         if (querySnapshot.empty) {
-          const row = document.createElement("tr");
-          const cell = document.createElement("td");
-          cell.colSpan = 5;
-          cell.textContent = "No records found.";
-          cell.style.textAlign = "center";
-          row.appendChild(cell);
-          tableBody.appendChild(row);
+          // No records message for table
+          const tr = document.createElement("tr");
+          const td = document.createElement("td");
+          td.colSpan = 5;
+          td.style.textAlign = "center";
+          td.textContent = "No records found.";
+          tr.appendChild(td);
+          tableBody.appendChild(tr);
+
+          // No records message for cards
+          const noCard = document.createElement("p");
+          noCard.style.textAlign = "center";
+          noCard.textContent = "No records found.";
+          cardContainer.appendChild(noCard);
           return;
         }
 
         querySnapshot.forEach((doc) => {
           const record = doc.data();
+
+          // Create table row
           const row = document.createElement("tr");
 
           ["State", "City", "Name", "Type", "Webpage"].forEach((field) => {
@@ -198,35 +232,75 @@
             }
             row.appendChild(cell);
           });
-
           tableBody.appendChild(row);
+
+          // Create card
+          const card = document.createElement("div");
+          card.className = "card";
+
+          const state = document.createElement("p");
+          state.innerHTML = `<strong>State:</strong> ${record.State || ""}`;
+          card.appendChild(state);
+
+          const city = document.createElement("p");
+          city.innerHTML = `<strong>City:</strong> ${record.City || ""}`;
+          card.appendChild(city);
+
+          const name = document.createElement("p");
+          name.innerHTML = `<strong>Name:</strong> ${record.Name || ""}`;
+          card.appendChild(name);
+
+          const type = document.createElement("p");
+          type.innerHTML = `<strong>Type:</strong> ${record.Type || ""}`;
+          card.appendChild(type);
+
+          if (record.Webpage) {
+            const link = document.createElement("a");
+            link.href = record.Webpage;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.title = "Open Webpage";
+
+            const icon = document.createElement("img");
+            icon.src = "./pictures/00_Index/Click.png";
+            icon.alt = "Open Webpage";
+
+            link.appendChild(icon);
+            card.appendChild(link);
+          }
+
+          cardContainer.appendChild(card);
         });
       } catch (error) {
         console.error("Error fetching documents: ", error);
-        const row = document.createElement("tr");
-        const cell = document.createElement("td");
-        cell.colSpan = 5;
-        cell.textContent = "Error loading records.";
-        cell.style.textAlign = "center";
-        row.appendChild(cell);
-        tableBody.appendChild(row);
+
+        // Table error message
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.colSpan = 5;
+        td.style.textAlign = "center";
+        td.textContent = "Error loading records.";
+        tr.appendChild(td);
+        tableBody.appendChild(tr);
+
+        // Card error message
+        const errMsg = document.createElement("p");
+        errMsg.style.textAlign = "center";
+        errMsg.textContent = "Error loading records.";
+        document.getElementById("cardContainer").appendChild(errMsg);
       }
     }
 
     fetchData();
-  </script>
 
-  <!-- Back Button -->
-  <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
-  <br>
-
-  <script>
     function goBack() {
       window.location.href = "./index.html";
     }
   </script>
+
 </body>
 </html>
+
 
 
 
