@@ -330,10 +330,10 @@
         Date_created: firebase.firestore.FieldValue.serverTimestamp()
       };
 
-      db.collection("sikhdatabaseuae").doc(email).set(data)
+      db.collection("sikhdatabaseindia").doc(email).set(data)
         .then(() => {
-          document.getElementById("status").innerText = "🎉 Congratulations! You are now a member of Sikhs in UAE.";
-          sendEmail(email, name, mobile, ageVal, address, gender);
+          document.getElementById("status").innerText = "🎉 Congratulations! You are now a member of Sikhs in INDIA.";
+          sendEmail(email, name, mobile, ageVal, address, city, state, gender);
           clearForm(false);
         })
         .catch(error => {
@@ -366,7 +366,7 @@
 
   // 2. Send backup email to admin
   const backupParams = {
-    email: "sikhsuae@gmail.com", // admin's email
+    email: "sikhsinindia@gmail.com", // admin's email
     name: name,
     mobile: mobile,
     age: age,
@@ -377,7 +377,7 @@
     useremail: email // showing who filled the form
   };
 
-  emailjs.send("service_p8xn1qd", "template_backupadmin", backupParams)
+  emailjs.send("service_dlzwpyu", "template_x1uksg8", backupParams)
     .then(response => {
       console.log("✅ Backup email sent to admin:", response.status, response.text);
     })
