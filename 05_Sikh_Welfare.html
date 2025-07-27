@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sikh Welfare Societies in India</title>
+  <title>Sikh Welfare Organizations in India</title>
   <style>
     body {
       background-color: #000;
@@ -19,12 +19,66 @@
       margin-bottom: 20px;
     }
 
-    /* Table styles for desktop */
+    /* Filters container */
+    .filters {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      min-width: 140px;
+      max-width: 200px;
+      flex: 1 1 140px;
+    }
+
+    .filter-group label {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    select, input[type="text"] {
+      font-size: 16px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid #FF9933;
+      background-color: #1a1a1a;
+      color: #FF9933;
+    }
+
+    /* Clear Filters button */
+    #clearFilters {
+      background-color: #FFA500;
+      color: black;
+      border: 1mm solid black;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+      padding: 8px 16px;
+      align-self: flex-end;
+      min-width: 140px;
+      transition: background-color 0.3s ease;
+    }
+    #clearFilters:hover {
+      background-color: #FF8C00;
+    }
+
+    /* Table styles */
     .table-container {
       border: 1px solid #FF9933;
       border-radius: 4px;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     table {
@@ -68,11 +122,19 @@
       height: 48px;
       display: block;
       margin: 0 auto;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .webpage-icon:hover {
+      transform: scale(1.1);
     }
 
-    /* Card styles for mobile */
+    /* Card styles */
     .card-container {
-      display: none; /* hide cards on desktop */
+      display: none;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .card {
@@ -82,37 +144,23 @@
       padding: 15px;
       margin-bottom: 15px;
       color: #FF9933;
-      box-sizing: border-box;
+      font-size: 16px;
+      line-height: 1.4;
     }
 
     .card strong {
       display: inline-block;
-      width: 80px;
+      width: 90px;
       font-weight: bold;
     }
 
-    .card a {
-      display: inline-block;
-      margin-top: 10px;
-    }
-
     .card a img {
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       vertical-align: middle;
     }
 
-    /* Responsive switching */
-    @media (max-width: 768px) {
-      .table-container {
-        display: none; /* hide table on small screens */
-      }
-      .card-container {
-        display: block; /* show cards on small screens */
-      }
-    }
-
-    /* Back button styling */
+    /* Back button */
     .back-button {
       width: 80%;
       max-width: 200px;
@@ -120,25 +168,120 @@
       font-size: 20px;
       background-color: #FFA500;
       color: black;
-      margin: 40px auto 0 auto;
+      margin: 40px auto 40px auto;
       display: block;
       border: 1mm solid black;
       border-radius: 8px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
-
     .back-button:hover {
       background-color: #FF8C00;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .table-container {
+        display: none;
+      }
+      .card-container {
+        display: block;
+      }
+
+      .filters {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        max-width: 100%;
+        margin-bottom: 25px;
+      }
+
+      .filter-group {
+        width: 100%;
+        max-width: none;
+        align-items: stretch;
+      }
+
+      .filter-group label {
+        margin-bottom: 6px;
+        font-size: 16px;
+      }
+
+      select, input[type="text"] {
+        width: 100%;
+        font-size: 18px;
+        padding: 10px 12px;
+        border-radius: 6px;
+      }
+
+      #clearFilters {
+        width: 100%;
+        max-width: none;
+        font-size: 20px;
+        padding: 12px 0;
+        margin-top: 10px;
+        border-radius: 8px;
+        align-self: stretch;
+      }
+
+      .card {
+        padding: 20px 15px;
+        font-size: 18px;
+      }
+
+      .card strong {
+        width: 90px;
+        font-size: 18px;
+      }
+
+      .card a img {
+        width: 36px;
+        height: 36px;
+      }
+
+      .back-button {
+        width: 90%;
+        max-width: 320px;
+        font-size: 22px;
+        padding: 14px 0;
+        margin: 40px auto 40px auto;
+        border-radius: 10px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>Sikh Welfare Societies in India</h1>
+  <h1>Sikh Welfare Organizations in India</h1>
 
-  <!-- Table container for desktop -->
+  <div class="filters">
+    <div class="filter-group">
+      <label for="stateFilter">Filter by State:</label>
+      <select id="stateFilter">
+        <option value="All">All States</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="cityFilter">Filter by City:</label>
+      <select id="cityFilter">
+        <option value="All">All Cities</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="nameFilter">Filter by Name:</label>
+      <input type="text" id="nameFilter" placeholder="Search by Name" />
+    </div>
+    <div class="filter-group">
+      <label for="typeFilter">Filter by Type:</label>
+      <select id="typeFilter">
+        <option value="All">All Types</option>
+      </select>
+    </div>
+    <button id="clearFilters" title="Clear all filters">Clear Filters</button>
+  </div>
+
   <div class="table-container">
-    <table id="recordsTable">
+    <table id="recordsTable" aria-label="Sikh Welfare Organizations Table">
       <thead>
         <tr>
           <th>State</th>
@@ -152,8 +295,7 @@
     </table>
   </div>
 
-  <!-- Card container for mobile -->
-  <div class="card-container" id="cardContainer"></div>
+  <div class="card-container" id="cardContainer" aria-live="polite"></div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
@@ -173,138 +315,207 @@
     const db = getFirestore(app);
     const welfareCollection = collection(db, "Sikh_Welfare");
 
-    async function fetchData() {
-      const tableBody = document.getElementById("tableBody");
-      const cardContainer = document.getElementById("cardContainer");
+    const stateFilter = document.getElementById("stateFilter");
+    const cityFilter = document.getElementById("cityFilter");
+    const nameFilter = document.getElementById("nameFilter");
+    const typeFilter = document.getElementById("typeFilter");
+    const clearFiltersBtn = document.getElementById("clearFilters");
 
+    const tableBody = document.getElementById("tableBody");
+    const cardContainer = document.getElementById("cardContainer");
+
+    let allRecords = [];
+
+    async function fetchData() {
       tableBody.innerHTML = "";
       cardContainer.innerHTML = "";
 
       try {
         const querySnapshot = await getDocs(welfareCollection);
-
-        if (querySnapshot.empty) {
-          // No records message for table
-          const tr = document.createElement("tr");
-          const td = document.createElement("td");
-          td.colSpan = 5;
-          td.style.textAlign = "center";
-          td.textContent = "No records found.";
-          tr.appendChild(td);
-          tableBody.appendChild(tr);
-
-          // No records message for cards
-          const noCard = document.createElement("p");
-          noCard.style.textAlign = "center";
-          noCard.textContent = "No records found.";
-          cardContainer.appendChild(noCard);
-          return;
-        }
+        allRecords = [];
+        const stateSet = new Set();
+        const citySet = new Set();
+        const typeSet = new Set();
 
         querySnapshot.forEach((doc) => {
-          const record = doc.data();
-
-          // Create table row
-          const row = document.createElement("tr");
-
-          ["State", "City", "Name", "Type", "Webpage"].forEach((field) => {
-            const cell = document.createElement("td");
-
-            if (field === "Webpage" && record[field]) {
-              cell.classList.add("webpage-cell");
-              const link = document.createElement("a");
-              link.href = record[field];
-              link.target = "_blank";
-              link.rel = "noopener noreferrer";
-
-              const icon = document.createElement("img");
-              icon.src = "./pictures/00_Index/Click.png";
-              icon.alt = "Open Webpage";
-              icon.title = "Open Webpage";
-              icon.className = "webpage-icon";
-
-              link.appendChild(icon);
-              cell.appendChild(link);
-            } else {
-              cell.textContent = record[field] || "";
-            }
-            row.appendChild(cell);
-          });
-          tableBody.appendChild(row);
-
-          // Create card
-          const card = document.createElement("div");
-          card.className = "card";
-
-          const state = document.createElement("p");
-          state.innerHTML = `<strong>State:</strong> ${record.State || ""}`;
-          card.appendChild(state);
-
-          const city = document.createElement("p");
-          city.innerHTML = `<strong>City:</strong> ${record.City || ""}`;
-          card.appendChild(city);
-
-          const name = document.createElement("p");
-          name.innerHTML = `<strong>Name:</strong> ${record.Name || ""}`;
-          card.appendChild(name);
-
-          const type = document.createElement("p");
-          type.innerHTML = `<strong>Type:</strong> ${record.Type || ""}`;
-          card.appendChild(type);
-
-          if (record.Webpage) {
-            const link = document.createElement("a");
-            link.href = record.Webpage;
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
-            link.title = "Open Webpage";
-
-            const icon = document.createElement("img");
-            icon.src = "./pictures/00_Index/Click.png";
-            icon.alt = "Open Webpage";
-
-            link.appendChild(icon);
-            card.appendChild(link);
-          }
-
-          cardContainer.appendChild(card);
+          const data = doc.data();
+          allRecords.push(data);
+          if (data.State) stateSet.add(data.State);
+          if (data.City) citySet.add(data.City);
+          if (data.Type) typeSet.add(data.Type);
         });
-      } catch (error) {
-        console.error("Error fetching documents: ", error);
 
-        // Table error message
+        // Populate filters (sort alphabetically)
+        populateFilterOptions(stateFilter, Array.from(stateSet).sort(), "All States");
+        populateFilterOptions(cityFilter, Array.from(citySet).sort(), "All Cities");
+        populateFilterOptions(typeFilter, Array.from(typeSet).sort(), "All Types");
+
+        displayRecords(allRecords);
+      } catch (error) {
+        console.error("Error fetching documents:", error);
+        tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">Error loading records.</td></tr>`;
+        cardContainer.innerHTML = `<p style="text-align:center;">Error loading records.</p>`;
+      }
+    }
+
+    function populateFilterOptions(selectElem, optionsArray, allLabel) {
+      // Clear existing except first
+      selectElem.innerHTML = `<option value="All">${allLabel}</option>`;
+      optionsArray.forEach(opt => {
+        const option = document.createElement("option");
+        option.value = opt;
+        option.textContent = opt;
+        selectElem.appendChild(option);
+      });
+    }
+
+    function displayRecords(records) {
+      tableBody.innerHTML = "";
+      cardContainer.innerHTML = "";
+
+      if (records.length === 0) {
         const tr = document.createElement("tr");
         const td = document.createElement("td");
         td.colSpan = 5;
         td.style.textAlign = "center";
-        td.textContent = "Error loading records.";
+        td.textContent = "No records found.";
         tr.appendChild(td);
         tableBody.appendChild(tr);
 
-        // Card error message
-        const errMsg = document.createElement("p");
-        errMsg.style.textAlign = "center";
-        errMsg.textContent = "Error loading records.";
-        document.getElementById("cardContainer").appendChild(errMsg);
+        const noCard = document.createElement("p");
+        noCard.style.textAlign = "center";
+        noCard.textContent = "No records found.";
+        cardContainer.appendChild(noCard);
+        return;
       }
+
+      records.forEach(record => {
+        // Table row
+        const row = document.createElement("tr");
+        ["State", "City", "Name", "Type", "Webpage"].forEach(field => {
+          const cell = document.createElement("td");
+          if (field === "Webpage" && record[field]) {
+            cell.classList.add("webpage-cell");
+            const link = document.createElement("a");
+            link.href = record[field];
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+
+            const icon = document.createElement("img");
+            icon.src = "./pictures/00_Index/Click.png";
+            icon.alt = "Open Webpage";
+            icon.title = "Open Webpage";
+            icon.className = "webpage-icon";
+
+            link.appendChild(icon);
+            cell.appendChild(link);
+          } else {
+            cell.textContent = record[field] || "";
+          }
+          row.appendChild(cell);
+        });
+        tableBody.appendChild(row);
+
+        // Card view
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const state = document.createElement("p");
+        state.innerHTML = `<strong>State:</strong> ${record.State || ""}`;
+        card.appendChild(state);
+
+        const city = document.createElement("p");
+        city.innerHTML = `<strong>City:</strong> ${record.City || ""}`;
+        card.appendChild(city);
+
+        const name = document.createElement("p");
+        name.innerHTML = `<strong>Name:</strong> ${record.Name || ""}`;
+        card.appendChild(name);
+
+        const type = document.createElement("p");
+        type.innerHTML = `<strong>Type:</strong> ${record.Type || ""}`;
+        card.appendChild(type);
+
+        if (record.Webpage) {
+          const link = document.createElement("a");
+          link.href = record.Webpage;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.title = "Open Webpage";
+
+          const icon = document.createElement("img");
+          icon.src = "./pictures/00_Index/Click.png";
+          icon.alt = "Open Webpage";
+
+          link.appendChild(icon);
+          card.appendChild(link);
+        }
+
+        cardContainer.appendChild(card);
+      });
     }
 
-    fetchData();
-   </script>
-    <!-- Back Button -->
-    <button type="button" onclick="goBack()" class="back-button">
-        <b>Back</b>
-    </button>
+    function filterRecords() {
+      const stateVal = stateFilter.value;
+      const cityVal = cityFilter.value;
+      const typeVal = typeFilter.value;
+      const nameVal = nameFilter.value.trim().toLowerCase();
 
-    <script>
-        function goBack() 
-        {
-            window.location.href = "./index.html";
-        }
-    </script>
+      const filtered = allRecords.filter(record => {
+        return (stateVal === "All" || record.State === stateVal)
+          && (cityVal === "All" || record.City === cityVal)
+          && (typeVal === "All" || record.Type === typeVal)
+          && (nameVal === "" || (record.Name && record.Name.toLowerCase().includes(nameVal)));
+      });
+
+      displayRecords(filtered);
+    }
+
+    // Event listeners for filters
+    stateFilter.addEventListener("change", filterRecords);
+    cityFilter.addEventListener("change", filterRecords);
+    typeFilter.addEventListener("change", filterRecords);
+    nameFilter.addEventListener("input", filterRecords);
+
+    clearFiltersBtn.addEventListener("click", () => {
+      stateFilter.value = "All";
+      cityFilter.value = "All";
+      typeFilter.value = "All";
+      nameFilter.value = "";
+      displayRecords(allRecords);
+    });
+
+    fetchData();
+  </script>
+
+  <!-- Back Button -->
+  <button type="button" onclick="goBack()" class="back-button">
+    <b>Back</b>
+  </button>
+<button type="button" onclick="admin()" class="back-button" style="float: right;">
+  <b>Admin</b>
+</button>
+  <!-- <button 
+    type="button" 
+    onclick="admin()" 
+    style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px 20px 0 auto; text-align: center;">
+    Admin
+  </button> -->
+
+  <script>
+    function goBack() {
+      window.location.href = "./index.html";
+    }
+
+        function admin() {
+      window.location.href = "./05a_Password.html";
+    }
+</script>
+
 
 </body>
 </html>
+
 
 
 
