@@ -20,50 +20,37 @@
     }
 
     .filters {
-      display: flex;
-      gap: 5px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-      max-width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0; /* remove flex gap */
+    margin-bottom: 1px;
+    padding: 0 10px;
     }
 
     .filter-group {
-      display: flex;
-      flex-direction: column;
-      min-width: 140px;
-      max-width: 200px;
-      flex: 1 1 140px;
+  .filter-group {
+    width: 100%;
+    margin-bottom: 1px; /* tighten spacing */
     }
 
     .filter-group label {
-      font-size: 18px;
-      margin-bottom: 1px;
+    margin-bottom: 1px;
+    font-size: 15px;
     }
 
     select,
     input[type="text"] {
-      font-size: 16px;
-      padding: 1px 1px;
-      border-radius: 4px;
-      border: 1px solid #FF9933;
-      background-color: #1a1a1a;
-      color: #FF9933;
+    width: 100%;
+    font-size: 16px;
+    padding: 8px 10px;
     }
 
     #clearFilters {
-      background-color: #FFA500;
-      color: black;
-      border: 1mm solid black;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 18px;
-      padding: 1px 1px;
-      align-self: flex-end;
-      min-width: 140px;
-      transition: background-color 0.3s ease;
+    width: 100%;
+    font-size: 18px;
+    padding: 10px;
+    margin-top: 4px; /* reduce top margin */
+    align-self: stretch;
     }
 
     #clearFilters:hover {
@@ -137,19 +124,12 @@
     }
 
     .card {
-      background-color: #1a1a1a;
-      border: 1px solid #FF9933;
-      border-radius: 8px;
-      padding: 1px;
-      margin-bottom: 2px;
-      color: #FF9933;
-      font-size: 16px;
-      line-height: 1.4;
+    padding: 16px 12px;
+    font-size: 16px;
     }
 
     .card strong {
-      display: inline-block;
-      width: 90px;
+    font-size: 16px;
     }
 
     .card a img {
@@ -159,18 +139,11 @@
     }
 
     .back-button {
-      width: 80%;
-      max-width: 200px;
-      height: 45px;
-      font-size: 20px;
-      background-color: #FFA500;
-      color: black;
-      margin: 20px auto;
-      display: block;
-      border: 1mm solid black;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+    width: 90%;
+    max-width: 320px;
+    font-size: 20px;
+    padding: 12px 0;
+    margin: 30px auto;
     }
 
     .back-button:hover {
