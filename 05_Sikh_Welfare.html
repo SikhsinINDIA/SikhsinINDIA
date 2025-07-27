@@ -20,37 +20,35 @@
     }
 
     .filters {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0; /* remove flex gap */
-    margin-bottom: 1px;
-    padding: 0 10px;
+  max-width: 400px; /* Adjust as needed */
+  margin-left: auto;
+  margin-right: auto;
     }
 
     .filter-group {
-  .filter-group {
-    width: 100%;
-    margin-bottom: 1px; /* tighten spacing */
+ max-width: 400px; /* Or 350px or whatever you prefer */
+  margin-left: auto;
+  margin-right: auto;
     }
 
     .filter-group label {
-    margin-bottom: 1px;
-    font-size: 15px;
+      margin-bottom: 1px;
+      font-size: 15px;
     }
 
     select,
     input[type="text"] {
-    width: 100%;
-    font-size: 16px;
-    padding: 8px 10px;
+      width: 100%;
+      font-size: 16px;
+      padding: 8px 10px;
     }
 
     #clearFilters {
-    width: 100%;
-    font-size: 18px;
-    padding: 10px;
-    margin-top: 4px; /* reduce top margin */
-    align-self: stretch;
+      width: 100%;
+      font-size: 18px;
+      padding: 10px;
+      margin-top: 4px;
+      align-self: stretch;
     }
 
     #clearFilters:hover {
@@ -61,7 +59,6 @@
       border: 1px solid #FF9933;
       border-radius: 4px;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
       max-width: 1000px;
       margin-left: auto;
       margin-right: auto;
@@ -105,8 +102,8 @@
     }
 
     .webpage-icon {
-      width: 48px;
-      height: 48px;
+      width: 8px;
+      height: auto;
       display: block;
       margin: 0 auto;
       cursor: pointer;
@@ -124,12 +121,12 @@
     }
 
     .card {
-    padding: 16px 12px;
-    font-size: 16px;
+      padding: 16px 12px;
+      font-size: 16px;
     }
 
     .card strong {
-    font-size: 16px;
+      font-size: 16px;
     }
 
     .card a img {
@@ -139,11 +136,11 @@
     }
 
     .back-button {
-    width: 90%;
-    max-width: 320px;
-    font-size: 20px;
-    padding: 12px 0;
-    margin: 30px auto;
+      width: 90%;
+      max-width: 320px;
+      font-size: 20px;
+      padding: 12px 0;
+      margin: 30px auto;
     }
 
     .back-button:hover {
@@ -160,262 +157,279 @@
       }
 
       .filters {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 1px;
-        margin-bottom: 1px;
         padding: 0 1px;
       }
 
       .filter-group {
-        width: 100%;
         margin-bottom: 1px;
       }
 
       .filter-group label {
-        margin-bottom: 1px;
         font-size: 15px;
       }
 
       select,
       input[type="text"] {
-        width: 100%;
         font-size: 16px;
         padding: 1px 1px;
       }
 
       #clearFilters {
-        width: 100%;
         font-size: 18px;
         padding: 1px;
         margin-top: 1px;
-        align-self: stretch;
       }
 
       .card {
         padding: 1px 1px;
-        font-size: 16px;
       }
 
-      .card strong {
-        font-size: 16px;
-      }
 
-      .back-button {
-        width: 90%;
-        max-width: 320px;
-        font-size: 20px;
-        padding: 1px 0;
-        margin: 5px auto;
-      }
+    }
+
+    .small-icon {
+      width: 40px;
+      height: auto;
+    }
+
+      /* Back button styling */
+.back-button {
+  width: 80%;
+  max-width: 200px;
+  height: 45px;
+  font-size: 20px;
+  background-color: #FFA500;
+  color: black;
+  margin: 0 auto;
+  display: block;
+  border: 1mm solid black;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+     .back-button:hover {
+      background-color: #FF8C00;
     }
   </style>
 </head>
 <body>
 
-  <h1>Sikh Welfare Organizations in India</h1>
+<h1>Sikh Welfare Organizations in India</h1>
 
-  <div class="filters">
-    <div class="filter-group">
-      <label for="stateFilter">State:</label>
-      <select id="stateFilter"><option value="All">All States</option></select>
-    </div>
-    <div class="filter-group">
-      <label for="cityFilter">City:</label>
-      <select id="cityFilter"><option value="All">All Cities</option></select>
-    </div>
-    <div class="filter-group">
-      <label for="nameFilter">Name:</label>
-      <input type="text" id="nameFilter" placeholder="Search by Name" />
-    </div>
-    <div class="filter-group">
-      <label for="typeFilter">Type:</label>
-      <select id="typeFilter"><option value="All">All Types</option></select>
-    </div>
-    <button id="clearFilters">Clear Filters</button>
+<div class="filters">
+  <div class="filter-group">
+    <label for="stateFilter">State:</label>
+    <select id="stateFilter"><option value="All">All States</option></select>
   </div>
-
-  <div class="table-container">
-    <table id="recordsTable" aria-label="Sikh Welfare Table">
-      <thead>
-        <tr>
-          <th>State</th>
-          <th>City</th>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Webpage</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody"></tbody>
-    </table>
+  <div class="filter-group">
+    <label for="cityFilter">City:</label>
+    <select id="cityFilter"><option value="All">All Cities</option></select>
   </div>
+  <div class="filter-group">
+    <label for="nameFilter">Name:</label>
+    <input type="text" id="nameFilter" placeholder="Search by Name" />
+  </div>
+  <div class="filter-group">
+    <label for="typeFilter">Type:</label>
+    <select id="typeFilter"><option value="All">All Types</option></select>
+  </div>
+  <button id="clearFilters">Clear Filters</button>
+</div>
 
-  <div class="card-container" id="cardContainer" aria-live="polite"></div>
+<div class="table-container">
+  <table id="recordsTable" aria-label="Sikh Welfare Table">
+    <thead>
+    <tr>
+      <th>State</th>
+      <th>City</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Webpage</th>
+    </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
 
-  <button type="button" onclick="goBack()" class="back-button">
-    <b>Back</b>
-  </button>
-<br>
-  <button type="button" onclick="admin()" class="back-button" style="float: right; margin-top: -65px;">
-    <b>Admin</b>
-  </button>
+<div class="card-container" id="cardContainer" aria-live="polite"></div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
-      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
-      projectId: "sikhsinindia-67a6b",
-      storageBucket: "sikhsinindia-67a6b.appspot.com",
-      messagingSenderId: "622603668882",
-      appId: "1:622603668882:web:953c6a07864b235fdd054b",
-      measurementId: "G-LHNTFNW14H"
-    };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const welfareCollection = collection(db, "Sikh_Welfare");
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
-    const stateFilter = document.getElementById("stateFilter");
-    const cityFilter = document.getElementById("cityFilter");
-    const nameFilter = document.getElementById("nameFilter");
-    const typeFilter = document.getElementById("typeFilter");
-    const clearFiltersBtn = document.getElementById("clearFilters");
-    const tableBody = document.getElementById("tableBody");
-    const cardContainer = document.getElementById("cardContainer");
+  const firebaseConfig = {
+    apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+    authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+    projectId: "sikhsinindia-67a6b",
+    storageBucket: "sikhsinindia-67a6b.appspot.com",
+    messagingSenderId: "622603668882",
+    appId: "1:622603668882:web:953c6a07864b235fdd054b",
+    measurementId: "G-LHNTFNW14H"
+  };
 
-    let allRecords = [];
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const welfareCollection = collection(db, "Sikh_Welfare");
 
-    async function fetchData() {
-      tableBody.innerHTML = "";
-      cardContainer.innerHTML = "";
-      try {
-        const querySnapshot = await getDocs(welfareCollection);
-        allRecords = [];
-        const stateSet = new Set();
-        const citySet = new Set();
-        const typeSet = new Set();
-        querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          allRecords.push(data);
-          if (data.State) stateSet.add(data.State);
-          if (data.City) citySet.add(data.City);
-          if (data.Type) typeSet.add(data.Type);
-        });
-        populateFilterOptions(stateFilter, Array.from(stateSet).sort(), "All States");
-        populateFilterOptions(cityFilter, Array.from(citySet).sort(), "All Cities");
-        populateFilterOptions(typeFilter, Array.from(typeSet).sort(), "All Types");
-        displayRecords(allRecords);
-      } catch (error) {
-        tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">Error loading records.</td></tr>`;
-        cardContainer.innerHTML = `<p style="text-align:center;">Error loading records.</p>`;
-      }
-    }
+  const stateFilter = document.getElementById("stateFilter");
+  const cityFilter = document.getElementById("cityFilter");
+  const nameFilter = document.getElementById("nameFilter");
+  const typeFilter = document.getElementById("typeFilter");
+  const clearFiltersBtn = document.getElementById("clearFilters");
+  const tableBody = document.getElementById("tableBody");
+  const cardContainer = document.getElementById("cardContainer");
 
-    function populateFilterOptions(selectElem, options, defaultLabel) {
-      selectElem.innerHTML = `<option value="All">${defaultLabel}</option>`;
-      options.forEach(opt => {
-        const option = document.createElement("option");
-        option.value = opt;
-        option.textContent = opt;
-        selectElem.appendChild(option);
+  let allRecords = [];
+
+  async function fetchData() {
+    tableBody.innerHTML = "";
+    cardContainer.innerHTML = "";
+    try {
+      const querySnapshot = await getDocs(welfareCollection);
+      allRecords = [];
+      const stateSet = new Set();
+      const citySet = new Set();
+      const typeSet = new Set();
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        allRecords.push(data);
+        if (data.State) stateSet.add(data.State);
+        if (data.City) citySet.add(data.City);
+        if (data.Type) typeSet.add(data.Type);
       });
+      populateFilterOptions(stateFilter, Array.from(stateSet).sort(), "All States");
+      populateFilterOptions(cityFilter, Array.from(citySet).sort(), "All Cities");
+      populateFilterOptions(typeFilter, Array.from(typeSet).sort(), "All Types");
+      displayRecords(allRecords);
+    } catch (error) {
+      tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">Error loading records.</td></tr>`;
+      cardContainer.innerHTML = `<p style="text-align:center;">Error loading records.</p>`;
     }
+  }
 
-    function displayRecords(records) {
-      tableBody.innerHTML = "";
-      cardContainer.innerHTML = "";
-      if (records.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">No records found.</td></tr>`;
-        cardContainer.innerHTML = `<p style="text-align:center;">No records found.</p>`;
-        return;
-      }
-      records.forEach(record => {
-        const row = document.createElement("tr");
-        ["State", "City", "Name", "Type", "Webpage"].forEach(field => {
-          const cell = document.createElement("td");
-          if (field === "Webpage" && record[field]) {
-            cell.classList.add("webpage-cell");
-            const link = document.createElement("a");
-            link.href = record[field];
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
-            const icon = document.createElement("img");
-            icon.src = "./pictures/00_Index/Click.png";
-            icon.alt = "Open Webpage";
-            icon.title = "Open Webpage";
-            icon.className = "webpage-icon";
-            link.appendChild(icon);
-            cell.appendChild(link);
-          } else {
-            cell.textContent = record[field] || "";
-          }
-          row.appendChild(cell);
-        });
-        tableBody.appendChild(row);
+  function populateFilterOptions(selectElem, options, defaultLabel) {
+    selectElem.innerHTML = `<option value="All">${defaultLabel}</option>`;
+    options.forEach(opt => {
+      const option = document.createElement("option");
+      option.value = opt;
+      option.textContent = opt;
+      selectElem.appendChild(option);
+    });
+  }
 
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML += `<p><strong>State:</strong> ${record.State || ""}</p>`;
-        card.innerHTML += `<p><strong>City:</strong> ${record.City || ""}</p>`;
-        card.innerHTML += `<p><strong>Name:</strong> ${record.Name || ""}</p>`;
-        card.innerHTML += `<p><strong>Type:</strong> ${record.Type || ""}</p>`;
-        if (record.Webpage) {
+  function displayRecords(records) {
+    tableBody.innerHTML = "";
+    cardContainer.innerHTML = "";
+
+    // Show only first 3 records in table view
+    records.slice(0, 3).forEach(record => {
+      const row = document.createElement("tr");
+      ["State", "City", "Name", "Type", "Webpage"].forEach(field => {
+        const cell = document.createElement("td");
+        if (field === "Webpage" && record[field]) {
+          cell.classList.add("webpage-cell");
           const link = document.createElement("a");
-          link.href = record.Webpage;
+          link.href = record[field];
           link.target = "_blank";
           link.rel = "noopener noreferrer";
-          link.title = "Open Webpage";
           const icon = document.createElement("img");
           icon.src = "./pictures/00_Index/Click.png";
+          icon.style.width = "40px";
+          icon.style.height = "auto";
+          icon.className = "small-icon";
           icon.alt = "Open Webpage";
+          icon.title = "Open Webpage";
           link.appendChild(icon);
-          card.appendChild(link);
+          cell.appendChild(link);
+        } else {
+          cell.textContent = record[field] || "";
         }
-        cardContainer.appendChild(card);
+        row.appendChild(cell);
       });
-    }
-
-    function filterRecords() {
-      const stateVal = stateFilter.value;
-      const cityVal = cityFilter.value;
-      const typeVal = typeFilter.value;
-      const nameVal = nameFilter.value.trim().toLowerCase();
-      const filtered = allRecords.filter(record => {
-        return (stateVal === "All" || record.State === stateVal)
-            && (cityVal === "All" || record.City === cityVal)
-            && (typeVal === "All" || record.Type === typeVal)
-            && (nameVal === "" || (record.Name && record.Name.toLowerCase().includes(nameVal)));
-      });
-      displayRecords(filtered);
-    }
-
-    stateFilter.addEventListener("change", filterRecords);
-    cityFilter.addEventListener("change", filterRecords);
-    typeFilter.addEventListener("change", filterRecords);
-    nameFilter.addEventListener("input", filterRecords);
-    clearFiltersBtn.addEventListener("click", () => {
-      stateFilter.value = "All";
-      cityFilter.value = "All";
-      typeFilter.value = "All";
-      nameFilter.value = "";
-      displayRecords(allRecords);
+      tableBody.appendChild(row);
     });
 
-    fetchData();
-  </script>
+    // Show all records in mobile card view
+    records.forEach(record => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML += `<p><strong>State:</strong> ${record.State || ""}</p>`;
+      card.innerHTML += `<p><strong>City:</strong> ${record.City || ""}</p>`;
+      card.innerHTML += `<p><strong>Name:</strong> ${record.Name || ""}</p>`;
+      card.innerHTML += `<p><strong>Type:</strong> ${record.Type || ""}</p>`;
+      if (record.Webpage) {
+        const link = document.createElement("a");
+        link.href = record.Webpage;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.title = "Open Webpage";
+        const icon = document.createElement("img");
+        icon.src = "./pictures/00_Index/Click.png";
+        icon.className = "small-icon";
+        icon.alt = "Open Webpage";
+        link.appendChild(icon);
+        card.appendChild(link);
+      }
+      cardContainer.appendChild(card);
+    });
+  }
 
-  <script>
-    function goBack() {
-      window.location.href = "./index.html";
-    }
+  function filterRecords() {
+    const stateVal = stateFilter.value;
+    const cityVal = cityFilter.value;
+    const typeVal = typeFilter.value;
+    const nameVal = nameFilter.value.trim().toLowerCase();
+    const filtered = allRecords.filter(record => {
+      return (stateVal === "All" || record.State === stateVal)
+          && (cityVal === "All" || record.City === cityVal)
+          && (typeVal === "All" || record.Type === typeVal)
+          && (nameVal === "" || (record.Name && record.Name.toLowerCase().includes(nameVal)));
+    });
+    displayRecords(filtered);
+  }
 
-    function admin() {
-      window.location.href = "./05a_Password.html";
-    }
-  </script>
+  stateFilter.addEventListener("change", filterRecords);
+  cityFilter.addEventListener("change", filterRecords);
+  typeFilter.addEventListener("change", filterRecords);
+  nameFilter.addEventListener("input", filterRecords);
+  clearFiltersBtn.addEventListener("click", () => {
+    stateFilter.value = "All";
+    cityFilter.value = "All";
+    typeFilter.value = "All";
+    nameFilter.value = "";
+    displayRecords(allRecords);
+  });
+
+  fetchData();
+</script>
+    <!-- Back Button -->
+     <!-- <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button> -->
+       <button 
+    type="button" 
+    onclick="goBack()" 
+   style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">
+   Back
+  </button>
+
+  <br>
+
+  <button 
+    type="button" 
+    onclick="admin()" 
+    style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px 20px 0 auto; text-align: center;">
+    Admin
+  </button>
+<script>
+  function goBack() {
+    window.location.href = "./index.html";
+  }
+
+  function admin() {
+    window.location.href = "./05a_Password.html";
+  }
+</script>
 
 </body>
 </html>
