@@ -355,10 +355,18 @@
     records.forEach(record => {
       const card = document.createElement("div");
       card.className = "card";
-      card.innerHTML += `<p><strong>State:</strong> ${record.State || ""}</p>`;
-      card.innerHTML += `<p><strong>City:</strong> ${record.City || ""}</p>`;
-      card.innerHTML += `<p><strong>Name:</strong> ${record.Name || ""}</p>`;
-      card.innerHTML += `<p><strong>Type:</strong> ${record.Type || ""}</p>`;
+      // card.innerHTML += `<p><strong>State:</strong> ${record.State || ""}</p>`;
+      // card.innerHTML += `<p><strong>City:</strong> ${record.City || ""}</p>`;
+      // card.innerHTML += `<p><strong>Name:</strong> ${record.Name || ""}</p>`;
+      // card.innerHTML += `<p><strong>Type:</strong> ${record.Type || ""}</p>`;
+      
+      // card.innerHTML += `<p> ${record.Name || ""}</p>`;
+      // card.innerHTML += `<p><strong>-</strong> ${record.Type || ""}</p>`;
+      // card.innerHTML += `<p> ${record.City || ""}</p>`;
+      // card.innerHTML += `<p>, ${record.State || ""}</p>`;
+card.innerHTML += `<p>${record.Name || ""} - ${record.Type || ""}</p>`;
+card.innerHTML += `<p>${record.City || ""}, ${record.State || ""}</p>`;
+
       if (record.Webpage) {
         const link = document.createElement("a");
         link.href = record.Webpage;
