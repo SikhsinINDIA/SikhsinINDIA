@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gurudwaras in Bhatinda</title>
+  <title>Gurudwaras in Lucknow</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -71,40 +71,74 @@
       border-color: #000000;
     }
 
-    
+     /* Back button styling */
+    .back-button {
+      width: 80%;
+      max-width: 200px;
+      height: 45px;
+      font-size: 20px;
+      background-color: #FFA500;
+      color: black;
+      margin: 40px auto 0 auto;
+      display: block;
+      border: 1mm solid black;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      background-color: #FF8C00;
+    }
   </style>
 </head>
 
-<body>
-  <h1>Gurudwaras in Bhatinda</h1>
 
+
+
+<body>
+
+  <header>
+    <h1>Gurudwaras in Lucknow</h1>
+  </header>
+
+
+
+        
   <div class="card-container">
 
     <div class="card">
-      <img src="./pictures/02_27_03_01_Gurdwara Damdama Sahib Bhatinda/Gurdwara Damdama Sahib Bhatinda_01.webp" alt="Gurudwara in Dubai" />
-      <h3>Gurudwara Damdama Sahib Ji - Bhatinda [Takht of Sikhism]</h3>
-      <button onclick="location.href='./03_27_03_01_Gurudwara Damdama Sahib Bhatinda.html'">
+      <img src="./pictures/02_34_14_01_Gurudwara Alambagh (Kendriya Singh Sabha, Lucknow)/Gurudwara Kendriya Singh Sabha Ji Alambagh, Lucknow_01.jpg" alt="Gurudwara in Dubai" />
+      <h3>Gurudwara Alambagh Ji (Kendriya Singh Sabha) - Lucknow</h3>
+      <button onclick="location.href='./03_34_14_01_Gurudwara Alambagh (Kendriya Singh Sabha, Lucknow).html'">
              Visit Page
       </button>
     </div>
 
-      
-   </div>
 
-  <!-- Back Button -->
-<button 
-  type="button" 
-  onclick="goBack()" 
-  style="width: 150px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">
-  Back
-</button>
+     <div class="card">
+      <img src="./pictures/02_34_14_02_Gurudwara Yahiyaganj, Lucknow/Gurudwara Yahiyaganj, Lucknow_01.jpg" alt="Gurudwara in Dubai" />
+      <h3>Gurudwara Yahiyaganj Ji - Lucknow</h3>
+      <button onclick="location.href='./03_34_14_02_Gurudwara Yahiyaganj, Lucknow.html'">
+             Visit Page
+      </button>
+    </div>
 
-  <script>
-    function goBack() {
-      window.location.href = "./03_27_Gurudwaras in Punjab.html";
-    }
-  </script>
+
+
+
+  </div>
+
+ <!-- Back Button -->
+    <button type="button" onclick="goBack()" class="back-button">
+        <b>Back</b>
+    </button>
+
+    <script>
+        function goBack() 
+        {
+            window.location.href = "./03_34_Gurudwaras in Uttar Pradesh.html";
+        }
+    </script>
+
 </body>
 </html>
-
-
