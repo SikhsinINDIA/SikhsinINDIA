@@ -367,19 +367,29 @@
 card.innerHTML += `<p>${record.Name || ""} - ${record.Type || ""}</p>`;
 card.innerHTML += `<p>${record.City || ""}, ${record.State || ""}</p>`;
 
-      if (record.Webpage) {
-        const link = document.createElement("a");
-        link.href = record.Webpage;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        link.title = "Open Webpage";
-        const icon = document.createElement("img");
-        icon.src = "./pictures/00_Index/Click.png";
-        icon.className = "small-icon";
-        icon.alt = "Open Webpage";
-        link.appendChild(icon);
-        card.appendChild(link);
-      }
+      const secondLine = document.createElement("p");
+secondLine.textContent = `${record.City || ""}, ${record.State || ""}`;
+
+if (record.Webpage) {
+  const link = document.createElement("a");
+  link.href = record.Webpage;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.title = "Open Webpage";
+
+  const icon = document.createElement("img");
+  icon.src = "./pictures/00_Index/Click.png";
+  icon.className = "small-icon";
+  icon.alt = "Open Webpage";
+  icon.style.marginLeft = "8px";
+  icon.style.verticalAlign = "middle";
+
+  link.appendChild(icon);
+  secondLine.appendChild(link);
+}
+
+card.appendChild(secondLine);
+
       cardContainer.appendChild(card);
     });
   }
