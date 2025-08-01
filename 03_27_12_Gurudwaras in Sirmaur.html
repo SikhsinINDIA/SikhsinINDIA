@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gurudwaras in Manali</title>
+  <title>Gurudwaras in Sirmaur</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -71,43 +71,70 @@
       border-color: #000000;
     }
 
-    
+     /* Back button styling */
+    .back-button {
+      width: 80%;
+      max-width: 200px;
+      height: 45px;
+      font-size: 20px;
+      background-color: #FFA500;
+      color: black;
+      margin: 40px auto 0 auto;
+      display: block;
+      border: 1mm solid black;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      background-color: #FF8C00;
+    }
   </style>
 </head>
 
+
+
+
 <body>
-  <h1>Gurudwaras in Manali</h1>
 
+  <header>
+    <h1>Gurudwaras in Sirmaur</h1>
+  </header>
+
+
+
+        
   <div class="card-container">
-    <div class="card">
-      <img src="./pictures/02_12_07_Gurudwaras in Manali/Gurudwaras in Manali_01.jpeg" alt="Gurudwara in Dubai" />
-      <h3>Gurudwara Shri Manikaran Sahib - Manali</h3>
-<button onclick="location.href='./03_12_07_01_Gurudwara Manikaran Sahib Manali.html'">
-    Visit Page
-</button>
+
+        <div class="card">
+      <img src="./pictures/02_12_12_01_Gurudwara Paonta Sahib, Sirmaur/Gurudwara Paonta Sahib, Sirmaur_01.jpg" alt="Gurudwara in Dubai" />
+      <h3>Gurudwara Paonta Sahib Ji - Sirmaur District</h3>
+      <button onclick="location.href='./03_12_12_01_Gurudwara Paonta Sahib, Sirmaur.html'">
+             Visit Page
+      </button>
     </div>
-
-
-
-    
+        <div class="card">
+      <img src="./pictures/02_12_12_02_Gurdwara Toka Sahib, Sirmaur/Gurdwara Toka Sahib, Sirmaur_01.png" alt="Gurudwara in Dubai" />
+      <h3>Gurudwara Toka Sahib Ji - Sirmaur District</h3>
+      <button onclick="location.href='./03_12_12_02_Gurdwara Toka Sahib, Sirmaur.html'">
+             Visit Page
+      </button>
+    </div>
 
 
   </div>
 
-  <!-- Back Button -->
-<button 
-  type="button" 
-  onclick="goBack()" 
-  style="width: 150px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">
-  Back
-</button>
+ <!-- Back Button -->
+    <button type="button" onclick="goBack()" class="back-button">
+        <b>Back</b>
+    </button>
 
-  <script>
-    function goBack() {
-      window.location.href = "./03_12_Gurudwaras in Himachal Pradesh.html";
-    }
-  </script>
+    <script>
+        function goBack() 
+        {
+            window.location.href = "./03_12_Gurudwaras in Himachal Pradesh.html";
+        }
+    </script>
+
 </body>
 </html>
-
-
