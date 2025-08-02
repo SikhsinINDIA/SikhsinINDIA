@@ -182,11 +182,13 @@ background-color: #111;
   style="width: 90px; height: 90px; object-fit: cover; border-radius: 8px;" />
       <div style="line-height: 1.6; color: #FF9933; font-size: 1.1rem;">  
     
-      <strong>${data.Name},</strong>
-      <strong>Mobile:</strong> ${data.Mobile},
-      <strong>Specializes:</strong> ${data.Specializes},
-      <strong></strong> ${data.City},
-      <strong></strong> ${data.State}<br />
+  
+
+    <strong style="font-size: 1.2rem;">${data.Name}</strong><br />
+    <span style="font-size: 0.9rem;"><strong>Mobile:</strong> ${data.Mobile},</span>
+    <span style="font-size: 0.9rem;"><strong>Specializes:</strong> ${data.Specializes};</span>
+    <span style="font-size: 0.9rem;">${data.City}, ${data.State}</span><br />
+   
 <a href="${data.Video}" target="_blank">Watch Video</a>
     
   </div>
