@@ -325,7 +325,7 @@
     cardContainer.innerHTML = "";
 
     // Show only first 3 records in table view
-    records.slice(0, 3).forEach(record => {
+    records.forEach(record => {
       const row = document.createElement("tr");
       ["State", "City", "Name", "Type", "Webpage"].forEach(field => {
         const cell = document.createElement("td");
