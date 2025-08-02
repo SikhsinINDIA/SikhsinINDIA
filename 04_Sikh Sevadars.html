@@ -102,7 +102,18 @@ background-color: #111;
         height: auto;
         border-radius: 5px;
       }
+.text-container {
+  line-height: 0.1; /* default is usually around 1.5, reduce it to get tighter lines */
+  margin: 0;
+  padding: 0;
+}
 
+/* If there are specific paragraph or span tags */
+.text-container p, .text-container span {
+  margin: 0; /* remove margin between elements */
+  padding: 0;
+  line-height: 0.1;
+}
       .sevadar-card video {
         max-width: 250px;
         margin-top: 0.5rem;
