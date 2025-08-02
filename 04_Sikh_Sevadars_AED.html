@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sikh Sevadars</title>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      color: #FF9933;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: #FF9933;
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin: 1rem 0;
+      color: black;
+    }
+
+    .content, #form-container {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      text-align: left;
+    }
+
+    label, input, textarea {
+      display: block;
+      width: 100%;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    input, textarea {
+      padding: 0.5rem;
+      border: 1px solid #FF9933;
+      border-radius: 5px;
+      background-color: #222;
+      color: #FF9933;
+    }
+
+    button {
+      background-color: #FF9933;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      margin: 0.5rem;
+      font-size: 1rem;
+      color: black;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: black;
+      color: #FF9933;
+      border: 2px solid #FF9933;
+    }
+
+    .sevadar-card {
+      background-color: #111;
+      border: 1px solid #FF9933;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .sevadar-card img {
+      max-width: 150px;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    .sevadar-card video {
+      max-width: 250px;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sikh Sevadars</h1>
+  </header>
+
+  <div id="form-container">
+    <h2>Add / Edit Sevadar</h2>
+    <form id="sevadar-form">
+      <input type="hidden" id="docId" />
+      <label>Name: <input type="text" id="name" required></label>
+      <label>Mobile: <input type="text" id="mobile" required></label>
+      <label>Specializes In: <input type="text" id="specializes" required></label>
+      <label>City: <input type="text" id="city" required></label>
+      <label>State: <input type="text" id="state" required></label>
+      <label>Photo URL: <input type="text" id="photo"></label>
+      <label>Video URL: <input type="text" id="video"></label>
+      <button type="submit">Submit</button>
+      <button type="button" onclick="clearForm()">Clear</button>
+    </form>
+  </div>
+
+  <div id="records">
+    <h2>Sikh Sevadars</h2>
+    <div id="records-container"></div>
+  </div>
+
+  <button type="button" onclick="goBack()" style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto;">Back</button>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b",
+      measurementId: "G-LHNTFNW14H"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    async function loadSevadars() {
+      const container = document.getElementById('records-container');
+      container.innerHTML = '';
+
+      try {
+        const snapshot = await db.collection("Sikh_Sevadars").get();
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const card = document.createElement("div");
+          card.className = "sevadar-card";
+
+          card.innerHTML = `
+            <p><strong>${data.Name}</strong><br>
+            <strong>Mobile:</strong> ${data.Mobile}<br>
+            <strong>Specializes:</strong> ${data.Specializes}<br>
+            <strong>City:</strong> ${data.City}, <strong>State:</strong> ${data.State}</p>
+            <strong>Image:</strong> ${data.Photo}<br>
+            <strong>Video:</strong> ${data.Video}, <strong>State:</strong> ${data.State}</p>
+  
+            <button onclick="editSevadar('${doc.id}', ${JSON.stringify(data).replace(/"/g, '&quot;')})">Edit</button>
+            <button onclick="deleteSevadar('${doc.id}')">Delete</button>
+          `;
+          container.appendChild(card);
+        });
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = "<p>Error loading records.</p>";
+      }
+    }
+
+    document.getElementById("sevadar-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const id = document.getElementById("docId").value;
+      const data = {
+        Name: document.getElementById("name").value,
+        Mobile: document.getElementById("mobile").value,
+        Specializes: document.getElementById("specializes").value,
+        City: document.getElementById("city").value,
+        State: document.getElementById("state").value,
+        Photo: document.getElementById("photo").value,
+        Video: document.getElementById("video").value,
+      };
+
+      try {
+        if (id) {
+          await db.collection("Sikh_Sevadars").doc(id).update(data);
+        } else {
+          await db.collection("Sikh_Sevadars").add(data);
+        }
+        clearForm();
+        loadSevadars();
+      } catch (error) {
+        console.error("Error saving record:", error);
+      }
+    });
+
+    function editSevadar(id, data) {
+      document.getElementById("docId").value = id;
+      document.getElementById("name").value = data.Name;
+      document.getElementById("mobile").value = data.Mobile;
+      document.getElementById("specializes").value = data.Specializes;
+      document.getElementById("city").value = data.City;
+      document.getElementById("state").value = data.State;
+      document.getElementById("photo").value = data.Photo || "";
+      document.getElementById("video").value = data.Video || "";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    async function deleteSevadar(id) {
+      if (confirm("Are you sure you want to delete this sevadar?")) {
+        try {
+          await db.collection("Sikh_Sevadars").doc(id).delete();
+          loadSevadars();
+        } catch (err) {
+          console.error("Delete failed:", err);
+        }
+      }
+    }
+
+    function clearForm() {
+      document.getElementById("sevadar-form").reset();
+      document.getElementById("docId").value = '';
+    }
+
+    function goBack() {
+      window.location.href = "./index.html";
+    }
+
+    window.onload = loadSevadars;
+  </script>
+</body>
+</html>
+
