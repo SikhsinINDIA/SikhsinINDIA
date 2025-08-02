@@ -99,7 +99,7 @@
     <header>
       <h1>Sikh Sevadars</h1>
       <img src="./pictures/00_Index/Sikh_Sevadars.jpeg" alt="Sikh Sevadars" />
-      </header>
+    </header>
 
     <div class="content">
       <p>
@@ -166,21 +166,34 @@
             card.className = "sevadar-card";
 
             card.innerHTML = `
-  <div style="display: flex; align-items: flex-start; gap: 10px;">
-  <img src="${data.Photo}" 
-         alt="Sikh Sevadars" 
-         style="width: 50px; height: auto; object-fit: cover; border-radius: 8px;" />
-    <p>
-      <strong>${data.Name},</strong>
-      <strong>Mobile:</strong> ${data.Mobile},
-      <strong>Specializes:</strong> ${data.Specializes},
-      <strong></strong> ${data.City},
-      <strong></strong> ${data.State}<br />
-<a href="${data.Video}" target="_blank">Watch Video</a>
-    </p>
-  </div>
-`;
-              
+              <p><strong>${data.Name},</strong>
+            <strong>Mobile:</strong> ${data.Mobile},
+                            <strong>Specializes:</strong> ${data.Specializes},
+             <strong></strong> ${data.City},
+            <strong></strong> ${data.State}</p>
+            
+              ${data.Photo ? `<p><strong>Photo:</strong><br><img src="${data.Photo}" alt="${data.Name}"></p>` : ""}
+              ${data.Video ? `<p><strong>Video:</strong><br><video controls><source src="${data.Video}" type="video/mp4">Your browser does not support the video tag.</video></p>` : ""}
+            `;
+              if (record.Webpage) {
+                const link = document.createElement("a");
+                link.href = record.Webpage;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                link.title = "Open Webpage";
+
+                const icon = document.createElement("img");
+                icon.src = "./pictures/04_Sikh Sevadars/13_Haryana/05_Faridabad/01_Bhai_Ajeet_Singh_Ji.jpg";
+                icon.className = "small-icon";
+                icon.alt = "Open Webpage";
+                icon.style.marginLeft = "8px";
+                icon.style.verticalAlign = "middle";
+
+                link.appendChild(icon);
+                secondLine.appendChild(link);
+              }
+
+              card.appendChild(secondLine);
 
 
 
