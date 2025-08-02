@@ -46,7 +46,16 @@
         font-size: 2rem;
         margin-top: 1.5rem;
       }
+@media (max-width: 600px) {
+  .sevadar-card {
+    flex-direction: column;
+    text-align: center;
+  }
 
+  .sevadar-card img {
+    margin-bottom: 10px;
+  }
+} 
       .button-container {
         margin-top: 2rem;
       }
@@ -75,12 +84,17 @@
       }
 
       .sevadar-card {
-        background-color: #111;
-        border: 1px solid #FF9933;
-        border-radius: 10px;
-        padding: 1rem;
-        margin-bottom: 1.5rem;
-        text-align: left;
+background-color: #111;
+  border: 1.5px solid #FF9933;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
       }
 
       .sevadar-card img {
@@ -121,10 +135,6 @@
         <strong>• Sevadar (volunteer) - </strong>involved in religious duties like langar, katha (sermons), or Akhand Path
       </p>
 
-      <div class="button-container">
-        <button>Learn More</button>
-        <button>Volunteer</button>
-      </div>
     </div>
 
     <!-- Record display section -->
