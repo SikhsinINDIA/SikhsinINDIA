@@ -70,63 +70,51 @@
       color: #000000;
       border-color: #000000;
     }
-.back-button img {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-      vertical-align: middle;
-    }
 
-     /* Back button styling */
-    .back-button {
-      width: 80%;
-      max-width: 200px;
-      height: 45px;
-      font-size: 20px;
-      background-color: #FFA500;
-      color: black;
-      margin: 40px auto 0 auto;
-      display: block;
-      border: 1mm solid black;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-     .back-button:hover {
-      background-color: #FF8C00;
-    }
     
   </style>
 </head>
 
-
-
-
 <body>
+  <h1>Gurudwaras in Tripura</h1>
 
-  <header>
-    <h1>Gurudwaras in Tripura</h1>
-  </header>
-
-    <div class="image-row">
-        <img src="pictures\08_pageunderconstruction\Under_Construction.png" alt="First Image">
-    </div>
-
-        
   <div class="card-container">
 
-  
+    <div class="card">
+      <img src="./pictures/02_33_01_Gurdwara Sahib, Agartala, Tripura/Gurudwara Sahib, Agartala, Tripura_01.jpg" alt="Gurudwara in Dubai" />
+      <h3>Gurudwara Sahib Ji, Agartala - Tripura</h3>
+      <button onclick="location.href='./03_33_01_Gurudwara Sahib, Agartala, Tripura.html'">
+          Visit Page
+      </button>
+    </div>
+
+    <div class="card">
+      <img src=".//pictures/02_33_02_Gurudwara BSF Camp, Ambassa/Gurudwara BSF Camp, Ambassa_01.jpg" alt="Gurudwara in Dubai" />
+      <h3>Gurudwara BSF Camp Ji, Ambassa - Tripura</h3>
+          <button onclick="location.href='./03_33_02_Gurudwara BSF Camp, Ambassa, Tripura.html'">
+            Visit Page
+          </button>
+    </div>
+
+
+
 
   </div>
 
-    <!-- Back Button -->
-    <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
-  <br>
+  <!-- Back Button -->
+<button 
+  type="button" 
+  onclick="goBack()" 
+  style="width: 150px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">
+  Back
+</button>
 
-    <script>
-      function goBack() {
-        window.location.href = "./03_Gurudwaras in India.html";
-      }
-    </script>
+  <script>
+    function goBack() {
+      window.location.href = "./03_Gurudwaras in India.html";
+    }
+  </script>
 </body>
 </html>
+
+

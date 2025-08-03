@@ -70,27 +70,7 @@
       color: #000000;
       border-color: #000000;
     }
- .back-button img {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-      vertical-align: middle;
-    }
 
-     /* Back button styling */
-    .back-button {
-      width: 80%;
-      max-width: 200px;
-      height: 45px;
-      font-size: 20px;
-      background-color: #FFA500;
-      color: black;
-      margin: 40px auto 0 auto;
-      display: block;
-      border: 1mm solid black;
-      border-radius: 8px;
-      cursor: pointer;
-    }
     
   </style>
 </head>
@@ -98,20 +78,48 @@
 <body>
   <h1>Gurudwaras in Goa</h1>
 
-  
+  <div class="card-container">
+
+    <div class="card">
+      <img src="./pictures/02_10_01_Gurudwara Shri Guru Singh Sabha, Betim, Goa/Gurudwara Shri Guru Singh Sabha, Betim, Goa_01.jpg" alt="Gurudwara in Dubai" />
+      <h3>Gurudwara Shri Guru Singh Sabha Ji, Betim (near Panaji) - Goa</h3>
+      <button onclick="location.href='./03_10_01_Gurudwara Shri Guru Singh Sabha, Betim, Goa.html'">
+          Visit Page
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="./pictures/02_10_02_Gurudwara Singh Sabha – Vasco da Gama, Goa/Gurudwara Singh Sabha – Vasco da Gama, Goa_01.jpg" alt="Gurudwara in Dubai" />
+      <h3>Gurudwara Singh Sabha Ji, Vasco da Gama - Goa</h3>
+          <button onclick="location.href='./03_10_02_Gurudwara Singh Sabha, Vasco da Gama, Goa.html'">
+            Visit Page
+          </button>
+    </div>
+
+    <div class="card">
+      <img src="./pictures/02_10_03_Gurudwara 3 MTR, Aquem‑Baixo, South Goa/Gurudwara 3 MTR, Aquem‑Baixo, South Goa_01.jpg" alt="Gurudwara in Dubai" />
+      <h3>Gurudwara 3 MTR, Aquem‑Baixo, South - Goa</h3>
+        <button onclick="location.href='./03_10_03_Gurudwara 3 MTR, Aquem‑Baixo, South Goa.html'">
+          Visit Page
+      </button>
+    </div>    
 
 
+  </div>
 
- 
-    <!-- Back Button -->
-    <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
-  <br>
+  <!-- Back Button -->
+<button 
+  type="button" 
+  onclick="goBack()" 
+  style="width: 150px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">
+  Back
+</button>
 
-    <script>
-      function goBack() {
-        window.location.href = "./03_Gurudwaras in India.html";
-      }
-    </script>
+  <script>
+    function goBack() {
+      window.location.href = "./03_Gurudwaras in India.html";
+    }
+  </script>
 </body>
 </html>
 
