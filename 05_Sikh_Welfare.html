@@ -13,22 +13,22 @@
       padding: 20px;
     }
 
-    h1 {
+    h1, h2 {
       text-align: center;
       font-size: 2rem;
       margin-bottom: 20px;
     }
 
     .filters {
-  max-width: 400px; /* Adjust as needed */
-  margin-left: auto;
-  margin-right: auto;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .filter-group {
- max-width: 400px; /* Or 350px or whatever you prefer */
-  margin-left: auto;
-  margin-right: auto;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .filter-group label {
@@ -48,7 +48,6 @@
       font-size: 18px;
       padding: 10px;
       margin-top: 4px;
-      align-self: stretch;
     }
 
     #clearFilters:hover {
@@ -123,7 +122,7 @@
     .card {
       padding: 16px 12px;
       font-size: 16px;
-        border-bottom: 1px solid #FF9933;
+      border-bottom: 1px solid #FF9933;
     }
 
     .card strong {
@@ -184,8 +183,6 @@
       .card {
         padding: 1px 1px;
       }
-
-
     }
 
     .small-icon {
@@ -193,23 +190,58 @@
       height: auto;
     }
 
-      /* Back button styling */
-.back-button {
-  width: 80%;
-  max-width: 200px;
-  height: 45px;
-  font-size: 20px;
-  background-color: #FFA500;
-  color: black;
-  margin: 0 auto;
-  display: block;
-  border: 1mm solid black;
-  border-radius: 8px;
-  cursor: pointer;
-}
+    .back-button {
+      width: 80%;
+      max-width: 200px;
+      height: 45px;
+      font-size: 20px;
+      background-color: #FFA500;
+      color: black;
+      margin: 0 auto;
+      display: block;
+      border: 1mm solid black;
+      border-radius: 8px;
+      cursor: pointer;
+    }
 
-     .back-button:hover {
+    .back-button:hover {
       background-color: #FF8C00;
+    }
+
+    /* Self Service Form Styling */
+    form#selfServiceForm {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #FF9933;
+      border-radius: 8px;
+    }
+
+    form#selfServiceForm input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    form#selfServiceForm button {
+      background-color: #FFA500;
+      color: black;
+      font-size: 18px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    form#selfServiceForm button:hover {
+      background-color: #FF8C00;
+    }
+
+    #formStatus {
+      text-align: center;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -254,11 +286,31 @@
 
 <div class="card-container" id="cardContainer" aria-live="polite"></div>
 
+<!-- Self Service Form -->
+<h2>Sangat to add details of Sikh Welfare Societies across India</h2>
+<form id="selfServiceForm">
+  <label for="selfName">Name:</label><br>
+  <input type="text" id="selfName" name="selfName" required><br>
 
+  <label for="selfCity">City:</label><br>
+  <input type="text" id="selfCity" name="selfCity" required><br>
+
+  <label for="selfState">State:</label><br>
+  <input type="text" id="selfState" name="selfState" required><br>
+
+  <label for="selfType">Type:</label><br>
+  <input type="text" id="selfType" name="selfType" required><br>
+
+  <label for="selfWebsite">Website:</label><br>
+  <input type="text" id="selfWebsite" name="selfWebsite" placeholder="https://example.com"><br>
+
+  <button type="submit">Submit</button>
+  <p id="formStatus"></p>
+</form>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+  import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
@@ -273,6 +325,7 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const welfareCollection = collection(db, "Sikh_Welfare");
+  const selfServiceCollection = collection(db, "Sikh_Welfare_Self");
 
   const stateFilter = document.getElementById("stateFilter");
   const cityFilter = document.getElementById("cityFilter");
@@ -324,7 +377,6 @@
     tableBody.innerHTML = "";
     cardContainer.innerHTML = "";
 
-    // Show only first 3 records in table view
     records.forEach(record => {
       const row = document.createElement("tr");
       ["State", "City", "Name", "Type", "Webpage"].forEach(field => {
@@ -337,11 +389,8 @@
           link.rel = "noopener noreferrer";
           const icon = document.createElement("img");
           icon.src = "./pictures/00_Index/Click.png";
-          icon.style.width = "40px";
-          icon.style.height = "auto";
           icon.className = "small-icon";
           icon.alt = "Open Webpage";
-          icon.title = "Open Webpage";
           link.appendChild(icon);
           cell.appendChild(link);
         } else {
@@ -352,45 +401,28 @@
       tableBody.appendChild(row);
     });
 
-    // Show all records in mobile card view
     records.forEach(record => {
       const card = document.createElement("div");
       card.className = "card";
-      // card.innerHTML += `<p><strong>State:</strong> ${record.State || ""}</p>`;
-      // card.innerHTML += `<p><strong>City:</strong> ${record.City || ""}</p>`;
-      // card.innerHTML += `<p><strong>Name:</strong> ${record.Name || ""}</p>`;
-      // card.innerHTML += `<p><strong>Type:</strong> ${record.Type || ""}</p>`;
-      
-      // card.innerHTML += `<p> ${record.Name || ""}</p>`;
-      // card.innerHTML += `<p><strong>-</strong> ${record.Type || ""}</p>`;
-      // card.innerHTML += `<p> ${record.City || ""}</p>`;
-      // card.innerHTML += `<p>, ${record.State || ""}</p>`;
-card.innerHTML += `<p>${record.Name || ""} - ${record.Type || ""}</p>`;
-
-
+      card.innerHTML += `<p>${record.Name || ""} - ${record.Type || ""}</p>`;
       const secondLine = document.createElement("p");
-secondLine.textContent = `${record.City || ""}, ${record.State || ""}`;
-
-if (record.Webpage) {
-  const link = document.createElement("a");
-  link.href = record.Webpage;
-  link.target = "_blank";
-  link.rel = "noopener noreferrer";
-  link.title = "Open Webpage";
-
-  const icon = document.createElement("img");
-  icon.src = "./pictures/00_Index/Click.png";
-  icon.className = "small-icon";
-  icon.alt = "Open Webpage";
-  icon.style.marginLeft = "8px";
-  icon.style.verticalAlign = "middle";
-
-  link.appendChild(icon);
-  secondLine.appendChild(link);
-}
-
-card.appendChild(secondLine);
-
+      secondLine.textContent = `${record.City || ""}, ${record.State || ""}`;
+      if (record.Webpage) {
+        const link = document.createElement("a");
+        link.href = record.Webpage;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.title = "Open Webpage";
+        const icon = document.createElement("img");
+        icon.src = "./pictures/00_Index/Click.png";
+        icon.className = "small-icon";
+        icon.alt = "Open Webpage";
+        icon.style.marginLeft = "8px";
+        icon.style.verticalAlign = "middle";
+        link.appendChild(icon);
+        secondLine.appendChild(link);
+      }
+      card.appendChild(secondLine);
       cardContainer.appendChild(card);
     });
   }
@@ -421,25 +453,42 @@ card.appendChild(secondLine);
     displayRecords(allRecords);
   });
 
+  document.getElementById("selfServiceForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = document.getElementById("selfName").value.trim();
+    const city = document.getElementById("selfCity").value.trim();
+    const state = document.getElementById("selfState").value.trim();
+    const type = document.getElementById("selfType").value.trim();
+    const website = document.getElementById("selfWebsite").value.trim();
+    const formStatus = document.getElementById("formStatus");
+    formStatus.textContent = "Submitting...";
+
+    try {
+      await addDoc(selfServiceCollection, {
+        Name: name,
+        City: city,
+        State: state,
+        Type: type,
+        Website: website
+      });
+      formStatus.style.color = "lightgreen";
+      formStatus.textContent = "Submitted successfully!";
+      e.target.reset();
+    } catch (error) {
+      formStatus.style.color = "red";
+      formStatus.textContent = "Error submitting. Try again later.";
+      console.error("Submission error:", error);
+    }
+  });
+
   fetchData();
 </script>
-    <!-- Back Button -->
-     <!-- <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button> -->
-       <button 
-    type="button" 
-    onclick="goBack()" 
-   style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">
-   Back
-  </button>
 
-  <br>
+<!-- Back and Admin Buttons -->
+<button type="button" onclick="goBack()" style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">Back</button>
+<br>
+<button type="button" onclick="admin()" style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px 20px 0 auto; text-align: center;">Admin</button>
 
-  <button 
-    type="button" 
-    onclick="admin()" 
-    style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px 20px 0 auto; text-align: center;">
-    Admin
-  </button>
 <script>
   function goBack() {
     window.location.href = "./index.html";
@@ -452,6 +501,7 @@ card.appendChild(secondLine);
 
 </body>
 </html>
+
 
 
 
