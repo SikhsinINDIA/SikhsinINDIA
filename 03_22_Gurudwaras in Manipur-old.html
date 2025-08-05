@@ -70,51 +70,59 @@
       color: #000000;
       border-color: #000000;
     }
+.back-button img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      vertical-align: middle;
+    }
 
+     /* Back button styling */
+    .back-button {
+      width: 80%;
+      max-width: 200px;
+      height: 45px;
+      font-size: 20px;
+      background-color: #FFA500;
+      color: black;
+      margin: 40px auto 0 auto;
+      display: block;
+      border: 1mm solid black;
+      border-radius: 8px;
+      cursor: pointer;
+    }
     
   </style>
 </head>
 
-<body>
-  <h1>Gurudwaras in Nagaland</h1>
 
+
+
+<body>
+
+  <header>
+    <h1>Gurudwaras in Manipur</h1>
+  </header>
+
+
+    <div class="image-row">
+        <img src="pictures\08_pageunderconstruction\Under_Construction.png" alt="First Image">
+    </div>
+        
   <div class="card-container">
 
-    <div class="card">
-      <img src="./pictures/02_22_01_Gurudwara Sri Guru Singh Sabha, Imphal, Manipur/Gurudwara Sri Guru Singh Sabha, Imphal, Manipur_01.jpg" alt="Gurudwara in Dubai" />
-      <h3>Gurudwara Sri Guru Singh Sabha Ji, Imphal - Manipur</h3>
-      <button onclick="location.href='./03_22_01_Gurudwara Sri Guru Singh Sabha, Imphal, Manipur.html'">
-          Visit Page
-      </button>
-    </div>
-
-    <div class="card">
-      <img src="./pictures/02_22_02_Gurudwara Singh Sabha, Moreh, Manipur/Gurudwara Singh Sabha, Moreh, Manipur_01.jpg" alt="Gurudwara in Dubai" />
-      <h3>Gurudwara Singh Sabha Ji, Moreh - Manipur</h3>
-          <button onclick="location.href='./03_22_02_Gurdwara Singh Sabha, Moreh, Manipur.html'">
-            Visit Page
-          </button>
-    </div>
-
-
-
+  
 
   </div>
 
-  <!-- Back Button -->
-<button 
-  type="button" 
-  onclick="goBack()" 
-  style="width: 150px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">
-  Back
-</button>
+    <!-- Back Button -->
+    <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
+  <br>
 
-  <script>
-    function goBack() {
-      window.location.href = "./03_Gurudwaras in India.html";
-    }
-  </script>
+    <script>
+      function goBack() {
+        window.location.href = "./03_Gurudwaras in India.html";
+      }
+    </script>
 </body>
 </html>
-
-
