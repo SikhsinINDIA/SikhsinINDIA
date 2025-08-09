@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sikh Heritage & Traditions </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: black;
+            color: #FFA500; /* Kesari (orange/yellow) */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #FFD700; /* Brighter kesari */
+            margin-bottom: 40px;
+            font-size: 5    4px;
+        }
+        /* Container for image + button pairs */
+        .btn-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        /* Images styling */
+        .btn-row img {
+            width: auto;       /* fixed width */
+            height: 98px;      /* fixed height */
+            object-fit: cover;  /* maintain aspect ratio, crop if needed */
+            margin-right: 10px; /* space between image and button */
+            border-radius: 10px;
+            border: 2px solid #FFA500;
+        }
+        /* Buttons styling */
+        .button {
+            background-color: #FFA500;
+            height: 100px; 
+            width: 150px; 
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 8px;
+            min-width: 220px;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #FF8C00; /* Darker orange */
+        }
+        /* Back button styling */
+        .back-button {
+            width: 150px;
+            height: 40px;
+            font-size: 24px;
+            background-color: #FFA500;
+            color: black;
+            margin: 40px auto 0 auto;
+            display: block;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #FF8C00;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Sikh Heritage & Traditions</h1>
+     <div class="btn-row">
+                <a href="./06_Gatka.html">
+                    <img src="pictures/00_Index/Gatka.jpg" alt="Sikh Gurus" style="cursor:pointer;">
+                </a>
+    </div>
+
+
+
+    <!-- Back Button -->
+    <button type="button" onclick="goBack()" class="back-button">
+        <b>Back</b>
+    </button>
+
+    <script>
+        function goBack() 
+        {
+            window.location.href = "./index.html";
+        }
+    </script>
+
+</body>
+</html>
