@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panj Kakaar - The Five K's</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: black;
+        color: #FF9933;
+        line-height: 1.6;
+    }
+
+    header {
+        background-color: #FF9933;
+        color: black;
+        text-align: center;
+        padding: 8px;
+    }
+
+    /* Intro section */
+    .container {
+        display: flex;
+        max-width: 1200px;
+        margin: auto;
+        padding: 8px;
+        gap: 12px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .intro-image {
+        flex: 1 1 300px;
+        display: flex;
+        justify-content: center;
+        background-color: black;
+    }
+
+    .intro-image img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border: none;
+    }
+
+    .content {
+        flex: 2 1 500px;
+        font-size: 20px;
+    }
+
+    h2 {
+        border-bottom: 2px solid #FF9933;
+        padding-bottom: 4px;
+        margin-top: 0;
+    }
+
+    /* Five K items */
+    .k-item {
+    margin: 0 auto 20px auto;
+    border: 2px solid #FF9933;
+    padding: 8px;
+    font-size: 15px;
+    background-color: black;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    max-width: 1200px;
+    }
+
+    .k-item > div:last-child {
+    /* Allow text to shrink and avoid forcing wrap */
+    min-width: 0;
+    flex-shrink: 1;
+}
+    .k-image {
+        flex: 0 0 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .k-image img {
+        max-width: 100%;
+        height: auto;
+        border: none;
+    }
+
+    button {
+        background-color: #FF9933;
+        color: black;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background-color: black;
+        color: #FF9933;
+        border: 2px solid #FF9933;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+        }
+
+        .intro-image, .content {
+            width: 100%;
+        }
+
+        .k-item {
+            flex-direction: row;
+            width: 100%;
+        }
+
+        .k-image {
+            flex: 0 0 80px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .content {
+            font-size: 18px;
+        }
+        .k-item {
+            flex-direction: column;
+            text-align: center;
+        }
+        .k-image {
+            margin-bottom: 10px;
+        }
+    }
+
+     /* Back button styling */
+        .back-button {
+            width: 150px;
+            height: 40px;
+            font-size: 24px;
+            background-color: #FFA500;
+            color: black;
+            margin: 40px auto 0 auto;
+            display: block;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #FF8C00;
+        }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Panj Kakaar - The Five K's</h1>
+</header>
+
+<!-- Intro Section -->
+<div class="container">
+    <div class="intro-image">
+        <img src="pictures/06_01_5Ks/5Ks.jpg" alt="Panj Kakaar" width= "300" height= "auto">
+    </div>
+    <div class="content">
+        <p>
+            In bestowing a distinct character and identity Guru Gobind Singh Ji let it be known 
+            that the artefacts that he was offering the Khalsa were not mere whims of fashion 
+            but were integral to the Khalsa Rehat and Life. His command to the Khalsa was, 
+            "Rehat pyari mujh ko, Sikh pyaraae nahin". It was the Sikh's life and conduct that 
+            were important; calling oneself Sikh is not enough to become a Sikh!
+        </p>
+        <p>
+            Guru Ji commanded that the Khalsa will be known for they will bear the stamp of the 
+            Guru by wearing on their person the Five Kakaar: Kesh, Kanga, Kirpan, Kachera, Kara.
+        </p>
+    </div>
+</div>
+
+<!-- Five K Items -->
+<div class="k-item">
+    <div class="k-image">
+        <img src="pictures/06_01_5Ks/01_Kesh.png" alt="Kesh" width= "100" height= "auto">
+    </div>
+    <div>
+        <h2>Kesh</h2>
+        <p>All who wish to be known as the Khalsa will not allow the scissors or the knife 
+        to touch their hair. The hair will be worn unshorn and tied in a knot to keep them 
+        manageable.</p>
+    </div>
+</div>
+
+<div class="k-item">
+    <div class="k-image">
+        <img src="pictures/06_01_5Ks/02_Kangha.png" alt="Kanga" width= "100" height= "auto">
+    </div>
+    <div>
+        <h2>Kanga</h2>
+        <p>Kanga was to be the instrument of cleansing. A Sikh should wear the Kanga in his/her 
+        hair and regularly comb his/her hair to keep them clean and tidy.</p>
+    </div>
+</div>
+
+<div class="k-item">
+    <div class="k-image">
+        <img src="pictures/06_01_5Ks/03_Kirpan.png" alt="Kirpan" width= "100" height= "auto">
+    </div>
+    <div>
+        <h2>Kirpan</h2>
+        <p>The Kirpan is a small sword that the Khalsa wears diagonally on his torso. It reminds 
+        the Khalsa of their responsibilities and ability to defend themselves and others.</p>
+    </div>
+</div>
+
+<div class="k-item">
+    <div class="k-image">
+        <img src="pictures/06_01_5Ks/04_Kachera.png" alt="Kachera" width= "100" height= "auto">
+    </div>
+    <div>
+        <h2>Kachera</h2>
+        <p>The garment of modesty, ensuring dignity and readiness for battle. Designed with a 
+        drawstring to stay secure.</p>
+    </div>
+</div>
+
+<div class="k-item">
+    <div class="k-image">
+        <img src="pictures/06_01_5Ks/05_Kara.png" alt="Kara" width= "100" height= "auto">
+    </div>
+    <div>
+        <h2>Kara</h2>
+        <p>The Kara is a constant reminder of Waheguru's presence, worn on the most active hand 
+        to encourage mindfulness and righteous action.</p>
+    </div>
+</div>
+    <!-- Back Button -->
+    <button type="button" onclick="goBack()" class="back-button">
+        <b>Back</b>
+    </button>
+
+    <script>
+        function goBack() 
+        {
+            window.location.href = "./021_SikhHeritage.html";
+        }
+    </script>
+</body>
+</html>
+
