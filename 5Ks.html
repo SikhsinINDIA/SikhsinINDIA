@@ -127,13 +127,19 @@
         .content {
             font-size: 18px;
         }
-        .k-item {
-            flex-direction: column;
-            text-align: center;
-        }
-        .k-image {
-            margin-bottom: 10px;
-        }
+ .k-item {
+    display: flex;
+    align-items: center; /* aligns vertically */
+    gap: 10px; /* space between image and text */
+}
+
+.k-image img {
+    height: auto;
+}
+
+.k-text {
+    max-width: 600px; /* optional to control text width */
+}
     }
 
      /* Back button styling */
@@ -183,9 +189,9 @@
 <!-- Five K Items -->
 <div class="k-item">
     <div class="k-image">
-        <img src="pictures/06_01_5Ks/01_Kesh.png" alt="Kesh" width= "100" height= "auto">
+        <img src="pictures/06_01_5Ks/01_Kesh.png" alt="Kesh" width="100">
     </div>
-    <div>
+    <div class="k-text">
         <h2>Kesh</h2>
         All who wish to be known as the Khalsa will not allow the scissors or the knife 
         to touch their hair. The hair will be worn unshorn and tied in a knot to keep them 
