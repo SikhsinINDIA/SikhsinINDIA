@@ -293,7 +293,7 @@
   </div>
   <div class="filter-group">
     <!-- <label for="typeFilter">Type:</label> -->
-    <select id="typeFilter"><option value="All">All Types</option></select>
+    <select id="typeFilter"><option value="All">Type</option></select>
   </div>
   <!-- <button id="clearFilters">Clear</button> -->
 
@@ -386,9 +386,9 @@
         if (data.City) citySet.add(data.City);
         if (data.Type) typeSet.add(data.Type);
       });
-      populateFilterOptions(stateFilter, Array.from(stateSet).sort(), "All States");
-      populateFilterOptions(cityFilter, Array.from(citySet).sort(), "All Cities");
-      populateFilterOptions(typeFilter, Array.from(typeSet).sort(), "All Types");
+      populateFilterOptions(stateFilter, Array.from(stateSet).sort(), "State");
+      populateFilterOptions(cityFilter, Array.from(citySet).sort(), "City");
+      populateFilterOptions(typeFilter, Array.from(typeSet).sort(), "Types");
       displayRecords(allRecords);
     } catch (error) {
       tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">Error loading records.</td></tr>`;
