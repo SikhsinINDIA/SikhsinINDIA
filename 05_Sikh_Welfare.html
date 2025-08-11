@@ -228,7 +228,15 @@
     .back-button:hover {
       background-color: #FF8C00;
     }
-
+    button {
+      background-color: #FF9933;
+      border: none;
+      margin: 0.2rem;
+      font-size: 2rem;
+      color: black;
+      cursor: pointer;
+      border-radius: 5px;
+    }
     /* Self Service Form Styling */
     form#selfServiceForm {
       max-width: 600px;
@@ -272,22 +280,26 @@
 
 <div class="filters">
   <div class="filter-group">
-    <label for="stateFilter">State:</label>
-    <select id="stateFilter"><option value="All">All States</option></select>
+    <!-- <label for="stateFilter">State:</label> -->
+    <select id="stateFilter"><option value="All">State</option></select>
   </div>
   <div class="filter-group">
-    <label for="cityFilter">City:</label>
-    <select id="cityFilter"><option value="All">All Cities</option></select>
+    <!-- <label for="cityFilter">City:</label> -->
+    <select id="cityFilter"><option value="All">City</option></select>
   </div>
   <div class="filter-group">
-    <label for="nameFilter">Name:</label>
+    <!-- <label for="nameFilter">Name:</label> -->
     <input type="text" id="nameFilter" placeholder="Search by Name" />
   </div>
   <div class="filter-group">
-    <label for="typeFilter">Type:</label>
+    <!-- <label for="typeFilter">Type:</label> -->
     <select id="typeFilter"><option value="All">All Types</option></select>
   </div>
-  <button id="clearFilters">Clear Filters</button>
+  <!-- <button id="clearFilters">Clear</button> -->
+
+  <button type="button" id="clearFilters" style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black;">
+    Clear
+  </button>
 </div>
 
 <div class="table-container">
