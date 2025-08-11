@@ -74,7 +74,6 @@
     button {
       background-color: #FF9933;
       border: none;
-      padding: 0.75rem 1.5rem;
       margin: 0.5rem;
       font-size: 2rem;
       color: black;
@@ -153,6 +152,21 @@
       color: #FF9933;
       border: 1px solid #FF9933;
     }
+      label {
+    display: block;
+    width: 300px; /* fixed width container */
+    text-align: right; /* align label text and input to right */
+    margin-bottom: 1rem;
+  }
+  /* Inputs aligned right inside label */
+  input[type="text"] {
+    display: inline-block;
+    text-align: right; /* right-align input text */
+    vertical-align: middle;
+    /* variable width for demonstration */
+  }
+  /* Set individual widths for inputs (variable widths) */
+  
   </style>
 </head>
 <body>
@@ -176,7 +190,8 @@
       <select id="nameFilter"><option value="">Name</option></select>
       <select id="cityFilter"><option value="">City</option></select>
       <select id="stateFilter"><option value="">State</option></select>
-
+ </div>
+  <div>
   <button type="button" onclick="clearFilters()" style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black;">
     Clear
   </button>
@@ -311,7 +326,7 @@
   </marquee>
   
   <header>
-    <h1>Sikh Sevadars - Self Upload Data</h1>
+    <h2>Sikh Sevadars - Self Upload Data</h2>
   </header>
 
   <div id="form-container" style="text-align: left;">
@@ -332,6 +347,7 @@
   <button type="button" onclick="clearForm()" style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black;">
     Clear
   </button>
+  
 </div>
      
     </form>
@@ -379,7 +395,7 @@
   </script>
 
 <!-- Back Button in Center -->
-<div style="text-align: center; margin-top: 20px;">
+<div style="text-align: center;">
   <button type="button" onclick="goBack()" 
     style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black;">
     Back
@@ -387,7 +403,7 @@
 </div>
 
 <!-- Admin Button at Bottom Right of Page -->
-<div style="text-align: right; margin: 20px;">
+<div style="text-align: right;">
   <button type="button" onclick="admin()" 
     style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black;">
     Admin
