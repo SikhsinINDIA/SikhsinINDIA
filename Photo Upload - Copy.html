@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Photo to Google Drive</title>
+</head>
+<body>
+  <h1>Upload Photo to Google Drive</h1>
+  <button id="authorize_button" style="display:none">Authorize Google</button>
+
+  <script>
+    const CLIENT_ID = '206349744515-7fqia5r945bc04h1r9mbnvin27laimd1.apps.googleusercontent.com';
+    const API_KEY = 'b945903403609b7fb3dcc6b4f02f3d47158b6b86'; 
+    const APP_ID = '116655386632357580802'; // Must be numeric
+    const SCOPES = 'https://www.googleapis.com/auth/drive.file';
+
+    let oauthToken;
+    let pickerInited = false;
+    let gisInited = false;
+    let oauthTokenClient;
+
+    // Load Google Picker API
+    function onApiLoad() {
+      gapi.load('picker', () => {
+        pickerInited = true;
+        maybeEnableButtons();
+      });
+    }
+
+    // Load Google Identity Services
+    function gisLoaded() {
+      oauthTokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: CLIENT_ID,
+        scope: SCOPES,
+        callback: (resp) => {
+          if (resp.error) return console.error('Token error:', resp);
+          oauthToken = resp.access_token;
+          createPicker();
+        },
+      });
+      gisInited = true;
+      maybeEnableButtons();
+    }
+
+    // Enable authorize button when everything is ready
+    function maybeEnableButtons() {
+      if (pickerInited && gisInited) {
+        const authorizeBtn = document.getElementById('authorize_button');
+        authorizeBtn.style.display = 'block';
+        authorizeBtn.onclick = () => {
+          oauthTokenClient.requestAccessToken({ prompt: 'consent' });
+        };
+      }
+    }
+
+    // Create and open the Picker
+    function createPicker() {
+      if (!oauthToken) return;
+      const picker = new google.picker.PickerBuilder()
+        .addView(new google.picker.DocsUploadView()) // Upload tab
+        .setOAuthToken(oauthToken)
+        .setDeveloperKey(API_KEY)
+        .setAppId(APP_ID)
+        .setCallback((data) => {
+          if (data.action === google.picker.Action.PICKED) {
+            alert('File uploaded! File ID: ' + data.docs[0].id);
+          }
+        })
+        .build();
+      picker.setVisible(true);
+    }
+  </script>
+
+  <!-- Load Google APIs -->
+  <script async defer src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
+  <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+  <script async defer src="https://www.gstatic.com/picker/1/picker.js"></script>
+</body>
+</html>
