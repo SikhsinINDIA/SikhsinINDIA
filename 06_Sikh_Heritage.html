@@ -87,6 +87,20 @@
         .back-button:hover {
             background-color: #FF8C00;
         }
+
+        .image-button {
+    all: unset;
+    cursor: pointer;
+}
+
+.btn-row button {
+    all: unset; /* removes all default button styles */
+    cursor: pointer; /* keeps the pointer style */
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+}
     </style>
 </head>
 <body>
@@ -113,10 +127,11 @@
 
     <div class="btn-row">
     <button onclick="window.open('./pictures/06_Sikh_Heritage/06_03_Sikh_Code_of_Conduct/SIKH_REHAT_MARYADA.pdf', '_blank')">
-        <img src="pictures/06_Sikh_Heritage/06_03_Sikh_Code_of_Conduct/Sikh Code of Conduct.jpg" alt="Sikh Gurus" style="cursor:pointer; border: none; background: none;">
+        <img src="pictures/06_Sikh_Heritage/06_03_Sikh_Code_of_Conduct/Sikh Code of Conduct.jpg" alt="Sikh Gurus" style="cursor:pointer;">
     </button>
     </div>
 
+    
     <!-- Back Button -->
     <button type="button" onclick="goBack()" class="back-button">
         <b>Back</b>
