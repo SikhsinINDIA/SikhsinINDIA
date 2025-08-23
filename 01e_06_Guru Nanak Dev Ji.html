@@ -134,8 +134,8 @@
     <h2 class="guru-title">Guru Nanak Dev Ji</h2>
     <div class="gallery" style="flex-direction: column; align-items: center;">
       <div class="card" style="width: 300px;">
-        <img id="guruNanakImg" src="pictures/00_Photos/01.jpg" alt="Guru Nanak Dev Ji" />
-        <p id="guruNanakCaption">"Guru Nanak Dev Ji absorbed in Naam under tree's shade"</p>
+        <img id="guruNanakImg" alt="Guru Nanak Dev Ji" />
+        <p id="guruNanakCaption"></p>
       </div>
 
       <div style="margin-top: 1rem;">
@@ -274,7 +274,7 @@
     const caption = document.getElementById("guruNanakCaption");
 
     img.src = guruNanakPhotos[index].src;
-    caption.textContent = `"` + guruNanakPhotos[index].caption + `"`;
+    caption.textContent =  guruNanakPhotos[index].caption ;
   }
 
   function nextImage() {
@@ -286,6 +286,7 @@
     currentIndex = (currentIndex - 1 + guruNanakPhotos.length) % guruNanakPhotos.length;
     showImage(currentIndex);
   }
+  document.addEventListener("DOMContentLoaded", () => showImage(0));
 </script>
 
   
