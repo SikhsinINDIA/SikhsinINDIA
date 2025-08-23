@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sikhs in India - Sikh Gurus</title>
+  <style>
+    :root {
+      --primary: #FF9933; /* Kesari */
+      --black: #000000;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--black);
+      color: var(--primary);
+    }
+
+    header {
+      background-color: var(--primary);
+      color: var(--black);
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 2rem 1rem;
+      border-top: 2px solid var(--primary);
+    }
+
+    .guru-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: var(--primary);
+      color: var(--black);
+      border-radius: 8px;
+      overflow: hidden;
+      width: 250px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .card p {
+      margin: 0.5rem;
+      font-weight: bold;
+    }
+
+    .button {
+      display: inline-block;
+      background-color: var(--black);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: var(--primary);
+      color: var(--black);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--primary);
+      color: var(--black);
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        width: 90%;
+      }
+    }
+
+      /* Back button styling */
+        .back-button {
+            width: 150px;
+            height: 40px;
+            font-size: 24px;
+            background-color: #FFA500;
+            color: black;
+            margin: 40px auto 0 auto;
+            display: block;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #FF8C00;
+        }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Journey with our Gurus</h1>
+    <p class="tagline">"Divine Reflection"</p>
+  </header>
+
+  <!-- Guru Nanak Dev Ji Section with Navigation -->
+  <section id="guru-nanak-section">
+    <h2 class="guru-title">Guru Nanak Dev Ji</h2>
+    <div class="gallery" style="flex-direction: column; align-items: center;">
+      <div class="card" style="width: 300px;">
+        <img id="guruNanakImg" src="pictures/00_Photos/01.jpg" alt="Guru Nanak Dev Ji" />
+        <p id="guruNanakCaption">"Guru Nanak Dev Ji absorbed in Naam under tree's shade"</p>
+      </div>
+
+      <div style="margin-top: 1rem;">
+        <button class="button" onclick="prevImage()">&#9664; Previous</button>
+        <button class="button" onclick="nextImage()">Next &#9654;</button>
+      </div>
+    </div>
+  </section>
+
+  
+
+
+ <!-- Back Button -->
+    <button type="button" onclick="goBack()" class="back-button">
+        <b>Back</b>
+    </button>
+    <br> 
+    <br>
+
+    <script>
+        function goBack() 
+        {
+            window.location.href = "./02_AboutSikhism.html";
+        }
+    </script>
+
+
+  <footer>
+    &copy; 2025 SikhsinIndia.com - All Rights Reserved.
+  </footer>
+
+<script>
+  const guruNanakPhotos = [
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/01 - Guru Nanak Dev Jee born in Talwandi.jpg", caption: "Guru Nanak Dev Ji born in Talwandi" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/02 - Guru Nanak Dev Jee born (Praakaash) in Rai Bhoi Di Talwandi in 1469.jpg", caption: "Guru Nanak Dev Ji born (Praakaash) in Rai Bhoi Di Talwandi in 1469" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/03 - Child Guru Nanak.jpg", caption: "Child Guru Nanak" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/04 - Guru Nanak Dev Jee being named by the Prohit.jpg", caption: "Guru Nanak Dev Ji being named by the Prohit" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/05 - Child Guru Nanak Dev Jee impresses onlookers.jpg", caption: "Child Guru Nanak Dev Ji impresses onlookers" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/06 - Child Guru Nanak Dev Jee showing his Godly qualities.jpg", caption: "Child Guru Nanak Dev Ji showing his Godly qualities" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/07 - Guru Nanak Dev Jee at school learning Persian.jpg", caption: "Guru Nanak Dev Ji at school learning Persian" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/08 - Guru Nanak Dev Jee at school learning Persian after the Sanskrit teacher said he cannot teach Guru Nanak Dev Jee anything.jpg", caption: "Guru Nanak Dev Jee at school learning Persian after the Sanskrit teacher said he cannot teach Guru Nanak Dev Ji anything." },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/09 - Guru Nanak Dev Jee at school with Pandit Gopal Daas to learn Sanskrit. Guru Nanak Dev Jee became the teacher, and the teacher became the student.jpg", caption: "Guru Nanak Dev Ji at school with Pandit Gopal Daas to learn Sanskrit. Guru Nanak Dev Ji became the teacher, and the teacher became the student." },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/10 - Guru Nanak Dev Jee at school.jpg", caption: "Guru Nanak Dev Ji at school" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/11 - Janeoo ceremony - Guru Nanak Dev Jee at the age of 9 was asked to wear the Hindu sacred thread which he refused.jpg", caption: "Janeoo ceremony - Guru Nanak Dev Ji at the age of 9 was asked to wear the Hindu sacred thread which he refused" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/12 - Guru Nanak Ji refusing the Hindu thread (Janeoo).jpg", caption: "Guru Nanak Ji refusing the Hindu thread (Janeoo)" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/13 - Janeoo ceremony - Guru Nanak Dev Jee explains to the Pandit what the True sacred thread is and how the Pandit himself is without this True Thread.jpg", caption: "Janeoo ceremony - Guru Nanak Dev Ji explains to the Pandit what the True sacred thread is and how the Pandit himself is without this True Thread" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/14 - Pandit Hardyal attempting to put on Janeoo on Guru Nanak Dev jee.jpg", caption: "Pandit Hardyal attempting to put on Janeoo on Guru Nanak Dev jee" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/15 - Bebe Nanaki protects her brother Guru Nanak Dev Jee from father Mehta Kalu Jee.jpg", caption: "Bebe Nanaki protects her brother Guru Nanak Dev Ji from father Mehta Kalu Ji" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/16 - Guru Nanak Dev Jee in contemplation at home.jpg", caption: "Guru Nanak Dev Ji in contemplation at home" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/17 - Hakeem (Physician) invited by Guru Nanak Dev Jee's father, after the family think Guru Jee has become ill..jpg", caption: "Hakeem (Physician) invited by Guru Nanak Dev Ji's father, after the family think Guru Ji has become ill." },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/18 - Hakeem (Physician) checks Guru Nanak Dev Jee's pulse.jpg", caption: "Hakeem (Physician) checks Guru Nanak Dev Ji's pulse" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/19 - Hakeem (Physician) questions Guru Nanak Dev Jee after his family think Guru Jee ill.jpg", caption: "Hakeem (Physician) questions Guru Nanak Dev Ji after his family think Guru Ji ill" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/20 - Parents worried about Child Guru Nanak always contemplating and thinking of Waheguru.jpg", caption: "Parents worried about Child Guru Nanak always contemplating and thinking of Waheguru" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/21 - Guru Nanak Dev Jee rests under the trees whilst grazing the cattle.jpg", caption: "Guru Nanak Dev Ji rests under the trees whilst grazing the cattle" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/22  - Guru Nanak Dev Jee underneath tree.jpg", caption: "Guru Nanak Dev Ji underneath tree" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/23 - Guru Nanak Dev Jee doing Bhagtee whilst farming.jpg", caption: "Guru Nanak Dev Ji doing Bhagtee whilst farming" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/24  - Guru Nanak Dev Jee with Pandit Gopal Daas.jpg", caption: "Guru Nanak Dev Ji with Pandit Gopal Daas" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/25 - Guru Nanak Dev Jee absorbed in Naam under tree's shade.jpg", caption: "Guru Nanak Dev Ji absorbed in Naam under tree's shade" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/26 - Pita Mehta Kalu Jee concerned at Guru Nanak Dev Jee having little worldly concerns.jpg", caption: "Pita Mehta Kalu Ji concerned at Guru Nanak Dev Ji having little worldly concerns" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/27 - Guru Nanak Dev Jee at home with his father worried why he is not behaving like other worldly children.jpg", caption: "Guru Nanak Dev Ji at home with his father worried why he is not behaving like other worldly children" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/28 - Rai Bulaar Jee calming down Guru Nanak Dev Jee's father, Mehta Kalu Jee.jpg", caption: "Rai Bulaar Ji calming down Guru Nanak Dev Ji's father, Mehta Kalu Ji" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/29 - Guru Nanak Dev Jee at work - When he reaches the number 13 (Tera) which also means Yours, Guru Jee gives away free.jpg", caption: "Guru Nanak Dev Ji at work - When he reaches the number 13 (Tera) which also means Yours, Guru Ji gives away free" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/30 - Guru Nanak Dev Jee at work - his accounts are checked after complaint that he is given away food.jpg", caption: "Guru Nanak Dev Ji at work - his accounts are checked after complaint that he is given away food" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/31 - Guru Nanak Dev Jee at work at Chuhar-khana.jpg", caption: "Guru Nanak Dev Ji at work at Chuhar-khana" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/32 - Guru Nanak Dev Jee at work.jpg", caption: "Guru Nanak Dev Ji at work" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/33 - Guru Nanak Dev Jee working as a merchant after his brother-inlaw, Bhai Jai Ram gets Guru Jee a job at Sultanpur Lodi.jpg", caption: "Guru Nanak Dev Ji working as a merchant after his brother-inlaw, Bhai Jai Ram gets Guru Ji a job at Sultanpur Lodi" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/34 - Guru Nanak Dev Jee married Mata Sulakhani Jee and had two sons, Baba Sri Chand and Baba Lakhmi Daas.jpg", caption: "Guru Nanak Dev Ji married Mata Sulakhani Ji and had two sons, Baba Sri Chand and Baba Lakhmi Daas" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/35 - Farmers crops ruined.jpg", caption: "Farmers crops ruined" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/36 - Farmer gets angry at Guru Nanak Dev Jee claiming his crops have been ruined.jpg", caption: "Farmer gets angry at Guru Nanak Dev Ji claiming his crops have been ruined" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/37 - Farmers come and complain to Mehta Kalu Jee.jpg", caption: "Farmers come and complain to Mehta Kalu Ji" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/38 - Farmers come and complain to Mehta Kalu Jee that Guru Nanak Dev Jee has allowed the cattle to ruin their fields.jpg", caption: "Farmers come and complain to Mehta Kalu Ji that Guru Nanak Dev Ji has allowed the cattle to ruin their fields" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/40 - Guru Nanak and Bhai Mardana.jpg", caption: "Guru Nanak and Bhai Mardana" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/41 - Guru Nanak Dev Jee and Bhai Mardana Jee.jpg", caption: "Guru Nanak Dev Ji and Bhai Mardana Ji" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/42 - Bhai Mardana Jee and Guru Nanak Dev Jee, childhood friends.jpg", caption: "Bhai Mardana Ji and Guru Nanak Dev Ji, childhood friends" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/43 - Guru Nanak Dev Jee's companion, Bhai Mardana Jee, in market place.jpg", caption: "Guru Nanak Dev Ji's companion, Bhai Mardana Ji, in market place" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/51 - Guru Nanak Dev Jee at Hardwaar.jpg", caption: "Guru Nanak Dev Ji at Hardwaar" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/52 - Guru Nanak Dev Jee at Hardwaar.jpg", caption: "Guru Nanak Dev Ji at Hardwaar" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/53 - Guru Nanak Dev Jee at Hardwaar.jpg", caption: "Guru Nanak Dev Ji at Hardwaar" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/54 - Guru Nanak Dev Jee at Hardwaar.jpg", caption: "Guru Nanak Dev Ji at Hardwaar" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/55 - Guru Nanak Ji at Hardiwar.jpg", caption: "Guru Nanak Ji at Hardiwar" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/56 - Guru Nanak Ji at Banaaras.jpg", caption: "Guru Nanak Ji at Banaaras" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/57 - Guru Nanak Dev Jee at Mandir.jpg", caption: "Guru Nanak Dev Ji at Mandir in Jaganath Puri explaining the True Aarti (candle-lit worship). Guru Ji recited the Shabad Gagan Mai Thaal.... to explain devotion and recitation of Naam is the true worship." },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/58 - Guru Nanak Dev Jee walking by foot through mountains.jpg", caption: "Guru Nanak Dev Ji walking by foot through mountains" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/59 - Guru Nanak Ji - Belittling the Caste System by eating food a.jpg", caption: "Guru Nanak Ji - Belittling the Caste System by eating food a" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/65 - Bebe Nanak Ji - The First Sikh.jpg", caption: "Bebe Nanak Ji - The First Sikh" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/66 - Sister of Guru NanaK Dev Jee, Bebe Nanak Jee, and her husband, Bhai Jai Raam Jee.jpg", caption: "Sister of Guru NanaK Dev Ji, Bebe Nanak Ji, and her husband, Bhai Jai Raam Ji" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/67 - The Leper.jpg", caption: "The Leper" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/68 - Guru Nanak Dev Ji blessing the Leper - Even the animals woul.jpg", caption: "Guru Nanak Dev Ji blessing the Leper - Even the animals woul" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/70 - Guru Nanak Dev Jee blesses Sangat at Kartarpur Sahib.jpg", caption: "Guru Nanak Dev Ji blesses Sangat at Kartarpur Sahib" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/71 - Guru Nanak Dev Jee doing a sermon.jpg", caption: "Guru Nanak Dev Ji doing a sermon" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/72 - Guru Nanak Dev Jee eating Langar at a Gursikh's house.jpg", caption: "Guru Nanak Dev Ji eating Langar at a Gursikh's house" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/73 - Guru Nanak Dev Jee enlightens the people with the Dhur Kee Baani.jpg", caption: "Guru Nanak Dev Ji enlightens the people with the Dhur Kee Baani" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/74 - Guru Nanak Dev Jee meets the Sidhs in the mountains.jpg", caption: "Guru Nanak Dev Ji meets the Sidhs in the mountains" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/75 - Guru Nanak Dev Jee coming back from his Journeys to see his family and wife, Mata Sulakhani Jee.jpg", caption: "Guru Nanak Dev Ji coming back from his Journeys to see his family and wife, Mata Sulakhani Ji" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/76 - Guru Nanak Dev Jee doing Keertan on Udaasi (Journey).jpg", caption: "Guru Nanak Dev Ji doing Keertan on Udaasi (Journey)" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/77 - Guru Nanak Dev Jee on Udaasi.jpg", caption: "Guru Nanak Dev Ji on Udaasi" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/78 - Guru Nanak Dev Jee on Udaasi.jpg", caption: "Guru Nanak Dev Ji on Udaasi" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/80 - Guru Nanak Dev Jee immerses himself in the River Bein at Amrit-Velaa upon the call of Waheguru.jpg", caption: "Guru Nanak Dev Ji immerses himself in the River Bein at Amrit-Velaa upon the call of Waheguru" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/81 - Guru Nanak Dev Jee disappears in the River Bein at Amrit-Vela when Guru jee goes to SachKhand upon Waheguru's Hukam.jpg", caption: "Guru Nanak Dev Ji disappears in the River Bein at Amrit-Vela when Guru jee goes to SachKhand upon Waheguru's Hukam" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/81 - Rai Bullaar and the Maulvi ask Guru Nanak Dev Jee why he did not pray with them at the Mosque.jpg", caption: "Rai Bullaar and the Maulvi ask Guru Nanak Dev Ji why he did not pray with them at the Mosque" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/81- Guru Nanak Dev Jee feeds Sangat Langar at Kartarpur Sahib.jpg", caption: "Guru Nanak Dev Ji feeds Sangat Langar at Kartarpur Sahib" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/82 - Bhai Mardana Jee attempts to find Guru Nanak Dev Jee in the River Bein but has no luck.jpg", caption: "Bhai Mardana Ji attempts to find Guru Nanak Dev Ji in the River Bein but has no luck" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/83 - Rai Bulaar calls upon the local villagers to find Guru Nanak Dev Jee in the River Bein.jpg", caption: "Rai Bulaar calls upon the local villagers to find Guru Nanak Dev Jee in the River Bein" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/84 - The local villagers upon Rai Bulaar's orders go finding Guru Nanak Dev Ji in the River Bein.jpg", caption: "The local villagers upon Rai Bulaar's orders go finding Guru Nanak Dev Ji in the River Bein" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/85 - After 3 days immersed in the River Bein Guru Nanak Dev Jee reappears.jpg", caption: "After 3 days immersed in the River Bein Guru Nanak Dev Ji reappears" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/86 - After 3 days immersed in the River Bein Guru Nanak Dev Jee reappears.jpg", caption: "After 3 days immersed in the River Bein Guru Nanak Dev Ji reappears" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/87 - Guru Nanak Dev Jee at Kartarpur Sahib.jpg", caption: "Guru Nanak Dev Ji at Kartarpur Sahib" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/88 - Guru Nanak Dev Jee at Kartarpur Sahib-2.jpg", caption: "Guru Nanak Dev Ji at Kartarpur Sahib-2" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/89 - Guru Nanak Dev Ji in discussion with the Sidhs at Pilibhit M.jpg", caption: "Guru Nanak Dev Ji in discussion with the Sidhs at Pilibhit M" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/90 - Eradication of Poverty - Guru Nanak Sahib Ji helping to clea.jpg", caption: "Eradication of Poverty - Guru Nanak Sahib Ji helping to clea" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/91 - Guru Nanak Dev Jee meets the Yogi.jpg", caption: "Guru Nanak Dev Ji meets the Yogi" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/92 - Guru Nanak Dev Jee challenges Babur the King.jpg", caption: "Guru Nanak Dev Ji challenges Babur the King" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/93 - Guru Nanak Dev Ji giving message to Babar - Where are those.jpg", caption: "Guru Nanak Dev Ji giving message to Babar - Where are those" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/94 - When the Muslim Priest said to Guru Nanak Dev Jee to pray with him.jpg", caption: "When the Muslim Priest said to Guru Nanak Dev Ji to pray with him, Guru Ji said that the Priest was too busy thinking about his horse and foal and whether the foal has fallen in the well" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/95 - Guru Nanak Ji and Babur.jpg", caption: "Guru Nanak Ji and Babur" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/96- Guru Nanak Dev Jee explains to Rai Bulaar and the Maulvi at the Mosque that they were not praying and instead their minds were occupied with other things.jpg", caption: "Guru Nanak Dev Ji explains to Rai Bulaar and the Maulvi at the Mosque that they were not praying and instead their minds were occupied with other things" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/97 - Guru Nanak Dev Jee told Rai Bulaar at the Mosque that he was not praying but thinking of buying horses from Kabul..jpg", caption: "Guru Nanak Dev Ji told Rai Bulaar at the Mosque that he was not praying but thinking of buying horses from Kabul." },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/98 - Multan - chameli flower (jasmine).jpg", caption: "Multan - chameli flower (jasmine)" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/99 - Guru Nanak Dev Jee calls King Babar 'Zabar' (tyrant).jpg", caption: "Guru Nanak Dev Ji calls King Babar 'Zabar' (tyrant)" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/100 - The Pilgrimage to Mecca with the Hajjis.jpg", caption: "The Pilgrimage to Mecca with the Hajjis" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/101 - Guru Nanak Ji at Baghdad.jpg", caption: "Guru Nanak Ji at Baghdad" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/102 - Guru Nanak Ji at the city of Mecca.jpg", caption: "Guru Nanak Ji at the city of Mecca" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/103 - No Hindu, No Mussalman..jpg", caption: "No Hindu, No Mussalman." },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/104 - Guru Nanak Dev Jee invited to pray at the Mosque by Daulat Khan after Guru Jee said There is no Hindu, nor Muslim.jpg", caption: "Guru Nanak Dev Ji invited to pray at the Mosque by Daulat Khan after Guru Ji said There is no Hindu, nor Muslim" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/114 - Guru Nanak Dev Jee left his physical body at Kartpur Sahib..jpg", caption: "Guru Nanak Dev Ji left his physical body at Kartpur Sahib." },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/115 - Sikhs & Bhagats paying homage to Guru Nanak.jpg", caption: "Sikhs & Bhagats paying homage to Guru Nanak" },
+    { src: "pictures/100_Divine Reflections/01_01_Guru Nanak Dev Ji/116 - Guru Nanak Dev jee in Samaadhi.jpg", caption: "Guru Nanak Dev jee in Samaadhi" },
+  
+];
+
+
+  let currentIndex = 0;
+
+  function showImage(index) {
+    const img = document.getElementById("guruNanakImg");
+    const caption = document.getElementById("guruNanakCaption");
+
+    img.src = guruNanakPhotos[index].src;
+    caption.textContent = `"` + guruNanakPhotos[index].caption + `"`;
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % guruNanakPhotos.length;
+    showImage(currentIndex);
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + guruNanakPhotos.length) % guruNanakPhotos.length;
+    showImage(currentIndex);
+  }
+</script>
+
+  
+
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sikhs in India - Sikh Gurus</title>
+  <style>
+    :root {
+      --primary: #FF9933; /* Kesari */
+      --black: #000000;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--black);
+      color: var(--primary);
+    }
+
+    header {
+      background-color: var(--primary);
+      color: var(--black);
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 2rem 1rem;
+      border-top: 2px solid var(--primary);
+    }
+
+    .guru-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: var(--primary);
+      color: var(--black);
+      border-radius: 8px;
+      overflow: hidden;
+      width: 250px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .card p {
+      margin: 0.5rem;
+      font-weight: bold;
+    }
+
+    .button {
+      display: inline-block;
+      background-color: var(--black);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: var(--primary);
+      color: var(--black);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--primary);
+      color: var(--black);
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Sikhs in India</h1>
+    <p class="tagline">"Ek Onkar - There is only one God"</p>
+  </header>
+
+  <!-- Guru Nanak Dev Ji Section with Navigation -->
+  <section id="guru-nanak-section">
+    <h2 class="guru-title">Guru Nanak Dev Ji</h2>
+    <div class="gallery" style="flex-direction: column; align-items: center;">
+      <div class="card" style="width: 300px;">
+        <img id="guruNanakImg" src="pictures/00_Photos/01.jpg" alt="Guru Nanak Dev Ji" />
+        <p id="guruNanakCaption">"Guru Nanak Dev Jee absorbed in Naam under tree's shade"</p>
+      </div>
+
+      <div style="margin-top: 1rem;">
+        <button class="button" onclick="prevImage()">&#9664; Previous</button>
+        <button class="button" onclick="nextImage()">Next &#9654;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guru Gobind Singh Ji Section -->
+  <section>
+    <h2 class="guru-title">Guru Gobind Singh Ji</h2>
+    <div class="gallery">
+      <div class="card">
+        <img src="images/guru-gobind.jpg" alt="Guru Gobind Singh Ji" />
+        <p>"Khalsa Mero Roop Hai Khaas"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guru Arjan Dev Ji Section -->
+  <section>
+    <h2 class="guru-title">Guru Arjan Dev Ji</h2>
+    <div class="gallery">
+      <div class="card">
+        <img src="images/guru-arjan.jpg" alt="Guru Arjan Dev Ji" />
+        <p>"Sweet is God's will"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guru Hargobind Ji Section -->
+  <section>
+    <h2 class="guru-title">Guru Hargobind Ji</h2>
+    <div class="gallery">
+      <div class="card">
+        <img src="images/guru-hargobind.jpg" alt="Guru Hargobind Ji" />
+        <p>"Miri-Piri: Spiritual and Temporal Power"</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="text-align: center;">
+    <a href="#" class="button">Learn More</a>
+    <a href="#" class="button">Contact Us</a>
+  </section>
+
+  <footer>
+    &copy; 2025 SikhsinIndia.com - All Rights Reserved.
+  </footer>
+
+  <!-- JavaScript for Guru Nanak Dev Ji Carousel -->
+  <script>
+    const guruNanakPhotos = [
+      {
+        src: "pictures/00_Photos/01.jpg",
+        caption: "Guru Nanak Dev Jee absorbed in Naam under tree's shade"
+      },
+      {
+        src: "pictures/00_Photos/02.jpg",
+        caption: "Guru Nanak Dev Jee travelling on Udasi"
+      },
+      {
+        src: "pictures/00_Photos/03.jpg",
+        caption: "Guru Nanak Dev Jee with Bhai Mardana"
+      },
+      {
+        src: "pictures/00_Photos/04.jpg",
+        caption: "Guru Nanak Dev Jee teaching Sikhs"
+      },
+      {
+        src: "pictures/00_Photos/05.jpg",
+        caption: "Guru Nanak Dev Jee blessing nature"
+      }
+      // Add more images here as needed
+    ];
+
+    let currentIndex = 0;
+
+    function showImage(index) {
+      const img = document.getElementById("guruNanakImg");
+      const caption = document.getElementById("guruNanakCaption");
+
+      img.src = guruNanakPhotos[index].src;
+      caption.textContent = `"${guruNanakPhotos[index].caption}"`;
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % guruNanakPhotos.length;
+      showImage(currentIndex);
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + guruNanakPhotos.length) % guruNanakPhotos.length;
+      showImage(currentIndex);
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
