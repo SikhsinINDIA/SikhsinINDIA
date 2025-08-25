@@ -152,11 +152,11 @@
 
   <!-- Guru Nanak Dev Ji Section with Navigation -->
   <section id="guru-angad-section">
-    <h2 class="guru-title">Guru Arjan Dev Ji</h2>
+    <h2 class="guru-title">Guru Har Krishan Ji</h2>
     <div class="gallery" style="flex-direction: column; align-items: center;">
       <div class="card" style="width: 300px;">
-        <img id="guruArjanImg" alt="Guru Nanak Dev Ji" />
-        <p id="guruArjanCaption"></p>
+        <img id="guruHarKrishanImg" alt="Guru Nanak Dev Ji" />
+        <p id="guruHarKrishanCaption"></p>
       </div>
 
       <div style="margin-top: 1rem;">
@@ -179,7 +179,7 @@
     <script>
         function goBack() 
         {
-            window.location.href = "./01e_06_Divine Reflections.html";
+            window.location.href = "./01_07_Divine Reflections.html";
         }
     </script>
 
@@ -189,21 +189,13 @@
   </footer>
 
 <script>
-  const guruArjanPhotos = [
-{ src: "../pictures/100_Divine Reflections/05_Guru Arjan Dev Ji/01-Guru Arjan Dev Ji digging up a well in village.jpg", caption: "Guru Arjan Dev Ji digging up a well in village" },
-{ src: "../pictures/100_Divine Reflections/05_Guru Arjan Dev Ji/02-Darbar Sahib with Guru Ji - Akbar comes to visit.jpg", caption: "Darbar Sahib with Guru Ji - Akbar comes to visit" },
-{ src: "../pictures/100_Divine Reflections/05_Guru Arjan Dev Ji/03-Guru Arjan Dev Ji serves the lepers at Taran Taaran Sahib.jpg", caption: "Guru Arjan Dev Ji serves the lepers at Taran Taaran Sahib" },
-{ src: "../pictures/100_Divine Reflections/05_Guru Arjan Dev Ji/04-Guru Arjan Dev Jee being tortured at Lahore.jpg", caption: "Guru Arjan Dev Jee being tortured at Lahore" },
-{ src: "../pictures/100_Divine Reflections/05_Guru Arjan Dev Ji/05-The Guru's Word is the panacea for all ills.jpg", caption: "The Guru's Word is the panacea for all ills" },
-{ src: "../pictures/100_Divine Reflections/05_Guru Arjan Dev Ji/06-Guru Granth Sahib Ji being carried to Harmandar Sahib.jpg", caption: "Guru Granth Sahib Ji being carried to Harmandar Sahib" },
-{ src: "../pictures/100_Divine Reflections/05_Guru Arjan Dev Ji/07-Parkash.jpg", caption: "Parkash" },
-{ src: "../pictures/100_Divine Reflections/05_Guru Arjan Dev Ji/08-Parkash-2.jpg", caption: "Parkash-2" },
-{ src: "../pictures/100_Divine Reflections/05_Guru Arjan Dev Ji/09-Guru Arjan Dev Ji with Aad Granth Jee.jpg", caption: "Guru Arjan Dev Ji with Aad Granth Jee" },
-{ src: "../pictures/100_Divine Reflections/05_Guru Arjan Dev Ji/10-Guru Granth is Guru, Guru Arjan Dev Ji sits next to the Guru.jpg", caption: "Guru Granth is Guru, Guru Arjan Dev Ji sits next to the Guru" },
-{ src: "../pictures/100_Divine Reflections/05_Guru Arjan Dev Ji/11-Guru Ji recites the Aad Granth.jpg", caption: "Guru Ji recites the Aad Granth" },
-{ src: "../pictures/100_Divine Reflections/05_Guru Arjan Dev Ji/12-Guru Arjan Dev Jee sitting on hot plate enduring torture wit.jpg", caption: "Guru Arjan Dev Jee sitting on hot plate enduring torture" },
-{ src: "../pictures/100_Divine Reflections/05_Guru Arjan Dev Ji/13-Guru Arjan Jee boiled and tortured.jpg", caption: "Guru Arjan Jee boiled and tortured" },
-{ src: "../pictures/100_Divine Reflections/05_Guru Arjan Dev Ji/14-Guru Arjan Dev Ji's Shaheedi.jpg", caption: "Guru Arjan Dev Ji's Shaheedi" },
+  const guruHarKrishanPhotos = [
+{ src: "../pictures/01_07_Divine Reflections/08_Guru Har Krishan Ji/01-Guru HarKrishan Sahib at Gurdwara Bangla Sahib.jpg", caption: "Guru Har Krishan Sahib at Gurdwara Bangla Sahib" },
+{ src: "../pictures/01_07_Divine Reflections/08_Guru Har Krishan Ji/02-Guru HarKrishan Sahib ji.jpg", caption: "Guru Har Krishan Sahib Ji" },
+{ src: "../pictures/01_07_Divine Reflections/08_Guru Har Krishan Ji/03-Guru HarKrishan Ji blesses the suffering.jpg", caption: "Guru Har Krishan Ji blesses the suffering" },
+{ src: "../pictures/01_07_Divine Reflections/08_Guru Har Krishan Ji/04-Guru HarKrishan Ji curing the sick.jpg", caption: "Guru Har Krishan Ji curing the sick" },
+{ src: "../pictures/01_07_Divine Reflections/08_Guru Har Krishan Ji/05-Guru HarKrishan Ji spots Queen.jpg", caption: "Guru Har Krishan Ji spots Queen" },
+{ src: "../pictures/01_07_Divine Reflections/08_Guru Har Krishan Ji/06-Guru HarKrishan Sahib Ji discoursing.jpg", caption: "Guru Har Krishan Sahib Ji discoursing" },
 
 ];
 
@@ -211,20 +203,20 @@
   let currentIndex = 0;
 
   function showImage(index) {
-    const img = document.getElementById("guruArjanImg");
-    const caption = document.getElementById("guruArjanCaption");
+    const img = document.getElementById("guruHarKrishanImg");
+    const caption = document.getElementById("guruHarKrishanCaption");
 
-    img.src = guruArjanPhotos[index].src;
-    caption.textContent =  guruArjanPhotos[index].caption ;
+    img.src = guruHarKrishanPhotos[index].src;
+    caption.textContent =  guruHarKrishanPhotos[index].caption ;
   }
 
   function nextImage() {
-    currentIndex = (currentIndex + 1) % guruArjanPhotos.length;
+    currentIndex = (currentIndex + 1) % guruHarKrishanPhotos.length;
     showImage(currentIndex);
   }
 
   function prevImage() {
-    currentIndex = (currentIndex - 1 + guruArjanPhotos.length) % guruArjanPhotos.length;
+    currentIndex = (currentIndex - 1 + guruHarKrishanPhotos.length) % guruHarKrishanPhotos.length;
     showImage(currentIndex);
   }
   document.addEventListener("DOMContentLoaded", () => showImage(0));

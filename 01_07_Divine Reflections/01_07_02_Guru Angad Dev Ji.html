@@ -152,11 +152,11 @@
 
   <!-- Guru Nanak Dev Ji Section with Navigation -->
   <section id="guru-angad-section">
-    <h2 class="guru-title">Guru Har Rai Ji</h2>
+    <h2 class="guru-title">Guru Angad Dev Ji</h2>
     <div class="gallery" style="flex-direction: column; align-items: center;">
       <div class="card" style="width: 300px;">
-        <img id="guruHarRaiImg" alt="Guru Nanak Dev Ji" />
-        <p id="guruHarRaiCaption"></p>
+        <img id="guruAngadImg" alt="Guru Nanak Dev Ji" />
+        <p id="guruAngadCaption"></p>
       </div>
 
       <div style="margin-top: 1rem;">
@@ -179,7 +179,7 @@
     <script>
         function goBack() 
         {
-            window.location.href = "./01e_06_Divine Reflections.html";
+            window.location.href = "./01_07_Divine Reflections.html";
         }
     </script>
 
@@ -189,9 +189,14 @@
   </footer>
 
 <script>
-  const guruHarRaiPhotos = [
-{ src: "../pictures/100_Divine Reflections/07_Guru Har Rai Ji/01-Guru Har Rai Ji blessing Dara Shikhon.jpg", caption: "Guru Har Rai Ji blessing Dara Shikhon" },
-{ src: "../pictures/100_Divine Reflections/07_Guru Har Rai Ji/02-Guru Hargobind Ji instructing [Guru] Har Rai Ji to walk care.jpg", caption: "Guru Hargobind Ji instructing [Guru] Har Rai Ji to walk carefully" },
+  const guruAngadPhotos = [
+ { src: "../pictures/01_07_Divine Reflections/02_Guru Angad Dev Ji/01-Guru Angad Dev Ji supporting the supportless.jpg", caption: "Guru Angad Dev Ji supporting the supportless" },
+{ src: "../pictures/01_07_Divine Reflections/02_Guru Angad Dev Ji/02-Guru Angad Dev ji encouraged sport.jpg", caption: "Guru Angad Dev ji encouraged sport" },
+{ src: "../pictures/01_07_Divine Reflections/02_Guru Angad Dev Ji/03-Guru Angad Dev Ji absorbed in teaching children enraged King.jpg", caption: "Guru Angad Dev Ji absorbed in teaching children enraged King" },
+{ src: "../pictures/01_07_Divine Reflections/02_Guru Angad Dev Ji/04-Mata Khivi Jee.jpg", caption: "Mata Khivi Jee" },
+{ src: "../pictures/01_07_Divine Reflections/02_Guru Angad Dev Ji/05-Mata Khivi Ji serving Kheer in Langar.jpg", caption: "Mata Khivi Ji serving Kheer in Langar" },
+{ src: "../pictures/01_07_Divine Reflections/02_Guru Angad Dev Ji/06-Mata Khivi Ji - a pious lady.jpg", caption: "Mata Khivi Ji - a pious lady" },
+{ src: "../pictures/01_07_Divine Reflections/02_Guru Angad Dev Ji/07-Mata Khivi Ji in Guru's Langar.jpg", caption: "Mata Khivi Ji in Guru's Langar" },
 
 ];
 
@@ -199,20 +204,20 @@
   let currentIndex = 0;
 
   function showImage(index) {
-    const img = document.getElementById("guruHarRaiImg");
-    const caption = document.getElementById("guruHarRaiCaption");
+    const img = document.getElementById("guruAngadImg");
+    const caption = document.getElementById("guruAngadCaption");
 
-    img.src = guruHarRaiPhotos[index].src;
-    caption.textContent =  guruHarRaiPhotos[index].caption ;
+    img.src = guruAngadPhotos[index].src;
+    caption.textContent =  guruAngadPhotos[index].caption ;
   }
 
   function nextImage() {
-    currentIndex = (currentIndex + 1) % guruHarRaiPhotos.length;
+    currentIndex = (currentIndex + 1) % guruAngadPhotos.length;
     showImage(currentIndex);
   }
 
   function prevImage() {
-    currentIndex = (currentIndex - 1 + guruHarRaiPhotos.length) % guruHarRaiPhotos.length;
+    currentIndex = (currentIndex - 1 + guruAngadPhotos.length) % guruAngadPhotos.length;
     showImage(currentIndex);
   }
   document.addEventListener("DOMContentLoaded", () => showImage(0));
