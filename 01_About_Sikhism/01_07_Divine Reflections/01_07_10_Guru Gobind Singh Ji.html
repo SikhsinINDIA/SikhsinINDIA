@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Meta description -->
+  <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+
+  <!-- Meta keywords -->
+  <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
+
+  <!-- Author -->
+  <meta name="author" content="Sikhs in India">
+
+  <!-- Robots -->
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph meta tags for social media -->
+  <meta property="og:title" content="Sikh Heritage & Traditions | Gurudwaras, Guru Nanak & Sikh Scriptures">
+  <meta property="og:description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+  <meta property="og:url" content="https://sikhsinindia.com">
+  <meta property="og:type" content="sikhsinindia.com">
+
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sikhs in India - Sikh Gurus</title>
+  <style>
+    :root {
+      --primary: #FF9933; /* Kesari */
+      --black: #000000;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--black);
+      color: var(--primary);
+    }
+
+    header {
+      background-color: var(--primary);
+      color: var(--black);
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 2rem 1rem;
+      border-top: 2px solid var(--primary);
+    }
+
+    .guru-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: var(--primary);
+      color: var(--black);
+      border-radius: 8px;
+      overflow: hidden;
+      width: 250px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .card p {
+      margin: 0.5rem;
+      font-weight: bold;
+    }
+
+    .button {
+      display: inline-block;
+      background-color: var(--black);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: var(--primary);
+      color: var(--black);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--primary);
+      color: var(--black);
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        width: 90%;
+      }
+    }
+
+      /* Back button styling */
+        .back-button {
+            width: 150px;
+            height: 40px;
+            font-size: 24px;
+            background-color: #FFA500;
+            color: black;
+            margin: 40px auto 0 auto;
+            display: block;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #FF8C00;
+        }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Divine Reflection - Journey with our Gurus</h1>
+    <!-- <p class="tagline">"Divine Reflection"</p> -->
+  </header>
+
+  <!-- Guru Nanak Dev Ji Section with Navigation -->
+  <section id="guru-angad-section">
+    <h2 class="guru-title">Guru Gobind Singh Ji</h2>
+    <div class="gallery" style="flex-direction: column; align-items: center;">
+      <div class="card" style="width: 300px;">
+        <img id="guruGobindSinghImg" alt="Guru Nanak Dev Ji" />
+        <p id="guruGobindSinghCaption"></p>
+      </div>
+
+      <div style="margin-top: 1rem;">
+        <button class="button" onclick="prevImage()">&#9664; Previous</button>
+        <button class="button" onclick="nextImage()">Next &#9654;</button>
+      </div>
+    </div>
+  </section>
+
+  
+
+
+ <!-- Back Button -->
+    <button type="button" onclick="goBack()" class="back-button">
+        <b>Back</b>
+    </button>
+    <br> 
+    <br>
+
+    <script>
+        function goBack() 
+        {
+            window.location.href = "./01_07_Divine Reflections.html";
+        }
+    </script>
+
+
+  <footer>
+    &copy; 2025 SikhsinIndia.com - All Rights Reserved.
+  </footer>
+
+<script>
+const guruGobindSinghPhotos = [
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/01-Guru Gobind Singh Jee.jpg", caption: "Guru Gobind Singh Jee" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/02-Guru Gobind Singh Jee.jpg", caption: "Guru Gobind Singh Jee" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/03-Guru Gobind Singh Jee.jpg", caption: "Guru Gobind Singh Jee" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/04-Guru Gobind Singh Jee.jpg", caption: "Guru Gobind Singh Jee" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/05-Bhai Maha Singh asking Guru Ji to tear the Bedaavaa.jpg", caption: "Bhai Maha Singh asking Guru Ji to tear the Bedaavaa" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/06-Baba Banda Singh Bahadar Ji blessed by Guru Gobind Singh Ji.jpg", caption: "Baba Banda Singh Bahadar Ji blessed by Guru Gobind Singh Ji" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/07-Baba Jujhar Singh before going into battle.jpg", caption: "Baba Jujhar Singh before going into battle" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/08-Baba Jujhar Singh in battle.jpg", caption: "Baba Jujhar Singh in battle" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/09-Baba Jujhar Singh jee.jpg", caption: "Baba Jujhar Singh jee" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/10-Guru Gobind Singh Ji with Khalsa army.jpg", caption: "Guru Gobind Singh Ji with Khalsa army" },
+    { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/11-False oaths is tested by Guru jee by sending empty carts outside Anandpur Sahib.jpg", caption: "False oaths is tested by Guru jee by sending empty carts outside Anandpur Sahib" },
+   {src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/12-False oaths taken by Hill Rajas and Mughal army for safe evacuation of Anandpur.jpg", caption: "False oaths taken by Hill Rajas and Mughal army for safe evacuation of Anandpur" },
+      { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/13-Baba Jujhar Singh Ji, wearing yellow, fighting on the battle.jpg", caption: "Baba Jujhar Singh Ji, wearing yellow, fighting on the battle" },
+ { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/14-Gurgaddi given to Sri Guru Granth Sahib Ji.jpg", caption: "Gurgaddi given to Sri Guru Granth Sahib Ji" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/15-Guru Gobind Singh crossing River Sarsa.jpg", caption: "Guru Gobind Singh crossing River Sarsa" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/16-Guru Gobind Singh Ji - Helping the Helpless, teaching music.jpg", caption: "Guru Gobind Singh Ji - Helping the Helpless, teaching music" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/17-Guru Gobind Singh Ji - Hira Ghaat.jpg", caption: "Guru Gobind Singh Ji - Hira Ghaat" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/18-Guru Gobind Singh Ji - Iron is more valuable than gold.jpg", caption: "Guru Gobind Singh Ji - Iron is more valuable than gold" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/19-Guru Gobind Singh Ji arriving in the Garden of Gulaba Masand.jpg", caption: "Guru Gobind Singh Ji arriving in the Garden of Gulaba Masand" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/20-Guru Gobind Singh Ji at Bhatta Sahib (The Kiln, in Ropar).jpg", caption: "Guru Gobind Singh Ji at Bhatta Sahib (The Kiln, in Ropar)" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/21-Guru Gobind Singh Ji at Mehdiana with Sangat.jpg", caption: "Guru Gobind Singh Ji at Mehdiana with Sangat" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/22-Guru Gobind Singh Ji calling out for the head of a Sikh.jpg", caption: "Guru Gobind Singh Ji calling out for the head of a Sikh" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/23-Guru Gobind Singh Ji crossing the Sarsa River with his famil.jpg", caption: "Guru Gobind Singh Ji crossing the Sarsa River with his famil" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/24-Guru Gobind Singh Ji dictating entire Guru Granth Sahib Ji to Bhai Mani Singh.jpg", caption: "Guru Gobind Singh Ji dictating entire Guru Granth Sahib Ji to Bhai Mani Singh" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/25-Guru Gobind Singh Ji dictating Guru Granth Sahib Ji at Damdama Sahib.jpg", caption: "Guru Gobind Singh Ji dictating Guru Granth Sahib Ji at Damdama Sahib" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/26-Guru Gobind Singh Ji dressing Bhai Sant Singh with his own K.jpg", caption: "Guru Gobind Singh Ji dressing Bhai Sant Singh with his own K" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/27-Guru Gobind Singh Ji in battle.jpg", caption: "Guru Gobind Singh Ji in battle" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/28-Guru Gobind Singh Ji meeting Bahadar Shah.jpg", caption: "Guru Gobind Singh Ji meeting Bahadar Shah" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/29-Guru Gobind Singh Ji presenting Peer Budhu Shah with a Kangh.jpg", caption: "Guru Gobind Singh Ji presenting Peer Budhu Shah with a Kangh" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/30-Anandpur Sahib attacked by Mughals and Hill Rajas.jpg", caption: "Anandpur Sahib attacked by Mughals and Hill Rajas" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/31-Baba Ajeet Singh jee.jpg", caption: "Baba Ajeet Singh jee" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/32-Baba Ajeet Singh Ji, riding white horse, fighting fearlessly.jpg", caption: "Baba Ajeet Singh Ji, riding white horse, fighting fearlessly" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/33-Baba Ajeet Singh jee fighting in battle.jpg", caption: "Baba Ajeet Singh jee fighting in battle" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/34-Baba Ajit Singh fighting at Anandpur Sahib.jpg", caption: "Baba Ajit Singh fighting at Anandpur Sahib" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/35-Baba Ajit Singh gets blessings for fighting in battle.jpg", caption: "Baba Ajit Singh gets blessings for fighting in battle" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/36-Baba Ajit Singh in battle.jpg", caption: "Baba Ajit Singh in battle" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/37-Baba Ajit Singh jee.jpg", caption: "Baba Ajit Singh jee" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/38-Baba Ajit Singh preparing for martyrdom.jpg", caption: "Baba Ajit Singh preparing for martyrdom" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/39-Guru Gobind Singh Ji tearing the Bedaava while Mahan Singh a.jpg", caption: "Guru Gobind Singh Ji tearing the Bedaava while Mahan Singh a" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/40-Bhai Ghanaiya Jee being blessed by Guru Ji with a medicine box and equipment..jpg", caption: "Bhai Ghanaiya Jee being blessed by Guru Ji with a medicine box and equipment." },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/41-Bhai Ghanaiya Jee serving water on the battlefield.jpg", caption: "Bhai Ghanaiya Jee serving water on the battlefield" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/42-Bhai Ghanaiya Ji tying bandages.jpg", caption: "Bhai Ghanaiya Ji tying bandages" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/43-Bhai Ghanaiya Ji.jpg", caption: "Bhai Ghanaiya Ji" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/44-Guru Gobind Singh Ji embracing Bhai Ghanaiya.jpg", caption: "Guru Gobind Singh Ji embracing Bhai Ghanaiya" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/45-Bhai Ghanaiya Jee.jpg", caption: "Bhai Ghanaiya Jee" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/46-Bhai Ghanhaiya Ji giving water to the wounded Mughal soldiers.jpg", caption: "Bhai Ghanhaiya Ji giving water to the wounded Mughal soldiers" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/47-Bhai Ghanaiya Ji.jpg", caption: "Bhai Ghanaiya Ji" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/49-The grandeur of Guru Gobind Singh Ji's Darbaar.jpg", caption: "The grandeur of Guru Gobind Singh Ji's Darbaar" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/50-Guru Jee sleeping in the Machiwara Jungle.jpg", caption: "Guru Jee sleeping in the Machiwara Jungle" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/51-Guru Ji writing Zafarnama at Deena.jpg", caption: "Guru Ji writing Zafarnama at Deena" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/52-Guru Ji, Baba Deep Singh & Bhai Mani preparing Beerhs at Damdama Sahib.jpg", caption: "Guru Ji, Baba Deep Singh & Bhai Mani preparing Beerhs at Damdama Sahib" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/53-Kavi Darbaar.jpg", caption: "Kavi Darbaar" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/54-Langar served by Bhai Nand Lal Singh Ji to Guru Ji.jpg", caption: "Langar served by Bhai Nand Lal Singh Ji to Guru Ji" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/55-Mai Bhago (Mata Bhaag Kaur Ji) after the battle of Muktsar.jpg", caption: "Mai Bhago (Mata Bhaag Kaur Ji) after the battle of Muktsar" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/56-Moti Mehra pouring milk for the tender sons of Guru Gobind S.jpg", caption: "Moti Mehra pouring milk for the tender sons of Guru Gobind S" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/57-Mughals and Hill Rajas attack Anandpur Sahib.jpg", caption: "Mughals and Hill Rajas attack Anandpur Sahib" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/58-Rangreta Guru Ka Beta - Bhai Jaita jee brings back Guru jee'.jpg", caption: "Rangreta Guru Ka Beta - Bhai Jaita jee brings back Guru jee'" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/60-Guru Gobind Singh ji on horse.jpg", caption: "Guru Gobind Singh ji on horse" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/61-Guru Gobind Singh with Singhs on horses.jpg", caption: "Guru Gobind Singh with Singhs on horses" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/62-The Neela Ghora (horse of Guru Gobind Singh jee) refuses to enter tobacco field.jpg", caption: "The Neela Ghora (horse of Guru Gobind Singh jee) refuses to enter tobacco field" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/70-Bhai Bachitar Singh fighting drunk elephant.jpg", caption: "Bhai Bachitar Singh fighting drunk elephant" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/71-Bhai Bachitar Singh jee fighting drunk elephant.jpg", caption: "Bhai Bachitar Singh jee fighting drunk elephant" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/72-Bhai Bachitar Singh Ji fighting the drunk elephant.jpg", caption: "Bhai Bachitar Singh Ji fighting the drunk elephant" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/73-The intoxicated elephant being wounded by the nagani of Bhai.jpg", caption: "The intoxicated elephant being wounded by the nagani of Bhai" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/80-Amrit being prepared.jpg", caption: "Amrit being prepared" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/81-Mata Sahib Kaur Ji pouring Pataasay into Amrit.jpg", caption: "Mata Sahib Kaur Ji pouring Pataasay into Amrit" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/82-Amrit Ceremony.jpg", caption: "Amrit Ceremony" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/83-Amrit Sanchaar 1699.jpg", caption: "Amrit Sanchaar 1699" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/90-Guru Gobind Singh Ji asking for a head.jpg", caption: "Guru Gobind Singh Ji asking for a head" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/91-Guru Gobind Singh Ji leaving Anandpur Fort.jpg", caption: "Guru Gobind Singh Ji leaving Anandpur Fort" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/92-Guru Gobind Singh firing arrows.jpg", caption: "Guru Gobind Singh firing arrows" },
+{ src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/100-Pathan of Kotla Nihang Singh guarding the Sikh Camp outside Chamkaur Sahib.jpg", caption: "Pathan of Kotla Nihang Singh guarding the Sikh Camp outside Chamkaur Sahib" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/101-Guru Gobind Singh Ji blowing horn at Chamkaur Sahib before leaving.jpg", caption: "Guru Gobind Singh Ji blowing horn at Chamkaur Sahib before leaving" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/102-Battle of Chamkaur(5).jpg", caption: "Battle of Chamkaur" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/103-Guru Gobind Singh Ji defending Chamkaur Sahib.jpg", caption: "Guru Gobind Singh Ji defending Chamkaur Sahib" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/104-Chaudri Budhi Chand offering his home (Chamkaur Sahib) as a fort.jpg", caption: "Chaudri Budhi Chand offering his home (Chamkaur Sahib) as a fort" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/105-Guru Gobind Singh in the fortified mud house of Chamkaur.jpg", caption: "Guru Gobind Singh in the fortified mud house of Chamkaur" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/106-Battle of Chamkaur.jpg", caption: "Battle of Chamkaur" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/107-Battle of Chamkaur.jpg", caption: "Battle of Chamkaur" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/108-Battle of Chamkaur.jpg", caption: "Battle of Chamkaur" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/109-Battle of Chamkaur.jpg", caption: "Battle of Chamkaur" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/110-Battle of Chamkaur.jpg", caption: "Battle of Chamkaur" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/111-Guru Ji peering over the Fort of Chamkaur.jpg", caption: "Guru Ji peering over the Fort of Chamkaur" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/112-Guru Ji addressing Singhs at Chamkaur Sahib.jpg", caption: "Guru Ji addressing Singhs at Chamkaur Sahib" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/113-Guru Gobind Singh Ji at Chamkaur Sahib.jpg", caption: "Guru Gobind Singh Ji at Chamkaur Sahib" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/114-Panj Pyaare at Chamkaur Sahib.jpg", caption: "Panj Pyaare at Chamkaur Sahib" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/115-Panj Pyaare ask Guru Ji to leave Chamkaur Sahib.jpg", caption: "Panj Pyaare ask Guru Ji to leave Chamkaur Sahib" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/116-Wazir Khand attacks Chamkaur Sahib.jpg", caption: "Wazir Khand attacks Chamkaur Sahib" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/117-Last fierce battle of Chamkaur Sahib.jpg", caption: "Last fierce battle of Chamkaur Sahib" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/118-Saakaa Chamkaur.jpg", caption: "Saakaa Chamkaur" },
+{ src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/120-Sahibzaadaa Baba Ajeet Singh.jpg", caption: "Sahibzaadaa Baba Ajeet Singh" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/121-Chotte Sahibzade7.jpg", caption: "Chotte Sahibzade7" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/122-Dashmesh Pitaa with Elder Sahibzade.jpg", caption: "Dashmesh Pitaa with Elder Sahibzade" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/123-Chhote Sahibzaade.jpg", caption: "Chhote Sahibzaade" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/124-Young Sahibzaade being taken to court.jpg", caption: "Young Sahibzaade being taken to court" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/125-Young Sahibzaadey in Wazir Khan's Court.jpg", caption: "Young Sahibzaadey in Wazir Khan's Court" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/126-Mata Gujri Jee and Sahibzaade walking in the wilderness.jpg", caption: "Mata Gujri Jee and Sahibzaade walking in the wilderness" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/127-Mata Gujri Ji with the Younger Sahibzaadey, separated from the rest of the family.jpg", caption: "Mata Gujri Ji with the Younger Sahibzaadey, separated from the rest of the family" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/128-Mata Gujri Kaur Ji and Sahibzaadey in Tandda Burj.jpg", caption: "Mata Gujri Kaur Ji and Sahibzaadey in Tandda Burj" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/129-Sahibzaadey being bricked alive.jpg", caption: "Sahibzaadey being bricked alive" },
+ { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/130-Sahibzaadey in Wazir Khan's Court.jpg", caption: "Sahibzaadey in Wazir Khan's Court" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/130-Sahibzaadey receive Amrit.jpg", caption: "Sahibzaadey receive Amrit" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/131-Sahibzada Jujhar Singh jee trains.jpg", caption: "Sahibzada Jujhar Singh jee trains" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/132-Shaheedi Chhote Sahibzaade.jpg", caption: "Shaheedi Chhote Sahibzaade" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/133-The Sahibzaadey being bricked alive.jpg", caption: "The Sahibzaadey being bricked alive" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/134-Mata Gujar Kaur Jee and the Sahibzaadey in the Tandda Burj (Cold Tower).jpg", caption: "Mata Gujar Kaur Jee and the Sahibzaadey in the Tandda Burj (Cold Tower)" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/135-Todar Mal paying in gold for the land required to cremate the Sahibzaadey.jpg", caption: "Todar Mal paying in gold for the land required to cremate the Sahibzaadey" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/136-Sahibzaadey.jpg", caption: "Sahibzaadey-1" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/137-Sahibzaadey2.jpg", caption: "Sahibzaadey-2" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/138-Mata Sundri Jee, mother of the Four Sahibzaade.jpg", caption: "Mata Sundri Jee, mother of the Four Sahibzaade" },
+  { src: "../../pictures/01_About_Sikhism/01_07_Divine Reflections/10_Guru Gobind Singh Ji/139-Dasam Pita bowing before Sri Guru Granth Sahib Ji.jpg", caption: "Dasam Pita bowing before Sri Guru Granth Sahib Ji" },
+
+];
+
+
+  let currentIndex = 0;
+
+  function showImage(index) {
+    const img = document.getElementById("guruGobindSinghImg");
+    const caption = document.getElementById("guruGobindSinghCaption");
+
+    img.src = guruGobindSinghPhotos[index].src;
+    caption.textContent =  guruGobindSinghPhotos[index].caption ;
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % guruGobindSinghPhotos.length;
+    showImage(currentIndex);
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + guruGobindSinghPhotos.length) % guruGobindSinghPhotos.length;
+    showImage(currentIndex);
+  }
+  document.addEventListener("DOMContentLoaded", () => showImage(0));
+</script>
+
+  
+
+</body>
+</html>
+
+
+
+
