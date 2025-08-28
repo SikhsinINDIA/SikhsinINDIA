@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kids Match-Up Game</title>
+  <style>
+    :root{
+      --kesari: #FF9933;
+      --black: #000000;
+    }
+
+    *{ box-sizing: border-box; margin:0; padding:0; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--black);
+      color: var(--black);
+    }
+
+    .wrap{
+      max-width: 1100px;
+      margin: auto;
+      padding: 16px;
+      background: #fff;
+      min-height:100vh;
+    }
+
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:16px; margin-bottom: 16px;
+    }
+    h1{
+      font-size: clamp(22px, 6vw, 32px);
+      margin:0;
+      color: var(--black);
+    }
+    .sub{ color: var(--black); font-size: 14px; }
+
+    .controls{ display:flex; gap:10px; flex-wrap: wrap; }
+    button,.select{
+      border:2px solid var(--black);
+      background: #fff;
+      color: var(--black);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight:600;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease;
+    }
+    button.primary{
+      background: var(--kesari);
+      color: var(--black);
+    }
+    button:hover, .select:hover{
+      background: var(--black);
+      color: #fff;
+    }
+
+    .board{
+      display:grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 768px){
+      .board{ grid-template-columns: 1fr; }
+    }
+
+    .col{
+      background: #fff;
+      border: 2px solid var(--black);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .col h2{
+      margin-bottom: 12px;
+      font-size: 18px;
+      color: var(--kesari);
+    }
+
+    .grid-photos{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+    }
+    .photoCard{
+      position:relative;
+      border: 2px dashed var(--kesari);
+      border-radius: 12px;
+      min-height: 140px;
+      overflow:hidden;
+      background:#fff5eb;
+      transition: border-color .3s ease;
+    }
+    .photoCard.locked{ border: 2px solid var(--kesari); background:#ffe1c4; }
+    .photoCard.wrong{ border: 2px solid red; }
+
+    .photoCard img{
+      width:100%; height:100%; object-fit:cover;
+    }
+    .fallback{
+      display:grid; place-items:center;
+      font-weight:700; font-size:18px;
+      color: var(--black);
+      height:100%;
+    }
+
+    .dropName{
+      position:absolute;
+      left:8px; right:8px; bottom:8px;
+      background: var(--kesari);
+      color: var(--black);
+      border-radius: 8px;
+      padding:6px;
+      font-weight:700;
+      text-align:center;
+    }
+  .guru-image {
+        width: 200px;
+        height: auto;
+        border: 3px solid #FF9933;
+        border-radius: 10px;
+        flex-shrink: 0;
+    }
+    .names{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap:10px;
+    }
+    .nameChip{
+      user-select:none;
+      padding: 10px;
+      border-radius: 999px;
+      background: var(--kesari);
+      color: var(--black);
+      font-weight:700;
+      text-align:center;
+      cursor: grab;
+      border:2px solid var(--black);
+      transition: background .2s ease, color .2s ease;
+    }
+    .nameChip:hover{ background: var(--black); color:#fff; }
+    .nameChip.matched{
+      background: var(--black);
+      color: #fff;
+      cursor: default;
+    }
+
+    .status{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin:10px 0;
+      font-size:14px;
+      color: var(--black);
+      font-weight:600;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--kesari);
+    }
+    .score{ font-weight:800; }
+
+    /* Mobile tweaks */
+    @media(max-width:500px){
+      .controls{ flex-direction:column; align-items:stretch; }
+      button,.select{ width:100%; text-align:center; }
+    }
+
+    /* Back button styling */
+    .back-button {
+      width: 80%;
+      max-width: 200px;
+      height: 45px;
+      font-size: 18px;
+      background-color: #FFA500;
+      color: black;
+      margin: 40px auto 0 auto;
+      display: block;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      background-color: #FF8C00;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Match the Photos to the Names</h1>
+        <div class="sub">Drag or tap a name onto the matching photo</div>
+      </div>
+      <div class="controls">
+        <button id="newRound" class="primary">New Round</button>
+        <button id="reset">Reset</button>
+        <!-- <select id="count" class="select">
+          <option value="4">4 pairs</option>
+          <option value="10" selected>10 pairs</option>
+          <option value="8">8 pairs</option>
+        </select> -->
+
+      </div>
+    </header>
+
+    <div class="status">
+      <div class="dot"></div>
+      <div class="score">Score: <span id="score">0</span></div>
+      <div>| Matches needed: <span id="needed">0</span></div>
+    </div>
+
+    <section class="board">
+      <div class="col">
+        <h2>Photos</h2>
+        <div id="photos" class="grid-photos"></div>
+      </div>
+      <div class="col">
+        <h2>Names</h2>
+        <div id="names" class="names"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- templates -->
+  <template id="photo-card-tpl">
+    <div class="photoCard" tabindex="0" data-id="">
+      <img alt="" />
+      <div class="fallback">Photo</div>
+      <div class="dropName" data-dropzone>Drop name</div>
+    </div>
+  </template>
+
+  <template id="name-chip-tpl">
+    <div class="nameChip" draggable="true" tabindex="0" data-id="">Name</div>
+  </template>
+
+  <script>
+    const ALL_ITEMS = [
+      { id: 'Guru Nanak Dev Ji',    label: 'Guru Nanak Dev Ji',    img: '../../pictures/01_About_Sikhism/01_01_Sikh_Gurus/01 Guru Nanak Dev Ji.jpg' },
+      { id: 'Guru Angad Dev Ji',    label: 'Guru Angad Dev Ji',  img: '../../pictures/01_About_Sikhism/01_01_Sikh_Gurus/02 Guru Angad Dev Ji.jpg'},
+      { id: 'Guru Amar Das Ji',  label: 'Guru Amar Das Ji',  img: '../../pictures/01_About_Sikhism/01_01_Sikh_Gurus/03 Guru Amar Das Ji.jpg'},
+      { id: 'Guru Ram Das Ji',   label: 'Guru Ram Das Ji',   img: '../../pictures/01_About_Sikhism/01_01_Sikh_Gurus/04 Guru Ram Das Ji.jpg'},
+      { id: 'Guru Arjan Dev Ji',  label: 'Guru Arjan Dev Ji',  img: '../../pictures/01_About_Sikhism/01_01_Sikh_Gurus/05 Guru Arjan Dev Ji.jpg'},
+      { id: 'Guru Har Gobind Ji',  label: 'Guru Har Gobind Ji',  img: '../../pictures/01_About_Sikhism/01_01_Sikh_Gurus/06 Guru Har Gobind Singh Ji.jpg'},
+      { id: 'Guru Har Rai Ji',    label: 'Guru Har Rai Ji',    img: '../../pictures/01_About_Sikhism/01_01_Sikh_Gurus/07 Guru Har Rai Ji.jpg'},
+      { id: 'Guru Har Krishan Ji', label: 'Guru Har Krishan Ji', img: '../../pictures/01_About_Sikhism/01_01_Sikh_Gurus/08 Shri Guru Harkrishan Ji.jpg'},
+      { id: 'Guru Tegh Bahadur Ji',  label: 'Guru Tegh Bahadur Ji',  img: '../../pictures/01_About_Sikhism/01_01_Sikh_Gurus/09 Shri Guru Teg Bahadur Ji.jpg'},
+      { id: 'Guru Gobind Singh Ji',    label: 'Guru Gobind Singh Ji',    img: '../../pictures/01_About_Sikhism/01_01_Sikh_Gurus/10 Shri Guru Gobind Singh Ji.jpg'},
+    ];
+
+    const $ = sel => document.querySelector(sel);
+    function shuffle(arr){ for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];} return arr; }
+
+    const state={activeItems:[],matches:0,needed:0};
+
+    function buildRound(count=10){
+      const pool=shuffle([...ALL_ITEMS]).slice(0,count);
+      state.activeItems=pool; state.matches=0; state.needed=pool.length;
+      updateScore();
+
+      const photos=$('#photos'); photos.innerHTML='';
+      pool.forEach(item=>{
+        const node=document.importNode($('#photo-card-tpl').content,true);
+        const card=node.querySelector('.photoCard');
+        const img=node.querySelector('img');
+        card.dataset.id=item.id; img.src=item.img; img.alt=item.label;
+        addDropHandlers(card);
+        photos.appendChild(node);
+      });
+
+      const names=$('#names'); names.innerHTML='';
+      shuffle([...pool]).forEach(item=>{
+        const chipFrag=document.importNode($('#name-chip-tpl').content,true);
+        const chip=chipFrag.querySelector('.nameChip');
+        chip.textContent=item.label; chip.dataset.id=item.id;
+        addDragHandlers(chip);
+        names.appendChild(chipFrag);
+      });
+    }
+
+    function updateScore(){ $('#score').textContent=state.matches; $('#needed').textContent=state.needed; }
+
+    // Drag & Drop
+    function addDragHandlers(el){
+      el.addEventListener('dragstart', e=>{
+        e.dataTransfer.setData('text/plain', el.dataset.id);
+      });
+    }
+    function addDropHandlers(card){
+      card.addEventListener('dragover', e=>e.preventDefault());
+      card.addEventListener('drop', e=>{
+        e.preventDefault();
+        const id=e.dataTransfer.getData('text/plain');
+        const chip=$(`.nameChip[data-id="${CSS.escape(id)}"]:not(.matched)`);
+        if(!chip) return;
+        tryDrop(card,id,chip);
+      });
+    }
+
+    function tryDrop(card,id,chip){
+      const isCorrect=card.dataset.id===id;
+      if(isCorrect){
+        const slot=card.querySelector('[data-dropzone]');
+        slot.textContent=chip.textContent;
+        chip.classList.add('matched');
+        card.classList.add('locked');
+        state.matches++; updateScore();
+        confettiBurst(card);
+        if(state.matches===state.needed){ announceWin(); }
+      } else {
+        flashWrong(card);
+      }
+    }
+
+    function flashWrong(card){
+      card.classList.add('wrong');
+      setTimeout(()=>card.classList.remove('wrong'),550);
+    }
+
+    function announceWin(){
+      const msg=document.createElement('div');
+      msg.setAttribute('role','alert');
+      msg.style.position='fixed'; msg.style.inset='0'; msg.style.display='grid'; msg.style.placeItems='center';
+      msg.style.background='rgba(0,0,0,.5)'; msg.style.zIndex='9999';
+      msg.innerHTML=`
+        <div style="background:white; padding:24px; border-radius:16px; text-align:center; border:2px solid black; max-width:400px;">
+          <h3 style="margin:0 0 8px; font-size:20px; color:black;">Great Job! 🎉</h3>
+          <p style="margin:0 0 16px; color:black;">You matched all names correctly.</p>
+          <button id="playAgain" style="padding:10px 16px; border-radius:12px; border:2px solid black; background:#FF9933; font-weight:700;">Play Again</button>
+        </div>`;
+      document.body.appendChild(msg);
+      document.getElementById('playAgain').addEventListener('click',()=>{ msg.remove(); buildRound(parseInt($('#count').value,10)); });
+      confettiCanvas(msg);
+    }
+
+    // Confetti
+    function confettiBurst(target){
+      const rect=target.getBoundingClientRect();
+      for(let i=0;i<12;i++){
+        const dot=document.createElement('div');
+
+        dot.style.position='fixed'; dot.style.width='8px'; dot.style.height='8px'; dot.style.borderRadius='50%';
+        dot.style.left=(rect.left+rect.width/2)+'px'; dot.style.top=(rect.top+rect.height/2)+'px';
+        // dot.style.background=Math.random()>0.5?'#FF9933':'#000';
+                const COLORS = ['#FF9933', '#FF0000', '#00CCFF', '#00CC66', '#FFD700', '#800080'];
+        dot.style.background = COLORS[Math.floor(Math.random() * COLORS.length)];
+        dot.style.pointerEvents='none'; dot.style.zIndex='999';
+        document.body.appendChild(dot);
+        const angle=Math.random()*Math.PI*2; const dist=50+Math.random()*50;
+        const x=Math.cos(angle)*dist; const y=Math.sin(angle)*dist;
+        dot.animate([
+          {transform:'translate(0,0)',opacity:1},
+          {transform:`translate(${x}px,${y}px)`,opacity:0}
+        ],{duration:700,easing:'ease-out'}).onfinish=()=>dot.remove();
+      }
+    }
+    function confettiCanvas(overlay){
+      const c=document.createElement('canvas'); overlay.appendChild(c);
+      const ctx=c.getContext('2d');
+      function size(){ c.width=overlay.clientWidth; c.height=overlay.clientHeight; }
+      size();
+      const pieces=Array.from({length:80},()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:3+Math.random()*3,s:1+Math.random()*2,col:Math.random()>0.5?'#FF9933':'#000'}));
+      let running=true;
+      function tick(){
+        if(!running) return; requestAnimationFrame(tick);
+        ctx.clearRect(0,0,c.width,c.height);
+        for(const p of pieces){
+          ctx.fillStyle=p.col;
+          ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+          p.y+=p.s; if(p.y>c.height) p.y=-10;
+        }
+      }
+      tick();
+      const ro=new ResizeObserver(size); ro.observe(overlay);
+      overlay.addEventListener('click',()=>{ running=false; });
+    }
+
+    // Controls
+    // $('#newRound').addEventListener('click',()=>buildRound(parseInt($('#count').value,10)));
+    // $('#reset').addEventListener('click',()=>buildRound(state.needed||parseInt($('#count').value,10)));
+    $('#newRound').addEventListener('click',()=>buildRound(10));
+$('#reset').addEventListener('click',()=>buildRound(10));
+    // $('#count').addEventListener('change',e=>buildRound(parseInt(e.target.value,10)));
+
+    // Init
+    // buildRound(parseInt($('#count').value,10));
+    buildRound(10);
+  </script>
+
+    <!-- Back Button -->
+  <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
+  <br>
+
+  <script>
+    function goBack() {
+     window.location.href = "../07_Sikh_Section_for_Kids.html";
+    }
+  </script>
+</body>
+</html>
