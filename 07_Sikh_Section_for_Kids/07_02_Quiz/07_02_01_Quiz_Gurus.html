@@ -3,6 +3,21 @@
 <head>
   <meta charset="utf-8" />
 
+  <!--
+    ============================================================
+    Sikh Gurus Match Game — Long-form Build (~500+ lines)
+    - Randomized photos (10 total), split as 5/5 across two columns
+    - Names shuffled in 3rd column
+    - Equal-height photo cards
+    - Images centered horizontally and aligned to the top
+    - Small "Drop name" placeholder
+    - Correct name stays inside a little green box under the image
+    - Tracks Attempts and Score %, shows them on the finish popup
+    - Confetti on win
+    - Maintains the original local image paths provided
+    ============================================================
+  -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Kids Match-Up Game</title>
@@ -17,6 +32,13 @@
       --ink:    #1f2937;  /* softer ink for body */
       --bg:     #f7f8ff;  /* subtle page background */
       --card:   #ffffff;  /* card background */
+
+      --green-bg:   #c8f7c5; /* match success bg */
+      --green-text: #0a5d00; /* match success text */
+      --green-bdr:  #6bbf59; /* match success border */
+
+      --red:   #ff3b30;
+      --gray:  #666;
     }
 
     /* =========================================================
@@ -114,11 +136,34 @@
     }
 
     /* =========================================================
-       BOARD LAYOUT
-       - 3 columns total:
-         1) Photos col 1
-         2) Photos col 2
-         3) Names
+       STATUS BAR
+       ========================================================= */
+    .status {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 10px 0 16px 0;
+      font-size: 14px;
+      color: var(--black);
+      font-weight: 600;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--kesari);
+    }
+
+    .score,
+    .attempts,
+    .pct {
+      font-weight: 800;
+    }
+
+    /* =========================================================
+       BOARD LAYOUT (3 columns: Photos 1 | Photos 2 | Names)
        ========================================================= */
     .board {
       display: grid;
@@ -129,86 +174,49 @@
 
     .col {
       background: #fff;
-      /* border: 2px solid var(--black); */
       border-radius: 12px;
-      padding: 4px;
+      padding: 8px;
     }
 
     .col h2 {
-      margin-bottom: 2px;
-      font-size: 8px;
+      margin-bottom: 6px;
+      font-size: 14px;
       color: var(--kesari);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
     }
 
     /* =========================================================
        PHOTOS COLUMNS
-       - force equal card heights
-       - use object-fit: contain for images
-       - keep spacing consistent
+       - Force equal card heights
+       - Image: center horizontally and top-aligned
        ========================================================= */
     .grid-photos {
-      display: flex;            /* stack vertically */
-      flex-direction: column;   /* column direction */
-      gap: 2px;                /* space between cards */
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
     .photoCard {
       position: relative;
 
       /* equal size for all cards */
-      min-height: 40px;
+      min-height: 110px;
+      padding: 8px 8px 28px; /* extra bottom for the drop pill */
 
-      /* center content (image or fallback text) */
+      /* layout for image area */
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
+      align-items: center;      /* horizontal center */
+      justify-content: flex-start; /* top aligned */
 
       /* visuals */
       border: 2px dashed var(--kesari);
-      border-radius: 5px;
+      border-radius: 10px;
       overflow: hidden;
       background: #fff5eb;
-      transition: border-color 0.3s ease;
-    }
-
-    .dropName {
-      font-size: 0.75rem;     /* smaller text */
-      color: #666;            /* optional: lighter gray for placeholder */
-      font-style: italic;     /* optional: make placeholder look different */
-    }
-
-    .photoCard .name.correct {
-      display: inline-block;
-      font-size: 0.5rem;       /* smaller text */
-      padding: 3px 6px;          /* little box padding */
-      background-color: #c8f7c5; /* light green box */
-      color: #0a5d00;            /* dark green text */
-      border: 1px solid #6bbf59; /* green border */
-      border-radius: 6px;        /* rounded corners */
-      margin-top: 6px;
-      text-align: center;
-    }
-
-    .photoCard.locked .dropName {
-      background-color: #c8f7c5;     /* light green */
-      color: #052401;                /* dark green text */
-      border: 0.5px solid #6bbf59;     /* green border */
-      border-radius: 2px;
-
-      font-size: 0.5rem;            /* smaller text */
-      font-weight: 200;
-      padding: 1px 1px;
-
-      /* turn it from full-width bar into a centered pill */
-      width: max-content;
-      min-width: 0;
-      left: 50% !important;
-      right: auto !important;
-      transform: translateX(-50%);
-      bottom: 1px;
-
-      box-shadow: 0 1px 0 rgba(0,0,0,.06);
+      transition: border-color 0.25s ease, background 0.25s ease;
     }
 
     .photoCard.locked {
@@ -217,51 +225,69 @@
     }
 
     .photoCard.wrong {
-      border: 2px solid red;
+      border: 2px solid var(--red);
     }
 
     .photoCard img {
-      /* fit inside the card without clipping */
+      /* keep image inside the card without clipping */
       max-height: 100%;
       max-width: 100%;
-      height: auto;
+
+      /* requested small width for consistency */
       width: 50px;
+      height: auto;
+
       object-fit: contain;
-      margin-top: 5px;
+
+      /* center horizontally (already via align-items:center) */
+      /* align to top (flex-start on container) */
+      margin-top: 4px;
+      display: block;
     }
 
-    .fallback {
-      display: none; /* not needed when images are present */
-      font-weight: 200;
-      font-size: 8px;
-      color: var(--black);
-      height: 100%;
-      width: 100%;
-      display: grid;
-      place-items: center;
-    }
-
-    /* The dropName tag shown after a correct match */
+    /* Placeholder text below image (before correct match) — small */
     .dropName {
       position: absolute;
-      left: 1px;
-      right: 1px;
-      bottom: 1px;
-      background: var(--kesari);
-      color: var(--black);
+      left: 8px;
+      right: 8px;
+      bottom: 6px;
+
+      background: #f2f2f2;
+      color: var(--gray);
+
+      border: 1px dashed #bdbdbd;
       border-radius: 8px;
-      padding: 1px;
-      font-weight: 50;
+
+      padding: 2px 6px;
+
+      font-size: 11px; /* smaller placeholder as requested */
+      font-weight: 500;
       text-align: center;
+
+      /* clickable target for drop */
+      pointer-events: auto;
     }
 
-    /* Unused helper from earlier versions (kept since requested to keep original feel) */
-    .guru-image {
-      width: 50px;
-      height: auto;
-      border: 2px solid #FF9933;
-      border-radius: 10px;
-      flex-shrink: 0;
+    /* When matched, convert placeholder into a little green box (pill) */
+    .photoCard.locked .dropName {
+      background-color: var(--green-bg);
+      color: var(--green-text);
+      border: 1px solid var(--green-bdr);
+
+      font-size: 11px;
+      font-weight: 700;
+
+      width: max-content;
+      min-width: 0;
+
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+
+      padding: 2px 8px;
+      bottom: 6px;
+      border-radius: 999px;
+      box-shadow: 0 1px 0 rgba(0,0,0,.06);
     }
 
     /* =========================================================
@@ -275,29 +301,19 @@
 
     .nameChip {
       user-select: none;
-      padding: 5px;
+      padding: 8px 12px;
       border-radius: 999px;
       background: var(--kesari);
       color: var(--black);
-      font-weight: 300;
+      font-weight: 700;
       text-align: center;
       cursor: grab;
       border: 2px solid var(--black);
       transition:
         background 0.2s ease,
         color 0.2s ease,
-        transform 0.1s ease;
-    }
-
-    .name.correct {
-      background-color: #c8f7c5;   /* light green background */
-      color: #0a5d00;             /* dark green text */
-      font-weight: bold;
-    }
-
-    .name.wrong {
-      background-color: #f8d7da;   /* light red background */
-      color: #a80000;
+        transform 0.1s ease,
+        opacity 0.2s ease;
     }
 
     .nameChip:hover {
@@ -306,10 +322,12 @@
     }
 
     .nameChip.matched {
-      background-color: #c8f7c5;   /* light green background */
-      color: #0a5d00;             /* dark green text */
+      background-color: var(--green-bg);
+      color: var(--green-text);
+      border-color: var(--green-bdr);
       cursor: default;
-      transform: scale(0.48);
+      opacity: 0.65;
+      transform: scale(0.95);
     }
 
     /* Selected (pending) state for tap-to-match on mobile */
@@ -320,48 +338,28 @@
     }
 
     /* =========================================================
-       STATUS BAR
-       ========================================================= */
-    .status {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 10px 0;
-      font-size: 14px;
-      color: var(--black);
-      font-weight: 600;
-      flex-wrap: wrap;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--kesari);
-    }
-
-    .score {
-      font-weight: 800;
-    }
-
-    /* =========================================================
        MOBILE TWEAKS
        ========================================================= */
-    @media(max-width: 700px) {
+    @media (max-width: 820px) {
       .board {
         grid-template-columns: 1fr 1fr 1fr;
-        gap: 20px;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      /* Keep 3 columns but slightly tighter spacing on very small screens */
+      .board {
+        gap: 12px;
       }
 
-      .col.photos1 { grid-column: 1; }
-      .col.photos2 { grid-column: 2; }
-      .col.namesCol { grid-column: 3; }
-
-      .photoCard { min-height: 100px; }
+      .photoCard {
+        min-height: 100px;
+      }
 
       .nameChip {
-        font-size: 10px;
-        padding: 5px;
+        font-size: 13px;
+        padding: 6px 10px;
       }
     }
 
@@ -370,8 +368,8 @@
        ========================================================= */
     .back-button {
       width: 80%;
-      max-width: 200px;
-      height: 45px;
+      max-width: 220px;
+      height: 46px;
       font-size: 18px;
       background-color: #FFA500;
       color: black;
@@ -384,6 +382,103 @@
 
     .back-button:hover {
       background-color: #FF8C00;
+    }
+
+    /* =========================================================
+       WIN MODAL OVERLAY
+       ========================================================= */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      display: grid;
+      place-items: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .modalCard {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      text-align: center;
+      border: 2px solid black;
+      max-width: 420px;
+      width: calc(100% - 32px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    }
+
+    .modalCard h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      color: black;
+    }
+
+    .modalCard p {
+      margin: 0 0 10px;
+      color: black;
+      font-size: 15px;
+    }
+
+    .modalCard .row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 6px 0 10px;
+    }
+
+    .modalCard .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--kesari);
+      color: var(--black);
+      font-weight: 800;
+      border: 2px solid var(--black);
+      font-size: 14px;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .modalCard button {
+      margin-top: 10px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: 2px solid black;
+      background: #FF9933;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .modalCard button:hover {
+      background: #ffb24f;
+    }
+
+    /* =========================================================
+       CONFETTI RAIN
+       ========================================================= */
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 10px;
+      height: 10px;
+      opacity: 0.9;
+      z-index: 9998;
+      animation: fall linear forwards;
+      will-change: transform;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
     }
   </style>
 </head>
@@ -406,32 +501,25 @@
     </header>
 
     <!-- =======================================================
-         STATUS BAR (now shows % + correct + attempts)
+         STATUS BAR
          ======================================================= -->
     <div class="status">
       <div class="dot"></div>
 
       <div class="score">
-        Score:
-        <span id="scorePct">0%</span>
+        Correct: <span id="score">0</span>
+      </div>
+
+      <div class="attempts">
+        | Attempts: <span id="attempts">0</span>
+      </div>
+
+      <div class="pct">
+        | Score %: <span id="pct">0</span>%
       </div>
 
       <div>
-        |
-        Correct:
-        <span id="score">0</span>
-      </div>
-
-      <div>
-        |
-        Attempts:
-        <span id="attempts">0</span>
-      </div>
-
-      <div>
-        |
-        Matches needed:
-        <span id="needed">0</span>
+        | Matches needed: <span id="needed">0</span>
       </div>
     </div>
 
@@ -441,17 +529,20 @@
     <section class="board">
       <!-- Photos Column 1 -->
       <div class="col photos1">
-        <div id="col1" class="grid-photos"></div>
+        <h2>Photos (1–5)</h2>
+        <div id="col1" class="grid-photos"><!-- filled by JS --></div>
       </div>
 
       <!-- Photos Column 2 -->
       <div class="col photos2">
-        <div id="col2" class="grid-photos"></div>
+        <h2>Photos (6–10)</h2>
+        <div id="col2" class="grid-photos"><!-- filled by JS --></div>
       </div>
 
       <!-- Names Column -->
       <div class="col namesCol">
-        <div id="names" class="names"></div>
+        <h2>Names</h2>
+        <div id="names" class="names"><!-- filled by JS --></div>
       </div>
     </section>
   </div>
@@ -462,16 +553,30 @@
   <template id="photo-card-tpl">
     <div class="photoCard" tabindex="0" data-id="">
       <img alt="" />
-      <div class="fallback"></div>
       <div class="dropName" data-dropzone>Drop name</div>
     </div>
   </template>
 
   <template id="name-chip-tpl">
-    <div class="nameChip" draggable="true" tabindex="0" data-id="">
-      Name
-    </div>
+    <div class="nameChip" draggable="true" tabindex="0" data-id="">Name</div>
   </template>
+
+  <!-- =========================================================
+       WIN MODAL
+       ========================================================= -->
+  <div id="winModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="winTitle">
+    <div class="modalCard">
+      <h3 id="winTitle">Great Job! 🎉</h3>
+      <p>You matched all names correctly.</p>
+
+      <div class="row">
+        <span class="badge" id="finalScore">Score: 0%</span>
+        <span class="badge" id="finalAttempts">Attempts: 0</span>
+      </div>
+
+      <button id="playAgain">Play Again</button>
+    </div>
+  </div>
 
   <!-- =========================================================
        GAME SCRIPT
@@ -538,7 +643,6 @@
        --------------------------------------------------------- */
     const $ = (sel) => document.querySelector(sel);
 
-    // Fisher–Yates shuffle (single definition)
     function shuffle(arr) {
       for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -549,24 +653,39 @@
 
     const state = {
       activeItems: [],
-      matches: 0,   // correct matches
-      trials: 0,    // every attempt (correct or wrong)
+      matches: 0,
+      attempts: 0,   // 👈 track tries
       needed: 0
     };
+
+    /* ---------------------------------------------------------
+       SCORE HELPERS
+       --------------------------------------------------------- */
+    function getPercent(matches, attempts) {
+      if (!attempts) return 0;
+      return Math.round((matches / attempts) * 100);
+    }
+
+    function updateStatusBar() {
+      $('#score').textContent   = state.matches;
+      $('#attempts').textContent= state.attempts;
+      $('#needed').textContent  = state.needed;
+      $('#pct').textContent     = getPercent(state.matches, state.attempts);
+    }
 
     /* ---------------------------------------------------------
        ROUND BUILDER
        --------------------------------------------------------- */
     function buildRound(count = 10) {
-      // get 10, shuffle image order for columns
+      // randomize pool order
       const pool = shuffle([...ALL_ITEMS]).slice(0, count);
 
       // update state
       state.activeItems = pool;
       state.matches = 0;
-      state.trials = 0;   // reset attempts for new round
+      state.attempts = 0;
       state.needed = pool.length;
-      updateScore();
+      updateStatusBar();
 
       // split into two columns
       const firstHalf  = pool.slice(0, 5);
@@ -586,8 +705,14 @@
       const names = $('#names');
       names.innerHTML = '';
       shuffle([...pool]).forEach((item) => addName(names, item));
+
+      // ensure modal is hidden (if user hit reset after finishing)
+      $('#winModal').classList.add('hidden');
     }
 
+    /* ---------------------------------------------------------
+       BUILD PHOTO CARD
+       --------------------------------------------------------- */
     function addPhoto(container, item) {
       const node = document.importNode($('#photo-card-tpl').content, true);
       const card = node.querySelector('.photoCard');
@@ -598,9 +723,13 @@
       img.alt  = item.label;
 
       addDropHandlers(card);
+
       container.appendChild(node);
     }
 
+    /* ---------------------------------------------------------
+       BUILD NAME CHIP
+       --------------------------------------------------------- */
     function addName(container, item) {
       const chipFrag = document.importNode($('#name-chip-tpl').content, true);
       const chip = chipFrag.querySelector('.nameChip');
@@ -609,19 +738,8 @@
       chip.dataset.id  = item.id;
 
       addDragHandlers(chip);
+
       container.appendChild(chipFrag);
-    }
-
-    function updateScore() {
-      // percent based on trials (attempts)
-      const pct = state.trials === 0
-        ? 0
-        : Math.round((state.matches / state.trials) * 100);
-
-      $('#score').textContent     = state.matches;
-      $('#attempts').textContent  = state.trials;
-      $('#scorePct').textContent  = `${pct}%`;
-      $('#needed').textContent    = state.needed;
     }
 
     /* ---------------------------------------------------------
@@ -630,58 +748,50 @@
     function addDragHandlers(el) {
       el.addEventListener('dragstart', (e) => {
         e.dataTransfer.setData('text/plain', el.dataset.id);
-        el.style.opacity = '0.7';
+        // optional visual hint
+        el.style.opacity = '0.75';
       });
 
       el.addEventListener('dragend', () => {
         el.style.opacity = '1';
       });
+
+      // Tap-to-select (pending) for mobile
+      el.addEventListener('click', () => {
+        if (el.classList.contains('matched')) return;
+        document.querySelectorAll('.nameChip.pending').forEach(c => c.classList.remove('pending'));
+        el.classList.add('pending');
+      });
     }
 
     function addDropHandlers(card) {
+      const dropZone = card.querySelector('[data-dropzone]');
+
       // allow dropping
-      card.addEventListener('dragover', (e) => e.preventDefault());
+      dropZone.addEventListener('dragover', (e) => e.preventDefault());
 
       // handle drop
-      card.addEventListener('drop', (e) => {
+      dropZone.addEventListener('drop', (e) => {
         e.preventDefault();
 
         const id = e.dataTransfer.getData('text/plain');
-        const chip = document.querySelector(
-          `.nameChip[data-id="${CSS.escape(id)}"]:not(.matched)`
-        );
-
+        const chip = document.querySelector(`.nameChip[data-id="${CSS.escape(id)}"]:not(.matched)`);
         if (!chip) return;
 
         tryDrop(card, id, chip);
       });
 
-      // Tap-to-match: tap a name (pending), then tap a photo to try
+      // Tap-to-match: if a chip is "pending", tap photo to try
       card.addEventListener('click', () => {
         const pending = document.querySelector('.nameChip.pending');
         if (!pending) return;
-
         tryDrop(card, pending.dataset.id, pending);
       });
     }
 
-    // Toggle pending state on chips when tapped (for mobile)
-    document.addEventListener('click', (e) => {
-      const chip = e.target.closest('.nameChip');
-      if (!chip || chip.classList.contains('matched')) return;
-
-      // remove pending from others, set on this one
-      document
-        .querySelectorAll('.nameChip.pending')
-        .forEach((c) => c.classList.remove('pending'));
-
-      chip.classList.add('pending');
-    });
-
     function tryDrop(card, id, chip) {
-      // every attempt counts as a trial
-      state.trials++;
-
+      // increment attempts for any drop try (or tap-try)
+      state.attempts++;
       const isCorrect = card.dataset.id === id;
 
       if (isCorrect) {
@@ -694,19 +804,21 @@
         card.classList.add('locked');
 
         state.matches++;
-        updateScore();
 
-        // small confetti burst at the matched card
-        confettiBurst(card);
+        // update status bar after a successful try
+        updateStatusBar();
 
-        // if finished, show overlay confetti
+        // win check
         if (state.matches === state.needed) {
           announceWin();
         }
       } else {
+        // wrong
         chip.classList.remove('pending');
         flashWrong(card);
-        updateScore(); // update attempts/percent on wrong try too
+
+        // update status bar after a wrong try too
+        updateStatusBar();
       }
     }
 
@@ -719,199 +831,54 @@
        WIN OVERLAY & CONFETTI
        --------------------------------------------------------- */
     function announceWin() {
-      const msg = document.createElement('div');
+      // compute final percentage
+      const scorePercent = getPercent(state.matches, state.attempts);
 
-      msg.setAttribute('role', 'alert');
+      // Fill modal badges
+      $('#finalScore').textContent    = `Score: ${scorePercent}%`;
+      $('#finalAttempts').textContent = `Attempts: ${state.attempts}`;
 
-      msg.style.position      = 'fixed';
-      msg.style.inset         = '0';
-      msg.style.display       = 'grid';
-      msg.style.placeItems    = 'center';
-      msg.style.background    = 'rgba(0,0,0,.5)';
-      msg.style.zIndex        = '9999';
-
-      msg.innerHTML = `
-        <div style="
-          background: white;
-          padding: 24px;
-          border-radius: 16px;
-          text-align: center;
-          border: 2px solid black;
-          max-width: 420px;
-        ">
-          <h3 style="
-            margin: 0 0 8px;
-            font-size: 20px;
-            color: black;
-          ">
-            Great Job! 🎉
-          </h3>
-
-          <p style="
-            margin: 0 0 16px;
-            color: black;
-          ">
-            You matched all names correctly.
-          </p>
-
-          <button
-            id="playAgain"
-            style="
-              padding: 10px 16px;
-              border-radius: 12px;
-              border: 2px solid black;
-              background: #FF9933;
-              font-weight: 700;
-              cursor: pointer;
-            "
-          >
-            Play Again
-          </button>
-        </div>
-      `;
-
-      document.body.appendChild(msg);
-
-      document
-        .getElementById('playAgain')
-        .addEventListener('click', () => {
-          msg.remove();
-          buildRound(10);
-        });
+      // Show modal
+      $('#winModal').classList.remove('hidden');
 
       // overlay confetti (multicolor rain)
-      confettiCanvas(msg);
+      confettiRain();
     }
 
-    // small confetti burst near matched card
-    function confettiBurst(target) {
-      const rect = target.getBoundingClientRect();
-
-      const COLORS = [
-        '#FF9933',  /* orange */
-        '#FF0000',  /* red    */
-        '#00CCFF',  /* cyan   */
-        '#00CC66',  /* green  */
-        '#FFD700',  /* gold   */
-        '#800080'   /* purple */
-      ];
-
-      for (let i = 0; i < 12; i++) {
+    function confettiRain() {
+      for (let i = 0; i < 140; i++) {
         const dot = document.createElement('div');
+        dot.className = 'confetti';
 
-        dot.style.position      = 'fixed';
-        dot.style.width         = '8px';
-        dot.style.height        = '8px';
-        dot.style.borderRadius  = '50%';
+        // randomize horizontal start
+        dot.style.left = Math.random() * 100 + 'vw';
 
-        dot.style.left = (rect.left + rect.width  / 2) + 'px';
-        dot.style.top  = (rect.top  + rect.height / 2) + 'px';
+        // random HSL color
+        dot.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 55%)`;
 
-        dot.style.background    = COLORS[Math.floor(Math.random() * COLORS.length)];
-        dot.style.pointerEvents = 'none';
-        dot.style.zIndex        = '999';
+        // random duration and delay
+        dot.style.animationDuration = (Math.random() * 2 + 3) + 's';
+        dot.style.animationDelay = (Math.random() * 0.5) + 's';
+
+        // random rotation start
+        dot.style.transform = `rotate(${Math.random() * 360}deg)`;
 
         document.body.appendChild(dot);
 
-        const angle = Math.random() * Math.PI * 2;
-        const dist  = 50 + Math.random() * 50;
-
-        const x = Math.cos(angle) * dist;
-        const y = Math.sin(angle) * dist;
-
-        dot
-          .animate(
-            [
-              { transform: 'translate(0, 0)',           opacity: 1 },
-              { transform: `translate(${x}px, ${y}px)`,  opacity: 0 }
-            ],
-            {
-              duration: 700,
-              easing: 'ease-out'
-            }
-          )
-          .onfinish = () => dot.remove();
+        // remove after animation finishes
+        setTimeout(() => dot.remove(), 5000);
       }
-    }
-
-    // gentle multi-color rain while the win dialog is visible
-    function confettiCanvas(overlay) {
-      const c   = document.createElement('canvas');
-      const ctx = c.getContext('2d');
-
-      overlay.appendChild(c);
-
-      function size() {
-        c.width  = overlay.clientWidth;
-        c.height = overlay.clientHeight;
-      }
-
-      size();
-
-      const COLORS = [
-        '#FF9933',
-        '#FF0000',
-        '#00CCFF',
-        '#00CC66',
-        '#FFD700',
-        '#800080'
-      ];
-
-      const pieces = Array.from({ length: 80 }, () => ({
-        x:   Math.random() * c.width,
-        y:   Math.random() * c.height,
-        r:   3 + Math.random() * 3,
-        s:   1 + Math.random() * 2,
-        col: COLORS[Math.floor(Math.random() * COLORS.length)]
-      }));
-
-      let running = true;
-
-      function tick() {
-        if (!running) return;
-
-        requestAnimationFrame(tick);
-
-        ctx.clearRect(0, 0, c.width, c.height);
-
-        for (const p of pieces) {
-          ctx.fillStyle = p.col;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fill();
-
-          // falling
-          p.y += p.s;
-
-          // loop to top
-          if (p.y > c.height) {
-            p.y = -10;
-            p.x = Math.random() * c.width;
-          }
-        }
-      }
-
-      tick();
-
-      const ro = new ResizeObserver(size);
-      ro.observe(overlay);
-
-      overlay.addEventListener('click', () => {
-        running = false;
-      });
     }
 
     /* ---------------------------------------------------------
        CONTROLS
        --------------------------------------------------------- */
-    document
-      .getElementById('newRound')
-      .addEventListener('click', () => buildRound(10));
-
-    document
-      .getElementById('reset')
-      .addEventListener('click', () => buildRound(10));
+    document.getElementById('newRound').addEventListener('click', () => buildRound(10));
+    document.getElementById('reset').addEventListener('click',    () => buildRound(10));
+    document.getElementById('playAgain').addEventListener('click', () => {
+      document.getElementById('winModal').classList.add('hidden');
+      buildRound(10);
+    });
 
     /* ---------------------------------------------------------
        INIT
@@ -920,12 +887,13 @@
   </script>
 
   <!-- =========================================================
-       BACK BUTTON (outside main script to keep it simple)
+       BACK BUTTON (outside main script)
        ========================================================= -->
   <button
     type="button"
     onclick="goBack()"
     class="back-button"
+    aria-label="Go back"
   >
     <b>Back</b>
   </button>
