@@ -172,7 +172,7 @@
     }
 .photoCard .name.correct {
   display: inline-block;
-  font-size: 0.8rem;         /* smaller text */
+  font-size: 1.5rem;         /* smaller text */
   padding: 3px 6px;          /* little box padding */
   background-color: #c8f7c5; /* light green box */
   color: #0a5d00;            /* dark green text */
@@ -180,6 +180,27 @@
   border-radius: 6px;        /* rounded corners */
   margin-top: 6px;
   text-align: center;
+}
+
+.photoCard.locked .dropName {
+  background-color: #c8f7c5;     /* light green */
+  color: #0a5d00;                /* dark green text */
+  border: 1px solid #6bbf59;     /* green border */
+  border-radius: 8px;
+
+  font-size: 0.85rem;            /* smaller text */
+  font-weight: 700;
+  padding: 4px 8px;
+
+  /* turn it from full-width bar into a centered pill */
+  width: max-content;
+  min-width: 0;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%);
+  bottom: 8px;
+
+  box-shadow: 0 1px 0 rgba(0,0,0,.06);
 }
     .photoCard.locked {
       border: 2px solid var(--kesari);
@@ -216,14 +237,14 @@
     /* The dropName tag shown after a correct match */
     .dropName {
       position: absolute;
-      left: 2px;
-      right: 2px;
-      bottom: 2px;
+      left: 1px;
+      right: 1px;
+      bottom: 1px;
       background: var(--kesari);
       color: var(--black);
       border-radius: 8px;
-      padding: 2px;
-      font-weight: 100;
+      padding: 1px;
+      font-weight: 50;
       text-align: center;
     }
 
