@@ -170,9 +170,17 @@
       background: #fff5eb;
       transition: border-color 0.3s ease;
     }
+
+
+    .dropName {
+  font-size: 0.75rem;     /* smaller text */
+  color: #666;            /* optional: lighter gray for placeholder */
+  font-style: italic;     /* optional: make placeholder look different */
+}
+
 .photoCard .name.correct {
   display: inline-block;
-  font-size: 5rem;         /* smaller text */
+  font-size: 5px;         /* smaller text */
   padding: 3px 6px;          /* little box padding */
   background-color: #c8f7c5; /* light green box */
   color: #0a5d00;            /* dark green text */
@@ -188,7 +196,7 @@
   border: 0.5px solid #6bbf59;     /* green border */
   border-radius: 2px;
 
-  font-size: 0.4rem;            /* smaller text */
+  font-size: 0.6rem;            /* smaller text */
   font-weight: 200;
   padding: 1px 1px;
 
@@ -443,9 +451,7 @@
     <section class="board">
       <!-- Photos Column 1 -->
       <div class="col photos1">
-        <h2>
-          Photos 
-        </h2>
+
 
         <div id="col1" class="grid-photos">
           <!-- Filled by JS -->
@@ -463,9 +469,7 @@
 
       <!-- Names Column -->
       <div class="col namesCol">
-        <h2>
-          Names
-        </h2>
+
 
         <div id="names" class="names">
           <!-- Filled by JS -->
