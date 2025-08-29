@@ -171,37 +171,46 @@
 
     /* Mobile adjustments */
 @media (max-width: 600px) {
-  .board {
-    grid-template-columns: 1fr 1fr; /* Photos left, names right */
-  }
-
-  .grid-photos {
-    grid-template-columns: 1fr; /* One photo per row */
-    gap: 6px;
-  }
-
-  .photoCard {
-    min-height: 60px; /* smaller cards */
-    border-width: 1px;
-  }
-
-.photoCard img {
-  height: 60px;       /* fix the height */
-  width: auto;        /* auto width keeps proportions */
-  object-fit: contain; /* ensures full image fits without cropping */
-  display: block;
-  margin: 0 auto;     /* center it horizontally */
+.board {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 2 columns for photos + 1 for names */
+  gap: 18px;
 }
 
-  .names {
-    grid-template-columns: 1fr; /* Names stacked vertically */
-    gap: 6px;
-  }
+.grid-photos {
+  display: grid;
+  grid-template-rows: repeat(5, auto); /* 5 images in each column */
+  gap: 12px;
+}
 
-  .nameChip {
-    font-size: 9px;
-    padding: 6px;
-  }
+.photoCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 6px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.photoCard img {
+  height: 80px;     /* fixed height */
+  width: auto;      /* keep aspect ratio */
+  object-fit: contain;
+  display: block;
+}
+.names {
+  display: grid;
+  grid-template-rows: repeat(10, auto); /* stack 10 names */
+  gap: 12px;
+}
+.nameChip {
+  padding: 8px;
+  background: #f3f3f3;
+  border-radius: 6px;
+  text-align: center;
+  cursor: grab;
+}
 }
     /* Back button styling */
     .back-button {
