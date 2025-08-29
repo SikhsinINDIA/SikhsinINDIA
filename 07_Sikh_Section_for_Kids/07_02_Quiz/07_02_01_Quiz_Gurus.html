@@ -169,6 +169,37 @@
       button,.select{ width:100%; text-align:center; }
     }
 
+    /* Mobile adjustments */
+@media (max-width: 600px) {
+  .board {
+    grid-template-columns: 1fr 1fr; /* Photos left, names right */
+  }
+
+  .grid-photos {
+    grid-template-columns: 1fr; /* One photo per row */
+    gap: 6px;
+  }
+
+  .photoCard {
+    min-height: 90px; /* smaller cards */
+    border-width: 1px;
+  }
+
+  .photoCard img {
+    object-fit: cover;
+    height: 90px; /* reduce image height */
+  }
+
+  .names {
+    grid-template-columns: 1fr; /* Names stacked vertically */
+    gap: 6px;
+  }
+
+  .nameChip {
+    font-size: 12px;
+    padding: 6px;
+  }
+}
     /* Back button styling */
     .back-button {
       width: 80%;
