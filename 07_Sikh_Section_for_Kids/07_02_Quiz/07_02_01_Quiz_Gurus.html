@@ -185,7 +185,7 @@
       max-height: 100%;
       max-width: 100%;
       height: auto;
-      width: 20px;
+      width: 40px;
       object-fit: contain;
 
       display: block;
@@ -241,7 +241,7 @@
       border-radius: 999px;
       background: var(--kesari);
       color: var(--black);
-      font-weight: 200;
+      font-weight: 400;
       text-align: center;
       cursor: grab;
       border: 2px solid var(--black);
@@ -250,7 +250,16 @@
         color 0.2s ease,
         transform 0.1s ease;
     }
+.name.correct {
+  background-color: #c8f7c5;   /* light green background */
+  color: #0a5d00;             /* dark green text */
+  font-weight: bold;
+}
 
+.name.wrong {
+  background-color: #f8d7da;   /* light red background */
+  color: #a80000;
+}
     .nameChip:hover {
       background: var(--black);
       color: #fff;
@@ -648,6 +657,24 @@
 
       chip.classList.add('pending');
     });
+function handleDrop(e) {
+  e.preventDefault();
+  const nameId = e.dataTransfer.getData("text/plain");
+  const targetId = e.currentTarget.dataset.id;
+
+  const draggedEl = document.getElementById(nameId);
+
+  if (nameId === targetId) {
+    // ✅ Correct match
+    draggedEl.classList.add("correct");
+    draggedEl.setAttribute("draggable", "false"); // lock it
+    e.currentTarget.appendChild(draggedEl);
+  } else {
+    // ❌ Wrong match
+    draggedEl.classList.add("wrong");
+    setTimeout(() => draggedEl.classList.remove("wrong"), 1000); // flash red
+  }
+}
 
     function tryDrop(card, id, chip) {
       const isCorrect = card.dataset.id === id;
