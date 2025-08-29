@@ -172,7 +172,7 @@
     }
 .photoCard .name.correct {
   display: inline-block;
-  font-size: 1.5rem;         /* smaller text */
+  font-size: 2.5rem;         /* smaller text */
   padding: 3px 6px;          /* little box padding */
   background-color: #c8f7c5; /* light green box */
   color: #0a5d00;            /* dark green text */
@@ -185,12 +185,12 @@
 .photoCard.locked .dropName {
   background-color: #c8f7c5;     /* light green */
   color: #0a5d00;                /* dark green text */
-  border: 1px solid #6bbf59;     /* green border */
-  border-radius: 8px;
+  border: 0.5px solid #6bbf59;     /* green border */
+  border-radius: 2px;
 
-  font-size: 0.85rem;            /* smaller text */
-  font-weight: 700;
-  padding: 4px 8px;
+  font-size: 0.4rem;            /* smaller text */
+  font-weight: 100;
+  padding: 1px 1px;
 
   /* turn it from full-width bar into a centered pill */
   width: max-content;
@@ -400,7 +400,7 @@
     <header>
       <div>
         <h1>
-          Match the Photos to the Names
+          Match the Guru Ji Photo's to their Names
         </h1>
 
         <div class="sub">
@@ -444,7 +444,7 @@
       <!-- Photos Column 1 -->
       <div class="col photos1">
         <h2>
-          Photos (1–5)
+          Photos 
         </h2>
 
         <div id="col1" class="grid-photos">
@@ -454,9 +454,7 @@
 
       <!-- Photos Column 2 -->
       <div class="col photos2">
-        <h2>
-          Photos (6–10)
-        </h2>
+    
 
         <div id="col2" class="grid-photos">
           <!-- Filled by JS -->
@@ -482,7 +480,8 @@
   <template id="photo-card-tpl">
     <div class="photoCard" tabindex="0" data-id="">
       <img alt="" />
-      <div class="fallback">Photo</div>
+      <!-- <div class="fallback">Photo</div> -->
+            <div class="fallback"></div>
       <div class="dropName" data-dropzone>Drop name</div>
     </div>
   </template>
