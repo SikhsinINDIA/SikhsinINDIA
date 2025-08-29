@@ -131,12 +131,12 @@
       background: #fff;
       border: 2px solid var(--black);
       border-radius: 12px;
-      padding: 14px;
+      padding: 4px;
     }
 
     .col h2 {
-      margin-bottom: 12px;
-      font-size: 18px;
+      margin-bottom: 2px;
+      font-size: 8px;
       color: var(--kesari);
     }
 
@@ -149,14 +149,14 @@
     .grid-photos {
       display: flex;            /* stack vertically */
       flex-direction: column;   /* column direction */
-      gap: 12px;                /* space between cards */
+      gap: 2px;                /* space between cards */
     }
 
     .photoCard {
       position: relative;
 
       /* equal size for all cards */
-      min-height: 120px;
+      min-height: 40px;
 
       /* center content (image or fallback text) */
       display: flex;
@@ -185,7 +185,7 @@
       max-height: 100%;
       max-width: 100%;
       height: auto;
-      width: auto;
+      width: 20px;
       object-fit: contain;
 
       display: block;
@@ -194,8 +194,8 @@
 
     .fallback {
       display: none; /* not needed when images are present */
-      font-weight: 700;
-      font-size: 18px;
+      font-weight: 200;
+      font-size: 8px;
       color: var(--black);
       height: 100%;
       width: 100%;
@@ -206,22 +206,22 @@
     /* The dropName tag shown after a correct match */
     .dropName {
       position: absolute;
-      left: 8px;
-      right: 8px;
-      bottom: 8px;
+      left: 2px;
+      right: 2px;
+      bottom: 2px;
       background: var(--kesari);
       color: var(--black);
       border-radius: 8px;
-      padding: 6px;
-      font-weight: 700;
+      padding: 2px;
+      font-weight: 200;
       text-align: center;
     }
 
     /* Unused helper from earlier versions (kept since requested to keep original feel) */
     .guru-image {
-      width: 200px;
+      width: 50px;
       height: auto;
-      border: 3px solid #FF9933;
+      border: 2px solid #FF9933;
       border-radius: 10px;
       flex-shrink: 0;
     }
@@ -241,7 +241,7 @@
       border-radius: 999px;
       background: var(--kesari);
       color: var(--black);
-      font-weight: 700;
+      font-weight: 200;
       text-align: center;
       cursor: grab;
       border: 2px solid var(--black);
