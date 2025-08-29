@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sikh Gurus Order Game</title>
+
+  <style>
+    :root {
+      --kesari: #FF9933;
+      --black:  #000000;
+      --bg:     #f7f8ff;
+      --card:   #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--black);
+      color: var(--black);
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: auto;
+      padding: 16px;
+      background: #fff;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header {
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(22px, 6vw, 32px);
+      margin: 0;
+      color: var(--black);
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .col {
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid var(--black);
+    }
+
+    .slot,
+    .draggable {
+      height: 140px; /* Equal height */
+      border-radius: 10px;
+      margin: 8px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .slot {
+      border: 2px dashed var(--kesari);
+      background: #fff5eb;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .slot.correct {
+      background: #c8f7c5;
+      border-color: #0a5d00;
+    }
+
+    .draggable {
+      border: 2px solid var(--kesari);
+      background: #fff5eb;
+      flex-direction: column;
+      cursor: grab;
+      padding: 5px;
+    }
+
+    .draggable img {
+      max-height: 80px;
+      width: auto;
+      display: block;
+      margin: auto;
+    }
+
+    .label {
+      font-size: 12px;
+      margin-top: 5px;
+      font-weight: bold;
+      color: var(--black);
+      text-align: center;
+    }
+
+    .status {
+      margin: 10px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    /* WIN OVERLAY */
+    #winOverlay {
+      display: none;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 20;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #winOverlay h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    #winOverlay button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: var(--kesari);
+      color: black;
+      cursor: pointer;
+    }
+
+    /* Confetti canvas */
+    #confettiCanvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 15;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Arrange Sikh Gurus in Order</h1>
+      <p>Drag each Guru to the correct position (1st to 10th). Correct slots turn green ✅</p>
+    </header>
+
+    <div class="status">
+      Correct Placements: <span id="correctCount">0</span> / 10 |
+      Trials: <span id="trialCount">0</span>
+    </div>
+
+    <section class="board">
+      <!-- Left Column (slots) -->
+      <div class="col">
+        <h3>Correct Order</h3>
+        <div id="slots"></div>
+      </div>
+
+      <!-- Right Column (draggables) -->
+      <div class="col">
+        <h3>Guru Images</h3>
+        <div id="draggables"></div>
+      </div>
+    </section>
+
+    <!-- WIN OVERLAY -->
+    <div id="winOverlay">
+      <h2>🎉 You Win! 🎉</h2>
+      <p id="finalStats"></p>
+      <button id="restartBtn">Play Again</button>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas"></canvas>
+  </div>
+
+  <!-- Templates -->
+  <template id="slot-tpl">
+    <div class="slot" data-order="">Position</div>
+  </template>
+
+  <template id="draggable-tpl">
+    <div class="draggable" draggable="true" data-id="">
+      <img />
+      <div class="label"></div>
+    </div>
+  </template>
+
+  <script>
+    const ALL_ITEMS = [
+      { id: 'Guru1', order: 1, label: 'Guru Nanak Dev Ji', img: '../../../pictures/07_Sikh_Stories/Sikh_Gurus/01 Guru Nanak Dev Ji.jpg' },
+      { id: 'Guru2', order: 2, label: 'Guru Angad Dev Ji', img: '../../../pictures/07_Sikh_Stories/Sikh_Gurus/02 Guru Angad Dev Ji.jpg' },
+      { id: 'Guru3', order: 3, label: 'Guru Amar Das Ji', img: '../../../pictures/07_Sikh_Stories/Sikh_Gurus/03 Guru Amar Das Ji.jpg' },
+      { id: 'Guru4', order: 4, label: 'Guru Ram Das Ji', img: '../../../pictures/07_Sikh_Stories/Sikh_Gurus/04 Guru Ram Das Ji.jpg' },
+      { id: 'Guru5', order: 5, label: 'Guru Arjan Dev Ji', img: '../../../pictures/07_Sikh_Stories/Sikh_Gurus/05 Guru Arjan Dev Ji.jpg' },
+      { id: 'Guru6', order: 6, label: 'Guru Har Gobind Ji', img: '../../../pictures/07_Sikh_Stories/Sikh_Gurus/06 Guru Har Gobind Singh Ji.jpg' },
+      { id: 'Guru7', order: 7, label: 'Guru Har Rai Ji', img: '../../../pictures/07_Sikh_Stories/Sikh_Gurus/07 Guru Har Rai Ji.jpg' },
+      { id: 'Guru8', order: 8, label: 'Guru Har Krishan Ji', img: '../../../pictures/07_Sikh_Stories/Sikh_Gurus/08 Shri Guru Harkrishan Ji.jpg' },
+      { id: 'Guru9', order: 9, label: 'Guru Tegh Bahadur Ji', img: '../../../pictures/07_Sikh_Stories/Sikh_Gurus/09 Shri Guru Teg Bahadur Ji.jpg' },
+      { id: 'Guru10', order: 10, label: 'Guru Gobind Singh Ji', img: '../../../pictures/07_Sikh_Stories/Sikh_Gurus/10 Shri Guru Gobind Singh Ji.jpg' }
+    ];
+
+    const slotsContainer = document.getElementById('slots');
+    const draggablesContainer = document.getElementById('draggables');
+    const correctCountEl = document.getElementById('correctCount');
+    const trialCountEl = document.getElementById('trialCount');
+    const finalStats = document.getElementById('finalStats');
+    const winOverlay = document.getElementById('winOverlay');
+    const restartBtn = document.getElementById('restartBtn');
+    const confettiCanvas = document.getElementById('confettiCanvas');
+    const ctx = confettiCanvas.getContext('2d');
+
+    let correctCount = 0;
+    let trials = 0;
+    let confettiParticles = [];
+    let animationFrame;
+
+    function buildGame() {
+      slotsContainer.innerHTML = '';
+      draggablesContainer.innerHTML = '';
+      correctCount = 0;
+      trials = 0;
+      correctCountEl.textContent = correctCount;
+      trialCountEl.textContent = trials;
+      winOverlay.style.display = "none";
+      stopConfetti();
+
+      // Create slots
+      for (let i = 1; i <= 10; i++) {
+        const node = document.importNode(document.getElementById('slot-tpl').content, true);
+        const slot = node.querySelector('.slot');
+        slot.dataset.order = i;
+        slot.textContent = `${i}ᵗʰ Guru`;
+        addDropHandlers(slot);
+        slotsContainer.appendChild(node);
+      }
+
+      // Shuffle gurus
+      const shuffled = [...ALL_ITEMS].sort(() => Math.random() - 0.5);
+
+      // Create draggables
+      shuffled.forEach(item => {
+        const node = document.importNode(document.getElementById('draggable-tpl').content, true);
+        const drag = node.querySelector('.draggable');
+        const img = node.querySelector('img');
+        const label = node.querySelector('.label');
+
+        drag.dataset.id = item.id;
+        drag.dataset.order = item.order;
+        img.src = item.img;
+        img.alt = item.label;
+        label.textContent = item.label;
+
+        addDragHandlers(drag);
+        draggablesContainer.appendChild(node);
+      });
+    }
+
+    function addDragHandlers(el) {
+      el.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/plain', el.dataset.id);
+        e.dataTransfer.effectAllowed = 'move';
+      });
+    }
+
+    function addDropHandlers(slot) {
+      slot.addEventListener('dragover', e => e.preventDefault());
+
+      slot.addEventListener('drop', e => {
+        e.preventDefault();
+        const id = e.dataTransfer.getData('text/plain');
+        const dragged = document.querySelector(`.draggable[data-id="${id}"]`);
+        if (!dragged) return;
+
+        trials++;
+        trialCountEl.textContent = trials;
+
+        // Remove existing child if already placed
+        slot.innerHTML = '';
+        slot.appendChild(dragged);
+
+        // Check correctness
+        if (parseInt(dragged.dataset.order) === parseInt(slot.dataset.order)) {
+          if (!slot.classList.contains('correct')) {
+            correctCount++;
+            correctCountEl.textContent = correctCount;
+          }
+          slot.classList.add('correct');
+        } else {
+          if (slot.classList.contains('correct')) {
+            correctCount--;
+            correctCountEl.textContent = correctCount;
+          }
+          slot.classList.remove('correct');
+        }
+
+        if (correctCount === 10) {
+          triggerWin();
+        }
+      });
+    }
+
+    function triggerWin() {
+      let score = ((10 / trials) * 100).toFixed(1);
+      finalStats.textContent = `Trials: ${trials} | Score: ${score}%`;
+      winOverlay.style.display = "flex";
+      startConfetti();
+    }
+
+    restartBtn.addEventListener('click', buildGame);
+
+    // ---------------- Confetti ----------------
+    function startConfetti() {
+      resizeCanvas();
+      confettiParticles = Array.from({length: 150}, () => createConfettiParticle());
+      animateConfetti();
+    }
+
+    function stopConfetti() {
+      cancelAnimationFrame(animationFrame);
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    }
+
+    function resizeCanvas() {
+      confettiCanvas.width = confettiCanvas.clientWidth;
+      confettiCanvas.height = confettiCanvas.clientHeight;
+    }
+
+    function createConfettiParticle() {
+      return {
+        x: Math.random() * confettiCanvas.width,
+        y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+        r: Math.random() * 6 + 4,
+        d: Math.random() * 0.5 + 0.5,
+        color: `hsl(${Math.random() * 360},100%,50%)`,
+        tilt: Math.floor(Math.random() * 10) - 10,
+        tiltAngleIncrement: Math.random() * 0.07 + 0.05,
+        tiltAngle: 0
+      };
+    }
+
+    function drawConfetti(p) {
+      ctx.beginPath();
+      ctx.lineWidth = p.r;
+      ctx.strokeStyle = p.color;
+      ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+      ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+      ctx.stroke();
+    }
+
+    function animateConfetti() {
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      confettiParticles.forEach(p => {
+        p.tiltAngle += p.tiltAngleIncrement;
+        p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
+        p.x += Math.sin(p.d);
+        p.tilt = Math.sin(p.tiltAngle) * 15;
+        drawConfetti(p);
+
+        if (p.y > confettiCanvas.height) {
+          p.y = -10;
+          p.x = Math.random() * confettiCanvas.width;
+        }
+      });
+      animationFrame = requestAnimationFrame(animateConfetti);
+    }
+
+    // Init
+    window.addEventListener('resize', resizeCanvas);
+    buildGame();
+  </script>
+</body>
+</html>
+
+
