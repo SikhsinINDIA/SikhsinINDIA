@@ -558,6 +558,17 @@
     ];
 
     /* ---------------------------------------------------------
+       UPDATE SCORE
+       --------------------------------------------------------- */
+    function updateScore() {
+  const scoreText = state.trials > 0
+    ? Math.round((state.matches / state.trials) * 100) + "%"
+    : "0%";
+
+  $('#score').textContent  = scoreText;
+  $('#needed').textContent = state.needed;
+}
+    /* ---------------------------------------------------------
        DOM HELPERS + STATE
        --------------------------------------------------------- */
     const $ = (sel) => document.querySelector(sel);
@@ -587,6 +598,7 @@
       // update state
       state.activeItems = pool;
       state.matches = 0;
+      state.trials = 0;      // reset attempts
       state.needed = pool.length;
       updateScore();
 
@@ -724,6 +736,8 @@ function handleDrop(e) {
 }
 
     function tryDrop(card, id, chip) {
+
+          state.trials++;   // count every attempt    
       const isCorrect = card.dataset.id === id;
 
       if (isCorrect) {
@@ -732,14 +746,18 @@ function handleDrop(e) {
 
         chip.classList.add('matched');
         chip.classList.remove('pending');
-
         card.classList.add('locked');
 
         state.matches++;
+           confettiBurst(card);
+  } else {
+    chip.classList.remove('pending');
+    flashWrong(card);
+  }
         updateScore();
 
         // small confetti burst at the matched card
-        confettiBurst(card);
+        // confettiBurst(card);
 
         // if finished, show overlay confetti
         if (state.matches === state.needed) {
