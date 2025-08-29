@@ -581,7 +581,8 @@
        --------------------------------------------------------- */
     function buildRound(count = 10) {
       // get the first 10 (we already have exactly 10 in dataset)
-      const pool = [...ALL_ITEMS].slice(0, count);
+        const pool = shuffle([...ALL_ITEMS]).slice(0, count);
+      // const pool = [...ALL_ITEMS].slice(0, count);
 
       // update state
       state.activeItems = pool;
@@ -608,6 +609,15 @@
       names.innerHTML = '';
       shuffle([...pool]).forEach((item) => addName(names, item));
     }
+    
+// Fisher–Yates shuffle
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
     function addPhoto(container, item) {
       const node = document.importNode($('#photo-card-tpl').content, true);
