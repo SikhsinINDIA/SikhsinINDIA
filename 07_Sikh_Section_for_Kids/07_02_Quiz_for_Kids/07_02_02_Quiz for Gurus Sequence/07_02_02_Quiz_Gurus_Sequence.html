@@ -33,9 +33,11 @@
     }
 
     /* =========================================================
-       GLOBAL RESETS
+       GLOBAL RESET
        ========================================================= */
-    * {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
     }
 
@@ -143,27 +145,30 @@
     .board {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 6px;
       margin-top: 8px;
-      align-items: start;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     .col {
+      padding: 6px;
+      border-radius: 10px;
       border: 2px solid var(--black);
-      border-radius: 12px;
       background: var(--paper);
-      padding: 8px;
+      min-width: 0; /* allow shrinking to avoid mobile overflow */
     }
 
     .col h3 {
       margin: 0 0 6px 0;
-      color: var(--ink);
-      font-size: 14px;
       text-align: center;
+      font-size: 14px;
+      color: var(--ink);
     }
 
     /* =========================================================
-       COLUMNS CONTENT
+       SLOTS & CARDS (equal height, image fills height)
        ========================================================= */
     .slots {
       display: flex;
@@ -177,35 +182,41 @@
       gap: 6px;
     }
 
-    /* =========================================================
-       SLOTS + CARDS (same height both LHS and RHS)
-       ========================================================= */
     .slot,
     .card {
-      height: 56px;                 /* fixed block height */
+      height: 56px;                 /* fixed, compact height */
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
       gap: 6px;
-      padding: 0;                   /* no padding so image can fill height */
-      margin: 3px 0;
+      padding: 0;                   /* remove padding so image can fill height */
+      margin: 2px 0;
       font-size: 12px;
       transition:
         background .18s ease,
         border-color .18s ease,
         outline .12s ease,
         box-shadow .12s ease;
-      overflow: hidden;             /* keep image inside */
+      overflow: hidden;             /* keep image inside rounded corners */
     }
 
-    /* Slot look */
     .slot {
       border: 2px dashed var(--kesari);
       background: var(--peel);
       font-weight: 800;
       color: var(--black);
       user-select: none;
+    }
+
+    .slot.correct {
+      background: var(--ok);
+      border-color: var(--ok-ink);
+    }
+
+    .slot.wrong {
+      background: var(--bad);
+      border-color: var(--bad-ink);
     }
 
     .slot .slot-index {
@@ -219,30 +230,21 @@
       font-size: 12px;
       font-weight: 900;
       border-right: 1px solid var(--black);
+      user-select: none;
     }
 
     .slot .slot-hint {
       font-size: 12px;
       font-weight: 700;
       color: var(--ink);
-      opacity: 0.7;
-      padding-left: 6px;
+      opacity: 0.8;
+      padding-right: 6px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      user-select: none;
     }
 
-    .slot.correct {
-      background: var(--ok);
-      border-color: var(--ok-ink);
-    }
-
-    .slot.wrong {
-      background: var(--bad);
-      border-color: var(--bad-ink);
-    }
-
-    /* Card look */
     .card {
       border: 2px solid var(--kesari);
       background: var(--peel);
@@ -263,13 +265,12 @@
     }
 
     .card img {
-      height: 100%;                /* image fills block vertically */
+      height: 100%;                /* image fills the full block height */
       width: auto;
-      border-radius: 0;
+      display: block;
+      flex: 0 0 auto;
       border-right: 1px solid var(--kesari);
       background: #fff;
-      flex: 0 0 auto;
-      display: block;
     }
 
     .card .label {
@@ -277,17 +278,17 @@
       height: 100%;
       display: flex;
       align-items: center;
-      padding: 0 8px;              /* tiny breathing room */
-      font-size: 14px;             /* consistent size for all Gurus */
+      padding: 0 8px;              /* slight breathing room */
+      font-size: 14px;             /* consistent size across all */
       font-weight: 700;
       color: var(--black);
       white-space: nowrap;
       overflow: hidden;
-      text-overflow: ellipsis;     /* keep one line, add … if needed */
+      text-overflow: ellipsis;     /* single line with ellipsis if needed */
     }
 
     /* =========================================================
-       OVERLAY (WIN) + CONFETTI
+       WIN OVERLAY + CONFETTI
        ========================================================= */
     #winOverlay {
       display: none;
@@ -349,11 +350,11 @@
     }
 
     /* =========================================================
-       MOBILE: ONE SCREEN VIEW
+       MOBILE OPTIMIZATION
        ========================================================= */
     @media (max-width: 700px) {
       .board {
-        gap: 10px;
+        gap: 6px;
       }
 
       .slot,
@@ -372,7 +373,7 @@
       }
 
       .card .label {
-        font-size: 12px; /* consistent, slightly smaller for mobile */
+        font-size: 12px;
         padding: 0 6px;
       }
 
@@ -391,6 +392,27 @@
 
       #winOverlay .stats {
         font-size: 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .board {
+        grid-template-columns: 1fr 1fr;  /* keep columns side-by-side */
+        gap: 4px;                        /* tighter gap to fit */
+      }
+
+      .col {
+        padding: 4px;
+      }
+
+      .slot,
+      .card {
+        height: 44px;
+      }
+
+      .card .label {
+        font-size: 11px;
+        padding: 0 5px;
       }
     }
   </style>
@@ -585,7 +607,9 @@
     </div>
   </div>
 
-  <!-- Confetti Canvas -->
+  <!-- =========================================================
+       CONFETTI CANVAS
+       ========================================================= -->
   <canvas
     id="confetti"
   ></canvas>
@@ -713,7 +737,7 @@
     ];
 
     /* ---------------------------------------------------------
-       DOM
+       DOM ELEMENTS
        --------------------------------------------------------- */
     const slotsEl        = document.getElementById('slots');
     const poolEl         = document.getElementById('pool');
@@ -740,9 +764,9 @@
        --------------------------------------------------------- */
     let correct      = 0;
     let trials       = 0;
-    let pendingId    = null;   // for tap-to-place
-    let confettiAF   = null;   // requestAnimationFrame handle
-    let confettiBits = [];     // particles
+    let pendingId    = null;   /* for tap-to-place */
+    let confettiAF   = null;   /* requestAnimationFrame handle */
+    let confettiBits = [];     /* particles */
 
     /* ---------------------------------------------------------
        HELPERS
@@ -759,7 +783,8 @@
       correctEl.textContent = String(correct);
       trialsEl.textContent  = String(trials);
 
-      // Score is based on denominator of 10
+      /* Score based on denominator of 10.
+         Before 10 trials, keep it at 100% max (uses max(trials,10)). */
       const denom = Math.max(trials, 10);
       const scorePct = ((10 / denom) * 100).toFixed(1);
 
@@ -782,45 +807,51 @@
       setTimeout(() => slot.classList.remove('wrong'), 300);
     }
 
+    function ordinal(n) {
+      const s = ["th","st","nd","rd"],
+            v = n % 100;
+      return s[(v-20)%10] || s[v] || s[0];
+    }
+
     /* ---------------------------------------------------------
        BUILD GAME
        --------------------------------------------------------- */
     function buildGame() {
-      // Reset UI
+      /* Reset UI */
       slotsEl.innerHTML = '';
       poolEl.innerHTML  = '';
 
-      // Reset State
+      /* Reset State */
       correct   = 0;
       trials    = 0;
       pendingId = null;
       updateStatus();
 
-      // Hide overlay + stop confetti
+      /* Hide overlay + stop confetti */
       hideWinOverlay();
       stopConfetti();
 
-      // Build 10 slots
+      /* Build 10 slots */
       for (let i = 1; i <= 10; i++) {
         const frag = document.importNode(document.getElementById('slot-tpl').content, true);
         const slot = frag.querySelector('.slot');
 
-        // dataset + labels
+        /* dataset + a11y */
         slot.dataset.order = String(i);
         slot.setAttribute('aria-label', `Slot ${i}`);
 
-        // number box
+        /* number box */
         slot.querySelector('.slot-index').textContent = String(i);
 
-        // hint text
+        /* hint text */
         slot.querySelector('.slot-hint').textContent = `Place the ${i}${ordinal(i)} Guru here`;
 
-        // drag-over support
+        /* drag-over support */
         slot.addEventListener('dragover', (e) => {
           e.preventDefault();
         });
 
-        // drop support
+        /* drop support */
         slot.addEventListener('drop', (e) => {
           e.preventDefault();
 
@@ -831,7 +862,7 @@
           attemptPlace(card, slot);
         });
 
-        // tap-to-place support
+        /* tap-to-place support */
         slot.addEventListener('click', () => {
           if (!pendingId) return;
 
@@ -844,7 +875,7 @@
           attemptPlace(card, slot);
         });
 
-        // keyboard: Enter/Space to place selected
+        /* keyboard: Enter/Space to place selected */
         slot.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
@@ -863,7 +894,7 @@
         slotsEl.appendChild(frag);
       }
 
-      // Build pool cards (shuffled)
+      /* Build pool cards (shuffled) */
       const shuffled = shuffle([...ALL_ITEMS]);
 
       shuffled.forEach((item) => {
@@ -872,28 +903,30 @@
         const img  = frag.querySelector('img');
         const lab  = frag.querySelector('.label');
 
-        // dataset
+        /* dataset */
         card.dataset.id    = item.id;
         card.dataset.order = String(item.order);
 
-        // content
+        /* content */
         img.src   = item.img;
         img.alt   = item.label;
         lab.textContent = item.label;
+
+        /* a11y */
         card.setAttribute('aria-label', item.label);
 
-        // drag start
+        /* drag start */
         card.addEventListener('dragstart', (e) => {
           e.dataTransfer.setData('text/plain', card.dataset.id);
           e.dataTransfer.effectAllowed = 'move';
           clearPending();
         });
 
-        // tap / click select toggle
+        /* tap / click select toggle */
         card.addEventListener('click', () => {
           if (card.getAttribute('draggable') === 'false') return;
 
-          // toggle selection
+          /* toggle selection */
           if (pendingId === card.dataset.id) {
             clearPending();
           } else {
@@ -903,7 +936,7 @@
           }
         });
 
-        // keyboard: Enter/Space select
+        /* keyboard: Enter/Space select */
         card.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
@@ -914,7 +947,7 @@
         poolEl.appendChild(frag);
       });
 
-      // Clicking empty pool area clears pending (once)
+      /* Clicking empty pool area clears pending (once) */
       poolEl.addEventListener('click', (e) => {
         if (!e.target.closest('.card')) {
           clearPending();
@@ -923,30 +956,21 @@
     }
 
     /* ---------------------------------------------------------
-       ORDINAL HELPER
-       --------------------------------------------------------- */
-    function ordinal(n) {
-      const s = ["th","st","nd","rd"],
-            v = n % 100;
-      return s[(v-20)%10] || s[v] || s[0];
-    }
-
-    /* ---------------------------------------------------------
        ATTEMPT PLACE (shared by drag & tap)
        --------------------------------------------------------- */
     function attemptPlace(card, slot) {
-      // Every attempt counts
+      /* Every attempt counts */
       trials++;
       updateStatus();
 
-      // If slot is already correct (locked), don't allow placing
+      /* If slot is already correct (locked), don't allow placing */
       if (slot.classList.contains('correct')) {
         flashWrong(slot);
         clearPending();
         return;
       }
 
-      // If slot currently holds a card (incorrect previously), send it back to pool
+      /* If slot currently holds a card (incorrect previously), send it back to pool */
       const currentCardInSlot = slot.querySelector('.card');
       if (currentCardInSlot) {
         poolEl.appendChild(currentCardInSlot);
@@ -957,15 +981,18 @@
       const isCorrect = (slotOrder === cardOrder);
 
       if (isCorrect) {
-        // Place inside slot and lock
+        /* Place inside slot and lock */
+
+        /* preserve the index badge + hint container look:
+           rebuild index badge, then add card, removing hint */
         slot.innerHTML = '';
-        // Re-build the slot index on correct place for consistent look
+
         const idx = document.createElement('div');
         idx.className = 'slot-index';
         idx.textContent = String(slotOrder);
+
         slot.appendChild(idx);
 
-        // Append the card after index
         slot.appendChild(card);
 
         slot.classList.add('correct');
@@ -973,21 +1000,21 @@
         card.setAttribute('draggable', 'false');
         card.classList.remove('pending');
 
-        // increase correct count
+        /* increase correct count */
         correct++;
         updateStatus();
 
-        // Check if done
+        /* Check if done */
         if (correct === 10) {
           showWinOverlay();
         }
       } else {
-        // wrong => bounce back to pool (do not stick)
+        /* wrong => bounce back to pool (do not stick) */
         flashWrong(slot);
         poolEl.appendChild(card);
       }
 
-      // clear pending highlight
+      /* clear pending highlight */
       clearPending();
     }
 
@@ -1037,7 +1064,7 @@
     function startConfetti() {
       sizeConfetti();
 
-      // create particles
+      /* create particles */
       confettiBits = Array.from({ length: 180 }, () => ({
         x:  Math.random() * confettiCanvas.width,
         y:  Math.random() * -confettiCanvas.height,
