@@ -185,10 +185,13 @@
     border-width: 1px;
   }
 
-  .photoCard img {
-    object-fit: cover;
-    height: 60px; /* reduce image height */
-  }
+.photoCard img {
+  height: 60px;       /* fix the height */
+  width: auto;        /* auto width keeps proportions */
+  object-fit: contain; /* ensures full image fits without cropping */
+  display: block;
+  margin: 0 auto;     /* center it horizontally */
+}
 
   .names {
     grid-template-columns: 1fr; /* Names stacked vertically */
