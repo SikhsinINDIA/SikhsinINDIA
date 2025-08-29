@@ -129,7 +129,7 @@
 
     .col {
       background: #fff;
-      border: 2px solid var(--black);
+      /* border: 2px solid var(--black); */
       border-radius: 12px;
       padding: 4px;
     }
@@ -237,11 +237,11 @@
 
     .nameChip {
       user-select: none;
-      padding: 10px;
+      padding: 5px;
       border-radius: 999px;
       background: var(--kesari);
       color: var(--black);
-      font-weight: 400;
+      font-weight: 300;
       text-align: center;
       cursor: grab;
       border: 2px solid var(--black);
@@ -266,8 +266,10 @@
     }
 
     .nameChip.matched {
-      background: var(--black);
-      color: #fff;
+        background-color: #c8f7c5;   /* light green background */
+  color: #0a5d00;             /* dark green text */
+      /* background: var(--black);
+      color: #fff; */
       cursor: default;
       transform: scale(0.98);
     }
