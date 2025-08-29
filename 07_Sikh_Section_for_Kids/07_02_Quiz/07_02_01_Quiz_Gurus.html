@@ -2,164 +2,333 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Kids Match-Up Game</title>
+
   <style>
-    :root{
-      --kesari: #FF9933;
-      --black: #000000;
+    /* =========================================================
+       THEME VARIABLES
+       ========================================================= */
+    :root {
+      --kesari: #FF9933;  /* primary accent color */
+      --black:  #000000;  /* dark ink color */
+      --ink:    #1f2937;  /* softer ink for body */
+      --bg:     #f7f8ff;  /* subtle page background */
+      --card:   #ffffff;  /* card background */
     }
 
-    *{ box-sizing: border-box; margin:0; padding:0; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    /* =========================================================
+       GLOBAL RESETS
+       ========================================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        system-ui,
+        -apple-system,
+        Segoe UI,
+        Roboto,
+        Arial,
+        sans-serif;
+
       background: var(--black);
       color: var(--black);
     }
 
-    .wrap{
+    /* =========================================================
+       PAGE WRAPPER
+       ========================================================= */
+    .wrap {
       max-width: 1100px;
       margin: auto;
       padding: 16px;
       background: #fff;
-      min-height:100vh;
+      min-height: 100vh;
     }
 
-    header{
-      display:flex; align-items:center; justify-content:space-between;
-      flex-wrap:wrap; gap:16px; margin-bottom: 16px;
+    /* =========================================================
+       HEADER AREA
+       ========================================================= */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
     }
-    h1{
+
+    h1 {
       font-size: clamp(22px, 6vw, 32px);
-      margin:0;
+      margin: 0;
       color: var(--black);
     }
-    .sub{ color: var(--black); font-size: 14px; }
 
-    .controls{ display:flex; gap:10px; flex-wrap: wrap; }
-    button,.select{
-      border:2px solid var(--black);
+    .sub {
+      color: var(--black);
+      font-size: 14px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button,
+    .select {
+      border: 2px solid var(--black);
       background: #fff;
       color: var(--black);
       border-radius: 12px;
       padding: 10px 14px;
       font-size: 14px;
-      font-weight:600;
+      font-weight: 600;
       cursor: pointer;
-      transition: background .2s ease, color .2s ease;
+      transition:
+        background 0.2s ease,
+        color 0.2s ease;
     }
-    button.primary{ background: var(--kesari); color: var(--black); }
-    button:hover, .select:hover{ background: var(--black); color: #fff; }
 
-    /* === 3-column board: Photos col1, Photos col2, Names col3 === */
-    .board{
-      display:grid;
-      grid-template-columns: 2fr 2fr 1fr; /* wider photos (2 + 2) and narrower names (1) */
+    button.primary {
+      background: var(--kesari);
+      color: var(--black);
+    }
+
+    button:hover,
+    .select:hover {
+      background: var(--black);
+      color: #fff;
+    }
+
+    /* =========================================================
+       BOARD LAYOUT
+       - 3 columns total:
+         1) Photos col 1
+         2) Photos col 2
+         3) Names
+       ========================================================= */
+    .board {
+      display: grid;
+      grid-template-columns: 2fr 2fr 1fr;
       gap: 18px;
       align-items: start;
     }
 
-    .col{
+    .col {
       background: #fff;
       border: 2px solid var(--black);
       border-radius: 12px;
       padding: 14px;
     }
-    .col h2{
+
+    .col h2 {
       margin-bottom: 12px;
       font-size: 18px;
       color: var(--kesari);
     }
 
-    /* Each photos column holds exactly 5 photo cards stacked */
-    .grid-photos{
-      display:grid;
-      grid-template-rows: repeat(5, auto);
-      gap: 10px;
+    /* =========================================================
+       PHOTOS COLUMNS
+       - force equal card heights
+       - use object-fit: contain for images
+       - keep spacing consistent
+       ========================================================= */
+    .grid-photos {
+      display: flex;            /* stack vertically */
+      flex-direction: column;   /* column direction */
+      gap: 12px;                /* space between cards */
     }
 
-    .photoCard{
-      position:relative;
+    .photoCard {
+      position: relative;
+
+      /* equal size for all cards */
+      min-height: 120px;
+
+      /* center content (image or fallback text) */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      /* visuals */
       border: 2px dashed var(--kesari);
       border-radius: 12px;
-      min-height: 100px;
-      overflow:hidden;
-      background:#fff5eb;
-      transition: border-color .3s ease;
+      overflow: hidden;
+      background: #fff5eb;
+      transition: border-color 0.3s ease;
     }
-    .photoCard.locked{ border: 2px solid var(--kesari); background:#ffe1c4; }
-    .photoCard.wrong{ border: 2px solid red; }
 
-    .photoCard img{
-      height: 80px; /* keep small for desktop */
-      width: auto;  /* maintain aspect ratio */
+    .photoCard.locked {
+      border: 2px solid var(--kesari);
+      background: #ffe1c4;
+    }
+
+    .photoCard.wrong {
+      border: 2px solid red;
+    }
+
+    .photoCard img {
+      /* fit inside the card without clipping */
+      max-height: 100%;
+      max-width: 100%;
+      height: auto;
+      width: auto;
       object-fit: contain;
-      display:block;
-      margin: 8px auto; /* center horizontally */
+
+      display: block;
+      margin: 0 auto;
     }
 
-    .fallback{ display:none; }
+    .fallback {
+      display: none; /* not needed when images are present */
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--black);
+      height: 100%;
+      width: 100%;
+      display: grid;
+      place-items: center;
+    }
 
-    .dropName{
-      position:absolute;
-      left:8px; right:8px; bottom:8px;
+    /* The dropName tag shown after a correct match */
+    .dropName {
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
       background: var(--kesari);
       color: var(--black);
       border-radius: 8px;
-      padding:6px;
-      font-weight:700;
-      text-align:center;
+      padding: 6px;
+      font-weight: 700;
+      text-align: center;
     }
 
-    .names{
-      display:grid;
-      grid-template-rows: repeat(10, auto);
-      gap:10px;
+    /* Unused helper from earlier versions (kept since requested to keep original feel) */
+    .guru-image {
+      width: 200px;
+      height: auto;
+      border: 3px solid #FF9933;
+      border-radius: 10px;
+      flex-shrink: 0;
     }
-    .nameChip{
-      user-select:none;
+
+    /* =========================================================
+       NAMES COLUMN
+       ========================================================= */
+    .names {
+      display: grid;
+      grid-template-rows: repeat(10, auto);
+      gap: 10px;
+    }
+
+    .nameChip {
+      user-select: none;
       padding: 10px;
       border-radius: 999px;
       background: var(--kesari);
       color: var(--black);
-      font-weight:700;
-      text-align:center;
+      font-weight: 700;
+      text-align: center;
       cursor: grab;
-      border:2px solid var(--black);
-      transition: background .2s ease, color .2s ease;
+      border: 2px solid var(--black);
+      transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.1s ease;
     }
-    .nameChip:hover{ background: var(--black); color:#fff; }
-    .nameChip.matched{ background: var(--black); color: #fff; cursor: default; }
 
-    .status{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin:10px 0;
-      font-size:14px;
+    .nameChip:hover {
+      background: var(--black);
+      color: #fff;
+    }
+
+    .nameChip.matched {
+      background: var(--black);
+      color: #fff;
+      cursor: default;
+      transform: scale(0.98);
+    }
+
+    /* Selected (pending) state for tap-to-match on mobile */
+    .nameChip.pending {
+      outline: 3px dashed var(--kesari);
+      outline-offset: 2px;
+      background: #ffe7c6;
+    }
+
+    /* =========================================================
+       STATUS BAR
+       ========================================================= */
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 10px 0;
+      font-size: 14px;
       color: var(--black);
-      font-weight:600;
-    }
-    .dot{ width:10px; height:10px; border-radius:50%; background: var(--kesari); }
-    .score{ font-weight:800; }
-
-    /* === Mobile tweaks === */
-    /* On small screens: make it two columns: Photos (both stacks) on left, Names on right */
-    @media(max-width: 700px){
-      .board{ grid-template-columns: 1fr 1fr; }
-      /* Make col1 and col2 (photos) occupy the first column stacked, names in second */
-      .col.photos1{ grid-column: 1 / 2; }
-      .col.photos2{ grid-column: 1 / 2; }
-      .col.namesCol{ grid-column: 2 / 3; }
-
-      .photoCard{ min-height: 80px; }
-      .photoCard img{ height: 60px; }
-      .nameChip{ font-size: 13px; padding: 8px; }
+      font-weight: 600;
     }
 
-    /* Back button styling */
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--kesari);
+    }
+
+    .score {
+      font-weight: 800;
+    }
+
+    /* =========================================================
+       MOBILE TWEAKS
+       - On smaller screens, keep 2 columns: photos (both stacks) + names
+       - Reduce sizes slightly
+       ========================================================= */
+    @media(max-width: 700px) {
+      .board {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .col.photos1 {
+        grid-column: 1 / 2;
+      }
+
+      .col.photos2 {
+        grid-column: 1 / 2;
+      }
+
+      .col.namesCol {
+        grid-column: 2 / 3;
+      }
+
+      .photoCard {
+        min-height: 100px;
+      }
+
+      .nameChip {
+        font-size: 13px;
+        padding: 8px;
+      }
+    }
+
+    /* =========================================================
+       BACK BUTTON
+       ========================================================= */
     .back-button {
       width: 80%;
       max-width: 200px;
@@ -173,36 +342,100 @@
       border-radius: 8px;
       cursor: pointer;
     }
-    .back-button:hover { background-color: #FF8C00; }
+
+    .back-button:hover {
+      background-color: #FF8C00;
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
+    <!-- =======================================================
+         PAGE HEADER
+         ======================================================= -->
     <header>
       <div>
-        <h1>Match the Photos to the Names</h1>
-        <div class="sub">Drag or tap a name onto the matching photo</div>
+        <h1>
+          Match the Photos to the Names
+        </h1>
+
+        <div class="sub">
+          Drag or tap a name onto the matching photo
+        </div>
       </div>
+
       <div class="controls">
-        <button id="newRound" class="primary">New Round</button>
-        <button id="reset">Reset</button>
+        <button id="newRound" class="primary">
+          New Round
+        </button>
+
+        <button id="reset">
+          Reset
+        </button>
       </div>
     </header>
 
+    <!-- =======================================================
+         STATUS BAR
+         ======================================================= -->
     <div class="status">
       <div class="dot"></div>
-      <div class="score">Score: <span id="score">0</span></div>
-      <div>| Matches needed: <span id="needed">0</span></div>
+
+      <div class="score">
+        Score:
+        <span id="score">0</span>
+      </div>
+
+      <div>
+        |
+        Matches needed:
+        <span id="needed">0</span>
+      </div>
     </div>
 
+    <!-- =======================================================
+         3-COLUMN BOARD
+         ======================================================= -->
     <section class="board">
-      <div class="col photos1"><h2>Photos (1–5)</h2><div id="col1" class="grid-photos"></div></div>
-      <div class="col photos2"><h2>Photos (6–10)</h2><div id="col2" class="grid-photos"></div></div>
-      <div class="col namesCol"><h2>Names</h2><div id="names" class="names"></div></div>
+      <!-- Photos Column 1 -->
+      <div class="col photos1">
+        <h2>
+          Photos (1–5)
+        </h2>
+
+        <div id="col1" class="grid-photos">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+
+      <!-- Photos Column 2 -->
+      <div class="col photos2">
+        <h2>
+          Photos (6–10)
+        </h2>
+
+        <div id="col2" class="grid-photos">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+
+      <!-- Names Column -->
+      <div class="col namesCol">
+        <h2>
+          Names
+        </h2>
+
+        <div id="names" class="names">
+          <!-- Filled by JS -->
+        </div>
+      </div>
     </section>
   </div>
 
-  <!-- templates -->
+  <!-- =========================================================
+       TEMPLATES
+       ========================================================= -->
   <template id="photo-card-tpl">
     <div class="photoCard" tabindex="0" data-id="">
       <img alt="" />
@@ -212,200 +445,458 @@
   </template>
 
   <template id="name-chip-tpl">
-    <div class="nameChip" draggable="true" tabindex="0" data-id="">Name</div>
+    <div class="nameChip" draggable="true" tabindex="0" data-id="">
+      Name
+    </div>
   </template>
 
+  <!-- =========================================================
+       GAME SCRIPT
+       ========================================================= -->
   <script>
-    /* ====== DATA ====== */
+    /* ---------------------------------------------------------
+       DATA: Keep original local image paths as requested
+       --------------------------------------------------------- */
     const ALL_ITEMS = [
-      { id: 'Guru Nanak Dev Ji',    label: 'Guru Nanak Dev Ji',    img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/01 Guru Nanak Dev Ji.jpg' },
-      { id: 'Guru Angad Dev Ji',    label: 'Guru Angad Dev Ji',    img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/02 Guru Angad Dev Ji.jpg' },
-      { id: 'Guru Amar Das Ji',     label: 'Guru Amar Das Ji',     img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/03 Guru Amar Das Ji.jpg' },
-      { id: 'Guru Ram Das Ji',      label: 'Guru Ram Das Ji',      img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/04 Guru Ram Das Ji.jpg' },
-      { id: 'Guru Arjan Dev Ji',    label: 'Guru Arjan Dev Ji',    img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/05 Guru Arjan Dev Ji.jpg' },
-      { id: 'Guru Har Gobind Ji',   label: 'Guru Har Gobind Ji',   img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/06 Guru Har Gobind Singh Ji.jpg' },
-      { id: 'Guru Har Rai Ji',      label: 'Guru Har Rai Ji',      img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/07 Guru Har Rai Ji.jpg' },
-      { id: 'Guru Har Krishan Ji',  label: 'Guru Har Krishan Ji',  img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/08 Shri Guru Harkrishan Ji.jpg' },
-      { id: 'Guru Tegh Bahadur Ji', label: 'Guru Tegh Bahadur Ji', img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/09 Shri Guru Teg Bahadur Ji.jpg' },
-      { id: 'Guru Gobind Singh Ji', label: 'Guru Gobind Singh Ji', img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/10 Shri Guru Gobind Singh Ji.jpg' },
+      {
+        id: 'Guru Nanak Dev Ji',
+        label: 'Guru Nanak Dev Ji',
+        img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/01 Guru Nanak Dev Ji.jpg'
+      },
+      {
+        id: 'Guru Angad Dev Ji',
+        label: 'Guru Angad Dev Ji',
+        img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/02 Guru Angad Dev Ji.jpg'
+      },
+      {
+        id: 'Guru Amar Das Ji',
+        label: 'Guru Amar Das Ji',
+        img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/03 Guru Amar Das Ji.jpg'
+      },
+      {
+        id: 'Guru Ram Das Ji',
+        label: 'Guru Ram Das Ji',
+        img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/04 Guru Ram Das Ji.jpg'
+      },
+      {
+        id: 'Guru Arjan Dev Ji',
+        label: 'Guru Arjan Dev Ji',
+        img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/05 Guru Arjan Dev Ji.jpg'
+      },
+      {
+        id: 'Guru Har Gobind Ji',
+        label: 'Guru Har Gobind Ji',
+        img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/06 Guru Har Gobind Singh Ji.jpg'
+      },
+      {
+        id: 'Guru Har Rai Ji',
+        label: 'Guru Har Rai Ji',
+        img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/07 Guru Har Rai Ji.jpg'
+      },
+      {
+        id: 'Guru Har Krishan Ji',
+        label: 'Guru Har Krishan Ji',
+        img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/08 Shri Guru Harkrishan Ji.jpg'
+      },
+      {
+        id: 'Guru Tegh Bahadur Ji',
+        label: 'Guru Tegh Bahadur Ji',
+        img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/09 Shri Guru Teg Bahadur Ji.jpg'
+      },
+      {
+        id: 'Guru Gobind Singh Ji',
+        label: 'Guru Gobind Singh Ji',
+        img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/10 Shri Guru Gobind Singh Ji.jpg'
+      }
     ];
 
-    const $ = sel => document.querySelector(sel);
-    function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
+    /* ---------------------------------------------------------
+       DOM HELPERS + STATE
+       --------------------------------------------------------- */
+    const $ = (sel) => document.querySelector(sel);
 
-    const state = { activeItems: [], matches: 0, needed: 0 };
-
-    /* ====== ROUND BUILDER ====== */
-    function buildRound(count = 10){
-      // Use the first 10 items (we already have exactly 10) and set state
-      const pool = [...ALL_ITEMS].slice(0, count);
-      state.activeItems = pool; state.matches = 0; state.needed = pool.length; updateScore();
-
-      // Split into two halves for photos columns
-      const firstHalf = pool.slice(0,5);
-      const secondHalf = pool.slice(5);
-
-      const col1 = $('#col1'); const col2 = $('#col2');
-      col1.innerHTML = ''; col2.innerHTML = '';
-      firstHalf.forEach(item => addPhoto(col1, item));
-      secondHalf.forEach(item => addPhoto(col2, item));
-
-      // Names: shuffled order each round
-      const names = $('#names'); names.innerHTML = '';
-      shuffle([...pool]).forEach(item => addName(names, item));
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
     }
 
-    function addPhoto(container, item){
+    const state = {
+      activeItems: [],
+      matches: 0,
+      needed: 0
+    };
+
+    /* ---------------------------------------------------------
+       ROUND BUILDER
+       --------------------------------------------------------- */
+    function buildRound(count = 10) {
+      // get the first 10 (we already have exactly 10 in dataset)
+      const pool = [...ALL_ITEMS].slice(0, count);
+
+      // update state
+      state.activeItems = pool;
+      state.matches = 0;
+      state.needed = pool.length;
+      updateScore();
+
+      // split into two columns
+      const firstHalf  = pool.slice(0, 5);
+      const secondHalf = pool.slice(5);
+
+      // render photos into col1 and col2
+      const col1 = $('#col1');
+      const col2 = $('#col2');
+
+      col1.innerHTML = '';
+      col2.innerHTML = '';
+
+      firstHalf.forEach((item)  => addPhoto(col1, item));
+      secondHalf.forEach((item) => addPhoto(col2, item));
+
+      // render shuffled names
+      const names = $('#names');
+      names.innerHTML = '';
+      shuffle([...pool]).forEach((item) => addName(names, item));
+    }
+
+    function addPhoto(container, item) {
       const node = document.importNode($('#photo-card-tpl').content, true);
       const card = node.querySelector('.photoCard');
-      const img = node.querySelector('img');
-      card.dataset.id = item.id; img.src = item.img; img.alt = item.label;
+      const img  = node.querySelector('img');
+
+      card.dataset.id = item.id;
+      img.src  = item.img;
+      img.alt  = item.label;
+
       addDropHandlers(card);
+
       container.appendChild(node);
     }
 
-    function addName(container, item){
+    function addName(container, item) {
       const chipFrag = document.importNode($('#name-chip-tpl').content, true);
       const chip = chipFrag.querySelector('.nameChip');
-      chip.textContent = item.label; chip.dataset.id = item.id;
+
+      chip.textContent = item.label;
+      chip.dataset.id  = item.id;
+
       addDragHandlers(chip);
+
       container.appendChild(chipFrag);
     }
 
-    function updateScore(){ $('#score').textContent = state.matches; $('#needed').textContent = state.needed; }
+    function updateScore() {
+      $('#score').textContent  = state.matches;
+      $('#needed').textContent = state.needed;
+    }
 
-    /* ====== Drag & Drop ====== */
-    function addDragHandlers(el){
-      el.addEventListener('dragstart', e => {
+    /* ---------------------------------------------------------
+       DRAG & DROP + TAP-TO-MATCH (mobile-friendly)
+       --------------------------------------------------------- */
+    function addDragHandlers(el) {
+      el.addEventListener('dragstart', (e) => {
         e.dataTransfer.setData('text/plain', el.dataset.id);
+        // visual hint
+        el.style.opacity = '0.7';
       });
-      // Keyboard support: Enter/Space picks up the chip id into a buffer
-      el.addEventListener('keydown', e => {
-        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); el.classList.add('kbdGrab'); el.setAttribute('aria-grabbed','true'); }
+
+      el.addEventListener('dragend', () => {
+        el.style.opacity = '1';
       });
     }
 
-    function addDropHandlers(card){
-      card.addEventListener('dragover', e => e.preventDefault());
-      card.addEventListener('drop', e => {
+    function addDropHandlers(card) {
+      // allow dropping
+      card.addEventListener('dragover', (e) => e.preventDefault());
+
+      // handle drop
+      card.addEventListener('drop', (e) => {
         e.preventDefault();
+
         const id = e.dataTransfer.getData('text/plain');
-        const chip = $(`.nameChip[data-id="${CSS.escape(id)}"]:not(.matched)`);
-        if(!chip) return;
+        const chip = document.querySelector(
+          `.nameChip[data-id="${CSS.escape(id)}"]:not(.matched)`
+        );
+
+        if (!chip) return;
+
         tryDrop(card, id, chip);
       });
 
-      // Click to match (mobile friendly): first tap a name, then tap a photo
+      // Tap-to-match: tap a name (pending), then tap a photo to try
       card.addEventListener('click', () => {
         const pending = document.querySelector('.nameChip.pending');
-        if(!pending) return;
+        if (!pending) return;
+
         tryDrop(card, pending.dataset.id, pending);
       });
     }
 
-    // Make name chips toggle pending state on tap (for mobile)
-    document.addEventListener('click', (e)=>{
+    // Toggle pending state on chips when tapped (for mobile)
+    document.addEventListener('click', (e) => {
       const chip = e.target.closest('.nameChip');
-      if(!chip || chip.classList.contains('matched')) return;
-      // toggle pending selection
-      document.querySelectorAll('.nameChip.pending').forEach(c=>c.classList.remove('pending'));
+      if (!chip || chip.classList.contains('matched')) return;
+
+      // remove pending from others, set on this one
+      document
+        .querySelectorAll('.nameChip.pending')
+        .forEach((c) => c.classList.remove('pending'));
+
       chip.classList.add('pending');
     });
 
-    function tryDrop(card, id, chip){
+    function tryDrop(card, id, chip) {
       const isCorrect = card.dataset.id === id;
-      if(isCorrect){
+
+      if (isCorrect) {
         const slot = card.querySelector('[data-dropzone]');
         slot.textContent = chip.textContent;
-        chip.classList.add('matched'); chip.classList.remove('pending');
+
+        chip.classList.add('matched');
+        chip.classList.remove('pending');
+
         card.classList.add('locked');
-        state.matches++; updateScore();
+
+        state.matches++;
+        updateScore();
+
+        // small confetti burst at the matched card
         confettiBurst(card);
-        if(state.matches === state.needed){ announceWin(); }
+
+        // if finished, show overlay confetti
+        if (state.matches === state.needed) {
+          announceWin();
+        }
       } else {
         chip.classList.remove('pending');
         flashWrong(card);
       }
     }
 
-    function flashWrong(card){ card.classList.add('wrong'); setTimeout(()=>card.classList.remove('wrong'),550); }
+    function flashWrong(card) {
+      card.classList.add('wrong');
+      setTimeout(() => card.classList.remove('wrong'), 550);
+    }
 
-    /* ====== Win Overlay & Confetti ====== */
-    function announceWin(){
+    /* ---------------------------------------------------------
+       WIN OVERLAY & CONFETTI
+       --------------------------------------------------------- */
+    function announceWin() {
       const msg = document.createElement('div');
-      msg.setAttribute('role','alert');
-      msg.style.position='fixed'; msg.style.inset='0'; msg.style.display='grid'; msg.style.placeItems='center';
-      msg.style.background='rgba(0,0,0,.5)'; msg.style.zIndex='9999';
+
+      msg.setAttribute('role', 'alert');
+
+      msg.style.position      = 'fixed';
+      msg.style.inset         = '0';
+      msg.style.display       = 'grid';
+      msg.style.placeItems    = 'center';
+      msg.style.background    = 'rgba(0,0,0,.5)';
+      msg.style.zIndex        = '9999';
+
       msg.innerHTML = `
-        <div style="background:white; padding:24px; border-radius:16px; text-align:center; border:2px solid black; max-width:420px;">
-          <h3 style="margin:0 0 8px; font-size:20px; color:black;">Great Job! 🎉</h3>
-          <p style="margin:0 0 16px; color:black;">You matched all names correctly.</p>
-          <button id="playAgain" style="padding:10px 16px; border-radius:12px; border:2px solid black; background:#FF9933; font-weight:700;">Play Again</button>
-        </div>`;
+        <div style="
+          background: white;
+          padding: 24px;
+          border-radius: 16px;
+          text-align: center;
+          border: 2px solid black;
+          max-width: 420px;
+        ">
+          <h3 style="
+            margin: 0 0 8px;
+            font-size: 20px;
+            color: black;
+          ">
+            Great Job! 🎉
+          </h3>
+
+          <p style="
+            margin: 0 0 16px;
+            color: black;
+          ">
+            You matched all names correctly.
+          </p>
+
+          <button
+            id="playAgain"
+            style="
+              padding: 10px 16px;
+              border-radius: 12px;
+              border: 2px solid black;
+              background: #FF9933;
+              font-weight: 700;
+              cursor: pointer;
+            "
+          >
+            Play Again
+          </button>
+        </div>
+      `;
+
       document.body.appendChild(msg);
-      document.getElementById('playAgain').addEventListener('click',()=>{ msg.remove(); buildRound(10); });
+
+      document
+        .getElementById('playAgain')
+        .addEventListener('click', () => {
+          msg.remove();
+          buildRound(10);
+        });
+
+      // overlay confetti (multicolor rain)
       confettiCanvas(msg);
     }
 
-    // Small burst near matched card
-    function confettiBurst(target){
+    // small confetti burst near matched card
+    function confettiBurst(target) {
       const rect = target.getBoundingClientRect();
-      const COLORS = ['#FF9933', '#FF0000', '#00CCFF', '#00CC66', '#FFD700', '#800080'];
-      for(let i=0;i<12;i++){
+
+      const COLORS = [
+        '#FF9933',  /* orange */
+        '#FF0000',  /* red    */
+        '#00CCFF',  /* cyan   */
+        '#00CC66',  /* green  */
+        '#FFD700',  /* gold   */
+        '#800080'   /* purple */
+      ];
+
+      for (let i = 0; i < 12; i++) {
         const dot = document.createElement('div');
-        dot.style.position='fixed'; dot.style.width='8px'; dot.style.height='8px'; dot.style.borderRadius='50%';
-        dot.style.left=(rect.left+rect.width/2)+'px'; dot.style.top=(rect.top+rect.height/2)+'px';
-        dot.style.background = COLORS[Math.floor(Math.random()*COLORS.length)];
-        dot.style.pointerEvents='none'; dot.style.zIndex='999';
+
+        dot.style.position      = 'fixed';
+        dot.style.width         = '8px';
+        dot.style.height        = '8px';
+        dot.style.borderRadius  = '50%';
+
+        dot.style.left = (rect.left + rect.width  / 2) + 'px';
+        dot.style.top  = (rect.top  + rect.height / 2) + 'px';
+
+        dot.style.background    = COLORS[Math.floor(Math.random() * COLORS.length)];
+        dot.style.pointerEvents = 'none';
+        dot.style.zIndex        = '999';
+
         document.body.appendChild(dot);
-        const angle=Math.random()*Math.PI*2; const dist=50+Math.random()*50;
-        const x=Math.cos(angle)*dist; const y=Math.sin(angle)*dist;
-        dot.animate([
-          {transform:'translate(0,0)',opacity:1},
-          {transform:`translate(${x}px,${y}px)`,opacity:0}
-        ],{duration:700,easing:'ease-out'}).onfinish=()=>dot.remove();
+
+        const angle = Math.random() * Math.PI * 2;
+        const dist  = 50 + Math.random() * 50;
+
+        const x = Math.cos(angle) * dist;
+        const y = Math.sin(angle) * dist;
+
+        dot
+          .animate(
+            [
+              { transform: 'translate(0, 0)',           opacity: 1 },
+              { transform: `translate(${x}px, ${y}px)`,  opacity: 0 }
+            ],
+            {
+              duration: 700,
+              easing: 'ease-out'
+            }
+          )
+          .onfinish = () => dot.remove();
       }
     }
 
-    // Gentle rain on overlay while win dialog is visible
-    function confettiCanvas(overlay){
-      const c = document.createElement('canvas'); overlay.appendChild(c);
+    // gentle multi-color rain while the win dialog is visible
+    function confettiCanvas(overlay) {
+      const c   = document.createElement('canvas');
       const ctx = c.getContext('2d');
-      function size(){ c.width = overlay.clientWidth; c.height = overlay.clientHeight; }
+
+      overlay.appendChild(c);
+
+      function size() {
+        c.width  = overlay.clientWidth;
+        c.height = overlay.clientHeight;
+      }
+
       size();
-      const COLORS = ['#FF9933', '#FF0000', '#00CCFF', '#00CC66', '#FFD700', '#800080'];
-      const pieces = Array.from({length:80},()=>({
-        x:Math.random()*c.width,
-        y:Math.random()*c.height,
-        r:3+Math.random()*3,
-        s:1+Math.random()*2,
-        col: COLORS[Math.floor(Math.random()*COLORS.length)]
+
+      const COLORS = [
+        '#FF9933',
+        '#FF0000',
+        '#00CCFF',
+        '#00CC66',
+        '#FFD700',
+        '#800080'
+      ];
+
+      const pieces = Array.from({ length: 80 }, () => ({
+        x:   Math.random() * c.width,
+        y:   Math.random() * c.height,
+        r:   3 + Math.random() * 3,
+        s:   1 + Math.random() * 2,
+        col: COLORS[Math.floor(Math.random() * COLORS.length)]
       }));
-      let running=true;
-      function tick(){
-        if(!running) return; requestAnimationFrame(tick);
-        ctx.clearRect(0,0,c.width,c.height);
-        for(const p of pieces){
-          ctx.fillStyle=p.col; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
-          p.y+=p.s; if(p.y>c.height) p.y=-10;
+
+      let running = true;
+
+      function tick() {
+        if (!running) return;
+
+        requestAnimationFrame(tick);
+
+        ctx.clearRect(0, 0, c.width, c.height);
+
+        for (const p of pieces) {
+          ctx.fillStyle = p.col;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+
+          // falling
+          p.y += p.s;
+
+          // loop to top
+          if (p.y > c.height) {
+            p.y = -10;
+            p.x = Math.random() * c.width;
+          }
         }
       }
+
       tick();
-      const ro=new ResizeObserver(size); ro.observe(overlay);
-      overlay.addEventListener('click',()=>{ running=false; });
+
+      const ro = new ResizeObserver(size);
+      ro.observe(overlay);
+
+      overlay.addEventListener('click', () => {
+        running = false;
+      });
     }
 
-    /* ====== Controls ====== */
-    $('#newRound').addEventListener('click',()=>buildRound(10));
-    $('#reset').addEventListener('click',()=>buildRound(10));
+    /* ---------------------------------------------------------
+       CONTROLS
+       --------------------------------------------------------- */
+    document
+      .getElementById('newRound')
+      .addEventListener('click', () => buildRound(10));
 
-    /* ====== Init ====== */
+    document
+      .getElementById('reset')
+      .addEventListener('click', () => buildRound(10));
+
+    /* ---------------------------------------------------------
+       INIT
+       --------------------------------------------------------- */
     buildRound(10);
   </script>
 
-  <!-- Back Button -->
-  <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
-  <br>
+  <!-- =========================================================
+       BACK BUTTON (outside main script to keep it simple)
+       ========================================================= -->
+  <button
+    type="button"
+    onclick="goBack()"
+    class="back-button"
+  >
+    <b>Back</b>
+  </button>
+
+  <br />
 
   <script>
     function goBack() {
