@@ -172,45 +172,45 @@
       transition: border-color 0.3s ease;
     }
 
-
     .dropName {
-  font-size: 0.75rem;     /* smaller text */
-  color: #666;            /* optional: lighter gray for placeholder */
-  font-style: italic;     /* optional: make placeholder look different */
-}
+      font-size: 0.75rem;     /* smaller text */
+      color: #666;            /* optional: lighter gray for placeholder */
+      font-style: italic;     /* optional: make placeholder look different */
+    }
 
-.photoCard .name.correct {
-  display: inline-block;
- font-size: 0.5rem;       /* smaller text */
-  padding: 3px 6px;          /* little box padding */
-  background-color: #c8f7c5; /* light green box */
-  color: #0a5d00;            /* dark green text */
-  border: 1px solid #6bbf59; /* green border */
-  border-radius: 6px;        /* rounded corners */
-  margin-top: 6px;
-  text-align: center;
-}
+    .photoCard .name.correct {
+      display: inline-block;
+      font-size: 0.5rem;       /* smaller text */
+      padding: 3px 6px;          /* little box padding */
+      background-color: #c8f7c5; /* light green box */
+      color: #0a5d00;            /* dark green text */
+      border: 1px solid #6bbf59; /* green border */
+      border-radius: 6px;        /* rounded corners */
+      margin-top: 6px;
+      text-align: center;
+    }
 
-.photoCard.locked .dropName {
-  background-color: #c8f7c5;     /* light green */
-  color: #052401;                /* dark green text */
-  border: 0.5px solid #6bbf59;     /* green border */
-  border-radius: 2px;
+    .photoCard.locked .dropName {
+      background-color: #c8f7c5;     /* light green */
+      color: #052401;                /* dark green text */
+      border: 0.5px solid #6bbf59;     /* green border */
+      border-radius: 2px;
 
-  font-size: 0.5rem;            /* smaller text */
-  font-weight: 200;
-  padding: 1px 1px;
+      font-size: 0.5rem;            /* smaller text */
+      font-weight: 200;
+      padding: 1px 1px;
 
-  /* turn it from full-width bar into a centered pill */
-  width: max-content;
-  min-width: 0;
-  left: 50% !important;
-  right: auto !important;
-  transform: translateX(-50%);
-  bottom: 1px;
+      /* turn it from full-width bar into a centered pill */
+      width: max-content;
+      min-width: 0;
+      left: 50% !important;
+      right: auto !important;
+      transform: translateX(-50%);
+      bottom: 1px;
 
-  box-shadow: 0 1px 0 rgba(0,0,0,.06);
-}
+      box-shadow: 0 1px 0 rgba(0,0,0,.06);
+    }
+
     .photoCard.locked {
       border: 2px solid var(--kesari);
       background: #ffe1c4;
@@ -227,9 +227,7 @@
       height: auto;
       width: 50px;
       object-fit: contain;
-      margin-top: 5px; 
-      /* display: block;
-      margin: 0 auto; */
+      margin-top: 5px;
     }
 
     .fallback {
@@ -290,26 +288,26 @@
         color 0.2s ease,
         transform 0.1s ease;
     }
-.name.correct {
-  background-color: #c8f7c5;   /* light green background */
-  color: #0a5d00;             /* dark green text */
-  font-weight: bold;
-}
 
-.name.wrong {
-  background-color: #f8d7da;   /* light red background */
-  color: #a80000;
-}
+    .name.correct {
+      background-color: #c8f7c5;   /* light green background */
+      color: #0a5d00;             /* dark green text */
+      font-weight: bold;
+    }
+
+    .name.wrong {
+      background-color: #f8d7da;   /* light red background */
+      color: #a80000;
+    }
+
     .nameChip:hover {
       background: var(--black);
       color: #fff;
     }
 
     .nameChip.matched {
-        background-color: #c8f7c5;   /* light green background */
-  color: #0a5d00;             /* dark green text */
-      /* background: var(--black);
-      color: #fff; */
+      background-color: #c8f7c5;   /* light green background */
+      color: #0a5d00;             /* dark green text */
       cursor: default;
       transform: scale(0.48);
     }
@@ -332,6 +330,7 @@
       font-size: 14px;
       color: var(--black);
       font-weight: 600;
+      flex-wrap: wrap;
     }
 
     .dot {
@@ -347,8 +346,6 @@
 
     /* =========================================================
        MOBILE TWEAKS
-       - On smaller screens, keep 2 columns: photos (both stacks) + names
-       - Reduce sizes slightly
        ========================================================= */
     @media(max-width: 700px) {
       .board {
@@ -356,21 +353,11 @@
         gap: 20px;
       }
 
-      .col.photos1 {
-        grid-column: 1 ;
-      }
+      .col.photos1 { grid-column: 1; }
+      .col.photos2 { grid-column: 2; }
+      .col.namesCol { grid-column: 3; }
 
-      .col.photos2 {
-        grid-column: 2 ;
-      }
-
-      .col.namesCol {
-        grid-column: 3 ;
-      }
-
-      .photoCard {
-        min-height: 100px;
-      }
+      .photoCard { min-height: 100px; }
 
       .nameChip {
         font-size: 10px;
@@ -408,35 +395,37 @@
          ======================================================= -->
     <header>
       <div>
-        <h1>
-          Match Guru Jis to their Names
-        </h1>
-
-        <div class="sub">
-          Drag or tap a name onto the matching photo
-        </div>
+        <h1>Match Guru Jis to their Names</h1>
+        <div class="sub">Drag or tap a name onto the matching photo</div>
       </div>
 
       <div class="controls">
-        <button id="newRound" class="primary">
-          New Round
-        </button>
-
-        <button id="reset">
-          Reset
-        </button>
+        <button id="newRound" class="primary">New Round</button>
+        <button id="reset">Reset</button>
       </div>
     </header>
 
     <!-- =======================================================
-         STATUS BAR
+         STATUS BAR (now shows % + correct + attempts)
          ======================================================= -->
     <div class="status">
       <div class="dot"></div>
 
       <div class="score">
         Score:
+        <span id="scorePct">0%</span>
+      </div>
+
+      <div>
+        |
+        Correct:
         <span id="score">0</span>
+      </div>
+
+      <div>
+        |
+        Attempts:
+        <span id="attempts">0</span>
       </div>
 
       <div>
@@ -452,29 +441,17 @@
     <section class="board">
       <!-- Photos Column 1 -->
       <div class="col photos1">
-
-
-        <div id="col1" class="grid-photos">
-          <!-- Filled by JS -->
-        </div>
+        <div id="col1" class="grid-photos"></div>
       </div>
 
       <!-- Photos Column 2 -->
       <div class="col photos2">
-    
-
-        <div id="col2" class="grid-photos">
-          <!-- Filled by JS -->
-        </div>
+        <div id="col2" class="grid-photos"></div>
       </div>
 
       <!-- Names Column -->
       <div class="col namesCol">
-
-
-        <div id="names" class="names">
-          <!-- Filled by JS -->
-        </div>
+        <div id="names" class="names"></div>
       </div>
     </section>
   </div>
@@ -485,8 +462,7 @@
   <template id="photo-card-tpl">
     <div class="photoCard" tabindex="0" data-id="">
       <img alt="" />
-      <!-- <div class="fallback">Photo</div> -->
-            <div class="fallback"></div>
+      <div class="fallback"></div>
       <div class="dropName" data-dropzone>Drop name</div>
     </div>
   </template>
@@ -558,21 +534,11 @@
     ];
 
     /* ---------------------------------------------------------
-       UPDATE SCORE
-       --------------------------------------------------------- */
-    function updateScore() {
-  const scoreText = state.trials > 0
-    ? Math.round((state.matches / state.trials) * 100) + "%"
-    : "0%";
-
-  $('#score').textContent  = scoreText;
-  $('#needed').textContent = state.needed;
-}
-    /* ---------------------------------------------------------
        DOM HELPERS + STATE
        --------------------------------------------------------- */
     const $ = (sel) => document.querySelector(sel);
 
+    // Fisher–Yates shuffle (single definition)
     function shuffle(arr) {
       for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -583,7 +549,8 @@
 
     const state = {
       activeItems: [],
-      matches: 0,
+      matches: 0,   // correct matches
+      trials: 0,    // every attempt (correct or wrong)
       needed: 0
     };
 
@@ -591,14 +558,13 @@
        ROUND BUILDER
        --------------------------------------------------------- */
     function buildRound(count = 10) {
-      // get the first 10 (we already have exactly 10 in dataset)
-        const pool = shuffle([...ALL_ITEMS]).slice(0, count);
-      // const pool = [...ALL_ITEMS].slice(0, count);
+      // get 10, shuffle image order for columns
+      const pool = shuffle([...ALL_ITEMS]).slice(0, count);
 
       // update state
       state.activeItems = pool;
       state.matches = 0;
-      state.trials = 0;      // reset attempts
+      state.trials = 0;   // reset attempts for new round
       state.needed = pool.length;
       updateScore();
 
@@ -622,15 +588,6 @@
       shuffle([...pool]).forEach((item) => addName(names, item));
     }
 
-// Fisher–Yates shuffle
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
     function addPhoto(container, item) {
       const node = document.importNode($('#photo-card-tpl').content, true);
       const card = node.querySelector('.photoCard');
@@ -641,7 +598,6 @@ function shuffle(array) {
       img.alt  = item.label;
 
       addDropHandlers(card);
-
       container.appendChild(node);
     }
 
@@ -653,13 +609,19 @@ function shuffle(array) {
       chip.dataset.id  = item.id;
 
       addDragHandlers(chip);
-
       container.appendChild(chipFrag);
     }
 
     function updateScore() {
-      $('#score').textContent  = state.matches;
-      $('#needed').textContent = state.needed;
+      // percent based on trials (attempts)
+      const pct = state.trials === 0
+        ? 0
+        : Math.round((state.matches / state.trials) * 100);
+
+      $('#score').textContent     = state.matches;
+      $('#attempts').textContent  = state.trials;
+      $('#scorePct').textContent  = `${pct}%`;
+      $('#needed').textContent    = state.needed;
     }
 
     /* ---------------------------------------------------------
@@ -668,7 +630,6 @@ function shuffle(array) {
     function addDragHandlers(el) {
       el.addEventListener('dragstart', (e) => {
         e.dataTransfer.setData('text/plain', el.dataset.id);
-        // visual hint
         el.style.opacity = '0.7';
       });
 
@@ -716,28 +677,11 @@ function shuffle(array) {
 
       chip.classList.add('pending');
     });
-function handleDrop(e) {
-  e.preventDefault();
-  const nameId = e.dataTransfer.getData("text/plain");
-  const targetId = e.currentTarget.dataset.id;
-
-  const draggedEl = document.getElementById(nameId);
-
-  if (nameId === targetId) {
-    // ✅ Correct match
-    draggedEl.classList.add("correct");
-    draggedEl.setAttribute("draggable", "false"); // lock it
-    e.currentTarget.appendChild(draggedEl);
-  } else {
-    // ❌ Wrong match
-    draggedEl.classList.add("wrong");
-    setTimeout(() => draggedEl.classList.remove("wrong"), 1000); // flash red
-  }
-}
 
     function tryDrop(card, id, chip) {
+      // every attempt counts as a trial
+      state.trials++;
 
-          state.trials++;   // count every attempt    
       const isCorrect = card.dataset.id === id;
 
       if (isCorrect) {
@@ -746,18 +690,14 @@ function handleDrop(e) {
 
         chip.classList.add('matched');
         chip.classList.remove('pending');
+
         card.classList.add('locked');
 
         state.matches++;
-           confettiBurst(card);
-  } else {
-    chip.classList.remove('pending');
-    flashWrong(card);
-  }
         updateScore();
 
         // small confetti burst at the matched card
-        // confettiBurst(card);
+        confettiBurst(card);
 
         // if finished, show overlay confetti
         if (state.matches === state.needed) {
@@ -766,6 +706,7 @@ function handleDrop(e) {
       } else {
         chip.classList.remove('pending');
         flashWrong(card);
+        updateScore(); // update attempts/percent on wrong try too
       }
     }
 
@@ -998,4 +939,3 @@ function handleDrop(e) {
   </script>
 </body>
 </html>
-
