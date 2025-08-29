@@ -277,11 +277,11 @@
 
     .nameChip {
       user-select: none;
-      padding: 3px;
+      padding: 5px;
       border-radius: 999px;
       background: var(--kesari);
       color: var(--black);
-      font-weight: 200;
+      font-weight: 300;
       text-align: center;
       cursor: grab;
       border: 2px solid var(--black);
@@ -409,7 +409,7 @@
     <header>
       <div>
         <h1>
-          Match the Guru Ji Photo's to their Names
+          Match Guru Jis to their Names
         </h1>
 
         <div class="sub">
@@ -609,7 +609,7 @@
       names.innerHTML = '';
       shuffle([...pool]).forEach((item) => addName(names, item));
     }
-    
+
 // Fisher–Yates shuffle
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
