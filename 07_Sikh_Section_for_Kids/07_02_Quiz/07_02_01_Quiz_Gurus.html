@@ -50,22 +50,15 @@
       cursor: pointer;
       transition: background .2s ease, color .2s ease;
     }
-    button.primary{
-      background: var(--kesari);
-      color: var(--black);
-    }
-    button:hover, .select:hover{
-      background: var(--black);
-      color: #fff;
-    }
+    button.primary{ background: var(--kesari); color: var(--black); }
+    button:hover, .select:hover{ background: var(--black); color: #fff; }
 
+    /* === 3-column board: Photos col1, Photos col2, Names col3 === */
     .board{
       display:grid;
-      grid-template-columns: 3fr 1fr;
+      grid-template-columns: 2fr 2fr 1fr; /* wider photos (2 + 2) and narrower names (1) */
       gap: 18px;
-    }
-    @media (max-width: 768px){
-      .board{ grid-template-columns: 1fr; }
+      align-items: start;
     }
 
     .col{
@@ -80,16 +73,18 @@
       color: var(--kesari);
     }
 
+    /* Each photos column holds exactly 5 photo cards stacked */
     .grid-photos{
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      grid-template-rows: repeat(5, auto);
       gap: 10px;
     }
+
     .photoCard{
       position:relative;
       border: 2px dashed var(--kesari);
       border-radius: 12px;
-      min-height: 140px;
+      min-height: 100px;
       overflow:hidden;
       background:#fff5eb;
       transition: border-color .3s ease;
@@ -98,14 +93,14 @@
     .photoCard.wrong{ border: 2px solid red; }
 
     .photoCard img{
-      width:100%; height:100%; object-fit:cover;
+      height: 80px; /* keep small for desktop */
+      width: auto;  /* maintain aspect ratio */
+      object-fit: contain;
+      display:block;
+      margin: 8px auto; /* center horizontally */
     }
-    .fallback{
-      display:grid; place-items:center;
-      font-weight:700; font-size:18px;
-      color: var(--black);
-      height:100%;
-    }
+
+    .fallback{ display:none; }
 
     .dropName{
       position:absolute;
@@ -117,16 +112,10 @@
       font-weight:700;
       text-align:center;
     }
-  .guru-image {
-        width: 200px;
-        height: auto;
-        border: 3px solid #FF9933;
-        border-radius: 10px;
-        flex-shrink: 0;
-    }
+
     .names{
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      grid-template-rows: repeat(10, auto);
       gap:10px;
     }
     .nameChip{
@@ -142,11 +131,7 @@
       transition: background .2s ease, color .2s ease;
     }
     .nameChip:hover{ background: var(--black); color:#fff; }
-    .nameChip.matched{
-      background: var(--black);
-      color: #fff;
-      cursor: default;
-    }
+    .nameChip.matched{ background: var(--black); color: #fff; cursor: default; }
 
     .status{
       display:flex;
@@ -157,61 +142,23 @@
       color: var(--black);
       font-weight:600;
     }
-    .dot{
-      width:10px; height:10px; border-radius:50%;
-      background: var(--kesari);
-    }
+    .dot{ width:10px; height:10px; border-radius:50%; background: var(--kesari); }
     .score{ font-weight:800; }
 
-    /* Mobile tweaks */
-    @media(max-width:500px){
-      .controls{ flex-direction:column; align-items:stretch; }
-      button,.select{ width:100%; text-align:center; }
+    /* === Mobile tweaks === */
+    /* On small screens: make it two columns: Photos (both stacks) on left, Names on right */
+    @media(max-width: 700px){
+      .board{ grid-template-columns: 1fr 1fr; }
+      /* Make col1 and col2 (photos) occupy the first column stacked, names in second */
+      .col.photos1{ grid-column: 1 / 2; }
+      .col.photos2{ grid-column: 1 / 2; }
+      .col.namesCol{ grid-column: 2 / 3; }
+
+      .photoCard{ min-height: 80px; }
+      .photoCard img{ height: 60px; }
+      .nameChip{ font-size: 13px; padding: 8px; }
     }
 
-    /* Mobile adjustments */
-@media (max-width: 600px) {
-.board {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* 2 columns for photos + 1 for names */
-  gap: 18px;
-}
-
-.grid-photos {
-  display: grid;
-  grid-template-rows: repeat(5, auto); /* 5 images in each column */
-  gap: 12px;
-}
-
-.photoCard {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #ddd;
-  padding: 6px;
-  border-radius: 8px;
-  background: #fff;
-}
-
-.photoCard img {
-  height: 80px;     /* fixed height */
-  width: auto;      /* keep aspect ratio */
-  object-fit: contain;
-  display: block;
-}
-.names {
-  display: grid;
-  grid-template-rows: repeat(10, auto); /* stack 10 names */
-  gap: 12px;
-}
-.nameChip {
-  padding: 8px;
-  background: #f3f3f3;
-  border-radius: 6px;
-  text-align: center;
-  cursor: grab;
-}
-}
     /* Back button styling */
     .back-button {
       width: 80%;
@@ -226,11 +173,7 @@
       border-radius: 8px;
       cursor: pointer;
     }
-
-    .back-button:hover {
-      background-color: #FF8C00;
-    }
-
+    .back-button:hover { background-color: #FF8C00; }
   </style>
 </head>
 <body>
@@ -243,12 +186,6 @@
       <div class="controls">
         <button id="newRound" class="primary">New Round</button>
         <button id="reset">Reset</button>
-        <!-- <select id="count" class="select">
-          <option value="4">4 pairs</option>
-          <option value="10" selected>10 pairs</option>
-          <option value="8">8 pairs</option>
-        </select> -->
-
       </div>
     </header>
 
@@ -259,14 +196,9 @@
     </div>
 
     <section class="board">
-      <div class="col">
-        <h2>Photos</h2>
-        <div id="photos" class="grid-photos"></div>
-      </div>
-      <div class="col">
-        <h2>Names</h2>
-        <div id="names" class="names"></div>
-      </div>
+      <div class="col photos1"><h2>Photos (1–5)</h2><div id="col1" class="grid-photos"></div></div>
+      <div class="col photos2"><h2>Photos (6–10)</h2><div id="col2" class="grid-photos"></div></div>
+      <div class="col namesCol"><h2>Names</h2><div id="names" class="names"></div></div>
     </section>
   </div>
 
@@ -284,115 +216,146 @@
   </template>
 
   <script>
+    /* ====== DATA ====== */
     const ALL_ITEMS = [
       { id: 'Guru Nanak Dev Ji',    label: 'Guru Nanak Dev Ji',    img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/01 Guru Nanak Dev Ji.jpg' },
-      { id: 'Guru Angad Dev Ji',    label: 'Guru Angad Dev Ji',  img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/02 Guru Angad Dev Ji.jpg'},
-      { id: 'Guru Amar Das Ji',  label: 'Guru Amar Das Ji',  img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/03 Guru Amar Das Ji.jpg'},
-      { id: 'Guru Ram Das Ji',   label: 'Guru Ram Das Ji',   img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/04 Guru Ram Das Ji.jpg'},
-      { id: 'Guru Arjan Dev Ji',  label: 'Guru Arjan Dev Ji',  img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/05 Guru Arjan Dev Ji.jpg'},
-      { id: 'Guru Har Gobind Ji',  label: 'Guru Har Gobind Ji',  img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/06 Guru Har Gobind Singh Ji.jpg'},
-      { id: 'Guru Har Rai Ji',    label: 'Guru Har Rai Ji',    img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/07 Guru Har Rai Ji.jpg'},
-      { id: 'Guru Har Krishan Ji', label: 'Guru Har Krishan Ji', img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/08 Shri Guru Harkrishan Ji.jpg'},
-      { id: 'Guru Tegh Bahadur Ji',  label: 'Guru Tegh Bahadur Ji',  img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/09 Shri Guru Teg Bahadur Ji.jpg'},
-      { id: 'Guru Gobind Singh Ji',    label: 'Guru Gobind Singh Ji',    img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/10 Shri Guru Gobind Singh Ji.jpg'},
+      { id: 'Guru Angad Dev Ji',    label: 'Guru Angad Dev Ji',    img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/02 Guru Angad Dev Ji.jpg' },
+      { id: 'Guru Amar Das Ji',     label: 'Guru Amar Das Ji',     img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/03 Guru Amar Das Ji.jpg' },
+      { id: 'Guru Ram Das Ji',      label: 'Guru Ram Das Ji',      img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/04 Guru Ram Das Ji.jpg' },
+      { id: 'Guru Arjan Dev Ji',    label: 'Guru Arjan Dev Ji',    img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/05 Guru Arjan Dev Ji.jpg' },
+      { id: 'Guru Har Gobind Ji',   label: 'Guru Har Gobind Ji',   img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/06 Guru Har Gobind Singh Ji.jpg' },
+      { id: 'Guru Har Rai Ji',      label: 'Guru Har Rai Ji',      img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/07 Guru Har Rai Ji.jpg' },
+      { id: 'Guru Har Krishan Ji',  label: 'Guru Har Krishan Ji',  img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/08 Shri Guru Harkrishan Ji.jpg' },
+      { id: 'Guru Tegh Bahadur Ji', label: 'Guru Tegh Bahadur Ji', img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/09 Shri Guru Teg Bahadur Ji.jpg' },
+      { id: 'Guru Gobind Singh Ji', label: 'Guru Gobind Singh Ji', img: '../../pictures/07_Sikh_Stories/Sikh_Gurus/10 Shri Guru Gobind Singh Ji.jpg' },
     ];
 
     const $ = sel => document.querySelector(sel);
-    function shuffle(arr){ for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];} return arr; }
+    function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
 
-    const state={activeItems:[],matches:0,needed:0};
+    const state = { activeItems: [], matches: 0, needed: 0 };
 
-    function buildRound(count=10){
-      const pool=shuffle([...ALL_ITEMS]).slice(0,count);
-      state.activeItems=pool; state.matches=0; state.needed=pool.length;
-      updateScore();
+    /* ====== ROUND BUILDER ====== */
+    function buildRound(count = 10){
+      // Use the first 10 items (we already have exactly 10) and set state
+      const pool = [...ALL_ITEMS].slice(0, count);
+      state.activeItems = pool; state.matches = 0; state.needed = pool.length; updateScore();
 
-      const photos=$('#photos'); photos.innerHTML='';
-      pool.forEach(item=>{
-        const node=document.importNode($('#photo-card-tpl').content,true);
-        const card=node.querySelector('.photoCard');
-        const img=node.querySelector('img');
-        card.dataset.id=item.id; img.src=item.img; img.alt=item.label;
-        addDropHandlers(card);
-        photos.appendChild(node);
-      });
+      // Split into two halves for photos columns
+      const firstHalf = pool.slice(0,5);
+      const secondHalf = pool.slice(5);
 
-      const names=$('#names'); names.innerHTML='';
-      shuffle([...pool]).forEach(item=>{
-        const chipFrag=document.importNode($('#name-chip-tpl').content,true);
-        const chip=chipFrag.querySelector('.nameChip');
-        chip.textContent=item.label; chip.dataset.id=item.id;
-        addDragHandlers(chip);
-        names.appendChild(chipFrag);
-      });
+      const col1 = $('#col1'); const col2 = $('#col2');
+      col1.innerHTML = ''; col2.innerHTML = '';
+      firstHalf.forEach(item => addPhoto(col1, item));
+      secondHalf.forEach(item => addPhoto(col2, item));
+
+      // Names: shuffled order each round
+      const names = $('#names'); names.innerHTML = '';
+      shuffle([...pool]).forEach(item => addName(names, item));
     }
 
-    function updateScore(){ $('#score').textContent=state.matches; $('#needed').textContent=state.needed; }
+    function addPhoto(container, item){
+      const node = document.importNode($('#photo-card-tpl').content, true);
+      const card = node.querySelector('.photoCard');
+      const img = node.querySelector('img');
+      card.dataset.id = item.id; img.src = item.img; img.alt = item.label;
+      addDropHandlers(card);
+      container.appendChild(node);
+    }
 
-    // Drag & Drop
+    function addName(container, item){
+      const chipFrag = document.importNode($('#name-chip-tpl').content, true);
+      const chip = chipFrag.querySelector('.nameChip');
+      chip.textContent = item.label; chip.dataset.id = item.id;
+      addDragHandlers(chip);
+      container.appendChild(chipFrag);
+    }
+
+    function updateScore(){ $('#score').textContent = state.matches; $('#needed').textContent = state.needed; }
+
+    /* ====== Drag & Drop ====== */
     function addDragHandlers(el){
-      el.addEventListener('dragstart', e=>{
+      el.addEventListener('dragstart', e => {
         e.dataTransfer.setData('text/plain', el.dataset.id);
       });
-    }
-    function addDropHandlers(card){
-      card.addEventListener('dragover', e=>e.preventDefault());
-      card.addEventListener('drop', e=>{
-        e.preventDefault();
-        const id=e.dataTransfer.getData('text/plain');
-        const chip=$(`.nameChip[data-id="${CSS.escape(id)}"]:not(.matched)`);
-        if(!chip) return;
-        tryDrop(card,id,chip);
+      // Keyboard support: Enter/Space picks up the chip id into a buffer
+      el.addEventListener('keydown', e => {
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); el.classList.add('kbdGrab'); el.setAttribute('aria-grabbed','true'); }
       });
     }
 
-    function tryDrop(card,id,chip){
-      const isCorrect=card.dataset.id===id;
+    function addDropHandlers(card){
+      card.addEventListener('dragover', e => e.preventDefault());
+      card.addEventListener('drop', e => {
+        e.preventDefault();
+        const id = e.dataTransfer.getData('text/plain');
+        const chip = $(`.nameChip[data-id="${CSS.escape(id)}"]:not(.matched)`);
+        if(!chip) return;
+        tryDrop(card, id, chip);
+      });
+
+      // Click to match (mobile friendly): first tap a name, then tap a photo
+      card.addEventListener('click', () => {
+        const pending = document.querySelector('.nameChip.pending');
+        if(!pending) return;
+        tryDrop(card, pending.dataset.id, pending);
+      });
+    }
+
+    // Make name chips toggle pending state on tap (for mobile)
+    document.addEventListener('click', (e)=>{
+      const chip = e.target.closest('.nameChip');
+      if(!chip || chip.classList.contains('matched')) return;
+      // toggle pending selection
+      document.querySelectorAll('.nameChip.pending').forEach(c=>c.classList.remove('pending'));
+      chip.classList.add('pending');
+    });
+
+    function tryDrop(card, id, chip){
+      const isCorrect = card.dataset.id === id;
       if(isCorrect){
-        const slot=card.querySelector('[data-dropzone]');
-        slot.textContent=chip.textContent;
-        chip.classList.add('matched');
+        const slot = card.querySelector('[data-dropzone]');
+        slot.textContent = chip.textContent;
+        chip.classList.add('matched'); chip.classList.remove('pending');
         card.classList.add('locked');
         state.matches++; updateScore();
         confettiBurst(card);
-        if(state.matches===state.needed){ announceWin(); }
+        if(state.matches === state.needed){ announceWin(); }
       } else {
+        chip.classList.remove('pending');
         flashWrong(card);
       }
     }
 
-    function flashWrong(card){
-      card.classList.add('wrong');
-      setTimeout(()=>card.classList.remove('wrong'),550);
-    }
+    function flashWrong(card){ card.classList.add('wrong'); setTimeout(()=>card.classList.remove('wrong'),550); }
 
+    /* ====== Win Overlay & Confetti ====== */
     function announceWin(){
-      const msg=document.createElement('div');
+      const msg = document.createElement('div');
       msg.setAttribute('role','alert');
       msg.style.position='fixed'; msg.style.inset='0'; msg.style.display='grid'; msg.style.placeItems='center';
       msg.style.background='rgba(0,0,0,.5)'; msg.style.zIndex='9999';
-      msg.innerHTML=`
-        <div style="background:white; padding:24px; border-radius:16px; text-align:center; border:2px solid black; max-width:400px;">
+      msg.innerHTML = `
+        <div style="background:white; padding:24px; border-radius:16px; text-align:center; border:2px solid black; max-width:420px;">
           <h3 style="margin:0 0 8px; font-size:20px; color:black;">Great Job! 🎉</h3>
           <p style="margin:0 0 16px; color:black;">You matched all names correctly.</p>
           <button id="playAgain" style="padding:10px 16px; border-radius:12px; border:2px solid black; background:#FF9933; font-weight:700;">Play Again</button>
         </div>`;
       document.body.appendChild(msg);
-      document.getElementById('playAgain').addEventListener('click',()=>{ msg.remove(); buildRound(parseInt($('#count').value,10)); });
+      document.getElementById('playAgain').addEventListener('click',()=>{ msg.remove(); buildRound(10); });
       confettiCanvas(msg);
     }
 
-    // Confetti
+    // Small burst near matched card
     function confettiBurst(target){
-      const rect=target.getBoundingClientRect();
+      const rect = target.getBoundingClientRect();
+      const COLORS = ['#FF9933', '#FF0000', '#00CCFF', '#00CC66', '#FFD700', '#800080'];
       for(let i=0;i<12;i++){
-        const dot=document.createElement('div');
-
+        const dot = document.createElement('div');
         dot.style.position='fixed'; dot.style.width='8px'; dot.style.height='8px'; dot.style.borderRadius='50%';
         dot.style.left=(rect.left+rect.width/2)+'px'; dot.style.top=(rect.top+rect.height/2)+'px';
-        // dot.style.background=Math.random()>0.5?'#FF9933':'#000';
-                const COLORS = ['#FF9933', '#FF0000', '#00CCFF', '#00CC66', '#FFD700', '#800080'];
-        dot.style.background = COLORS[Math.floor(Math.random() * COLORS.length)];
+        dot.style.background = COLORS[Math.floor(Math.random()*COLORS.length)];
         dot.style.pointerEvents='none'; dot.style.zIndex='999';
         document.body.appendChild(dot);
         const angle=Math.random()*Math.PI*2; const dist=50+Math.random()*50;
@@ -403,19 +366,27 @@
         ],{duration:700,easing:'ease-out'}).onfinish=()=>dot.remove();
       }
     }
+
+    // Gentle rain on overlay while win dialog is visible
     function confettiCanvas(overlay){
-      const c=document.createElement('canvas'); overlay.appendChild(c);
-      const ctx=c.getContext('2d');
-      function size(){ c.width=overlay.clientWidth; c.height=overlay.clientHeight; }
+      const c = document.createElement('canvas'); overlay.appendChild(c);
+      const ctx = c.getContext('2d');
+      function size(){ c.width = overlay.clientWidth; c.height = overlay.clientHeight; }
       size();
-      const pieces=Array.from({length:80},()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:3+Math.random()*3,s:1+Math.random()*2,col:Math.random()>0.5?'#FF9933':'#000'}));
+      const COLORS = ['#FF9933', '#FF0000', '#00CCFF', '#00CC66', '#FFD700', '#800080'];
+      const pieces = Array.from({length:80},()=>({
+        x:Math.random()*c.width,
+        y:Math.random()*c.height,
+        r:3+Math.random()*3,
+        s:1+Math.random()*2,
+        col: COLORS[Math.floor(Math.random()*COLORS.length)]
+      }));
       let running=true;
       function tick(){
         if(!running) return; requestAnimationFrame(tick);
         ctx.clearRect(0,0,c.width,c.height);
         for(const p of pieces){
-          ctx.fillStyle=p.col;
-          ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+          ctx.fillStyle=p.col; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
           p.y+=p.s; if(p.y>c.height) p.y=-10;
         }
       }
@@ -424,26 +395,23 @@
       overlay.addEventListener('click',()=>{ running=false; });
     }
 
-    // Controls
-    // $('#newRound').addEventListener('click',()=>buildRound(parseInt($('#count').value,10)));
-    // $('#reset').addEventListener('click',()=>buildRound(state.needed||parseInt($('#count').value,10)));
+    /* ====== Controls ====== */
     $('#newRound').addEventListener('click',()=>buildRound(10));
-$('#reset').addEventListener('click',()=>buildRound(10));
-    // $('#count').addEventListener('change',e=>buildRound(parseInt(e.target.value,10)));
+    $('#reset').addEventListener('click',()=>buildRound(10));
 
-    // Init
-    // buildRound(parseInt($('#count').value,10));
+    /* ====== Init ====== */
     buildRound(10);
   </script>
 
-    <!-- Back Button -->
+  <!-- Back Button -->
   <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
   <br>
 
   <script>
     function goBack() {
-     window.location.href = "../07_Sikh_Section_for_Kids.html";
+      window.location.href = "../07_Sikh_Section_for_Kids.html";
     }
   </script>
 </body>
 </html>
+
