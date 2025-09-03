@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta description -->
+  <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+
+  <!-- Meta keywords -->
+  <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
+
+  <!-- Author -->
+  <meta name="author" content="Sikhs in India">
+
+  <!-- Robots -->
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph meta tags for social media -->
+  <meta property="og:title" content="Sikh Heritage & Traditions | Gurudwaras, Guru Nanak & Sikh Scriptures">
+  <meta property="og:description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+  <meta property="og:url" content="https://sikhsinindia.com">
+  <meta property="og:type" content="sikhsinindia.com">
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Sikhs in India: History, Culture & Present | SikhsInIndia.com </title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #fbbf24;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 30px;
+    }
+    h1, h2, h3 {
+      color: #fb923c;
+      padding-top: 0.1em;
+      padding-bottom: 0.1em;
+    }
+    h1 {
+      text-align: center;
+    }
+    h2 {
+      text-align: center;
+    }
+    h3 {
+      text-align: center;
+    }
+    .intro {
+      max-width: 900px;
+      margin: 0 auto 30px;
+      background: #000;
+      color: #fbbf24;
+      font-size: 16px;
+      line-height: 1.6;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 12px #fb923c99;
+    }
+    form {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #000000;
+      padding: 25px 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 12px #fb923c99;
+    }
+    .form-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+    label {
+      width: 200px;
+      font-size: 26px;
+      font-weight: 600;
+      color: #fb923c;
+      user-select: none;
+    }
+    input, select {
+      flex: 1;
+      padding: 8px 10px;
+      font-size: 50px;
+      border: 2px solid #fb923c;
+      border-radius: 5px;
+      background-color: #1a1a1a;
+      color: #fbbf24;
+    }
+    input::placeholder {
+      color: #fbbf2477;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #f97316;
+      background-color: #000;
+      color: #fff;
+    }
+    button {
+      padding: 10px 16px;
+      font-size: 25px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      margin-right: 12px;
+      font-weight: 600;
+      box-shadow: 0 3px 8px #fb923caa;
+      color: #1a1a1a;
+      background-color: #fb923c;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #f97316;
+      color: #fff;
+      box-shadow: 0 5px 15px #f9731699;
+    }
+    #status {
+      margin-top: 20px;
+      font-weight: 600;
+      text-align: center;
+      color: #fb923c;
+      font-size: 22px;
+    }
+         /* Back button styling */
+    .back-button {
+      width: 80%;
+      max-width: 200px;
+      height: 45px;
+      font-size: 20px;
+      background-color: #FFA500;
+      color: black;
+      margin: 40px auto 0 auto;
+      display: block;
+      border: 1mm solid black;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      background-color: #FF8C00;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <h1>Register to become a Member of “Sikhs in India” Group - Belong, Connect & Thrive. </h1>
+  <h2>Membership open to everyone, not just Sikhs.  </h2> 
+
+  <form id="editForm">
+    <div class="form-row">
+      <label for="email">Email: <span style="color: #f00;">*</span> <br> (mandatory)</label>
+      <input type="email" id="email" placeholder="Email (used as ID)" required />
+    </div>
+
+    <div class="form-row">
+      <label for="name">Name: <span style="color: #f00;">*</span> <br>(mandatory)</label>
+      <input type="text" id="name" placeholder="Your Full Name" />
+    </div>
+
+    <div class="form-row">
+      <label for="password">Password: <span style="color: #f00;">*</span> <br>(mandatory)</label>
+      <input type="password" id="password" placeholder="Choose a password" />
+    </div>
+
+    <div class="form-row">
+      <label for="mobile">Mobile: <span style="color: #f00;">*</span> <br>(mandatory)</label>
+      <input type="number" id="mobile" placeholder="Mobile number (9 digits or more)" />
+    </div>
+
+    <div class="form-row">
+      <label for="age">Age:</label>
+      <input type="number" id="age" placeholder="Your age" />
+    </div>
+
+    <div class="form-row">
+      <label for="address">Address:</label>
+      <input type="text" id="address" placeholder="Your address" maxlength="150" />
+    </div>
+    <div class="form-row">
+      <label for="city">City:</label>
+      <input type="text" id="city" placeholder="Your city" maxlength="150" />
+    </div>
+        <div class="form-row">
+      <label for="state">State:</label>
+      <input type="text" id="state" placeholder="Your State" maxlength="150" />
+    </div>
+
+    <div class="form-row">
+      <label for="gender">Gender:</label>
+      <select id="gender">
+        <option value="">-- Select Gender --</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+
+    <div style="margin-top: 25px; text-align: center;">
+      <!-- <button type="button" onclick="loadData()">Load Existing Data</button> -->
+      <button type="submit">SUBMIT</button>
+      <button type="button" onclick="resetForm()">Clear Form</button>
+    </div>
+
+    <p id="status"></p>
+    <h3>If you face any issues, please contact <a href="mailto:sikhsinindiagmail.com">sikhsinindia@gmail.com</a></h3>
+
+  </form>
+
+    <!-- Back Button -->
+     <!-- <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button> -->
+       <button 
+    type="button" 
+    onclick="goBack()" 
+   style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">
+   Back
+  </button>
+  <br>
+
+    <script>
+      function goBack() {
+        window.location.href = "../index.html";
+      }
+       </script>
+  <button 
+    type="button" 
+    onclick="admin()" 
+    style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px 20px 0 auto; text-align: center;">
+    Admin
+  </button>
+
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+  <script type="text/javascript">
+    (function(){
+      emailjs.init("-jtHOddqV8vT6Z7jg");
+    })();
+  </script>
+  <script src="addrecordemail.js"></script>
+
+  <script>
+    function goBack() {
+      window.location.href = "../index.html";
+    }
+    function admin() {
+      window.location.href = "../00_Index/01a_Password.html";
+    }
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b",
+      measurementId: "G-LHNTFNW14H"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    function loadData() {
+      const email = document.getElementById("email").value.trim();
+      if (!email) return alert("Please enter an email.");
+
+      db.collection("SikhdatabaseIndia").doc(email).get()
+        .then(doc => {
+          if (!doc.exists) {
+            document.getElementById("status").innerText = "No user found with this email.";
+            clearForm(false);
+            return;
+          }
+
+          const data = doc.data();
+          document.getElementById("name").value = data.Name || "";
+          document.getElementById("password").value = data.Password || "";
+          document.getElementById("mobile").value = data.Mobile || "";
+          document.getElementById("age").value = data.Age || "";
+          document.getElementById("address").value = data.Address || "";
+          document.getElementById("city").value = data.City || "";
+          document.getElementById("state").value = data.State || "";
+          document.getElementById("gender").value = data.Gender || "";
+          document.getElementById("status").innerText = "Data loaded. You can now edit and update.";
+          document.getElementById("email").disabled = true;
+        })
+        .catch(error => {
+          console.error("Error loading data: ", error);
+          document.getElementById("status").innerText = "Error loading data: " + error.message;
+        });
+    }
+
+    function clearForm(keepEmail = true) {
+      if (!keepEmail) document.getElementById("email").value = "";
+      document.getElementById("name").value = "";
+      document.getElementById("password").value = "";
+      document.getElementById("mobile").value = "";
+      document.getElementById("age").value = "";
+      document.getElementById("address").value = "";
+      document.getElementById("city").value = "";
+      document.getElementById("state").value = "";
+      document.getElementById("gender").value = "";
+    }
+
+    function resetForm() {
+      clearForm(false);
+      document.getElementById("email").disabled = false;
+      document.getElementById("status").innerText = "";
+    }
+
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function validatePassword(pwd) {
+      return /^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(pwd);
+    }
+
+    document.getElementById("editForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const name = document.getElementById("name").value.trim();
+      const password = document.getElementById("password").value;
+      const mobile = document.getElementById("mobile").value.trim();
+      const ageVal = document.getElementById("age").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const city = document.getElementById("city").value.trim();
+      const state = document.getElementById("state").value.trim();
+      const gender = document.getElementById("gender").value;
+
+      if (!email) {
+        alert("Email is required.");
+        return;
+      }
+      if (!validateEmail(email)) {
+        alert("Email address is incorrect.");
+        return;
+      }
+
+      if (!name) {
+        alert("Name is required.");
+        return;
+      }
+
+      if (!password) {
+        alert("Password is required.");
+        return;
+      }
+      if (!validatePassword(password)) {
+        alert("Password must be at least 8 characters long and contain both letters and numbers.");
+        return;
+      }
+
+      if (!mobile) {
+        alert("Mobile number is required.");
+        return;
+      }
+
+      if (!/^\d{9,}$/.test(mobile)) {
+        alert("Mobile number must be 9 digits or more.");
+        return;
+      }
+
+      if (ageVal) {
+        const age = Number(ageVal);
+        if (age <= 1 || age >= 110) {
+          alert("Age must be greater than 1 and less than 110.");
+          return;
+        }
+      }
+
+      if (address.length > 150) {
+        alert("Address cannot exceed 150 characters.");
+        return;
+      }
+
+      const data = {
+        Email: email,
+        Name: name,
+        Password: password,
+        Mobile: Number(mobile),
+        Age: ageVal ? Number(ageVal) : null,
+        Address: address,
+        City: city,
+        State: state,
+        Gender: gender,
+        Date_created: firebase.firestore.FieldValue.serverTimestamp()
+      };
+
+      db.collection("sikhdatabaseindia").doc(email).set(data)
+        .then(() => {
+          document.getElementById("status").innerText = "🎉 Congratulations! You are now a member of Sikhs in INDIA.";
+          sendEmail(email, name, mobile, ageVal, address, city, state, gender);
+          clearForm(false);
+        })
+        .catch(error => {
+          console.error("Error adding/updating data: ", error);
+          document.getElementById("status").innerText = "Error adding/updating data: " + error.message;
+        });
+    });
+
+    function sendEmail(email, name, mobile, age, address, city, state, gender) {
+      const emailParams = {
+        email: email,
+        name: name,
+        mobile: mobile,
+        age: age,
+        address: address,
+        city: city,
+        state: state,
+        gender: gender
+      };
+
+ // 1. Send confirmation to user
+  emailjs.send("service_dlzwpyu", "template_x1uksg8", emailParams)
+    .then(response => {
+      console.log("✅ Email sent to user:", response.status, response.text);
+    })
+    .catch(error => {
+      console.error("❌ Failed to send email to user:", error);
+      document.getElementById("status").innerText = "Error sending email: " + error.message;
+    });
+
+  // 2. Send backup email to admin
+  const backupParams = {
+    email: "sikhsinindia@gmail.com", // admin's email
+    name: name,
+    mobile: mobile,
+    age: age,
+    address: address,
+    city: city,
+    state: state,
+    gender: gender,
+    useremail: email // showing who filled the form
+  };
+
+  emailjs.send("service_dlzwpyu", "template_x1uksg8", backupParams)
+    .then(response => {
+      console.log("✅ Backup email sent to admin:", response.status, response.text);
+    })
+    .catch(error => {
+      console.error("❌ Failed to send backup email to admin:", error);
+    });
+} 
+  </script>
+
+</body>
+</html>
+
