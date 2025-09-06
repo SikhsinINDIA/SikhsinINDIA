@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sikh Gurus Attributes Game (No Images)</title>
+  <style>
+    /* THEME VARIABLES */
+    :root {
+      --kesari: #FF9933;
+      --black:  #000000;
+      --ink:    #1f2937;
+      --paper:  #ffffff;
+      --peel:   #fff5eb;
+      --ok:     #c8f7c5;
+      --ok-ink: #0a5d00;
+      --bad:    #fde2e2;
+      --bad-ink:#cc0000;
+    }
+
+    /* GLOBAL RESET */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--black); color: var(--black); }
+
+    /* PAGE WRAPPER */
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 12px; background: var(--paper); min-height: 100vh; position: relative; overflow: hidden; }
+
+    /* HEADER */
+    header { display: grid; gap: 6px; margin-bottom: 8px; text-align: center; }
+    h1 { margin: 0; color: var(--black); font-size: clamp(20px, 4.5vw, 28px); line-height: 1.2; }
+    .sub { color: var(--ink); font-size: 13px; }
+
+    /* STATUS + CONTROLS */
+    .topbar { display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; margin:6px 0 10px 0; color:var(--black); font-weight:700; font-size:14px; }
+    .dot { width:10px; height:10px; border-radius:50%; background:var(--kesari); }
+    .btn { border:2px solid var(--black); background:var(--paper); color:var(--black); border-radius:10px; padding:8px 12px; font-weight:700; cursor:pointer; transition: background .2s, color .2s; }
+    .btn.primary { background: var(--kesari); color: var(--black); }
+    .btn:hover { background: var(--black); color:#fff; }
+
+    /* BOARD */
+    .board { display:grid; grid-template-columns: 1fr 1fr; gap:6px; margin-top:8px; width:100%; }
+    .col { padding:6px; border-radius:10px; border:2px solid var(--black); background:var(--paper); min-width:0; }
+    .col h3 { margin:0 0 6px 0; text-align:center; font-size:14px; color:var(--ink); }
+
+    /* SLOTS & CARDS */
+    .slots, .pool { display:flex; flex-direction:column; gap:6px; }
+    .slot, .card { height:56px; border-radius:10px; display:flex; align-items:center; justify-content:flex-start; gap:6px; padding:0; margin:2px 0; font-size:12px; overflow:hidden; transition: background .18s, border-color .18s, outline .12s, box-shadow .12s; }
+    .slot { border:2px dashed var(--kesari); background:var(--peel); font-weight:800; color:var(--black); user-select:none; padding-right:6px; }
+    .slot.correct { background:var(--ok); border-color:var(--ok-ink); }
+    .slot.wrong { background:var(--bad); border-color:var(--bad-ink); }
+    .slot .slot-index { min-width:22px; height:100%; display:grid; place-items:center; padding:0 6px; background:var(--kesari); color:var(--black); font-size:12px; font-weight:900; border-right:1px solid var(--black); }
+    .slot .slot-attr { font-size:12px; font-weight:800; color:var(--ink); opacity:.95; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-left:6px; flex:1; }
+    .card { border:2px solid var(--kesari); background:var(--peel); cursor:grab; user-select:none; }
+    .card[draggable="false"] { cursor:default; }
+    .card.pending { outline:3px dashed var(--kesari); outline-offset:2px; background:#ffe7c6; box-shadow:0 0 0 2px rgba(255,153,51,.18) inset; }
+    .card .label { flex:1; height:100%; display:flex; align-items:center; padding:0 8px; font-size:14px; font-weight:700; color:var(--black); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+    /* WIN OVERLAY + CONFETTI */
+    #winOverlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85); z-index:9999; color:#fff; justify-content:center; align-items:center; flex-direction:column; text-align:center; padding:16px; }
+    #winOverlay .box { background:#fff; color:var(--black); border:2px solid var(--black); border-radius:14px; padding:18px 20px; max-width:460px; width:calc(100% - 32px); }
+    #winOverlay h2 { margin:0 0 8px 0; font-size:22px; }
+    #winOverlay .stats { margin:10px 0 14px 0; border:1.5px dashed var(--black); border-radius:12px; padding:10px 12px; font-weight:700; line-height:1.5; text-align:left; }
+    #winOverlay .actions { display:flex; align-items:center; justify-content:center; gap:10px; }
+    #confetti { position:fixed; inset:0; z-index:9998; pointer-events:none; }
+
+    /* MOBILE */
+    @media (max-width:700px) { .slot, .card { height:46px; font-size:11px; } .slot .slot-index { font-size:11px; } .card .label { font-size:12px; padding:0 6px; } }
+    @media (max-width:480px) { .slot, .card { height:44px; } .card .label { font-size:11px; padding:0 5px; } }
+
+    .back-button { width:80%; max-width:200px; height:45px; font-size:18px; background-color:#FFA500; color:black; margin:40px auto 0 auto; display:block; border:none; border-radius:8px; cursor:pointer; }
+    .back-button:hover { background-color:#FF8C00; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Match Sikh Gurus with Their Attributes</h1>
+      <div class="sub">Drag or tap a Guru card onto the attribute it best represents. Both lists are randomized every round.</div>
+    </header>
+
+    <div class="topbar" role="status" aria-live="polite">
+      <div class="dot" aria-hidden="true"></div>
+      <div>Correct: <span id="correctCount">0</span> / 5</div>
+      <div>| Trials: <span id="trialCount">0</span></div>
+      <div>| Score: <span id="scorePct">0%</span></div>
+      <button id="btnReset" class="btn" type="button">Reset</button>
+      <button id="btnShuffle" class="btn primary" type="button">New Round</button>
+    </div>
+
+    <section class="board" aria-label="Match Gurus to attributes">
+      <div class="col">
+        <h3>Attributes</h3>
+        <div id="slots" class="slots"></div>
+      </div>
+
+      <div class="col">
+        <h3>Panj Pyaras</h3>
+        <div id="pool" class="pool"></div>
+      </div>
+    </section>
+  </div>
+
+  <div id="winOverlay" role="dialog" aria-modal="true" aria-labelledby="winHeading">
+    <div class="box">
+      <h2 id="winHeading">🎉 You Matched Them All! 🎉</h2>
+      <div class="stats">
+        <div><strong>Correct:</strong> <span id="finalCorrect">5</span> / 5</div>
+        <div><strong>Trials:</strong> <span id="finalTrials">0</span></div>
+        <div><strong>Score:</strong> <span id="finalScore">100%</span></div>
+      </div>
+      <div class="actions">
+        <button id="playAgain" class="btn" type="button">Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="confetti"></canvas>
+
+  <template id="slot-tpl">
+    <div class="slot" data-id="" tabindex="0" aria-label="Attribute slot">
+      <div class="slot-index" aria-hidden="true">1</div>
+      <div class="slot-attr">Attribute</div>
+    </div>
+  </template>
+
+  <template id="card-tpl">
+    <div class="card" draggable="true" data-id="" tabindex="0" role="button" aria-label="Guru card">
+      <div class="label">Guru Name</div>
+    </div>
+  </template>
+
+  <script>
+    const ALL_ITEMS = [
+      { id: 'Panj Pyaras-1', label: 'Bhai Daya Singh Ji',   attr: 'Compassion' },
+      { id: 'Panj Pyaras-2', label: 'Bhai Dharam Singh Ji', attr: 'Righteousness' },
+      { id: 'Panj Pyaras-3', label: 'Bhai Himmat Singh Ji', attr: 'Humility' },
+      { id: 'Panj Pyaras-4', label: 'Bhai Mohkam Singh Ji', attr: 'Determination' },
+      { id: 'Panj Pyaras-5', label: 'Bhai Sahib Singh Ji',  attr: 'Mastery' },
+    ];
+
+    const slotsEl        = document.getElementById("slots");
+    const poolEl         = document.getElementById("pool");
+
+    const correctEl      = document.getElementById("correctCount");
+    const trialsEl       = document.getElementById("trialCount");
+    const scorePctEl     = document.getElementById("scorePct");
+
+    const btnReset       = document.getElementById("btnReset");
+    const btnShuffle     = document.getElementById("btnShuffle");
+
+    const winOverlay     = document.getElementById("winOverlay");
+    const playAgainBtn   = document.getElementById("playAgain");
+
+    const finalCorrectEl = document.getElementById("finalCorrect");
+    const finalTrialsEl  = document.getElementById("finalTrials");
+    const finalScoreEl   = document.getElementById("finalScore");
+
+    const confettiCanvas = document.getElementById("confetti");
+    const ctx            = confettiCanvas.getContext("2d");
+
+    let correct      = 0;
+    let trials       = 0;
+    let pendingId    = null;
+    let confettiAF   = null;
+    let confettiBits = [];
+
+    function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
+
+    function updateStatus(){
+      correctEl.textContent = String(correct);
+      trialsEl.textContent = String(trials);
+      const denom = Math.max(trials,5);
+      const scorePct = ((correct/denom)*50).toFixed(1);
+      scorePctEl.textContent = `${scorePct}%`;
+    }
+
+    function clearPending(){
+      if(!pendingId) return;
+      const el = document.querySelector(`.card[data-id="${CSS.escape(pendingId)}"]`);
+      if(el) el.classList.remove("pending");
+      pendingId = null;
+    }
+
+    function flashWrong(slot){ slot.classList.add("wrong"); setTimeout(()=>slot.classList.remove("wrong"),300); }
+
+    function buildGame(){
+      slotsEl.innerHTML = "";
+      poolEl.innerHTML = "";
+      correct = 0; trials = 0; pendingId = null; updateStatus(); hideWinOverlay(); stopConfetti();
+      const slotItems = shuffle([...ALL_ITEMS]);
+      const cardItems = shuffle([...ALL_ITEMS]);
+
+      slotItems.forEach((item, idx)=>{
+        const frag = document.importNode(document.getElementById("slot-tpl").content, true);
+        const slot = frag.querySelector(".slot");
+        const idxEl = frag.querySelector(".slot-index");
+        const attrEl = frag.querySelector(".slot-attr");
+        slot.dataset.id = item.id;
+        slot.setAttribute("aria-label", `Attribute slot: ${item.attr}`);
+        idxEl.textContent = String(idx+1);
+        attrEl.textContent = item.attr;
+        slot.addEventListener("dragover", e=>e.preventDefault());
+        slot.addEventListener("drop", (e)=>{ e.preventDefault(); const id = e.dataTransfer.getData("text/plain"); const card = document.querySelector(`.card[data-id="${CSS.escape(id)}"]`); if(!card) return; attemptPlace(card, slot); });
+        slot.addEventListener("click", ()=>{ if(!pendingId) return; const card = document.querySelector(`.card[data-id="${CSS.escape(pendingId)}"]`); if(!card){ clearPending(); return; } attemptPlace(card, slot); });
+        slot.addEventListener("keydown", (e)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); if(!pendingId) return; const card = document.querySelector(`.card[data-id="${CSS.escape(pendingId)}"]`); if(!card){ clearPending(); return; } attemptPlace(card, slot); } });
+        slotsEl.appendChild(frag);
+      });
+
+      cardItems.forEach((item)=>{
+        const frag = document.importNode(document.getElementById("card-tpl").content, true);
+        const card = frag.querySelector(".card");
+        const lab = frag.querySelector(".label");
+        card.dataset.id = item.id;
+        lab.textContent = item.label;
+        card.setAttribute("aria-label", item.label);
+        card.addEventListener("dragstart", (e)=>{ e.dataTransfer.setData("text/plain", card.dataset.id); e.dataTransfer.effectAllowed = "move"; clearPending(); });
+        card.addEventListener("click", ()=>{ if(card.getAttribute("draggable")==="false") return; if(pendingId===card.dataset.id){ clearPending(); } else { clearPending(); pendingId = card.dataset.id; card.classList.add("pending"); } });
+        card.addEventListener("keydown", (e)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); card.click(); } });
+        poolEl.appendChild(frag);
+      });
+
+      poolEl.addEventListener("click", (e)=>{ if(!e.target.closest(".card")){ clearPending(); } }, { once: true });
+    }
+
+    function attemptPlace(card, slot){
+      trials++; updateStatus();
+      if(slot.classList.contains("correct")){ flashWrong(slot); clearPending(); return; }
+      const isCorrect = (slot.dataset.id === card.dataset.id);
+      if(isCorrect){
+        slot.classList.add("correct"); card.setAttribute("draggable","false"); card.classList.remove("pending"); const existing = slot.querySelector(".card"); if(existing) poolEl.appendChild(existing); slot.appendChild(card); correct++; updateStatus(); if(correct === ALL_ITEMS.length) showWinOverlay();
+      } else { flashWrong(slot); poolEl.appendChild(card); }
+      clearPending();
+    }
+
+    const btnReset = document.getElementById("btnReset"); const btnShuffle = document.getElementById("btnShuffle"); const playAgainBtn = document.getElementById("playAgain");
+    btnReset.addEventListener("click", ()=>buildGame()); btnShuffle.addEventListener("click", ()=>buildGame()); playAgainBtn.addEventListener("click", ()=>buildGame());
+
+    function showWinOverlay(){ const safeTrials = Math.max(trials,5); const scorePct = ((correct/safeTrials)*50).toFixed(1); finalCorrectEl.textContent = String(correct); finalTrialsEl.textContent = String(trials); finalScoreEl.textContent = `${scorePct}%`; winOverlay.style.display = "flex"; startConfetti(); }
+    function hideWinOverlay(){ winOverlay.style.display = "none"; }
+
+    function sizeConfetti(){ confettiCanvas.width = window.innerWidth; confettiCanvas.height = window.innerHeight; }
+    function startConfetti(){ sizeConfetti(); confettiBits = Array.from({ length: 180 }, ()=>({ x: Math.random()*confettiCanvas.width, y: Math.random()*-confettiCanvas.height, r: 2 + Math.random()*4, vy: 1 + Math.random()*3, vx: (Math.random()-0.5)*1.5, c: `hsl(${Math.random()*360},100%,50%)` })); loopConfetti(); }
+    function stopConfetti(){ if(confettiAF){ cancelAnimationFrame(confettiAF); confettiAF = null; } ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height); }
+    function loopConfetti(){ ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height); for(const p of confettiBits){ ctx.fillStyle = p.c; ctx.fillRect(p.x,p.y,p.r,p.r); p.y += p.vy; p.x += p.vx; if(p.y > confettiCanvas.height){ p.y = -10; p.x = Math.random()*confettiCanvas.width; } } confettiAF = requestAnimationFrame(loopConfetti); }
+    window.addEventListener("resize", sizeConfetti);
+
+    buildGame();
+  </script>
+
+  <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
+  <br />
+  <script>function goBack(){ window.location.href = "../07_02_Quiz_for_Kids.html"; }</script>
+</body>
+</html>
