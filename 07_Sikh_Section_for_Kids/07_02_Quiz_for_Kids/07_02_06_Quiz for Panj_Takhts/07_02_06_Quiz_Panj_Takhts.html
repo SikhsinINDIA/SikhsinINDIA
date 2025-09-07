@@ -81,6 +81,7 @@
     .card{border:2px solid var(--kesari);background:var(--peel);cursor:grab;user-select:none;padding-left:12px}
     .card[draggable="false"]{cursor:default}
     .card.pending{outline:3px dashed var(--kesari);outline-offset:2px;background:#ffe7c6;box-shadow:0 0 0 2px rgba(255,153,51,.18) inset}
+    
     .card .label {
   flex: 1;
   height: 100%;
@@ -93,6 +94,16 @@
   white-space: normal; /* ← Allow wrapping */
   word-break: break-word; /* ← Allow long words to break */
 }
+
+.compact-text .slot-attr,
+.compact-text .label {
+  font-size: 11px !important;
+  line-height: 1.2;
+  word-break: break-word;
+  white-space: normal;
+  padding: 0 4px;
+}
+
     #winOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;color:#fff;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;padding:16px}
     #winOverlay .box{background:#fff;color:var(--black);border:2px solid var(--black);border-radius:14px;padding:18px 20px;max-width:460px;width:calc(100% - 32px)}
     #winOverlay h2{margin:0 0 8px 0;font-size:22px}
@@ -347,7 +358,9 @@ white-space: nowrap;
 
       const isTakht = card.dataset.isTakht === '1';
 if(isTakht){
-  slot.classList.add('correct');
+  slot.classList.add('correct', 'compact-text');
+  card.classList.add('compact-text');
+
   card.setAttribute('draggable','false');
   card.classList.remove('pending');
   slot.dataset.id = card.dataset.id;
