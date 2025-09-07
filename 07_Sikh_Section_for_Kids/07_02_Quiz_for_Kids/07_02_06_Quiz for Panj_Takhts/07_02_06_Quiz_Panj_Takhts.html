@@ -56,18 +56,43 @@
     .slots{display:flex;flex-direction:column;gap:6px}
     .pool{display:flex;flex-direction:column;gap:6px}
 
-    .slot,.card{height:56px;border-radius:10px;display:flex;align-items:center;justify-content:flex-start;gap:6px;padding:0;margin:2px 0;font-size:12px;transition:background .18s ease,border-color .18s ease,outline .12s ease,box-shadow .12s ease;overflow:hidden}
-    .slot{border:2px dashed var(--kesari);background:var(--peel);font-weight:800;color:var(--black);user-select:none;padding-right:6px}
+    .card, .slot {
+  min-height: 56px;
+  height: auto;
+  align-items: center;
+  padding: 8px 12px;
+  flex-wrap: wrap;
+}
+ .slot{border:2px dashed var(--kesari);background:var(--peel);font-weight:800;color:var(--black);user-select:none;padding-right:6px}
     .slot.correct{background:var(--ok);border-color:var(--ok-ink)}
     .slot.wrong{background:var(--bad);border-color:var(--bad-ink)}
     .slot .slot-index{min-width:22px;height:100%;display:grid;place-items:center;padding:0 6px;background:var(--kesari);color:var(--black);font-size:12px;font-weight:900;border-right:1px solid var(--black);user-select:none}
-    .slot .slot-attr{font-size:12px;font-weight:800;color:var(--ink);opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;user-select:none;padding-left:6px;flex:1}
-
+    .slot .slot-attr {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink);
+  opacity: .95;
+  white-space: normal; /* ← Allow wrapping */
+  word-break: break-word; /* ← Break long lines */
+  user-select: none;
+  padding-left: 6px;
+  flex: 1;
+}
     .card{border:2px solid var(--kesari);background:var(--peel);cursor:grab;user-select:none;padding-left:12px}
     .card[draggable="false"]{cursor:default}
     .card.pending{outline:3px dashed var(--kesari);outline-offset:2px;background:#ffe7c6;box-shadow:0 0 0 2px rgba(255,153,51,.18) inset}
-    .card .label{flex:1;height:100%;display:flex;align-items:center;padding:0 8px;font-size:14px;font-weight:700;color:var(--black);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
+    .card .label {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--black);
+  white-space: normal; /* ← Allow wrapping */
+  word-break: break-word; /* ← Allow long words to break */
+}
     #winOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;color:#fff;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;padding:16px}
     #winOverlay .box{background:#fff;color:var(--black);border:2px solid var(--black);border-radius:14px;padding:18px 20px;max-width:460px;width:calc(100% - 32px)}
     #winOverlay h2{margin:0 0 8px 0;font-size:22px}
@@ -85,6 +110,9 @@
       .topbar{font-size:12px;gap:10px}
       #winOverlay h2{font-size:18px}
       #winOverlay .stats{font-size:13px}
+      overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
     }
 
     @media (max-width:480px){
@@ -213,7 +241,7 @@
       correctEl.textContent = String(correct);
       trialsEl.textContent  = String(trials);
       const denom = Math.max(trials,5);
-      const scorePct = ((correct/denom)*50).toFixed(1);
+      const scorePct = ((correct/denom)*100).toFixed(1);
       scorePctEl.textContent = `${scorePct}%`;
     }
 
@@ -347,7 +375,7 @@ if(isTakht){
     /* WIN + SCORE */
     function showWinOverlay(){
       const safeTrials = Math.max(trials,5);
-      const scorePct = ((correct/safeTrials)*50).toFixed(1);
+      const scorePct = ((correct/safeTrials)*100).toFixed(1);
       finalCorrectEl.textContent = String(correct);
       finalTrialsEl.textContent = String(trials);
       finalScoreEl.textContent = `${scorePct}%`;
