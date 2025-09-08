@@ -124,6 +124,9 @@
       overflow: hidden;
 text-overflow: ellipsis;
 white-space: nowrap;
+.slots .slot {
+    min-height: 60px;  /* taller slots on tablets/phones */
+  }
     }
 
     @media (max-width:480px){
@@ -131,6 +134,9 @@ white-space: nowrap;
       .col{padding:4px}
       .slot,.card{height:44px}
       .card .label{font-size:11px;padding:0 5px}
+        .slots .slot {
+    min-height: 54px;  /* still touch-friendly */
+  }
     }
 
     .back-button{width:80%;max-width:200px;height:45px;font-size:18px;background-color:#FFA500;color:black;margin:40px auto 0 auto;display:block;border:none;border-radius:8px;cursor:pointer}
@@ -139,6 +145,15 @@ white-space: nowrap;
     .slot.correct .slot-index {
   display: none;
 }
+
+/* Make LEFT Takht slots taller */
+.slots .slot {
+  min-height: 80px;   /* ⬆️ increased height for left slots */
+  height: auto;
+  padding: 10px 14px;
+  font-size: 14px;    /* bigger font inside slots */
+}
+
   </style>
 </head>
 <body>
