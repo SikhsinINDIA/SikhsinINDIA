@@ -192,6 +192,13 @@ min-height: 72px;   /* ⬆️ increased from 56px */
       border-color: var(--ok-ink);
     }
 
+/* Make Takht card bigger inside correct slot */
+.slot.correct .card {
+  min-height: 100px;   /* taller box for readability */
+  font-size: 16px;     /* enlarge text too */
+  align-items: center; /* center text vertically */
+}
+
 .slot.correct .slot-attr,
 .slot.correct .card .label {
   font-size: 11px;
@@ -344,6 +351,11 @@ min-height: 56px; /* instead of fixed height */
   padding-bottom: 6px;
       }
 
+.slot.correct .card {
+  min-height: 80px;
+  font-size: 14px;
+}
+
       .slot .slot-index {
         min-width: 22px;
         font-size: 11px;
@@ -378,11 +390,18 @@ min-height: 56px; /* instead of fixed height */
         gap: 4px;
       }
 
+
+
       @media (max-width: 480px) {
   .slot.correct .slot-attr,
   .slot.correct .card .label {
     font-size: 10px;
   }
+
+  .slot.correct .card {
+  min-height: 72px;
+  font-size: 13px;
+}
 }
       .col {
         padding: 4px;
