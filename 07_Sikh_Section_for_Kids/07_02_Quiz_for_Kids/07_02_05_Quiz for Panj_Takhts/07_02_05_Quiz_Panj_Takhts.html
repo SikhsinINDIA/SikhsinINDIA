@@ -193,7 +193,7 @@
 
 .slot.correct .slot-attr,
 .slot.correct .card .label {
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.2;
   white-space: normal;
   word-wrap: break-word;
@@ -377,6 +377,12 @@ min-height: 56px; /* instead of fixed height */
         gap: 4px;
       }
 
+      @media (max-width: 480px) {
+  .slot.correct .slot-attr,
+  .slot.correct .card .label {
+    font-size: 10px;
+  }
+}
       .col {
         padding: 4px;
       }
