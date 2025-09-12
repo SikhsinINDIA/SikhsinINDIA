@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Drive Photo Album</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .album {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    .album img {
+      width: 100%;
+      height: 250px;          /* 🔹 fixed uniform height */
+      object-fit: cover;      /* 🔹 crops while keeping aspect ratio */
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    .album img:hover {
+      transform: scale(1.05);
+    }
+
+         /* Back button styling */
+        .back-button {
+            width: 150px;
+            height: 40px;
+            font-size: 24px;
+            background-color: #FFA500;
+            color: black;
+            margin: 40px auto 0 auto;
+            display: block;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #FF8C00;
+        }
+        
+  </style>
+</head>
+<body>
+  <h1>Guru Amar Das Ji</h1>
+  <div class="album">
+    <img src="https://drive.google.com/thumbnail?id=1V1hAa8ksknZ4TkY2ehSa90JllRDIs5R9&sz=w1000" alt="Photo 1">
+    <img src="https://drive.google.com/thumbnail?id=1ZgVPtECJdv3vdJ8X9oDYVo1IQ-x3HBUo&sz=w1000" alt="Photo 2">
+    <img src="https://drive.google.com/thumbnail?id=190WpOdOibnS75z_S83V-qmKHJuEr9yjY&sz=w1000" alt="Photo 3">
+
+    <img src="https://drive.google.com/thumbnail?id=1u03VlyVhPeeqG6wWwDlaUMuQbJraqZ8I&sz=w1000" alt="Photo 5">
+    <img src="https://drive.google.com/thumbnail?id=1T_m3WXxT18OBJnJXOStRgva6dGhKmzWb&sz=w1000" alt="Photo 6">
+    <img src="https://drive.google.com/thumbnail?id=1XZV23U_Qs1CH2N27pRj7WOwfxWpDYwRl&sz=w1000" alt="Photo 7">
+    <img src="https://drive.google.com/thumbnail?id=1DnxvwWsQAVDRS-rXPcVmtLaaPATJIws3&sz=w1000" alt="Photo 8">
+    <img src="https://drive.google.com/thumbnail?id=1034PnPSMLbngFG2S92NbC1IapSOVpRxd&sz=w1000" alt="Photo 9">
+    <img src="https://drive.google.com/thumbnail?id=15s8Q8tn-DYIG2P4aVhNjNptAnORv7L08&sz=w1000" alt="Photo 10">
+    <img src="https://drive.google.com/thumbnail?id=1O0ctC1FR-mp97VPd6BxfuC63UhgJ-GNG&sz=w1000" alt="Photo 11">
+    <img src="https://drive.google.com/thumbnail?id=11K9XyhtyEsj_bG89U_c9IAUOCbPfD6CG&sz=w1000" alt="Photo 12">
+    <img src="https://drive.google.com/thumbnail?id=1wPK313R_4Vqa3WUagMr30UE3IjH40Dhr&sz=w1000" alt="Photo 13">
+    <img src="https://drive.google.com/thumbnail?id=1TdeUAITFLgAbWY2XtIBOmJhukn6eLNkX&sz=w1000" alt="Photo 14">
+    <img src="https://drive.google.com/thumbnail?id=1qSMz5yakEkFlUhI8nvsF7gtH_HoOX2eO&sz=w1000" alt="Photo 15">
+    <img src="https://drive.google.com/thumbnail?id=1IKxN2rxaqJ_UUDLdkho6d-JQkrSTxZ0o&sz=w1000" alt="Photo 16">
+  </div>
+
+    <!-- Back Button -->
+    <button type="button" onclick="goBack()" class="back-button">
+        <b>Back</b>
+    </button>
+
+    <script>
+        function goBack() 
+        {
+            window.location.href = "./01_08_Album of Gurus.html";
+        }
+    </script>
+
+</body>
+</html>
+
+
+

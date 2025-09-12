@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Drive Photo Album</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .album {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    .album img {
+      width: 100%;
+      height: 250px;          /* 🔹 fixed uniform height */
+      object-fit: cover;      /* 🔹 crops while keeping aspect ratio */
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    .album img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>Guru Nanak Dev Ji</h1>
+  <div class="album">
+    <img src="https://drive.google.com/thumbnail?id=1gDsXfP3DOUSSw20gLjd3We2lukQk1zGa&sz=w1000" alt="Photo 1">
+    <img src="https://drive.google.com/thumbnail?id=1F2t-oNvQA-ME5EUYLSFwsaFm_hwEvFzo&sz=w1000" alt="Photo 2">
+    <img src="https://drive.google.com/thumbnail?id=1_7L_RAisadMAKDn92ubbb6FyAD1u2RhY&sz=w1000" alt="Photo 3">
+    <img src="https://drive.google.com/thumbnail?id=1ZIv5f9Sg6kls-pWcpkvi_L2LW7jUnIwe&sz=w1000" alt="Photo 4">
+  </div>
+</body>
+</html>
+
