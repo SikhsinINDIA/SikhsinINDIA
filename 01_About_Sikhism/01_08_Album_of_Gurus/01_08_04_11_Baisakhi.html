@@ -20,14 +20,16 @@
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 15px;
     }
-    .album img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
-    }
+.album img {
+  width: 100%;
+  height: auto;        /* keep original proportions */
+  max-height: 250px;   /* limit height but don’t crop */
+  object-fit: contain; /* show whole image, not clipped */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  background: #fff;    /* adds padding background if aspect ratio differs */
+}
     .album img:hover {
       transform: scale(1.05);
     }
@@ -51,30 +53,30 @@
 <body>
   <h1>Baisakhi</h1>
   <div class="album">
-    <img src="https://drive.google.com/thumbnail?id=1MB2R7qxKT3zNVNGH7SlNggBldGePzgCk&sz=w1000" alt="Photo 1">
-    <img src="https://drive.google.com/thumbnail?id=1av-qpHGoe6JztQr_cQBKdReQ2dTJ1Mrd&sz=w1000" alt="Photo 2">
-    <img src="https://drive.google.com/thumbnail?id=1Kn6E1Mgu9T4Dd0E7kBGM_6KulOdutBHa&sz=w1000" alt="Photo 3">
-    <img src="https://drive.google.com/thumbnail?id=1bQ_Yw7vgyCkRNvyxyjzRZtRnURGw0rtP&sz=w1000" alt="Photo 4">
-    <img src="https://drive.google.com/thumbnail?id=1SV_jRg8wBiplOj3iWYvrr2pYVhSCAGJG&sz=w1000" alt="Photo 5">
-    <img src="https://drive.google.com/thumbnail?id=1m-UNSs5oKYKeGg4eh8kkE_TNFq1vd9sb&sz=w1000" alt="Photo 6">
-    <img src="https://drive.google.com/thumbnail?id=1cQZDoVQWtQMikfHupHgBrFTFI8g0Pkox&sz=w1000" alt="Photo 7">
-    <img src="https://drive.google.com/thumbnail?id=1LKIa3M-PAYCbNLrVbX1DrMALsTkxzi6z&sz=w1000" alt="Photo 8">
-    <img src="https://drive.google.com/thumbnail?id=19HAS_8oXsT9PKArogchVg8xEKBrhJnO9&sz=w1000" alt="Photo 9">
-    <img src="https://drive.google.com/thumbnail?id=124bYFlbQL8xEde8k6GbaqmR_DKlkcqJW&sz=w1000" alt="Photo 10">
-    <img src="https://drive.google.com/thumbnail?id=1ur7zgcnzpGh5d5IlLDmWvOwTWc4BFofi&sz=w1000" alt="Photo 11">
-    <img src="https://drive.google.com/thumbnail?id=1ly2oq5MTIXlLT8DbwI-hRe9WymodpCtI&sz=w1000" alt="Photo 12">
-    <img src="https://drive.google.com/thumbnail?id=1CExES-sos3AlYpJdBN3IMf90Pb74uQi6&sz=w1000" alt="Photo 13">
-    <img src="https://drive.google.com/thumbnail?id=1wCyl87W91PSByGG0u_wfEetJZQfoUD6S&sz=w1000" alt="Photo 14">
-    <img src="https://drive.google.com/thumbnail?id=1XpKRoWJYLw5hSOD7qbilJBaVxTBFsgan&sz=w1000" alt="Photo 15">
-    <img src="https://drive.google.com/thumbnail?id=1gau8WZgeoPVXZpldaJ80P7epkn7T3jLa&sz=w1000" alt="Photo 16">
-    <img src="https://drive.google.com/thumbnail?id=16pxXTk0ALhi1iqFanDwj1axg68YAeMEy&sz=w1000" alt="Photo 17">
-    <img src="https://drive.google.com/thumbnail?id=1MroBh3PyKMHux_QCQ5MsJIYXHCxipt3S&sz=w1000" alt="Photo 18">
-    <img src="https://drive.google.com/thumbnail?id=1eFT1M6P88OKCjyJMQtiDCufpamUZEKR4&sz=w1000" alt="Photo 19">
-    <img src="https://drive.google.com/thumbnail?id=1z6IISmd_RpJY77ohgwVjylispVX77h3D&sz=w1000" alt="Photo 20">
-    <img src="https://drive.google.com/thumbnail?id=1gQ5O8w9sylDzgl3V3sMO8eogdY31edjf&sz=w1000" alt="Photo 21">
-    <img src="https://drive.google.com/thumbnail?id=12h-zCH6XPX8yPIL3VqiA-BVvCXgX4ASU&sz=w1000" alt="Photo 22">
-    <img src="https://drive.google.com/thumbnail?id=1IuYXz98MKBeJhyk3Mg3UUre5YkYC8iCu&sz=w1000" alt="Photo 23">
-    <img src="https://drive.google.com/thumbnail?id=1h_oM_sydNhbAMYRQEv9rjThVNJWdDPeb&sz=w1000" alt="Photo 24">
+    <img src="https://drive.google.com/thumbnail?id=1MB2R7qxKT3zNVNGH7SlNggBldGePzgCk&sz=w1000" alt="Baisakhi  1">
+    <img src="https://drive.google.com/thumbnail?id=1av-qpHGoe6JztQr_cQBKdReQ2dTJ1Mrd&sz=w1000" alt="Baisakhi  2">
+    <img src="https://drive.google.com/thumbnail?id=1Kn6E1Mgu9T4Dd0E7kBGM_6KulOdutBHa&sz=w1000" alt="Baisakhi  3">
+    <img src="https://drive.google.com/thumbnail?id=1bQ_Yw7vgyCkRNvyxyjzRZtRnURGw0rtP&sz=w1000" alt="Baisakhi  4">
+    <img src="https://drive.google.com/thumbnail?id=1SV_jRg8wBiplOj3iWYvrr2pYVhSCAGJG&sz=w1000" alt="Baisakhi  5">
+    <img src="https://drive.google.com/thumbnail?id=1m-UNSs5oKYKeGg4eh8kkE_TNFq1vd9sb&sz=w1000" alt="Baisakhi  6">
+    <img src="https://drive.google.com/thumbnail?id=1cQZDoVQWtQMikfHupHgBrFTFI8g0Pkox&sz=w1000" alt="Baisakhi  7">
+    <img src="https://drive.google.com/thumbnail?id=1LKIa3M-PAYCbNLrVbX1DrMALsTkxzi6z&sz=w1000" alt="Baisakhi  8">
+    <img src="https://drive.google.com/thumbnail?id=19HAS_8oXsT9PKArogchVg8xEKBrhJnO9&sz=w1000" alt="Baisakhi  9">
+    <img src="https://drive.google.com/thumbnail?id=124bYFlbQL8xEde8k6GbaqmR_DKlkcqJW&sz=w1000" alt="Baisakhi  10">
+    <img src="https://drive.google.com/thumbnail?id=1ur7zgcnzpGh5d5IlLDmWvOwTWc4BFofi&sz=w1000" alt="Baisakhi  11">
+    <img src="https://drive.google.com/thumbnail?id=1ly2oq5MTIXlLT8DbwI-hRe9WymodpCtI&sz=w1000" alt="Baisakhi  12">
+    <img src="https://drive.google.com/thumbnail?id=1CExES-sos3AlYpJdBN3IMf90Pb74uQi6&sz=w1000" alt="Baisakhi  13">
+    <img src="https://drive.google.com/thumbnail?id=1wCyl87W91PSByGG0u_wfEetJZQfoUD6S&sz=w1000" alt="Baisakhi  14">
+    <img src="https://drive.google.com/thumbnail?id=1XpKRoWJYLw5hSOD7qbilJBaVxTBFsgan&sz=w1000" alt="Baisakhi  15">
+    <img src="https://drive.google.com/thumbnail?id=1gau8WZgeoPVXZpldaJ80P7epkn7T3jLa&sz=w1000" alt="Baisakhi  16">
+    <img src="https://drive.google.com/thumbnail?id=16pxXTk0ALhi1iqFanDwj1axg68YAeMEy&sz=w1000" alt="Baisakhi  17">
+    <img src="https://drive.google.com/thumbnail?id=1MroBh3PyKMHux_QCQ5MsJIYXHCxipt3S&sz=w1000" alt="Baisakhi  18">
+    <img src="https://drive.google.com/thumbnail?id=1eFT1M6P88OKCjyJMQtiDCufpamUZEKR4&sz=w1000" alt="Baisakhi  19">
+    <img src="https://drive.google.com/thumbnail?id=1z6IISmd_RpJY77ohgwVjylispVX77h3D&sz=w1000" alt="Baisakhi  20">
+    <img src="https://drive.google.com/thumbnail?id=1gQ5O8w9sylDzgl3V3sMO8eogdY31edjf&sz=w1000" alt="Baisakhi  21">
+    <img src="https://drive.google.com/thumbnail?id=12h-zCH6XPX8yPIL3VqiA-BVvCXgX4ASU&sz=w1000" alt="Baisakhi  22">
+    <img src="https://drive.google.com/thumbnail?id=1IuYXz98MKBeJhyk3Mg3UUre5YkYC8iCu&sz=w1000" alt="Baisakhi  23">
+    <img src="https://drive.google.com/thumbnail?id=1h_oM_sydNhbAMYRQEv9rjThVNJWdDPeb&sz=w1000" alt="Baisakhi  24">
   </div>
 
   <!-- Back Button -->

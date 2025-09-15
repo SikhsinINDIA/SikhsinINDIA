@@ -20,14 +20,16 @@
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 15px;
     }
-    .album img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
-    }
+   .album img {
+  width: 100%;
+  height: auto;        /* keep original proportions */
+  max-height: 250px;   /* limit height but don’t crop */
+  object-fit: contain; /* show whole image, not clipped */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  background: #fff;    /* adds padding background if aspect ratio differs */
+}
     .album img:hover {
       transform: scale(1.05);
     }
@@ -51,19 +53,19 @@
 <body>
   <h1>Guru Gobind Singh Ji - Gurupurab</h1>
   <div class="album">
-    <img src="https://drive.google.com/thumbnail?id=1mJgk6LYy-sDgt7qGLeO0XsIif0Yj5bmZ&sz=w1000" alt="Photo 1">
-    <img src="https://drive.google.com/thumbnail?id=1vZFnD_p6TPQFzkvQSWEGmlaSOoIN-xwA&sz=w1000" alt="Photo 2">
-    <img src="https://drive.google.com/thumbnail?id=1F3Z2zoZL5ghv_FPfu1XJYAM6wu7xIWK2&sz=w1000" alt="Photo 3">
-    <img src="https://drive.google.com/thumbnail?id=1Z8CneBDVIGV8uUrlcvXcBRw-_SG_hBGl&sz=w1000" alt="Photo 4">
-    <img src="https://drive.google.com/thumbnail?id=19fuszezt233BWbk_a6MhfK88YN_bHvDD&sz=w1000" alt="Photo 5">
-    <img src="https://drive.google.com/thumbnail?id=18ItHohUl2lNbuWYVd9UiXGoDGWzVeoMK&sz=w1000" alt="Photo 6">
-    <img src="https://drive.google.com/thumbnail?id=1HQX2pWgOYuJiT498eDGoEkpa-9Z9cPw7&sz=w1000" alt="Photo 7">
-    <img src="https://drive.google.com/thumbnail?id=1XtzRbig5WOtjlqRLHZLy_hLffkBD3gGO&sz=w1000" alt="Photo 8">
-    <img src="https://drive.google.com/thumbnail?id=1QBKpwcD7bsjjGVj_NyONj1iO6UBGuUm1&sz=w1000" alt="Photo 9">
-    <img src="https://drive.google.com/thumbnail?id=15VqcbS-_6fclBkR_QbThwkcjlF_UJBMA&sz=w1000" alt="Photo 10">
-    <img src="https://drive.google.com/thumbnail?id=1B4k9y7zbx20HT0LbgNgeKCDZZyfmFKCh&sz=w1000" alt="Photo 11">
-    <img src="https://drive.google.com/thumbnail?id=1MVWiJ1XNS8sveZs7wQjqeeDPJUjP_zic&sz=w1000" alt="Photo 12">
-    <img src="https://drive.google.com/thumbnail?id=1geJDx4FZmIMLVao9Rma0M079AA8DTxID&sz=w1000" alt="Photo 13">
+    <img src="https://drive.google.com/thumbnail?id=1mJgk6LYy-sDgt7qGLeO0XsIif0Yj5bmZ&sz=w1000" alt="Guru Gobind Singh Ji Gurupurab 1">
+    <img src="https://drive.google.com/thumbnail?id=1vZFnD_p6TPQFzkvQSWEGmlaSOoIN-xwA&sz=w1000" alt="Guru Gobind Singh Ji Gurupurab 2">
+    <img src="https://drive.google.com/thumbnail?id=1F3Z2zoZL5ghv_FPfu1XJYAM6wu7xIWK2&sz=w1000" alt="Guru Gobind Singh Ji Gurupurab 3">
+    <img src="https://drive.google.com/thumbnail?id=1Z8CneBDVIGV8uUrlcvXcBRw-_SG_hBGl&sz=w1000" alt="Guru Gobind Singh Ji Gurupurab 4">
+    <img src="https://drive.google.com/thumbnail?id=19fuszezt233BWbk_a6MhfK88YN_bHvDD&sz=w1000" alt="Guru Gobind Singh Ji Gurupurab 5">
+    <img src="https://drive.google.com/thumbnail?id=18ItHohUl2lNbuWYVd9UiXGoDGWzVeoMK&sz=w1000" alt="Guru Gobind Singh Ji Gurupurab 6">
+    <img src="https://drive.google.com/thumbnail?id=1HQX2pWgOYuJiT498eDGoEkpa-9Z9cPw7&sz=w1000" alt="Guru Gobind Singh Ji Gurupurab 7">
+    <img src="https://drive.google.com/thumbnail?id=1XtzRbig5WOtjlqRLHZLy_hLffkBD3gGO&sz=w1000" alt="Guru Gobind Singh Ji Gurupurab 8">
+    <img src="https://drive.google.com/thumbnail?id=1QBKpwcD7bsjjGVj_NyONj1iO6UBGuUm1&sz=w1000" alt="Guru Gobind Singh Ji Gurupurab 9">
+    <img src="https://drive.google.com/thumbnail?id=15VqcbS-_6fclBkR_QbThwkcjlF_UJBMA&sz=w1000" alt="Guru Gobind Singh Ji Gurupurab 10">
+    <img src="https://drive.google.com/thumbnail?id=1B4k9y7zbx20HT0LbgNgeKCDZZyfmFKCh&sz=w1000" alt="Guru Gobind Singh Ji Gurupurab 11">
+    <img src="https://drive.google.com/thumbnail?id=1MVWiJ1XNS8sveZs7wQjqeeDPJUjP_zic&sz=w1000" alt="Guru Gobind Singh Ji Gurupurab 12">
+    <img src="https://drive.google.com/thumbnail?id=1geJDx4FZmIMLVao9Rma0M079AA8DTxID&sz=w1000" alt="Guru Gobind Singh Ji Gurupurab 13">
   </div>
 
   <!-- Back Button -->

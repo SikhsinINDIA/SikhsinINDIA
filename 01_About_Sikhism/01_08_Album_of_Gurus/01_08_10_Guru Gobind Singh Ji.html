@@ -20,14 +20,16 @@
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 15px;
     }
-    .album img {
-      width: 100%;
-      height: 250px;          /* 🔹 fixed uniform height */
-      object-fit: cover;      /* 🔹 crops while keeping aspect ratio */
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
-    }
+.album img {
+  width: 100%;
+  height: auto;        /* keep original proportions */
+  max-height: 250px;   /* limit height but don’t crop */
+  object-fit: contain; /* show whole image, not clipped */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  background: #fff;    /* adds padding background if aspect ratio differs */
+}
     .album img:hover {
       transform: scale(1.05);
     }
@@ -54,31 +56,31 @@
 <body>
   <h1>Guru Gobind Singh Ji</h1>
   <div class="album">
-    <img src="https://drive.google.com/thumbnail?id=1RXGsnlJ52MgME2pl8SImi0tmjxAO4TWA&sz=w1000" alt="Photo 1">
-    <img src="https://drive.google.com/thumbnail?id=1QcUm_Fk9O6TZHY-2EqVt9u_qILyVYhPN&sz=w1000" alt="Photo 2">
-    <img src="https://drive.google.com/thumbnail?id=1gCQi2dxEi_-xf7yZ23qpD2CDvOy1aYE_&sz=w1000" alt="Photo 3">
-    <img src="https://drive.google.com/thumbnail?id=18itjGwQ90Dn8sYjl9_-MHDJF6h5Un6Xn&sz=w1000" alt="Photo 4">
-    <img src="https://drive.google.com/thumbnail?id=1B6j3vMWBDRR-mgtsMMc8cjdNNbSkQhhX&sz=w1000" alt="Photo 5">
-    <img src="https://drive.google.com/thumbnail?id=1Oz7NyIDhUi8RVd3RozbB3UG4IWdDx14d&sz=w1000" alt="Photo 6">
-    <img src="https://drive.google.com/thumbnail?id=1IZ1-_MynV1vf5Ivz329LJMZDXInt6vXT&sz=w1000" alt="Photo 7">
-    <img src="https://drive.google.com/thumbnail?id=1Vrirs9-Lbk_00hBK7fjjz45gtVjU39pM&sz=w1000" alt="Photo 8">
-    <img src="https://drive.google.com/thumbnail?id=1uKH_-gZPkXgh3j1i_XuxnYw9aKhxXwr2&sz=w1000" alt="Photo 9">
-    <img src="https://drive.google.com/thumbnail?id=1B1Yx2vXSZmb4U_xeid2M2Xyewyzlk0rB&sz=w1000" alt="Photo 10">
-    <img src="https://drive.google.com/thumbnail?id=1POAAz8kFVhkhL1HIO4WFwCMcfERGU-Nh&sz=w1000" alt="Photo 11">
-    <img src="https://drive.google.com/thumbnail?id=1EzSRwllUT8uioPK5_7QL20uljDgavOif&sz=w1000" alt="Photo 12">
-    <img src="https://drive.google.com/thumbnail?id=1Q_2TthzzZwwSDx0yCFuDVngX_Teh2IaN&sz=w1000" alt="Photo 13">
-    <img src="https://drive.google.com/thumbnail?id=1DEs5IizHGKjTdWmF1te-oCLbqx1WFKPS&sz=w1000" alt="Photo 14">
-    <img src="https://drive.google.com/thumbnail?id=1sMgR5nfoUqIEXvVHbURJXlh2oCM0lLkg&sz=w1000" alt="Photo 15">
-    <img src="https://drive.google.com/thumbnail?id=1sX1LXFDQkqlxGRWXBh0wboRtCcEZ2n4E&sz=w1000" alt="Photo 16">
-    <img src="https://drive.google.com/thumbnail?id=12lgRIFVxrV19xNH33JkG7Y3oJfR1Eyjp&sz=w1000" alt="Photo 17">
-    <img src="https://drive.google.com/thumbnail?id=1vpmtYgrDguX_KH6m6Dg5KoO-5bf2WshG&sz=w1000" alt="Photo 18">
-    <img src="https://drive.google.com/thumbnail?id=1R2Vvdg0PHLVB3dDASVzwaOgYA_AJvNpM&sz=w1000" alt="Photo 19">
-    <img src="https://drive.google.com/thumbnail?id=1jTC0QN5sygk76cbFWj11BsdI92IA_7Dx&sz=w1000" alt="Photo 20">
-    <img src="https://drive.google.com/thumbnail?id=1VCwXhthIAV8e-KmzCwJh5GL9fiGEdCo7&sz=w1000" alt="Photo 21">
-    <img src="https://drive.google.com/thumbnail?id=1gc1uqC6VMuLoe5zIRV7hQzOGajj4AxRv&sz=w1000" alt="Photo 22">
-    <img src="https://drive.google.com/thumbnail?id=1ZqyzY4tKWAWP9ZWl0G1r74gnxdf9ivaJ&sz=w1000" alt="Photo 23">
-    <img src="https://drive.google.com/thumbnail?id=1ZQWXheGpH878Gvg4BH_yBapIk_ZHElgQ&sz=w1000" alt="Photo 24">
-    <img src="https://drive.google.com/thumbnail?id=1e4jRDpdGWQCJCO5j3D6pV29bGAdVUeRD&sz=w1000" alt="Photo 25">
+    <img src="https://drive.google.com/thumbnail?id=1RXGsnlJ52MgME2pl8SImi0tmjxAO4TWA&sz=w1000" alt="Guru Gobind Singh Ji  1">
+    <img src="https://drive.google.com/thumbnail?id=1QcUm_Fk9O6TZHY-2EqVt9u_qILyVYhPN&sz=w1000" alt="Guru Gobind Singh Ji  2">
+    <img src="https://drive.google.com/thumbnail?id=1gCQi2dxEi_-xf7yZ23qpD2CDvOy1aYE_&sz=w1000" alt="Guru Gobind Singh Ji  3">
+    <img src="https://drive.google.com/thumbnail?id=18itjGwQ90Dn8sYjl9_-MHDJF6h5Un6Xn&sz=w1000" alt="Guru Gobind Singh Ji  4">
+    <img src="https://drive.google.com/thumbnail?id=1B6j3vMWBDRR-mgtsMMc8cjdNNbSkQhhX&sz=w1000" alt="Guru Gobind Singh Ji  5">
+    <img src="https://drive.google.com/thumbnail?id=1Oz7NyIDhUi8RVd3RozbB3UG4IWdDx14d&sz=w1000" alt="Guru Gobind Singh Ji  6">
+    <img src="https://drive.google.com/thumbnail?id=1IZ1-_MynV1vf5Ivz329LJMZDXInt6vXT&sz=w1000" alt="Guru Gobind Singh Ji  7">
+    <img src="https://drive.google.com/thumbnail?id=1Vrirs9-Lbk_00hBK7fjjz45gtVjU39pM&sz=w1000" alt="Guru Gobind Singh Ji  8">
+    <img src="https://drive.google.com/thumbnail?id=1uKH_-gZPkXgh3j1i_XuxnYw9aKhxXwr2&sz=w1000" alt="Guru Gobind Singh Ji  9">
+    <img src="https://drive.google.com/thumbnail?id=1B1Yx2vXSZmb4U_xeid2M2Xyewyzlk0rB&sz=w1000" alt="Guru Gobind Singh Ji  10">
+    <img src="https://drive.google.com/thumbnail?id=1POAAz8kFVhkhL1HIO4WFwCMcfERGU-Nh&sz=w1000" alt="Guru Gobind Singh Ji  11">
+    <img src="https://drive.google.com/thumbnail?id=1EzSRwllUT8uioPK5_7QL20uljDgavOif&sz=w1000" alt="Guru Gobind Singh Ji  12">
+    <img src="https://drive.google.com/thumbnail?id=1Q_2TthzzZwwSDx0yCFuDVngX_Teh2IaN&sz=w1000" alt="Guru Gobind Singh Ji  13">
+    <img src="https://drive.google.com/thumbnail?id=1DEs5IizHGKjTdWmF1te-oCLbqx1WFKPS&sz=w1000" alt="Guru Gobind Singh Ji  14">
+    <img src="https://drive.google.com/thumbnail?id=1sMgR5nfoUqIEXvVHbURJXlh2oCM0lLkg&sz=w1000" alt="Guru Gobind Singh Ji  15">
+    <img src="https://drive.google.com/thumbnail?id=1sX1LXFDQkqlxGRWXBh0wboRtCcEZ2n4E&sz=w1000" alt="Guru Gobind Singh Ji  16">
+    <img src="https://drive.google.com/thumbnail?id=12lgRIFVxrV19xNH33JkG7Y3oJfR1Eyjp&sz=w1000" alt="Guru Gobind Singh Ji  17">
+    <img src="https://drive.google.com/thumbnail?id=1vpmtYgrDguX_KH6m6Dg5KoO-5bf2WshG&sz=w1000" alt="Guru Gobind Singh Ji  18">
+    <img src="https://drive.google.com/thumbnail?id=1R2Vvdg0PHLVB3dDASVzwaOgYA_AJvNpM&sz=w1000" alt="Guru Gobind Singh Ji  19">
+    <img src="https://drive.google.com/thumbnail?id=1jTC0QN5sygk76cbFWj11BsdI92IA_7Dx&sz=w1000" alt="Guru Gobind Singh Ji  20">
+    <img src="https://drive.google.com/thumbnail?id=1VCwXhthIAV8e-KmzCwJh5GL9fiGEdCo7&sz=w1000" alt="Guru Gobind Singh Ji  21">
+    <img src="https://drive.google.com/thumbnail?id=1gc1uqC6VMuLoe5zIRV7hQzOGajj4AxRv&sz=w1000" alt="Guru Gobind Singh Ji  22">
+    <img src="https://drive.google.com/thumbnail?id=1ZqyzY4tKWAWP9ZWl0G1r74gnxdf9ivaJ&sz=w1000" alt="Guru Gobind Singh Ji  23">
+    <img src="https://drive.google.com/thumbnail?id=1ZQWXheGpH878Gvg4BH_yBapIk_ZHElgQ&sz=w1000" alt="Guru Gobind Singh Ji  24">
+    <img src="https://drive.google.com/thumbnail?id=1e4jRDpdGWQCJCO5j3D6pV29bGAdVUeRD&sz=w1000" alt="Guru Gobind Singh Ji  25">
   </div>
 
     <!-- Back Button -->
