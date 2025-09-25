@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Meta description -->
+  <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+
+  <!-- Meta keywords -->
+  <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
+
+  <!-- Author -->
+  <meta name="author" content="Sikhs in India">
+
+  <!-- Robots -->
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph meta tags for social media -->
+  <meta property="og:title" content="Sikh Heritage & Traditions | Gurudwaras, Guru Nanak & Sikh Scriptures">
+  <meta property="og:description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+  <meta property="og:url" content="https://sikhsinindia.com">
+  <meta property="og:type" content="sikhsinindia.com">
+
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sikhs in India - Sikh Gurus</title>
+  <style>
+    :root {
+      --primary: #FF9933; /* Kesari */
+      --black: #000000;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--black);
+      color: var(--primary);
+    }
+
+    header {
+      background-color: var(--primary);
+      color: var(--black);
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 2rem 1rem;
+      border-top: 2px solid var(--primary);
+    }
+
+    .guru-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: var(--primary);
+      color: var(--black);
+      border-radius: 8px;
+      overflow: hidden;
+      width: 250px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .card p {
+      margin: 0.5rem;
+      font-weight: bold;
+    }
+
+    .button {
+      display: inline-block;
+      background-color: var(--black);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: var(--primary);
+      color: var(--black);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--primary);
+      color: var(--black);
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        width: 90%;
+      }
+    }
+
+      /* Back button styling */
+        .back-button {
+            width: 150px;
+            height: 40px;
+            font-size: 24px;
+            background-color: #FFA500;
+            color: black;
+            margin: 40px auto 0 auto;
+            display: block;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #FF8C00;
+        }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Divine Reflection - Journey with our Gurus</h1>
+    <!-- <p class="tagline">"Divine Reflection"</p> -->
+  </header>
+
+  <!-- Guru Nanak Dev Ji Section with Navigation -->
+  <section id="guru-angad-section">
+    <h2 class="guru-title">Guru Arjan Dev Ji</h2>
+    <div class="gallery" style="flex-direction: column; align-items: center;">
+      <div class="card" style="width: 300px;">
+        <img id="guruArjanImg" alt="Guru Nanak Dev Ji" />
+        <p id="guruArjanCaption"></p>
+      </div>
+
+      <div style="margin-top: 1rem;">
+        <button class="button" onclick="prevImage()">&#9664; Previous</button>
+        <button class="button" onclick="nextImage()">Next &#9654;</button>
+      </div>
+    </div>
+  </section>
+
+  
+
+
+ <!-- Back Button -->
+    <button type="button" onclick="goBack()" class="back-button">
+        <b>Back</b>
+    </button>
+    <br> 
+    <br>
+
+    <script>
+        function goBack() 
+        {
+            window.location.href = "./01-07-divine-reflections.html";
+        }
+    </script>
+
+
+  <footer>
+    &copy; 2025 SikhsinIndia.com - All Rights Reserved.
+  </footer>
+
+<script>
+  const guruArjanPhotos = [
+{ src: "../../pictures/01-about-sikhism/01-07-divine-reflections/05-guru-arjan-dev-ji/01-Guru Arjan Dev Ji digging up a well in village.jpg", caption: "Guru Arjan Dev Ji digging up a well in village" },
+{ src: "../../pictures/01-about-sikhism/01-07-divine-reflections/05-guru-arjan-dev-ji/02-Darbar Sahib with Guru Ji - Akbar comes to visit.jpg", caption: "Darbar Sahib with Guru Ji - Akbar comes to visit" },
+{ src: "../../pictures/01-about-sikhism/01-07-divine-reflections/05-guru-arjan-dev-ji/03-Guru Arjan Dev Ji serves the lepers at Taran Taaran Sahib.jpg", caption: "Guru Arjan Dev Ji serves the lepers at Taran Taaran Sahib" },
+{ src: "../../pictures/01-about-sikhism/01-07-divine-reflections/05-guru-arjan-dev-ji/04-Guru Arjan Dev Jee being tortured at Lahore.jpg", caption: "Guru Arjan Dev Jee being tortured at Lahore" },
+{ src: "../../pictures/01-about-sikhism/01-07-divine-reflections/05-guru-arjan-dev-ji/05-The Guru's Word is the panacea for all ills.jpg", caption: "The Guru's Word is the panacea for all ills" },
+{ src: "../../pictures/01-about-sikhism/01-07-divine-reflections/05-guru-arjan-dev-ji/06-Guru Granth Sahib Ji being carried to Harmandar Sahib.jpg", caption: "Guru Granth Sahib Ji being carried to Harmandar Sahib" },
+{ src: "../../pictures/01-about-sikhism/01-07-divine-reflections/05-guru-arjan-dev-ji/07-Parkash.jpg", caption: "Parkash" },
+{ src: "../../pictures/01-about-sikhism/01-07-divine-reflections/05-guru-arjan-dev-ji/08-Parkash-2.jpg", caption: "Parkash-2" },
+{ src: "../../pictures/01-about-sikhism/01-07-divine-reflections/05-guru-arjan-dev-ji/09-Guru Arjan Dev Ji with Aad Granth Jee.jpg", caption: "Guru Arjan Dev Ji with Aad Granth Jee" },
+{ src: "../../pictures/01-about-sikhism/01-07-divine-reflections/05-guru-arjan-dev-ji/10-Guru Granth is Guru, Guru Arjan Dev Ji sits next to the Guru.jpg", caption: "Guru Granth is Guru, Guru Arjan Dev Ji sits next to the Guru" },
+{ src: "../../pictures/01-about-sikhism/01-07-divine-reflections/05-guru-arjan-dev-ji/11-Guru Ji recites the Aad Granth.jpg", caption: "Guru Ji recites the Aad Granth" },
+{ src: "../../pictures/01-about-sikhism/01-07-divine-reflections/05-guru-arjan-dev-ji/12-Guru Arjan Dev Jee sitting on hot plate enduring torture wit.jpg", caption: "Guru Arjan Dev Jee sitting on hot plate enduring torture" },
+{ src: "../../pictures/01-about-sikhism/01-07-divine-reflections/05-guru-arjan-dev-ji/13-Guru Arjan Jee boiled and tortured.jpg", caption: "Guru Arjan Jee boiled and tortured" },
+{ src: "../../pictures/01-about-sikhism/01-07-divine-reflections/05-guru-arjan-dev-ji/14-Guru Arjan Dev Ji's Shaheedi.jpg", caption: "Guru Arjan Dev Ji's Shaheedi" },
+
+];
+
+
+  let currentIndex = 0;
+
+  function showImage(index) {
+    const img = document.getElementById("guruArjanImg");
+    const caption = document.getElementById("guruArjanCaption");
+
+    img.src = guruArjanPhotos[index].src;
+    caption.textContent =  guruArjanPhotos[index].caption ;
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % guruArjanPhotos.length;
+    showImage(currentIndex);
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + guruArjanPhotos.length) % guruArjanPhotos.length;
+    showImage(currentIndex);
+  }
+  document.addEventListener("DOMContentLoaded", () => showImage(0));
+</script>
+
+  
+
+</body>
+</html>
+
+
+
+
