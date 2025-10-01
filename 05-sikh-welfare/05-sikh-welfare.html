@@ -518,16 +518,21 @@
 </script>
 
 <!-- Back and Admin Buttons -->
-<button type="button" onclick="goBack()" style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">Back</button>
-<br>
+<!-- <button type="button" onclick="goBack()" style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">Back</button> -->
+<!-- <br> -->
 <button type="button" onclick="admin()" style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px 20px 0 auto; text-align: center;">Admin</button>
 
-<script>
-  function goBack() {
-    window.location.href = "../index.html";
-    <a href="../index.html"> </a>
-  }
 
+  <!-- function goBack() {
+    window.location.href = "../index.html";
+  } -->
+
+<!-- <a href="../index.html" class="back-button" style="display: block; text-align: center; text-decoration: none; line-height: 25px;"> -->
+<a href="../index.html" class="back-button" style="width: 100px; height: 24px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center; line-height: 25px; border-radius: 8px; text-decoration: none;">
+    <b>Back</b>
+</a>
+
+<script>
   function admin() {
     window.location.href = "../05-sikh-welfare/05a-password.html";
   }

@@ -348,12 +348,14 @@
   <button type="button" onclick="clearForm()" style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black;">
     Clear
   </button>
-  
+
 </div>
-     
+
     </form>
   </div>
-
+       <a href="../index.html" class="back-button" style="width: 150px; height: 36px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center; line-height: 35px; border-radius: 8px; text-decoration: none;">
+    <b>Back</b>
+</a>
   <script>
     document.getElementById("sevadar-form").addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -386,10 +388,12 @@
       document.getElementById("docId").value = '';
     }
 
-    function goBack() {
-      window.location.href = "../index.html";
-          <a href="../index.html"> </a>
-    }
+    // function goBack() {
+    //   window.location.href = "../index.html";
+    //       <a href="../index.html"> </a>
+    // }
+
+
 
     function admin() {
       window.location.href = "../06-sevadars/06a-password-sikh-sewadars.html";
@@ -397,12 +401,12 @@
   </script>
 
 <!-- Back Button in Center -->
-<div style="text-align: center;">
+<!-- <div style="text-align: center;">
   <button type="button" onclick="goBack()" 
     style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black;">
     Back
   </button>
-</div>
+</div> -->
 
 <!-- Admin Button at Bottom Right of Page -->
 <div style="text-align: right;">
