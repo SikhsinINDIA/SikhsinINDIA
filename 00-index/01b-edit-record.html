@@ -223,14 +223,22 @@
     </div>
 
     <p id="status"></p>
+    <br>
+          <a href="./01-add-record.html" class="back-button" 
+    style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
+           color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
+           line-height: 35px; border-radius: 8px; text-decoration: none; 
+           border: 2px solid black;">
+    <b>Back</b>
+  </a>
   </form>
 
-  <button 
+  <!-- <button 
     type="button" 
     onclick="goBack()" 
     style="width: 150px; height:60px; font-size: 36px; background-color: #FF9933; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">
     Back
-  </button>
+  </button> -->
 
   <div class="footnote">
     <p>NOTE: You must fill in all mandatory fields (marked with *). Please verify your details carefully before submitting. After submitting, your data is stored in our secure database and can be updated later.</p>
@@ -442,9 +450,11 @@ function formatDate(timestamp) {
         });
     }
 
-    function goBack() {
-      window.location.href = "./01_AddRecord.html";
-    }
+
+
+    // function goBack() {
+    //   window.location.href = "./01-add-record.html";
+    // }
 
     window.onload = loadAllRecords;
   </script>
