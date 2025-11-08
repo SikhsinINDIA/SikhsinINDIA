@@ -5,86 +5,195 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Sikh Turban (Dastar) — Significance & How-to</title>
   <meta name="description" content="Overview of the Sikh turban (dastar), its history, significance, styles, tying instructions and training services.">
-  <style>
-    :root{
-      --kesari:#FF9933;
-      --black:#000000;
-      --max-width:1100px;
-    }
-.style-item {
-    border: 2px solid #ddd;
+ <style>
+  :root {
+    --kesari: #FF9933;
+    --black: #000000;
+    --max-width: 1100px;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; padding: 0; }
+  body {
+    background: var(--kesari);
+    color: var(--black);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .wrap { 
+    max-width: var(--max-width);
+    margin: 0 auto; 
+    padding: 20px;
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px;
+    border: 6px solid var(--black);
+    background: transparent;
+  }
+  header .title {
+    font-size: clamp(22px, 5vw, 34px);
+    font-weight: 800;
+    letter-spacing: 0.6px;
+  }
+  header .tag {
+    font-size: clamp(14px, 2.5vw, 16px);
+    opacity: 0.95;
+  }
+
+  nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 10px 16px;
+    border: 2px solid var(--black);
+    background: var(--black);
+    color: var(--kesari);
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.2s ease-in-out;
+  }
+  .btn:hover { opacity: 0.9; }
+  .btn.secondary { background: transparent; color: var(--black); }
+
+  main { margin-top: 18px; }
+  section {
+    margin-bottom: 18px;
+    padding: 14px;
+    border: 4px solid var(--black);
     border-radius: 12px;
-    padding: 10px;
-    width: 250px;
+    background: transparent;
+  }
+
+  h2 { margin: 0 0 8px; font-size: 20px; }
+  h3 { margin: 6px 0; font-size: 16px; }
+  p, li { font-size: 16px; }
+
+  /* Trainers grid */
+  .trainers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    padding: 14px;
+    border: 3px solid var(--black);
+    border-radius: 10px;
+    background: transparent;
+  }
+  .card h4 { margin: 4px 0; font-size: 18px; }
+  .meta { font-size: 14px; margin-top: 6px; }
+
+  /* Turban style blocks */
+  .styles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .style-item {
+    padding: 20px;
+    border: 2px dashed var(--black);
+    border-radius: 10px;
     text-align: center;
+    font-weight: 600;
     background-color: #fafafa;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   }
-
   .style-item img {
     width: 100%;
-    height: 150px;
-    object-fit: cover; /* keeps the image proportion inside rectangle */
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+
+  /* Step-by-step list */
+  .steps {
+    counter-reset: step;
+    display: block;
+  }
+  .steps li {
+    list-style: none;
+    margin: 12px 0;
+    padding-left: 44px;
+    position: relative;
+  }
+  .steps li:before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    border: 2px solid var(--black);
+    background: var(--black);
+    color: var(--kesari);
+    font-weight: 800;
+  }
+  .steps img {
+    width: 100%;
+    height: auto;
     border-radius: 8px;
     margin-top: 8px;
   }
-    /* Strictly two colors used: --kesari and --black */
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0}
-    body{
-      background:var(--kesari);
-      color:var(--black);
-      font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-      line-height:1.45;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+
+  footer {
+    padding: 14px;
+    margin-top: 18px;
+    border-top: 4px solid var(--black);
+    text-align: center;
+    font-size: 14px;
+  }
+
+  /* Back button responsive */
+  footer button {
+    width: 160px;
+    height: 44px;
+    font-size: 18px;
+    background-color: #FFA500;
+    color: black;
+    border: none;
+    border-radius: 6px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  footer button:hover {
+    opacity: 0.85;
+  }
+
+  /* ✅ Responsive adjustments */
+  @media (max-width: 768px) {
+    .wrap { padding: 14px; }
+    .btn { font-size: 14px; padding: 8px 12px; }
+    .style-item { font-size: 14px; }
+    h2 { font-size: 18px; }
+  }
+
+  @media (max-width: 480px) {
+    header { padding: 10px; }
+    .btn { width: 100%; text-align: center; }
+    .style-item { padding: 14px; }
+    footer button {
+      width: 100%;
+      font-size: 16px;
     }
+  }
+</style>
 
-    .wrap{max-width:var(--max-width);margin:0 auto;padding:20px}
-
-    header{
-      display:flex;flex-direction:column;gap:10px;padding:18px;border:6px solid var(--black);background:transparent
-    }
-    header .title{font-size:clamp(20px,4.5vw,34px);font-weight:800;letter-spacing:0.6px}
-    header .tag{font-size:clamp(12px,2.2vw,16px);opacity:0.95}
-
-    nav{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{
-      display:inline-block;padding:8px 14px;border:2px solid var(--black);background:var(--black);color:var(--kesari);text-decoration:none;font-weight:700;border-radius:8px;font-size:14px}
-    .btn.secondary{background:transparent;color:var(--black)}
-
-    main{margin-top:18px}
-    section{margin-bottom:18px;padding:14px;border:4px solid var(--black);border-radius:12px;background:transparent}
-    h2{margin:0 0 8px 0;font-size:18px}
-    h3{margin:6px 0;font-size:16px}
-    p{margin:8px 0}
-    ul,ol{margin:8px 0 8px 20px;padding:0}
-
-    /* Trainer cards */
-    .trainers{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
-    .card{padding:12px;border:3px solid var(--black);border-radius:10px;background:transparent}
-    .card h4{margin:4px 0}
-    .meta{font-size:13px;margin-top:6px}
-
-    /* Styles list grid */
-    .styles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
-    .style-item{padding:38px;border:2px dashed var(--black);border-radius:8px;text-align:center;font-weight:600}
-
-    /* How-to steps */
-    .steps{counter-reset:step;display:block}
-    .steps li{list-style:none;margin:10px 0;padding-left:40px;position:relative}
-    .steps li:before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;display:inline-grid;place-items:center;border:2px solid var(--black);background:var(--black);color:var(--kesari);font-weight:800}
-
-    footer{padding:12px;margin-top:12px;border-top:4px solid var(--black);text-align:center;font-size:13px}
-
-    /* Responsive adjustments */
-    @media (max-width:520px){
-      .wrap{padding:12px}
-      header{padding:12px}
-      .btn{padding:8px 10px;font-size:13px}
-      section{padding:10px}
-    }
-  </style>
 </head>
 <body>
   <div class="wrap">
@@ -142,7 +251,7 @@
 
       <section id="styles">
         <h2>List of Common Styles</h2>
-             <div>
+            
                         <div class="styles-grid">
          
                                 <div class="style-item">
@@ -153,8 +262,10 @@
                                         width="460"
                                         height="280">
                                 </div>  
+                          </div>         
                                           
-
+              <br>
+                 <div class="styles-grid">
                                  <div class="style-item">
                                       Pagg Style Parna
                                         <br>
@@ -164,9 +275,9 @@
                                         height="280">
                                 </div>  
                         </div>
-              </div>
+       
               <br>
-              <div>
+ 
                         <div class="styles-grid">
          
                                 <div class="style-item">
@@ -177,8 +288,9 @@
                                         width="460"
                                         height="280">
                                 </div>  
-                                          
-
+                               </div>            
+              <br>
+                   <div class="styles-grid">
                                  <div class="style-item">
                                       Watta Wali Dastar (Wrinkled)
                                         <br>
@@ -188,9 +300,9 @@
                                         height="280">
                                 </div>  
                         </div>
-              </div>
+      
                             <br>
-              <div>
+     
                         <div class="styles-grid">
          
                                 <div class="style-item">
@@ -201,20 +313,22 @@
                                         width="460"
                                         height="280">
                                 </div>  
-                                          
-
+                              </div>  
+                                     <br>         
+  <div class="styles-grid">
                                  <div class="style-item">
-                                      Barnala Shahi
+                                      Barnala Shahi1
                                         <br>
+  
                                         <img src="../pictures/02-sikh-heritage/02-04b-sikh-turbans/06-barnala-shahi.jpg"
                                         alt="Barnala Shahi"
-                                        width="460"
-                                        height="280">
+                                        width="260"
+                                        height="480">
                                 </div>  
                         </div>
-              </div>
+       
                             <br>
-              <div>
+     
                         <div class="styles-grid">
          
                                 <div class="style-item">
@@ -225,8 +339,9 @@
                                         width="460"
                                         height="280">
                                 </div>  
-                                          
-
+                                </div>
+                                   <br>
+                                        <div class="styles-grid">
                                  <div class="style-item">
                                       Morni Style (Flared)
                                         <br>
@@ -236,9 +351,9 @@
                                         height="280">
                                 </div>  
                         </div>
-              </div>
+  
                             <br>
-              <div>
+  
                         <div class="styles-grid">
          
                                 <div class="style-item">
@@ -249,8 +364,10 @@
                                         width="460"
                                         height="280">
                                 </div>  
+                                </div>
                                           
-
+  <br>
+                   <div class="styles-grid">
                                  <div class="style-item">
                                       Simple Modern Pagg
                                         <br>
@@ -260,11 +377,11 @@
                                         height="280">
                                 </div>  
                         </div>
-              </div>     
+ 
                             <br>                     
-              <div>
+       
                         <!-- <div class="styles-grid"> -->
-         
+              <div class="styles-grid">
                                 <div class="style-item">
                                       Nihang Turban
                                         <br>
@@ -273,7 +390,7 @@
                                         width="460"
                                         height="280">
                                 </div>  
-                                          
+                                         </div> 
 
                                  <!-- <div class="style-item">
                                       Simple Modern Pagg
@@ -284,7 +401,7 @@
                                         height="280">
                                 </div>   -->
                         <!-- </div> -->
-              </div>   
+          
 
 
  
@@ -301,44 +418,69 @@
           <article class="card">
             <h4>MS Turban — Jashanpreet Singh</h4>
             <div class="meta">SHOP NO 11225, Near Basti Jodhewal, St 2, New Subhash Nagar-141007</div>
-            <div class="meta">Email: <a href="mailto:msturbancentre@gmail.com" style="color:var(--black);font-weight:700">msturbancentre@gmail.com</a></div>
-            <div class="meta">Mobile: <a href="tel:+916284981006" style="color:var(--black);font-weight:700">+91 62849 81006</a></div>
-            <p style="margin-top:8px"><a class="btn" href="mailto:msturbancentre@gmail.com">Contact</a></p>
+            <div class="meta">Email: <a href="mailto:msturbancentre@gmail.com"
+                style="color:var(--black);font-weight:700">msturbancentre@gmail.com</a></div>
+            <div class="meta">Mobile: <a href="tel:+916284981006" style="color:var(--black);font-weight:700">+91 62849
+                81006</a></div>
+            <p style="margin-top:8px"><a class="btn" href="mailto:msturbancentre@gmail.com"></a></p>
           </article>
-
-          <article class="card">
-            <h4>Gill Turban Coach</h4>
-            <div class="meta">Outram Lines, GTB Nagar, Delhi, India 110009</div>
-            <div class="meta">Email: <a href="mailto:info@turbantrainers.com" style="color:var(--black);font-weight:700">info@turbantrainers.com</a></div>
-            <div class="meta">Mobile: <a href="tel:+919953172004" style="color:var(--black);font-weight:700">+91 99531 72004</a></div>
-            <p style="margin-top:8px"><a class="btn" href="mailto:info@turbantrainers.com">Contact</a></p>
-          </article>
-
-          <article class="card">
-            <h4>Ferozpuria Dastar Academy — Amritsar</h4>
-            <div class="meta">L1-1176 New Kapoor Nagar Sultanwind Road, Amritsar</div>
-            <div class="meta">Mobile: <a href="tel:+919027400004" style="color:var(--black);font-weight:700">+91 90274 00004</a></div>
-            <p style="margin-top:8px"><a class="btn" href="tel:+919027400004">Call</a></p>
-          </article>
-
-          <article class="card">
-            <h4>Khalsa Turban Tying (Facebook group)</h4>
-            <div class="meta">URL: <a href="https://www.facebook.com/turbantyingkalersurrey" style="color:var(--black);font-weight:700">facebook.com/turbantyingkalersurrey</a></div>
-            <div class="meta">Email: <a href="mailto:Gurpreet.turban82@gmail.com" style="color:var(--black);font-weight:700">Gurpreet.turban82@gmail.com</a></div>
-            <div class="meta">Mobile: <a href="tel:+17787136098" style="color:var(--black);font-weight:700">+1 778-713-6098</a></div>
-            <p style="margin-top:8px"><a class="btn" href="https://www.facebook.com/turbantyingkalersurrey">Visit</a></p>
-          </article>
-
-          <article class="card">
-            <h4>Singh Turban Tying NJ (Facebook group)</h4>
-            <div class="meta">URL: <a href="https://www.facebook.com/singhturbanNJ" style="color:var(--black);font-weight:700">facebook.com/singhturbanNJ</a></div>
-            <div class="meta">Email: <a href="mailto:singhturban.nj@gmail.com" style="color:var(--black);font-weight:700">singhturban.nj@gmail.com</a></div>
-            <div class="meta">Mobile: <a href="tel:+17327102704" style="color:var(--black);font-weight:700">+1 732-710-2704</a></div>
-            <p style="margin-top:8px"><a class="btn" href="https://www.facebook.com/singhturbanNJ">Visit</a></p>
-          </article>
-
+        </div>
+      
+        <!-- </section> -->
+        <br>
+        <!-- <section id="trainers"> -->
+        <article class="card">
+          <h4>Gill Turban Coach</h4>
+          <div class="meta">Outram Lines, GTB Nagar, Delhi, India 110009</div>
+          <div class="meta">Email: <a href="mailto:info@turbantrainers.com"
+              style="color:var(--black);font-weight:700">info@turbantrainers.com</a></div>
+          <div class="meta">Mobile: <a href="tel:+919953172004" style="color:var(--black);font-weight:700">+91 99531 72004</a>
+          </div>
+          <p style="margin-top:8px"><a class="btn" href="mailto:info@turbantrainers.com"></a></p>
+        </article>
+        </div>
+        <!-- </section>   -->
+        <br>
+        <!-- <section id="trainers"> -->
+        <article class="card">
+          <h4>Ferozpuria Dastar Academy — Amritsar</h4>
+          <div class="meta">L1-1176 New Kapoor Nagar Sultanwind Road, Amritsar</div>
+          <div class="meta">Mobile: <a href="tel:+919027400004" style="color:var(--black);font-weight:700">+91 90274 00004</a>
+          </div>
+          <p style="margin-top:8px"><a class="btn" href="tel:+919027400004"></a></p>
+        </article>
+        </div>
+        <!-- </section> -->
+        <br>
+        <!-- <section id="trainers"> -->
+        <article class="card">
+          <h4>Khalsa Turban Tying (Facebook group)</h4>
+          <div class="meta">URL: <a href="https://www.facebook.com/turbantyingkalersurrey"
+              style="color:var(--black);font-weight:700">facebook.com/turbantyingkalersurrey</a></div>
+          <div class="meta">Email: <a href="mailto:Gurpreet.turban82@gmail.com"
+              style="color:var(--black);font-weight:700">Gurpreet.turban82@gmail.com</a></div>
+          <div class="meta">Mobile: <a href="tel:+17787136098" style="color:var(--black);font-weight:700">+1 778-713-6098</a>
+          </div>
+          <p style="margin-top:8px"><a class="btn" href="https://www.facebook.com/turbantyingkalersurrey"></a></p>
+        </article>
+        </div>
+        <!-- </section> -->
+        <br>
+        <!-- <section id="trainers"> -->
+        <article class="card">
+          <h4>Singh Turban Tying NJ (Facebook group)</h4>
+          <div class="meta">URL: <a href="https://www.facebook.com/singhturbanNJ"
+              style="color:var(--black);font-weight:700">facebook.com/singhturbanNJ</a></div>
+          <div class="meta">Email: <a href="mailto:singhturban.nj@gmail.com"
+              style="color:var(--black);font-weight:700">singhturban.nj@gmail.com</a></div>
+          <div class="meta">Mobile: <a href="tel:+17327102704" style="color:var(--black);font-weight:700">+1 732-710-2704</a>
+          </div>
+          <p style="margin-top:8px"><a class="btn" href="https://www.facebook.com/singhturbanNJ"></a></p>
+        </article>
         </div>
       </section>
+      <br>
+
 
       <section id="howto">
         <p>Patka: A patka is considered a kid's turban or one that you can wear to play active sports in.   </p> 
@@ -378,15 +520,66 @@
                                    <img src="../pictures/02-sikh-heritage/02-04b-sikh-turbans/dastar-6.jpg"
                                         alt="dastar-6"
                                         width="460"
-                                        height="280"> </ol>
+                                        height="280"> 
+                                              <br>
+                                    <img src="../pictures/02-sikh-heritage/02-04b-sikh-turbans/dastar.jpg"
+                                        alt="dastar"
+                                        width="460"
+                                        height="150"> </ol>
+                                      
+           
 
         <h2 style="margin-top:14px">How to Tie a Sikh Pagri (step-by-step)</h2>
         <ol class="steps">
-          <li>Hold one corner of the turban fabric in your mouth to free both hands.</li>
-          <li>Wrap the turban around the back of the head and up over the hair knot, coming back to the front.</li>
-          <li>Loop around again, alternating higher and lower on each side to create layered folds.</li>
-          <li>Continue wrapping and layering to produce the desired shape; create a stair-step effect if preferred.</li>
-          <li>When you reach the end of the cloth, tuck the tail into the top folds and secure the tail from the mouth by tucking it into the back layers. Adjust for fit.</li>
+          <li>Hold one corner of your turban in your mouth. <br>Holding one end in your mouth allows you to have both hands free while you wrap the turban.</li>
+          <img src="../pictures/02-sikh-heritage/02-04b-sikh-turbans/pagri-1.jpg"
+                                        alt="pagri-1"
+                                        width="460"
+                                        height="280"> 
+          <li>Wrap the turban around the back of your head and then up around your hair knot. <br>Pull it back around to the front, going around the knot. Let it go lower around the front of your head on one side.</li>
+          <img src="../pictures/02-sikh-heritage/02-04b-sikh-turbans/pagri-2.jpg"
+                                        alt="pagri-2"
+                                        width="460"
+                                        height="280"> 
+        <li>Loop it around your head again. <br>This time, go higher on the other side of your head as you loop around. Pull it down lower on the other side.   </li>
+  <img src="../pictures/02-sikh-heritage/02-04b-sikh-turbans/pagri-3.jpg"
+                                        alt="pagri-3"
+                                        width="460"
+                                        height="280"> 
+          <li>Keep wrapping it around your head. Layer it as you go. <br>In fact, you can create a stair-step effect on the front of your head as you wrap it around. </li>
+          <img src="../pictures/02-sikh-heritage/02-04b-sikh-turbans/pagri-4.jpg"
+                                        alt="pagri-4"
+                                        width="460"
+                                        height="280"> 
+                                        <li>Tuck in the end.<br> When you come to the end of your turban cloth, tuck it into the top folds of the turban. <br>Be sure to pull it tight so it stays in place. </li>
+           <img src="../pictures/02-sikh-heritage/02-04b-sikh-turbans/pagri-5.jpg"
+                                        alt="pagri-5"
+                                        width="460"
+                                        height="280"> 
+                                        <li>Tuck the end from your mouth in.<br> Pull the end around the back, and tuck it under the back folds of the fabric.  </li>
+          <img src="../pictures/02-sikh-heritage/02-04b-sikh-turbans/pagri-6a.jpg"
+                                        alt="pagri-6a"
+                                        width="460"
+                                        height="280"> 
+                                        <br>
+                                        <br>
+          <img src="../pictures/02-sikh-heritage/02-04b-sikh-turbans/pagri-6b.jpg"
+                                        alt="pagri-6b"
+                                        width="460"
+                                        height="280"> 
+                                      
+                                     
+          <li>Make adjustments. Stretch out the turban so it fits well over all parts of your head. </li>
+
+                                        <img src="../pictures/02-sikh-heritage/02-04b-sikh-turbans/pagri-7.jpg"
+                                        alt="pagri-7"
+                                        width="460"
+                                        height="280"> 
+                                        <br>
+          <img src="../pictures/02-sikh-heritage/02-04b-sikh-turbans/pagri.jpg"
+                                        alt="pagri"
+                                        width="460"
+                                        height="150"> 
         </ol>
       </section>
 
@@ -394,8 +587,20 @@
 
     <footer>
       <div>© Sikh Turban Guide</div>
-        <!-- Back Button -->
-  <a href="./02-sikh-heritage.html" class="back-button">⬅ Back</a>
+
+  <!-- Back Button -->
+    <button 
+      type="button" 
+      onclick="goBack()" 
+      style="width: 150px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">
+      Back
+    </button>
+
+    <script>
+      function goBack() {
+        window.location.href = "./02-sikh-heritage.html";
+      }
+    </script>
     </footer>
   </div>
 </body>
