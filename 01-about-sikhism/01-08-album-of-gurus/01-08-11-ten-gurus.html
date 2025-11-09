@@ -54,6 +54,55 @@
     .album img:hover {
       transform: scale(1.05);
     }
+
+
+/* Lightbox styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(255,255,255,0.3);
+    }
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 18px;
+      background: #FF9933;
+      color: black;
+      border: 2px solid #000;
+      border-radius: 6px;
+      padding: 8px 14px;
+      cursor: pointer;
+    }
+    .download-btn {
+      margin-top: 20px;
+      background: #fff;
+      color: black;
+      border: 2px solid #000;
+      font-weight: bold;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .download-btn:hover {
+      background: #FF9933;
+    }
+
     .back-button {
       width: 150px;
       height: 40px;
@@ -75,22 +124,53 @@
   <h1>Ten Gurus</h1>
 
   <div class="album">
-    <img src="https://drive.google.com/thumbnail?id=1i2KSs-dm6LR9zsRp85_D4t7TJMJVzuJg&sz=w1000" alt="Ten Gurus 1">
-    <img src="https://drive.google.com/thumbnail?id=1yLjHd8ASGcuMVCdcoGANH-Si5yCfHm_V&sz=w1000" alt="Ten Gurus 2">
-    <img src="https://drive.google.com/thumbnail?id=1aAJV6DwGMSWvJlGBtykcKv9WRmVBlylv&sz=w1000" alt="Ten Gurus 3">
-    <img src="https://drive.google.com/thumbnail?id=17yZUDKQ6Cvld6FnyHmYi5vgQItfB3qSG&sz=w1000" alt="Ten Gurus 4">
-    <img src="https://drive.google.com/thumbnail?id=1NfmlXzJCDCOxaWrYd8pJEeeTm2AK0kwv&sz=w1000" alt="Ten Gurus 5">
-    <img src="https://drive.google.com/thumbnail?id=1WUUh_kKrqkjBH4VSza72FQFok-QP-yYk&sz=w1000" alt="Ten Gurus 6">
-    <img src="https://drive.google.com/thumbnail?id=1gsnQyjN5l3TT-7lJgVoL4MP8YSeyMZmQ&sz=w1000" alt="Ten Gurus 7">
-    <img src="https://drive.google.com/thumbnail?id=1oglGVTr7xgbHxJUucX-oMXxxRDWhJ8FV&sz=w1000" alt="Ten Gurus 8">
-    <img src="https://drive.google.com/thumbnail?id=1qkvpCbvSsAwd9doHVCbXDgxzssp79g6w&sz=w1000" alt="Ten Gurus 9">
-    <img src="https://drive.google.com/thumbnail?id=1cSRqEfs2SasfGqMaAD9N9fPvxzJtkEQU&sz=w1000" alt="Ten Gurus 10">
-    <img src="https://drive.google.com/thumbnail?id=1GiYoJpKCnvHhCm1ki-nu-9QR6MeoyDWW&sz=w1000" alt="Ten Gurus 11">
-<img src="https://drive.google.com/thumbnail?id=1sj2elEnpo-Zg0jwJWvNpyKcj42uXLAIp&sz=w1000" alt="Ten Gurus 12">
-<img src="https://drive.google.com/thumbnail?id=1xP_2Z0ORBk56Nssz6H45MtH1KvFzPeF7&sz=w1000" alt="Ten Gurus 13">
-<img src="https://drive.google.com/thumbnail?id=1LB78wOG7wNIOiL-QUs5VNGDx8-QmsydH&sz=w1000" alt="Ten Gurus 14">
+<img src="https://drive.google.com/thumbnail?id=1i2KSs-dm6LR9zsRp85_D4t7TJMJVzuJg&sz=w1000" data-id="1i2KSs-dm6LR9zsRp85_D4t7TJMJVzuJg" alt="Ten Gurus 1" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1yLjHd8ASGcuMVCdcoGANH-Si5yCfHm_V&sz=w1000" data-id="1yLjHd8ASGcuMVCdcoGANH-Si5yCfHm_V" alt="Ten Gurus 2" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1aAJV6DwGMSWvJlGBtykcKv9WRmVBlylv&sz=w1000" data-id="1aAJV6DwGMSWvJlGBtykcKv9WRmVBlylv" alt="Ten Gurus 3" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=17yZUDKQ6Cvld6FnyHmYi5vgQItfB3qSG&sz=w1000" data-id="17yZUDKQ6Cvld6FnyHmYi5vgQItfB3qSG" alt="Ten Gurus 4" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1NfmlXzJCDCOxaWrYd8pJEeeTm2AK0kwv&sz=w1000" data-id="1NfmlXzJCDCOxaWrYd8pJEeeTm2AK0kwv" alt="Ten Gurus 5" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1WUUh_kKrqkjBH4VSza72FQFok-QP-yYk&sz=w1000" data-id="1WUUh_kKrqkjBH4VSza72FQFok-QP-yYk" alt="Ten Gurus 6" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1gsnQyjN5l3TT-7lJgVoL4MP8YSeyMZmQ&sz=w1000" data-id="1gsnQyjN5l3TT-7lJgVoL4MP8YSeyMZmQ" alt="Ten Gurus 7" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1oglGVTr7xgbHxJUucX-oMXxxRDWhJ8FV&sz=w1000" data-id="1oglGVTr7xgbHxJUucX-oMXxxRDWhJ8FV" alt="Ten Gurus 8" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1qkvpCbvSsAwd9doHVCbXDgxzssp79g6w&sz=w1000" data-id="1qkvpCbvSsAwd9doHVCbXDgxzssp79g6w" alt="Ten Gurus 9" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1cSRqEfs2SasfGqMaAD9N9fPvxzJtkEQU&sz=w1000" data-id="1cSRqEfs2SasfGqMaAD9N9fPvxzJtkEQU" alt="Ten Gurus 10" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1GiYoJpKCnvHhCm1ki-nu-9QR6MeoyDWW&sz=w1000" data-id="1GiYoJpKCnvHhCm1ki-nu-9QR6MeoyDWW" alt="Ten Gurus 11" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1sj2elEnpo-Zg0jwJWvNpyKcj42uXLAIp&sz=w1000" data-id="1sj2elEnpo-Zg0jwJWvNpyKcj42uXLAIp" alt="Ten Gurus 12" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1xP_2Z0ORBk56Nssz6H45MtH1KvFzPeF7&sz=w1000" data-id="1xP_2Z0ORBk56Nssz6H45MtH1KvFzPeF7" alt="Ten Gurus 13" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1LB78wOG7wNIOiL-QUs5VNGDx8-QmsydH&sz=w1000" data-id="1LB78wOG7wNIOiL-QUs5VNGDx8-QmsydH" alt="Ten Gurus 14" onclick="openLightbox(this)">
+
 
   </div>
+<!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="close-btn" onclick="closeLightbox()">✕ Close</button>
+    <img id="lightbox-img" src="" alt="">
+    <a id="download-link" class="download-btn" href="#" download>⬇ Download Image</a>
+  </div>
+  <script>
+    function openLightbox(img) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const downloadLink = document.getElementById('download-link');
+
+      const fileId = img.getAttribute('data-id');
+      const fullImgUrl = `https://drive.google.com/thumbnail?id=${fileId}&sz=w2000`;
+      const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+
+      lightbox.style.display = 'flex';
+      lightboxImg.src = fullImgUrl;
+      lightboxImg.alt = img.alt;
+      downloadLink.href = downloadUrl;
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target.id === 'lightbox') closeLightbox();
+    });
+  </script>
 
   <a href="./01-08-album-of-gurus.html" class="back-button" 
    style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
