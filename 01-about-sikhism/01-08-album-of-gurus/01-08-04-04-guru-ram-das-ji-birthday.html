@@ -56,6 +56,54 @@
     .album img:hover {
       transform: scale(1.05);
     }
+
+/* Lightbox styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(255,255,255,0.3);
+    }
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 18px;
+      background: #FF9933;
+      color: black;
+      border: 2px solid #000;
+      border-radius: 6px;
+      padding: 8px 14px;
+      cursor: pointer;
+    }
+    .download-btn {
+      margin-top: 20px;
+      background: #fff;
+      color: black;
+      border: 2px solid #000;
+      font-weight: bold;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .download-btn:hover {
+      background: #FF9933;
+    }
+
     .back-button {
       width: 150px;
       height: 40px;
@@ -76,75 +124,106 @@
 <body>
   <h1>Guru Ram Das Ji</h1>
 <div class="album">
-    <img src="https://drive.google.com/thumbnail?id=1dF-gtPnXso8G2-lOkkBYylRMU-TGMjtq&sz=w1000" alt="Guru Ram Das Ji 1">
-    <img src="https://drive.google.com/thumbnail?id=1wQRuFm36B0QIC3VvlG4d63hRcvxreDF9&sz=w1000" alt="Guru Ram Das Ji 2">
-    <img src="https://drive.google.com/thumbnail?id=1FpV2b9bvdHBr1zGOgFUEcCCFCx32BZzi&sz=w1000" alt="Guru Ram Das Ji 3">
-    <img src="https://drive.google.com/thumbnail?id=1qjy_fdhzKPmleYnyGgpbQkDMd2kMtwxE&sz=w1000" alt="Guru Ram Das Ji 4">
-    <img src="https://drive.google.com/thumbnail?id=1uiVcSHOGP0urM6BKkiaRhAXLrIj4Tp1G&sz=w1000" alt="Guru Ram Das Ji 5">
-    <img src="https://drive.google.com/thumbnail?id=1uuLQc0gFniel3NmLNM1c5le1xMWCBWGr&sz=w1000" alt="Guru Ram Das Ji 6">
-    <img src="https://drive.google.com/thumbnail?id=1n0_Azx5xUGZLGl32MIM71-0Hqd8XBhs6&sz=w1000" alt="Guru Ram Das Ji 7">
-    <img src="https://drive.google.com/thumbnail?id=1nulscrsYl2MXwcr1Z1_lmtOBzUINwNqD&sz=w1000" alt="Guru Ram Das Ji 8">
-    <img src="https://drive.google.com/thumbnail?id=1krefTGupB8dLvJS2fgBFTclCMVrJ-WXD&sz=w1000" alt="Guru Ram Das Ji 9">
-    <img src="https://drive.google.com/thumbnail?id=1demgikyzTUYHOqgCgvPvrwfs_gCUjcfI&sz=w1000" alt="Guru Ram Das Ji 10">
-    <img src="https://drive.google.com/thumbnail?id=1LSamMcG5l5SeBI-hFguBupug5Bp1JXGN&sz=w1000" alt="Guru Ram Das Ji 11">
-    <img src="https://drive.google.com/thumbnail?id=1tlbwTnT-H9U-imfB6buJcNSXrWrbV9-T&sz=w1000" alt="Guru Ram Das Ji 12">
-    <img src="https://drive.google.com/thumbnail?id=1vjUHpSLa7KVNlCK5To3X3ZIgMudU1Nt7&sz=w1000" alt="Guru Ram Das Ji 13">
-    <img src="https://drive.google.com/thumbnail?id=1uwwseXQuIKcRhhoYYMr1DW7soThaHG_9&sz=w1000" alt="Guru Ram Das Ji 14">
-    <img src="https://drive.google.com/thumbnail?id=1RCnHUteO6kpNDKtBGq1WY2HHho1E3ZCm&sz=w1000" alt="Guru Ram Das Ji 15">
-    <img src="https://drive.google.com/thumbnail?id=14n9E78RAEW2g0IgN9UztbUU013yboJvL&sz=w1000" alt="Guru Ram Das Ji 16">
-    <img src="https://drive.google.com/thumbnail?id=18pSPmxK3DFRf5JkYqtQCNnn_OfeuQhwf&sz=w1000" alt="Guru Ram Das Ji 17">
-    <img src="https://drive.google.com/thumbnail?id=1pknTsc9io6YQog_jbShyuTTq2YjBzPvQ&sz=w1000" alt="Guru Ram Das Ji 18">
-    <img src="https://drive.google.com/thumbnail?id=1rUHeIi1Lzo2cMXpn7pAlA0uJl8E05bOI&sz=w1000" alt="Guru Ram Das Ji 19">
-    <img src="https://drive.google.com/thumbnail?id=1hutQm9yIXirNXpGX1lko75WT9LrnEFEq&sz=w1000" alt="Guru Ram Das Ji 20">
-    <img src="https://drive.google.com/thumbnail?id=1ztwQEszQ58Jv8Nc0E11iEaF52Dyl0rHl&sz=w1000" alt="Guru Ram Das Ji 21">
-    <img src="https://drive.google.com/thumbnail?id=1wVZxjSWChf0s4r3TBRsVHUnKj2Qt7yj4&sz=w1000" alt="Guru Ram Das Ji 22">
-    <img src="https://drive.google.com/thumbnail?id=1JKaud6_5lMegb_3yNWfxPFoqMa3vgB44&sz=w1000" alt="Guru Ram Das Ji 23">
-    <img src="https://drive.google.com/thumbnail?id=112_HhuWSHdgomkq5CH7UfxHUTQoqriwX&sz=w1000" alt="Guru Ram Das Ji 24">
-    <img src="https://drive.google.com/thumbnail?id=1jyvB36ZYqdLzUpUgXNwHaID2tSevkKRV&sz=w1000" alt="Guru Ram Das Ji 25">
-    <img src="https://drive.google.com/thumbnail?id=1BBB1bZUPggDxWVrSrb-IRQIeblPi19YO&sz=w1000" alt="Guru Ram Das Ji 26">
-    <img src="https://drive.google.com/thumbnail?id=1fSV9rgzJYKAb3dclNANdfrr8ZL-8PdR1&sz=w1000" alt="Guru Ram Das Ji 27">
-    <img src="https://drive.google.com/thumbnail?id=1Di7leOhcZlo9Bi8LShPeY6Iy_TbNi4bw&sz=w1000" alt="Guru Ram Das Ji 28">
-    <img src="https://drive.google.com/thumbnail?id=1g4FzqGvgu2GN-4Mpvt17cc5lz9zWyzB5&sz=w1000" alt="Guru Ram Das Ji 29">
-    <img src="https://drive.google.com/thumbnail?id=1gNURVeNAlT0SZq-e1J_NKfHOy6KyKcX8&sz=w1000" alt="Guru Ram Das Ji 30">
-    <img src="https://drive.google.com/thumbnail?id=1lTGjTNigS9jFQ0IRwmtWXRmyEEIiw93A&sz=w1000" alt="Guru Ram Das Ji 31">
-    <img src="https://drive.google.com/thumbnail?id=1rb4Ac-CpNKMUzPWOoy6LNzdmBqBZ4MZK&sz=w1000" alt="Guru Ram Das Ji 32">
-    <img src="https://drive.google.com/thumbnail?id=1yf3tqFAG4WY2hDUjHx3yiZAOTeYbOD2E&sz=w1000" alt="Guru Ram Das Ji 33">
-    <img src="https://drive.google.com/thumbnail?id=17p3hQ2_Vl6Key7Ub_6A1wvygl3fPQjA5&sz=w1000" alt="Guru Ram Das Ji 34">
-    <img src="https://drive.google.com/thumbnail?id=1PvhILO3s-0ZtY_QWuKgIkVo8yb0BdbN0&sz=w1000" alt="Guru Ram Das Ji 35">
-    <img src="https://drive.google.com/thumbnail?id=1Xj5jQ3HzcNM8Drg-NHtkCGuAFs33VYpP&sz=w1000" alt="Guru Ram Das Ji 36">
-    <img src="https://drive.google.com/thumbnail?id=1XjmaUJP_AK0vunRMSx6TrG_C0J2_uYnO&sz=w1000" alt="Guru Ram Das Ji 37">
-    <img src="https://drive.google.com/thumbnail?id=1kKOGMbyq1TJNbLDFqwnZiscybF6smK1x&sz=w1000" alt="Guru Ram Das Ji 38">
-    <img src="https://drive.google.com/thumbnail?id=1cXfM9TgVlRf9ISWM1rFt17UiWVkSNc5p&sz=w1000" alt="Guru Ram Das Ji 39">
-    <img src="https://drive.google.com/thumbnail?id=16cZ8FMvpjxOyQZkRL48Z-ruC3tSjV2Ig&sz=w1000" alt="Guru Ram Das Ji 40">
-    <img src="https://drive.google.com/thumbnail?id=1JxY5uXZbu_UgsZMVXcItKh-OLxIoHeCx&sz=w1000" alt="Guru Ram Das Ji 41">
-    <img src="https://drive.google.com/thumbnail?id=10cjWug21n7neoxYUb55EdhdQczBpeW7P&sz=w1000" alt="Guru Ram Das Ji 42">
-    <img src="https://drive.google.com/thumbnail?id=1rFLt4zcKDCBWnAPviCpOSxTPpdkCNP7M&sz=w1000" alt="Guru Ram Das Ji 43">
-    <img src="https://drive.google.com/thumbnail?id=1vApmhzhlcWCrf7Ee98Xbeww4W452CWFB&sz=w1000" alt="Guru Ram Das Ji 44">
-    <img src="https://drive.google.com/thumbnail?id=1hK041oIMSik7woPPoGFsbJkWUYBKe64k&sz=w1000" alt="Guru Ram Das Ji 45">
-    <img src="https://drive.google.com/thumbnail?id=17CGIekFqE94VKfXs-YV3ZneR8HVNuhTj&sz=w1000" alt="Guru Ram Das Ji 46">
-    <img src="https://drive.google.com/thumbnail?id=1jXRiblXh7yXuh8zo6MwHyA4JCw27YXEE&sz=w1000" alt="Guru Ram Das Ji 47">
-    <img src="https://drive.google.com/thumbnail?id=1mruDsy1ty9-o8IiHwRfNYl0BbE6nyrTz&sz=w1000" alt="Guru Ram Das Ji 48">
-    <img src="https://drive.google.com/thumbnail?id=13uuVDbPhXINjjLBqRwJ8-Zu8QrzUjc9B&sz=w1000" alt="Guru Ram Das Ji 49">
-    <img src="https://drive.google.com/thumbnail?id=1UlCc1EKhHPmHHchGU0CtumThslcj-Wta&sz=w1000" alt="Guru Ram Das Ji 50">
-    <img src="https://drive.google.com/thumbnail?id=1Z3R1BsIcuqLgbwEDRvoJep12_8z6xdu-&sz=w1000" alt="Guru Ram Das Ji 51">
-    <img src="https://drive.google.com/thumbnail?id=12fCZ2nxSPLNw8yvHR_r99dIQtKIIZiOp&sz=w1000" alt="Guru Ram Das Ji 52">
-    <img src="https://drive.google.com/thumbnail?id=1_j0FwgK79zm9A0M0YZQxx5TPT183GhL9&sz=w1000" alt="Guru Ram Das Ji 53">
-    <img src="https://drive.google.com/thumbnail?id=1Q8lFT60r2FaLsKytzShVYa9OSaqUIyuT&sz=w1000" alt="Guru Ram Das Ji 54">
-    <img src="https://drive.google.com/thumbnail?id=1TpDLqCqFPGAOOF1CuXAIbTIuYoI9CCJp&sz=w1000" alt="Guru Ram Das Ji 55">
-    <img src="https://drive.google.com/thumbnail?id=1WbDv2DMN5j8PZvMoDspiLNwF54aq0HE7&sz=w1000" alt="Guru Ram Das Ji 56">
-    <img src="https://drive.google.com/thumbnail?id=1HIlNFJQcINgGG8zE-qbhI_VnUeDKAg7f&sz=w1000" alt="Guru Ram Das Ji 57">
-    <img src="https://drive.google.com/thumbnail?id=1dQS1b8i_IcyW7oXEduSOjDcPoHecxCFy&sz=w1000" alt="Guru Ram Das Ji 58">
-    <img src="https://drive.google.com/thumbnail?id=17_soncvtHK_B3UxB_Wmk5zvnW1BF6eDp&sz=w1000" alt="Guru Ram Das Ji 59">
-    <img src="https://drive.google.com/thumbnail?id=1kLVZT7KuQ-hFJibKcsFHXkkWVcMTafnD&sz=w1000" alt="Guru Ram Das Ji 60">
-    <img src="https://drive.google.com/thumbnail?id=1JOD8y3-yoSd-oKi_L8KlzNZgAHZDl8GL&sz=w1000" alt="Guru Ram Das Ji 61">
-    <img src="https://drive.google.com/thumbnail?id=1Md6WOYD6Jw8BnoImyXLhSiDZbNKufDbd&sz=w1000" alt="Guru Ram Das Ji 62">
-    <img src="https://drive.google.com/thumbnail?id=13iwNkNP2sv_k99tFu06bzCBEtp6E_PsE&sz=w1000" alt="Guru Ram Das Ji 63">
+ <img src="https://drive.google.com/thumbnail?id=1dF-gtPnXso8G2-lOkkBYylRMU-TGMjtq&sz=w1000" data-id="1dF-gtPnXso8G2-lOkkBYylRMU-TGMjtq" alt="Guru Ram Das Ji 1" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1wQRuFm36B0QIC3VvlG4d63hRcvxreDF9&sz=w1000" data-id="1wQRuFm36B0QIC3VvlG4d63hRcvxreDF9" alt="Guru Ram Das Ji 2" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1FpV2b9bvdHBr1zGOgFUEcCCFCx32BZzi&sz=w1000" data-id="1FpV2b9bvdHBr1zGOgFUEcCCFCx32BZzi" alt="Guru Ram Das Ji 3" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1qjy_fdhzKPmleYnyGgpbQkDMd2kMtwxE&sz=w1000" data-id="1qjy_fdhzKPmleYnyGgpbQkDMd2kMtwxE" alt="Guru Ram Das Ji 4" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1uiVcSHOGP0urM6BKkiaRhAXLrIj4Tp1G&sz=w1000" data-id="1uiVcSHOGP0urM6BKkiaRhAXLrIj4Tp1G" alt="Guru Ram Das Ji 5" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1uuLQc0gFniel3NmLNM1c5le1xMWCBWGr&sz=w1000" data-id="1uuLQc0gFniel3NmLNM1c5le1xMWCBWGr" alt="Guru Ram Das Ji 6" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1n0_Azx5xUGZLGl32MIM71-0Hqd8XBhs6&sz=w1000" data-id="1n0_Azx5xUGZLGl32MIM71-0Hqd8XBhs6" alt="Guru Ram Das Ji 7" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1nulscrsYl2MXwcr1Z1_lmtOBzUINwNqD&sz=w1000" data-id="1nulscrsYl2MXwcr1Z1_lmtOBzUINwNqD" alt="Guru Ram Das Ji 8" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1krefTGupB8dLvJS2fgBFTclCMVrJ-WXD&sz=w1000" data-id="1krefTGupB8dLvJS2fgBFTclCMVrJ-WXD" alt="Guru Ram Das Ji 9" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1demgikyzTUYHOqgCgvPvrwfs_gCUjcfI&sz=w1000" data-id="1demgikyzTUYHOqgCgvPvrwfs_gCUjcfI" alt="Guru Ram Das Ji 10" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1LSamMcG5l5SeBI-hFguBupug5Bp1JXGN&sz=w1000" data-id="1LSamMcG5l5SeBI-hFguBupug5Bp1JXGN" alt="Guru Ram Das Ji 11" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1tlbwTnT-H9U-imfB6buJcNSXrWrbV9-T&sz=w1000" data-id="1tlbwTnT-H9U-imfB6buJcNSXrWrbV9-T" alt="Guru Ram Das Ji 12" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1vjUHpSLa7KVNlCK5To3X3ZIgMudU1Nt7&sz=w1000" data-id="1vjUHpSLa7KVNlCK5To3X3ZIgMudU1Nt7" alt="Guru Ram Das Ji 13" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1uwwseXQuIKcRhhoYYMr1DW7soThaHG_9&sz=w1000" data-id="1uwwseXQuIKcRhhoYYMr1DW7soThaHG_9" alt="Guru Ram Das Ji 14" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1RCnHUteO6kpNDKtBGq1WY2HHho1E3ZCm&sz=w1000" data-id="1RCnHUteO6kpNDKtBGq1WY2HHho1E3ZCm" alt="Guru Ram Das Ji 15" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=14n9E78RAEW2g0IgN9UztbUU013yboJvL&sz=w1000" data-id="14n9E78RAEW2g0IgN9UztbUU013yboJvL" alt="Guru Ram Das Ji 16" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=18pSPmxK3DFRf5JkYqtQCNnn_OfeuQhwf&sz=w1000" data-id="18pSPmxK3DFRf5JkYqtQCNnn_OfeuQhwf" alt="Guru Ram Das Ji 17" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1pknTsc9io6YQog_jbShyuTTq2YjBzPvQ&sz=w1000" data-id="1pknTsc9io6YQog_jbShyuTTq2YjBzPvQ" alt="Guru Ram Das Ji 18" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1rUHeIi1Lzo2cMXpn7pAlA0uJl8E05bOI&sz=w1000" data-id="1rUHeIi1Lzo2cMXpn7pAlA0uJl8E05bOI" alt="Guru Ram Das Ji 19" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1hutQm9yIXirNXpGX1lko75WT9LrnEFEq&sz=w1000" data-id="1hutQm9yIXirNXpGX1lko75WT9LrnEFEq" alt="Guru Ram Das Ji 20" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1ztwQEszQ58Jv8Nc0E11iEaF52Dyl0rHl&sz=w1000" data-id="1ztwQEszQ58Jv8Nc0E11iEaF52Dyl0rHl" alt="Guru Ram Das Ji 21" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1wVZxjSWChf0s4r3TBRsVHUnKj2Qt7yj4&sz=w1000" data-id="1wVZxjSWChf0s4r3TBRsVHUnKj2Qt7yj4" alt="Guru Ram Das Ji 22" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1JKaud6_5lMegb_3yNWfxPFoqMa3vgB44&sz=w1000" data-id="1JKaud6_5lMegb_3yNWfxPFoqMa3vgB44" alt="Guru Ram Das Ji 23" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=112_HhuWSHdgomkq5CH7UfxHUTQoqriwX&sz=w1000" data-id="112_HhuWSHdgomkq5CH7UfxHUTQoqriwX" alt="Guru Ram Das Ji 24" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1jyvB36ZYqdLzUpUgXNwHaID2tSevkKRV&sz=w1000" data-id="1jyvB36ZYqdLzUpUgXNwHaID2tSevkKRV" alt="Guru Ram Das Ji 25" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1BBB1bZUPggDxWVrSrb-IRQIeblPi19YO&sz=w1000" data-id="1BBB1bZUPggDxWVrSrb-IRQIeblPi19YO" alt="Guru Ram Das Ji 26" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1fSV9rgzJYKAb3dclNANdfrr8ZL-8PdR1&sz=w1000" data-id="1fSV9rgzJYKAb3dclNANdfrr8ZL-8PdR1" alt="Guru Ram Das Ji 27" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1Di7leOhcZlo9Bi8LShPeY6Iy_TbNi4bw&sz=w1000" data-id="1Di7leOhcZlo9Bi8LShPeY6Iy_TbNi4bw" alt="Guru Ram Das Ji 28" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1g4FzqGvgu2GN-4Mpvt17cc5lz9zWyzB5&sz=w1000" data-id="1g4FzqGvgu2GN-4Mpvt17cc5lz9zWyzB5" alt="Guru Ram Das Ji 29" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1gNURVeNAlT0SZq-e1J_NKfHOy6KyKcX8&sz=w1000" data-id="1gNURVeNAlT0SZq-e1J_NKfHOy6KyKcX8" alt="Guru Ram Das Ji 30" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1lTGjTNigS9jFQ0IRwmtWXRmyEEIiw93A&sz=w1000" data-id="1lTGjTNigS9jFQ0IRwmtWXRmyEEIiw93A" alt="Guru Ram Das Ji 31" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1rb4Ac-CpNKMUzPWOoy6LNzdmBqBZ4MZK&sz=w1000" data-id="1rb4Ac-CpNKMUzPWOoy6LNzdmBqBZ4MZK" alt="Guru Ram Das Ji 32" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1yf3tqFAG4WY2hDUjHx3yiZAOTeYbOD2E&sz=w1000" data-id="1yf3tqFAG4WY2hDUjHx3yiZAOTeYbOD2E" alt="Guru Ram Das Ji 33" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=17p3hQ2_Vl6Key7Ub_6A1wvygl3fPQjA5&sz=w1000" data-id="17p3hQ2_Vl6Key7Ub_6A1wvygl3fPQjA5" alt="Guru Ram Das Ji 34" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1PvhILO3s-0ZtY_QWuKgIkVo8yb0BdbN0&sz=w1000" data-id="1PvhILO3s-0ZtY_QWuKgIkVo8yb0BdbN0" alt="Guru Ram Das Ji 35" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1Xj5jQ3HzcNM8Drg-NHtkCGuAFs33VYpP&sz=w1000" data-id="1Xj5jQ3HzcNM8Drg-NHtkCGuAFs33VYpP" alt="Guru Ram Das Ji 36" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1XjmaUJP_AK0vunRMSx6TrG_C0J2_uYnO&sz=w1000" data-id="1XjmaUJP_AK0vunRMSx6TrG_C0J2_uYnO" alt="Guru Ram Das Ji 37" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1kKOGMbyq1TJNbLDFqwnZiscybF6smK1x&sz=w1000" data-id="1kKOGMbyq1TJNbLDFqwnZiscybF6smK1x" alt="Guru Ram Das Ji 38" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1cXfM9TgVlRf9ISWM1rFt17UiWVkSNc5p&sz=w1000" data-id="1cXfM9TgVlRf9ISWM1rFt17UiWVkSNc5p" alt="Guru Ram Das Ji 39" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=16cZ8FMvpjxOyQZkRL48Z-ruC3tSjV2Ig&sz=w1000" data-id="16cZ8FMvpjxOyQZkRL48Z-ruC3tSjV2Ig" alt="Guru Ram Das Ji 40" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1JxY5uXZbu_UgsZMVXcItKh-OLxIoHeCx&sz=w1000" data-id="1JxY5uXZbu_UgsZMVXcItKh-OLxIoHeCx" alt="Guru Ram Das Ji 41" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=10cjWug21n7neoxYUb55EdhdQczBpeW7P&sz=w1000" data-id="10cjWug21n7neoxYUb55EdhdQczBpeW7P" alt="Guru Ram Das Ji 42" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1rFLt4zcKDCBWnAPviCpOSxTPpdkCNP7M&sz=w1000" data-id="1rFLt4zcKDCBWnAPviCpOSxTPpdkCNP7M" alt="Guru Ram Das Ji 43" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1vApmhzhlcWCrf7Ee98Xbeww4W452CWFB&sz=w1000" data-id="1vApmhzhlcWCrf7Ee98Xbeww4W452CWFB" alt="Guru Ram Das Ji 44" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1hK041oIMSik7woPPoGFsbJkWUYBKe64k&sz=w1000" data-id="1hK041oIMSik7woPPoGFsbJkWUYBKe64k" alt="Guru Ram Das Ji 45" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=17CGIekFqE94VKfXs-YV3ZneR8HVNuhTj&sz=w1000" data-id="17CGIekFqE94VKfXs-YV3ZneR8HVNuhTj" alt="Guru Ram Das Ji 46" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1jXRiblXh7yXuh8zo6MwHyA4JCw27YXEE&sz=w1000" data-id="1jXRiblXh7yXuh8zo6MwHyA4JCw27YXEE" alt="Guru Ram Das Ji 47" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1mruDsy1ty9-o8IiHwRfNYl0BbE6nyrTz&sz=w1000" data-id="1mruDsy1ty9-o8IiHwRfNYl0BbE6nyrTz" alt="Guru Ram Das Ji 48" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=13uuVDbPhXINjjLBqRwJ8-Zu8QrzUjc9B&sz=w1000" data-id="13uuVDbPhXINjjLBqRwJ8-Zu8QrzUjc9B" alt="Guru Ram Das Ji 49" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1UlCc1EKhHPmHHchGU0CtumThslcj-Wta&sz=w1000" data-id="1UlCc1EKhHPmHHchGU0CtumThslcj-Wta" alt="Guru Ram Das Ji 50" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1Z3R1BsIcuqLgbwEDRvoJep12_8z6xdu-&sz=w1000" data-id="1Z3R1BsIcuqLgbwEDRvoJep12_8z6xdu-" alt="Guru Ram Das Ji 51" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=12fCZ2nxSPLNw8yvHR_r99dIQtKIIZiOp&sz=w1000" data-id="12fCZ2nxSPLNw8yvHR_r99dIQtKIIZiOp" alt="Guru Ram Das Ji 52" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1_j0FwgK79zm9A0M0YZQxx5TPT183GhL9&sz=w1000" data-id="1_j0FwgK79zm9A0M0YZQxx5TPT183GhL9" alt="Guru Ram Das Ji 53" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1Q8lFT60r2FaLsKytzShVYa9OSaqUIyuT&sz=w1000" data-id="1Q8lFT60r2FaLsKytzShVYa9OSaqUIyuT" alt="Guru Ram Das Ji 54" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1TpDLqCqFPGAOOF1CuXAIbTIuYoI9CCJp&sz=w1000" data-id="1TpDLqCqFPGAOOF1CuXAIbTIuYoI9CCJp" alt="Guru Ram Das Ji 55" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1WbDv2DMN5j8PZvMoDspiLNwF54aq0HE7&sz=w1000" data-id="1WbDv2DMN5j8PZvMoDspiLNwF54aq0HE7" alt="Guru Ram Das Ji 56" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1HIlNFJQcINgGG8zE-qbhI_VnUeDKAg7f&sz=w1000" data-id="1HIlNFJQcINgGG8zE-qbhI_VnUeDKAg7f" alt="Guru Ram Das Ji 57" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1dQS1b8i_IcyW7oXEduSOjDcPoHecxCFy&sz=w1000" data-id="1dQS1b8i_IcyW7oXEduSOjDcPoHecxCFy" alt="Guru Ram Das Ji 58" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=17_soncvtHK_B3UxB_Wmk5zvnW1BF6eDp&sz=w1000" data-id="17_soncvtHK_B3UxB_Wmk5zvnW1BF6eDp" alt="Guru Ram Das Ji 59" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1kLVZT7KuQ-hFJibKcsFHXkkWVcMTafnD&sz=w1000" data-id="1kLVZT7KuQ-hFJibKcsFHXkkWVcMTafnD" alt="Guru Ram Das Ji 60" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1JOD8y3-yoSd-oKi_L8KlzNZgAHZDl8GL&sz=w1000" data-id="1JOD8y3-yoSd-oKi_L8KlzNZgAHZDl8GL" alt="Guru Ram Das Ji 61" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=1Md6WOYD6Jw8BnoImyXLhSiDZbNKufDbd&sz=w1000" data-id="1Md6WOYD6Jw8BnoImyXLhSiDZbNKufDbd" alt="Guru Ram Das Ji 62" onclick="openLightbox(this)">
+<img src="https://drive.google.com/thumbnail?id=13iwNkNP2sv_k99tFu06bzCBEtp6E_PsE&sz=w1000" data-id="13iwNkNP2sv_k99tFu06bzCBEtp6E_PsE" alt="Guru Ram Das Ji 63" onclick="openLightbox(this)">
+
 
 
 </div>
 
+<!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="close-btn" onclick="closeLightbox()">✕ Close</button>
+    <img id="lightbox-img" src="" alt="">
+    <a id="download-link" class="download-btn" href="#" download>⬇ Download Image</a>
+  </div>
+  <script>
+    function openLightbox(img) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const downloadLink = document.getElementById('download-link');
 
+      const fileId = img.getAttribute('data-id');
+      const fullImgUrl = `https://drive.google.com/thumbnail?id=${fileId}&sz=w2000`;
+      const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
 
+      lightbox.style.display = 'flex';
+      lightboxImg.src = fullImgUrl;
+      lightboxImg.alt = img.alt;
+      downloadLink.href = downloadUrl;
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target.id === 'lightbox') closeLightbox();
+    });
+  </script>
+
+  
   <a href="./01-08-album-of-gurus.html" class="back-button" 
    style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
           color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
