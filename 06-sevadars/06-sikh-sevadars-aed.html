@@ -28,6 +28,7 @@
 
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
 
   <style>
     body {
@@ -125,6 +126,10 @@
       <label>City: <input type="text" id="city" required></label>
       <label>State: <input type="text" id="state" required></label>
       <label>Photo URL: <input type="text" id="photo"></label>
+      <label>Upload Photo:
+  <input type="file" id="photoFile" accept="image/*">
+</label>
+
       <label>Video URL: <input type="text" id="video"></label>
       <button type="submit">Submit</button>
       <button type="button" onclick="clearForm()">Clear</button>
@@ -150,6 +155,7 @@
     };
 
     firebase.initializeApp(firebaseConfig);
+    const storage = firebase.storage();
     const db = firebase.firestore();
 
     async function loadSevadars() {
@@ -169,6 +175,8 @@
             <strong>Specializes:</strong> ${data.Specializes}<br>
             <strong>City:</strong> ${data.City}, <strong>State:</strong> ${data.State}</p>
             <strong>Image:</strong> ${data.Photo}<br>
+            <img src="${data.Photo}" alt="Sevadar Photo">
+
             <strong>Video:</strong> ${data.Video}, <strong>State:</strong> ${data.State}</p>
   
             <button onclick="editSevadar('${doc.id}', ${JSON.stringify(data).replace(/"/g, '&quot;')})">Edit</button>
@@ -182,31 +190,46 @@
       }
     }
 
-    document.getElementById("sevadar-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const id = document.getElementById("docId").value;
-      const data = {
-        Name: document.getElementById("name").value,
-        Mobile: document.getElementById("mobile").value,
-        Specializes: document.getElementById("specializes").value,
-        City: document.getElementById("city").value,
-        State: document.getElementById("state").value,
-        Photo: document.getElementById("photo").value,
-        Video: document.getElementById("video").value,
-      };
+document.getElementById("sevadar-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-      try {
-        if (id) {
-          await db.collection("Sikh_Sevadars").doc(id).update(data);
-        } else {
-          await db.collection("Sikh_Sevadars").add(data);
-        }
-        clearForm();
-        loadSevadars();
-      } catch (error) {
-        console.error("Error saving record:", error);
-      }
-    });
+  const id = document.getElementById("docId").value;
+  const photoFile = document.getElementById("photoFile").files[0];
+
+  let photoURL = "";
+
+  try {
+    // Upload photo if selected
+    if (photoFile) {
+      const fileName = `pictures/${Date.now()}_${photoFile.name}`;
+      const storageRef = storage.ref(fileName);
+      await storageRef.put(photoFile);
+      photoURL = await storageRef.getDownloadURL();
+    }
+
+    const data = {
+      Name: document.getElementById("name").value,
+      Mobile: document.getElementById("mobile").value,
+      Specializes: document.getElementById("specializes").value,
+      City: document.getElementById("city").value,
+      State: document.getElementById("state").value,
+      Photo: photoURL,
+      Video: document.getElementById("video").value,
+    };
+
+    if (id) {
+      await db.collection("Sikh_Sevadars_Self").doc(id).update(data);
+    } else {
+      await db.collection("Sikh_Sevadars_Self").add(data);
+    }
+
+    clearForm();
+    loadSevadars();
+
+  } catch (error) {
+    console.error("Error saving record:", error);
+  }
+});
 
     function editSevadar(id, data) {
       document.getElementById("docId").value = id;
