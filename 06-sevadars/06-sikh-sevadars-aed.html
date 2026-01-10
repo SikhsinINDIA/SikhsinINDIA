@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-    <!-- Meta description -->
-  <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <!-- Meta description -->
+  <meta name="description"
+    content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
 
   <!-- Meta keywords -->
-  <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
+  <meta name="keywords"
+    content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
 
   <!-- Author -->
   <meta name="author" content="Sikhs in India">
@@ -16,15 +19,16 @@
 
   <!-- Open Graph meta tags for social media -->
   <meta property="og:title" content="Sikh Heritage & Traditions | Gurudwaras, Guru Nanak & Sikh Scriptures">
-  <meta property="og:description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta property="og:description"
+    content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
   <meta property="og:url" content="https://sikhsinindia.com">
   <meta property="og:type" content="sikhsinindia.com">
 
-  
+
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Sikhs in India: History, Culture & Present | SikhsInIndia.com </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Sikhs in India: History, Culture & Present | SikhsInIndia.com </title>
 
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
@@ -51,21 +55,25 @@
       color: black;
     }
 
-    .content, #form-container {
+    .content,
+    #form-container {
       padding: 2rem;
       max-width: 800px;
       margin: auto;
       text-align: left;
     }
 
-    label, input, textarea {
+    label,
+    input,
+    textarea {
       display: block;
       width: 100%;
       margin-bottom: 1rem;
       font-size: 1rem;
     }
 
-    input, textarea {
+    input,
+    textarea {
       padding: 0.5rem;
       border: 1px solid #FF9933;
       border-radius: 5px;
@@ -109,8 +117,32 @@
       max-width: 250px;
       margin-top: 0.5rem;
     }
+
+    .loader {
+      width: 16px;
+      height: 16px;
+      border: 3px solid black;
+      border-top: 3px solid transparent;
+      border-radius: 50%;
+      display: inline-block;
+      animation: spin 0.8s linear infinite;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
   </style>
 </head>
+
 <body>
   <header>
     <h1>Sikh Sevadars</h1>
@@ -127,11 +159,15 @@
       <label>State: <input type="text" id="state" required></label>
       <label>Photo URL: <input type="text" id="photo"></label>
       <label>Upload Photo:
-  <input type="file" id="photoFile" accept="image/*">
-</label>
+        <input type="file" id="photoFile" accept="image/*">
+      </label>
 
       <label>Video URL: <input type="text" id="video"></label>
-      <button type="submit">Submit</button>
+      <button type="submit" id="submitBtn">
+        <span id="submitText">Submit</span>
+        <span id="loader" class="loader" style="display:none;"></span>
+      </button>
+
       <button type="button" onclick="clearForm()">Clear</button>
     </form>
   </div>
@@ -141,7 +177,8 @@
     <div id="records-container"></div>
   </div>
 
-  <button type="button" onclick="goBack()" style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto;">Back</button>
+  <button type="button" onclick="goBack()"
+    style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto;">Back</button>
 
   <script>
     const firebaseConfig = {
@@ -176,8 +213,10 @@
             <strong>City:</strong> ${data.City}, <strong>State:</strong> ${data.State}</p>
             <strong>Image:</strong> ${data.Photo}<br>
             <img src="${data.Photo}" alt="Sevadar Photo">
+            <br>
 
-            <strong>Video:</strong> ${data.Video}, <strong>State:</strong> ${data.State}</p>
+            <strong>Video:</strong> ${data.Video}<br>
+             <strong>State:</strong> ${data.State}</p>
   
             <button onclick="editSevadar('${doc.id}', ${JSON.stringify(data).replace(/"/g, '&quot;')})">Edit</button>
             <button onclick="deleteSevadar('${doc.id}')">Delete</button>
@@ -190,46 +229,53 @@
       }
     }
 
-document.getElementById("sevadar-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
+    document.getElementById("sevadar-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-  const id = document.getElementById("docId").value;
-  const photoFile = document.getElementById("photoFile").files[0];
+      setLoading(true);
 
-  let photoURL = "";
+      const id = document.getElementById("docId").value;
+      const photoFile = document.getElementById("photoFile").files[0];
 
-  try {
-    // Upload photo if selected
-    if (photoFile) {
-      const fileName = `pictures/${Date.now()}_${photoFile.name}`;
-      const storageRef = storage.ref(fileName);
-      await storageRef.put(photoFile);
-      photoURL = await storageRef.getDownloadURL();
-    }
+      let photoURL = "";
 
-    const data = {
-      Name: document.getElementById("name").value,
-      Mobile: document.getElementById("mobile").value,
-      Specializes: document.getElementById("specializes").value,
-      City: document.getElementById("city").value,
-      State: document.getElementById("state").value,
-      Photo: photoURL,
-      Video: document.getElementById("video").value,
-    };
+      try {
+        // Upload photo if selected
+        // if (photoFile) {
+        //   const fileName = `pictures/${Date.now()}_${photoFile.name}`;
+        //   const storageRef = storage.ref(fileName);
+        //   await storageRef.put(photoFile);
+        //   photoURL = await storageRef.getDownloadURL();
+        // }
 
-    if (id) {
-      await db.collection("Sikh_Sevadars_Self").doc(id).update(data);
-    } else {
-      await db.collection("Sikh_Sevadars_Self").add(data);
-    }
+        if (photoFile) {
+          photoURL = await uploadToCloudinary(photoFile);
+        }
 
-    clearForm();
-    loadSevadars();
+        const data = {
+          Name: document.getElementById("name").value,
+          Mobile: document.getElementById("mobile").value,
+          Specializes: document.getElementById("specializes").value,
+          City: document.getElementById("city").value,
+          State: document.getElementById("state").value,
+          Photo: photoURL,
+          Video: document.getElementById("video").value,
+        };
 
-  } catch (error) {
-    console.error("Error saving record:", error);
-  }
-});
+
+        if (id) {
+          await db.collection("Sikh_Sevadars").doc(id).update(data);
+        } else {
+          await db.collection("Sikh_Sevadars").add(data);
+        }
+        clearForm();
+        loadSevadars();
+      } catch (error) {
+        console.error("Error saving record:", error);
+      } finally {
+        setLoading(false);
+      }
+    });
 
     function editSevadar(id, data) {
       document.getElementById("docId").value = id;
@@ -264,7 +310,49 @@ document.getElementById("sevadar-form").addEventListener("submit", async (e) => 
     }
 
     window.onload = loadSevadars;
+
+    async function uploadToCloudinary(file) {
+      const CLOUD_NAME = "dxseeeudw";
+      const UPLOAD_PRESET = "sikhsinindia-pictures"; // your unsigned preset
+
+      const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", UPLOAD_PRESET);
+
+      formData.append("folder", "sikh-sevadars");
+
+      const response = await fetch(url, {
+        method: "POST",
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error("Cloudinary upload failed");
+      }
+
+      const data = await response.json();
+      return data.secure_url;
+    }
+
+    function setLoading(isLoading) {
+      const btn = document.getElementById("submitBtn");
+      const text = document.getElementById("submitText");
+      const loader = document.getElementById("loader");
+
+      if (isLoading) {
+        btn.disabled = true;
+        text.textContent = "Submitting...";
+        loader.style.display = "inline-block";
+      } else {
+        btn.disabled = false;
+        text.textContent = "Submit";
+        loader.style.display = "none";
+      }
+    }
+
   </script>
 </body>
-</html>
 
+</html>
