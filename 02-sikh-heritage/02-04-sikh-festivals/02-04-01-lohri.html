@@ -54,7 +54,6 @@
 
     /* Image container */
     .card {
-      position: relative;
       width: 100%;
       max-width: 1000px;
       margin: auto;
@@ -69,22 +68,20 @@
       display: block;
     }
 
-    /* Overlay controls */
+    /* Buttons and counter in one line */
     .image-controls {
-      position: absolute;
-      top: 10px;
-      left: 0;
-      width: 100%;
       display: flex;
-      justify-content: space-between;
-      padding: 0 10px;
-      box-sizing: border-box;
+      justify-content: center; /* center items */
+      align-items: center;     /* vertically align counter */
+      gap: 20px;               /* space between items */
+      flex-wrap: wrap;         /* wrap on small screens */
+      margin: 10px 0 0 0;
     }
 
     .image-controls button {
-      background-color: rgba(0,0,0,0.75);
-      color: var(--primary);
-      border: 2px solid var(--primary);
+      background-color: var(--primary);
+      color: var(--black);
+      border: 2px solid black;
       padding: 10px 14px;
       font-size: 16px;
       font-weight: bold;
@@ -93,20 +90,19 @@
       min-width: 80px;
     }
 
-    /* Counter */
     .image-counter {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      background-color: rgba(0,0,0,0.75);
-      color: var(--primary);
-      padding: 6px 10px;
-      font-size: 14px;
+      background-color: var(--primary);
+      color: var(--black);
+      padding: 6px 12px;
+      font-size: 16px;
       font-weight: bold;
       border-radius: 8px;
+      display: inline-block;
+      min-width: 60px;
+      text-align: center;
     }
 
-    /* Caption */
+    /* Caption below controls */
     #guruHarRaiCaption {
       margin-top: 12px;
       padding: 0 12px;
@@ -138,13 +134,25 @@
       margin-top: 20px;
     }
 
+    /* Mobile responsiveness */
     @media (max-width: 480px) {
       header h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+      }
+      .image-controls {
+        gap: 10px;
       }
       .image-controls button {
         font-size: 14px;
         padding: 8px 12px;
+        min-width: 60px;
+      }
+      .image-counter {
+        font-size: 14px;
+        padding: 4px 8px;
+      }
+      #guruHarRaiCaption {
+        font-size: 14px;
       }
     }
   </style>
@@ -162,15 +170,16 @@
 
     <img id="guruHarRaiImg" alt="Lohri Festival Sikh Tradition" loading="lazy">
 
+    <!-- Buttons and counter on the same line -->
     <div class="image-controls">
       <button onclick="prevImage()">◀ Prev</button>
+      <div class="image-counter" id="imageCounter">1 / 9</div>
       <button onclick="nextImage()">Next ▶</button>
     </div>
 
-    <div class="image-counter" id="imageCounter"></div>
-
   </div>
 
+  <!-- Caption below controls -->
   <p id="guruHarRaiCaption"></p>
 
 </section>
@@ -249,4 +258,3 @@
 
 </body>
 </html>
-
