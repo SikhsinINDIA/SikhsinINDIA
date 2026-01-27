@@ -31,6 +31,7 @@ body {
   padding: 20px;
 }
 
+/* HEADER */
 header {
   text-align: center;
   padding: 30px 15px;
@@ -42,49 +43,51 @@ header h1 {
   font-weight: 700;
 }
 
-/* .image-placeholder {
-  width: 420px;
-  height: 220px;
-  border: 2px dashed var(--kesari);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 25px 0;
-  font-size: 1rem;
+/* IMAGE */
+.image-wrapper {
+  margin: 30px 0;
   text-align: center;
-} */
+}
 
+.image-wrapper img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border: 2px solid var(--kesari);
+}
+
+/* CONTENT */
 section {
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 section p {
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   font-size: 1.05rem;
 }
 
-.button-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 30px;
-}
-
-.button-group a {
-  text-decoration: none;
-  padding: 12px 22px;
-  border: 2px solid var(--kesari);
-  color: var(--kesari);
-  background-color: var(--black);
-  font-weight: 600;
-  text-align: center;
-}
-
-.button-group a:hover {
+/* BACK BUTTON */
+.back-btn {
+  width: 160px;
+  height: 40px;
+  font-size: 18px;
   background-color: var(--kesari);
   color: var(--black);
+  margin: 40px auto;
+  display: block;
+  border: 2px solid var(--black);
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
+.back-btn:hover {
+  opacity: 0.85;
+}
+
+/* MOBILE */
 @media (max-width: 600px) {
   header h1 {
     font-size: 1.6rem;
@@ -93,20 +96,11 @@ section p {
   section p {
     font-size: 1rem;
   }
-
-  .image-placeholder {
-    height: 180px;
-  }
-
-  .button-group {
-    flex-direction: column;
-  }
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
 <header>
@@ -115,10 +109,10 @@ section p {
 
 <section>
 
-  <div class="image-placeholder">
-<img src="https://drive.google.com/thumbnail?id=1b7l8EDKFg5aLASgGwx83QjxLDz97ytZh&sz=w1000"
-     alt="Guru Gobind Singh Ji"
-     style="width:100%; max-width:350px; height:auto; display:block; margin:0 auto;">
+  <!-- IMAGE -->
+  <div class="image-wrapper">
+    <img src="https://drive.google.com/thumbnail?id=1b7l8EDKFg5aLASgGwx83QjxLDz97ytZh&sz=w1000"
+         alt="Sri Guru Gobind Singh Ji Maharaj">
   </div>
 
 <div class="container">

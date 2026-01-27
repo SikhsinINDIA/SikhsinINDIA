@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Baba Deep Singh Ji </title>
+<title>Baba Deep Singh Ji</title>
 
 <style>
 :root {
@@ -42,49 +42,53 @@ header h1 {
   font-weight: 700;
 }
 
-/* .image-placeholder {
-  width: 420px;
-  height: 220px;
-  border: 2px dashed var(--kesari);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 25px 0;
-  font-size: 1rem;
+/* IMAGE WRAPPER */
+.image-wrapper {
+  margin: 30px 0;
   text-align: center;
-} */
-
-section {
-  margin-top: 25px;
 }
 
+.image-wrapper img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border: 2px solid var(--kesari);
+}
+
+/* CONTENT */
 section p {
   margin-bottom: 18px;
   font-size: 1.05rem;
 }
 
-.button-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 30px;
-}
-
-.button-group a {
-  text-decoration: none;
-  padding: 12px 22px;
-  border: 2px solid var(--kesari);
-  color: var(--kesari);
-  background-color: var(--black);
-  font-weight: 600;
+.highlight {
+  font-style: italic;
   text-align: center;
+  font-weight: 600;
 }
 
-.button-group a:hover {
+/* BUTTON */
+.back-btn {
+  width: 160px;
+  height: 40px;
+  font-size: 18px;
   background-color: var(--kesari);
   color: var(--black);
+  margin: 40px auto;
+  display: block;
+  border: 2px solid var(--black);
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
+.back-btn:hover {
+  opacity: 0.85;
+}
+
+/* MOBILE */
 @media (max-width: 600px) {
   header h1 {
     font-size: 1.6rem;
@@ -92,14 +96,6 @@ section p {
 
   section p {
     font-size: 1rem;
-  }
-
-  .image-placeholder {
-    height: 180px;
-  }
-
-  .button-group {
-    flex-direction: column;
   }
 }
 </style>
@@ -110,69 +106,64 @@ section p {
 <div class="container">
 
 <header>
-  <h1>Baba Deep Singh Ji </h1>
+  <h1>Baba Deep Singh Ji</h1>
 </header>
 
 <section>
 
-  <div class="image-placeholder">
-<img src="https://drive.google.com/thumbnail?id=1lZrygnn3ya6ucPAfKHw3VqmIYnG7WCl2&sz=w1000"
-     alt="Guru Gobind Singh Ji"
-     style="width:100%; max-width:350px; height:auto; display:block; margin:0 auto;">
+  <!-- IMAGE -->
+  <div class="image-wrapper">
+    <img src="https://drive.google.com/thumbnail?id=1lZrygnn3ya6ucPAfKHw3VqmIYnG7WCl2&sz=w1000"
+         alt="Baba Deep Singh Ji">
   </div>
 
-<div class="container">
+  <!-- TEXT -->
   <p><strong>Baba Deep Singh Ji – Shaheedi & Sacrifice</strong></p>
 
- <p>During his invasion of India, Ahmad Shah Durrani brought Punjab under Afghan control and appointed his son, Taimur Shah, as viceroy of Lahore, assisted by the experienced general Jahan Khan. In May 1757, Jahan Khan attacked Amritsar, desecrating Sri Harmandir Sahib and defiling the sacred sarovar.</p>
+  <p>
+    During his invasion of India, Ahmad Shah Durrani brought Punjab under Afghan control and appointed his son, Taimur Shah, as viceroy of Lahore, assisted by the experienced general Jahan Khan. In May 1757, Jahan Khan attacked Amritsar, desecrating Sri Harmandir Sahib and defiling the sacred sarovar.
+  </p>
 
-  <p>At seventy-five years old, Baba Deep Singh Ji had the spirit and strength of a fearless warrior. He gathered a large band of Sikhs and marched toward Sri Harmandir Sahib. By Tarn Taran, their numbers had grown to around five thousand. Baba Deep Singh Ji drew a line with his khanda and declared that only those prepared to fight and die should cross it. Every Sikh stepped forward without hesitation.</p>
+  <p>
+    At seventy-five years old, Baba Deep Singh Ji had the spirit and strength of a fearless warrior. He gathered a large band of Sikhs and marched toward Sri Harmandir Sahib. By Tarn Taran, their numbers had grown to around five thousand. Baba Deep Singh Ji drew a line with his khanda and declared that only those prepared to fight and die should cross it. Every Sikh stepped forward without hesitation.
+  </p>
 
   <p>Before advancing, Baba Deep Singh Ji recited:</p>
-  <p class="highlight">“Jo to prem khelan ka chao, sir dhar tali gali meri aao.”</p>
-  <p class="highlight">“Eith marag pair dharijai, sir deejai kaan na keejai.”</p>
 
-  <p>During battle, Baba Deep Singh Ji fought the Mughal commander Jamal Khan. Both warriors struck with great force. Severely wounded, Baba Deep Singh Ji rose again, holding his severed head upright in one hand and his khanda in the other, continuing his advance toward Sri Harmandir Sahib, sustained by Japji Sahib.</p>
+  <p class="highlight">
+    “Jo to prem khelan ka chao, sir dhar tali gali meri aao.”
+  </p>
 
-  <p>The Mughal army, terrified by the sight, fled. Baba Deep Singh Ji reached Sri Harmandir Sahib, bowed, and attained martyrdom. The Sikh forces continued fighting and ultimately achieved victory.</p>
+  <p class="highlight">
+    “Eith marag pair dharijai, sir deejai kaan na keejai.”
+  </p>
 
-  <p>strong>Baba Deep Singh Ji is remembered as a symbol of courage, sacrifice, and unwavering faith. Today, a marble octagonal tile marks the spot where he attained shaheedi.</strong></p>
+  <p>
+    During battle, Baba Deep Singh Ji fought the Mughal commander Jamal Khan. Though grievously wounded, Baba Deep Singh Ji rose again, holding his severed head upright in one hand and his khanda in the other, continuing toward Sri Harmandir Sahib, sustained by the recitation of Japji Sahib.
+  </p>
 
+  <p>
+    The Mughal army fled in terror. Baba Deep Singh Ji reached Sri Harmandir Sahib, bowed, and attained martyrdom. The Sikh forces continued fighting until victory was achieved.
+  </p>
 
-</div>
+  <p>
+    <strong>
+      Baba Deep Singh Ji is remembered as a symbol of courage, sacrifice, and unwavering faith. A marble octagonal tile today marks the sacred spot of his shaheedi.
+    </strong>
+  </p>
 
 </section>
 
+<!-- BACK BUTTON -->
+<button class="back-btn" onclick="goBack()">⬅ Back</button>
+
 </div>
-<footer>
 
+<script>
+function goBack() {
+  window.location.href = "./../02-10-discover-sikhi/02-10-discover-sikhi.html";
+}
+</script>
 
-  <!-- Back Button -->
-    <button 
-      type="button" 
-      onclick="goBack()" 
-      style="width: 160px;
-      height: 40px;
-      font-size: 20px;
-      background-color: #FF9933;
-      color: black;
-      margin: 30px auto;
-      display: block;
-      border: 2px solid black;
-      border-radius: 8px;
-      text-align: center;
-      text-decoration: none;
-      line-height: 38px;
-      font-weight: bold;">
-      ⬅ Back
-    </button>
-
-    <script>
-      function goBack() {
-        window.location.href = "./../02-10-discover-sikhi/02-10-discover-sikhi.html";
-      }
-    </script>
-    </footer>
-  </div>
 </body>
 </html>
