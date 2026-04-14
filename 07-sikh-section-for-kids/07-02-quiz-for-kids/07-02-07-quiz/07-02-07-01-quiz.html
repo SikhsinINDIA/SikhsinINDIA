@@ -231,9 +231,26 @@ function shuffleArray(array) {
 
 async function loadQuiz() {
   const snapshot = await db.collection("Quiz").get();
-  let allQuestions = snapshot.docs.map(doc => doc.data());
 
+  let allQuestions = snapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }));
+
+  // Remove duplicates
+  const uniqueQuestionsMap = new Map();
+  allQuestions.forEach(q => {
+    if (!uniqueQuestionsMap.has(q.Question)) {
+      uniqueQuestionsMap.set(q.Question, q);
+    }
+  });
+
+  allQuestions = Array.from(uniqueQuestionsMap.values());
+
+  // Shuffle
   allQuestions = shuffleArray(allQuestions);
+
+  // Pick 10 unique questions
   quizData = allQuestions.slice(0, 10);
 
   showQuestion();
@@ -258,6 +275,9 @@ function showQuestion() {
     div.onclick = () => selectAnswer(div, i, q["Correct_Option"]);
     optionsDiv.appendChild(div);
   });
+
+  // 👉 ADD THIS LINE HERE
+  document.querySelector(".footer-btn").disabled = true;
 }
 
 function selectAnswer(element, selectedIndex, correctIndex) {
@@ -282,6 +302,9 @@ function selectAnswer(element, selectedIndex, correctIndex) {
   }
 
   document.getElementById("score").textContent = score;
+
+  // 👉 ADD THIS LINE HERE
+  document.querySelector(".footer-btn").disabled = false;
 }
 
 function nextQuestion() {
