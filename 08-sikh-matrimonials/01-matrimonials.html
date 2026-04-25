@@ -273,15 +273,34 @@
     } 
 
 async function uploadResume(file) {
-  const fileName = 'resumes/' + Date.now() + '_' + file.name;
+  const base64 = await toBase64(file);
 
-  const ref = storage.ref(fileName);
+  const response = await fetch("https://script.google.com/macros/s/AKfycbzGRmVAJxFz8IOnyYcoPLwo-zFeBNF8jP0j9dk5TQIJ6Ovm8IxWVK62_7vUj8ngP5k/exec", {
+    method: "POST",
+    body: new URLSearchParams({
+      file: base64.split(",")[1],
+      type: file.type,
+      name: Date.now() + "_" + file.name
+    })
+  });
 
-  const snapshot = await ref.put(file);
+  const result = await response.json();
 
-  const url = await snapshot.ref.getDownloadURL();
+  if (!result.success) {
+    throw new Error(result.error);
+  }
 
-  return url;
+  return result.url;
+}
+
+// helper
+function toBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+  });
 }
 
 
