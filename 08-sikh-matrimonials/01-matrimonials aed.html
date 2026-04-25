@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrimonials</title>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+
+<style>
+  body { margin:0; font-family:Arial; background:black; color:#FF9933; }
+  header { background:#FF9933; color:black; text-align:center; padding:15px; font-size:24px; font-weight:bold; }
+  .container { max-width:900px; margin:auto; padding:15px; }
+  h2 { border-bottom:2px solid #FF9933; }
+  form { display:grid; gap:12px; }
+  input, textarea { width:100%; padding:10px; background:black; color:#FF9933; border:1px solid #FF9933; border-radius:6px; }
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+  button { background:#FF9933; color:black; padding:12px; border:none; border-radius:6px; font-weight:bold; cursor:pointer; }
+  button:hover { background:black; color:#FF9933; border:1px solid #FF9933; }
+  @media(max-width:600px){ .grid-2,.grid-3{grid-template-columns:1fr;} }
+</style>
+</head>
+
+<body>
+<header>Matrimonials</header>
+<div class="container">
+<form id="form">
+
+<h2>Section 1</h2>
+<div class="grid-3">
+<input id="SNo" type="number" placeholder="SNo">
+<input id="Name" placeholder="Name">
+<input id="Gender" placeholder="Gender">
+</div>
+<div class="grid-3">
+<input id="Age" type="number" placeholder="Age">
+<input id="Height_Feet" type="number" placeholder="Feet">
+<input id="Height_Inch" type="number" placeholder="Inch">
+</div>
+<input id="Complexion" placeholder="Complexion">
+<input id="Education" placeholder="Education">
+<input id="Maritial_Status" placeholder="Marital Status">
+<input id="Religion" placeholder="Religion">
+<input id="Religion_Details" placeholder="Religion Details">
+<input id="Country" placeholder="Country">
+<input id="City" placeholder="City">
+<input id="Occupation" placeholder="Occupation">
+<input id="Occupation_Details" placeholder="Occupation Details">
+<input id="Income_Annum" placeholder="Income">
+<input id="Number_Experience" placeholder="Experience">
+<input id="Family_Type" placeholder="Family Type">
+<input id="Diet" placeholder="Diet">
+
+<h2>Section 2</h2>
+<input id="Father_Name" placeholder="Father Name">
+<input id="Father_Profession" placeholder="Father Profession">
+<input id="Father_Profession_Details" placeholder="Father Details">
+<input id="Father_Mobile" placeholder="Father Mobile">
+<input id="Mother_Name" placeholder="Mother Name">
+<input id="Mother_Profession" placeholder="Mother Profession">
+<input id="Mother_Profession_Details" placeholder="Mother Details">
+<input id="Mother_Mobile" placeholder="Mother Mobile">
+<input id="Number_Brother" placeholder="Brothers">
+<input id="Brother_Details" placeholder="Brother Details">
+<input id="Number_Sister" placeholder="Sisters">
+<input id="Sister_Details" placeholder="Sister Details">
+
+<h2>Section 3</h2>
+<input id="Match_Religion" placeholder="Match Religion">
+<input id="Match_Profession" placeholder="Match Profession">
+<input id="Match_Country" placeholder="Match Country">
+<textarea id="Match_Other" placeholder="Other"></textarea>
+
+<h2>Resume</h2>
+<input type="file" id="resume">
+
+<button type="submit">Submit</button>
+</form>
+</div>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+  authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+  projectId: "sikhsinindia-67a6b",
+  storageBucket: "sikhsinindia-67a6b.appspot.com",
+  messagingSenderId: "622603668882",
+  appId: "1:622603668882:web:953c6a07864b235fdd054b",
+  measurementId: "G-LHNTFNW14H"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const storage = firebase.storage();
+
+async function uploadResume(file){
+  const ref = storage.ref('resumes/' + Date.now() + '_' + file.name);
+  await ref.put(file);
+  return await ref.getDownloadURL();
+}
+
+document.getElementById('form').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+
+  const resumeFile = document.getElementById('resume').files[0];
+  let resumeURL = '';
+
+  if(resumeFile){
+    resumeURL = await uploadResume(resumeFile);
+  }
+
+  const data = {};
+  document.querySelectorAll('input, textarea').forEach(el=>{
+    if(el.id && el.type !== 'file'){
+      data[el.id] = el.value;
+    }
+  });
+
+  data.Resume = resumeURL;
+
+  await db.collection('Matrimonials').add(data);
+  alert('Saved successfully');
+  document.getElementById('form').reset();
+});
+</script>
+
+</body>
+</html>
