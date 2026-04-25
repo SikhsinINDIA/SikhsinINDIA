@@ -250,8 +250,7 @@
     </div>
 
     <script>
-      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx3mv4NJOX8CrsSqtGca_4IzCDfuoyXsY-wIEBlwf8adiqxpdRl3S4a4f13YINHc3WG/exec";
-
+      
     const firebaseConfig = {
       apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
       authDomain: "sikhsinindia-67a6b.firebaseapp.com",
@@ -266,24 +265,7 @@
     const db = firebase.firestore();
     const storage = firebase.storage();
 
-    function doGet(e) {
-      return ContentService
-        .createTextOutput("OK")
-        .setMimeType(ContentService.MimeType.TEXT);
-    }
-
-    // function doPost(e) {
-    //   var folder = DriveApp.getFolderById("1pNiZ1MxxhQskMxib4k_ejAVVDqxTnAZd");
-
-    //   var blob = e.postData.getBlob();
-
-    //   var file = folder.createFile(blob);
-    //   file.setName(Date.now() + "_resume.pdf");
-
-    //   return ContentService
-    //     .createTextOutput(file.getUrl())
-    //     .setMimeType(ContentService.MimeType.TEXT);
-    // }
+    
 
     function testUpload() {
       var folder = DriveApp.getFolderById("1pNiZ1MxxhQskMxib4k_ejAVVDqxTnAZd");
@@ -291,11 +273,14 @@
     } 
 
 async function uploadResume(file) {
-  const storageRef = storage.ref('resumes/' + Date.now() + '_' + file.name);
+  const fileName = 'resumes/' + Date.now() + '_' + file.name;
 
-  await storageRef.put(file);
+  const ref = storage.ref(fileName);
 
-  const url = await storageRef.getDownloadURL();
+  const snapshot = await ref.put(file);
+
+  const url = await snapshot.ref.getDownloadURL();
+
   return url;
 }
 
