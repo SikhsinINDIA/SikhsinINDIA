@@ -124,6 +124,7 @@
       }
     }
   </style>
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script> 
 </head>
 
 <body>
@@ -332,7 +333,221 @@
     const db = firebase.firestore();
     const storage = firebase.storage();
 
+async function createCombinedPdf(photo1File, photo2File, resumeFile, formData) {
+  const { PDFDocument, rgb } = PDFLib;
 
+  const ORANGE = rgb(1, 0.6, 0);
+  const BLACK = rgb(0, 0, 0);
+  const GRAY = rgb(0.25, 0.25, 0.25);
+
+  const pdfDoc = await PDFDocument.create();
+
+  // =========================
+  // COVER PAGE
+  // =========================
+  const cover = pdfDoc.addPage([600, 900]);
+
+  cover.drawRectangle({
+    x: 0,
+    y: 840,
+    width: 600,
+    height: 60,
+    color: ORANGE,
+  });
+
+  cover.drawText("MATRIMONIAL PROFILE", {
+    x: 140,
+    y: 860,
+    size: 18,
+    color: BLACK,
+  });
+
+cover.drawText(`SNo: ${formData.SNo || "-"}`, {
+  x: 50,
+  y: 780,
+  size: 14,
+  color: BLACK,
+});
+
+cover.drawText(`Name: ${formData.Name || "-"}`, {
+  x: 50,
+  y: 750,
+  size: 18,
+  color: BLACK,
+});
+
+  // Profile Photo (photo1)
+  // Profile Photo (photo1)
+if (photo1File) {
+
+  const fixedBlob = await fixImageOrientation(photo1File);
+  const bytes = await fixedBlob.arrayBuffer();
+
+  const img = photo1File.type.includes("png")
+    ? await pdfDoc.embedPng(bytes)
+    : await pdfDoc.embedJpg(bytes);
+
+  cover.drawImage(img, {
+    x: 420,
+    y: 720,
+    width: 130,
+    height: 130,
+  });
+
+  cover.drawRectangle({
+    x: 420,
+    y: 720,
+    width: 130,
+    height: 130,
+    borderColor: ORANGE,
+    borderWidth: 2,
+  });
+}
+
+  // =========================
+  // AUTO PAGE SYSTEM
+  // =========================
+  let page = pdfDoc.addPage([600, 900]);
+  let y = 820;
+
+  function newPage() {
+    page = pdfDoc.addPage([600, 900]);
+    y = 820;
+  }
+
+  function addLine(label, value) {
+    if (y < 80) newPage();
+
+    page.drawText(`${label}: ${value || "-"}`, {
+      x: 40,
+      y,
+      size: 9,
+      color: GRAY,
+    });
+
+    y -= 16;
+  }
+
+  // =========================
+  // SECTION TITLE
+  // =========================
+  function section(title) {
+    if (y < 100) newPage();
+
+    page.drawRectangle({
+      x: 30,
+      y: y - 10,
+      width: 540,
+      height: 18,
+      color: rgb(1, 0.97, 0.93),
+    });
+
+    page.drawText(title, {
+      x: 40,
+      y,
+      size: 11,
+      color: ORANGE,
+    });
+
+    y -= 25;
+  }
+
+  // =========================
+  // PROFILE DATA
+  // =========================
+  section("PERSONAL DETAILS");
+
+  addLine("Gender", formData.Gender);
+  addLine("Age", formData.Age);
+  addLine("Mobile", formData.Mobile);
+  addLine("Email", formData.Email);
+  addLine("Height (Feet)", formData.Height_Feet);
+  addLine("Height (Inch)", formData.Height_Inch);
+    addLine("Height (cms)", formData.Height_cm);
+  addLine("Complexion", formData.Complexion);
+  addLine("Education", formData.Education);
+  addLine("Marital Status", formData.Maritial_Status);
+  addLine("Religion", formData.Religion);
+  addLine("Religion Details", formData.Religion_Details);
+  addLine("Occupation", formData.Occupation);
+  addLine("Occupation Details", formData.Occupation_Details);
+  addLine("Income", formData.Income_Annum);
+  addLine("Experience", formData.Number_Experience);
+  addLine("Family Type", formData.Family_Type);
+  addLine("Diet", formData.Diet);
+
+  section("FAMILY DETAILS");
+
+  addLine("Father Name", formData.Father_Name);
+  addLine("Father Profession", formData.Father_Profession);
+  addLine("Father Details", formData.Father_Profession_Details);
+  addLine("Father Mobile", formData.Father_Mobile);
+
+  addLine("Mother Name", formData.Mother_Name);
+  addLine("Mother Profession", formData.Mother_Profession);
+  addLine("Mother Details", formData.Mother_Profession_Details);
+  addLine("Mother Mobile", formData.Mother_Mobile);
+
+  addLine("Brothers", formData.Number_Brother);
+  addLine("Brother Details", formData.Brother_Details);
+  addLine("Sisters", formData.Number_Sister);
+  addLine("Sister Details", formData.Sister_Details);
+
+  section("MATCH PREFERENCES");
+
+  addLine("Match Religion", formData.Match_Religion);
+  addLine("Match Profession", formData.Match_Profession);
+  addLine("Match Country", formData.Match_Country);
+  addLine("Other Preferences", formData.Match_Other);
+    addLine("Date Stamp", formData.Date_Other);
+
+  // =========================
+  // PHOTO 2 PAGE
+  // =========================
+  if (photo2File) {
+    const imgPage = pdfDoc.addPage([600, 900]);
+    const bytes = await photo2File.arrayBuffer();
+
+    const img = photo2File.type.includes("png")
+      ? await pdfDoc.embedPng(bytes)
+      : await pdfDoc.embedJpg(bytes);
+
+    imgPage.drawText("ADDITIONAL PHOTO", {
+      x: 200,
+      y: 850,
+      size: 14,
+      color: ORANGE,
+    });
+
+    imgPage.drawImage(img, {
+      x: 80,
+      y: 200,
+      width: 440,
+      height: 550,
+    });
+  }
+
+  // =========================
+  // RESUME MERGE
+  // =========================
+  if (resumeFile) {
+    const resumeBytes = await resumeFile.arrayBuffer();
+    const resumePdf = await PDFDocument.load(resumeBytes);
+
+    const pages = await pdfDoc.copyPages(
+      resumePdf,
+      resumePdf.getPageIndices()
+    );
+
+    pages.forEach(p => pdfDoc.addPage(p));
+  }
+
+  const finalBytes = await pdfDoc.save();
+
+  return new File([finalBytes], `Profile_${formData.SNo}.pdf`, {
+    type: "application/pdf",
+  });
+}
 
     async function uploadFile(file, folderName) {
       const base64 = await toBase64(file);
@@ -363,7 +578,28 @@
       });
     }
 
+async function fixImageOrientation(file) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
 
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      ctx.drawImage(img, 0, 0);
+
+      canvas.toBlob((blob) => {
+        resolve(blob);
+      }, file.type);
+    };
+
+    img.src = url;
+  });
+}
     // We cannot read response, so we reconstruct logic
     // const fileName = Date.now() + "_" + file.name;
     // return "https://drive.google.com/drive/folders/1pNiZ1MxxhQskMxib4k_ejAVVDqxTnAZd";
@@ -422,21 +658,21 @@
         const data = e.parameter;
 
         const fileBlob = Utilities.newBlob(
-          Utilities.base64Decode(data.file),
-          data.type,
-          data.name
+          Utilities.base64Decode(formData.file),
+          formData.type,
+          formData.name
         );
 
         const parentFolder = DriveApp.getFolderById("1pNiZ1MxxhQskMxib4k_ejAVVDqxTnAZd");
 
         // 👇 create/find folder
         let folder;
-        const folders = parentFolder.getFoldersByName(data.folder);
+        const folders = parentFolder.getFoldersByName(formData.folder);
 
         if (folders.hasNext()) {
           folder = folders.next();
         } else {
-          folder = parentFolder.createFolder(data.folder);
+          folder = parentFolder.createFolder(formData.folder);
         }
 
         const file = folder.createFile(fileBlob);
@@ -497,17 +733,26 @@
     document.getElementById('form').addEventListener('submit', async (e) => {
       e.preventDefault();
 
+const formData = {};
+
+      document.querySelectorAll('input, textarea, select').forEach(el => {
+  if (el.id && el.type !== 'file') {
+    formData[el.id] = el.value;
+  }
+});
+
+
       const name = document.getElementById('Name').value.trim();
+      const email = document.getElementById('Email').value.trim();
+            // const Email = document.getElementById('Email').value.trim();
+   const age = document.getElementById('Age').value.trim();
+            const Mobile = document.getElementById('Mobile').value.trim();
 
-
-      if (!name) {
+if (!name) {
         alert("Name is required");
         document.getElementById('Name').focus();
         return;
       }
-
-      const Mobile = document.getElementById('Mobile').value.trim();
-
 
       if (!Mobile) {
         alert("Mobile is required");
@@ -515,16 +760,32 @@
         return;
       }
 
-      const Email = document.getElementById('Email').value.trim();
 
 
-      if (!Email) {
+
+      if (!email) {
         alert("Email is required");
-        document.getElementById('Email').focus();
+        document.getElementById('email').focus();
         return;
       }
 
-      const age = document.getElementById('Age').value.trim();
+
+const photo1File = document.getElementById('photo1').files[0];
+const photo2File = document.getElementById('photo2').files[0];
+const resumeFile = document.getElementById('resume').files[0];
+formData.SNo = await getNextSNo();
+
+const combinedPdf = await createCombinedPdf(
+  photo1File,
+  photo2File,
+  resumeFile,
+  formData
+);
+
+
+
+
+   
 
       if (!age || isNaN(age)) {
         alert("Please enter a valid age");
@@ -542,25 +803,14 @@
         return;
       }
 
-      const email = document.getElementById('Email').value.trim();
 
-      if (!email) {
-        alert("Email is required");
-        return;
-      }
 
-      if (!isValidEmail(email)) {
-        alert("Please enter a valid email address");
-        return;
-      }
 
 
 
       try {
        showLoader("Uploading photos...");
 
-const photo1File = document.getElementById('photo1').files[0];
-const photo2File = document.getElementById('photo2').files[0];
 
 if (photo1File) {
   await uploadFile(photo1File, folderName);
@@ -572,22 +822,21 @@ if (photo2File) {
 
 showLoader("Uploading resume...");
 
-const resumeFile = document.getElementById('resume').files[0];
 
 if (resumeFile) {
   await uploadFile(resumeFile, folderName);
 }
 
+
+
+if (combinedPdf) {
+await uploadFile(combinedPdf, folderName);
+}
 showLoader("Saving data...");
 
-const data = {};
-data.SNo = await getNextSNo();
+formData.SNo = await getNextSNo();  
 
-document.querySelectorAll('input, textarea, select').forEach(el => {
-  if (el.id && el.type !== 'file') {
-    data[el.id] = el.value;
-  }
-});
+
 
         const feet = parseInt(document.getElementById('Height_Feet').value) || 0;
         const inch = parseInt(document.getElementById('Height_Inch').value) || 0;
@@ -595,19 +844,19 @@ document.querySelectorAll('input, textarea, select').forEach(el => {
 
 
         const heightCm = (feet * 12 * 2.54) + (inch * 2.54);
-        data.Height_cm = Math.round(heightCm * 10) / 10;
+        formData.Height_cm = Math.round(heightCm * 10) / 10;
 
         // data.Photo1 = photo1URL;
         // data.Photo2 = photo2URL;
         // data.Resume = resumeURL;
 
-        data.Created_At = firebase.firestore.FieldValue.serverTimestamp();
+        formData.Created_At = firebase.firestore.FieldValue.serverTimestamp();
 
 
         const now = new Date();
 
-        data.Created_At = firebase.firestore.FieldValue.serverTimestamp(); // for sorting
-        data.Date = now.toLocaleString('en-GB', {
+        formData.Created_At = firebase.firestore.FieldValue.serverTimestamp(); // for sorting
+        formData.Date = now.toLocaleString('en-GB', {
           day: '2-digit',
           month: 'short',
           year: 'numeric'
@@ -618,7 +867,7 @@ document.querySelectorAll('input, textarea, select').forEach(el => {
             hour12: true
           });
 
-        await db.collection('Matrimonials').add(data);
+        await db.collection('Matrimonials').add(formData);
 
 
 
