@@ -333,6 +333,7 @@
     const db = firebase.firestore();
     const storage = firebase.storage();
 
+
 async function createCombinedPdf(photo1File, photo2File, resumeFile, formData) {
   const { PDFDocument, rgb } = PDFLib;
 
@@ -355,50 +356,104 @@ async function createCombinedPdf(photo1File, photo2File, resumeFile, formData) {
     color: ORANGE,
   });
 
-  cover.drawText("MATRIMONIAL PROFILE", {
-    x: 140,
-    y: 860,
-    size: 18,
-    color: BLACK,
-  });
+ const text = "MATRIMONIAL PROFILE - SikhsinIndia.com";
+const fontSize = 24;
 
-cover.drawText(`SNo: ${formData.SNo || "-"}`, {
+const approxCharWidth = fontSize * 0.6;
+const textWidth = text.length * approxCharWidth;
+
+cover.drawText(text, {
+  x: (600 - textWidth) / 2,
+  y: 860,
+  size: fontSize,
+  color: BLACK,
+});
+const logoUrl = "https://sikhsinindia.com/sikhsinindia.jpg";
+
+const logoBytes = await fetch(logoUrl).then(res => res.arrayBuffer());
+
+const logoImg = await pdfDoc.embedJpg(logoBytes);
+
+// Center logo below header
+const headerBottomY = 840;   // header starts at 840
+const gap = 20;             // space between header & logo
+const logoHeight = 60;
+
+cover.drawImage(logoImg, {
+  x: 250,
+  y: headerBottomY - gap - logoHeight,  // 👈 perfect spacing
+  width: 100,
+  height: logoHeight,
+});
+
+cover.drawText(`Serial No: ${formData.SNo || "-"}`, {
   x: 50,
   y: 780,
-  size: 14,
+  size: 18,
   color: BLACK,
 });
 
-cover.drawText(`Name: ${formData.Name || "-"}`, {
+cover.drawText(`Proposer Name: ${formData.Name || "-"}`, {
   x: 50,
   y: 750,
   size: 18,
   color: BLACK,
 });
 
-  // Profile Photo (photo1)
-  // Profile Photo (photo1)
+ // =========================
+// COVER PHOTOS (SIDE BY SIDE)
+// =========================
+
+const photoY = 600;   // vertical position
+const photoSize = 130;
+
+// LEFT PHOTO (photo1)
 if (photo1File) {
+  const fixedBlob1 = await fixImageOrientation(photo1File);
+  const bytes1 = await fixedBlob1.arrayBuffer();
 
-  const fixedBlob = await fixImageOrientation(photo1File);
-  const bytes = await fixedBlob.arrayBuffer();
+  const img1 = photo1File.type.includes("png")
+    ? await pdfDoc.embedPng(bytes1)
+    : await pdfDoc.embedJpg(bytes1);
 
-  const img = photo1File.type.includes("png")
-    ? await pdfDoc.embedPng(bytes)
-    : await pdfDoc.embedJpg(bytes);
-
-  cover.drawImage(img, {
-    x: 420,
-    y: 720,
-    width: 130,
-    height: 130,
+  cover.drawImage(img1, {
+    x: 120,
+    y: photoY,
+    width: photoSize,
+    height: photoSize,
   });
 
   cover.drawRectangle({
-    x: 420,
-    y: 720,
-    width: 130,
-    height: 130,
+    x: 120,
+    y: photoY,
+    width: photoSize,
+    height: photoSize,
+    borderColor: ORANGE,
+    borderWidth: 2,
+  });
+}
+
+// RIGHT PHOTO (photo2)
+if (photo2File) {
+  const fixedBlob2 = await fixImageOrientation(photo2File);
+  const bytes2 = await fixedBlob2.arrayBuffer();
+
+  const img2 = photo2File.type.includes("png")
+    ? await pdfDoc.embedPng(bytes2)
+    : await pdfDoc.embedJpg(bytes2);
+
+  cover.drawImage(img2, {
+    x: 320,
+    y: photoY,
+    width: photoSize,
+    height: photoSize,
+  });
+
+  cover.drawRectangle({
+    x: 320,
+    y: photoY,
+    width: photoSize,
+    height: photoSize,
     borderColor: ORANGE,
     borderWidth: 2,
   });
@@ -421,7 +476,7 @@ if (photo1File) {
     page.drawText(`${label}: ${value || "-"}`, {
       x: 40,
       y,
-      size: 9,
+      size: 16,
       color: GRAY,
     });
 
@@ -438,14 +493,14 @@ if (photo1File) {
       x: 30,
       y: y - 10,
       width: 540,
-      height: 18,
+      height: 30,
       color: rgb(1, 0.97, 0.93),
     });
 
     page.drawText(title, {
       x: 40,
       y,
-      size: 11,
+      size: 24,
       color: ORANGE,
     });
 
@@ -504,28 +559,28 @@ if (photo1File) {
   // =========================
   // PHOTO 2 PAGE
   // =========================
-  if (photo2File) {
-    const imgPage = pdfDoc.addPage([600, 900]);
-    const bytes = await photo2File.arrayBuffer();
+  // if (photo2File) {
+  //   const imgPage = pdfDoc.addPage([600, 900]);
+  //   const bytes = await photo2File.arrayBuffer();
 
-    const img = photo2File.type.includes("png")
-      ? await pdfDoc.embedPng(bytes)
-      : await pdfDoc.embedJpg(bytes);
+  //   const img = photo2File.type.includes("png")
+  //     ? await pdfDoc.embedPng(bytes)
+  //     : await pdfDoc.embedJpg(bytes);
 
-    imgPage.drawText("ADDITIONAL PHOTO", {
-      x: 200,
-      y: 850,
-      size: 14,
-      color: ORANGE,
-    });
+  //   imgPage.drawText("ADDITIONAL PHOTO", {
+  //     x: 200,
+  //     y: 850,
+  //     size: 14,
+  //     color: ORANGE,
+  //   });
 
-    imgPage.drawImage(img, {
-      x: 80,
-      y: 200,
-      width: 440,
-      height: 550,
-    });
-  }
+  //   imgPage.drawImage(img, {
+  //     x: 80,
+  //     y: 200,
+  //     width: 440,
+  //     height: 550,
+  //   });
+  // }
 
   // =========================
   // RESUME MERGE
@@ -653,42 +708,42 @@ async function fixImageOrientation(file) {
         frame.style.display = "block";
       });
     }
-    function doPost(e) {
-      try {
-        const data = e.parameter;
+   function doPost(e) {
+  try {
+    const data = e.parameter;
 
-        const fileBlob = Utilities.newBlob(
-          Utilities.base64Decode(formData.file),
-          formData.type,
-          formData.name
-        );
+    const fileBlob = Utilities.newBlob(
+      Utilities.base64Decode(data.file),
+      data.type,
+      data.name
+    );
 
-        const parentFolder = DriveApp.getFolderById("1pNiZ1MxxhQskMxib4k_ejAVVDqxTnAZd");
+    const parentFolder = DriveApp.getFolderById("1pNiZ1MxxhQskMxib4k_ejAVVDqxTnAZd");
 
-        // 👇 create/find folder
-        let folder;
-        const folders = parentFolder.getFoldersByName(formData.folder);
+    // ✅ create/find folder properly
+    let folder;
+    const folders = parentFolder.getFoldersByName(data.folder);
 
-        if (folders.hasNext()) {
-          folder = folders.next();
-        } else {
-          folder = parentFolder.createFolder(formData.folder);
-        }
-
-        const file = folder.createFile(fileBlob);
-
-        return ContentService.createTextOutput(JSON.stringify({
-          success: true,
-          url: file.getUrl()
-        })).setMimeType(ContentService.MimeType.JSON);
-
-      } catch (err) {
-        return ContentService.createTextOutput(JSON.stringify({
-          success: false,
-          error: err.toString()
-        }));
-      }
+    if (folders.hasNext()) {
+      folder = folders.next();
+    } else {
+      folder = parentFolder.createFolder(data.folder);
     }
+
+    const file = folder.createFile(fileBlob);
+
+    return ContentService.createTextOutput(JSON.stringify({
+      success: true,
+      url: file.getUrl()
+    })).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      error: err.toString()
+    }));
+  }
+}
 
 
     function updateHeightCm() {
@@ -711,8 +766,7 @@ async function fixImageOrientation(file) {
     document.getElementById('Height_Feet').addEventListener('change', updateHeightCm);
     document.getElementById('Height_Inch').addEventListener('change', updateHeightCm);
 
-    const folderName = getTimestampFolder();
-
+   
     document.getElementById('resume').addEventListener('change', function (e) {
       const file = e.target.files[0];
       const preview = document.getElementById('pdfPreview');
@@ -732,6 +786,7 @@ async function fixImageOrientation(file) {
 
     document.getElementById('form').addEventListener('submit', async (e) => {
       e.preventDefault();
+ const folderName = getTimestampFolder();
 
 const formData = {};
 
