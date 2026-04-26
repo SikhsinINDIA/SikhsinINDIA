@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Schema Manager with Types</title>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<style>
+body{margin:0;font-family:Arial;background:black;color:#FF9933;}
+header{background:#FF9933;color:black;text-align:center;padding:15px;font-weight:bold;}
+.container{max-width:900px;margin:auto;padding:15px;}
+
+input,select{
+width:100%;padding:10px;margin:5px 0;
+background:black;color:#FF9933;border:1px solid #FF9933;
+}
+
+button{
+background:#FF9933;color:black;padding:10px;margin:5px;
+border:none;font-weight:bold;cursor:pointer;
+}
+
+table{width:100%;border-collapse:collapse;margin-top:15px;}
+th,td{border:1px solid #FF9933;padding:8px;}
+th{background:#111;}
+</style>
+</head>
+
+<body>
+
+<header>📊 Matrimonials Field Structure Manager</header>
+
+<div class="container">
+
+<input id="fieldName" placeholder="Field Name">
+<input id="newFieldName" placeholder="New Name (rename)">
+
+<select id="fieldType">
+<option value="string">String</option>
+<option value="number">Number</option>
+<option value="boolean">Boolean</option>
+<option value="date">Date</option>
+</select>
+
+<button onclick="addField()">Add</button>
+<button onclick="renameField()">Rename</button>
+<button onclick="deleteField()">Delete</button>
+<button onclick="changeType()">Change Type</button>
+
+<h3>Current Fields</h3>
+
+<table>
+<thead>
+<tr><th>#</th><th>Field Name</th><th>Type</th></tr>
+</thead>
+<tbody id="fieldTable"></tbody>
+</table>
+
+</div>
+
+<script>
+
+const firebaseConfig={
+apiKey:"YOUR_API_KEY",
+authDomain:"YOUR_PROJECT.firebaseapp.com",
+projectId:"YOUR_PROJECT_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db=firebase.firestore();
+
+/* ✅ DEFAULT FIELDS WITH TYPES */
+let fields = [
+{name:"SNo", type:"number"},
+{name:"Name", type:"string"},
+{name:"Gender", type:"string"},
+{name:"Age", type:"number"},
+{name:"Mobile", type:"string"},
+{name:"Email", type:"string"},
+{name:"Height_Feet", type:"number"},
+{name:"Height_Inch", type:"number"},
+{name:"Complexion", type:"string"},
+{name:"Education", type:"string"},
+{name:"Maritial_Status", type:"string"},
+{name:"Religion", type:"string"},
+{name:"Religion_Details", type:"string"},
+{name:"Country", type:"string"},
+{name:"City", type:"string"},
+{name:"Occupation", type:"string"},
+{name:"Occupation_Details", type:"string"},
+{name:"Income_Annum", type:"string"},
+{name:"Number_Experience", type:"string"},
+{name:"Family_Type", type:"string"},
+{name:"Diet", type:"string"},
+
+{name:"Father_Name", type:"string"},
+{name:"Father_Profession", type:"string"},
+{name:"Father_Profession_Details", type:"string"},
+{name:"Father_Mobile", type:"string"},
+{name:"Mother_Name", type:"string"},
+{name:"Mother_Profession", type:"string"},
+{name:"Mother_Profession_Details", type:"string"},
+{name:"Mother_Mobile", type:"string"},
+{name:"Number_Brother", type:"string"},
+{name:"Brother_Details", type:"string"},
+{name:"Number_Sister", type:"string"},
+{name:"Sister_Details", type:"string"},
+
+{name:"Match_Religion", type:"string"},
+{name:"Match_Profession", type:"string"},
+{name:"Match_Country", type:"string"},
+{name:"Match_Other", type:"string"}
+];
+
+/* ✅ RENDER */
+function render(){
+let html="";
+fields.forEach((f,i)=>{
+html+=`
+<tr>
+<td>${i+1}</td>
+<td>${f.name}</td>
+<td>${f.type}</td>
+</tr>`;
+});
+document.getElementById("fieldTable").innerHTML=html;
+}
+
+/* ✅ LOAD FROM FIRESTORE */
+async function loadFields(){
+try{
+const doc=await db.collection("Config").doc("MatrimonialFields").get();
+
+if(doc.exists && doc.data().fields?.length){
+
+fields = doc.data().fields.map(f=>{
+if(typeof f==="string"){
+return {name:f,type:"string"};
+}
+return f;
+});
+
+}
+
+}catch(err){
+console.log("Using default fields");
+}
+
+render();
+}
+
+/* ✅ SAVE */
+async function save(){
+try{
+await db.collection("Config").doc("MatrimonialFields").set({fields});
+render();
+alert("Saved successfully");
+}catch(err){
+console.error(err);
+alert("Error saving data: " + err.message);
+}
+}   
+
+/* ADD */
+function addField(){
+const name=document.getElementById("fieldName").value.trim();
+const type=document.getElementById("fieldType").value;
+
+if(!name) return alert("Enter field");
+
+if(fields.find(f=>f.name===name)) return alert("Already exists");
+console.log("Adding:", name, type);
+fields.push({name,type});
+render();   // show instantly   
+save();
+}
+
+/* DELETE */
+function deleteField(){
+const name=document.getElementById("fieldName").value.trim();
+fields=fields.filter(f=>f.name!==name);
+save();
+}
+
+/* RENAME */
+function renameField(){
+const oldName=document.getElementById("fieldName").value.trim();
+const newName=document.getElementById("newFieldName").value.trim();
+
+const field=fields.find(f=>f.name===oldName);
+if(!field) return alert("Field not found");
+
+field.name=newName;
+save();
+}
+
+/* CHANGE TYPE */
+function changeType(){
+const name=document.getElementById("fieldName").value.trim();
+const newType=document.getElementById("fieldType").value;
+
+const field=fields.find(f=>f.name===name);
+if(!field) return alert("Field not found");
+
+field.type=newType;
+save();
+}
+
+/* INIT */
+loadFields();
+
+</script>
+
+</body>
+</html>

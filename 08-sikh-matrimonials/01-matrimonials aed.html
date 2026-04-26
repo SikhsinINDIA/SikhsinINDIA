@@ -45,6 +45,7 @@ th{background:#111;position:sticky;top:0;}
 <h3>Details of Proposer</h3>
 
 <div class="grid-3">
+<input id="SNo" placeholder="SNo">
 <input id="Name" placeholder="Name">
 <select id="Gender"><option value="">Gender</option><option>Male</option><option>Female</option><option>Transgender</option></select>
 <select id="Height_Feet"><option value="">Feet</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select>
@@ -129,7 +130,7 @@ const storage=firebase.storage();
 let editId=null;
 
 const fields=[
-"SNo","Name","Gender","Height_Feet","Height_Inch","Age","Complexion","Education","Marital_Status","Religion","Religion_Details","City","Country","Occupation","Occupation_Details","Income_Annum","Number_Experience","Family_Type","Diet","Father_Name","Father_Profession","Father_Profession_Details","Father_Mobile","Mother_Name","Mother_Profession","Mother_Profession_Details","Mother_Mobile","Number_Brother","Brother_Details","Number_Sister","Sister_Details","Match_Religion","Match_Profession","Match_Country","Match_Other","Resume"
+"SNo","Name","Gender","Height_Feet","Height_Inch","Age","Complexion","Education","Marital_Status","Religion","Religion_Details","City","Country","Occupation","Occupation_Details","Income_Annum","Number_Experience","Family_Type","Diet","Father_Name","Father_Profession","Father_Profession_Details","Father_Mobile","Mother_Name","Mother_Profession","Mother_Profession_Details","Mother_Mobile","Number_Brother","Brother_Details","Number_Sister","Sister_Details","Match_Religion","Match_Profession","Match_Country","Match_Other","Resume", "Date"
 ];
 
 function buildHeader(){
@@ -152,18 +153,33 @@ document.getElementById('formTitle').innerText="Add / Edit Record";
 }
 
 async function loadRecords(){
-const snap=await db.collection('Matrimonials').get();
-let html="";
-snap.forEach(doc=>{
-const d=doc.data();
-html+="<tr>";
-fields.forEach(f=>{
-if(f==="Resume" && d[f]) html+=`<td><a href='${d[f]}' target='_blank'>View</a></td>`;
-else html+=`<td>${d[f]||''}</td>`;
-});
-html+=`<td><button onclick=\"editRecord('${doc.id}')\">Edit</button><button onclick=\"deleteRecord('${doc.id}')\">Delete</button></td></tr>`;
-});
-document.getElementById('records').innerHTML=html;
+  const snap = await db.collection('Matrimonials')
+    .orderBy('SNo', 'asc')
+    .get();
+
+  let html = "";
+
+  snap.forEach(doc => {
+    const d = doc.data();
+    html += "<tr>";
+
+    fields.forEach(f => {
+      if(f === "Resume" && d[f]) {
+        html += `<td><a href='${d[f]}' target='_blank'>View</a></td>`;
+      } else {
+        html += `<td>${d[f] || ''}</td>`;
+      }
+    });
+
+    html += `<td>
+      <button onclick="editRecord('${doc.id}')">Edit</button>
+      <button onclick="deleteRecord('${doc.id}')">Delete</button>
+    </td>`;
+
+    html += "</tr>";
+  });
+
+  document.getElementById('records').innerHTML = html;
 }
 
 async function deleteRecord(id){
@@ -173,6 +189,7 @@ loadRecords();
 }
 
 async function editRecord(id){
+     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 const doc=await db.collection('Matrimonials').doc(id).get();
 const d=doc.data();
 editId=id;
@@ -183,8 +200,14 @@ if(document.getElementById(f)) document.getElementById(f).value=d[f]||'';
 }
 
 async function getNextSNo(){
-const snap=await db.collection('Matrimonials').get();
-return snap.size+1;
+  const snap = await db.collection('Matrimonials')
+    .orderBy('SNo', 'desc')
+    .limit(1)
+    .get();
+
+  if (snap.empty) return 1;
+
+  return (snap.docs[0].data().SNo || 0) + 1;
 }
 
 window.onload=()=>{
@@ -200,30 +223,42 @@ document.getElementById('pdfPreview').src=URL.createObjectURL(file);
 document.getElementById('pdfPreview').style.display='block';
 });
 
-document.getElementById('form').addEventListener('submit',async e=>{
-e.preventDefault();
+document.getElementById('form').addEventListener('submit', async e => {
+  e.preventDefault();
 
-let resumeURL="";
-const file=document.getElementById('resume').files[0];
-if(file) resumeURL=await uploadResume(file);
+  const file = document.getElementById('resume').files[0];
+  let resumeURL = "";
 
-const data={};
-fields.forEach(f=>{
-if(f!=="Resume") data[f]=document.getElementById(f)?.value||'';
+  // If new file uploaded
+  if (file) {
+    resumeURL = await uploadResume(file);
+  }
+
+  const data = {};
+  fields.forEach(f => {
+    if (f !== "Resume") {
+      data[f] = document.getElementById(f)?.value || '';
+    }
+  });
+
+  if (editId) {
+    const oldDoc = await db.collection('Matrimonials').doc(editId).get();
+
+    // Keep old resume if no new file uploaded
+    data.Resume = resumeURL || oldDoc.data().Resume || "";
+
+    await db.collection('Matrimonials').doc(editId).update(data);
+  } else {
+    data.SNo = await getNextSNo();
+    data.Resume = resumeURL;
+
+    await db.collection('Matrimonials').add(data);
+  }
+
+  resetForm();
+  loadRecords();
 });
 
-data.Resume=resumeURL;
-
-if(editId){
-await db.collection('Matrimonials').doc(editId).update(data);
-}else{
-data.SNo=await getNextSNo();
-await db.collection('Matrimonials').add(data);
-}
-
-resetForm();
-loadRecords();
-});
 </script>
 
 </body>

@@ -123,40 +123,35 @@
           <option>Female</option>
           <option>Transgender</option>
         </select>
-        <input id="Mobile" placeholder="Mobile">
-        <input id="Email" placeholder="Email">
       </div>
 
       <div class="grid-3">
         <select id="Height_Feet">
           <option value="">Height (Feet)</option>
-          <option>3 ft</option>
-          <option>4 ft</option>
-          <option>5 ft</option>
-          <option>6 ft</option>
-          <option>7 ft</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
         </select>
 
         <select id="Height_Inch">
           <option value="">Height (Inch)</option>
-          <option>0 in</option>
-          <option>1 in</option>
-          <option>2 in</option>
-          <option>3 in</option>
-          <option>4 in</option>
-          <option>5 in</option>
-          <option>6 in</option>
-          <option>7 in</option>
-          <option>8 in</option>
-          <option>9 in</option>
-          <option>10 in</option>
-          <option>11 in</option>
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+          <option>11</option>
         </select>
 
-        <input id="Height_Cm_Display" placeholder="Height (cm)" readonly>
-
         <input id="Age" type="number" placeholder="Age">
-
 
         <select id="Complexion">
           <option value="">Complexion</option>
@@ -171,14 +166,13 @@
         <input id="Education" placeholder="Education">
 
         <select id="Marital_Status">
-          <option value="" selected disabled>Marital Status</option>
+          <option value="">Marital Status</option>
           <option>Single</option>
-          <option>Married</option>
           <option>Separated</option>
         </select>
 
         <select id="Religion">
-          <option value="" selected disabled>Religion</option>
+          <option value="">Religion</option>
           <option>Sikh</option>
           <option>Hindu</option>
           <option>Muslim</option>
@@ -193,7 +187,7 @@
         <input id="Country" placeholder="Country">
 
         <select id="Occupation">
-          <option value="" selected disabled>Occupation</option>
+          <option value="">Occupation</option>
           <option>Service</option>
           <option>Business</option>
           <option>Student</option>
@@ -206,14 +200,14 @@
 
       <div class="grid-3">
         <select id="Family_Type">
-          <option value="" selected disabled>Family Type</option>
+          <option value="">Family Type</option>
           <option>Nuclear</option>
           <option>Joint</option>
           <option>Other</option>
         </select>
 
         <select id="Diet">
-          <option value="" selected disabled>Diet</option>
+          <option value="">Diet</option>
           <option>Vegetarian</option>
           <option>Eggitarian</option>
           <option>Non-Vegetarian</option>
@@ -225,7 +219,7 @@
       <div class="grid-3">
         <input id="Father_Name" placeholder="Father Name">
         <select id="Father_Profession">
-          <option value="" selected disabled>Father Profession</option>
+          <option value="">Father Profession</option>
           <option>Service</option>
           <option>Business</option>
           <option>Retired</option>
@@ -237,7 +231,7 @@
       <div class="grid-3">
         <input id="Mother_Name" placeholder="Mother Name">
         <select id="Mother_Profession">
-          <option value="" selected disabled>Mother Profession</option>
+          <option value="">Mother Profession</option>
           <option>Home Maker</option>
           <option>Service</option>
           <option>Business</option>
@@ -262,7 +256,7 @@
         <textarea id="Match_Other" placeholder="Other Preferences"></textarea>
       </div>
 
-      <h2>Photos - Max 2 Nos.</h2>
+      <h2>Photos</h2>
 
       <input type="file" id="photo1" accept="image/*">
       <iframe id="preview1" style="width:100%; height:200px; border:1px solid #FF9933; display:none;"></iframe>
@@ -280,7 +274,7 @@
 
     </form>
   </div>
-  <div id="loaderOverlay" style="
+<div id="loaderOverlay" style="
   display:none;
   position:fixed;
   top:0; left:0;
@@ -293,8 +287,8 @@
   flex-direction:column;
   font-size:20px;
 ">
-    ⏳ Please wait... Uploading files
-  </div>
+  ⏳ Please wait... Uploading files
+</div>
   <script>
 
     const firebaseConfig = {
@@ -313,21 +307,23 @@
 
 
 
-    async function uploadFile(file, folderName) {
+    async function uploadResume(file, folder = "uploads") {
       const base64 = await toBase64(file);
 
-      const response = await fetch("https://script.google.com/macros/s/AKfycbzBuAZuk3tGCJoDUNhUUzly7-yeRX4dEV7h4jjUd_upMyE7_ZOV6f3Smk9m3xp25oc/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbzGRmVAJxFz8IOnyYcoPLwo-zFeBNF8jP0j9dk5TQIJ6Ovm8IxWVK62_7vUj8ngP5k/exec", {
         method: "POST",
         body: new URLSearchParams({
           file: base64.split(",")[1],
           type: file.type,
-          name: file.name,
-          folder: folderName   // 👈 NEW
+          name: Date.now() + "_" + file.name
         })
       });
 
       const result = await response.json();
-      if (!result.success) throw new Error(result.error);
+
+      if (!result.success) {
+        throw new Error(result.error);
+      }
 
       return result.url;
     }
@@ -355,106 +351,35 @@
       return Number(last) + 1;
     }
 
-    function isValidEmail(email) {
-      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return regex.test(email);
-    }
-
-    function getTimestampFolder() {
-      const now = new Date();
-      return now.getFullYear() + "-" +
-        String(now.getMonth() + 1).padStart(2, '0') + "-" +
-        String(now.getDate()).padStart(2, '0') + "_" +
-        String(now.getHours()).padStart(2, '0') + "-" +
-        String(now.getMinutes()).padStart(2, '0') + "-" +
-        String(now.getSeconds()).padStart(2, '0');
-    }
-
     function showLoader(message = "Please wait... Uploading files") {
-      const loader = document.getElementById("loaderOverlay");
-      loader.style.display = "flex";
-      loader.innerHTML = "⏳ " + message;
+  const loader = document.getElementById("loaderOverlay");
+  loader.style.display = "flex";
+  loader.innerHTML = "⏳ " + message;
+}
+
+function hideLoader() {
+  document.getElementById("loaderOverlay").style.display = "none";
+}
+
+function previewImage(inputId, frameId) {
+  document.getElementById(inputId).addEventListener("change", function(e) {
+    const file = e.target.files[0];
+    const frame = document.getElementById(frameId);
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      alert("Please upload an image only");
+      return;
     }
 
-    function hideLoader() {
-      document.getElementById("loaderOverlay").style.display = "none";
-    }
+    frame.src = URL.createObjectURL(file);
+    frame.style.display = "block";
+  });
+}
 
-    function previewImage(inputId, frameId) {
-      document.getElementById(inputId).addEventListener("change", function (e) {
-        const file = e.target.files[0];
-        const frame = document.getElementById(frameId);
-
-        if (!file) return;
-
-        if (!file.type.startsWith("image/")) {
-          alert("Please upload an image only");
-          return;
-        }
-
-        frame.src = URL.createObjectURL(file);
-        frame.style.display = "block";
-      });
-    }
-    function doPost(e) {
-      try {
-        const data = e.parameter;
-
-        const fileBlob = Utilities.newBlob(
-          Utilities.base64Decode(data.file),
-          data.type,
-          data.name
-        );
-
-        const parentFolder = DriveApp.getFolderById("1pNiZ1MxxhQskMxib4k_ejAVVDqxTnAZd");
-
-        // 👇 create/find folder
-        let folder;
-        const folders = parentFolder.getFoldersByName(data.folder);
-
-        if (folders.hasNext()) {
-          folder = folders.next();
-        } else {
-          folder = parentFolder.createFolder(data.folder);
-        }
-
-        const file = folder.createFile(fileBlob);
-
-        return ContentService.createTextOutput(JSON.stringify({
-          success: true,
-          url: file.getUrl()
-        })).setMimeType(ContentService.MimeType.JSON);
-
-      } catch (err) {
-        return ContentService.createTextOutput(JSON.stringify({
-          success: false,
-          error: err.toString()
-        }));
-      }
-    }
-
-
-    function updateHeightCm() {
-      const feet = parseInt(document.getElementById('Height_Feet').value) || 0;
-      const inch = parseInt(document.getElementById('Height_Inch').value) || 0;
-
-      const cm = (feet * 12 * 2.54) + (inch * 2.54);
-      const display = document.getElementById('Height_Cm_Display');
-
-      if (feet === 0 && inch === 0) {
-        display.value = "";
-      } else {
-        display.value = (Math.round(cm * 10) / 10) + " cm";
-      }
-    }
-
-    previewImage("photo1", "preview1");
-    previewImage("photo2", "preview2");
-
-    document.getElementById('Height_Feet').addEventListener('change', updateHeightCm);
-    document.getElementById('Height_Inch').addEventListener('change', updateHeightCm);
-
-    const folderName = getTimestampFolder();
+previewImage("photo1", "preview1");
+previewImage("photo2", "preview2");
 
     document.getElementById('resume').addEventListener('change', function (e) {
       const file = e.target.files[0];
@@ -473,164 +398,66 @@
       preview.style.display = "block";
     });
 
-    document.getElementById('form').addEventListener('submit', async (e) => {
-      e.preventDefault();
+   document.getElementById('form').addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-      const name = document.getElementById('Name').value.trim();
+  try {
+    showLoader("Uploading photos...");
 
+    const photo1File = document.getElementById('photo1').files[0];
+    const photo2File = document.getElementById('photo2').files[0];
 
-      if (!name) {
-        alert("Name is required");
-        document.getElementById('Name').focus();
-        return;
-      }
+    let photo1URL = "";
+    let photo2URL = "";
 
-      const Mobile = document.getElementById('Mobile').value.trim();
+    if (photo1File) {
+      photo1URL = await uploadResume(photo1File);
+    }
 
+    if (photo2File) {
+      photo2URL = await uploadResume(photo2File);
+    }
 
-      if (!Mobile) {
-        alert("Mobile is required");
-        document.getElementById('Mobile ').focus();
-        return;
-      }
+    showLoader("Uploading resume...");
 
-      const Email = document.getElementById('Email').value.trim();
+    const resumeFile = document.getElementById('resume').files[0];
+    let resumeURL = '';
 
+    if (resumeFile) {
+      resumeURL = await uploadResume(resumeFile);
+    }
 
-      if (!Email) {
-        alert("Email is required");
-        document.getElementById('Email').focus();
-        return;
-      }
+    showLoader("Saving data...");
 
-      const age = document.getElementById('Age').value.trim();
+    const data = {};
+    data.SNo = await getNextSNo();
 
-      if (!age || isNaN(age)) {
-        alert("Please enter a valid age");
-        return;
-      }
-
-      if (!age) {
-        alert("Age is required");
-        document.getElementById('Age').focus();
-        return;
-      }
-      if (age < 18 || age > 80) {
-        alert("Please enter a valid age between 18 and 80");
-        document.getElementById('Age').focus();
-        return;
-      }
-
-      const email = document.getElementById('Email').value.trim();
-
-      if (!email) {
-        alert("Email is required");
-        return;
-      }
-
-      if (!isValidEmail(email)) {
-        alert("Please enter a valid email address");
-        return;
-      }
-
-
-
-      try {
-       showLoader("Uploading photos...");
-
-const photo1File = document.getElementById('photo1').files[0];
-const photo2File = document.getElementById('photo2').files[0];
-
-if (photo1File) {
-  await uploadFile(photo1File, folderName);
-}
-
-if (photo2File) {
-  await uploadFile(photo2File, folderName);
-}
-
-showLoader("Uploading resume...");
-
-const resumeFile = document.getElementById('resume').files[0];
-
-if (resumeFile) {
-  await uploadFile(resumeFile, folderName);
-}
-
-showLoader("Saving data...");
-
-const data = {};
-data.SNo = await getNextSNo();
-
-document.querySelectorAll('input, textarea, select').forEach(el => {
-  if (el.id && el.type !== 'file') {
-    data[el.id] = el.value;
-  }
-});
-
-        const feet = parseInt(document.getElementById('Height_Feet').value) || 0;
-        const inch = parseInt(document.getElementById('Height_Inch').value) || 0;
-
-
-
-        const heightCm = (feet * 12 * 2.54) + (inch * 2.54);
-        data.Height_cm = Math.round(heightCm * 10) / 10;
-
-        // data.Photo1 = photo1URL;
-        // data.Photo2 = photo2URL;
-        // data.Resume = resumeURL;
-
-        data.Created_At = firebase.firestore.FieldValue.serverTimestamp();
-
-
-        const now = new Date();
-
-        data.Created_At = firebase.firestore.FieldValue.serverTimestamp(); // for sorting
-        data.Date = now.toLocaleString('en-GB', {
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric'
-        }) + ', ' +
-          now.toLocaleString('en-GB', {
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true
-          });
-
-        await db.collection('Matrimonials').add(data);
-
-
-
-        showLoader("✅ File saved successfully!");
-
-        setTimeout(() => {
-          hideLoader();
-          alert('Saved successfully');
-          document.getElementById('form').reset();
-
-          // ✅ Clear image previews
-          document.getElementById('preview1').src = "";
-          document.getElementById('preview1').style.display = "none";
-
-          document.getElementById('preview2').src = "";
-          document.getElementById('preview2').style.display = "none";
-
-          // ✅ Clear PDF preview
-          document.getElementById('pdfPreview').src = "";
-          document.getElementById('pdfPreview').style.display = "none";
-
-          // ✅ Clear file inputs manually (IMPORTANT)
-          document.getElementById('photo1').value = "";
-          document.getElementById('photo2').value = "";
-          document.getElementById('resume').value = "";
-        }, 1500);
-
-      } catch (err) {
-        hideLoader();
-        alert("Error: " + err.message);
+    document.querySelectorAll('input, textarea, select').forEach(el => {
+      if (el.id && el.type !== 'file') {
+        data[el.id] = el.value;
       }
     });
 
+    data.Photo1 = photo1URL;
+    data.Photo2 = photo2URL;
+    data.Resume = resumeURL;
+
+    await db.collection('Matrimonials').add(data);
+
+    showLoader("✅ File saved successfully!");
+
+    setTimeout(() => {
+      hideLoader();
+      alert('Saved successfully');
+      document.getElementById('form').reset();
+    }, 1500);
+
+  } catch (err) {
+    hideLoader();
+    alert("Error: " + err.message);
+  }
+});
+    
 
   </script>
   <a href="../index.html" class="back-button" style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
