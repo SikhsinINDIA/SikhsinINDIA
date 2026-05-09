@@ -145,7 +145,6 @@
           <option value="">Gender</option>
           <option>Male</option>
           <option>Female</option>
-          <option>Transgender</option>
         </select>
 
         <input id="Mobile" placeholder="Mobile">
@@ -236,7 +235,6 @@
         <select id="Marital_Status">
           <option value="" selected disabled>Marital Status</option>
           <option>Single</option>
-          <option>Married</option>
           <option>Widow</option>
           <option>Widower</option>
           <option>Separated</option>
@@ -253,20 +251,26 @@
       </div> -->
 
         <select id="Religion_Details">
-          <option value="" selected disabled>Religion Details</option>
-          <option>Kashmiri Sikh (Murshidbadi)</option>
-          <option>Ramgarhia</option>
-          <option>Jat Sikh</option>
-          <option>Sindhi Sikh</option>
-          <option>Agrahari Sikh</option>
-          <option>Dakhni</option>
-          <option>Bijnori</option>
-          <option>Sikkalgiri</option>
-          <option>Lubana</option>
-          <option>Namdhari</option>
-          <option>Other</option>
-        </select>
-      </div>
+  <option value="" selected disabled>Religion Details</option>
+  <option>Kashmiri Sikh (Murshidbadi)</option>
+  <option>Ramgarhia</option>
+  <option>Jat Sikh</option>
+  <option>Sindhi Sikh</option>
+  <option>Agrahari Sikh</option>
+  <option>Dakhni</option>
+  <option>Bijnori</option>
+  <option>Sikkalgiri</option>
+  <option>Lubana</option>
+  <option>Namdhari</option>
+  <option>Other</option>
+</select>
+
+<input 
+  id="Religion_Details_Other" 
+  placeholder="Enter Religion Details"
+  style="display:none;"
+>
+ </div>
 
         <div class="grid-3">
           <input id="City" placeholder="City">
@@ -300,6 +304,22 @@
             <option>Eggitarian</option>
             <option>Non-Vegetarian</option>
           </select>
+          <select id="Drinking_Habits">
+            <option value="" selected disabled>Drinking Habits</option>
+            <option>Strictly No</option>
+            <option>Regular</option>
+            <option>Occasionally</option>
+          </select>
+
+        <select id="Mother_tongue">
+            <option value="" selected disabled>Mother Tongue</option>
+            <option>Punjabi</option>
+            <option>Hindi</option>
+            <option>English</option>
+            <option>Sindhi</option>
+          </select>
+        <input id="Languages_Known" placeholder="Languages Known">
+                  
         </div>
 
         <h2>Family Details</h2>
@@ -871,6 +891,24 @@ flatpickr("#Date_of_Birth", {
     calculateAge();
   }
 });
+
+
+// Show/Hide Religion Other textbox
+document.getElementById("Religion_Details")
+  .addEventListener("change", function () {
+
+    const otherBox = document.getElementById("Religion_Details_Other");
+
+    if (this.value === "Other") {
+      otherBox.style.display = "block";
+      otherBox.required = true;
+    } else {
+      otherBox.style.display = "none";
+      otherBox.required = false;
+      otherBox.value = "";
+    }
+});
+
 
     document.getElementById('Height_Feet').addEventListener('change', updateHeightCm);
     document.getElementById('Height_Inch').addEventListener('change', updateHeightCm);
