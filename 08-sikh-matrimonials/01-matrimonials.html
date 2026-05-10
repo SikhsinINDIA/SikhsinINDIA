@@ -864,27 +864,29 @@
     }
 
     function calculateAge() {
-const dobValue = document.getElementById('Date_of_Birth').value;
 
-if (!dobValue) {
-  alert("Date of Birth is required");
-  document.getElementById('Date_of_Birth').focus();
-  return;
+  const dobValue = document.getElementById('Date_of_Birth').value;
+
+  if (!dobValue) {
+    return;
+  }
+
+  const dobDate = new Date(dobValue); // now works correctly
+  const today = new Date();
+
+  let age = today.getFullYear() - dobDate.getFullYear();
+
+  const monthDiff = today.getMonth() - dobDate.getMonth();
+
+  if (
+    monthDiff < 0 ||
+    (monthDiff === 0 && today.getDate() < dobDate.getDate())
+  ) {
+    age--;
+  }
+
+  document.getElementById("Age").value = age;
 }
-
-const dobDate = new Date(dobValue);
-const today = new Date();
-
-let age = today.getFullYear() - dobDate.getFullYear();
-const monthDiff = today.getMonth() - dobDate.getMonth();
-
-if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dobDate.getDate())) {
-  age--;
-}
-
-// set calculated age
-document.getElementById("Age").value = age;
-    }
 
     document.getElementById('Date_of_Birth')
       .addEventListener('change', calculateAge);
@@ -903,12 +905,14 @@ const minDOB = new Date();
 minDOB.setFullYear(today.getFullYear() - 60);
 
 flatpickr("#Date_of_Birth", {
-  dateFormat: "d-M-Y",
-  minDate: minDOB,   // optional lower bound (60 years)
-  maxDate: maxDOB,   // 👈 this enforces 18+ rule
-  allowInput: true,
+  dateFormat: "Y-m-d",       // actual stored value
+  altInput: true,
+  altFormat: "d-M-Y",        // visible format to user
+  minDate: minDOB,
+  maxDate: maxDOB,
+  allowInput: false,
   yearSelectorType: "dropdown",
-  disableMobile: false,
+  disableMobile: true,       // IMPORTANT
   onChange: function(selectedDates) {
     calculateAge();
   }
