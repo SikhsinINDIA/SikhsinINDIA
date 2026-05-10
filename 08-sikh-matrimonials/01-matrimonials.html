@@ -125,6 +125,18 @@
         flex-direction: column;
       }
     }
+
+    /* Better spacing for PDF layout */
+.section {
+  page-break-inside: avoid;
+  margin-bottom: 80px;
+}
+
+.section-title {
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+}
+  
   </style>
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
 </head>
@@ -448,7 +460,10 @@
         size: fontSize,
         color: BLACK,
       });
-      const logoUrl = "https://sikhsinindia.com/sikhsinindia.jpg";
+        const logoUrl = "https://sikhsinindia.com/sikhsinindia.jpg";
+
+        const logoWidth = 200;
+        const logoHeight = 200;
 
       const logoBytes = await fetch(logoUrl).then(res => res.arrayBuffer());
 
@@ -457,7 +472,7 @@
       // Center logo below header
       const headerBottomY = 840;   // header starts at 840
       const gap = 20;             // space between header & logo
-      const logoHeight = 60;
+
 
       cover.drawImage(logoImg, {
         x: 250,
@@ -468,14 +483,14 @@
 
       cover.drawText(`Serial No: ${formData.SNo || "-"}`, {
         x: 50,
-        y: 780,
+        y: 980,
         size: 18,
         color: BLACK,
       });
 
       cover.drawText(`Proposer Name: ${formData.Name || "-"}`, {
         x: 50,
-        y: 750,
+        y: 1080,
         size: 18,
         color: BLACK,
       });
@@ -560,7 +575,7 @@
           color: GRAY,
         });
 
-        y -= 16;
+        y -= 26;
       }
 
       // =========================
@@ -605,12 +620,19 @@
       addLine("Marital Status", formData.Maritial_Status);
       addLine("Religion", formData.Religion);
       addLine("Religion Details", formData.Religion_Details);
-      addLine("Occupation", formData.Occupation);
+            addLine("Religion Details Other", formData.Religion_Details_Other);
+      addLine("City", formData.City);
+      addLine("Country", formData.Country);
+            addLine("Occupation", formData.Occupation);
       addLine("Occupation Details", formData.Occupation_Details);
       addLine("Income", formData.Income_Annum);
       addLine("Experience", formData.Number_Experience);
       addLine("Family Type", formData.Family_Type);
       addLine("Diet", formData.Diet);
+      addLine("Drinking Habits", formData.Drinking_Habits);
+      addLine("Mother Tongue", formData.Mother_tongue);
+      addLine("Languages Known", formData.Languages_Known);
+      
 
       section("FAMILY DETAILS");
 
