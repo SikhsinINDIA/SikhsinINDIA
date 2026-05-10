@@ -88,15 +88,21 @@
     }
 
     /* GRID */
-    .grid-3 {
-      display: flex;
-      gap: 15px;
-    }
+.grid-3 {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
 
     .grid-3>* {
       flex: 1;
     }
-
+#Gender {
+  min-width: 130px;
+}
+select {
+  min-height: 44px;
+}
     /* Make Name wider */
     #Name {
       flex: 2;
