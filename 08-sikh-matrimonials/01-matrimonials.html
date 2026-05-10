@@ -446,119 +446,134 @@ select {
       // =========================
       const cover = pdfDoc.addPage([600, 900]);
 
-      cover.drawRectangle({
-        x: 0,
-        y: 840,
-        width: 600,
-        height: 60,
-        color: ORANGE,
-      });
+// =========================
+// HEADER BAR
+// =========================
+cover.drawRectangle({
+  x: 0,
+  y: 840,
+  width: 600,
+  height: 60,
+  color: ORANGE,
+});
 
-      const text = "MATRIMONIAL PROFILE - SikhsinIndia.com";
-      const fontSize = 24;
+const text = "MATRIMONIAL PROFILE - SikhsinIndia.com";
+const fontSize = 24;
 
-      const approxCharWidth = fontSize * 0.6;
-      const textWidth = text.length * approxCharWidth;
+const approxCharWidth = fontSize * 0.6;
+const textWidth = text.length * approxCharWidth;
 
-      cover.drawText(text, {
-        x: (600 - textWidth) / 2,
-        y: 860,
-        size: fontSize,
-        color: BLACK,
-      });
-        const logoUrl = "https://sikhsinindia.com/sikhsinindia.jpg";
+cover.drawText(text, {
+  x: (600 - textWidth) / 2,
+  y: 860,
+  size: fontSize,
+  color: BLACK,
+});
 
-        const logoWidth = 200;
-        const logoHeight = 200;
+// =========================
+// LOGO
+// =========================
+const logoUrl = "https://sikhsinindia.com/sikhsinindia.jpg";
 
-      const logoBytes = await fetch(logoUrl).then(res => res.arrayBuffer());
+const logoWidth = 200;
+const logoHeight = 150;
 
-      const logoImg = await pdfDoc.embedJpg(logoBytes);
+const logoBytes = await fetch(logoUrl).then(res => res.arrayBuffer());
 
-      // Center logo below header
-      const headerBottomY = 840;   // header starts at 840
-      const gap = 20;             // space between header & logo
+const logoImg = await pdfDoc.embedJpg(logoBytes);
 
+// logo below header
+cover.drawImage(logoImg, {
+  x: 200,
+  y: 620,
+  width: logoWidth,
+  height: logoHeight,
+});
 
-      cover.drawImage(logoImg, {
-        x: 250,
-        y: headerBottomY - gap - logoHeight,  // 👈 perfect spacing
-        width: 100,
-        height: logoHeight,
-      });
+// =========================
+// PROFILE TEXT
+// =========================
+cover.drawRectangle({
+  x: 30,
+  y: 500,
+  width: 540,
+  height: 80,
+  color: rgb(1, 1, 1) // white background
+});
 
-      cover.drawText(`Serial No: ${formData.SNo || "-"}`, {
-        x: 50,
-        y: 980,
-        size: 18,
-        color: BLACK,
-      });
+cover.drawText(`Serial No: ${formData.SNo || "-"}`, {
+  x: 50,
+  y: 550,
+  size: 18,
+  color: BLACK,
+});
 
-      cover.drawText(`Proposer Name: ${formData.Name || "-"}`, {
-        x: 50,
-        y: 1080,
-        size: 18,
-        color: BLACK,
-      });
+cover.drawText(`Proposer Name: ${formData.Name || "-"}`, {
+  x: 50,
+  y: 520,
+  size: 18,
+  color: BLACK,
+});
 
-      // =========================
-      // COVER PHOTOS (SIDE BY SIDE)
-      // =========================
+// =========================
+// COVER PHOTOS
+// =========================
+const photoY = 320;
+const photoSize = 130;
 
-      const photoY = 600;   // vertical position
-      const photoSize = 130;
+// LEFT PHOTO
+if (photo1File) {
 
-      // LEFT PHOTO (photo1)
-      if (photo1File) {
-        const fixedBlob1 = await fixImageOrientation(photo1File);
-        const bytes1 = await fixedBlob1.arrayBuffer();
+  const fixedBlob1 = await fixImageOrientation(photo1File);
+  const bytes1 = await fixedBlob1.arrayBuffer();
 
-        const img1 = photo1File.type.includes("png")
-          ? await pdfDoc.embedPng(bytes1)
-          : await pdfDoc.embedJpg(bytes1);
+  const img1 = photo1File.type.includes("png")
+    ? await pdfDoc.embedPng(bytes1)
+    : await pdfDoc.embedJpg(bytes1);
 
-        cover.drawImage(img1, {
-          x: 120,
-          y: photoY,
-          width: photoSize,
-          height: photoSize,
-        });
+  cover.drawImage(img1, {
+    x: 120,
+    y: photoY,
+    width: photoSize,
+    height: photoSize,
+  });
 
-        cover.drawRectangle({
-          x: 120,
-          y: photoY,
-          width: photoSize,
-          height: photoSize,
-          borderColor: ORANGE,
-          borderWidth: 2,
-        });
-      }
+  cover.drawRectangle({
+    x: 120,
+    y: photoY,
+    width: photoSize,
+    height: photoSize,
+    borderColor: ORANGE,
+    borderWidth: 2,
+  });
+}
 
-      // RIGHT PHOTO (photo2)
-      if (photo2File) {
-        const fixedBlob2 = await fixImageOrientation(photo2File);
-        const bytes2 = await fixedBlob2.arrayBuffer();
+// RIGHT PHOTO
+if (photo2File) {
 
-        const img2 = photo2File.type.includes("png")
-          ? await pdfDoc.embedPng(bytes2)
-          : await pdfDoc.embedJpg(bytes2);
+  const fixedBlob2 = await fixImageOrientation(photo2File);
+  const bytes2 = await fixedBlob2.arrayBuffer();
 
-        cover.drawImage(img2, {
-          x: 320,
-          y: photoY,
-          width: photoSize,
-          height: photoSize,
-        });
+  const img2 = photo2File.type.includes("png")
+    ? await pdfDoc.embedPng(bytes2)
+    : await pdfDoc.embedJpg(bytes2);
 
-        cover.drawRectangle({
-          x: 320,
-          y: photoY,
-          width: photoSize,
-          height: photoSize,
-          borderColor: ORANGE,
-          borderWidth: 2,
-        });
-      }
+  cover.drawImage(img2, {
+    x: 320,
+    y: photoY,
+    width: photoSize,
+    height: photoSize,
+  });
+
+  cover.drawRectangle({
+    x: 320,
+    y: photoY,
+    width: photoSize,
+    height: photoSize,
+    borderColor: ORANGE,
+    borderWidth: 2,
+  });
+}
 
       // =========================
       // AUTO PAGE SYSTEM
@@ -663,7 +678,7 @@ select {
       addLine("Match Profession", formData.Match_Profession);
       addLine("Match Country", formData.Match_Country);
       addLine("Other Preferences", formData.Match_Other);
-      addLine("Date Stamp", formData.Date_Other);
+addLine("Date Stamp", formData.Date);
 
       // =========================
       // PHOTO 2 PAGE
@@ -1013,6 +1028,20 @@ document.getElementById("Religion_Details")
       const photo2File = document.getElementById('photo2').files[0];
       const resumeFile = document.getElementById('resume').files[0];
       formData.SNo = await getNextSNo();
+
+const now = new Date();
+
+formData.Date = now.toLocaleString('en-GB', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric'
+}) + ', ' +
+now.toLocaleString('en-GB', {
+  hour: 'numeric',
+  minute: '2-digit',
+  hour12: true
+});
+
 
       const combinedPdf = await createCombinedPdf(
         photo1File,
