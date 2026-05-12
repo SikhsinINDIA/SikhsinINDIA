@@ -171,12 +171,7 @@ async function loadReport(){
     d.Photo1
     ?
     `
-    <a href="${d.Photo1}" target="_blank">
-      <img
-        src="${getDrivePreviewUrl(d.Photo1)}"
-        onerror="this.style.display='none'"
-      >
-    </a>
+
     `
     :
     ''
@@ -186,12 +181,7 @@ async function loadReport(){
     d.Photo2
     ?
     `
-    <a href="${d.Photo2}" target="_blank">
-      <img
-        src="${getDrivePreviewUrl(d.Photo2)}"
-        onerror="this.style.display='none'"
-      >
-    </a>
+
     `
     :
     ''
@@ -208,22 +198,13 @@ async function loadReport(){
 
             &nbsp;&nbsp;&nbsp;
 
-            <span class="label">Name:</span>
-            ${d.Name || ''}
 
-            &nbsp;&nbsp;&nbsp;
 
             <span class="label">Gender:</span>
             ${d.Gender || ''}
 
-            &nbsp;&nbsp;&nbsp;
-                        <span class="label">Mobile:</span>
-            ${d.Mobile || ''}
 
-                        &nbsp;&nbsp;&nbsp;
-                        <span class="label">Email:</span>
-            ${d.Email || ''}
-
+  
             &nbsp;&nbsp;&nbsp;
 <span class="label">Date of Birth:</span>
 ${d.Date_of_Birth
@@ -336,51 +317,7 @@ ${d.Date_of_Birth
 
           </div>
 
-          <div class="line">
-
-            <span class="label">Father's Name:</span>
-
-            ${d.Father_Name || ''}
-        <span class="label">Father's Profession:</span>
-            (${d.Father_Profession || ''})
-        <span class="label">Father's Mobile Number:</span>
-                        (${d.Father_Mobile || ''})
-                                <span class="label">Father's Professional Details:</span>
-                        (${d.Father_Profession_Details || ''})
-
-            &nbsp;&nbsp;&nbsp;
-                   </div>
-                   <div class="line">
-            <span class="label">Mother's Name:</span>
-
-            ${d.Mother_Name || ''}
-        <span class="label">Mother's Profession:</span>
-            (${d.Mother_Profession || ''})
-                    <span class="label">Mother's Mobile Number:</span>
-                        (${d.Mother_Mobile || ''})
-                                                        <span class="label">Mother's Professional Details:</span>
-                        (${d.Mother_Profession_Details || ''})
-
-          </div>
-
-          <div class="line">
-
-            <span class="label">Number of Brothers:</span>
-
-            ${d.Number_Brother || ''}
-                        <span class="label">Brother Details:</span>
-            ${d.Brother_Details || ''}
-
-            &nbsp;&nbsp;&nbsp;
-
-            <span class="label">Number of Sisters:</span>
-
-            ${d.Number_Sister || ''}
-                        <span class="label">Sister Details:</span>
-            ${d.Sister_Details || ''}
-
-          </div>
-
+        
           <div class="line">
 
             <span class="label">Match Religion:</span>
@@ -403,26 +340,9 @@ ${d.Date_of_Birth
 
           </div>
 
-          <div class="links">
 
-            ${makeLink(d.Photo1,'Photo 1')}
 
-            ${makeLink(d.Photo2,'Photo 2')}
-
-            ${makeLink(d.Resume,'Resume PDF')}
-
-            ${makeLink(d.Combined_PDF,'Combined PDF')}
-
-          </div>
-
-          <div class="line">
-
-            <span class="label">Date of uploading on Website:</span>
-
-            ${d.Date || ''}
-
-          </div>
-
+         
         </div>
 
       </div>
@@ -438,7 +358,7 @@ ${d.Date_of_Birth
 loadReport();
 
 </script>
-  <a href="../08-sikh-matrimonials/01-matrimonials.html" class="back-button" style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
+  <a href="../08-sikh-matrimonials/08-sikh-matrimonials.html" class="back-button" style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
           color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
           line-height: 30px; border-radius: 8px; text-decoration: none; 
           border: 2px solid black;">
