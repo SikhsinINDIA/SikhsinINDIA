@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matrimonials Report</title>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: black;
+      color: #FF9933;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: black;
+      color: #FF9933;
+      font-size: 13px;
+    }
+
+    th, td {
+      border: 1px solid #FF9933;
+      padding: 8px;
+      text-align: left;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      background: #111;
+    }
+
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border: 1px solid #FF9933;
+    }
+
+    a {
+      color: #FF9933;
+      text-decoration: underline;
+      word-break: break-all;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Matrimonials Report</h1>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>SNo</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Date of Birth</th>
+          <th>Age</th>
+          <th>Mobile</th>
+          <th>Email</th>
+          <th>Height (Feet)</th>
+          <th>Height (Inch)</th>
+          <th>Height (cm)</th>
+          <th>Complexion</th>
+          <th>Education</th>
+          <th>Marital Status</th>
+          <th>Religion</th>
+          <th>Religion Details</th>
+          <th>Religion Details Other</th>
+          <th>City</th>
+          <th>Country</th>
+          <th>Occupation</th>
+          <th>Occupation Details</th>
+          <th>Income</th>
+          <th>Experience</th>
+          <th>Family Type</th>
+          <th>Diet</th>
+          <th>Drinking Habits</th>
+          <th>Mother Tongue</th>
+          <th>Languages Known</th>
+          <th>Father Name</th>
+          <th>Father Profession</th>
+          <th>Father Details</th>
+          <th>Father Mobile</th>
+          <th>Mother Name</th>
+          <th>Mother Profession</th>
+          <th>Mother Details</th>
+          <th>Mother Mobile</th>
+          <th>Brothers</th>
+          <th>Brother Details</th>
+          <th>Sisters</th>
+          <th>Sister Details</th>
+          <th>Match Religion</th>
+          <th>Match Profession</th>
+          <th>Match Country</th>
+          <th>Other Preferences</th>
+          <th>Photo 1</th>
+          <th>Photo 2</th>
+          <th>Resume</th>
+          <th>Combined PDF</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="reportBody"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    function getDrivePreviewUrl(url) {
+      if (!url) return "";
+      const match = url.match(/\/d\/([^/]+)/);
+      return match ? `https://drive.google.com/thumbnail?id=${match[1]}` : url;
+    }
+
+    function makeFileCell(url, label, isImage = false) {
+      if (!url) return "";
+
+      if (isImage) {
+        return `
+          <a href="${url}" target="_blank">
+            <img src="${getDrivePreviewUrl(url)}" onerror="this.style.display='none'">
+          </a>
+          <br>
+          <a href="${url}" target="_blank">${label}</a>
+          <br>
+          <small>${url}</small>
+        `;
+      }
+
+      return `
+        <a href="${url}" target="_blank">${label}</a>
+        <br>
+        <small>${url}</small>
+      `;
+    }
+
+    async function loadReport() {
+      const tbody = document.getElementById('reportBody');
+      tbody.innerHTML = '<tr><td colspan="48">Loading...</td></tr>';
+
+      const snapshot = await db.collection('Matrimonials').orderBy('SNo', 'asc').get();
+      tbody.innerHTML = '';
+
+      snapshot.forEach(doc => {
+        const d = doc.data();
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${d.SNo || ''}</td>
+          <td>${d.Name || ''}</td>
+          <td>${d.Gender || ''}</td>
+          <td>${d.Date_of_Birth || ''}</td>
+          <td>${d.Age || ''}</td>
+          <td>${d.Mobile || ''}</td>
+          <td>${d.Email || ''}</td>
+          <td>${d.Height_Feet || ''}</td>
+          <td>${d.Height_Inch || ''}</td>
+          <td>${d.Height_cm || ''}</td>
+          <td>${d.Complexion || ''}</td>
+          <td>${d.Education || ''}</td>
+          <td>${d.Marital_Status || ''}</td>
+          <td>${d.Religion || ''}</td>
+          <td>${d.Religion_Details || ''}</td>
+          <td>${d.Religion_Details_Other || ''}</td>
+          <td>${d.City || ''}</td>
+          <td>${d.Country || ''}</td>
+          <td>${d.Occupation || ''}</td>
+          <td>${d.Occupation_Details || ''}</td>
+          <td>${d.Income_Annum || ''}</td>
+          <td>${d.Number_Experience || ''}</td>
+          <td>${d.Family_Type || ''}</td>
+          <td>${d.Diet || ''}</td>
+          <td>${d.Drinking_Habits || ''}</td>
+          <td>${d.Mother_tongue || ''}</td>
+          <td>${d.Languages_Known || ''}</td>
+          <td>${d.Father_Name || ''}</td>
+          <td>${d.Father_Profession || ''}</td>
+          <td>${d.Father_Profession_Details || ''}</td>
+          <td>${d.Father_Mobile || ''}</td>
+          <td>${d.Mother_Name || ''}</td>
+          <td>${d.Mother_Profession || ''}</td>
+          <td>${d.Mother_Profession_Details || ''}</td>
+          <td>${d.Mother_Mobile || ''}</td>
+          <td>${d.Number_Brother || ''}</td>
+          <td>${d.Brother_Details || ''}</td>
+          <td>${d.Number_Sister || ''}</td>
+          <td>${d.Sister_Details || ''}</td>
+          <td>${d.Match_Religion || ''}</td>
+          <td>${d.Match_Profession || ''}</td>
+          <td>${d.Match_Country || ''}</td>
+          <td>${d.Match_Other || ''}</td>
+          <td>${makeFileCell(d.Photo1, 'Photo 1 Link', true)}</td>
+          <td>${makeFileCell(d.Photo2, 'Photo 2 Link', true)}</td>
+          <td>${makeFileCell(d.Resume, 'Resume PDF')}</td>
+          <td>${makeFileCell(d.Combined_PDF, 'Final PDF')}</td>
+          <td>${d.Date || ''}</td>
+        `;
+
+        tbody.appendChild(row);
+      });
+    }
+
+    loadReport();
+  </script>
+</body>
+</html>

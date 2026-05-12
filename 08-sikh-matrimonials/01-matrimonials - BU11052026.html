@@ -638,7 +638,7 @@ if (photo2File) {
       addLine("Height (cms)", formData.Height_cm);
       addLine("Complexion", formData.Complexion);
       addLine("Education", formData.Education);
-      addLine("Marital Status", formData.Marital_Status);
+      addLine("Marital Status", formData.Maritial_Status);
       addLine("Religion", formData.Religion);
       addLine("Religion Details", formData.Religion_Details);
             addLine("Religion Details Other", formData.Religion_Details_Other);
@@ -1080,30 +1080,27 @@ if (age < 18 || age > 60) {
       try {
         showLoader("Uploading photos...");
 
-let photo1URL = "";
-let photo2URL = "";
-let resumeURL = "";
-let combinedPdfURL = "";
 
-if (photo1File) {
-  photo1URL = await uploadFile(photo1File, folderName);
-}
+        if (photo1File) {
+          await uploadFile(photo1File, folderName);
+        }
 
-if (photo2File) {
-  photo2URL = await uploadFile(photo2File, folderName);
-}
+        if (photo2File) {
+          await uploadFile(photo2File, folderName);
+        }
 
-showLoader("Uploading resume...");
+        showLoader("Uploading resume...");
 
-if (resumeFile) {
-  resumeURL = await uploadFile(resumeFile, folderName);
-}
 
-showLoader("Uploading final PDF...");
+        if (resumeFile) {
+          await uploadFile(resumeFile, folderName);
+        }
 
-if (combinedPdf) {
-  combinedPdfURL = await uploadFile(combinedPdf, folderName);
-}
+
+
+        if (combinedPdf) {
+          await uploadFile(combinedPdf, folderName);
+        }
         showLoader("Saving data...");
 
         formData.SNo = await getNextSNo();
@@ -1122,12 +1119,6 @@ if (combinedPdf) {
         // data.Photo2 = photo2URL;
         // data.Resume = resumeURL;
 
-// Save uploaded Google Drive URLs into Firestore
-formData.Photo1 = photo1URL;
-formData.Photo2 = photo2URL;
-formData.Resume = resumeURL;
-formData.Combined_PDF = combinedPdfURL;
-
         formData.Created_At = firebase.firestore.FieldValue.serverTimestamp();
 
 
@@ -1144,11 +1135,7 @@ formData.Combined_PDF = combinedPdfURL;
             minute: '2-digit',
             hour12: true
           });
-console.log("photo1URL:", photo1URL);
-console.log("photo2URL:", photo2URL);
-console.log("resumeURL:", resumeURL);
-console.log("combinedPdfURL:", combinedPdfURL);
-console.log("formData before save:", formData);
+
         await db.collection('Matrimonials').add(formData);
 
 
