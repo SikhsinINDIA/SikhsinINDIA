@@ -106,8 +106,22 @@ th{background:#111;position:sticky;top:0;}
 </div>
 
 <h3>Resume</h3>
+
 <input type="file" id="resume">
-<iframe id="pdfPreview" style="width:100%;height:300px;display:none;border:1px solid #FF9933"></iframe>
+
+<iframe id="pdfPreview"
+style="width:100%;height:300px;display:none;border:1px solid #FF9933">
+</iframe>
+
+<input id="Photo1" placeholder="Photo 1 URL">
+
+<input id="Photo2" placeholder="Photo 2 URL">
+
+
+
+<input id="resumeURL" placeholder="Resume URL">
+
+<input id="Combined_PDF" placeholder="Combined PDF URL">
 
 <button type="submit">Save</button>
 <button type="button" onclick="resetForm()">Clear</button>
@@ -130,9 +144,8 @@ const storage=firebase.storage();
 let editId=null;
 
 const fields=[
-"SNo","Name","Gender","Height_Feet","Height_Inch","Height_cm","Age","Complexion","Education","Marital_Status","Religion","Religion_Details","City","Country","Occupation","Occupation_Details","Income_Annum","Number_Experience","Family_Type","Diet","Father_Name","Father_Profession","Father_Profession_Details","Father_Mobile","Mother_Name","Mother_Profession","Mother_Profession_Details","Mother_Mobile","Number_Brother","Brother_Details","Number_Sister","Sister_Details","Match_Religion","Match_Profession","Match_Country","Match_Other","Resume", "Date"
-];
-
+"SNo","Name","Gender","Height_Feet","Height_Inch","Height_cm","Age","Complexion","Education","Marital_Status","Religion","Religion_Details","City","Country","Occupation","Occupation_Details","Income_Annum","Number_Experience","Family_Type","Diet","Father_Name","Father_Profession","Father_Profession_Details","Father_Mobile","Mother_Name","Mother_Profession","Mother_Profession_Details","Mother_Mobile","Number_Brother","Brother_Details","Number_Sister","Sister_Details","Match_Religion","Match_Profession","Match_Country","Match_Other","Resume", "Photo1","Photo2","Combined_PDF","Date"
+]
 function buildHeader(){
 let h="";
 fields.forEach(f=>h+=`<th>${f}</th>`);
@@ -163,13 +176,36 @@ async function loadRecords(){
     const d = doc.data();
     html += "<tr>";
 
-    fields.forEach(f => {
-      if(f === "Resume" && d[f]) {
-        html += `<td><a href='${d[f]}' target='_blank'>View</a></td>`;
-      } else {
-        html += `<td>${d[f] || ''}</td>`;
-      }
-    });
+fields.forEach(f => {
+
+  const value = d[f] || "";
+
+  if (
+    ["Resume", "Photo1", "Photo2", "Combined_PDF"]
+    .includes(f)
+  ) {
+
+    if (value) {
+
+      html += `
+        <td>
+          <a href="${value}" target="_blank">
+            View
+          </a>
+        </td>
+      `;
+
+    } else {
+
+      html += `<td></td>`;
+    }
+
+  } else {
+
+    html += `<td>${value}</td>`;
+  }
+
+});
 
     html += `<td>
       <button onclick="editRecord('${doc.id}')">Edit</button>
@@ -224,39 +260,87 @@ document.getElementById('pdfPreview').style.display='block';
 });
 
 document.getElementById('form').addEventListener('submit', async e => {
+
   e.preventDefault();
 
   const file = document.getElementById('resume').files[0];
-  let resumeURL = "";
 
-  // If new file uploaded
+  let uploadedResumeURL = "";
+
+  // Upload resume PDF
   if (file) {
-    resumeURL = await uploadResume(file);
+
+    uploadedResumeURL = await uploadResume(file);
+
+    // Auto-fill textbox
+    document.getElementById('resumeURL').value = uploadedResumeURL;
   }
 
   const data = {};
+
+  // Save normal fields
   fields.forEach(f => {
-    if (f !== "Resume") {
-      data[f] = document.getElementById(f)?.value || '';
+
+    const el = document.getElementById(f);
+
+    if (el) {
+      data[f] = el.value || '';
     }
+
   });
 
+  // Explicitly save URL fields
+data.Photo1 =
+document.getElementById('Photo1').value || '';
+
+data.Photo2 =
+document.getElementById('Photo2').value || '';
+
+
+  data.resumeURL =
+    document.getElementById('resumeURL').value || '';
+
+
+data.Combined_PDF =
+document.getElementById('Combined_PDF').value || '';
+
+  // Resume upload URL
+  if (uploadedResumeURL) {
+
+    data.Resume = uploadedResumeURL;
+
+    data.resumeURL = uploadedResumeURL;
+  }
+
+  // Save date
+  data.Date = new Date().toLocaleString();
+
   if (editId) {
-    const oldDoc = await db.collection('Matrimonials').doc(editId).get();
 
-    // Keep old resume if no new file uploaded
-    data.Resume = resumeURL || oldDoc.data().Resume || "";
+    const oldDoc = await db.collection('Matrimonials')
+      .doc(editId)
+      .get();
 
-    await db.collection('Matrimonials').doc(editId).update(data);
+    if (!data.Resume) {
+      data.Resume = oldDoc.data().Resume || "";
+    }
+
+    await db.collection('Matrimonials')
+      .doc(editId)
+      .update(data);
+
   } else {
-    data.SNo = await getNextSNo();
-    data.Resume = resumeURL;
 
-    await db.collection('Matrimonials').add(data);
+    data.SNo = await getNextSNo();
+
+    await db.collection('Matrimonials')
+      .add(data);
   }
 
   resetForm();
+
   loadRecords();
+
 });
 
 </script>

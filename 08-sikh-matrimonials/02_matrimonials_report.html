@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Matrimonials Report</title>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<style>
+
+body{
+  margin:0;
+  padding:15px;
+  font-family:Arial,sans-serif;
+  background:black;
+  color:#FF9933;
+}
+
+h1{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.profile-card{
+  border:1px solid #FF9933;
+  padding:15px;
+  margin-bottom:15px;
+  page-break-inside:avoid;
+  background:#111;
+}
+
+.profile-top{
+  display:flex;
+  gap:15px;
+  align-items:flex-start;
+}
+
+.profile-photo img{
+  width:110px;
+  height:110px;
+  object-fit:cover;
+  border:1px solid #FF9933;
+}
+
+.profile-details{
+  flex:1;
+  line-height:1.7;
+  font-size:13px;
+}
+
+.line{
+  margin-bottom:5px;
+}
+
+.label{
+  font-weight:bold;
+  color:#FFD27F;
+}
+
+a{
+  color:#FF9933;
+  text-decoration:underline;
+  word-break:break-all;
+}
+
+.links{
+  margin-top:8px;
+}
+
+.links a{
+  margin-right:15px;
+}
+
+@media print{
+
+  body{
+    padding:5px;
+  }
+
+  .profile-card{
+    margin-bottom:10px;
+  }
+
+  .profile-details{
+    font-size:11px;
+  }
+
+  .profile-photo img{
+    width:90px;
+    height:90px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Matrimonials Report</h1>
+
+<div id="reportContainer"></div>
+
+<script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+  authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+  projectId: "sikhsinindia-67a6b",
+  storageBucket: "sikhsinindia-67a6b.appspot.com",
+  messagingSenderId: "622603668882",
+  appId: "1:622603668882:web:953c6a07864b235fdd054b"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+
+function getDrivePreviewUrl(url){
+
+  if(!url) return "";
+
+  const match = url.match(/\/d\/([^/]+)/);
+
+  return match
+    ? `https://drive.google.com/thumbnail?id=${match[1]}`
+    : url;
+}
+
+function makeLink(url,label){
+
+  if(!url) return "";
+
+  return `
+    <a href="${url}" target="_blank">
+      ${label}
+    </a>
+  `;
+}
+
+async function loadReport(){
+
+  const container =
+    document.getElementById('reportContainer');
+
+  container.innerHTML = "Loading...";
+
+  const snapshot = await db
+    .collection('Matrimonials')
+    .orderBy('SNo','asc')
+    .get();
+
+  container.innerHTML = "";
+
+  snapshot.forEach(doc => {
+
+    const d = doc.data();
+
+    const card = document.createElement('div');
+
+    card.className = "profile-card";
+
+    card.innerHTML = `
+
+      <div class="profile-top">
+<div class="profile-photo" style="display:flex;flex-direction:column;gap:10px;">
+
+  ${
+    d.Photo1
+    ?
+    `
+    <a href="${d.Photo1}" target="_blank">
+      <img
+        src="${getDrivePreviewUrl(d.Photo1)}"
+        onerror="this.style.display='none'"
+      >
+    </a>
+    `
+    :
+    ''
+  }
+
+  ${
+    d.Photo2
+    ?
+    `
+    <a href="${d.Photo2}" target="_blank">
+      <img
+        src="${getDrivePreviewUrl(d.Photo2)}"
+        onerror="this.style.display='none'"
+      >
+    </a>
+    `
+    :
+    ''
+  }
+
+</div>
+
+        <div class="profile-details">
+
+          <div class="line">
+
+            <span class="label">SNo:</span>
+            ${d.SNo || ''}
+
+            &nbsp;&nbsp;&nbsp;
+
+            <span class="label">Name:</span>
+            ${d.Name || ''}
+
+            &nbsp;&nbsp;&nbsp;
+
+            <span class="label">Gender:</span>
+            ${d.Gender || ''}
+
+            &nbsp;&nbsp;&nbsp;
+                        <span class="label">Mobile:</span>
+            ${d.Mobile || ''}
+
+                        &nbsp;&nbsp;&nbsp;
+                        <span class="label">Email:</span>
+            ${d.Email || ''}
+
+            &nbsp;&nbsp;&nbsp;
+<span class="label">Date of Birth:</span>
+${d.Date_of_Birth
+  ? new Date(d.Date_of_Birth).toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    }).replace(/ /g, '-')
+  : ''}
+            &nbsp;&nbsp;&nbsp;
+            <span class="label">Age:</span>
+            ${d.Age || ''}
+
+          </div>
+
+          <div class="line">
+
+            <span class="label">Height:</span>
+
+            ${d.Height_Feet || ''}
+            ${d.Height_Inch || ''}
+
+            (${d.Height_cm || ''} cm)
+
+            &nbsp;&nbsp;&nbsp;
+
+
+            <span class="label">Complexion:</span>
+            ${d.Complexion || ''}
+
+            &nbsp;&nbsp;&nbsp;
+
+            <span class="label">Marital Status:</span>
+            ${d.Marital_Status || ''}
+
+          </div>
+
+          <div class="line">
+
+            <span class="label">Education:</span>
+            ${d.Education || ''}
+
+            &nbsp;&nbsp;&nbsp;
+
+            <span class="label">Occupation:</span>
+            ${d.Occupation || ''}
+
+            &nbsp;&nbsp;&nbsp;
+
+            <span class="label">Occupation Details:</span>
+            ${d.Occupation_Details || ''}
+
+          </div>
+
+          <div class="line">
+
+            <span class="label">Religion:</span>
+            ${d.Religion || ''}
+
+            &nbsp;&nbsp;&nbsp;
+
+            <span class="label">Religion Details:</span>
+            ${d.Religion_Details || ''}
+
+            ${d.Religion_Details_Other || ''}
+
+          </div>
+                    <div class="line">
+
+            <span class="label">Family Type:</span>
+            ${d.Family_Type || ''}
+
+            &nbsp;&nbsp;&nbsp;
+                        <span class="label">Diet:</span>
+            ${d.Diet || ''}
+
+            &nbsp;&nbsp;&nbsp;
+                               <span class="label">Drinking Habits:</span>
+            ${d.Drinking_Habits || ''}
+
+            &nbsp;&nbsp;&nbsp;
+                                           <span class="label">Mother Tongue:</span>
+            ${d.Mother_tongue || ''}
+                   &nbsp;&nbsp;&nbsp;
+                                           <span class="label">Languages Known:</span>
+            ${d.Languages_Known || ''}
+
+            &nbsp;&nbsp;&nbsp;
+                      </div>
+
+          <div class="line">
+
+            <span class="label">City:</span>
+            ${d.City || ''}
+
+            &nbsp;&nbsp;&nbsp;
+
+            <span class="label">Country:</span>
+            ${d.Country || ''}
+
+            &nbsp;&nbsp;&nbsp;
+
+            <span class="label">Income:</span>
+            ${d.Income_Annum || ''}
+
+            &nbsp;&nbsp;&nbsp;
+
+            <span class="label">Experience:</span>
+            ${d.Number_Experience || ''} years
+
+          </div>
+
+          <div class="line">
+
+            <span class="label">Father's Name:</span>
+
+            ${d.Father_Name || ''}
+        <span class="label">Father's Profession:</span>
+            (${d.Father_Profession || ''})
+        <span class="label">Father's Mobile Number:</span>
+                        (${d.Father_Mobile || ''})
+                                <span class="label">Father's Professional Details:</span>
+                        (${d.Father_Profession_Details || ''})
+
+            &nbsp;&nbsp;&nbsp;
+                   </div>
+                   <div class="line">
+            <span class="label">Mother's Name:</span>
+
+            ${d.Mother_Name || ''}
+        <span class="label">Mother's Profession:</span>
+            (${d.Mother_Profession || ''})
+                    <span class="label">Mother's Mobile Number:</span>
+                        (${d.Mother_Mobile || ''})
+                                                        <span class="label">Mother's Professional Details:</span>
+                        (${d.Mother_Profession_Details || ''})
+
+          </div>
+
+          <div class="line">
+
+            <span class="label">Number of Brothers:</span>
+
+            ${d.Number_Brother || ''}
+                        <span class="label">Brother Details:</span>
+            ${d.Brother_Details || ''}
+
+            &nbsp;&nbsp;&nbsp;
+
+            <span class="label">Number of Sisters:</span>
+
+            ${d.Number_Sister || ''}
+                        <span class="label">Sister Details:</span>
+            ${d.Sister_Details || ''}
+
+          </div>
+
+          <div class="line">
+
+            <span class="label">Match Religion:</span>
+
+            ${d.Match_Religion || ''},
+                        <span class="label">Match Profession:</span>
+
+            ${d.Match_Profession || ''},
+                        <span class="label">Match Country:</span>
+
+            ${d.Match_Country || ''}
+
+          </div>
+
+          <div class="line">
+
+            <span class="label">Other Match Preference:</span>
+
+            ${d.Match_Other || ''}
+
+          </div>
+
+          <div class="links">
+
+            ${makeLink(d.Photo1,'Photo 1')}
+
+            ${makeLink(d.Photo2,'Photo 2')}
+
+            ${makeLink(d.Resume,'Resume PDF')}
+
+            ${makeLink(d.Combined_PDF,'Combined PDF')}
+
+          </div>
+
+          <div class="line">
+
+            <span class="label">Date of uploading on Website:</span>
+
+            ${d.Date || ''}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+loadReport();
+
+</script>
+  <a href="../08-sikh-matrimonials/01-matrimonials.html" class="back-button" style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
+          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
+          line-height: 30px; border-radius: 8px; text-decoration: none; 
+          border: 2px solid black;">
+    <b>Back</b>
+  </a>
+</body>
+</html>
