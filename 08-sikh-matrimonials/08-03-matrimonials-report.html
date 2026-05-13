@@ -125,16 +125,33 @@ function getDrivePreviewUrl(url){
   const match = url.match(/\/d\/([^/]+)/);
 
   return match
-    ? `https://drive.google.com/thumbnail?id=${match[1]}`
-    : url;
+    ? `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`
+    : "";
+}
+
+
+function extractFileId(url){
+
+  if(!url) return "";
+
+  const match = url.match(/\/d\/([^/]+)/);
+
+  return match ? match[1] : "";
 }
 
 function makeLink(url,label){
 
   if(!url) return "";
 
+  const fileId = extractFileId(url);
+
+  if(!fileId) return "";
+
+  const safeUrl =
+    `https://drive.google.com/uc?export=download&id=${fileId}`;
+
   return `
-    <a href="${url}" target="_blank">
+    <a href="${safeUrl}" target="_blank" rel="noopener noreferrer">
       ${label}
     </a>
   `;
