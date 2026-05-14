@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Matrimonial Matches Report</title>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<style>
+
+body{
+    margin:0;
+    padding:20px;
+    font-family:Arial,sans-serif;
+    background:black;
+    color:#FF9933;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.filters{
+    border:1px solid #FF9933;
+    padding:15px;
+    margin-bottom:20px;
+    background:#111;
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    align-items:center;
+}
+
+label{
+    font-weight:bold;
+    color:#FFD27F;
+}
+
+select,input{
+    padding:6px;
+    font-size:14px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:#111;
+}
+
+th,td{
+    border:1px solid #FF9933;
+    padding:10px;
+    vertical-align:top;
+    text-align:left;
+}
+
+th{
+    background:#222;
+    color:#FFD27F;
+}
+
+.match-item{
+    margin-bottom:5px;
+    line-height:1.5;
+}
+
+.no-match{
+    color:#999;
+}
+
+@media print{
+    body{
+        padding:5px;
+    }
+
+    th,td{
+        font-size:12px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Matrimonial Matches Report</h1>
+
+<div class="filters">
+
+    <div>
+        <label>
+            <input type="checkbox" id="genderFilter" checked>
+            Enable Male ↔ Female Matching
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type="checkbox" id="ageFilter">
+            Enable Age Matching
+        </label>
+    </div>
+
+    <div>
+        <label>Age Difference:</label>
+
+        <select id="ageDifference">
+            <option value="0">0 Years</option>
+            <option value="1">1 Year</option>
+            <option value="2">2 Years</option>
+            <option value="3">3 Years</option>
+            <option value="4">4 Years</option>
+            <option value="5">5 Years</option>
+            <option value="6">6 Years</option>
+            <option value="7">7 Years</option>
+            <option value="8">8 Years</option>
+            <option value="9">9 Years</option>
+            <option value="10">10 Years</option>
+        </select>
+    </div>
+
+    <button onclick="generateMatches()"
+        style="padding:8px 15px;
+        background:#FF9933;
+        border:none;
+        cursor:pointer;
+        font-weight:bold;">
+        Generate Matches
+    </button>
+
+</div>
+
+<table>
+
+    <thead>
+        <tr>
+            <th style="width:35%">Profile</th>
+            <th>Matching Profiles</th>
+        </tr>
+    </thead>
+
+    <tbody id="matchesBody">
+    </tbody>
+
+</table>
+
+<script>
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+    authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+    projectId: "sikhsinindia-67a6b",
+    storageBucket: "sikhsinindia-67a6b.appspot.com",
+    messagingSenderId: "622603668882",
+    appId: "1:622603668882:web:953c6a07864b235fdd054b"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+
+let allProfiles = [];
+
+async function loadProfiles(){
+
+    const snapshot = await db
+        .collection('Matrimonials')
+        .orderBy('SNo','asc')
+        .get();
+
+    allProfiles = [];
+
+    snapshot.forEach(doc => {
+
+        const d = doc.data();
+
+        allProfiles.push({
+            ...d,
+            Age: parseInt(d.Age) || 0
+        });
+
+    });
+
+    generateMatches();
+}
+
+function isGenderMatch(profile1, profile2, enableGenderFilter){
+
+    if(!enableGenderFilter){
+        return true;
+    }
+
+    const g1 = (profile1.Gender || '').toLowerCase();
+    const g2 = (profile2.Gender || '').toLowerCase();
+
+    return (
+        (g1 === 'male' && g2 === 'female') ||
+        (g1 === 'female' && g2 === 'male')
+    );
+}
+
+function isAgeMatch(profile1, profile2, enableAgeFilter, ageDiff){
+
+    if(!enableAgeFilter){
+        return true;
+    }
+
+    const g1 = (profile1.Gender || '').toLowerCase();
+    const g2 = (profile2.Gender || '').toLowerCase();
+
+    const age1 = parseInt(profile1.Age) || 0;
+    const age2 = parseInt(profile2.Age) || 0;
+
+    // Male should be elder than Female
+    if(g1 === 'male' && g2 === 'female'){
+
+        return age1 >= age2 &&
+               (age1 - age2) <= ageDiff;
+    }
+
+    // Female should be younger than Male
+    if(g1 === 'female' && g2 === 'male'){
+
+        return age2 >= age1 &&
+               (age2 - age1) <= ageDiff;
+    }
+
+    // Male-Male or Female-Female
+    return Math.abs(age1 - age2) <= ageDiff;
+}
+
+function generateMatches(){
+
+    const tbody = document.getElementById('matchesBody');
+
+    tbody.innerHTML = '';
+
+    const enableGenderFilter =
+        document.getElementById('genderFilter').checked;
+
+    const enableAgeFilter =
+        document.getElementById('ageFilter').checked;
+
+    const ageDiff =
+        parseInt(document.getElementById('ageDifference').value);
+
+    allProfiles.forEach(profile => {
+
+        const tr = document.createElement('tr');
+
+        let matchesHTML = '';
+
+        const matches = allProfiles.filter(other => {
+
+            // Skip same profile
+            if(profile.SNo === other.SNo){
+                return false;
+            }
+
+            // Gender Filter
+            if(!isGenderMatch(
+                profile,
+                other,
+                enableGenderFilter
+            )){
+                return false;
+            }
+
+            // Age Filter
+            if(!isAgeMatch(
+                profile,
+                other,
+                enableAgeFilter,
+                ageDiff
+            )){
+                return false;
+            }
+
+            return true;
+
+        });
+
+        if(matches.length > 0){
+
+            matches.forEach(m => {
+
+                matchesHTML += `
+                    <div class="match-item">
+                        ${m.SNo} - ${m.Name || ''}
+                        (${m.Gender || ''}, Age: ${m.Age || ''})
+                    </div>
+                `;
+
+            });
+
+        }else{
+
+            matchesHTML =
+                `<div class="no-match">No Match Found</div>`;
+        }
+
+        tr.innerHTML = `
+
+            <td>
+                <b>${profile.SNo}</b> - ${profile.Name || ''}
+                <br>
+                Gender: ${profile.Gender || ''}
+                <br>
+                Age: ${profile.Age || ''}
+            </td>
+
+            <td>
+                ${matchesHTML}
+            </td>
+        `;
+
+        tbody.appendChild(tr);
+
+    });
+
+}
+
+loadProfiles();
+
+</script>
+<a href="../08-sikh-matrimonials/08-sikh-matrimonials-admin.html"
+class="back-button"
+style="
+width:150px;
+height:36px;
+font-size:24px;
+background-color:#FF9933;
+color:black;
+display:block;
+margin:20px auto 0 auto;
+text-align:center;
+line-height:30px;
+border-radius:8px;
+text-decoration:none;
+border:2px solid black;
+">
+<b>Back</b>
+</a>
+</body>
+</html>
