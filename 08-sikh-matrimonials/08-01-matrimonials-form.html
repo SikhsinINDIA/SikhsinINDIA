@@ -416,6 +416,17 @@ select {
 ">
     ⏳ Please wait... Uploading files
   </div>
+
+  <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+
+<script type="text/javascript">
+  (function () {
+    emailjs.init("UUiVKSDERxZLzZndq");
+  })();
+</script>
+
   <script>
 
     const firebaseConfig = {
@@ -979,6 +990,106 @@ document.getElementById("Religion_Details")
       preview.style.display = "block";
     });
 
+    function sendEmail(formData) {
+
+  const emailParams = {
+
+    email: formData.Email || "",
+    name: formData.Name || "",
+    gender: formData.Gender || "",
+    mobile: formData.Mobile || "",
+    dob: formData.Date_of_Birth || "",
+    age: formData.Age || "",
+    height: (formData.Height_Feet || "") + " " + (formData.Height_Inch || ""),
+    complexion: formData.Complexion || "",
+    education: formData.Education || "",
+    marital_status: formData.Marital_Status || "",
+    religion: formData.Religion || "",
+    religion_details: formData.Religion_Details || "",
+    city: formData.City || "",
+    country: formData.Country || "",
+    occupation: formData.Occupation || "",
+    occupation_details: formData.Occupation_Details || "",
+    income: formData.Income_Annum || "",
+    family_type: formData.Family_Type || "",
+    diet: formData.Diet || "",
+    drinking: formData.Drinking_Habits || "",
+    mother_tongue: formData.Mother_tongue || "",
+    languages: formData.Languages_Known || "",
+
+    father_name: formData.Father_Name || "",
+    father_profession: formData.Father_Profession || "",
+    mother_name: formData.Mother_Name || "",
+    mother_profession: formData.Mother_Profession || "",
+
+    brothers: formData.Number_Brother || "",
+    sisters: formData.Number_Sister || "",
+
+    match_religion: formData.Match_Religion || "",
+    match_profession: formData.Match_Profession || "",
+    match_country: formData.Match_Country || "",
+    match_other: formData.Match_Other || "",
+
+    combined_pdf: formData.Combined_PDF || ""
+  };
+
+  // ===================================
+  // SEND EMAIL TO USER
+  // ===================================
+
+  emailjs.send(
+    "service_jitwsrj",
+    "template_nlu6pvw",
+    emailParams
+  )
+  .then(response => {
+
+    console.log("✅ Email sent to user:",
+      response.status,
+      response.text
+    );
+
+  })
+  .catch(error => {
+
+    console.error("❌ Failed to send email to user:", error);
+
+  });
+
+  // ===================================
+  // SEND BACKUP EMAIL TO ADMIN
+  // ===================================
+
+  const backupParams = {
+
+    ...emailParams,
+
+    email: "sikhsinindia@gmail.com",
+    useremail: formData.Email || ""
+
+  };
+
+  emailjs.send(
+ "service_jitwsrj",
+    "template_nlu6pvw",
+    backupParams
+  )
+  .then(response => {
+
+    console.log("✅ Backup email sent to admin:",
+      response.status,
+      response.text
+    );
+
+  })
+  .catch(error => {
+
+    console.error("❌ Failed to send backup email to admin:", error);
+
+  });
+
+}
+
     document.getElementById('form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const folderName = getTimestampFolder();
@@ -1152,7 +1263,7 @@ console.log("combinedPdfURL:", combinedPdfURL);
 console.log("formData before save:", formData);
         await db.collection('Matrimonials').add(formData);
 
-
+sendEmail(formData);
 
         showLoader("✅ File saved successfully!");
 

@@ -92,6 +92,20 @@
     cursor: pointer;
 }
 
+    #termsContainer {
+      width: 100%;
+      text-align: center;
+    }
+
+    #termsImage {
+      width: 95%;
+      max-width: 1000px;
+      border: 3px solid #FF9933;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+
+
 .btn-row button {
     all: unset; /* removes all default button styles */
     cursor: pointer; /* keeps the pointer style */
@@ -100,9 +114,99 @@
     border: none;
     background: none;
 }
+ /* DARK BACKGROUND */
+#termsPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+  /* POPUP BOX */
+
+  #popupContent {
+    background: black;
+    padding: 10px;
+    border-radius: 12px;
+    text-align: center;
+    border: 3px solid #FF9933;
+    max-width: 95%;
+    max-height: 95%;
+    overflow: auto;
+  }
+
+  /* IMAGE */
+
+  #termsImage {
+    width: 900px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  /* BUTTON */
+
+  .popup-btn {
+    margin-top: 20px;
+     width: 200px;
+  height: 40px;
+    padding: 15px 40px;
+    font-size: 12px;
+    background-color: #FF9933;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
     </style>
 </head>
 <body>
+
+<div id="termsPopup">
+
+  <div id="popupContent">
+
+    <img 
+  
+src="../08-sikh-matrimonials/SikhsinIndia-Matrimonials.jpg"
+      alt="Terms and Conditions"
+      style="width:800px; height: 500px; object-fit: contain;"
+    >
+
+    <br>
+
+    <button class="popup-btn" onclick="closePopup()">
+      I Agree & Continue
+    </button>
+
+  </div>
+
+</div>
+
+<!-- <div id="termsContainer">
+
+  <img 
+    id="termsImage"
+    src="https://drive.google.com/uc?export=view&id=1v25Ej5-AkWlbnjEcYyQooTOenUswVRrq"
+    alt="Terms and Conditions"
+    style="width: 900px; height: 1200px; object-fit: contain;"
+>  
+</div> -->
+
+
+    <!-- <button class="accept-btn" onclick="showMainContent()">
+      I Agree & Continue
+    </button> -->
+
+
 
     <h1>Sikh Matrimonials</h1>
 
@@ -118,10 +222,16 @@
                     <img src="../pictures/08-sikh-matrimonials/View Uploaded Profiles.jpg" alt="Nishan Sahib" style="cursor:pointer;">
                 </a>
     </div>
+
   <script>
-        function admin() {
-      window.location.href = "../08-sikh-matrimonials/08-02a-password-sikh-matrimonials.html";
-    }
+//         function admin() {
+//       window.location.href = "../08-sikh-matrimonials/08-02a-password-sikh-matrimonials.html";
+//     }
+//      function closePopup() {
+
+//     document.getElementById("termsPopup").style.display = "none";
+
+//   }
   </script>
    <a href="./../index.html" class="back-button" 
    style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
@@ -137,7 +247,41 @@
   </button>
 
 </div>
+ <script>
+
+  // Show popup only first time from Main Menu
+  window.onload = function () {
+
+    // TEMPORARY FOR TESTING
 
 
+    // Show popup
+    if (sessionStorage.getItem("matrimonialTermsAccepted") === "true") {
+
+      document.getElementById("termsPopup").style.display = "none";
+
+    } else {
+
+      document.getElementById("termsPopup").style.display = "flex";
+
+    }
+
+  };
+
+  function closePopup() {
+
+    sessionStorage.setItem("matrimonialTermsAccepted", "true");
+
+    document.getElementById("termsPopup").style.display = "none";
+  }
+
+  function admin() {
+
+    window.location.href =
+    "../08-sikh-matrimonials/08-02a-password-sikh-matrimonials.html";
+  }
+
+
+</script>
 </body>
 </html>
