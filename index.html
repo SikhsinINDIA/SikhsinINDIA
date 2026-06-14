@@ -256,7 +256,14 @@
     font-size: 12px; padding: 5px 14px; border-radius: 6px; background: transparent;
   }
   .btn-outline-orange:hover { background: var(--orange); color: white; }
-
+footer .social {
+  justify-content: center;
+}
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
   /* ── FOOTER ── */
   footer { background: var(--navy); color: white; padding: 10px 0 6px; }
   footer h5 { font-size: 13px; font-weight: 700; color: var(--orange); margin-bottom: 4px; }
@@ -270,13 +277,14 @@
 
   /* ── MOBILE ── */
   @media (max-width: 768px) {
-    .hero h1 { font-size: 0.85rem; }
+    .hero h1 { font-size: 0.82rem; }
     .hero p  { font-size: 0.6rem; }
     .logo-img { height: 70px; }
     .feature-card .img-wrap { height: 60px; }
     footer { text-align: center; }
     .nav-links-bar ul { flex-wrap: wrap; justify-content: center; }
   }
+
 </style>
 </head>
 <body>
@@ -546,7 +554,7 @@
 <!-- ── FOOTER ── -->
 <footer>
   <div class="container">
-    <div class="row g-2 align-items-start">
+    <div class="row g-2 align-items-start  justify-content-center">
       <div class="col-6 col-md-4">
         <div class="brand-footer"><span>SIKHS</span> IN INDIA</div>
         <p class="mt-1">Discover • Learn • Connect • Serve</p>
@@ -564,7 +572,7 @@
         <p><a href="#">Festivals</a></p>
         <p><a href="#">Gallery</a></p>
       </div> -->
-      <!-- <div class="col-12 col-md-4">
+      <!-- <div class="col-12 col-md-4 mx-auto">
         <h5>Visit Us</h5>
         <p>🌐 <a href="#">www.sikhsinindia.com</a></p>
         <p style="font-size:10px;color:rgba(255,255,255,.5);font-style:italic;margin-top:4px;">
