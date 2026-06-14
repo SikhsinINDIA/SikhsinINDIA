@@ -143,6 +143,7 @@
     text-align: center;
     box-shadow: 0 2px 8px rgba(0,43,109,.10);
     border-top: 6px solid var(--orange);
+        border-left: 6px solid var(--orange);
     transition: transform .2s;
   display: block;
     text-decoration: none !important;
@@ -232,7 +233,8 @@
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,43,109,.10);
     height: 100%;
-    border-left: 4px solid var(--navy);
+    border-left: 6px solid var(--navy);
+        border-top: 6px solid var(--navy);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -268,7 +270,7 @@
 
   /* ── MOBILE ── */
   @media (max-width: 768px) {
-    .hero h1 { font-size: 0.8rem; }
+    .hero h1 { font-size: 0.9rem; }
     .hero p  { font-size: 0.6rem; }
     .logo-img { height: 70px; }
     .feature-card .img-wrap { height: 60px; }
