@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sikhs In India | Discover • Learn • Connect</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root {
+    --navy: #002B6D;
+    --orange: #F7941D;
+    --cream: #faf6ee;
+    --white: #ffffff;
+    --light-navy: #e8eef8;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: var(--cream);
+    font-size: 14px;
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  .navbar {
+    background: var(--navy);
+    padding: 6px 0;
+  }
+  .navbar-brand {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--white) !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .navbar-brand img {
+    height: 42px;
+    width: auto;
+    /* Invert the black background of the PNG to show on dark navbar */
+    filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(5deg);
+  }
+  .navbar-brand .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .navbar-brand .brand-text .top {
+    color: var(--orange);
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+  .navbar-brand .brand-text .bottom {
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+  .nav-link {
+    color: var(--white) !important;
+    font-size: 13px;
+    padding: 4px 10px !important;
+  }
+  .nav-link:hover { color: var(--orange) !important; }
+
+  /* ── HERO BANNER ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #004494 60%, var(--orange) 100%);
+    color: white;
+    padding: 14px 0 12px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 1.4rem;
+    font-weight: 900;
+    margin: 0 0 2px;
+    letter-spacing: 1px;
+  }
+  .hero h1 span { color: var(--orange); }
+  .hero p {
+    font-size: 12px;
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    color: var(--navy);
+    font-weight: 800;
+    font-size: 1rem;
+    margin-bottom: 10px !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .section-title span { color: var(--orange); }
+
+  /* ── FEATURE GRID ── */
+  .features-section {
+    padding: 12px 0 8px;
+  }
+  .feature-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 10px 6px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,43,109,.10);
+    height: 100%;
+    border-top: 3px solid var(--orange);
+    transition: transform .2s;
+  }
+  .feature-card:hover { transform: translateY(-3px); }
+  .feature-card i {
+    font-size: 20px;
+    color: var(--orange);
+    margin-bottom: 4px;
+  }
+  .feature-card h4 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .feature-card p {
+    font-size: 11px;
+    color: #555;
+    margin-bottom: 0;
+    line-height: 1.3;
+  }
+
+  /* ── PILLARS ── */
+  .pillars-section {
+    background: var(--navy);
+    padding: 10px 0;
+  }
+  .pillar {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(247,148,29,.35);
+    border-radius: 10px;
+    padding: 10px 8px;
+    text-align: center;
+    height: 100%;
+  }
+  .pillar i {
+    font-size: 22px;
+    color: var(--orange);
+    margin-bottom: 4px;
+    display: block;
+  }
+  .pillar h4 {
+    color: var(--orange);
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 2px;
+    letter-spacing: 1px;
+  }
+  .pillar p {
+    color: rgba(255,255,255,.82);
+    font-size: 11px;
+    margin-bottom: 0;
+    line-height: 1.3;
+  }
+
+  /* ── COMMUNITY ── */
+  .community-section {
+    padding: 10px 0 8px;
+  }
+  .community-card {
+    background: var(--white);
+    padding: 12px 14px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,43,109,.10);
+    height: 100%;
+    border-left: 4px solid var(--navy);
+  }
+  .community-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .community-card p {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 8px;
+  }
+  .btn-orange {
+    background: var(--orange);
+    color: white;
+    border: none;
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 6px;
+  }
+  .btn-orange:hover { background: #db7d00; color: white; }
+  .btn-navy {
+    background: var(--navy);
+    color: white;
+    border: none;
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 6px;
+  }
+  .btn-navy:hover { background: #001a44; color: white; }
+  .btn-outline-orange {
+    border: 2px solid var(--orange);
+    color: var(--orange);
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 6px;
+    background: transparent;
+  }
+  .btn-outline-orange:hover { background: var(--orange); color: white; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    color: white;
+    padding: 10px 0 6px;
+  }
+  footer h5 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--orange);
+    margin-bottom: 4px;
+  }
+  footer .brand-footer {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+  footer .brand-footer span { color: var(--orange); }
+  footer p { font-size: 11px; margin-bottom: 3px; color: rgba(255,255,255,.8); }
+  footer a { color: rgba(255,255,255,.8); text-decoration: none; font-size: 11px; }
+  footer a:hover { color: var(--orange); }
+  footer .social i { font-size: 18px; color: var(--orange); margin-right: 8px; }
+  footer hr { border-color: rgba(255,255,255,.2); margin: 6px 0; }
+  footer .copyright { font-size: 11px; color: rgba(255,255,255,.6); text-align: center; }
+
+  /* ── MOBILE TWEAKS ── */
+  @media (max-width: 768px) {
+    .navbar-brand .top { font-size: 13px; }
+    .navbar-brand .bottom { font-size: 10px; }
+    .navbar-brand img { height: 34px; }
+    .hero h1 { font-size: 1.1rem; }
+    .section-title { font-size: 0.9rem; }
+    footer { text-align: center; }
+    footer .col-6 { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Khanda.svg/200px-Khanda.svg.png"
+           alt="Khanda Symbol"
+           style="height:42px;width:auto;filter:none;opacity:1;">
+      <div class="brand-text">
+        <span class="top">SIKHS IN INDIA</span>
+        <span class="bottom">sikhsinindia.com</span>
+      </div>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About Sikhism</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Guru Sahiban</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Gurudwaras</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Festivals</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>☬ Preserving Heritage • Inspiring Future <span>Discovering the Spirit of Sikhism</span></h1>
+  <p>Your trusted source for Sikh History, Heritage, Culture and Community</p>
+</div>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="container">
+    <h2 class="section-title text-center">Explore <span>Sikh Heritage</span></h2>
+    <div class="row g-2">
+      <div class="col-4 col-md-4 col-lg-4">
+        <div class="feature-card">
+          <i class="fa-solid fa-user-group"></i>
+          <h4>About Sikhism</h4>
+          <p>Sikh Gurus and their teachings</p>
+        </div>
+      </div>
+
+            <div class="col-4 col-md-4 col-lg-4">
+        <div class="feature-card">
+          <i class="fa-solid fa-scroll"></i>
+          <h4>Sikh Heritage & Traditions</h4>
+          <p>Sikh Core values & philosophy</p>
+        </div>
+      </div>
+
+      <div class="col-4 col-md-4 col-lg-4">
+        <div class="feature-card">
+          <i class="fa-solid fa-building-columns"></i>
+          <h4>Gurudwaras of India</h4>
+          <p>Guru's Door;Gateway to the Guru</p>
+        </div>
+      </div>
+
+            <div class="col-4 col-md-4 col-lg-4">
+        <div class="feature-card">
+          <i class="fa-solid fa-book-open"></i>
+          <h4>Nitnem</h4>
+          <p>Sikh Prayers</p>
+        </div>
+      </div>
+
+            <div class="col-4 col-md-4 col-lg-4">
+        <div class="feature-card">
+          <i class="fa-solid fa-star"></i>
+          <h4>Sikh Sevadars</h4>
+          <p>Bhai Ji / Granthi Ji / Pathi Ji / Kirtani Ji</p>
+        </div>
+      </div>
+
+      <div class="col-4 col-md-4 col-lg-4">
+        <div class="feature-card">
+          <i class="fa-solid fa-calendar-days"></i>
+          <h4>Sikh Welfare Organizations</h4>
+          <p>Nihkam Sikh Sewa Societies</p>
+        </div>
+      </div>
+
+
+      <div class="col-4 col-md-4 col-lg-4">
+        <div class="feature-card">
+          <i class="fa-solid fa-handshake"></i>
+          <h4>Sikh Education for Kids</h4>
+          <p>Interactive learning & engagement</p>
+        </div>
+      </div>    
+      <div class="col-4 col-md-4 col-lg-4">
+        <div class="feature-card">
+          <i class="fa-solid fa-image"></i>
+          <h4>Sikh Matrimonials </h4>
+          <p>Find your Sikh soulmate - Nishkam Sewa</p>
+        </div>
+      </div>
+      <div class="col-4 col-md-4 col-lg-4">
+        <div class="feature-card">
+          <i class="fa-solid fa-folder-open"></i>
+          <h4>Find your Purpose of Life</h4>
+          <p>Essential to live a Fulfilling Life</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars-section">
+  <div class="container">
+    <div class="row g-2">
+      <div class="col-6 col-md-3">
+        <div class="pillar">
+          <i class="fa-solid fa-book"></i>
+          <h4>LEARN</h4>
+          <p>Sikh history, teachings & philosophy</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="pillar">
+          <i class="fa-solid fa-compass"></i>
+          <h4>DISCOVER</h4>
+          <p>Gurudwaras, places & traditions</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="pillar">
+          <i class="fa-solid fa-people-group"></i>
+          <h4>CONNECT</h4>
+          <p>Global Sikh community</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="pillar">
+          <i class="fa-solid fa-hands-holding-heart"></i>
+          <h4>SERVE</h4>
+          <p>Seva, equality & brotherhood</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community-section">
+  <div class="container">
+    <h2 class="section-title text-center">Community</h2>
+    <div class="row g-2">
+      <div class="col-12 col-md-4">
+        <div class="community-card">
+          <h3><i class="fa-solid fa-user-plus me-1" style="color:var(--orange)"></i> Become a Member</h3>
+          <p>Join the Sikhs In India community and stay connected with the global Sangat.</p>
+          <a href="#" class="btn btn-orange">Register Now</a>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="community-card">
+          <h3><i class="fa-solid fa-comment-dots me-1" style="color:var(--orange)"></i> Feedback</h3>
+          <p>Help us improve the website and share your suggestions with the team.</p>
+          <a href="#" class="btn btn-outline-orange">Send Feedback</a>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="community-card">
+          <h3><i class="fa-solid fa-envelope me-1" style="color:var(--orange)"></i> Contact Us</h3>
+          <p>Questions or suggestions? We'd love to hear from you. Waheguru Ji Ka Khalsa.</p>
+          <a href="#" class="btn btn-navy">Contact Team</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-2 align-items-start">
+      <div class="col-6 col-md-4">
+        <div class="brand-footer">☬ <span>SIKHS</span> IN INDIA</div>
+        <p class="mt-1">Discover • Learn • Connect</p>
+        <div class="social mt-1">
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-youtube"></i>
+          <i class="fab fa-linkedin"></i>
+        </div>
+      </div>
+      <div class="col-6 col-md-4">
+        <h5>Quick Links</h5>
+        <p><a href="#">About Sikhism</a></p>
+        <p><a href="#">Guru Sahiban</a></p>
+        <p><a href="#">Festivals</a></p>
+        <p><a href="#">Gallery</a></p>
+      </div>
+      <div class="col-12 col-md-4">
+        <h5>Visit Us</h5>
+        <p>🌐 <a href="#">www.sikhsinindia.com</a></p>
+        <p style="font-size:10px;color:rgba(255,255,255,.5);font-style:italic;margin-top:4px;">
+          ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ
+        </p>
+      </div>
+    </div>
+    <hr>
+    <p class="copyright">© 2025 SikhsInIndia.com | Preserving Heritage • Inspiring Future</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
