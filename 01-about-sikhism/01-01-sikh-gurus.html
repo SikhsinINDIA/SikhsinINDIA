@@ -7,340 +7,855 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-LHNTFNW14H');
   </script>
 
-      <!-- Meta description -->
   <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
-   <link rel="canonical" href="https://sikhsinindia.com/01-about-sikhism/01-01-sikh-gurus.html">
-  <!-- Meta keywords -->
+  <link rel="canonical" href="https://sikhsinindia.com/01-about-sikhism/01-01-sikh-gurus.html">
   <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
-
-  <!-- Author -->
   <meta name="author" content="Sikhs in India">
-
-  <!-- Robots -->
   <meta name="robots" content="index, follow">
-
-  <!-- Open Graph meta tags for social media -->
-  <meta property="og:title" content="Sikh Heritage & Traditions | Gurudwaras, Guru Nanak & Sikh Scriptures, Sikhs in India: History, Culture & Present | SikhsInIndia.com">
+  <meta property="og:title" content="Sikh Gurus | SikhsInIndia.com">
   <meta property="og:description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
   <meta property="og:url" content="https://sikhsinindia.com/01-about-sikhism/01-01-sikh-gurus.html">
   <meta property="og:type" content="website">
-  
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Sikhs in India | Sikh Gurus | SikhsInIndia.com </title>
-   <style>
-    body {
-        background-color: #000;
-        color: #FF9933;
-        font-family: Arial, sans-serif;
-        padding: 30px;
-        line-height: 1.6;
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Sikh Gurus | SikhsInIndia.com</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0d1b3e;
+      --navy-mid:  #162147;
+      --gold:      #F7941D;
+      --gold-light:#F7941D;
+      --cream:     #f5f0e8;
+      --white:     #ffffff;
     }
 
-    h1, h2 {
-        color: #000;
-        background-color: #FF9933;
-        padding: 10px;
-        border-radius: 5px;
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 20px 8px;
+    }
+
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--navy);
+      display: flex;
+      align-items: stretch;
+      position: relative;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      padding: 16px 20px;
+      flex-shrink: 0;
+    }
+    .logo-img {
+      height: 90px;
+      width: auto;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      flex: 1;
+      background: linear-gradient(160deg, var(--navy) 0%, #1a2a5e 55%, #0d1b3e 100%);
+      padding: 32px 40px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      border: 1px solid rgba(184,145,58,0.15);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      border: 1px solid rgba(184,145,58,0.1);
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 7vw, 62px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.05;
+      letter-spacing: -1px;
+      margin-bottom: 6px;
+    }
+    .hero-title span { color: var(--gold-light); }
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(14px, 3vw, 22px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .gold-rule {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 14px auto;
+    }
+    .gold-rule::before, .gold-rule::after {
+      content: '';
+      flex: 1;
+      max-width: 100px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .gold-rule::after { background: linear-gradient(90deg, var(--gold), transparent); }
+    .gold-rule-diamond { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); }
+    .hero-tagline {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 300;
+    }
+
+    /* ── INTRO BANNER ── */
+    .intro-banner {
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+      padding: 14px 40px;
+    }
+    .intro-banner p {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      color: var(--navy);
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── GURU SECTIONS ── */
+    .gurus-wrapper {
+      background: var(--cream);
+      padding: 28px 36px;
     }
 
     .guru-section {
-        margin-bottom: 40px;
-        border-bottom: 1px solid #FF9933;
-        padding-bottom: 30px;
+      display: flex;
+      align-items: flex-start;
+      gap: 22px;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(184,145,58,0.25);
     }
+    .guru-section:last-child { border-bottom: none; }
 
-    .guru-content {
-        display: flex;
-        align-items: flex-start;
-        gap: 20px;
-        flex-wrap: wrap;
+    /* Alternating layout — active on desktop via media query below */
+
+    .guru-image-wrap {
+      flex-shrink: 0;
+      text-align: center;
     }
-
     .guru-image {
-        width: 200px;
-        height: auto;
-        border: 3px solid #FF9933;
-        border-radius: 10px;
-        flex-shrink: 0;
+      width: 150px;
+      height: auto;
+      border: 3px solid var(--gold);
+      border-radius: 10px;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .guru-image:hover { transform: scale(1.04); }
+    .guru-number {
+      display: inline-block;
+      margin-top: 6px;
+      background: var(--navy);
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
     }
 
-    .guru-text {
-        flex: 1;
-        min-width: 200px;
+    .guru-text { flex: 1; min-width: 0; }
+    .guru-name-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 3px;
+      line-height: 1.2;
+    }
+    .guru-name-heading span { color: var(--gold); }
+    .guru-attribute {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(184,145,58,0.3);
+    }
+    .guru-detail-text {
+      font-size: 13px;
+      color: #333;
+      line-height: 1.75;
     }
 
-    .guru-name {
-        font-size: 1.5em;
-        font-weight: bold;
-        margin-top: 0;
+    /* ── QUOTE PANEL ── */
+    .quote-panel {
+      margin: 0 36px 28px;
+      background: var(--navy);
+      border-left: 4px solid var(--gold);
+      padding: 20px 28px;
+      position: relative;
+    }
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 60px;
+      color: var(--gold);
+      line-height: 0.6;
+      position: absolute;
+      top: 22px; left: 18px;
+      opacity: 0.4;
+    }
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: var(--white);
+      line-height: 1.6;
+      font-style: italic;
+      padding-left: 30px;
+      margin-bottom: 8px;
+    }
+    .quote-attr {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding-left: 30px;
     }
 
-    .guru-details {
-        margin-top: 10px;
+    /* ── THREE VALUES ── */
+    .values {
+      background: var(--navy);
+      padding: 28px 36px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 3px solid var(--gold);
+    }
+    .value-item {
+      text-align: center;
+      padding: 18px 14px;
+      position: relative;
+    }
+    .value-item + .value-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 20%; bottom: 20%;
+      width: 1px;
+      background: rgba(247,148,29,0.3);
+    }
+    .value-icon { width: 42px; height: 42px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; }
+    .value-icon svg { width: 42px; height: 42px; }
+    .value-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .value-desc { font-size: 11px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
     }
 
-    /* Optional hover effect */
-    .guru-image:hover {
-        transform: scale(1.05);
-        transition: transform 0.3s ease;
+    /* Back button — 3D gold, matches Feedback style */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255,220,120,0.5),
+        inset 0 -2px 0 rgba(0,0,0,0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+    .btn-back:hover { filter: brightness(1.08); }
+    .btn-back:active { transform: scale(0.97); filter: brightness(0.93); }
+    .btn-back svg { width: 12px; height: 12px; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 95%;
+      max-height: 78vh;
+      border-radius: 8px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      border: 2px solid var(--gold);
+    }
+    .lb-close {
+      position: absolute;
+      top: 18px; right: 24px;
+      background: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      font-size: 14px;
+      letter-spacing: 1px;
+      padding: 6px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .lb-close:hover { background: rgba(255,255,255,0.1); }
+    .lb-download {
+      margin-top: 18px;
+      background: var(--gold);
+      color: var(--navy);
+      text-decoration: none;
+      padding: 11px 24px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: inset 0 1px 0 rgba(255,220,120,0.4), inset 0 -2px 0 rgba(0,0,0,0.18);
+    }
+    .lb-download:hover { background: #e8830a; }
+
+    /* ══════════════════════════════════════
+       MOBILE — up to 480px (small phones)
+    ══════════════════════════════════════ */
+    @media (max-width: 480px) {
+
+      body { padding: 0; background: var(--navy); }
+
+      .poster { box-shadow: none; }
+
+      /* Header — stack logo above hero text */
+      .header { flex-direction: column; align-items: stretch; }
+      .logo-wrap {
+        padding: 12px 16px 8px;
+        justify-content: center;
+      }
+      .logo-img { height: 60px; }
+
+      /* Hero */
+      .hero {
+        padding: 16px 14px 14px;
+        text-align: center;
+      }
+      .hero-eyebrow { font-size: 9px; letter-spacing: 2px; margin-bottom: 8px; }
+      .hero-title   { font-size: 32px; letter-spacing: 0; margin-bottom: 4px; }
+      .hero-subtitle{ font-size: 14px; margin-bottom: 10px; }
+      .hero-tagline { font-size: 9px; letter-spacing: 1.5px; }
+      .gold-rule    { margin: 10px auto; }
+      .gold-rule::before, .gold-rule::after { max-width: 50px; }
+
+      /* Intro banner */
+      .intro-banner { padding: 10px 14px; }
+      .intro-banner p { font-size: 12px; line-height: 1.55; }
+
+      /* Guru cards — always stack vertically, centred */
+      .gurus-wrapper { padding: 14px 12px; }
+      .guru-section,
+      .guru-section.reverse {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+        padding: 18px 0;
+      }
+      .guru-image-wrap { width: 100%; display: flex; flex-direction: column; align-items: center; }
+      .guru-image { width: 120px; }
+      .guru-name-heading { font-size: 17px; }
+      .guru-attribute { font-size: 9px; letter-spacing: 1px; margin-bottom: 8px; }
+      .guru-detail-text { font-size: 12.5px; line-height: 1.7; text-align: left; }
+
+      /* Quote */
+      .quote-panel { margin: 0 12px 20px; padding: 16px 16px 16px 20px; }
+      .quote-mark  { font-size: 42px; top: 14px; left: 12px; }
+      .quote-text  { font-size: 13px; padding-left: 20px; }
+      .quote-attr  { font-size: 9px; padding-left: 20px; }
+
+      /* Values — single column */
+      .values { grid-template-columns: 1fr; padding: 20px 14px; gap: 4px; }
+      .value-item { padding: 14px 10px; }
+      .value-item + .value-item::before { display: none; }
+      .value-item + .value-item { border-top: 1px solid rgba(247,148,29,0.2); }
+      .value-name { font-size: 12px; }
+      .value-desc { font-size: 11px; }
+
+      /* Footer */
+      .footer { padding: 14px 12px; }
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+      }
+      .btn-back { font-size: 9px; padding: 8px 14px; }
+      .footer-left  { font-size: 9px; }
+      .footer-right { font-size: 9px; letter-spacing: 1px; }
+
+      /* Lightbox */
+      .lb-close { top: 10px; right: 10px; font-size: 12px; padding: 5px 10px; }
+      .lb-download { font-size: 11px; padding: 9px 16px; }
     }
 
-    /* Responsive tweaks */
-    @media (max-width: 600px) {
-        .guru-content {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
+    /* ══════════════════════════════════════
+       TABLET — 481px to 768px
+    ══════════════════════════════════════ */
+    @media (min-width: 481px) and (max-width: 768px) {
 
-        .guru-text {
-            margin-top: 15px;
-        }
+      body { padding: 10px 6px; }
+
+      /* Header — logo left, hero right (keep row but shrink) */
+      .logo-img { height: 72px; }
+      .logo-wrap { padding: 12px 14px; }
+
+      .hero { padding: 22px 24px 18px; }
+      .hero-eyebrow { font-size: 10px; letter-spacing: 3px; }
+      .hero-title   { font-size: clamp(28px, 6vw, 48px); }
+      .hero-subtitle{ font-size: clamp(13px, 2.5vw, 18px); }
+      .hero-tagline { font-size: 10px; letter-spacing: 2px; }
+
+      .intro-banner { padding: 10px 20px; }
+      .intro-banner p { font-size: 12.5px; }
+
+      /* Guru cards — stack on tablet too */
+      .gurus-wrapper { padding: 18px 20px; }
+      .guru-section,
+      .guru-section.reverse {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+        padding: 20px 0;
+      }
+      .guru-image-wrap { width: 100%; display: flex; flex-direction: column; align-items: center; }
+      .guru-image { width: 140px; }
+      .guru-detail-text { font-size: 13px; text-align: left; }
+
+      /* Quote */
+      .quote-panel { margin: 0 20px 24px; }
+
+      /* Values — 3 col still works on tablet */
+      .values { padding: 22px 20px; }
+      .value-name { font-size: 12px; }
+
+      /* Footer */
+      .footer { padding: 14px 20px; }
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+      }
     }
-    /* Buttons styling */
-        .button {
-            background-color: #FFA500;
-            height: 100px; 
-            width: 150px; 
-            color: black;
-            border: none;
-            padding: 15px 30px;
-            font-size: 24px;
-            cursor: pointer;
-            border-radius: 8px;
-            min-width: 220px;
-            text-align: center;
-        }
-        .button:hover {
-            background-color: #FF8C00; /* Darker orange */
-        }
-</style>
+
+    /* ══════════════════════════════════════
+       DESKTOP — 769px and above (default)
+    ══════════════════════════════════════ */
+    @media (min-width: 769px) {
+      /* Alternating layout active on desktop only */
+      .guru-section.reverse { flex-direction: row-reverse; }
+    }
+  </style>
 </head>
 <body>
+<div class="poster">
 
-    <h1>Sikh Gurus</h1>
+  <!-- ── HEADER ── -->
+  <div class="header">
+    <div class="logo-wrap">
+      <img class="logo-img"
+           src="../pictures/00-index/sikhsinindia.png"
+           alt="Sikhs In India Logo">
+    </div>
+    <div class="hero">
+      <div class="hero-eyebrow">Sikhism · The Path of the Guru</div>
+      <div class="hero-title">THE <span>SIKH</span> GURUS</div>
+      <div class="hero-subtitle">Ten Lights, One Flame</div>
+      <div class="gold-rule"><div class="gold-rule-diamond"></div></div>
+      <div class="hero-tagline">Humility &nbsp;·&nbsp; Service &nbsp;·&nbsp; Sacrifice &nbsp;·&nbsp; Courage</div>
+    </div>
+  </div>
 
-    <p>
-        The "Gurus" in Sikhism are regarded as enlighteners and divine messengers. They were the messengers of the Timeless, who brought forth the eternal wisdom. They were universal men who freed our minds from bigotry and superstitions, dogmas and rituals, and emphasized the simplicity of the religion.
-        <!-- intro text truncated for brevity -->
-    </p>
+  <!-- ── INTRO BANNER ── -->
+  <div class="intro-banner">
+    <p>The Gurus in Sikhism are regarded as enlighteners and divine messengers — universal men who freed our minds from bigotry and superstitions, dogmas and rituals, and emphasized the simplicity of the religion.</p>
+  </div>
 
-    <!-- Guru Sections -->
+  <!-- ── GURU SECTIONS ── -->
+  <div class="gurus-wrapper">
 
+    <!-- Guru 1 -->
     <div class="guru-section">
-        <h2>1. Guru Nanak Dev Ji</h2>
-         <div class="guru-content">
-        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/01-guru-nanak-dev-ji.jpg" alt="Guru Nanak Dev Ji" class="guru-image">
-        <div class="guru-text">
-            <div class="guru-name">Divine Attribute: Humility; Guru from 1469 to 1539</div>
-        <div class="guru-details">
-            <p>The first of the Gurus and the founder of the Sikh religion was Guru Nanak. He was born at Talwandi (now known as Nankana Sahib in Pakistan) on October 20, 1469.
-Guru ji mastered Punjabi, Sanskrit and Persian at an early age and in childhood revolted against ritualism, caste, prejudices, hypocrisy and idolatry.
-He regarded Hindus and Muslims as equals and referred to himself as neither Hindu nor Muslim but as a brother to all those who believed in God and truth.
-He made four great journeys, travelling to all parts of India, and into Arabia and Persia; visiting Mecca and Baghdad. He spoke before Hindus, Jains, Buddhists, Parsees, and Muslims. He spoke in the temples and mosques, and at various pilgrimage sites. Wherever he went, Guru Nanak spoke out against empty religious rituals, pilgrimages, the caste system, the sacrifice of widows, of depending on books to learn the true religion, and of all the other tenets that were to define his teachings. Never did he ask his listeners to follow him. He asked the Muslims to be true Muslims and the Hindus to be true Hindus.
-</p>
-    </div>
-    </div>
-    </div>
-    </div>
-
-    <div class="guru-section">
-        <h2>2. Guru Angad Dev Ji</h2>
-        <div class="guru-content">
-        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/02-guru-angad-dev-ji.jpg" alt="Guru Angad Dev Ji" class="guru-image">
-               <div class="guru-text">
-            <div class="guru-name">Divine Attribute: Obedience; Guru from 1539 to 1552</div>
-             <div class="guru-details">
-            <p>He was born in 1504. Guru Angad invented and introduced the Gurmukhi (written form of Punjabi) script and made it known to all Sikhs.
-The scripture of the Guru Granth Sahib Ji is written in Gurmukhi. This scripture is also the basis of the Punjabi language. It became the script of the masses very soon. Guru Angad was a model of self-less service to his Sikhs and showed them the way to devotional prayers. He took great interest in the education of the children by opening many schools for their instruction and thus greatly increased literacy.
-For the youth he started the tradition of Mall Akhara, where physical as well as spiritual exercises were held. He collected the facts about Guru Nanak Sahib's life from Bhai Bala ji and wrote the first biography of Guru Nanak Sahib. (The Bhai Bale Wali Janamsakhi currently available is not the same as that which Guru Angad Sahib compiled.) He also wrote 63 Saloks (stanzas), these were included in Guru Granth Sahib. He popularized and expanded the institution of 'Guru ka Langar' started by Guru Nanak Sahib earlier.
-</p>
-    </div>
-    </div>
-    </div>
-    </div>
-
-    <div class="guru-section">
-        <h2>3. Guru Amar Das Ji</h2>
-        <div class="guru-content">
-        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/03-guru-amar-das-ji.jpg" alt="Guru Amar Das Ji" class="guru-image">
-                <div class="guru-text">
-            <div class="guru-name">Divine Attribute: Equality; Guru from 1552 to 1574</div>
-                   <div class="guru-details">
-            <p>He was born in 1479. Guru Amardas took up cudgels of spirituality to fight against caste restrictions, caste prejudices and the curse of untouchability.
-He strengthened the tradition of the free kitchen, Guru Ka Langar (started by Guru Nanak), and made his disciples, whether rich or poor, whether high born or low born (according to the Hindu caste system), have their meals together sitting in one place.
-He thus established social equality amongst the people. Guru Amardas introduced the Anand Karaj marriage ceremony for the Sikhs, replacing the Hindu form.
-He also completely abolished amongst the Sikhs, the custom of Sati, in which a married woman was forced to burn herself to death in the funeral pyre of her husband. The custom of Paradah (Purda), in which a woman was required to cover her face with a veil, was also done away with.
-</p>
-    </div>
-    </div>
-    </div>
-    </div>
-
-    <div class="guru-section">
-        <h2>4. Guru Ram Das Ji</h2>
-                <div class="guru-content">
-        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/04-guru-ram-das-ji.jpg" alt="Guru Ram Das Ji" class="guru-image">
-                 <div class="guru-text">
-            <div class="guru-name">Divine Attribute: Service; Guru from 1574 to 1581</div>
-                  <div class="guru-details">
-            <p>He was born in 1534. Guru ji founded the city of Amritsar and started the construction of the famous Golden Temple at Amritsar, the holy city of the Sikhs. He requested the, Muslim Sufi, Mian Mir to lay the cornerstone of the Harmandir Sahib.
-The temple remains open on all sides and at all times to everyone. This indicates that the Sikhs believe in One God who has no partiality for any particular place, direction or time.
-The standard Sikh marriage ceremony known as the Anand Karaj is centered around the Lawan, a four stanza hymn composed by Guru Ram Das ji. The marriage couple circumscribe the Guru Granth Sahib ji as each stanza is read. The first round is the Divine consent for commencing the householders life through marriage. The second round states that the union of the couple has been brought about by God. In the third round the couple is described as the most fortunate as they have sung the praises of the Lord in the company of saints. In the fourth round the feeling of the couple that they have obtained their hearts desire and are being congratulated is described.
-</p>
-    </div>
-    </div>
-    </div>
-    </div>
-
-    <div class="guru-section">
-        <h2>5. Guru Arjan Dev Ji</h2>
-                <div class="guru-content">
-        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/05-guru-arjan-dev-ji.jpg" alt="Guru Arjan Dev Ji" class="guru-image">
-                <div class="guru-text">
-            <div class="guru-name">Divine Attribute: Self-Sacrifice; Guru from 1581 to 1606</div>
-                   <div class="guru-details">
-            <p>He was born in 1563. He was the third son of Guru Ram Das ji. Guru Arjan was a saint and scholar of the highest quality and repute.
-He compiled the Adi Granth, the scriptures of the Sikhs, and wrote the Sukhmani Sahib. To make it a universal teaching, Guru ji included in it hymns of Muslim saints as well those of low-caste pariah saints who were never permitted to enter various temples.
-Guru Arjan Dev completed construction of Sri Darbar Sahib also known as Golden Temple in Amritsar.
-Sri Darbar Sahib welcomes all without discrimination, which is symbolised by the four doors that are open in four directions. Guru ji became the first great martyr in Sikh history when Emperor Jahangir ordered his execution.
-</p>
+      <div class="guru-image-wrap">
+        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/01-guru-nanak-dev-ji.jpg"
+             alt="Guru Nanak Dev Ji" class="guru-image"
+             onclick="openLightbox(this.src, 'Guru Nanak Dev Ji')">
+        <span class="guru-number">Guru 1</span>
+      </div>
+      <div class="guru-text">
+        <div class="guru-name-heading"><span>Guru Nanak</span> Dev Ji</div>
+        <div class="guru-attribute">Divine Attribute: Humility &nbsp;·&nbsp; Guru from 1469 to 1539</div>
+        <p class="guru-detail-text">The first of the Gurus and the founder of the Sikh religion was Guru Nanak. He was born at Talwandi (now known as Nankana Sahib in Pakistan) on October 20, 1469. Guru ji mastered Punjabi, Sanskrit and Persian at an early age and in childhood revolted against ritualism, caste, prejudices, hypocrisy and idolatry. He regarded Hindus and Muslims as equals and referred to himself as neither Hindu nor Muslim but as a brother to all those who believed in God and truth. He made four great journeys, travelling to all parts of India, and into Arabia and Persia; visiting Mecca and Baghdad. He spoke before Hindus, Jains, Buddhists, Parsees, and Muslims.</p>
       </div>
     </div>
-    </div>
+
+    <!-- Guru 2 -->
+    <div class="guru-section reverse">
+      <div class="guru-image-wrap">
+        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/02-guru-angad-dev-ji.jpg"
+             alt="Guru Angad Dev Ji" class="guru-image"
+             onclick="openLightbox(this.src, 'Guru Angad Dev Ji')">
+        <span class="guru-number">Guru 2</span>
+      </div>
+      <div class="guru-text">
+        <div class="guru-name-heading"><span>Guru Angad</span> Dev Ji</div>
+        <div class="guru-attribute">Divine Attribute: Obedience &nbsp;·&nbsp; Guru from 1539 to 1552</div>
+        <p class="guru-detail-text">He was born in 1504. Guru Angad invented and introduced the Gurmukhi (written form of Punjabi) script and made it known to all Sikhs. The scripture of the Guru Granth Sahib Ji is written in Gurmukhi. He took great interest in the education of the children by opening many schools for their instruction. For the youth he started the tradition of Mall Akhara, where physical as well as spiritual exercises were held. He also wrote 63 Saloks (stanzas) included in Guru Granth Sahib. He popularized and expanded the institution of 'Guru ka Langar' started by Guru Nanak Sahib earlier.</p>
+      </div>
     </div>
 
+    <!-- Guru 3 -->
     <div class="guru-section">
-        <h2>6. Guru Har Gobind Ji</h2>
-                <div class="guru-content">
-        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/06-guru-har-gobind-singh-ji.jpg" alt="Guru Har Gobind Ji" class="guru-image">
-                <div class="guru-text">
-            <div class="guru-name">Divine Attribute: Justice; Guru from 1606 to 1644</div>
-                   <div class="guru-details">
-            <p>He was born in 1595. He was the son of Guru Arjan Dev and was known as a "soldier saint," Guru Hargobind ji organised a small army, explaining that extreme non-violence and pacifism would only encourage evil and so the principles of Miri-Piri were established.
-Guru ji taught that it was necessary to take up the sword in order to protect the weak and the oppressed. Guru ji was first of the Gurus to take up arms to defend the faith. At that time it was only emperors who were allowed to sit on a raised platform, called a takhat or throne.
-At the age of 13, Guru Hargobind erected Sri Akal Takhat Sahib, ten feet above the ground and adorned two swords, Miri and Piri, representing temporal and spiritual power.
-</p>
-    </div>
-    </div>
-    </div>
+      <div class="guru-image-wrap">
+        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/03-guru-amar-das-ji.jpg"
+             alt="Guru Amar Das Ji" class="guru-image"
+             onclick="openLightbox(this.src, 'Guru Amar Das Ji')">
+        <span class="guru-number">Guru 3</span>
+      </div>
+      <div class="guru-text">
+        <div class="guru-name-heading"><span>Guru Amar</span> Das Ji</div>
+        <div class="guru-attribute">Divine Attribute: Equality &nbsp;·&nbsp; Guru from 1552 to 1574</div>
+        <p class="guru-detail-text">He was born in 1479. Guru Amardas took up cudgels of spirituality to fight against caste restrictions and the curse of untouchability. He strengthened the tradition of the free kitchen, Guru Ka Langar, and made his disciples — whether rich or poor, high born or low born — have their meals together. He introduced the Anand Karaj marriage ceremony for the Sikhs, replacing the Hindu form. He also abolished the custom of Sati amongst the Sikhs, and did away with the Paradah (veil) custom for women.</p>
+      </div>
     </div>
 
+    <!-- Guru 4 -->
+    <div class="guru-section reverse">
+      <div class="guru-image-wrap">
+        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/04-guru-ram-das-ji.jpg"
+             alt="Guru Ram Das Ji" class="guru-image"
+             onclick="openLightbox(this.src, 'Guru Ram Das Ji')">
+        <span class="guru-number">Guru 4</span>
+      </div>
+      <div class="guru-text">
+        <div class="guru-name-heading"><span>Guru Ram</span> Das Ji</div>
+        <div class="guru-attribute">Divine Attribute: Service &nbsp;·&nbsp; Guru from 1574 to 1581</div>
+        <p class="guru-detail-text">He was born in 1534. Guru ji founded the city of Amritsar and started the construction of the famous Golden Temple at Amritsar, the holy city of the Sikhs. He requested the Muslim Sufi, Mian Mir, to lay the cornerstone of the Harmandir Sahib. The temple remains open on all sides and at all times to everyone. The standard Sikh marriage ceremony, Anand Karaj, is centered around the Lawan — a four stanza hymn composed by Guru Ram Das ji.</p>
+      </div>
+    </div>
+
+    <!-- Guru 5 -->
     <div class="guru-section">
-        <h2>7. Guru Har Rai Ji</h2>
-                <div class="guru-content">
-        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/07-guru-har-rai-ji.jpg" alt="Guru Har Rai Ji" class="guru-image">
-                <div class="guru-text">
-            <div class="guru-name">Divine Attribute: Mercy; Guru from 1644 to 1661</div>
-                   <div class="guru-details">
-            <p>He was born in 1630, spent most of his life in devotional meditation and preaching the teachings of Guru Nanak.
-Although, Guru Har Rai Ji was a man of peace, he never disbanded the armed Sikh Warriors (Saint Soldiers), who earlier were maintained by his grandfather, Guru Hargobind. He always boosted the military spirit of the Sikhs, but he never himself indulged in any direct political and armed controversy with the Mughal Empire. Guru ji cautiously avoided conflict with Emperor Aurangzeb and devoted his efforts to missionary work.
-He also continued the grand task of nation building initiated by Guru Hargobind.
-</p>
-    </div>
-    </div>
-    </div>
+      <div class="guru-image-wrap">
+        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/05-guru-arjan-dev-ji.jpg"
+             alt="Guru Arjan Dev Ji" class="guru-image"
+             onclick="openLightbox(this.src, 'Guru Arjan Dev Ji')">
+        <span class="guru-number">Guru 5</span>
+      </div>
+      <div class="guru-text">
+        <div class="guru-name-heading"><span>Guru Arjan</span> Dev Ji</div>
+        <div class="guru-attribute">Divine Attribute: Self-Sacrifice &nbsp;·&nbsp; Guru from 1581 to 1606</div>
+        <p class="guru-detail-text">He was born in 1563. He compiled the Adi Granth, the scriptures of the Sikhs, and wrote the Sukhmani Sahib. To make it a universal teaching, Guru ji included in it hymns of Muslim saints as well as those of low-caste pariah saints. Guru Arjan Dev completed construction of Sri Darbar Sahib — the Golden Temple — in Amritsar. Guru ji became the first great martyr in Sikh history when Emperor Jahangir ordered his execution.</p>
+      </div>
     </div>
 
+    <!-- Guru 6 -->
+    <div class="guru-section reverse">
+      <div class="guru-image-wrap">
+        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/06-guru-har-gobind-singh-ji.jpg"
+             alt="Guru Har Gobind Ji" class="guru-image"
+             onclick="openLightbox(this.src, 'Guru Har Gobind Ji')">
+        <span class="guru-number">Guru 6</span>
+      </div>
+      <div class="guru-text">
+        <div class="guru-name-heading"><span>Guru Har</span> Gobind Ji</div>
+        <div class="guru-attribute">Divine Attribute: Justice &nbsp;·&nbsp; Guru from 1606 to 1644</div>
+        <p class="guru-detail-text">He was born in 1595 and was known as a "soldier saint." Guru Hargobind ji organised a small army, explaining that extreme non-violence would only encourage evil — thus the principles of Miri-Piri were established. Guru ji taught that it was necessary to take up the sword to protect the weak and oppressed. At the age of 13, he erected Sri Akal Takhat Sahib and adorned two swords — Miri and Piri — representing temporal and spiritual power.</p>
+      </div>
+    </div>
+
+    <!-- Guru 7 -->
     <div class="guru-section">
-        <h2>8. Guru Har Krishan Ji</h2>
-                <div class="guru-content">
-        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/08-shri-guru-harkrishan-ji.jpg" alt="Guru Har Krishan Ji" class="guru-image">
-                <div class="guru-text">
-            <div class="guru-name">Divine Attribute: Purity; Guru from 1661 to 1664</div>
-                   <div class="guru-details">
-            <p>He was born in 1656. Guru Har Krishan was the youngest of the Gurus. Installed as Guru at the age of five, Guru ji astonished the Brahmin Pundits with his knowledge and spiritual powers.
-To the Sikhs he proved to be the very symbol of service, purity and truth. The Guru gave his life while serving and healing the epidemic-stricken people in Delhi. The young Guru began to attend the sufferers irrespective of cast and creed. Particularly, the local Muslim population was much impressed with the purely humanitarian deeds of the Guru Sahib and nicknamed him Bala Pir (child prophet).
-Even Aurangzeb did not try to disturb Guru Harkrishan Sahib sensing the sensitivity of the situation, but on the other hand never dismissed the claim of Ram Rai also.
-Anyone who invokes Guru Har Krishan with a pure heart has no difficulties whatsoever in their life.
-</p>
+      <div class="guru-image-wrap">
+        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/07-guru-har-rai-ji.jpg"
+             alt="Guru Har Rai Ji" class="guru-image"
+             onclick="openLightbox(this.src, 'Guru Har Rai Ji')">
+        <span class="guru-number">Guru 7</span>
+      </div>
+      <div class="guru-text">
+        <div class="guru-name-heading"><span>Guru Har</span> Rai Ji</div>
+        <div class="guru-attribute">Divine Attribute: Mercy &nbsp;·&nbsp; Guru from 1644 to 1661</div>
+        <p class="guru-detail-text">He was born in 1630 and spent most of his life in devotional meditation and preaching the teachings of Guru Nanak. Although a man of peace, he never disbanded the armed Sikh Warriors maintained by his grandfather Guru Hargobind. He always boosted the military spirit of the Sikhs, but never indulged in direct armed controversy with the Mughal Empire. He continued the grand task of nation building initiated by Guru Hargobind.</p>
+      </div>
     </div>
+
+    <!-- Guru 8 -->
+    <div class="guru-section reverse">
+      <div class="guru-image-wrap">
+        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/08-shri-guru-harkrishan-ji.jpg"
+             alt="Guru Har Krishan Ji" class="guru-image"
+             onclick="openLightbox(this.src, 'Guru Har Krishan Ji')">
+        <span class="guru-number">Guru 8</span>
+      </div>
+      <div class="guru-text">
+        <div class="guru-name-heading"><span>Guru Har</span> Krishan Ji</div>
+        <div class="guru-attribute">Divine Attribute: Purity &nbsp;·&nbsp; Guru from 1661 to 1664</div>
+        <p class="guru-detail-text">He was born in 1656 and was the youngest of the Gurus. Installed as Guru at the age of five, Guru ji astonished the Brahmin Pundits with his knowledge and spiritual powers. He gave his life while serving and healing the epidemic-stricken people in Delhi, attending to sufferers irrespective of caste and creed. The local Muslim population was much impressed with his purely humanitarian deeds and nicknamed him Bala Pir (child prophet).</p>
+      </div>
     </div>
-    </div>
-    </div>
+
+    <!-- Guru 9 -->
     <div class="guru-section">
-        <h2>9. Guru Tegh Bahadur Ji</h2>
-                <div class="guru-content">
-        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/09-shri-guru-teg-bahadur-ji.jpg" alt="Guru Tegh Bahadur Ji" class="guru-image">
-                <div class="guru-text">
-            <div class="guru-name">Divine Attribute: Tranquility; Guru from 1665 to 1675</div>
-                   <div class="guru-details">
-            <p>He was born in 1621 in Amritsar.
-He established the town of Anandpur. The Guru laid down his life for the protection of the Hindu religion, their Tilak (devotional forehead markings) and their sacred (janeau) thread. He was a firm believer in the right of people to the freedom of worship.
-It was for this cause that he faced martyrdom for the defence of the down-trodden Hindus. So pathetic was the torture of Guru Tegh Bahadur that his body had to be cremated clandestinely (a follower burned down his own home to cremate the Guru's body) at Delhi while his severed head was secretly taken four hundred kilometers away to Anandpur Sahib for cremation. Because of his refusal to convert to Islam a threatened forced conversion of the Hindus of Kashmir was thwarted.
-</p>
-    </div>
-    </div>
-    </div>
+      <div class="guru-image-wrap">
+        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/09-shri-guru-teg-bahadur-ji.jpg"
+             alt="Guru Tegh Bahadur Ji" class="guru-image"
+             onclick="openLightbox(this.src, 'Guru Tegh Bahadur Ji')">
+        <span class="guru-number">Guru 9</span>
+      </div>
+      <div class="guru-text">
+        <div class="guru-name-heading"><span>Guru Tegh</span> Bahadur Ji</div>
+        <div class="guru-attribute">Divine Attribute: Tranquility &nbsp;·&nbsp; Guru from 1665 to 1675</div>
+        <p class="guru-detail-text">He was born in 1621 in Amritsar and established the town of Anandpur. The Guru laid down his life for the protection of the Hindu religion, their Tilak and their sacred thread. He was a firm believer in the right of people to the freedom of worship. Because of his refusal to convert to Islam, a threatened forced conversion of the Hindus of Kashmir was thwarted. He faced martyrdom for the defence of the down-trodden.</p>
+      </div>
     </div>
 
+    <!-- Guru 10 -->
+    <div class="guru-section reverse">
+      <div class="guru-image-wrap">
+        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/10-shri-guru-gobind-singh-ji.jpg"
+             alt="Guru Gobind Singh Ji" class="guru-image"
+             onclick="openLightbox(this.src, 'Guru Gobind Singh Ji')">
+        <span class="guru-number">Guru 10</span>
+      </div>
+      <div class="guru-text">
+        <div class="guru-name-heading"><span>Guru Gobind</span> Singh Ji</div>
+        <div class="guru-attribute">Divine Attribute: Royal Courage &nbsp;·&nbsp; Guru from 1675 to 1708</div>
+        <p class="guru-detail-text">He was born in 1666 and became Guru after the martyrdom of his father Guru Tegh Bahadur. He created the Khalsa (The Pure Ones) in 1699, changing the Sikhs into a saint-soldier order. He gave the Sikhs the name Singh (lion) or Kaur (princess). He fought many battles against Aurangzeb's armies. After losing his father, mother and four sons to Mughal tyranny, he wrote his famous Zafarnama. On 3 October 1708, he appointed Guru Granth Sahib as the Guru: "Let all bow before my successor, Guru Granth. The Word is the Guru now."</p>
+      </div>
+    </div>
+
+    <!-- Guru 11 -->
     <div class="guru-section">
-        <h2>10. Guru Gobind Singh Ji</h2>
-                <div class="guru-content">
-        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/10-shri-guru-gobind-singh-ji.jpg" alt="Guru Gobind Singh Ji" class="guru-image">
-                 <div class="guru-text">
-            <div class="guru-name">Divine Attribute: Royal Courage; Guru from 1675 to 1708</div>
-                  <div class="guru-details">
-            <p>He was born in 1666 and became Guru after the martyrdom of his father Guru Tegh Bahadur.
-He created the Khalsa (The Pure Ones) in 1699, changing the Sikhs into a saint-soldier order with special symbols and sacraments for protecting themselves. After the Guru had administered Amrit to his Five Beloved Ones, he stood up in supplication and with folded hands, begged them to baptize him in the same way as he had baptized them. He himself became their disciple (Wonderful is Guru Gobind Singh, himself the Master and himself the disciple). The Five Beloved Ones were astonished at such a proposal, and represented their own unworthiness, and the greatness of the Guru, whom they deemed God's representative upon earth. He gave the Sikhs the name Singh (lion) or Kaur (princess).
-He fought many battles against the armies of Aurangzeb and his allies. After he had lost his father, his mother and four sons to Mughal tyranny, he wrote his famous letter (the zafarnama) to Aurangzeb, in which he indicted the Grand mughal with his treachery and godliness, after which the attacks against the Guru and his Sikhs were called off. Aurangzeb died soon after reading the letter. Soon, the rightful heir to the Mughal throne sought the Guru's assistance in winning his kingdom. It was the envie and fear of the growing friendship between the new Emperor and the Guru which lead to the sneak attack of the Pathan assasins of Wasir Khan who inflicted the wound which later caused the Guru's death.
-Thus the tree whose seed was planted by Guru Nanak, came to fruition when Guru Gobind Singh created the Khalsa, and on 3 October 1708, appointed Guru Granth Sahib as the Guru. He commanded: "Let all bow before my successor, Guru Granth. The Word is the Guru now."
-</p>
-    </div>
-    </div>
-    </div>
+      <div class="guru-image-wrap">
+        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/11-guru-granth-sahib-ji.jpg"
+             alt="Guru Granth Sahib Ji" class="guru-image"
+             onclick="openLightbox(this.src, 'Guru Granth Sahib Ji')">
+        <span class="guru-number">Guru 11</span>
+      </div>
+      <div class="guru-text">
+        <div class="guru-name-heading"><span>Guru Granth</span> Sahib Ji</div>
+        <div class="guru-attribute">Source of Divine Wisdom &nbsp;·&nbsp; Guru from 1708 to Eternity</div>
+        <p class="guru-detail-text">Guru Granth Sahib (also known as the Adi Granth) is the living scripture of the Sikhs. No Sikh ceremony is regarded as complete unless performed in its presence. Written in Gurmukhi script, it contains the actual words and verses as uttered by the Sikh Gurus. It is considered the Supreme Spiritual Authority and Head of the Sikh religion. It also contains the writings of people of other faiths — the only scripture of its kind. It is universal in its scope, intended for everybody, everywhere.</p>
+      </div>
     </div>
 
-    <div class="guru-section">
-        <h2>11. Guru Granth Sahib Ji</h2>
-                <div class="guru-content">
-        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/11-guru-granth-sahib-ji.jpg" alt="Guru Granth Sahib Ji" class="guru-image">
- 
- 
-        <div class="guru-text">
-            <div class="guru-name">Source of Divine Wisdom, Grace, and Liberation; Guru from 1708 to eternity</div>
-                   <div class="guru-details">
-            <p>Guru Granth Sahib (also known as the Adi Granth) is the scripture of the Sikhs. No Sikh ceremony is regarded as complete unless it is performed in the presence of Guru Granth Sahib.
-The Granth was written in Gurmukhi script and it contains the actual words and verses as uttered by the Sikh Gurus.
-It is considered the Supreme Spiritual Authority and Head of the Sikh religion, rather than any living person. It is also the only scripture of its kind which not only contains the works of its own religious founders but also the writings of people of other faiths.
-The living Guru of the Sikhs, the book is held in great reverence by Sikhs and treated with the utmost respect.
-Guru Granth Sahib is a book of Revelation. It conveys the Word of the Master through His messengers on earth. It is universal in its scope.
-The greatness of the Guru Granth Sahib lies not only in its being the Holy Scripture of the Sikhs but also in it being a general scripture available to mankind, intended for everybody, everywhere.
-</p>
-    </div>
-    </div>
-    </div>
-    </div>
+  </div><!-- /gurus-wrapper -->
 
-    <a href="./../01-about-sikhism/01-about-sikhism.html" class="back-button" 
-   style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
-          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
-          line-height: 35px; border-radius: 8px; text-decoration: none; 
-          border: 2px solid black;">
-    <b>Back</b>
-</a>
+  <!-- ── QUOTE ── -->
+  <div class="quote-panel">
+    <div class="quote-mark">"</div>
+    <div class="quote-text">Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh — the Khalsa belongs to the Almighty, and victory too is His.</div>
+    <div class="quote-attr">— Sikh Salutation</div>
+  </div>
 
+  <!-- ── THREE VALUES ── -->
+  <div class="values">
+    <div class="value-item">
+      <div class="value-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 4 L22 36" stroke="#F7941D" stroke-width="3" stroke-linecap="round"/>
+          <path d="M14 12 L30 12" stroke="#F7941D" stroke-width="3" stroke-linecap="round"/>
+          <polygon points="22,2 19,12 25,12" fill="#F7941D"/>
+          <circle cx="22" cy="38" r="3" fill="#F7941D"/>
+        </svg>
+      </div>
+      <div class="value-name">Shaheedee</div>
+      <div class="value-desc">Martyrdom in the service of the Guru and the Khalsa Panth.</div>
+    </div>
+    <div class="value-item">
+      <div class="value-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 36 C22 36 6 26 6 16 C6 10 11 6 16 8 C18.5 9 20.5 11 22 13 C23.5 11 25.5 9 28 8 C33 6 38 10 38 16 C38 26 22 36 22 36Z" stroke="#F7941D" stroke-width="2.5" fill="rgba(247,148,29,0.15)"/>
+          <path d="M16 22 L20 26 L28 18" stroke="#F7941D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="value-name">Devotion</div>
+      <div class="value-desc">Unwavering love and loyalty to the Guru and the Waheguru.</div>
+    </div>
+    <div class="value-item">
+      <div class="value-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 30 L8 18 L16 26 L22 10 L28 26 L36 18 L36 30 Z" stroke="#F7941D" stroke-width="2.5" fill="rgba(247,148,29,0.15)" stroke-linejoin="round"/>
+          <rect x="8" y="30" width="28" height="5" rx="1.5" fill="#F7941D" opacity="0.7"/>
+          <circle cx="22" cy="10" r="2.5" fill="#F7941D"/>
+          <circle cx="8" cy="18" r="2" fill="#F7941D"/>
+          <circle cx="36" cy="18" r="2" fill="#F7941D"/>
+        </svg>
+      </div>
+      <div class="value-name">Seva</div>
+      <div class="value-desc">Selfless service — the foundation of Sikh community life.</div>
+    </div>
+  </div>
 
-<!-- Back Button -->
-<!-- <button 
-  type="button" 
-  onclick="goBack()" 
-  style="width: 125px; height: 50px; font-size: 24px; background-color: #FF9933; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">
- <b> Back </b>
-</button>
+  <!-- ── FOOTER ── -->
+  <div class="footer">
+    <div class="footer-content">
+      <a href="./../01-about-sikhism/01-about-sikhism.html" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
+        </svg>
+        Back to About Sikhism
+      </a>
+      <div class="footer-left">© Sikhs in India · sikhsinindia.com</div>
+      <div class="footer-right">Waheguru Ji Ka Khalsa · Waheguru Ji Ki Fateh</div>
+    </div>
+  </div>
+
+</div><!-- /poster -->
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" onclick="closeLightbox()">✕ &nbsp;Close</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lb-download" onclick="downloadCurrentImage()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+         stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+      <path d="M12 5v10M7 15l5 5 5-5"/><rect x="3" y="19" width="18" height="2" rx="1"/>
+    </svg>
+    Download Image
+  </button>
+</div>
+
 <script>
-    function goBack() 
-   {
-   window.location.href = "./../01-about-sikhism/01-about-sikhism.html";
-    }
-</script> -->
+  function openLightbox(src, name) {
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = src;
+    img.alt = name || '';
+    lb.classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  function downloadCurrentImage() {
+    const src = document.getElementById('lightbox-img').src;
+    const a = document.createElement('a');
+    a.href = src;
+    a.download = src.split('/').pop() || 'guru-image.jpg';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+  // Close lightbox on background click
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+</script>
+
 </body>
 </html>
-
-
