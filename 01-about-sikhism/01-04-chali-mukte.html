@@ -215,7 +215,7 @@
   .context-block h3 {
     font-family: 'Playfair Display', serif;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 1100;
     color: var(--gold);
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -501,6 +501,87 @@
   cursor: pointer;
   font-weight: 700;
 }
+/* ── FOOTER ── */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* Back button — 3D gold, matches Feedback style */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255,220,120,0.5),
+        inset 0 -2px 0 rgba(0,0,0,0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+    .btn-back:hover { filter: brightness(1.08); }
+    .btn-back:active { transform: scale(0.97); filter: brightness(0.93); }
+    .btn-back svg { width: 12px; height: 12px; }
+
+/* Footer */
+      .footer { padding: 14px 12px; }
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+      }
+      .btn-back { font-size: 9px; padding: 8px 14px; }
+      .footer-left  { font-size: 9px; }
+      .footer-right { font-size: 9px; letter-spacing: 1px; }
+
+      /* Lightbox */
+      .lb-close { top: 10px; right: 10px; font-size: 12px; padding: 5px 10px; }
+      .lb-download { font-size: 11px; padding: 9px 16px; }
+    
+
+      /* Footer */
+      .footer { padding: 14px 20px; }
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+      }
 </style>
 </head>
 <body>
@@ -516,7 +597,7 @@
            src="../pictures/00-index/sikhsinindia.png" width="60px" height="auto"
            alt="Sikhs In India Logo">
       
-    </div>
+
      <div class="hero">
 
     <div class="hero-eyebrow">Battle of Muktsar · 1705 CE</div>
@@ -525,6 +606,7 @@
     <div class="gold-rule"><div class="gold-rule-diamond"></div></div>
     <div class="hero-tagline">Supreme Devotion &nbsp;·&nbsp; Courage &nbsp;·&nbsp; Sacrifice</div>
   </div>
+      </div>
   </div>
 
   <!-- HERO -->
@@ -669,7 +751,7 @@
     onclick="openLightbox(this.src)">
 </div>
   <!-- FOOTER -->
-<div class="footer">
+<!-- <div class="footer">
   <div class="footer-actions">
     <a href="./../01-about-sikhism/01-about-sikhism.html" class="footer-btn">
       <svg viewBox="0 0 24 24" fill="currentColor">
@@ -678,8 +760,21 @@
       Back
     </a>
   </div>
-</div>
-
+</div> -->
+<!-- ── FOOTER ── -->
+  <div class="footer">
+    <div class="footer-content">
+      <a href="./../01-about-sikhism/01-about-sikhism.html" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
+        </svg>
+        Back to About Sikhism
+      </a>
+      <div class="footer-left">© Sikhs in India · sikhsinindia.com</div>
+      <div class="footer-right">Waheguru Ji Ka Khalsa · Waheguru Ji Ki Fateh</div>
+    </div>
+  </div>
 </div>
 
 <div class="lightbox" id="lightbox">
@@ -713,5 +808,6 @@ function closeLightbox() {
     document.getElementById('lightbox').style.display = 'none';
 }
 </script>
+
 </body>
 </html>
