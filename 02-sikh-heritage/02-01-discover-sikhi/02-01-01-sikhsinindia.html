@@ -1,239 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <!-- Google tag (gtag.js) -->
+
+  <!-- Google tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-LHNTFNW14H');
   </script>
 
-      <!-- Meta description -->
-  <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
-  <link rel="canonical" href="https://sikhsinindia.com/02-sikh-heritage/02-sikhsinindia.html">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Sikhs in India | SikhsInIndia.com</title>
+
+  <meta name="description"
+    content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
   <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
   <meta name="author" content="Sikhs in India">
   <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://sikhsinindia.com/02-sikh-heritage/02-sikhsinindia.html">
+
   <meta property="og:title" content="Sikh Heritage & Traditions | Gurudwaras, Guru Nanak & Sikh Scriptures">
   <meta property="og:description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
   <meta property="og:url" content="https://sikhsinindia.com/02-sikh-heritage/02-sikhsinindia.html">
   <meta property="og:type" content="website">
 
-  
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sikhs in India | SikhsInIndia.com </title>
-<style>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+    }
+
+    /* PAGE */
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #000;
-      color: #fff;
-      margin: 0;
-      padding: 0;
-      line-height: 1.7;
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
     }
 
-    header {
-      background-color: #FF9933;
-      color: #000;
+    /* MAIN CONTAINER */
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .hero {
+      flex: 1;
       text-align: center;
-      padding: 30px 15px;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
     }
 
-    header h1 {
-      font-size: 2rem;
-      margin: 0;
-      font-weight: 800;
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 6vw, 54px);
+      font-weight: 900;
+      color: #fff;
+      text-transform: uppercase;
     }
 
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* GOLD INTRO BAR */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* CONTENT AREA */
+    .wrapper {
+      padding: 28px 36px;
+    }
+
+    /* SECTIONS */
     section {
-      max-width: 900px;
-      margin: 30px auto;
-      background-color: #111;
-      border-radius: 12px;
-      padding: 20px 25px;
-      box-shadow: 0 0 15px rgba(255, 153, 51, 0.3);
+      margin-bottom: 26px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }
+
+    h1,
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 24px;
     }
 
     h2 {
-      color: #FF9933;
-      margin-top: 25px;
-      font-size: 1.4rem;
-      border-left: 4px solid #FF9933;
+      font-size: 20px;
+      border-left: 4px solid var(--gold);
       padding-left: 10px;
     }
 
-    p {
-      margin-bottom: 15px;
-      font-size: 1rem;
+    p,
+    li {
+      font-size: 14px;
+      line-height: 1.75;
+      color: #333;
       text-align: justify;
     }
 
-    footer {
-      background-color: #FF9933;
-      color: #000;
-      text-align: center;
-      padding: 15px;
-      font-size: 0.95rem;
-      border-top: 2px solid #000;
-    }
-
-    .button {
-      display: inline-block;
-      background-color: #FF9933;
-      color: #000;
-      text-decoration: none;
-      padding: 12px 25px;
-      font-weight: bold;
-      border-radius: 8px;
+    .video-links {
       margin-top: 20px;
-      transition: 0.3s;
+      padding: 15px;
+      background: rgba(13, 27, 62, 0.05);
+      border-radius: 8px;
+      border: 1px dashed var(--navy);
+      text-align: center;
     }
 
-    .button:hover {
-      background-color: #ffaa44;
-      transform: scale(1.05);
+    .video-links p {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--navy);
+      font-weight: bold;
+      margin-bottom: 10px;
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.5rem;
+    .video-btn {
+      display: inline-block;
+      margin: 5px;
+      padding: 6px 12px;
+      background: var(--navy);
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    .video-btn:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: 20px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* Back button — 3D gold, matches Feedback style */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+      filter: brightness(0.93);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+.photo-container img {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+}
+
+.lightbox img {
+  max-width: 95%;
+  max-height: 80vh;
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+    /* MOBILE responsive adjustments */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
       }
 
-      section {
-        padding: 15px;
-        margin: 15px;
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .wrapper {
+        padding: 18px 14px;
+      }
+
+      h1 {
+        font-size: 26px;
       }
 
       h2 {
-        font-size: 1.2rem;
+        font-size: 18px;
       }
 
-      p {
-        font-size: 0.95rem;
+      p,
+      li {
+        font-size: 13px;
+      }
+
+      .footer {
+        padding: 14px 12px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+
+      .btn-back {
+        font-size: 9px;
+        padding: 8px 14px;
+      }
+
+      .footer-left,
+      .footer-right {
+        font-size: 9px;
+        letter-spacing: 1px;
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>Sikhs in India</h1>
-  </header>
 
-  <section>
-    <p><strong>Sikhs in India</strong> form a dynamic and deeply respected community, representing courage, equality, and devotion. Founded by <strong>Guru Nanak Dev Ji</strong> in the 15th century, Sikhism stands as one of the youngest yet most impactful religions in the world. It teaches <strong>oneness of God</strong>, <strong>honest living</strong>, <strong>selfless service (Seva)</strong>, and <strong>equality of all humanity</strong>.</p>
+  <div class="poster">
 
-    <h2>Population and Presence</h2>
-    <p>As of <strong>2025</strong>, the estimated <strong>Sikh population in India</strong> is <strong>approximately 22–25 million (about 2.0% of the country’s total population)</strong>. Most Sikhs live in <strong>Punjab</strong>, where they make up around 58% of the state’s population, with thriving communities in <strong>Delhi, Haryana, Uttar Pradesh, Maharashtra, Rajasthan, and Jammu & Kashmir</strong>. India remains the spiritual and cultural home of the Sikh faith.</p>
+    <!-- HEADER -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Sikhs in <span>India</span></div>
+        <div class="hero-sub">Courage, Equality, and Universal Devotion</div>
+      </div>
+    </div>
 
-    <h2>Spiritual Heritage</h2>
-    <p>The cornerstone of Sikhism is the <strong>Guru Granth Sahib Ji</strong> — the eternal Guru and living scripture that guides Sikhs toward truth, humility, and remembrance of the Divine (<em>Naam</em>). The teachings of the ten Gurus emphasize unity, compassion, and moral integrity. Daily prayers such as <strong>Japji Sahib</strong> and <strong>Rehras Sahib</strong> nurture spiritual discipline and connection with God.</p>
+    <!-- INTRO BAR -->
+    <div class="intro">
+      Founded by Guru Nanak Dev Ji in the 15th Century
+    </div>
 
-    <h2>Gurudwaras – Halls of Service and Faith</h2>
-    <p>Across India, <strong>Gurudwaras</strong> are open to everyone, offering peace, guidance, and <strong>Langar (free community meals)</strong> for all, regardless of caste or creed. The <strong>Golden Temple (Sri Harmandir Sahib)</strong> in <strong>Amritsar</strong> is the most revered shrine, symbolizing equality and divine presence. Thousands of other Gurudwaras continue this sacred tradition across India.</p>
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="wrapper">
 
-    <h2>Tradition and Identity</h2>
-    <p>The Sikh identity is represented through the <strong>Five Ks (Kesh, Kara, Kanga, Kachera, Kirpan)</strong> — each carrying deep spiritual significance. Sikhs celebrate major festivals such as <strong>Gurpurab</strong>, <strong>Baisakhi</strong>, and <strong>Hola Mohalla</strong>, honoring faith, bravery, and unity.</p>
+      <h1>Sikhs in India – Legacy & Contributions</h1>
 
-    <h2>Contributions to India</h2>
-    <p>Sikhs have made exceptional contributions to India’s <strong>freedom struggle</strong>, <strong>defense forces</strong>, <strong>agriculture</strong>, <strong>sports</strong>, <strong>business</strong>, and <strong>philanthropy</strong>. Their values of courage, discipline, and compassion embody the true spirit of India.</p>
+      <section>
+        <p><strong>Sikhs in India</strong> form a dynamic and deeply respected community, representing courage, equality, and devotion. Founded by <strong>Guru Nanak Dev Ji</strong> in the 15th century, Sikhism stands as one of the youngest yet most impactful religions in the world. It teaches <strong>oneness of God</strong>, <strong>honest living</strong>, <strong>selfless service (Seva)</strong>, and <strong>equality of all humanity</strong>.</p>
+      </section>
 
-    <h2>Our Mission</h2>
-    <p><strong>Sikhs in India</strong> is dedicated to <strong>sharing, connecting, and preserving</strong> Sikh heritage. Through digital initiatives, education, and community engagement, we aim to spread the timeless messages of the Gurus — <strong>truth, equality, and universal brotherhood</strong> — to inspire present and future generations.</p>
+      <section>
+        <h2>Population and Presence</h2>
+        <p>As of <strong>2025</strong>, the estimated <strong>Sikh population in India</strong> is <strong>approximately 22–25 million (about 2.0% of the country’s total population)</strong>. Most Sikhs live in <strong>Punjab</strong>, where they make up around 58% of the state’s population, with thriving communities in <strong>Delhi, Haryana, Uttar Pradesh, Maharashtra, Rajasthan, and Jammu & Kashmir</strong>. India remains the spiritual and cultural home of the Sikh faith.</p>
+      </section>
 
+      <section>
+        <h2>Spiritual Heritage</h2>
+        <p>The cornerstone of Sikhism is the <strong>Guru Granth Sahib Ji</strong> — the eternal Guru and living scripture that guides Sikhs toward truth, humility, and remembrance of the Divine (<em>Naam</em>). The teachings of the ten Gurus emphasize unity, compassion, and moral integrity. Daily prayers such as <strong>Japji Sahib</strong> and <strong>Rehras Sahib</strong> nurture spiritual discipline and connection with God.</p>
+      </section>
 
-  </section>
+      <section>
+        <h2>Gurudwaras – Halls of Service and Faith</h2>
+        <p>Across India, <strong>Gurudwaras</strong> are open to everyone, offering peace, guidance, and <strong>Langar (free community meals)</strong> for all, regardless of caste or creed. The <strong>Golden Temple (Sri Harmandir Sahib)</strong> in <strong>Amritsar</strong> is the most revered shrine, symbolizing equality and divine presence. Thousands of other Gurudwaras continue this sacred tradition across India.</p>
+      </section>
 
+      <section>
+        <h2>Tradition and Identity</h2>
+        <p>The Sikh identity is represented through the <strong>Five Ks (Kesh, Kara, Kanga, Kachera, Kirpan)</strong> — each carrying deep spiritual significance. Sikhs celebrate major festivals such as <strong>Gurpurab</strong>, <strong>Baisakhi</strong>, and <strong>Hola Mohalla</strong>, honoring faith, bravery, and unity.</p>
+      </section>
 
+      <section>
+        <h2>Contributions to India</h2>
+        <p>Sikhs have made exceptional contributions to India’s <strong>freedom struggle</strong>, <strong>defense forces</strong>, <strong>agriculture</strong>, <strong>sports</strong>, <strong>business</strong>, and <strong>philanthropy</strong>. Their values of courage, discipline, and compassion embody the true spirit of India.</p>
+      </section>
 
-  <footer>
-    <!-- Footer Video -->
-    <!-- Footer Video -->
-<div style="margin-bottom:15px; text-align:center;">
-
-  <!-- <iframe
-    width="420"
-    height="240"
-    src="https://www.youtube.com/embed/1FD8bxWUpas"
-    title="YouTube video player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen
-    style="border:none; border-radius:10px; max-width:95%;
-           box-shadow:0 0 10px rgba(255,153,51,0.5);">
-  </iframe> -->
-  <!-- <iframe
-  width="420"
-  height="240"
-  src="https://www.youtube.com/embed/VIDEO_ID"
-  allowfullscreen
-  style="border:none; border-radius:10px;">
-</iframe> -->
-<p style="text-align:center; font-size:1.5rem;">
-  About SikhsinIndia.com
-</p>
-<!-- <a href="https://www.youtube.com/embed/1FD8bxWUpas?autoplay=1&mute=1" 
-   target="_blank"
-   style="color:#000000; font-weight:bold;">
-   SikhsinIndia.com - Intro Video - 1
-</a> -->
-
-<a href="https://www.youtube.com/watch?v=1FD8bxWUpas&autoplay=1" 
-   target="_blank" 
-   style="color:#000000; font-weight:bold;">
-   SikhsinIndia.com - Intro Video - 2
-</a>
-<!-- <iframe
-  width="420"
-  height="240"
-  src="https://www.youtube.com/embed/1FD8bxWUpas?autoplay=1&mute=1"
-  allow="autoplay"
-  allowfullscreen
-  style="border:none; border-radius:10px;">
-</iframe> -->
-
-
-<br><br>
-
-<a href="https://www.youtube.com/watch?v=4Yi9JVrAhcc&autoplay=1" 
-   target="_blank" 
-   style="color:#000000; font-weight:bold;">
-   SikhsinIndia.com - Intro Video - 2
-</a>
-     <!-- <iframe
-       width="360"
-    height="640"
-    src="https://www.youtube.com/embed/4Yi9JVrAhcc?rel=0"
-    title="YouTube Shorts"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen
-    referrerpolicy="strict-origin-when-cross-origin"
-    style="border:none;
-           border-radius:10px;
-           max-width:95%;
-           box-shadow:0 0 10px rgba(255,153,51,0.5);">
-  </iframe> -->
-
-  </iframe>
-
+      <section>
+        <h2>Our Mission</h2>
+        <p><strong>Sikhs in India</strong> is dedicated to <strong>sharing, connecting, and preserving</strong> Sikh heritage. Through digital initiatives, education, and community engagement, we aim to spread the timeless messages of the Gurus — <strong>truth, equality, and universal brotherhood</strong> — to inspire present and future generations.</p>
+      </section>
+  <div class="photo-container">
+  <img
+    src="https://drive.google.com/thumbnail?id=1GgfUtxVLvfdwrg6vQiQ7WaZ1T06yZF5l&sz=w1200"
+    alt="Punj Takhts Collage"
+    class="clickable-image"
+    onclick="openLightbox(this.src)">
 </div>
-      <a href="../02-01-discover-sikhi/02-01-discover-sikhi.html" class="back-button" 
-   style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
-          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
-          line-height: 30px; border-radius: 8px; text-decoration: none; 
-          border: 2px solid black;">
-    <b>Back</b>
-  </a>
+<br>
+  <div class="photo-container">
+  <img
+    src="https://drive.google.com/thumbnail?id=17DwV7uVvxMgWI3gen2ZzWibeFuav3Win&sz=w1200"
+    alt="Punj Takhts Collage"
+    class="clickable-image"
+    onclick="openLightbox(this.src)">
+</div>
+<br>
+  <div class="photo-container">
+  <img
+    src="https://drive.google.com/thumbnail?id=1MQq9I8aa2VVqTCjRniAemM7XhurUisnG&sz=w1200"
+    alt="Punj Takhts Collage"
+    class="clickable-image"
+    onclick="openLightbox(this.src)">
+</div>
+<br>
+  <div class="photo-container">
+  <img
+    src="https://drive.google.com/thumbnail?id=1b2tK3ycOaLz9_Lyk5NOlEx5y0NuZb8ic&sz=w1200"
+    alt="Punj Takhts Collage"
+    class="clickable-image"
+    onclick="openLightbox(this.src)">
+</div>
+<br>
 
-    © 2025 Sikhs in India | Preserving Sikh Heritage & Unity
-  </footer>
+      <!-- VIDEO LINKS BLOCK -->
+      <div class="video-links">
+        <p>About SikhsinIndia.com</p>
+        <a href="https://www.youtube.com/watch?v=1FD8bxWUpas&autoplay=1" target="_blank" class="video-btn">Intro Video - 1</a>
+        <a href="https://www.youtube.com/watch?v=4Yi9JVrAhcc&autoplay=1" target="_blank" class="video-btn">Intro Video - 2</a>
+      </div>
+
+      <!-- ── FOOTER ── -->
+      <div class="footer">
+        <div class="footer-content">
+          <a href="../02-01-discover-sikhi/02-01-discover-sikhi.html" class="btn-back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+            </svg>
+            Back to Discover Sikhi
+          </a>
+          <div class="footer-left">© 2025 Sikhs in India</div>
+          <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </body>
+
 </html>
-
-
-

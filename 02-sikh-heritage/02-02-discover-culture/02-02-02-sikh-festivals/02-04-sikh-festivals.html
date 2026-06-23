@@ -1,202 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <!-- Google tag (gtag.js) -->
+
+  <!-- Google tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-LHNTFNW14H');
   </script>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <title>Sikh Festivals | Maghi, Vaisakhi, Gurpurabs | Sikhs in India</title>
 
-  <!-- Meta description -->
+  <!-- SEO Meta -->
   <meta name="description" content="Learn about Sikh festivals including Maghi, Vaisakhi, Gurpurabs, Bandi Chhor Divas, and the martyrdom days of Sikh Gurus.">
-
-  <!-- Keywords -->
   <meta name="keywords" content="Sikh Festivals, Maghi, Vaisakhi, Gurpurab, Bandi Chhor Divas, Sikh Heritage, Sikh Culture, Sikhs in India">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://sikhsinindia.com/02-sikh-heritage/02-04-sikh-festivals.html">
-
-  <!-- Author & Robots -->
   <meta name="author" content="Sikhs in India">
   <meta name="robots" content="index, follow">
 
-  <!-- Open Graph -->
+  <link rel="canonical" href="https://sikhsinindia.com/02-sikh-heritage/02-04-sikh-festivals.html">
+
   <meta property="og:title" content="Sikh Festivals | Sikhs in India">
   <meta property="og:description" content="Explore major Sikh festivals, Gurpurabs, and historical commemorations in Sikh tradition.">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
   <meta property="og:url" content="https://sikhsinindia.com/02-sikh-heritage/02-04-sikh-festivals.html">
   <meta property="og:type" content="website">
 
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 5px;
-      font-family: Arial, sans-serif;
-      background: #FF9933;
-      color: black;
-      line-height: 1.6;
+      padding: 0
     }
 
-    header {
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+    }
+
+    /* PAGE */
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
+
+    /* MAIN CONTAINER */
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .hero {
+      flex: 1;
       text-align: center;
-      padding: 10px 0;
-      background: black;
-      color: #FF9933;
-      border-bottom: 1px solid black;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 6vw, 54px);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* GOLD INTRO BAR */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* CONTENT AREA */
+    .wrapper {
+      padding: 28px 36px;
+    }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 26px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }
+
+    h1,
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      margin-bottom: 10px;
     }
 
     h1 {
-      font-size: 2em;
-      margin: 0;
-    }
-
-    .btn-row {
       text-align: center;
-      margin: 20px 0;
-    }
-
-    section {
-      margin: 20px auto;
-      max-width: 1200px;
-      background: black;
-      color: #FF9933;
-      padding: 15px;
-      border-radius: 10px;
+      font-size: 34px;
+      margin-bottom: 24px;
     }
 
     h2 {
-      font-size: 1.4em;
-      border-bottom: 2px solid #FF9933;
-      padding-bottom: 5px;
-      margin-top: 30px;
+      font-size: 20px;
+      border-left: 4px solid var(--gold);
+      padding-left: 10px;
+      margin-top: 14px;
     }
 
     p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: #333;
       text-align: justify;
-            font-size: 22px;
-      font-weight: bold;
-      color: #FFFFFF; /* Changed for better contrast */
-
+      margin-bottom: 12px;
     }
-.btn-row {
-  text-align: left;   /* align all links inside to the left */
-  margin: 20px 0;
-} 
+
+    /* HUB LINK BUTTONS CONTAINER */
+    .btn-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 14px 0;
+    }
+
     .custom-link {
-      font-size: 22px;
-      font-weight: bold;
-      color: #FF9933; /* Changed for better contrast */
+      display: block;
+      padding: 12px 16px;
+      background-color: #ffffff;
+      color: var(--navy);
       text-decoration: none;
-      display: inline-block;
-      margin-bottom: 10px;
-         /* text-align: left; */
+      font-size: 14px;
+      font-weight: 700;
+      border: 1px solid rgba(13, 27, 62, 0.1);
+      border-left: 4px solid var(--gold);
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     }
 
     .custom-link:hover {
-      text-decoration: underline;
+      background-color: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+      transform: translateX(4px);
     }
 
-    .back-button {
-      width: 150px;
-      height: 36px;
-      font-size: 22px;
-      background-color: #FF9933;
-      color: black;
-      display: block;
-      margin: 20px auto;
-      text-align: center;
-      line-height: 36px;
-      border-radius: 8px;
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: 30px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* Back button — 3D gold style */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       text-decoration: none;
-      border: 2px solid black;
-      font-weight: bold;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
     }
 
-    @media (max-width: 600px) {
-      h1 { font-size: 1.6em; }
-      h2 { font-size: 1.2em; }
-      .custom-link { font-size: 18px; }
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+      filter: brightness(0.93);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* MOBILE responsive adjustments */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .wrapper {
+        padding: 18px 14px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      p {
+        font-size: 13px;
+      }
+
+      .footer {
+        padding: 14px 12px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+
+      .btn-back {
+        font-size: 9px;
+        padding: 8px 14px;
+      }
+
+      .footer-left,
+      .footer-right {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Sikh Festivals</h1>
-</header>
+  <div class="poster">
 
-<section>
-
-  <div class="btn-row">
-    <a href="./02-02-02-02-chet-sangrand-sikh-new-year.html" class="custom-link" aria-label="Chet Sangrand - Sikh New Year">
-      Chet Sangrand - Sikh New Year
-    </a>
-  </div>
-      <br> 
-      <h2>Lohri</h2>
-  <p>Lohri for Sikhs is a cultural festival, its themes of community, gratitude, and justice resonate well with Sikh values.</p>
-  <div class="btn-row">
-    <a href="./02-02-02-01-lohri.html" class="custom-link" aria-label="Lohri Festival Details">
-      Lohri - The Festival of Harvest
-    </a>
+    <!-- HEADER -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Sikh <span>Festivals</span></div>
+        <div class="hero-sub">Sacred Commemorations & Cultural Traditions</div>
+      </div>
     </div>
 
-    <br> 
-      <h2>Vaisakhi</h2>
-  <p>Marks the founding of the Khalsa in 1699.</p>
-    
-    <div class="btn-row">
-    <a href="./02-02-02-03-Baisakhi-E1.html" class="custom-link" aria-label="Lohri Festival Details">
-      Baisakhi - The Maisfestation of Khalsa (English-1)
-    </a>
+    <!-- INTRO BAR -->
+    <div class="intro">
+      Celebrating Faith, Valor, and Community Milestones Throughout the Year
+    </div>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="wrapper">
+
+      <h1>Sikh Historical Festivals & Gurpurabs</h1>
+
+      <section>
+        <h2>Sikh New Year</h2>
+        <div class="btn-row">
+          <a href="./02-02-02-02-chet-sangrand-sikh-new-year.html" class="custom-link">Chet Sangrand - Sikh New Year</a>
+        </div>
+      </section>
+
+      <section>
+        <h2>Lohri</h2>
+        <p>Lohri for Sikhs is a cultural festival, its themes of community, gratitude, and justice resonate well with Sikh values[cite: 11].</p>
+        <div class="btn-row">
+          <a href="./02-02-02-01-lohri.html" class="custom-link">Lohri - The Festival of Harvest</a>
+        </div>
+      </section>
+
+      <section>
+        <h2>Vaisakhi</h2>
+        <p>Marks the founding of the Khalsa in 1699[cite: 11].</p>
+        <div class="btn-row">
+          <a href="./02-02-02-03-Baisakhi-E1.html" class="custom-link">Baisakhi - The Manifestation of Khalsa (English-1)</a>
+          <a href="./02-02-02-04-Baisakhi-E2.html" class="custom-link">Baisakhi - The Manifestation of Khalsa (English-2)</a>
+          <a href="./02-02-02-05-Baisakhi-E3.html" class="custom-link">Baisakhi - The Manifestation of Khalsa (English-3)</a>
+          <a href="./02-02-02-06-Baisakhi-P1.html" class="custom-link">Baisakhi - The Manifestation of Khalsa (Punjabi)</a>
+        </div>
+      </section>
+
+      <section>
+        <h2>Maghi</h2>
+        <p>Maghi is one of the three festivals chosen by Guru Amar Das Ji to be celebrated by Sikhs (the others being Vaisakhi and Diwali)[cite: 11].</p>
+
+        <h3>Maghi and the 40 Mukte</h3>
+        <p>Sikhs observe Maghi to honour the heroic fight of the Chali Mukte (Forty Liberated Ones)[cite: 11].</p>
+
+        <h3>Muktsar Mela</h3>
+        <p>A large fair is held on Maghi in Muktsar commemorating the battle site[cite: 11].</p>
+      </section>
+
+      <section>
+        <h2>Parkash Utsav Sri Guru Gobind Singh Ji</h2>
+        <p>Celebrates the birth of the tenth Sikh Guru[cite: 11].</p>
+      </section>
+
+      <section>
+        <h2>Holla Mohalla</h2>
+        <p>Started by Guru Gobind Singh Ji at Anandpur Sahib[cite: 11].</p>
+      </section>
+
+      <section>
+        <h2>Bandi Chhor Divas</h2>
+        <p>Celebrates the release of Guru Hargobind Ji and 52 kings[cite: 11].</p>
+      </section>
+
+      <!-- ── FOOTER ── -->
+      <div class="footer">
+        <div class="footer-content">
+          <a href="../../02-02-discover-culture/02-02-discover-culture.html" class="btn-back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+            </svg>
+            Back to Sikh Culture
+          </a>
+          <div class="footer-left">© 2025 Sikhs in India</div>
+          <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+        </div>
+      </div>
+
+    </div>
   </div>
-      <div class="btn-row">
-    <a href="./02-02-02-04-Baisakhi-E2.html" class="custom-link" aria-label="Lohri Festival Details">
-      Baisakhi - The Maisfestation of Khalsa (English-2)
-    </a>
-  </div>
-      <div class="btn-row">
-    <a href="./02-02-02-05-Baisakhi-E3.html" class="custom-link" aria-label="Lohri Festival Details">
-      Baisakhi - The Maisfestation of Khalsa (English-3)
-    </a>
-  </div>
-      <div class="btn-row">
-    <a href="./02-02-02-06-Baisakhi-P1.html" class="custom-link" aria-label="Lohri Festival Details">
-      Baisakhi - The Maisfestation of Khalsa (Punjabi)
-    </a>
-  </div>
-  <h2>Maghi</h2>
-  <p>Maghi is one of the three festivals chosen by Guru Amar Das Ji to be celebrated by Sikhs (the others being Vaisakhi and Diwali).</p>
-
-  <h2>Maghi and the 40 Mukte</h2>
-  <p>Sikhs observe Maghi to honour the heroic fight of the Chali Mukte (Forty Liberated Ones).</p>
-
-  <h2>Muktsar Mela</h2>
-  <p>A large fair is held on Maghi in Muktsar commemorating the battle site.</p>
-
-  <h2>Parkash Utsav Sri Guru Gobind Singh Ji</h2>
-  <p>Celebrates the birth of the tenth Sikh Guru.</p>
-
-  <h2>Holla Mohalla</h2>
-  <p>Started by Guru Gobind Singh Ji at Anandpur Sahib.</p>
-
-
-
-  <h2>Bandi Chhor Divas</h2>
-  <p>Celebrates the release of Guru Hargobind Ji and 52 kings.</p>
-
-</section>
-
-<a href="../../02-02-discover-culture/02-02-discover-culture.html" class="back-button" aria-label="Go Back to Sikh Heritage">Back</a>
 
 </body>
+
 </html>

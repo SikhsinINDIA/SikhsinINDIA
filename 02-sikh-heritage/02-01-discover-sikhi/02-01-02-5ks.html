@@ -1,309 +1,538 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <!-- Google tag (gtag.js) -->
+
+  <!-- Google tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-LHNTFNW14H');
   </script>
 
-      <!-- Meta description -->
-  <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
-  <link rel="canonical" href="https://sikhsinindia.com/02-sikh-heritage/02-01-5ks.html">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Sikhs in India | Panj Kakaar</title>
+
+  <meta name="description"
+    content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
   <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
   <meta name="author" content="Sikhs in India">
   <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://sikhsinindia.com/02-sikh-heritage/02-01-5ks.html">
+
   <meta property="og:title" content="Sikh Heritage & Traditions | Gurudwaras, Guru Nanak & Sikh Scriptures">
   <meta property="og:description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
   <meta property="og:url" content="https://sikhsinindia.com/02-sikh-heritage/02-01-5ks.html">
   <meta property="og:type" content="website">
 
-  
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sikhs in India: History, Culture & Present | SikhsInIndia.com </title>
-<style>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+    }
+
+    /* PAGE */
     body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background-color: black;
-        color: #FF9933;
-        line-height: 1.6;
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
     }
 
-    header {
-        background-color: #FF9933;
-        color: black;
-        text-align: center;
-        padding: 0.1px;
+    /* MAIN CONTAINER */
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
     }
 
-    /* Intro section */
-    .container {
-        display: flex;
-        max-width: 1200px;
-        margin: auto;
-        padding: 8px;
-        gap: 12px;
-        align-items: flex-start;
-        flex-wrap: wrap;
+    /* HEADER */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
     }
 
-    .intro-image {
-        flex: 1 1 300px;
-        display: flex;
-        justify-content: center;
-        background-color: black;
+    .logo-wrap {
+      padding: 16px 20px;
     }
 
-    .intro-image img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        border: none;
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
     }
 
-    .content {
-        flex: 2 1 500px;
-        font-size: 20px;
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 6vw, 54px);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* GOLD INTRO BAR */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* CONTENT AREA */
+    .wrapper {
+      padding: 28px 36px;
+    }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 26px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }
+
+    .intro-section {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: 26px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }
+
+    .intro-img-wrap {
+      flex: 0 0 220px;
+    }
+
+    .intro-text-wrap {
+      flex: 1;
+    }
+
+    .intro-main-image {
+      width: 100%;
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1,
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 24px;
     }
 
     h2 {
-        border-bottom: 2px solid #FF9933;
-        padding-bottom: 4px;
-        margin-top: 0;
+      font-size: 22px;
     }
 
-    /* Five K items */
+    p,
+    .k-description {
+      font-size: 14px;
+      line-height: 1.75;
+      color: #333;
+      text-align: justify;
+    }
+
+    p {
+      margin-bottom: 12px;
+    }
+
+    /* Five K Items Custom Grid/Flex Layout */
     .k-item {
-    margin: 0 auto 20px auto;
-    border: 2px solid #FF9933;
-    padding: 8px;
-    font-size: 15px;
-    background-color: black;
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    max-width: 1200px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: #fff;
+      padding: 16px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-left: 5px solid var(--gold);
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
     }
 
-    .k-item > div:last-child {
-    /* Allow text to shrink and avoid forcing wrap */
-    min-width: 0;
-    flex-shrink: 1;
-}
     .k-image {
-        flex: 0 0 100px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      flex: 0 0 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .k-image img {
-        max-width: 100%;
-        height: auto;
-        border: none;
+      max-width: 100%;
+      height: auto;
     }
 
-    /* IMAGE STYLE (upgraded like Guru cards) */
+    .k-text {
+      flex: 1;
+    }
+
+    .k-text h2 {
+      font-size: 18px;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    /* BOTTOM IMAGE STYLE */
     .header-image {
       display: block;
-      margin: 18px auto;
+      margin: 24px auto;
       max-width: 650px;
       width: 100%;
       border: 3px solid var(--gold);
       border-radius: 10px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
     }
-    /* button {
-        background-color: #FF9933;
-        color: black;
-        border: none;
-        padding: 5px 10px;
-        cursor: pointer;
-        font-weight: bold;
-        margin-top: 10px;
-    } */
 
-    button:hover {
-        background-color: black;
-        color: #FF9933;
-        border: 2px solid #FF9933;
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: 30px;
     }
 
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-        .container {
-            flex-direction: column;
-        }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
-        .intro-image, .content {
-            width: 100%;
-        }
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
 
-        .k-item {
-            flex-direction: row;
-            width: 100%;
-        }
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
 
-        .k-image {
-            flex: 0 0 80px;
-        }
-              .header-image {
+    /* Back button — 3D gold */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+      filter: brightness(0.93);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* MOBILE responsive adjustments */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .intro-section {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .intro-img-wrap {
+        flex: 0 0 auto;
+        width: 60%;
+        margin-bottom: 12px;
+      }
+
+      .wrapper {
+        padding: 18px 14px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      .k-item {
+        flex-direction: row;
+        gap: 14px;
+        padding: 12px;
+      }
+
+      .k-image {
+        flex: 0 0 70px;
+      }
+
+      p,
+      .k-description {
+        font-size: 13px;
+      }
+
+      .header-image {
         max-width: 100%;
+      }
+
+      .footer {
+        padding: 14px 12px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+
+      .btn-back {
+        font-size: 9px;
+        padding: 8px 14px;
+      }
+
+      .footer-left,
+      .footer-right {
+        font-size: 9px;
+        letter-spacing: 1px;
       }
     }
 
-    @media (max-width: 480px) {
-        .content {
-            font-size: 18px;
-        }
- .k-item {
-    display: flex;
-    align-items: center; /* aligns vertically */
-    gap: 10px; /* space between image and text */
-}
-
-.k-image img {
-    height: auto;
-}
-
-.k-text {
-    max-width: 600px; /* optional to control text width */
-}
+    @media(max-width: 480px) {
+      .k-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      .k-image {
+        flex: 0 0 auto;
+        margin-bottom: 6px;
+      }
     }
-
-     /* Back button styling */
-        .back-button {
-            width: 150px;
-            height: 40px;
-            font-size: 24px;
-            background-color: #FFA500;
-            color: black;
-            margin: 40px auto 0 auto;
-            display: block;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .back-button:hover {
-            background-color: #FF8C00;
-        }
-</style>
+  </style>
 </head>
+
 <body>
 
-<header>
-    <h1>Panj Kakaar</h1>
-        <h2>The Five K's</h2>
-</header>
+  <div class="poster">
 
-<!-- Intro Section -->
-<div class="container">
-    <div class="intro-image">
-        <img src="../../pictures/02-sikh-heritage/02-01-5ks/5ks.jpg" alt="Panj Kakaar" width= "300" height= "auto">
+    <!-- HEADER -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Panj <span>Kakaar</span></div>
+        <div class="hero-sub">The Five K's of the Khalsa Identity</div>
+      </div>
     </div>
-    <div class="content">
-        <p>
+
+    <!-- INTRO BAR -->
+    <div class="intro">
+      The Sacred Commandment of Guru Gobind Singh Ji
+    </div>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="wrapper">
+
+      <h1>The Five K's – Identity and Conduct</h1>
+
+      <!-- INTRO SECTION WITH IMAGE -->
+      <div class="intro-section">
+        <div class="intro-img-wrap">
+          <img src="../../pictures/02-sikh-heritage/02-01-5ks/5ks.jpg" alt="Panj Kakaar" class="intro-main-image">
+        </div>
+        <div class="intro-text-wrap">
+          <p>
             In bestowing a distinct character and identity Guru Gobind Singh Ji let it be known 
             that the artefacts that he was offering the Khalsa were not mere whims of fashion 
-            but were integral to the Khalsa Rehat and Life. His command to the Khalsa was, 
-            "Rehat pyari mujh ko, Sikh pyaraae nahin". It was the Sikh's life and conduct that 
-            were important; calling oneself Sikh is not enough to become a Sikh!
-        </p>
-        <p>
+            but were integral to the Khalsa Rehat and Life[cite: 3]. His command to the Khalsa was, 
+            "Rehat pyari mujh ko, Sikh pyaraae nahin"[cite: 3]. It was the Sikh's life and conduct that 
+            were important; calling oneself Sikh is not enough to become a Sikh![cite: 3]
+          </p>
+          <p>
             Guru Ji commanded that the Khalsa will be known for they will bear the stamp of the 
-            Guru by wearing on their person the Five Kakaar: Kesh, Kanga, Kirpan, Kachera, Kara.
-        </p>
-    </div>
-</div>
+            Guru by wearing on their person the Five Kakaar: Kesh, Kanga, Kirpan, Kachera, Kara[cite: 3].
+          </p>
+        </div>
+      </div>
 
-<!-- Five K Items -->
-<div class="k-item">
-    <div class="k-image">
-        <img src="../../pictures/02-sikh-heritage/02-01-5ks/01-kesh.png" alt="Kesh" width="100">
-    </div>
-    <div class="k-text">
-        <h2>Kesh</h2>
-        All who wish to be known as the Khalsa will not allow the scissors or the knife 
-        to touch their hair. The hair will be worn unshorn and tied in a knot to keep them 
-        manageable.
-    </div>
-</div>
+      <!-- FIVE K ITEMS -->
+      <div class="k-item">
+        <div class="k-image">
+          <img src="../../pictures/02-sikh-heritage/02-01-5ks/01-kesh.png" alt="Kesh">
+        </div>
+        <div class="k-text">
+          <h2>Kesh</h2>
+          <div class="k-description">
+            All who wish to be known as the Khalsa will not allow the scissors or the knife 
+            to touch their hair[cite: 3]. The hair will be worn unshorn and tied in a knot to keep them 
+            manageable[cite: 3].
+          </div>
+        </div>
+      </div>
 
-<div class="k-item">
-    <div class="k-image">
-        <img src="../../pictures/02-sikh-heritage/02-01-5ks/02-kangha.png" alt="Kanga" width= "100" height= "auto">
-    </div>
-    <div>
-        <h2>Kanga</h2>
-        Kanga was to be the instrument of cleansing. A Sikh should wear the Kanga in his/her 
-        hair and regularly comb his/her hair to keep them clean and tidy.
-    </div>
-</div>
+      <div class="k-item">
+        <div class="k-image">
+          <img src="../../pictures/02-sikh-heritage/02-01-5ks/02-kangha.png" alt="Kanga">
+        </div>
+        <div class="k-text">
+          <h2>Kanga</h2>
+          <div class="k-description">
+            Kanga was to be the instrument of cleansing[cite: 3]. A Sikh should wear the Kanga in his/her 
+            hair and regularly comb his/her hair to keep them clean and tidy[cite: 3].
+          </div>
+        </div>
+      </div>
 
-<div class="k-item">
-    <div class="k-image">
-        <img src="../../pictures/02-sikh-heritage/02-01-5ks/03-kirpan.png" alt="Kirpan" width= "100" height= "auto">
-    </div>
-    <div>
-        <h2>Kirpan</h2>
-        The Kirpan is a small sword that the Khalsa wears diagonally on his torso. It reminds 
-        the Khalsa of their responsibilities and ability to defend themselves and others.
-    </div>
-</div>
+      <div class="k-item">
+        <div class="k-image">
+          <img src="../../pictures/02-sikh-heritage/02-01-5ks/03-kirpan.png" alt="Kirpan">
+        </div>
+        <div class="k-text">
+          <h2>Kirpan</h2>
+          <div class="k-description">
+            The Kirpan is a small sword that the Khalsa wears diagonally on his torso[cite: 3]. It reminds 
+            the Khalsa of their responsibilities and ability to defend themselves and others[cite: 3].
+          </div>
+        </div>
+      </div>
 
-<div class="k-item">
-    <div class="k-image">
-        <img src="../../pictures/02-sikh-heritage/02-01-5ks/04-kachera.png" alt="Kachera" width= "100" height= "auto">
+      <div class="k-item">
+        <div class="k-image">
+          <img src="../../pictures/02-sikh-heritage/02-01-5ks/04-kachera.png" alt="Kachera">
+        </div>
+        <div class="k-text">
+          <h2>Kachera</h2>
+          <div class="k-description">
+            The garment of modesty, ensuring dignity and readiness for battle[cite: 3]. Designed with a 
+            drawstring to stay secure[cite: 3].
+          </div>
+        </div>
+      </div>
+
+      <div class="k-item">
+        <div class="k-image">
+          <img src="../../pictures/02-sikh-heritage/02-01-5ks/05-kara.png" alt="Kara">
+        </div>
+        <div class="k-text">
+          <h2>Kara</h2>
+          <div class="k-description">
+            The Kara is a constant reminder of Waheguru's presence, worn on the most active hand 
+            to encourage mindfulness and righteous action[cite: 3].
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM ARTWORK IMAGE -->
+      <img src="https://drive.google.com/thumbnail?id=1_kJ_0W8Wa-dfU6VaqS4CeaaJXsjyV9cy&sz=w1200"
+           alt="Panj Pyaras"
+           class="header-image">
+
+      <!-- ── FOOTER ── -->
+      <div class="footer">
+        <div class="footer-content">
+          <a href="../02-01-discover-sikhi/02-01-discover-sikhi.html" class="btn-back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+            </svg>
+            Back to Discover Sikhi
+          </a>
+          <div class="footer-left">© 2025 Sikhs in India</div>
+          <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+        </div>
+      </div>
+
     </div>
-    <div>
-        <h2>Kachera</h2>
-        The garment of modesty, ensuring dignity and readiness for battle. Designed with a 
-        drawstring to stay secure.
-    </div>
-</div>
+  </div>
 
-<div class="k-item">
-    <div class="k-image">
-        <img src="../../pictures/02-sikh-heritage/02-01-5ks/05-kara.png" alt="Kara" width= "100" height= "auto">
-    </div>
-    <div>
-        <h2>Kara</h2>
-        The Kara is a constant reminder of Waheguru's presence, worn on the most active hand 
-        to encourage mindfulness and righteous action.
-    </div>
-</div>
-<img src="https://drive.google.com/thumbnail?id=1_kJ_0W8Wa-dfU6VaqS4CeaaJXsjyV9cy&sz=w1200"
-     alt="Panj Pyaras"
-     class="header-image">
-
-<a href="../02-01-discover-sikhi/02-01-discover-sikhi.html" class="back-button" 
-   style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
-          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
-          line-height: 35px; border-radius: 8px; text-decoration: none; 
-          border: 2px solid black;">
-    <b>Back</b>
-  </a>
-
-
-    <!-- Back Button -->
-    <!-- <button type="button" onclick="goBack()" class="back-button">
-        <b>Back</b>
-    </button>
-    <br>
-
-    <script>
-        function goBack() 
-        {
-            window.location.href = "./02-sikh-heritage.html";
-        }
-    </script> -->
 </body>
-</html>
 
+</html>
