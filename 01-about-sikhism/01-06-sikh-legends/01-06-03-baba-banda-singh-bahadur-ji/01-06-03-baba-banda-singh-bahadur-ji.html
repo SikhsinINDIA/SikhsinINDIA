@@ -152,6 +152,37 @@
       .footer-left  { font-size: 9px; }
       .footer-right { font-size: 9px; letter-spacing: 1px; }
     }
+    .btn-back1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--navy);
+    background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+    border: none;
+    border-radius: 5px;
+    padding: 9px 18px;
+    cursor: pointer;
+    box-shadow:
+        inset 0 1px 0 rgba(255,220,120,0.5),
+        inset 0 -2px 0 rgba(0,0,0,0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+    transition: filter 0.15s, transform 0.1s;
+    flex-shrink: 0;
+
+    /* Center horizontally */
+    margin: 0 auto;
+    width: fit-content;
+}
+    .btn-back1:active { transform: scale(0.97); filter: brightness(0.93); }
+    .btn-back1 svg { width: 12px; height: 12px; }
   </style>
 </head>
 <body>
@@ -161,7 +192,7 @@
     <!-- HEADER -->
     <header class="header" role="banner">
       <div class="logo-wrap" aria-label="Site logo">
-        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+        <img class="logo-img" src="../../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
       </div>
 
       <div class="hero" aria-label="Hero section">
@@ -182,7 +213,7 @@
         <h2>Who Was Baba Banda Singh Bahadur?</h2>
         <p>Baba Banda Singh Bahadur (1670–1716) was a fearless Sikh general and the first leader to establish Sikh rule in Punjab by defeating the Mughal Empire. He remains one of the most iconic warriors and martyrs in Sikh history.</p>
         <div class="image-container">
-          <img src="../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-01.jpg" alt="Baba Banda Singh Bahadur Portrait" class="header-image" loading="lazy">
+          <img src="../../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-01.jpg" alt="Baba Banda Singh Bahadur Portrait" class="header-image" loading="lazy">
         </div>
       </section>
 
@@ -204,7 +235,7 @@
         <p>In 1709, Banda Singh led a campaign of justice. The Khalsa army marched through Samana, Shahabad, and eventually Sirhind, defeating Wazir Khan in the Battle of Chappar Chiri in 1710. This was a turning point in Sikh history.</p>
         <p>He established Khalsa Raj by abolishing Zamindari system and distributing land to farmers. He introduced the first Sikh administrative system and minted coins in the name of Guru Nanak and Guru Gobind Singh Ji.</p>
         <div class="image-container">
-          <img src="../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-02.jpg" alt="Banda Singh Bahadur in Battle" class="header-image" loading="lazy">
+          <img src="../../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-02.jpg" alt="Banda Singh Bahadur in Battle" class="header-image" loading="lazy">
         </div>
       </section>
 
@@ -219,7 +250,7 @@
         <h2>Martyrdom - Baba Banda Singh Ji</h2>
         <p>In June 1716, Banda Singh Bahadur, along with over 700 Sikhs, was martyred in Delhi. He endured horrific torture but never gave up his faith or begged for mercy. His martyrdom inspired future generations of Sikhs to resist tyranny with courage.</p>
         <div class="image-container">
-          <img src="../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-03.jpeg" alt="Baba Banda Singh Bahadur Martyrdom" class="header-image" loading="lazy">
+          <img src="../../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-03.jpeg" alt="Baba Banda Singh Bahadur Martyrdom" class="header-image" loading="lazy">
         </div>
       </section>
 
@@ -288,31 +319,40 @@
         </ul>
 
         <div class="image-container">
-          <img src="../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-04.jpg" alt="Baba Banda Singh Bahadur Ji Art 1" class="header-image" loading="lazy">
+          <img src="../../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-04.jpg" alt="Baba Banda Singh Bahadur Ji Art 1" class="header-image" loading="lazy">
         </div>
         <div class="image-container">
-          <img src="../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-05.jpg" alt="Baba Banda Singh Bahadur Ji Art 2" class="header-image" loading="lazy">
+          <img src="../../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-05.jpg" alt="Baba Banda Singh Bahadur Ji Art 2" class="header-image" loading="lazy">
         </div>
         <div class="image-container">
-          <img src="../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-06.jpg" alt="Baba Banda Singh Bahadur Ji Art 3" class="header-image" loading="lazy">
+          <img src="../../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-06.jpg" alt="Baba Banda Singh Bahadur Ji Art 3" class="header-image" loading="lazy">
         </div>
         <div class="image-container">
-          <img src="../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-07.jpg" alt="Baba Banda Singh Bahadur Ji Art 4" class="header-image" loading="lazy">
+          <img src="../../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-07.jpg" alt="Baba Banda Singh Bahadur Ji Art 4" class="header-image" loading="lazy">
         </div>
         <div class="image-container">
-          <img src="../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-08.jpg" alt="Baba Banda Singh Bahadur Ji Art 5" class="header-image" loading="lazy">
+          <img src="../../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-08.jpg" alt="Baba Banda Singh Bahadur Ji Art 5" class="header-image" loading="lazy">
         </div>
         <div class="image-container">
-          <img src="../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-09.jpg" alt="Baba Banda Singh Bahadur Ji Art 6" class="header-image" loading="lazy">
+          <img src="../../../pictures/01-about-sikhism/01-06-sikh-legends/01-06-03-banda-singh-bahadur-ji-09.jpg" alt="Baba Banda Singh Bahadur Ji Art 6" class="header-image" loading="lazy">
         </div>
       </section>
 
     </main>
-
+  </script>
+       <div class="footer-content1">
+        <a href="./01-06-03-01-baba-banda-singh-bahadur-ji-shaheedi-diwas.html" class="btn-back1">
+          Baba Banda Singh Bahadur Ji - Shaheedi Diwas
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12H19M19 12l-7-7M19 12l-7 7"/>
+          </svg>
+        </a>
+      </div>
+<br>
     <!-- ── FOOTER ── -->
     <footer class="footer" role="contentinfo">
       <div class="footer-content">
-        <a href="../01-06-sikh-legends/01-06-sikh-legends.html" class="btn-back">
+        <a href="../../01-06-sikh-legends/01-06-sikh-legends.html" class="btn-back">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
                stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
