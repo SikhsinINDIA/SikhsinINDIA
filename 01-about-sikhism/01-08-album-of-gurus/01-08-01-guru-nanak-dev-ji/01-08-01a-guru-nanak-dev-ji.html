@@ -129,7 +129,37 @@
         .back-button:hover {
             background-color: #FF8C00;
         }
+.btn-back1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--navy);
+    background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+    border: none;
+    border-radius: 5px;
+    padding: 9px 18px;
+    cursor: pointer;
+    box-shadow:
+        inset 0 1px 0 rgba(255,220,120,0.5),
+        inset 0 -2px 0 rgba(0,0,0,0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+    transition: filter 0.15s, transform 0.1s;
+    flex-shrink: 0;
 
+    /* Center horizontally */
+    margin: 0 auto;
+    width: fit-content;
+}
+    .btn-back1:active { transform: scale(0.97); filter: brightness(0.93); }
+    .btn-back1 svg { width: 12px; height: 12px; }
   </style>
 </head>
 <body>
@@ -248,7 +278,15 @@
     });
   </script>
 
-
+       <div class="footer-content1">
+        <a href="01-06-01-05-baba-deep-singh-ji-life-story-3.html" class="btn-back1">
+          Baba Deep Singh Ji - Life Story-3
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12H19M19 12l-7-7M19 12l-7 7"/>
+          </svg>
+        </a>
+      </div>
+<br>
   <a href="./01-08-album-of-gurus.html" class="back-button" 
    style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
           color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
