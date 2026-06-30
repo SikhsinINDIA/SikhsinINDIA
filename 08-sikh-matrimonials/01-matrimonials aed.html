@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrimonials by SikhsinIndia.com</title>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+
+<style>
+body{margin:0;font-family:Arial;background:black;color:#FF9933;}
+header{background:#FF9933;color:black;text-align:center;padding:15px;font-size:22px;font-weight:bold;}
+.container{max-width:1600px;margin:auto;padding:15px;}
+h2{border-bottom:2px solid #FF9933;padding-bottom:5px;}
+input,textarea,select{width:100%;padding:10px;background:black;color:#FF9933;border:1px solid #FF9933;border-radius:6px;font-weight:bold;}
+button{background:#FF9933;color:black;padding:10px;border:none;border-radius:6px;font-weight:bold;cursor:pointer;margin:3px;}
+button:hover{background:black;color:#FF9933;border:1px solid #FF9933;}
+table{width:100%;border-collapse:collapse;margin-bottom:20px;}
+th,td{border:1px solid #FF9933;padding:6px;font-size:10px;vertical-align:top;white-space:nowrap;}
+th{background:#111;position:sticky;top:0;}
+#recordsWrap{overflow:auto;max-height:320px;border:1px solid #FF9933;margin-bottom:20px;}
+</style>
+</head>
+<body>
+
+<header>Matrimonials by SikhsinIndia.com</header>
+
+<div class="container">
+
+<h2>Existing Records</h2>
+<div id="recordsWrap">
+<table>
+<thead><tr id="theadRow"></tr></thead>
+<tbody id="records"></tbody>
+</table>
+</div>
+
+<h2 id="formTitle">Add / Edit Record</h2>
+
+<form id="form">
+<input type="hidden" id="editId">
+
+<h3>Details of Proposer</h3>
+
+<div class="grid-3">
+<input id="SNo" placeholder="SNo">
+<input id="Name" placeholder="Name">
+<select id="Gender"><option value="">Gender</option><option>Male</option><option>Female</option><option>Transgender</option></select>
+<select id="Height_Feet"><option value="">Feet</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select>
+<select id="Height_Inch"><option value="">Inch</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option></select>
+<input id="Age" type="number" placeholder="Age">
+<select id="Complexion"><option value="">Complexion</option><option>Very Fair</option><option>Fair</option><option>Wheatish</option><option>Dark</option></select>
+</div>
+
+<div class="grid-3">
+<input id="Education" placeholder="Education">
+<select id="Marital_Status"><option value="">Marital Status</option><option>Single</option><option>Separated</option></select>
+<select id="Religion"><option value="">Religion</option><option>Sikh</option><option>Hindu</option><option>Muslim</option><option>Christian</option></select>
+<input id="Religion_Details" placeholder="Religion Details">
+</div>
+
+<div class="grid-3">
+<input id="City" placeholder="City">
+<input id="Country" placeholder="Country">
+<select id="Occupation"><option value="">Occupation</option><option>Service</option><option>Business</option><option>Student</option></select>
+<input id="Occupation_Details" placeholder="Occupation Details">
+<input id="Income_Annum" placeholder="Income Per Annum">
+<input id="Number_Experience" placeholder="Experience">
+</div>
+
+<div class="grid-3">
+<select id="Family_Type"><option value="">Family Type</option><option>Nuclear</option><option>Joint</option><option>Other</option></select>
+<select id="Diet"><option value="">Diet</option><option>Vegetarian</option><option>Eggitarian</option><option>Non-Vegetarian</option></select>
+</div>
+
+<h3>Family Details</h3>
+<div class="grid-3">
+<input id="Father_Name" placeholder="Father Name">
+<select id="Father_Profession"><option value="">Father Profession</option><option>Service</option><option>Business</option><option>Retired</option></select>
+<input id="Father_Profession_Details" placeholder="Father Details">
+<input id="Father_Mobile" placeholder="Father Mobile">
+</div>
+
+<div class="grid-3">
+<input id="Mother_Name" placeholder="Mother Name">
+<select id="Mother_Profession"><option value="">Mother Profession</option><option>Home Maker</option><option>Service</option><option>Business</option></select>
+<input id="Mother_Profession_Details" placeholder="Mother Details">
+<input id="Mother_Mobile" placeholder="Mother Mobile">
+</div>
+
+<div class="grid-3">
+<input id="Number_Brother" placeholder="Number of Brothers">
+<input id="Brother_Details" placeholder="Brother Details">
+<input id="Number_Sister" placeholder="Number of Sisters">
+<input id="Sister_Details" placeholder="Sister Details">
+</div>
+
+<h3>Match Preferences</h3>
+<div class="grid-3">
+<input id="Match_Religion" placeholder="Match Religion">
+<input id="Match_Profession" placeholder="Match Profession">
+<input id="Match_Country" placeholder="Match Country">
+<textarea id="Match_Other" placeholder="Other Preferences"></textarea>
+</div>
+
+<h3>Resume</h3>
+
+<input type="file" id="resume">
+
+<iframe id="pdfPreview"
+style="width:100%;height:300px;display:none;border:1px solid #FF9933">
+</iframe>
+
+<input id="Photo1" placeholder="Photo 1 URL">
+
+<input id="Photo2" placeholder="Photo 2 URL">
+
+
+
+<input id="resumeURL" placeholder="Resume URL">
+
+<input id="Combined_PDF" placeholder="Combined PDF URL">
+
+<button type="submit">Save</button>
+<button type="button" onclick="resetForm()">Clear</button>
+</form>
+
+</div>
+
+<script>
+const firebaseConfig={
+apiKey:"AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+authDomain:"sikhsinindia-67a6b.firebaseapp.com",
+projectId:"sikhsinindia-67a6b",
+storageBucket:"sikhsinindia-67a6b.appspot.com"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db=firebase.firestore();
+const storage=firebase.storage();
+
+let editId=null;
+
+const fields=[
+"SNo","Name","Gender","Height_Feet","Height_Inch","Height_cm","Age","Complexion","Education","Marital_Status","Religion","Religion_Details","City","Country","Occupation","Occupation_Details","Income_Annum","Number_Experience","Family_Type","Diet","Father_Name","Father_Profession","Father_Profession_Details","Father_Mobile","Mother_Name","Mother_Profession","Mother_Profession_Details","Mother_Mobile","Number_Brother","Brother_Details","Number_Sister","Sister_Details","Match_Religion","Match_Profession","Match_Country","Match_Other","Resume", "Photo1","Photo2","Combined_PDF","Date"
+]
+function buildHeader(){
+let h="";
+fields.forEach(f=>h+=`<th>${f}</th>`);
+h+="<th>Actions</th>";
+document.getElementById("theadRow").innerHTML=h;
+}
+
+async function uploadResume(file){
+const ref=storage.ref('resumes/'+Date.now()+'_'+file.name);
+const snap=await ref.put(file);
+return await snap.ref.getDownloadURL();
+}
+
+function resetForm(){
+editId=null;
+document.getElementById('form').reset();
+document.getElementById('formTitle').innerText="Add / Edit Record";
+}
+
+async function loadRecords(){
+  const snap = await db.collection('Matrimonials')
+    .orderBy('SNo', 'asc')
+    .get();
+
+  let html = "";
+
+  snap.forEach(doc => {
+    const d = doc.data();
+    html += "<tr>";
+
+fields.forEach(f => {
+
+  const value = d[f] || "";
+
+  if (
+    ["Resume", "Photo1", "Photo2", "Combined_PDF"]
+    .includes(f)
+  ) {
+
+    if (value) {
+
+      html += `
+        <td>
+          <a href="${value}" target="_blank">
+            View
+          </a>
+        </td>
+      `;
+
+    } else {
+
+      html += `<td></td>`;
+    }
+
+  } else {
+
+    html += `<td>${value}</td>`;
+  }
+
+});
+
+    html += `<td>
+      <button onclick="editRecord('${doc.id}')">Edit</button>
+      <button onclick="deleteRecord('${doc.id}')">Delete</button>
+    </td>`;
+
+    html += "</tr>";
+  });
+
+  document.getElementById('records').innerHTML = html;
+}
+
+async function deleteRecord(id){
+if(!confirm('Delete?'))return;
+await db.collection('Matrimonials').doc(id).delete();
+loadRecords();
+}
+
+async function editRecord(id){
+     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+const doc=await db.collection('Matrimonials').doc(id).get();
+const d=doc.data();
+editId=id;
+document.getElementById('formTitle').innerText="Edit Record";
+fields.forEach(f=>{
+if(document.getElementById(f)) document.getElementById(f).value=d[f]||'';
+});
+}
+
+async function getNextSNo(){
+  const snap = await db.collection('Matrimonials')
+    .orderBy('SNo', 'desc')
+    .limit(1)
+    .get();
+
+  if (snap.empty) return 1;
+
+  return (snap.docs[0].data().SNo || 0) + 1;
+}
+
+window.onload=()=>{
+buildHeader();
+loadRecords();
+};
+
+document.getElementById('resume').addEventListener('change',e=>{
+const file=e.target.files[0];
+if(!file)return;
+if(file.type!=="application/pdf"){alert('PDF only');return;}
+document.getElementById('pdfPreview').src=URL.createObjectURL(file);
+document.getElementById('pdfPreview').style.display='block';
+});
+
+document.getElementById('form').addEventListener('submit', async e => {
+
+  e.preventDefault();
+
+  const file = document.getElementById('resume').files[0];
+
+  let uploadedResumeURL = "";
+
+  // Upload resume PDF
+  if (file) {
+
+    uploadedResumeURL = await uploadResume(file);
+
+    // Auto-fill textbox
+    document.getElementById('resumeURL').value = uploadedResumeURL;
+  }
+
+  const data = {};
+
+  // Save normal fields
+  fields.forEach(f => {
+
+    const el = document.getElementById(f);
+
+    if (el) {
+      data[f] = el.value || '';
+    }
+
+  });
+
+  // Explicitly save URL fields
+data.Photo1 =
+document.getElementById('Photo1').value || '';
+
+data.Photo2 =
+document.getElementById('Photo2').value || '';
+
+
+  data.resumeURL =
+    document.getElementById('resumeURL').value || '';
+
+
+data.Combined_PDF =
+document.getElementById('Combined_PDF').value || '';
+
+  // Resume upload URL
+  if (uploadedResumeURL) {
+
+    data.Resume = uploadedResumeURL;
+
+    data.resumeURL = uploadedResumeURL;
+  }
+
+  // Save date
+  data.Date = new Date().toLocaleString();
+
+  if (editId) {
+
+    const oldDoc = await db.collection('Matrimonials')
+      .doc(editId)
+      .get();
+
+    if (!data.Resume) {
+      data.Resume = oldDoc.data().Resume || "";
+    }
+
+    await db.collection('Matrimonials')
+      .doc(editId)
+      .update(data);
+
+  } else {
+
+    data.SNo = await getNextSNo();
+
+    await db.collection('Matrimonials')
+      .add(data);
+  }
+
+  resetForm();
+
+  loadRecords();
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sikh Quiz</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #000;
+  margin: 0;
+  -webkit-text-size-adjust: 100%;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+h2 { text-align: center; }
+
+.question {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px 0;
+  line-height: 1.4;
+}
+
+.options {
+  display: grid;
+  gap: 10px;
+}
+
+.option {
+  padding: 14px;
+  border: 2px solid #FF9933;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #fff5eb;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.3;
+  transition: 0.2s;
+}
+
+.option:active {
+  transform: scale(0.98);
+}
+
+.option:hover {
+  background: #FF9933;
+  color: #000;
+}
+
+.correct {
+  background: #c8f7c5 !important;
+  border-color: green;
+}
+
+.wrong {
+  background: #fde2e2 !important;
+  border-color: red;
+}
+
+.message {
+  margin-top: 15px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+  min-height: 20px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.footer-btn {
+  display: block;
+  width: 100%;
+  margin: 20px auto;
+  padding: 12px;
+  background: #FF9933;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.footer-btn:active {
+  transform: scale(0.98);
+}
+
+/* RESULT CARD */
+.result-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.result-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 14px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.result-card h3 {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.result-card p {
+  font-size: 18px;
+}
+
+.result-card button {
+  margin-top: 15px;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  background: #FF9933;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* 📱 MOBILE RESPONSIVE */
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+  }
+
+  .question {
+    font-size: 18px;
+  }
+
+  .option {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .result-card {
+    padding: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Sikh Quiz</h2>
+
+  <div class="topbar">
+    <div>Score: <span id="score">0</span></div>
+    <div>Question: <span id="qNo">1</span></div>
+  </div>
+
+  <div id="question" class="question">Loading...</div>
+  <div id="options" class="options"></div>
+  <div id="message" class="message"></div>
+
+  <button class="footer-btn" onclick="nextQuestion()">Next</button>
+</div>
+
+<!-- RESULT CARD -->
+<div class="result-overlay" id="resultBox">
+  <div class="result-card">
+    <h3>🎉 Quiz Completed!</h3>
+    <p id="finalScore"></p>
+    <button onclick="restartQuiz()">Restart Quiz</button>
+  </div>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+  authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+  projectId: "sikhsinindia-67a6b",
+  storageBucket: "sikhsinindia-67a6b.appspot.com",
+  messagingSenderId: "622603668882",
+  appId: "1:622603668882:web:953c6a07864b235fdd054b"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+let quizData = [];
+let currentIndex = 0;
+let score = 0;
+let answered = false;
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+async function loadQuiz() {
+  const snapshot = await db.collection("Quiz").get();
+
+  let allQuestions = snapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }));
+
+  // Remove duplicates
+  const uniqueQuestionsMap = new Map();
+  allQuestions.forEach(q => {
+    if (!uniqueQuestionsMap.has(q.Question)) {
+      uniqueQuestionsMap.set(q.Question, q);
+    }
+  });
+
+  allQuestions = Array.from(uniqueQuestionsMap.values());
+
+  // Shuffle
+  allQuestions = shuffleArray(allQuestions);
+
+  // Pick 10 unique questions
+  quizData = allQuestions.slice(0, 10);
+
+  showQuestion();
+}
+
+function showQuestion() {
+  answered = false;
+  document.getElementById("message").textContent = "";
+
+  const q = quizData[currentIndex];
+
+  document.getElementById("question").textContent = q["Question"];
+  document.getElementById("qNo").textContent = currentIndex + 1;
+
+  const optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
+
+  [1,2,3,4].forEach(i => {
+    const div = document.createElement("div");
+    div.className = "option";
+    div.textContent = q["Option-" + i];
+    div.onclick = () => selectAnswer(div, i, q["Correct_Option"]);
+    optionsDiv.appendChild(div);
+  });
+
+  // 👉 ADD THIS LINE HERE
+  document.querySelector(".footer-btn").disabled = true;
+}
+
+function selectAnswer(element, selectedIndex, correctIndex) {
+  if (answered) return;
+  answered = true;
+
+  const allOptions = document.querySelectorAll(".option");
+
+  allOptions.forEach((opt, index) => {
+    if (index + 1 === correctIndex) opt.classList.add("correct");
+  });
+
+  const correctText = quizData[currentIndex]["Option-" + correctIndex];
+
+  if (selectedIndex === correctIndex) {
+    element.classList.add("correct");
+    document.getElementById("message").textContent = "✅ Correct!";
+    score++;
+  } else {
+    element.classList.add("wrong");
+    document.getElementById("message").textContent = "❌ Correct Answer: " + correctText;
+  }
+
+  document.getElementById("score").textContent = score;
+
+  // 👉 ADD THIS LINE HERE
+  document.querySelector(".footer-btn").disabled = false;
+}
+
+function nextQuestion() {
+  if (!answered) {
+    alert("Please select an answer first!");
+    return;
+  }
+
+  currentIndex++;
+
+  if (currentIndex >= quizData.length) {
+    showResult();
+    return;
+  }
+
+  showQuestion();
+}
+
+function showResult() {
+  document.getElementById("finalScore").textContent =
+    `Your Score: ${score} / ${quizData.length}`;
+  document.getElementById("resultBox").style.display = "flex";
+}
+
+function restartQuiz() {
+  currentIndex = 0;
+  score = 0;
+  document.getElementById("resultBox").style.display = "none";
+  document.getElementById("score").textContent = 0;
+  loadQuiz();
+}
+
+loadQuiz();
+</script>
+  
+</body>
+<a href="../07-02-quiz-for-kids.html" class="back-button" 
+   style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
+          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
+          line-height: 30px; border-radius: 8px; text-decoration: none; 
+          border: 2px solid black;">
+    <b>Back</b>
+  </a>
+  <br>
+        <a href="07-02-07-02-quiz-password.html" class="back-button" 
+   style="width: 150px; height: 36px; font-size: 12px; background-color: black; 
+          color: white; display: block; margin: 20px auto 0 auto; text-align: center; 
+          line-height: 30px; border-radius: 8px; text-decoration: none; 
+          border: 2px solid black;">
+    <b>Admin</b>
+  </a>
+    <br>
+</html>

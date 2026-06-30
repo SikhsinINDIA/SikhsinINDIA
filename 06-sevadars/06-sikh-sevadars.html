@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+  <!-- Meta description -->
+  <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
+     <link rel="canonical" href="https://sikhsinindia.com/06-sevadars/06-sikh-sevadars.html">
+
+
+  <meta name="author" content="Sikhs in India">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Sikh Heritage & Traditions | Gurudwaras, Guru Nanak & Sikh Scriptures, Sikhs in India: History, Culture & Present | SikhsInIndia.com">
+  <meta property="og:description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+  <meta property="og:url" content="https://sikhsinindia.com/06-sevadars/06-sikh-sevadars.html">
+  <meta property="og:type" content="website">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sikhs Sevadars | SikhsInIndia.com </title>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      color: #FF9933;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background-color: #FF9933;
+      padding: 0.1rem;
+    }
+    header img {
+      height: 250px;
+      width: auto;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin: 1rem 0;
+      color: black;
+    }
+    .content {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      text-align: left;
+    }
+    .role-title {
+      color: #FF9933;
+      font-weight: bold;
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 600px) {
+      .sevadar-card {
+        flex-direction: column;
+        text-align: center;
+      }
+      .sevadar-card img {
+        margin-bottom: 10px;
+      }
+      .filters {
+        flex-direction: column;
+      }
+      .filters select, .filters button {
+        width: 100%;
+      }
+    }
+    .button-container {
+      margin-top: 2rem;
+    }
+    button {
+      background-color: #FF9933;
+      border: none;
+      margin: 0.5rem;
+      font-size: 2rem;
+      color: black;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: black;
+      color: #FF9933;
+      border: 2px solid #FF9933;
+    }
+    #records {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-top: 1px solid #FF9933;
+    }
+    .sevadar-card {
+      background-color: #111;
+      border: 1.5px solid #FF9933;
+      border-radius: 12px;
+      padding: 0.1rem;
+      margin-bottom: 0.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.1rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .sevadar-card img {
+      max-width: 200px;
+      height: auto;
+      border-radius: 5px;
+    }
+    .text-container {
+      line-height: 0.1;
+      margin: 0;
+      padding: 0;
+    }
+    .text-container p, .text-container span {
+      margin: 0;
+      padding: 0;
+      line-height: 0.1;
+    }
+    .sevadar-card video {
+      max-width: 250px;
+      margin-top: 0.1rem;
+    }
+    /* Filters section */
+    .filters {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .filters select {
+      padding: 3px;
+      font-size: 12px;
+      background-color: #111;
+      color: #FF9933;
+      border: 1px solid #FF9933;
+      border-radius: 4px;
+    }
+    .filters button {
+      padding: 3px 6px;
+      font-size: 12px;
+      background-color: #FF9933;
+      color: black;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .filters button:hover {
+      background-color: black;
+      color: #FF9933;
+      border: 1px solid #FF9933;
+    }
+      label {
+    display: block;
+    width: 300px; /* fixed width container */
+    text-align: right; /* align label text and input to right */
+    margin-bottom: 1rem;
+  }
+  /* Inputs aligned right inside label */
+  input[type="text"] {
+    display: inline-block;
+    text-align: right; /* right-align input text */
+    vertical-align: middle;
+    /* variable width for demonstration */
+  }
+  /* Set individual widths for inputs (variable widths) */
+  
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sikh Sevadars </h1>
+    <img src="../pictures/06-sevadars/sikh-sevadars.jpeg" alt="Sikh Sevadars" />
+  </header>
+
+  <div class="content">
+    <p>In Sikhism, <strong>"Bhaiji"</strong> and <strong>"Granthi"</strong> refer to respected individuals who serve vital religious and spiritual roles within the Gurdwara (Sikh place of worship) and the broader Sikh community.</p>
+    <p>A <strong>Granthi</strong> is a devout Sikh who is entrusted with the <em>seva</em> (service) of reading, maintaining, and explaining the Guru Granth Sahib Ji, the central scripture and eternal Guru of the Sikhs.</p>
+    <p><strong>Bhaiji</strong> literally means "Respected Brother". Used as a title of respect for Sikh men who serve in the Gurdwara or are known for their spiritual discipline and seva.</p>
+    <p><strong>• Granthi or Kirtani - </strong>singer of devotional hymns</p>
+    <p><strong>• Paathi - </strong>reader of Gurbani</p>
+    <p><strong>• Sevadar (volunteer) - </strong>involved in religious duties like langar, katha (sermons), or Akhand Path</p>
+  </div>
+
+  <div id="records">
+    <h2>Sikh Sevadars (In Alphabetic Order - By Name)</h2>
+    <div class="filters">
+      <select id="nameFilter"><option value="">Name</option></select>
+      <select id="cityFilter"><option value="">City</option></select>
+      <select id="stateFilter"><option value="">State</option></select>
+ </div>
+  <div>
+  <button type="button" onclick="clearFilters()" style="width: 100px; height: 40px; font-size: 24px; background-color: #FF9933; color: black;">
+    Clear
+  </button>
+    </div>
+    <div id="records-container"></div>
+  </div>
+
+
+
+  <script>
+
+      function clearFilters() {
+    document.getElementById('nameFilter').value = "";
+    document.getElementById('cityFilter').value = "";
+    document.getElementById('stateFilter').value = "";
+    applyFilters();
+  }
+
+  document.getElementById('nameFilter').addEventListener('change', applyFilters);
+  document.getElementById('cityFilter').addEventListener('change', applyFilters);
+  document.getElementById('stateFilter').addEventListener('change', applyFilters);
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b",
+      measurementId: "G-LHNTFNW14H"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    let sevadarsData = [];
+
+    async function loadSevadars() {
+      const container = document.getElementById('records-container');
+      container.innerHTML = '';
+      sevadarsData = [];
+
+      try {
+        const querySnapshot = await db.collection("Sikh_Sevadars").get();
+        const names = new Set(), cities = new Set(), states = new Set();
+
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          sevadarsData.push(data);
+         if (data.Name) names.add(data.Name);
+          if (data.City) cities.add(data.City);
+          if (data.State) states.add(data.State);
+        });
+
+        populateDropdown('nameFilter', names);
+        populateDropdown('cityFilter', cities);
+        populateDropdown('stateFilter', states);
+
+        displaySevadars(sevadarsData);
+      } catch (error) {
+        container.innerHTML = "<p>Error loading records. Check console for details.</p>";
+        console.error("Error fetching documents: ", error);
+      }
+    }
+
+    function populateDropdown(id, items) {
+      const select = document.getElementById(id);
+      items = Array.from(items).sort();
+      items.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item;
+        option.textContent = item;
+        select.appendChild(option);
+      });
+    }
+
+    function displaySevadars(data) {
+      const container = document.getElementById('records-container');
+      container.innerHTML = '';
+      data.sort((a, b) => a.Name.localeCompare(b.Name, 'en', { sensitivity: 'base' }));
+
+      data.forEach(sevadar => {
+        const card = document.createElement("div");
+        card.className = "sevadar-card";
+        card.innerHTML = `
+          <img src="${sevadar.Photo}" alt="Sikh Sevadar" style="width: 90px; height: 90px; object-fit: cover; border-radius: 8px;" />
+          <div style="line-height: 1.6; color: #FF9933; font-size: 1.1rem;">
+            <strong style="font-size: 1rem;">${sevadar.Name}</strong><br />
+            <span style="font-size: 0.8rem;"><strong>Mobile:</strong> ${sevadar.Mobile}</span><br />
+            <span style="font-size: 0.8rem;"><strong>Specializes:</strong> ${sevadar.Specializes}</span><br />
+            <span style="font-size: 0.7rem;">${sevadar.City}, ${sevadar.State}</span><br />
+            <a href="${sevadar.Video}" target="_blank">Watch Video</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+     function applyFilters() {
+      const nameFilter = document.getElementById('nameFilter').value.toLowerCase();
+      const cityFilter = document.getElementById('cityFilter').value.toLowerCase();
+      const stateFilter = document.getElementById('stateFilter').value.toLowerCase();
+
+      const filteredData = sevadarsData.filter(sevadar => {
+        return (nameFilter === "" || sevadar.Name.toLowerCase() === nameFilter)
+          && (cityFilter === "" || sevadar.City.toLowerCase() === cityFilter)
+          && (stateFilter === "" || sevadar.State.toLowerCase() === stateFilter);
+      });
+
+      displaySevadars(filteredData);
+    }
+
+    function clearFilters() {
+      document.getElementById('nameFilter').value = "";
+      document.getElementById('cityFilter').value = "";
+      document.getElementById('stateFilter').value = "";
+      applyFilters();
+    }
+
+    document.getElementById('nameFilter').addEventListener('change', applyFilters);
+    document.getElementById('cityFilter').addEventListener('change', applyFilters);
+    document.getElementById('stateFilter').addEventListener('change', applyFilters);
+
+    window.onload = loadSevadars;
+
+    window.onload = loadSevadars;
+  </script>
+
+  <!-- <marquee behavior="scroll" direction="left" scrollamount="8" loop="infinite" style="color: #fcbf1e; font-size: 2rem; margin-top: 1rem;">
+    <a href="04_Sikh_Sevadars_Self.html" style="color: #fcbf1e; text-decoration: none;" target="_blank">
+      <b>If you are Sikh Sevadar, please upload your details here and we will upload on the website. Thanks!</b>
+    </a>
+  </marquee> -->
+  
+<h2 style="color: #FF9933;">Sikh Sevadars - Self Upload Data</h2>
+<h2 style="color: #FF9933;">If you are Sikh Sevadar, please upload your details</h2>
+  </header>
+
+  <div id="form-container" style="text-align: left;">
+    <form id="sevadar-form">
+      <input type="hidden" id="docId" />
+      <br>
+      <label><b>Name: </b><input type="text" id="name" required></label><br> 
+      <label><b>Mobile: </b><input type="text" id="mobile" required></label><br> 
+      <label><b>Specializes In: </b><input type="text" id="specializes" required></label><br>
+      <label><b>City: </b><input type="text" id="city" required></label><br> 
+      <label><b>State: </b><input type="text" id="state" required></label><br> 
+      <label><b>Photo URL: </b><input type="text" id="photo"></label><br> 
+      <label><b>Video URL: </b><input type="text" id="video"></label><br> 
+     
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 20px;">
+  <!-- <button type="submit" style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black;">
+    Submit
+  </button> -->
+  <button type="button" onclick="clearForm()" style="width: 100px; height: 40px; font-size: 24px; background-color: #FF9933; color: black;">
+    Clear
+  </button>
+
+</div>
+<a href="../index.html" class="back-button" 
+   style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
+          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
+          line-height: 35px; border-radius: 8px; text-decoration: none; 
+          border: 2px solid black;">
+    <b>Back</b>
+  </a>
+
+    </form>
+  </div>
+       <!-- <a href="../index.html" class="back-button" style="width: 150px; height: 36px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center; line-height: 35px; border-radius: 8px; text-decoration: none;">
+    <b>Back</b>
+</a> -->
+  <script>
+    document.getElementById("sevadar-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const id = document.getElementById("docId").value;
+      const data = {
+        Name: document.getElementById("name").value,
+        Mobile: document.getElementById("mobile").value,
+        Specializes: document.getElementById("specializes").value,
+        City: document.getElementById("city").value,
+        State: document.getElementById("state").value,
+        Photo: document.getElementById("photo").value,
+        Video: document.getElementById("video").value,
+      };
+
+      try {
+        if (id) {
+          await db.collection("Sikh_Sevadars_Self").doc(id).update(data);
+        } else {
+          await db.collection("Sikh_Sevadars_Self").add(data);
+        }
+        clearForm();
+        alert("Record saved successfully!");
+      } catch (error) {
+        console.error("Error saving record:", error);
+      }
+    });
+
+    function clearForm() {
+      document.getElementById("sevadar-form").reset();
+      document.getElementById("docId").value = '';
+    }
+
+    // function goBack() {
+    //   window.location.href = "../index.html";
+    //       <a href="../index.html"> </a>
+    // }
+
+
+
+    function admin() {
+      window.location.href = "../06-sevadars/06a-password-sikh-sewadars.html";
+    }
+  </script>
+
+<!-- Back Button in Center -->
+<!-- <div style="text-align: center;">
+  <button type="button" onclick="goBack()" 
+    style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black;">
+    Back
+  </button>
+</div> -->
+
+<!-- Admin Button at Bottom Right of Page -->
+<div style="text-align: right;">
+  <button type="button" onclick="admin()" 
+    style="width: 100px; height: 40px; font-size: 24px; background-color: #FF9933; color: black;">
+    Admin
+  </button>
+</div>
+
+
+</body>
+</html>
+
+
+
+

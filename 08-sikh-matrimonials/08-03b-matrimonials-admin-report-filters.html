@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Matrimonials Report</title>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<style>
+
+body{
+  margin:0;
+  padding:15px;
+  font-family:Arial,sans-serif;
+  background:black;
+  color:#FF9933;
+}
+
+h1{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+#filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:20px;
+  padding:15px;
+  border:1px solid #FF9933;
+  background:#111;
+}
+
+select{
+  padding:8px;
+  background:black;
+  color:#FF9933;
+  border:1px solid #FF9933;
+}
+
+button{
+  padding:8px 15px;
+  background:#FF9933;
+  color:black;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.profile-card{
+  border:1px solid #FF9933;
+  padding:15px;
+  margin-bottom:15px;
+  page-break-inside:avoid;
+  background:#111;
+}
+
+.profile-top{
+  display:flex;
+  gap:15px;
+  align-items:flex-start;
+}
+
+.profile-photo img{
+  width:110px;
+  height:110px;
+  object-fit:cover;
+  border:1px solid #FF9933;
+}
+
+.profile-details{
+  flex:1;
+  line-height:1.7;
+  font-size:13px;
+}
+
+.line{
+  margin-bottom:5px;
+}
+
+.label{
+  font-weight:bold;
+  color:#FFD27F;
+}
+
+a{
+  color:#FF9933;
+  text-decoration:underline;
+  word-break:break-all;
+}
+
+.links{
+  margin-top:8px;
+}
+
+.links a{
+  margin-right:15px;
+}
+
+@media print{
+
+  body{
+    padding:5px;
+  }
+
+  .profile-card{
+    margin-bottom:10px;
+  }
+
+  .profile-details{
+    font-size:11px;
+  }
+
+  .profile-photo img{
+    width:90px;
+    height:90px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Matrimonials Report</h1>
+
+<div id="filters">
+
+<select id="cityFilter" onchange="loadReport()">
+  <option value="">All Cities</option>
+</select>
+
+<select id="religionFilter" onchange="loadReport()">
+  <option value="">All Religions</option>
+</select>
+
+<select id="casteFilter" onchange="loadReport()">
+  <option value="">All Castes</option>
+</select>
+
+<select id="genderFilter" onchange="loadReport()">
+  <option value="">All Genders</option>
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+</select>
+
+<select id="ageFilter" onchange="loadReport()">
+  <option value="">All Ages</option>
+  <option value="15-18">15-18</option>
+  <option value="19-22">19-22</option>
+  <option value="23-26">23-26</option>
+  <option value="27-30">27-30</option>
+  <option value="31-34">31-34</option>
+  <option value="35+">35+</option>
+</select>
+
+<select id="heightFilter" onchange="loadReport()">
+  <option value="">All Heights</option>
+  <option value="<152"><152</option>
+  <option value="152-155">152-155</option>
+  <option value="156-159">156-159</option>
+  <option value="160-163">160-163</option>
+  <option value="164-167">164-167</option>
+  <option value="168-171">168-171</option>
+  <option value="171-174">171-174</option>
+  <option value="174-177">174-177</option>
+  <option value="178+">>178</option>
+</select>
+
+<button onclick="clearFilters()">
+  Clear Filters
+</button>
+
+</div>
+
+<div id="reportContainer"></div>
+
+<script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+  authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+  projectId: "sikhsinindia-67a6b",
+  storageBucket: "sikhsinindia-67a6b.appspot.com",
+  messagingSenderId: "622603668882",
+  appId: "1:622603668882:web:953c6a07864b235fdd054b"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+
+function getDrivePreviewUrl(url){
+
+  if(!url) return "";
+
+  const match = url.match(/\/d\/([^/]+)/);
+
+  return match
+    ? `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`
+    : "";
+}
+
+function extractFileId(url){
+
+  if(!url) return "";
+
+  const match = url.match(/\/d\/([^/]+)/);
+
+  return match ? match[1] : "";
+}
+
+function makeLink(url,label){
+
+  if(!url) return "";
+
+  const fileId = extractFileId(url);
+
+  if(!fileId) return "";
+
+  const safeUrl =
+    `https://drive.google.com/uc?export=download&id=${fileId}`;
+
+  return `
+    <a href="${safeUrl}" target="_blank" rel="noopener noreferrer">
+      ${label}
+    </a>
+  `;
+}
+
+function populateFilters(records){
+
+  const citySet = new Set();
+  const religionSet = new Set();
+  const casteSet = new Set();
+
+  records.forEach(d => {
+
+    if(d.City){
+      citySet.add(d.City);
+    }
+
+    if(d.Religion){
+      religionSet.add(d.Religion);
+    }
+
+    if(d.Religion_Details){
+      casteSet.add(d.Religion_Details);
+    }
+
+  });
+
+  fillDropdown("cityFilter", citySet);
+  fillDropdown("religionFilter", religionSet);
+  fillDropdown("casteFilter", casteSet);
+
+}
+
+function fillDropdown(id, dataSet){
+
+  const dropdown = document.getElementById(id);
+
+  const currentValue = dropdown.value;
+
+  while(dropdown.options.length > 1){
+    dropdown.remove(1);
+  }
+
+  [...dataSet]
+    .sort()
+    .forEach(value => {
+
+      const option = document.createElement("option");
+
+      option.value = value;
+      option.textContent = value;
+
+      dropdown.appendChild(option);
+
+    });
+
+  dropdown.value = currentValue;
+
+}
+
+function ageMatches(age, range){
+
+  age = parseInt(age || 0);
+
+  if(!range) return true;
+
+  if(range === "15-18"){
+    return age >= 15 && age <= 18;
+  }
+
+  if(range === "19-22"){
+    return age >= 19 && age <= 22;
+  }
+
+  if(range === "23-26"){
+    return age >= 23 && age <= 26;
+  }
+
+  if(range === "27-30"){
+    return age >= 27 && age <= 30;
+  }
+
+  if(range === "31-34"){
+    return age >= 31 && age <= 34;
+  }
+
+  if(range === "35+"){
+    return age >= 35;
+  }
+
+  return true;
+
+}
+
+function heightMatches(height, range){
+
+  height = parseInt(height || 0);
+
+  if(!range) return true;
+
+  if(range === "<152"){
+    return height < 152;
+  }
+
+  if(range === "152-155"){
+    return height >= 152 && height <= 155;
+  }
+
+  if(range === "156-159"){
+    return height >= 156 && height <= 159;
+  }
+
+  if(range === "160-163"){
+    return height >= 160 && height <= 163;
+  }
+
+  if(range === "164-167"){
+    return height >= 164 && height <= 167;
+  }
+
+  if(range === "168-171"){
+    return height >= 168 && height <= 171;
+  }
+
+  if(range === "171-174"){
+    return height >= 171 && height <= 174;
+  }
+
+  if(range === "174-177"){
+    return height >= 174 && height <= 177;
+  }
+
+  if(range === "178+"){
+    return height > 178;
+  }
+
+  return true;
+
+}
+
+function clearFilters(){
+
+  document.getElementById("cityFilter").value = "";
+  document.getElementById("religionFilter").value = "";
+  document.getElementById("casteFilter").value = "";
+  document.getElementById("genderFilter").value = "";
+  document.getElementById("ageFilter").value = "";
+  document.getElementById("heightFilter").value = "";
+
+  loadReport();
+
+}
+
+async function loadReport(){
+
+  const container =
+    document.getElementById('reportContainer');
+
+  container.innerHTML = "Loading...";
+
+  const snapshot = await db
+    .collection('Matrimonials')
+    .orderBy('SNo','asc')
+    .get();
+
+  container.innerHTML = "";
+
+  const records = [];
+
+  snapshot.forEach(doc => {
+    records.push(doc.data());
+  });
+
+  populateFilters(records);
+
+  const selectedCity =
+    document.getElementById("cityFilter").value;
+
+  const selectedReligion =
+    document.getElementById("religionFilter").value;
+
+  const selectedCaste =
+    document.getElementById("casteFilter").value;
+
+    const selectedGender =
+  document.getElementById("genderFilter").value;
+
+  const selectedAge =
+    document.getElementById("ageFilter").value;
+
+  const selectedHeight =
+    document.getElementById("heightFilter").value;
+
+  records.forEach(d => {
+
+    if(
+      selectedCity &&
+      d.City !== selectedCity
+    ){
+      return;
+    }
+
+    if(
+      selectedReligion &&
+      d.Religion !== selectedReligion
+    ){
+      return;
+    }
+
+    if(
+  selectedGender &&
+  d.Gender !== selectedGender
+){
+  return;
+}
+
+    if(
+      selectedCaste &&
+      d.Religion_Details !== selectedCaste
+    ){
+      return;
+    }
+
+    if(
+      !ageMatches(d.Age, selectedAge)
+    ){
+      return;
+    }
+
+    if(
+      !heightMatches(d.Height_cm, selectedHeight)
+    ){
+      return;
+    }
+
+    const card = document.createElement('div');
+
+    card.className = "profile-card";
+
+    card.innerHTML = `
+
+      <div class="profile-top">
+
+<div class="profile-photo" style="display:flex;flex-direction:column;gap:10px;">
+
+  ${
+    d.Photo1
+    ?
+    `
+    <a href="${d.Photo1}" target="_blank">
+      <img
+        src="${getDrivePreviewUrl(d.Photo1)}"
+        onerror="this.style.display='none'"
+      >
+    </a>
+    `
+    :
+    ''
+  }
+
+  ${
+    d.Photo2
+    ?
+    `
+    <a href="${d.Photo2}" target="_blank">
+      <img
+        src="${getDrivePreviewUrl(d.Photo2)}"
+        onerror="this.style.display='none'"
+      >
+    </a>
+    `
+    :
+    ''
+  }
+
+</div>
+
+<div class="profile-details">
+
+<div class="line">
+
+<span class="label">SNo:</span>
+${d.SNo || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Name:</span>
+${d.Name || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Gender:</span>
+${d.Gender || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Mobile:</span>
+${d.Mobile || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Email:</span>
+${d.Email || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Date of Birth:</span>
+
+${d.Date_of_Birth
+  ? new Date(d.Date_of_Birth).toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    }).replace(/ /g, '-')
+  : ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Age:</span>
+${d.Age || ''}
+
+</div>
+
+<div class="line">
+
+<span class="label">Height:</span>
+
+${d.Height_Feet || ''}
+${d.Height_Inch || ''}
+
+(${d.Height_cm || ''} cm)
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Complexion:</span>
+${d.Complexion || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Marital Status:</span>
+${d.Marital_Status || ''}
+
+</div>
+
+<div class="line">
+
+<span class="label">Education:</span>
+${d.Education || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Occupation:</span>
+${d.Occupation || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Occupation Details:</span>
+${d.Occupation_Details || ''}
+
+</div>
+
+<div class="line">
+
+<span class="label">Religion:</span>
+${d.Religion || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Religion Details:</span>
+${d.Religion_Details || ''}
+
+${d.Religion_Details_Other || ''}
+
+</div>
+
+<div class="line">
+
+<span class="label">Family Type:</span>
+${d.Family_Type || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Diet:</span>
+${d.Diet || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Drinking Habits:</span>
+${d.Drinking_Habits || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Mother Tongue:</span>
+${d.Mother_tongue || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Languages Known:</span>
+${d.Languages_Known || ''}
+
+</div>
+
+<div class="line">
+
+<span class="label">City:</span>
+${d.City || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Country:</span>
+${d.Country || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Income:</span>
+${d.Income_Annum || ''}
+
+&nbsp;&nbsp;&nbsp;
+
+<span class="label">Experience:</span>
+${d.Number_Experience || ''}
+
+</div>
+
+<div class="links">
+
+${makeLink(d.Photo1,'Photo 1')}
+
+${makeLink(d.Photo2,'Photo 2')}
+
+${makeLink(d.Resume,'Resume PDF')}
+
+${makeLink(d.Combined_PDF,'Combined PDF')}
+
+</div>
+
+<div class="line">
+
+<span class="label">Date of uploading on Website:</span>
+
+${d.Date || ''}
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+loadReport();
+
+</script>
+
+<a href="../08-sikh-matrimonials/08-sikh-matrimonials-admin.html"
+class="back-button"
+style="
+width:150px;
+height:36px;
+font-size:24px;
+background-color:#FF9933;
+color:black;
+display:block;
+margin:20px auto 0 auto;
+text-align:center;
+line-height:30px;
+border-radius:8px;
+text-decoration:none;
+border:2px solid black;
+">
+<b>Back</b>
+</a>
+
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Photo Album — Pick from Google Drive</title>
+  <meta name="description" content="Select photos from Google Drive to build a simple album" />
+  <style>
+    :root{
+      --accent:#FF9933;
+      --bg:#f7fafc;
+      --card:#fff;
+      --muted:#6b7280;
+      --shadow: 0 6px 18px rgba(17,24,39,0.08);
+      --gap:12px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      background:var(--bg);
+      color:#111827;
+      line-height:1.35;
+      padding:20px;
+    }
+    header{display:flex;align-items:center;gap:14px;justify-content:space-between}
+    h1{font-size:20px;margin:0}
+    p.lead{margin:6px 0 0;color:var(--muted)}
+    .controls{display:flex;gap:8px;align-items:center}
+    button.btn{
+      background:var(--accent);border:0;color:#000;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;
+      box-shadow:var(--shadow)
+    }
+    button.ghost{background:#fff;border:1px solid #e5e7eb;padding:8px 12px;border-radius:8px;cursor:pointer}
+    .status{margin-left:8px;color:var(--muted);font-size:13px}
+
+    main{margin-top:18px}
+    .picker-area{
+      display:flex;
+      gap:var(--gap);
+      flex-wrap:wrap;
+      align-items:center;
+      margin-bottom:18px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:10px;
+      padding:14px;
+      box-shadow:var(--shadow);
+      width:100%;
+      max-width:1200px;
+    }
+    .album-opts{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+      gap:12px;
+      margin-top:14px;
+    }
+    .thumb{
+      background:#f3f4f6;border-radius:8px;overflow:hidden;position:relative;
+      display:flex;flex-direction:column;align-items:stretch;
+      min-height:120px;
+    }
+    .thumb img{display:block;width:100%;height:140px;object-fit:cover}
+    .meta{padding:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .meta .title{font-size:13px;color:#111827;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .meta .actions{display:flex;gap:6px}
+    .meta button{padding:6px;border-radius:6px;border:1px solid #e5e7eb;background:#fff;cursor:pointer;font-size:12px}
+    .empty{padding:28px;text-align:center;color:var(--muted);font-size:15px}
+
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
+    /* responsive tweak */
+    @media (max-width:520px){
+      .picker-area{flex-direction:column;align-items:stretch}
+      .controls{justify-content:stretch}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Photo Album — Pick from Google Drive</h1>
+      <p class="lead">Sign in with Google and choose photos from your Drive to create an album. (Requires Google API keys)</p>
+    </div>
+    <div class="controls">
+      <div id="authStatus" class="status">Not signed in</div>
+      <button id="btnSignIn" class="ghost">Sign in</button>
+      <button id="btnPick" class="btn" disabled>Pick from Drive</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="card">
+      <div class="picker-area">
+        <div style="flex:1">
+          <div style="font-weight:700;margin-bottom:6px">Selected photos</div>
+          <div style="color:var(--muted);font-size:13px">Click a thumbnail action to remove or download. Use "Pick from Drive" to add.</div>
+        </div>
+
+        <div class="album-opts">
+          <label for="localUpload" class="ghost" style="cursor:pointer">Or upload local</label>
+          <input id="localUpload" type="file" accept="image/*" multiple style="display:none">
+          <button id="btnClear" class="ghost">Clear Album</button>
+          <button id="btnExport" class="btn" title="Download selected thumbnails as JSON">Export Album (JSON)</button>
+        </div>
+      </div>
+
+      <div id="albumGrid" class="grid" aria-live="polite">
+        <div class="empty">No photos yet — pick from Google Drive or upload local images.</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div>Notes: This demo uses the Google Picker API. You must supply your API key and OAuth client ID in the script section below and host the page on HTTPS. See comments in code for setup instructions.</div>
+  </footer>
+
+  <!-- Load Google APIs (gapi + picker) -->
+  <script>
+  /*
+    INSTRUCTIONS:
+    1. Create a Google Cloud project
+    2. Enable: Google Drive API & Google Picker API
+    3. Create OAuth 2.0 Client ID (Web app). Add authorized JS origins (your origin)
+    4. Get an API KEY (for Picker) and CLIENT ID (OAuth)
+    5. Replace the placeholders below: API_KEY and CLIENT_ID
+    6. Serve this file via HTTPS (localhost: development is accepted for OAuth)
+  */
+
+  const API_KEY = 'YOUR_API_KEY_HERE';      // <-- replace with your API key
+  const CLIENT_ID = 'YOUR_CLIENT_ID_HERE';  // <-- replace with your OAuth 2.0 client ID
+  const APP_ID = ''; // optional: for picker (can be project number) - not strictly required for many flows
+
+  // Scopes required to view Drive files (readonly) and to fetch thumbnails
+  const SCOPES = ['https://www.googleapis.com/auth/drive.readonly'];
+
+  // runtime variables
+  let oauthToken = null;
+  let gapiLoaded = false;
+  let pickerApiLoaded = false;
+
+  // album data stored in-memory
+  const album = [];
+
+  const albumGrid = document.getElementById('albumGrid');
+  const authStatus = document.getElementById('authStatus');
+  const btnSignIn = document.getElementById('btnSignIn');
+  const btnPick = document.getElementById('btnPick');
+  const btnClear = document.getElementById('btnClear');
+  const btnExport = document.getElementById('btnExport');
+  const localUpload = document.getElementById('localUpload');
+
+  // inject Google APIs
+  (function loadGapi(){
+    const s = document.createElement('script');
+    s.src = 'https://apis.google.com/js/api.js';
+    s.onload = () => {
+      gapi.load('client:auth2', initGapiClient);
+      gapi.load('picker', () => { pickerApiLoaded = true; });
+    };
+    document.head.appendChild(s);
+  })();
+
+  async function initGapiClient(){
+    try {
+      await gapi.client.init({
+        apiKey: API_KEY,
+        // discoveryDocs not strictly required for Picker; Drive API for fetching full file info if needed
+        discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest']
+      });
+      gapiLoaded = true;
+      // initialize auth2
+      gapi.auth2.init({client_id: CLIENT_ID, scope: SCOPES.join(' ')})
+        .then(() => {
+          updateSignInStatus();
+          // monitor sign-in state
+          const authInstance = gapi.auth2.getAuthInstance();
+          authInstance.isSignedIn.listen(updateSignInStatus);
+        });
+    } catch (err) {
+      console.error('gapi.client.init error', err);
+    }
+  }
+
+  function updateSignInStatus(){
+    const authInstance = gapi.auth2.getAuthInstance();
+    if(authInstance && authInstance.isSignedIn.get()){
+      const user = authInstance.currentUser.get();
+      const profile = user.getBasicProfile();
+      oauthToken = user.getAuthResponse().access_token;
+      authStatus.textContent = `Signed in as ${profile.getGivenName() || profile.getName()}`;
+      btnPick.disabled = false;
+      btnSignIn.textContent = 'Sign out';
+    } else {
+      oauthToken = null;
+      authStatus.textContent = 'Not signed in';
+      btnPick.disabled = true;
+      btnSignIn.textContent = 'Sign in';
+    }
+  }
+
+  btnSignIn.addEventListener('click', async () => {
+    const authInstance = gapi.auth2.getAuthInstance();
+    if(!authInstance) return alert('Google client library not loaded yet');
+    if(authInstance.isSignedIn.get()){
+      authInstance.signOut();
+    } else {
+      try {
+        await authInstance.signIn();
+        updateSignInStatus();
+      } catch(err){
+        console.error('Sign-in error', err);
+      }
+    }
+  });
+
+  // create a Google Picker
+  btnPick.addEventListener('click', () => {
+    if(!pickerApiLoaded) { alert('Picker API not loaded yet — try again in a moment'); return; }
+    if(!oauthToken) { alert('Please sign in first'); return; }
+    createPicker();
+  });
+
+  function createPicker(){
+    // Configure view to show images in the user's Drive
+    const view = new google.picker.DocsView(google.picker.ViewId.DOCS_IMAGES)
+      .setIncludeFolders(false)
+      .setMimeTypes('image/png,image/jpeg,image/jpg,image/gif,video/mp4')
+      .setSelectFolderEnabled(false);
+    const docsView = new google.picker.DocsView() // optional additional view
+      .setMode(google.picker.DocsViewMode.LIST)
+      .setMimeTypes('image/png,image/jpeg,image/jpg,image/gif,video/mp4');
+    const picker = new google.picker.PickerBuilder()
+      .addView(view)
+      .addView(docsView)
+      .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+      .setOAuthToken(oauthToken)
+      .setDeveloperKey(API_KEY)
+      .setCallback(pickerCallback)
+      .build();
+    picker.setVisible(true);
+  }
+
+  // handle selected files
+  function pickerCallback(data){
+    if(data.action === google.picker.Action.PICKED){
+      const docs = data.docs || [];
+      // docs contain id, name, mimeType, sizeBytes, iconUrl, url, etc.
+      docs.forEach(d => {
+        // ignore duplicates (by id)
+        if(album.some(a => a.id === d.id)) return;
+        // For images, the thumbnailUrl is available in 'thumbnails' array or 'iconUrl'.
+        // We'll construct a thumbnail URL via Drive API -> need an access token to fetch file content.
+        // We'll store the doc metadata and then attempt to fetch a thumbnail or use icon.
+        const item = {
+          id: d.id,
+          name: d.name,
+          mimeType: d.mimeType,
+          url: d.url || null,
+          iconUrl: (d.icons && d.icons.length) ? d.icons[0].url : (d.iconUrl || null),
+          thumbnails: d.thumbnails || null,
+          driveMetadata: d
+        };
+        album.push(item);
+      });
+      renderAlbum();
+    }
+  }
+
+  // render album grid
+  function renderAlbum(){
+    albumGrid.innerHTML = '';
+    if(album.length === 0){
+      const empty = document.createElement('div');
+      empty.className = 'empty';
+      empty.textContent = 'No photos yet — pick from Google Drive or upload local images.';
+      albumGrid.appendChild(empty);
+      return;
+    }
+
+    album.forEach(item => {
+      const box = document.createElement('div');
+      box.className = 'thumb';
+      // image element: attempt to use thumbnail links if available; otherwise use Drive "export" endpoint
+      const img = document.createElement('img');
+      img.alt = item.name || 'image';
+      // prefer thumbnails array if provided by picker
+      if(item.thumbnails && item.thumbnails.length){
+        // pick the highest available
+        const t = item.thumbnails[item.thumbnails.length - 1];
+        img.src = t.url;
+      } else if(item.iconUrl) {
+        // fallback icon
+        img.src = item.iconUrl;
+      } else {
+        // attempt to fetch via Drive file export using access token for images
+        img.src = getDriveImageUrl(item.id);
+      }
+
+      img.onerror = () => {
+        // replace with placeholder if load fails
+        img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><rect width="100%" height="100%" fill="#e5e7eb"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#9ca3af">No preview</text></svg>`);
+      };
+
+      box.appendChild(img);
+
+      const meta = document.createElement('div');
+      meta.className = 'meta';
+      const title = document.createElement('div');
+      title.className = 'title';
+      title.textContent = item.name;
+
+      const actions = document.createElement('div');
+      actions.className = 'actions';
+
+      // download/view button
+      const btnView = document.createElement('button');
+      btnView.title = 'Open in new tab / download';
+      btnView.textContent = 'Open';
+      btnView.onclick = (e) => {
+        e.stopPropagation();
+        openDriveFile(item);
+      };
+
+      // remove button
+      const btnRemove = document.createElement('button');
+      btnRemove.title = 'Remove from album';
+      btnRemove.textContent = 'Remove';
+      btnRemove.onclick = (e) => {
+        e.stopPropagation();
+        removeFromAlbum(item.id);
+      };
+
+      actions.appendChild(btnView);
+      actions.appendChild(btnRemove);
+
+      meta.appendChild(title);
+      meta.appendChild(actions);
+
+      box.appendChild(meta);
+      albumGrid.appendChild(box);
+    });
+  }
+
+  // helper: generate a Drive file fetch URL that returns file content
+  // We'll use the Drive "files.get" downloadUrl pattern: https://www.googleapis.com/drive/v3/files/FILEID?alt=media
+  function getDriveImageUrl(fileId){
+    if(!oauthToken) {
+      // if not signed in, cannot fetch; return blank placeholder
+      return 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><rect width="100%" height="100%" fill="#f3f4f6"/></svg>`);
+    }
+    return `https://www.googleapis.com/drive/v3/files/${encodeURIComponent(fileId)}?alt=media&access_token=${encodeURIComponent(oauthToken)}`;
+  }
+
+  function openDriveFile(item){
+    // Prefer a webViewLink if picker supplied it (may require permission to be set)
+    if(item.driveMetadata && item.driveMetadata.url) {
+      window.open(item.driveMetadata.url, '_blank');
+      return;
+    }
+    // Otherwise open download via alt=media (needs token)
+    if(oauthToken){
+      const url = getDriveImageUrl(item.id);
+      window.open(url, '_blank');
+    } else if(item.url){
+      window.open(item.url, '_blank');
+    } else {
+      alert('Cannot open file: no preview available and not signed-in.');
+    }
+  }
+
+  function removeFromAlbum(id){
+    const idx = album.findIndex(a => a.id === id);
+    if(idx >= 0){
+      album.splice(idx, 1);
+      renderAlbum();
+    }
+  }
+
+  // Clear album
+  btnClear.addEventListener('click', () => {
+    if(!confirm('Clear all photos from the album?')) return;
+    album.length = 0;
+    renderAlbum();
+  });
+
+  // Export album metadata as JSON
+  btnExport.addEventListener('click', () => {
+    if(album.length === 0){ alert('Album is empty'); return; }
+    const data = JSON.stringify(album.map(a => ({id:a.id,name:a.name,mimeType:a.mimeType,iconUrl:a.iconUrl})), null, 2);
+    const blob = new Blob([data], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'album.json';
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  });
+
+  // Local upload fallback
+  localUpload.addEventListener('change', (e) => {
+    const files = Array.from(e.target.files || []);
+    files.forEach(f => {
+      const id = 'local-' + Date.now() + Math.random().toString(36).slice(2,9);
+      const item = {
+        id,
+        name: f.name,
+        mimeType: f.type,
+        url: null,
+        iconUrl: null,
+        localBlob: f
+      };
+      // create a blob URL for preview
+      item.iconUrl = URL.createObjectURL(f);
+      album.push(item);
+    });
+    renderAlbum();
+    // reset input so same files can be reselected later if desired
+    e.target.value = '';
+  });
+
+  // accessibility: keyboard support removed for brevity but could be added
+
+  // initialize empty grid
+  renderAlbum();
+
+  </script>
+</body>
+</html>

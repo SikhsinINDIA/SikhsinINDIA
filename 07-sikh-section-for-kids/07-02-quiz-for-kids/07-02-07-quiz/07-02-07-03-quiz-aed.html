@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Admin</title>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<style>
+body {
+  font-family: Arial;
+  background: black;
+  color: #FF9933;
+  margin: 0;
+  text-align: center;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  background: #222;
+  border: 1px solid #FF9933;
+  color: #FF9933;
+}
+
+button {
+  background: #FF9933;
+  color: black;
+  border: none;
+  padding: 10px;
+  margin: 10px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: black;
+  color: #FF9933;
+  border: 1px solid #FF9933;
+}
+
+.card {
+  background: #222;
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid #FF9933;
+  border-radius: 8px;
+  text-align: left;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Quiz Admin Panel</h2>
+
+  <form id="quizForm">
+    <input type="number" id="sno" placeholder="SNo" required>
+    <input type="text" id="question" placeholder="Question" required>
+    <input type="text" id="opt1" placeholder="Option 1" required>
+    <input type="text" id="opt2" placeholder="Option 2" required>
+    <input type="text" id="opt3" placeholder="Option 3" required>
+    <input type="text" id="opt4" placeholder="Option 4" required>
+    <input type="number" id="correct" placeholder="Correct Option (1-4)" min="1" max="4" required>
+
+    <button type="submit">Save / Update</button>
+    <button type="button" onclick="clearForm()">Clear</button>
+  </form>
+
+  <h3>Quiz Records</h3>
+  <div id="records"></div>
+</div>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+  authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+  projectId: "sikhsinindia-67a6b"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+const recordsDiv = document.getElementById("records");
+
+// LOAD DATA
+async function loadQuiz() {
+  recordsDiv.innerHTML = "";
+
+  const snapshot = await db.collection("Quiz").orderBy("SNo").get();
+
+  snapshot.forEach(doc => {
+    const d = doc.data();
+
+    const div = document.createElement("div");
+    div.className = "card";
+
+    div.innerHTML = `
+      <strong>SNo:</strong> ${d.SNo}<br>
+      <strong>Q:</strong> ${d.Question}<br>
+      1. ${d["Option-1"]}<br>
+      2. ${d["Option-2"]}<br>
+      3. ${d["Option-3"]}<br>
+      4. ${d["Option-4"]}<br>
+      <strong>Correct:</strong> ${d.Correct_Option}
+      <br><br>
+      <button onclick='edit(${JSON.stringify(d)})'>Edit</button>
+      <button onclick="remove(${d.SNo})">Delete</button>
+    `;
+
+    recordsDiv.appendChild(div);
+  });
+}
+
+// SAVE / UPDATE
+document.getElementById("quizForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const sno = parseInt(document.getElementById("sno").value);
+
+  const data = {
+    SNo: sno,
+    Question: document.getElementById("question").value,
+    "Option-1": document.getElementById("opt1").value,
+    "Option-2": document.getElementById("opt2").value,
+    "Option-3": document.getElementById("opt3").value,
+    "Option-4": document.getElementById("opt4").value,
+    Correct_Option: parseInt(document.getElementById("correct").value)
+  };
+
+  // CHECK IF EXISTS
+  const snapshot = await db.collection("Quiz").where("SNo", "==", sno).get();
+
+  if (!snapshot.empty) {
+    const docId = snapshot.docs[0].id;
+    await db.collection("Quiz").doc(docId).update(data);
+  } else {
+    await db.collection("Quiz").add(data);
+  }
+
+  clearForm();
+  loadQuiz();
+});
+
+// EDIT
+function edit(d) {
+  document.getElementById("sno").value = d.SNo;
+  document.getElementById("question").value = d.Question;
+  document.getElementById("opt1").value = d["Option-1"];
+  document.getElementById("opt2").value = d["Option-2"];
+  document.getElementById("opt3").value = d["Option-3"];
+  document.getElementById("opt4").value = d["Option-4"];
+  document.getElementById("correct").value = d.Correct_Option;
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// DELETE
+async function remove(sno) {
+  if (!confirm("Delete this question?")) return;
+
+  const snapshot = await db.collection("Quiz").where("SNo", "==", sno).get();
+
+  snapshot.forEach(doc => {
+    db.collection("Quiz").doc(doc.id).delete();
+  });
+
+  loadQuiz();
+}
+
+// CLEAR
+function clearForm() {
+  document.getElementById("quizForm").reset();
+}
+
+// INIT
+loadQuiz();
+</script>
+
+</body>
+  <a href="../07-02-quiz-for-kids.html" class="back-button" 
+   style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
+          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
+          line-height: 30px; border-radius: 8px; text-decoration: none; 
+          border: 2px solid black;">
+    <b>Back</b>
+  </a>
+</html>

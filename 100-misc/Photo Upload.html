@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Photo to Google Drive</title>
+</head>
+<body>
+  <h1>Upload Photo to Google Drive</h1>
+  <button id="authorize_button" style="display: none;">Authorize Google</button>
+  <button id="upload_button" style="display: none;">Upload File</button>
+
+  <script>
+    const CLIENT_ID = '206349744515-7fqia5r945bc04h1r9mbnvin27laimd1.apps.googleusercontent.com';
+    const API_KEY = 'b945903403609b7fb3dcc6b4f02f3d47158b6b86';
+    const SCOPE = 'https://www.googleapis.com/auth/drive.file';
+
+    let oauthToken;
+
+    function onApiLoad() {
+      gapi.load('client:auth2', initClient);
+    }
+
+    function initClient() {
+      gapi.client.init({
+        apiKey: API_KEY,
+        clientId: CLIENT_ID,
+        scope: SCOPE,
+        discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
+      }).then(() => {
+        const authInstance = gapi.auth2.getAuthInstance();
+        authInstance.isSignedIn.listen(updateSigninStatus);
+        updateSigninStatus(authInstance.isSignedIn.get());
+
+        document.getElementById('authorize_button').onclick = () => authInstance.signIn();
+        document.getElementById('upload_button').onclick = createPicker;
+      });
+    }
+
+    function updateSigninStatus(isSignedIn) {
+      if (isSignedIn) {
+        document.getElementById('authorize_button').style.display = 'none';
+        document.getElementById('upload_button').style.display = 'block';
+        oauthToken = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;
+      } else {
+        document.getElementById('authorize_button').style.display = 'block';
+        document.getElementById('upload_button').style.display = 'none';
+      }
+    }
+function updateSigninStatus(isSignedIn) {
+  console.log("isSignedIn =", isSignedIn);
+  if (isSignedIn) {
+    console.log("User signed in successfully");
+    document.getElementById('authorize_button').style.display = 'none';
+    document.getElementById('upload_button').style.display = 'block';
+    oauthToken = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;
+  } else {
+    console.log("User NOT signed in");
+    document.getElementById('authorize_button').style.display = 'block';
+    document.getElementById('upload_button').style.display = 'none';
+  }
+}
+    function createPicker() {
+      if (oauthToken) {
+        const picker = new google.picker.PickerBuilder()
+          .addView(new google.picker.DocsUploadView())
+          .setOAuthToken(oauthToken)
+          .setDeveloperKey(API_KEY)
+          .setCallback(pickerCallback)
+          .build();
+        picker.setVisible(true);
+      }
+    }
+
+    function pickerCallback(data) {
+      if (data.action === google.picker.Action.PICKED) {
+        const file = data.docs[0];
+        alert('File uploaded! File ID: ' + file.id);
+      }
+    }
+  </script>
+
+  <!-- Load Google APIs -->
+  <script src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
+  <script src="https://apis.google.com/js/client.js"></script>
+  <script src="https://apis.google.com/js/platform.js"></script>
+  <script src="https://www.gstatic.com/picker/1/picker.js"></script>
+  <script src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
+
+  
+</body>
+</html>
