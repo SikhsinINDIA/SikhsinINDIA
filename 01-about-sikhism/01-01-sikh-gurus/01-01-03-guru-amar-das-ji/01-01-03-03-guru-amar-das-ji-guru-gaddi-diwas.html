@@ -1,167 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <!-- Google tag (gtag.js) -->
+
+  <!-- Google tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-LHNTFNW14H');
   </script>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <title>Shaheed Baba Deep Singh Ji | Sikh Traditions | Sikhs in India</title>
+  <title>Sri Guru Amar Das Ji - Life Story | Sikhs in India</title>
 
-  <!-- SEO -->
+  <!-- SEO Meta -->
   <meta name="description" content="Explore the significance of Lohri in Sikh tradition, its cultural roots, and celebrations in Punjab.">
   <meta name="keywords" content="Lohri Festival, Sikh Traditions, Punjabi Festivals, Sikh Culture, Dulla Bhatti, Sikhs in India">
   <meta name="author" content="Sikhs in India">
   <meta name="robots" content="index, follow">
 
-  <!-- Canonical -->
   <link rel="canonical" href="https://sikhsinindia.com/01-about-sikhism/01-07-divine-reflections/01-07-07-guru-har-rai-ji.html">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Lohri Festival | Sikh Traditions">
   <meta property="og:description" content="Learn about Lohri in Sikh culture and its significance.">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
   <meta property="og:url" content="https://sikhsinindia.com/01-about-sikhism/01-07-divine-reflections/01-07-07-guru-har-rai-ji.html">
   <meta property="og:type" content="website">
 
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --primary: #FF9933;
-      --black: #000000;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
     }
 
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+    }
+
+    /* PAGE */
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: var(--black);
-      color: var(--primary);
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
+
+    /* MAIN CONTAINER */
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 5vw, 42px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+      font-size: clamp(12px, 2.5vw, 16px);
+    }
+
+    /* GOLD INTRO BAR */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
       text-align: center;
     }
 
-    header {
-      background-color: var(--primary);
-      color: var(--black);
-      padding: 1rem;
+    /* CONTENT AREA */
+    .wrapper {
+      padding: 28px 36px;
+      flex: 1;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.2rem;
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      text-align: center;
+      font-size: clamp(24px, 5vw, 34px);
+      margin-bottom: 6px;
     }
 
-    section {
-      padding: 1rem;
-    }
-
-    /* Image container */
+    /* IMAGE INTERFACE CARD */
     .card {
       width: 100%;
-      max-width: 1000px;
-      margin: auto;
-      background-color: var(--black);
+      background: #fff;
+      border: 1px solid rgba(13, 27, 62, 0.08);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      margin-bottom: 20px;
     }
 
     .card img {
       width: 100%;
       height: auto;
-      max-height: 75vh;
+      max-height: 65vh;
       object-fit: contain;
       display: block;
+      border-radius: 6px;
+      margin-bottom: 16px;
     }
 
-    /* Buttons and counter in one line */
+    /* CONTROLS BAR */
     .image-controls {
       display: flex;
-      justify-content: center; /* center items */
-      align-items: center;     /* vertically align counter */
-      gap: 20px;               /* space between items */
-      flex-wrap: wrap;         /* wrap on small screens */
-      margin: 10px 0 0 0;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    .image-controls button {
-      background-color: var(--primary);
-      color: var(--black);
-      border: 2px solid black;
-      padding: 10px 14px;
-      font-size: 16px;
+    .control-btn {
+      background-color: var(--navy);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
       font-weight: bold;
-      border-radius: 8px;
+      border-radius: 5px;
       cursor: pointer;
-      min-width: 80px;
+      transition: background-color 0.2s;
+    }
+
+    .control-btn:hover {
+      background-color: var(--gold);
+      color: var(--navy);
     }
 
     .image-counter {
-      background-color: var(--primary);
-      color: var(--black);
-      padding: 6px 12px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 8px;
-      display: inline-block;
-      min-width: 60px;
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      background-color: rgba(13, 27, 62, 0.05);
+      padding: 8px 16px;
+      border-radius: 5px;
+      min-width: 80px;
       text-align: center;
     }
 
-    /* Caption below controls */
     #guruHarRaiCaption {
-      margin-top: 12px;
-      padding: 0 12px;
-      font-size: 16px;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
       font-weight: bold;
-    }
-
-    /* Back button */
-    .back-button {
-      width: 150px;
-      height: 36px;
-      font-size: 20px;
-      background-color: var(--primary);
-      color: black;
-      display: block;
-      margin: 20px auto;
+      color: var(--navy);
       text-align: center;
-      line-height: 35px;
-      border-radius: 8px;
+      margin-top: 14px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--navy-mid);
+      padding: 20px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: auto;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* Back button — 3D gold style matching template layout */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       text-decoration: none;
-      border: 2px solid black;
-      font-weight: bold;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
     }
 
-    footer {
-      background-color: var(--primary);
-      color: var(--black);
-      padding: 1rem;
-      margin-top: 20px;
+    .btn-back:hover {
+      filter: brightness(1.08);
     }
 
-    /* Mobile responsiveness */
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.6rem;
+    .btn-back:active {
+      transform: scale(0.97);
+      filter: brightness(0.93);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* MOBILE responsive adjustments */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
       }
-      .image-controls {
-        gap: 10px;
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
       }
-      .image-controls button {
-        font-size: 14px;
-        padding: 8px 12px;
-        min-width: 60px;
+
+      .hero {
+        padding: 18px;
+        width: 100%;
       }
+
+      .wrapper {
+        padding: 18px 14px;
+      }
+
+      .card {
+        padding: 10px;
+      }
+
+      .card img {
+        max-height: 50vh;
+      }
+
+      .control-btn {
+        font-size: 13px;
+        padding: 8px 14px;
+      }
+
       .image-counter {
-        font-size: 14px;
-        padding: 4px 8px;
+        font-size: 13px;
+        padding: 6px 12px;
       }
+
       #guruHarRaiCaption {
-        font-size: 14px;
+        font-size: 15px;
+      }
+
+      .footer {
+        padding: 20px 14px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+      }
+
+      .btn-back {
+        font-size: 9px;
+        padding: 8px 14px;
+      }
+
+      .footer-left,
+      .footer-right {
+        font-size: 9px;
+        letter-spacing: 1px;
       }
     }
   </style>
@@ -169,108 +346,129 @@
 
 <body>
 
-<header>
-  <h1>Guru Amar Das Ji</h1>
-</header>
+  <div class="poster">
 
-<section>
-
-  <div class="card">
-
-    <img id="guruAmarDasJiImg" alt="Guru Amar Das Ji-Life Story" loading="lazy">
-
-    <!-- Buttons and counter on the same line -->
-    <div class="image-controls">
-      <button onclick="prevImage()">◀ Prev</button>
-      <div class="image-counter" id="imageCounter">1 / 10</div>
-      <button onclick="nextImage()">Next ▶</button>
+    <!-- HEADER WITH LOGO -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Sri Guru Amar Das Ji <span>Life Story</span></div>
+        <div class="hero-sub">Third Divine Light · Guru from 1552 to 1574</div>
+      </div>
     </div>
 
+    <!-- INTRO BAR -->
+    <div class="intro">
+      Explore the Pious Journey, Divine Teachings, and Spiritual Legacy of the Third Founder Light of Sikhism
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="wrapper">
+
+      <div class="card">
+        <img id="guruAmarDasJiImg" alt="Sri Guru Amar Das Ji - Life Story Slide" loading="lazy">
+
+        <!-- Controls container system row -->
+        <div class="image-controls">
+          <button class="control-btn" onclick="prevImage()">◀ Prev</button>
+          <div class="image-counter" id="imageCounter">1 / 10</div>
+          <button class="control-btn" onclick="nextImage()">Next ▶</button>
+        </div>
+
+        <p id="guruHarRaiCaption"></p>
+      </div>
+
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <footer class="footer" role="contentinfo">
+      <div class="footer-content">
+        <div class="footer-row">
+          <a href="./01-01-03-guru-amar-das-ji.html" class="btn-back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+            </svg>
+            Back to Sri Guru Amar Das Ji
+          </a>
+        </div>
+        <div class="footer-row footer-left">© 2025 SikhsinIndia.com – All Rights Reserved.</div>
+        <div class="footer-row footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </footer>
   </div>
 
-  <!-- Caption below controls -->
-  <p id="guruHarRaiCaption"></p>
+  <script>
+    const guruAmarDasJiPhotos = [
+      {
+        src: "https://drive.google.com/thumbnail?id=13Hqp8YoeF5cbG9naHvAMD84Kqm8TSoFL&sz=w1000",
+        caption: "Guru Amar Das Ji - Life Story"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1up5MLKDxTqq3_Mq_zXB8VvI9vXOY-g3I&sz=w1000",
+        caption: "Guru Amar Das Ji - Life Story"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1spuTjuDwvyqi_Q5xDpdIYrLaM60apISw&sz=w1000",
+        caption: "Guru Amar Das Ji - Life Story"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1VmU7LDIskW5_QlNi1qBARxXKSIULYFNI&sz=w1000",
+        caption: "Guru Amar Das Ji - Life Story"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1V8c3VAS9swc8rTPaCGesNXM5bFXVadlD&sz=w1000",
+        caption: "Guru Amar Das Ji - Life Story"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=16Gyyi-wrSb00KLe4_0n27qkaMveLGIUV&sz=w1000",
+        caption: "Guru Amar Das Ji - Life Story"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1hlpZOjkgW6JH5ACy8aM_1zzBOLj1M6Ec&sz=w1000",
+        caption: "Guru Amar Das Ji - Life Story"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1QEQ3lYQzSrLe4-s6SUOxGkP0fyvVHt2q&sz=w1000",
+        caption: "Guru Amar Das Ji - Life Story"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1G0k3Gz_c26BANwYoXRbOQRiDgrxY5z7z&sz=w1000",
+        caption: "Guru Amar Das Ji - Life Story"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=12N7Kf3VZqubVRGyQ0MBWpjkqKG8-OYIC&sz=w1000",
+        caption: "Guru Amar Das Ji - Life Story"
+      }
+    ];
 
-</section>
+    let currentIndex = 0;
 
-<a href="./01-01-03-guru-amar-das-ji.html" class="back-button">Back</a>
+    function showImage(index) {
+      const img = document.getElementById("guruAmarDasJiImg");
+      img.src = guruAmarDasJiPhotos[index].src;
 
-<footer>
-  &copy; 2025 SikhsinIndia.com – All Rights Reserved.
-</footer>
+      document.getElementById("guruHarRaiCaption").textContent =
+        guruAmarDasJiPhotos[index].caption;
 
-<script>
-  const guruAmarDasJiPhotos = [
-    {
-    src: "https://drive.google.com/thumbnail?id=13Hqp8YoeF5cbG9naHvAMD84Kqm8TSoFL&sz=w1000",
-    caption: "Guru Amar Das Ji - Life Story"
-  },
+      document.getElementById("imageCounter").textContent =
+        (index + 1) + " / " + guruAmarDasJiPhotos.length;
+    }
 
-  {
-    src: "https://drive.google.com/thumbnail?id=1up5MLKDxTqq3_Mq_zXB8VvI9vXOY-g3I&sz=w1000",
-    caption: "Guru Amar Das Ji - Life Story"
-  },
-  {
-    src: "https://drive.google.com/thumbnail?id=1spuTjuDwvyqi_Q5xDpdIYrLaM60apISw&sz=w1000",
-    caption: "Guru Amar Das Ji - Life Story"
-  },
-  {
-    src: "https://drive.google.com/thumbnail?id=1VmU7LDIskW5_QlNi1qBARxXKSIULYFNI&sz=w1000",
-    caption: "Guru Amar Das Ji - Life Story"
-  },
-  {
-    src: "https://drive.google.com/thumbnail?id=1V8c3VAS9swc8rTPaCGesNXM5bFXVadlD&sz=w1000",
-    caption: "Guru Amar Das Ji - Life Story"
-  },
-  {
-    src: "https://drive.google.com/thumbnail?id=16Gyyi-wrSb00KLe4_0n27qkaMveLGIUV&sz=w1000",
-    caption: "Guru Amar Das Ji - Life Story"
-  },
-  {
-    src: "https://drive.google.com/thumbnail?id=1hlpZOjkgW6JH5ACy8aM_1zzBOLj1M6Ec&sz=w1000",
-    caption: "Guru Amar Das Ji - Life Story"
-  },
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % guruAmarDasJiPhotos.length;
+      showImage(currentIndex);
+    }
 
-  {
-    src: "https://drive.google.com/thumbnail?id=1QEQ3lYQzSrLe4-s6SUOxGkP0fyvVHt2q&sz=w1000",
-    caption: "Guru Amar Das Ji - Life Story"
-  },
-  {
-    src: "https://drive.google.com/thumbnail?id=1G0k3Gz_c26BANwYoXRbOQRiDgrxY5z7z&sz=w1000",
-    caption: "Guru Amar Das Ji - Life Story"
-  },
-    {
-    src: "https://drive.google.com/thumbnail?id=12N7Kf3VZqubVRGyQ0MBWpjkqKG8-OYIC&sz=w1000",
-    caption: "Guru Amar Das Ji - Life Story"
-  },
-]
-  
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + guruAmarDasJiPhotos.length) % guruAmarDasJiPhotos.length;
+      showImage(currentIndex);
+    }
 
-  let currentIndex = 0;
-
-  function showImage(index) {
-    const img = document.getElementById("guruAmarDasJiImg");
-    img.src = guruAmarDasJiPhotos[index].src;
-
-    document.getElementById("guruHarRaiCaption").textContent =
-      guruAmarDasJiPhotos[index].caption;
-
-    document.getElementById("imageCounter").textContent =
-      (index + 1) + " / " + guruAmarDasJiPhotos.length;
-  }
-
-  function nextImage() {
-    currentIndex = (currentIndex + 1) % guruAmarDasJiPhotos.length;
-    showImage(currentIndex);
-  }
-
-  function prevImage() {
-    currentIndex = (currentIndex - 1 + guruAmarDasJiPhotos.length) % guruAmarDasJiPhotos.length;
-    showImage(currentIndex);
-  }
-
-  document.addEventListener("DOMContentLoaded", () => showImage(0));
-</script>
+    document.addEventListener("DOMContentLoaded", () => showImage(0));
+  </script>
 
 </body>
-</html>
+
+</html> 
