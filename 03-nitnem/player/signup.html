@@ -1,0 +1,55 @@
+<!-- signup.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="card">
+  <h2>Signup</h2>
+
+  <input id="email" placeholder="Email">
+  <input id="phone" placeholder="Phone">
+  <input id="password" type="password" placeholder="Password">
+
+  <button onclick="signup()">Create Account</button>
+
+  <a href="login.html">Already have account? Login</a>
+</div>
+
+<script type="module">
+import {
+  auth, db,
+  createUserWithEmailAndPassword,
+  doc, setDoc
+} from "./firebase.js";
+
+window.signup = async () => {
+
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  const password = document.getElementById("password").value;
+
+  if (!email || !phone || !password) {
+    alert("Fill all fields");
+    return;
+  }
+
+  const userCred = await createUserWithEmailAndPassword(auth, email, password);
+
+  await setDoc(doc(db, "users", userCred.user.uid), {
+    email,
+    phone,
+    createdAt: new Date()
+  });
+
+  alert("Signup successful");
+  window.location.href = "login.html";
+};
+</script>
+
+</body>
+</html>

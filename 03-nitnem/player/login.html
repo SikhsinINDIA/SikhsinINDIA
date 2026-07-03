@@ -1,0 +1,56 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="card">
+  <h2>Login</h2>
+
+  <input id="identifier" placeholder="Email or Phone">
+  <input id="password" type="password" placeholder="Password">
+
+  <button onclick="login()">Login</button>
+
+  <a href="signup.html">New user? Signup</a>
+</div>
+
+<script type="module">
+import {
+  auth, db,
+  signInWithEmailAndPassword,
+  collection, query, where, getDocs
+} from "./firebase.js";
+
+window.login = async () => {
+
+  const id = document.getElementById("identifier").value;
+  const pass = document.getElementById("password").value;
+
+  let email = id;
+
+  if (!id.includes("@")) {
+    const q = query(collection(db, "users"), where("phone", "==", id));
+    const snap = await getDocs(q);
+
+    if (snap.empty) {
+      alert("Phone not found");
+      return;
+    }
+
+    email = snap.docs[0].data().email;
+  }
+
+  await signInWithEmailAndPassword(auth, email, pass);
+
+  alert("Login successful");
+  window.location.href = "index.html";
+};
+</script>
+
+</body>
+</html>

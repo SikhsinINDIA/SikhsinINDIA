@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Player</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="playerBox" id="playerBox">
+
+  <h2 id="title">Paath Player</h2>
+
+  <audio id="player" controls></audio>
+
+  <br>
+
+  <div>
+  <button onclick="playTrack('song1')">🎵 First Song</button>
+  <button onclick="playTrack('song2')">🎵 Second Song</button>
+</div>
+
+  <p id="status"></p>
+
+
+  <br><br>
+
+  <button onclick="logout()">Logout</button>
+
+</div>
+
+<script type="module" src="app.js"></script>
+
+</body>
+</html>

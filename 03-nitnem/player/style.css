@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0f0f0f;
+  color: white;
+}
+
+/* COMMON CARD */
+.card {
+  width: 320px;
+  margin: 80px auto;
+  padding: 20px;
+  background: #1c1c1c;
+  border-radius: 15px;
+  text-align: center;
+}
+
+/* INPUTS */
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: none;
+}
+
+/* BUTTONS */
+button {
+  width: 95%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #1db954;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* LINKS */
+a {
+  color: #1db954;
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+/* PLAYER */
+.playerBox {
+  display: none;
+  padding: 20px;
+  text-align: center;
+}
+
+audio {
+  width: 90%;
+  margin-top: 10px;
+}
