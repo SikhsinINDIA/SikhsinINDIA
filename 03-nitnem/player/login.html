@@ -1,56 +1,328 @@
-<!-- login.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Login</title>
-  <link rel="stylesheet" href="style.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Sikhs in India | Account Login</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
+
+    .poster {
+      width: 100%;
+      max-width: 540px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--navy);
+      padding: 24px;
+      text-align: center;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 5vw, 36px);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    /* CONTENT FORM AREA */
+    .wrapper {
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    /* MOBILE FRIENDLY INPUT FLUIDITY */
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--navy);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(247, 148, 29, 0.15);
+    }
+
+    .nav-link-wrap {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      color: var(--navy);
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    .nav-link:hover {
+      color: var(--gold);
+    }
+
+    /* ── FOOTER AREA ── */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 24px;
+      border-top: 2px solid var(--gold);
+      margin-top: 20px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+    }
+
+    .footer-left {
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 9px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* 3D GOLD MAIN SUBMIT BUTTON */
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 12px 24px;
+      width: 100%;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+    }
+
+    .btn-action:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-action:active {
+      transform: scale(0.98);
+      filter: brightness(0.93);
+    }
+
+    /* Back button — 3D gold style matching footer */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 8px 14px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+      width: 100%;
+      max-width: 200px;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+      filter: brightness(0.93);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="card">
-  <h2>Login</h2>
+  <div class="poster">
+    <div class="header">
+      <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      <div class="hero-title">Sehaj Path - <span>Login</span></div>
+    </div>
 
-  <input id="identifier" placeholder="Email or Phone">
-  <input id="password" type="password" placeholder="Password">
+    <div class="wrapper">
+      <h2>Welcome Back</h2>
+      
+      <input id="identifier" placeholder="Email or Phone">
+      <input id="password" type="password" placeholder="Password">
 
-  <button onclick="login()">Login</button>
+      <button onclick="login()" class="btn-action">Secure Login</button>
 
-  <a href="signup.html">New user? Signup</a>
-</div>
+      <div class="nav-link-wrap">
+        <a class="nav-link" href="signup.html">New user? Create an Account</a>
+      </div>
+    </div>
 
-<script type="module">
-import {
-  auth, db,
-  signInWithEmailAndPassword,
-  collection, query, where, getDocs
-} from "./firebase.js";
+    <div class="footer">
+      <div class="footer-content">
+        <a href="../03-nitnem-path.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back to Nitnem Path
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </div>
+  </div>
 
-window.login = async () => {
+  <script type="module">
+    import {
+      auth, db,
+      signInWithEmailAndPassword,
+      collection, query, where, getDocs
+    } from "./firebase.js";
 
-  const id = document.getElementById("identifier").value;
-  const pass = document.getElementById("password").value;
+    window.login = async () => {
+      const id = document.getElementById("identifier").value;
+      const pass = document.getElementById("password").value;
 
-  let email = id;
+      if (!id || !pass) {
+        alert("Please fill in all credentials");
+        return;
+      }
 
-  if (!id.includes("@")) {
-    const q = query(collection(db, "users"), where("phone", "==", id));
-    const snap = await getDocs(q);
+      let email = id;
 
-    if (snap.empty) {
-      alert("Phone not found");
-      return;
-    }
+      if (!id.includes("@")) {
+        try {
+          const q = query(collection(db, "users"), where("phone", "==", id));
+          const snap = await getDocs(q);
 
-    email = snap.docs[0].data().email;
-  }
+          if (snap.empty) {
+            alert("Phone configuration not found");
+            return;
+          }
 
-  await signInWithEmailAndPassword(auth, email, pass);
+          email = snap.docs[0].data().email;
+        } catch (err) {
+          console.error("Database mismatch error:", err);
+          alert("Error resolving identity source mapping.");
+          return;
+        }
+      }
 
-  alert("Login successful");
-  window.location.href = "index.html";
-};
-</script>
+      try {
+        await signInWithEmailAndPassword(auth, email, pass);
+        alert("Login successful");
+        window.location.href = "03-04-sehaj-path.html";
+      } catch (error) {
+        alert("Authentication Failed: " + error.message);
+      }
+    };
+  </script>
 
 </body>
 </html>
