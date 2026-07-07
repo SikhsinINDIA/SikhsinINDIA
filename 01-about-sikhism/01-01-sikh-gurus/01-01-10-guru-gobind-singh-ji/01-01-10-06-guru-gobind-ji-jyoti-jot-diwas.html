@@ -143,91 +143,73 @@
       margin-bottom: 24px;
     }
 
-    /* MOBILE RESPONSIBLE GRID */
-    .album {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
+    /* IMAGE INTERFACE CARD */
+    .card {
+      width: 100%;
+      background: #fff;
+      border: 1px solid rgba(13, 27, 62, 0.08);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
       margin-bottom: 20px;
     }
 
-    .album img {
+    .card img {
       width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 1px solid rgba(13, 27, 62, 0.1);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      background: #fff;
+      height: auto;
+      max-height: 65vh;
+      object-fit: contain;
+      display: block;
+      border-radius: 6px;
+      margin-bottom: 16px;
     }
 
-    .album img:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    /* WINDOW OVERLAY LIGHTBOX DISPLAY */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 10000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(13, 27, 62, 0.96);
+    /* CONTROLS BAR */
+    .image-controls {
+      display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      padding: 16px;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    .lightbox img {
-      max-width: 95%;
-      max-height: 70vh;
-      border-radius: 8px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-      object-fit: contain;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-family: 'Lato', sans-serif;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      background: var(--gold);
-      color: var(--navy);
+    .control-btn {
+      background-color: var(--navy);
+      color: #fff;
       border: none;
-      border-radius: 4px;
-      padding: 10px 16px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-
-    .download-btn {
-      margin-top: 20px;
-      background: #fff;
-      color: var(--navy);
+      padding: 10px 18px;
       font-family: 'Lato', sans-serif;
-      font-weight: bold;
       font-size: 14px;
-      padding: 12px 24px;
+      font-weight: bold;
       border-radius: 5px;
       cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: all 0.2s;
+      transition: background-color 0.2s;
     }
 
-    .download-btn:hover {
-      background: var(--gold);
+    .control-btn:hover {
+      background-color: var(--gold);
       color: var(--navy);
+    }
+
+    .image-counter {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      background-color: rgba(13, 27, 62, 0.05);
+      padding: 8px 16px;
+      border-radius: 5px;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    #guruGobindCaption {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--navy);
+      text-align: center;
+      margin-top: 14px;
     }
 
     /* STANDARDIZED UNIFORM FOOTER BLOCK */
@@ -325,13 +307,33 @@
         padding: 18px 14px;
       }
 
-      .album {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 12px;
+      .card {
+        padding: 10px;
       }
 
-      .album img {
-        height: 130px;
+      .card img {
+        max-height: 50vh;
+      }
+
+      .control-btn {
+        font-size: 13px;
+        padding: 8px 14px;
+      }
+
+      .image-counter {
+        font-size: 13px;
+        padding: 6px 12px;
+      }
+
+      #guruGobindCaption {
+        font-size: 15px;
+      }
+
+      .footer-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
       }
     }
   </style>
@@ -360,47 +362,30 @@
     <!-- MAIN GRID WRAPPER SPACE -->
     <div class="wrapper">
 
-      <h1>Guru Gobind Singh Ji - Jyoti Jot Diwas</h1>
-      <div class="subtitle">(Download and share with your loved ones)</div>
+      <div class="card">
+        <img id="guruGobindImg" alt="Guru Gobind Singh Ji Greeting Card Slide" loading="lazy">
 
-      <div class="album">
-        <img src="https://drive.google.com/thumbnail?id=1l1uwF7rVyk49UX3cGOQ46OmtwmgNags2&sz=w1000" data-id="1l1uwF7rVyk49UX3cGOQ46OmtwmgNags2" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 1" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=18XgLG_6egvlhx1_E7hQwN-7kxEG8BkU_&sz=w1000" data-id="18XgLG_6egvlhx1_E7hQwN-7kxEG8BkU_" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 2" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=1zm_qOKHQOIty7IwnYSpSxedaBc-sxku1&sz=w1000" data-id="1zm_qOKHQOIty7IwnYSpSxedaBc-sxku1" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 3" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=1FT75C3OZpzsnZ8qxJPAnoSTYEo6l8Cay&sz=w1000" data-id="1FT75C3OZpzsnZ8qxJPAnoSTYEo6l8Cay" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 4" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=16sK6nKAihttfM5U6IJ49PmjhVJOabhUj&sz=w1000" data-id="16sK6nKAihttfM5U6IJ49PmjhVJOabhUj" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 5" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=12KoCOD5uaV6ByHFg0VbgXhPPcmxi1bEV&sz=w1000" data-id="12KoCOD5uaV6ByHFg0VbgXhPPcmxi1bEV" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 6" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=1wvH81ybSD5N-sGl2YIiktfiAQtLP3vNu&sz=w1000" data-id="1wvH81ybSD5N-sGl2YIiktfiAQtLP3vNu" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 7" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=1nlYeFhmmUHNAjrk7fVIdl0pQ7JlKTDLw&sz=w1000" data-id="1nlYeFhmmUHNAjrk7fVIdl0pQ7JlKTDLw" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 8" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=1KG6MHjjv7H6Oi1lc61ZLIYQ_EC7TbWU-&sz=w1000" data-id="1KG6MHjjv7H6Oi1lc61ZLIYQ_EC7TbWU-" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 9" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=1AB0YZagkmcEDAqDM1Rvcn9U2j_ARVSdx&sz=w1000" data-id="1AB0YZagkmcEDAqDM1Rvcn9U2j_ARVSdx" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 10" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=1BIz5Ffi4cwjGDR0-CV51856Ce7HCKaYB&sz=w1000" data-id="1BIz5Ffi4cwjGDR0-CV51856Ce7HCKaYB" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 11" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=10J5G9Bs4yQTM8kYyHRf7oKTHuMKgigBd&sz=w1000" data-id="10J5G9Bs4yQTM8kYyHRf7oKTHuMKgigBd" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 12" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=14rUrn63HVwFIMIZz5ViCQHJUxCnBkg59&sz=w1000" data-id="14rUrn63HVwFIMIZz5ViCQHJUxCnBkg59" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 13" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=1FbOEHSj16r6zLolsrid2KWVesUADv-E5&sz=w1000" data-id="1FbOEHSj16r6zLolsrid2KWVesUADv-E5" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 14" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=1zMz3DtqVYsBDnw5vbJZTdZpRDKE_X0Gb&sz=w1000" data-id="1zMz3DtqVYsBDnw5vbJZTdZpRDKE_X0Gb" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 15" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=1X4ljWz8lMvPgc-1i95R1IsbJy3xDtZXz&sz=w1000" data-id="1X4ljWz8lMvPgc-1i95R1IsbJy3xDtZXz" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 16" onclick="openLightbox(this)">
-        <img src="https://drive.google.com/thumbnail?id=192-H2phrNJ_mT_PJOSko2UB-0q2kSXEi&sz=w1000" data-id="192-H2phrNJ_mT_PJOSko2UB-0q2kSXEi" alt="Guru Gobind Singh Ji - Jyoti Jot Diwas 17" onclick="openLightbox(this)">
+        <!-- Controls container system row -->
+        <div class="image-controls">
+          <button class="control-btn" onclick="prevImage()">◀ Prev</button>
+          <div class="image-counter" id="imageCounter">1 / 10</div>
+          <button class="control-btn" onclick="nextImage()">Next ▶</button>
+        </div>
+
+        <p id="guruGobindCaption"></p>
       </div>
 
-    </div>
-
-    <!-- LIGHTBOX OVERLAY WINDOW -->
-    <div class="lightbox" id="lightbox">
-      <button class="close-btn" onclick="closeLightbox()">✕ Close</button>
-      <img id="lightbox-img" src="" alt="">
-      <a id="download-link" class="download-btn" href="#" download>⬇ Download Image</a>
     </div>
 
     <!-- PREMIUM STRUCTURAL FOOTER BLOCK -->
     <footer class="footer" role="contentinfo">
       <div class="footer-content">
         <div class="footer-row">
-          <a href="./../02-11-sikh-greetings.html" class="btn-back">
+          <a href="./01-01-10-guru-gobind-singh-ji.html" class="btn-back">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M19 12H5M5 12l7-7M5 12l7 7" />
             </svg>
-            Back to Greetings
+            Back to Guru Gobind Singh Ji 
           </a>
         </div>
         <div class="footer-row footer-left">© 2026 SikhsinIndia.com – All Rights Reserved.</div>
@@ -411,29 +396,73 @@
   </div>
 
   <script>
-    function openLightbox(img) {
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightbox-img');
-      const downloadLink = document.getElementById('download-link');
+    const guruGobindPhotos = [
+      {
+        src: "https://drive.google.com/thumbnail?id=1zm_qOKHQOIty7IwnYSpSxedaBc-sxku1&sz=w1000",
+        caption: "Guru Gobind Singh Ji - Jyoti Jot Diwas Greeting 1"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1FT75C3OZpzsnZ8qxJPAnoSTYEo6l8Cay&sz=w1000",
+        caption: "Guru Gobind Singh Ji - Jyoti Jot Diwas Greeting 2"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=16sK6nKAihttfM5U6IJ49PmjhVJOabhUj&sz=w1000",
+        caption: "Guru Gobind Singh Ji - Jyoti Jot Diwas Greeting 3"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=12KoCOD5uaV6ByHFg0VbgXhPPcmxi1bEV&sz=w1000",
+        caption: "Guru Gobind Singh Ji - Jyoti Jot Diwas Greeting 4"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1wvH81ybSD5N-sGl2YIiktfiAQtLP3vNu&sz=w1000",
+        caption: "Guru Gobind Singh Ji - Jyoti Jot Diwas Greeting 5"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1nlYeFhmmUHNAjrk7fVIdl0pQ7JlKTDLw&sz=w1000",
+        caption: "Guru Gobind Singh Ji - Jyoti Jot Diwas Greeting 6"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1KG6MHjjv7H6Oi1lc61ZLIYQ_EC7TbWU-&sz=w1000",
+        caption: "Guru Gobind Singh Ji - Jyoti Jot Diwas Greeting 7"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1AB0YZagkmcEDAqDM1Rvcn9U2j_ARVSdx&sz=w1000",
+        caption: "Guru Gobind Singh Ji - Jyoti Jot Diwas Greeting 8"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1BIz5Ffi4cwjGDR0-CV51856Ce7HCKaYB&sz=w1000",
+        caption: "Guru Gobind Singh Ji - Jyoti Jot Diwas Greeting 9"
+      }
+    ];
 
-      const fileId = img.getAttribute('data-id');
-      if (!fileId) return;
-      const fullImgUrl = `https://drive.google.com/thumbnail?id=${fileId}&sz=w2000`;
-      const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+    let currentIndex = 0;
 
-      lightbox.style.display = 'flex';
-      lightboxImg.src = fullImgUrl;
-      lightboxImg.alt = img.alt;
-      downloadLink.href = downloadUrl;
+    function showImage(index) {
+      const img = document.getElementById("guruGobindImg");
+      if (!img) return;
+
+      // Correcting mixed references: prioritization should always be given to Gobind Singh Ji
+      img.src = guruGobindPhotos[index].src;
+
+      document.getElementById("guruGobindCaption").textContent =
+        guruGobindPhotos[index].caption;
+
+      document.getElementById("imageCounter").textContent =
+        (index + 1) + " / " + guruGobindPhotos.length;
     }
 
-    function closeLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % guruGobindPhotos.length;
+      showImage(currentIndex);
     }
 
-    document.getElementById('lightbox').addEventListener('click', function(e) {
-      if (e.target.id === 'lightbox') closeLightbox();
-    });
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + guruGobindPhotos.length) % guruGobindPhotos.length;
+      showImage(currentIndex);
+    }
+
+    // Event listener system ensures script runs after DOM is constructed
+    document.addEventListener("DOMContentLoaded", () => showImage(0));
   </script>
 
 </body>
