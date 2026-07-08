@@ -7,161 +7,317 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-LHNTFNW14H');
   </script>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <title>Baisakhi Festival | Sikh Traditions | Sikhs in India</title>
+  <title>Baisakhi Festival | Sikh Traditions & Culture | Sikhs in India</title>
 
-  <!-- SEO -->
-  <meta name="description" content="Explore the significance of Lohri in Sikh tradition, its cultural roots, and celebrations in Punjab.">
-  <meta name="keywords" content="Baisakhi Festival, Sikh Traditions, Punjabi Festivals, Sikh Culture, Dulla Bhatti, Sikhs in India">
+  <!-- SEO Meta -->
+  <meta name="description" content="Explore the cultural roots and traditional significance of Baisakhi in Sikh heritage and Punjab celebrations.">
+  <meta name="keywords" content="Baisakhi Festival, Sikh Traditions, Punjabi Festivals, Sikh Culture, Lohri Relevance, Sikhs in India">
   <meta name="author" content="Sikhs in India">
   <meta name="robots" content="index, follow">
 
-  <!-- Canonical -->
   <link rel="canonical" href="https://sikhsinindia.com/02-sikh-heritage/02-04-sikh-festivals/02-04-03-Baisakhi.html">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Baisakhi Festival | Sikh Traditions">
-  <meta property="og:description" content="Learn about Lohri in Sikh culture and its significance.">
+  <meta property="og:title" content="Baisakhi Festival | Sikh Traditions & Cultural Significance">
+  <meta property="og:description" content="Discover the cultural traditions, heritage highlights, and community celebrations of Baisakhi in Punjab.">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
   <meta property="og:url" content="https://sikhsinindia.com/02-sikh-heritage/02-04-sikh-festivals/02-04-03-Baisakhi.html">
   <meta property="og:type" content="website">
 
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --primary: #FF9933;
-      --black: #000000;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+    }
+
+    /* PAGE BACKGROUND */
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: var(--black);
-      color: var(--primary);
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
+
+    /* MAIN CONTAINER DISPLAY */
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* BRAND LOGO HEADER ARRANGEMENT */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 5vw, 42px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+      font-size: clamp(12px, 2.5vw, 16px);
+    }
+
+    /* TRADITIONAL ACCENT BAR */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
       text-align: center;
     }
 
-    header {
-      background-color: var(--primary);
-      color: var(--black);
-      padding: 1rem;
+    /* INNER SPACING CONTENT AREA */
+    .wrapper {
+      padding: 28px 36px;
+      flex: 1;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.2rem;
-    }
-
-    section {
-      padding: 1rem;
-    }
-
-    /* Image container */
+    /* IMAGE INTERFACE CARD */
     .card {
       width: 100%;
-      max-width: 1000px;
-      margin: auto;
-      background-color: var(--black);
+      background: #fff;
+      border: 1px solid rgba(13, 27, 62, 0.08);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      margin-bottom: 20px;
     }
 
     .card img {
       width: 100%;
       height: auto;
-      max-height: 75vh;
+      max-height: 65vh;
       object-fit: contain;
       display: block;
+      border-radius: 6px;
+      margin-bottom: 16px;
     }
 
-    /* Buttons and counter in one line */
+    /* CONTROLS BAR */
     .image-controls {
       display: flex;
-      justify-content: center; /* center items */
-      align-items: center;     /* vertically align counter */
-      gap: 20px;               /* space between items */
-      flex-wrap: wrap;         /* wrap on small screens */
-      margin: 10px 0 0 0;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    .image-controls button {
-      background-color: var(--primary);
-      color: var(--black);
-      border: 2px solid black;
-      padding: 10px 14px;
-      font-size: 16px;
+    .control-btn {
+      background-color: var(--navy);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
       font-weight: bold;
-      border-radius: 8px;
+      border-radius: 5px;
       cursor: pointer;
-      min-width: 80px;
+      transition: background-color 0.2s;
+    }
+
+    .control-btn:hover {
+      background-color: var(--gold);
+      color: var(--navy);
     }
 
     .image-counter {
-      background-color: var(--primary);
-      color: var(--black);
-      padding: 6px 12px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 8px;
-      display: inline-block;
-      min-width: 60px;
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      background-color: rgba(13, 27, 62, 0.05);
+      padding: 8px 16px;
+      border-radius: 5px;
+      min-width: 80px;
       text-align: center;
     }
 
-    /* Caption below controls */
-    #guruHarRaiCaption {
-      margin-top: 12px;
-      padding: 0 12px;
-      font-size: 16px;
+    #baisakhiCaption {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
       font-weight: bold;
+      color: var(--navy);
+      text-align: center;
+      margin-top: 14px;
     }
 
-    /* Back button */
-    .back-button {
-      width: 150px;
-      height: 36px;
-      font-size: 20px;
-      background-color: var(--primary);
-      color: black;
-      display: block;
-      margin: 20px auto;
+    /* STANDARDIZED UNIFORM FOOTER BLOCK */
+    .footer {
+      background: var(--navy-mid);
+      padding: 24px 16px;
+      border-top: 2px solid var(--gold);
+      margin-top: auto;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
       text-align: center;
-      line-height: 35px;
-      border-radius: 8px;
+    }
+
+    .footer-row {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .footer-left {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* Styled 3D Gold Action Back Link */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       text-decoration: none;
-      border: 2px solid black;
-      font-weight: bold;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
     }
 
-    footer {
-      background-color: var(--primary);
-      color: var(--black);
-      padding: 1rem;
-      margin-top: 20px;
+    .btn-back:hover {
+      filter: brightness(1.08);
     }
 
-    /* Mobile responsiveness */
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.6rem;
+    .btn-back:active {
+      transform: scale(0.97);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* SCREEN RESPONSIVENESS MEDIA QUERIES */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
       }
-      .image-controls {
-        gap: 10px;
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
       }
-      .image-controls button {
-        font-size: 14px;
-        padding: 8px 12px;
-        min-width: 60px;
+
+      .hero {
+        padding: 18px;
+        width: 100%;
       }
+
+      .wrapper {
+        padding: 18px 14px;
+      }
+
+      .card {
+        padding: 10px;
+      }
+
+      .card img {
+        max-height: 50vh;
+      }
+
+      .control-btn {
+        font-size: 13px;
+        padding: 8px 14px;
+      }
+
       .image-counter {
-        font-size: 14px;
-        padding: 4px 8px;
+        font-size: 13px;
+        padding: 6px 12px;
       }
-      #guruHarRaiCaption {
-        font-size: 14px;
+
+      #baisakhiCaption {
+        font-size: 15px;
+      }
+
+      .footer-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
       }
     }
   </style>
@@ -169,111 +325,132 @@
 
 <body>
 
-<header>
-  <h1>Baisakhi – Sikh Tradition & Cultural Significance</h1>
-</header>
+  <div class="poster">
 
-<section>
-
-  <div class="card">
-
-    <img id="guruHarRaiImg" alt="Baisakhi Festival Sikh Tradition" loading="lazy">
-
-    <!-- Buttons and counter on the same line -->
-    <div class="image-controls">
-      <button onclick="prevImage()">◀ Prev</button>
-      <div class="image-counter" id="imageCounter">1 / 9</div>
-      <button onclick="nextImage()">Next ▶</button>
+    <!-- HEADER BLOCK -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../../pictures/00-index/sikhsinindia.png" alt="Sikhs in India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Baisakhi <span>Festival</span></div>
+        <div class="hero-sub">Sikh Tradition & Cultural Significance</div>
+      </div>
     </div>
+
+    <!-- INTRODUCTION EMBELLISHMENT STRIP -->
+    <div class="intro">
+      Honoring Historical Legacies, Communal Harmony, and Seasonal Reflections
+    </div>
+
+    <!-- MAIN GRID WRAPPER SPACE -->
+    <div class="wrapper">
+
+      <div class="card">
+        <img id="baisakhiImg" alt="Baisakhi Festival Sikh Tradition Slide" loading="lazy">
+
+        <!-- Controls container system row -->
+        <div class="image-controls">
+          <button class="control-btn" onclick="prevImage()">◀ Prev</button>
+          <div class="image-counter" id="imageCounter">1 / 10</div>
+          <button class="control-btn" onclick="nextImage()">Next ▶</button>
+        </div>
+
+        <p id="baisakhiCaption"></p>
+      </div>
+
+    </div>
+
+    <!-- PREMIUM STRUCTURAL FOOTER BLOCK -->
+    <footer class="footer" role="contentinfo">
+      <div class="footer-content">
+        <div class="footer-row">
+          <a href="./02-04-sikh-festivals.html" class="btn-back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+            </svg>
+            Back to Sikh Festivals
+          </a>
+        </div>
+        <div class="footer-row footer-left">© 2026 SikhsinIndia.com – All Rights Reserved.</div>
+        <div class="footer-row footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </footer>
 
   </div>
 
-  <!-- Caption below controls -->
-  <p id="guruHarRaiCaption"></p>
+  <script>
+    const baisakhiPhotos = [
+      {
+        src: "https://drive.google.com/thumbnail?id=1hGsF0ZVCxh9QtbKZmJSYj6q5a9ScMP6B&sz=w1000",
+        caption: "Relevance of Lohri and role of Dulla Bhatti"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=16TaTvD2CTcXE_bNUPnLspweHB9LmKFK6&sz=w1000",
+        caption: "Relevance of Lohri and role of Dulla Bhatti"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1npPqQGCgnMYXD-7yvBmUcef3uXIa2FXn&sz=w1000",
+        caption: "Relevance of Lohri and role of Dulla Bhatti"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=112MHgJ7yNyPakT_Itt2H8BvMPwOtjINb&sz=w1000",
+        caption: "Relevance of Lohri and role of Dulla Bhatti"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1Ib5ppR85bz837nu-1sfakh-Jmef7tUkI&sz=w1000",
+        caption: "Relevance of Lohri and role of Dulla Bhatti"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1XttRn0KapPuPPYUu53TePmZ9P9tJKdOs&sz=w1000",
+        caption: "Relevance of Lohri and role of Dulla Bhatti"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1REGv7HDKXgugAdjn2rUI1A9_6hTUTMDz&sz=w1000",
+        caption: "Relevance of Lohri and role of Dulla Bhatti"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1lYT_AGTrestR5Apd0G23yyh4Z6SWwOtX&sz=w1000",
+        caption: "Relevance of Lohri and role of Dulla Bhatti"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1rUhXgscFXQ3_FQ5gZFB1xdLzSmUHYBg-&sz=w1000",
+        caption: "Relevance of Lohri and role of Dulla Bhatti"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1BWBiO6lD1cbFnqAeBxp6oFlD_2y-khYS&sz=w1000",
+        caption: "Relevance of Lohri and role of Dulla Bhatti"
+      }
+    ];
 
-</section>
+    let currentIndex = 0;
 
-<a href="./02-04-sikh-festivals.html" class="back-button">Back</a>
+    function showImage(index) {
+      const img = document.getElementById("baisakhiImg");
+      if (!img) return;
 
-<footer>
-  &copy; 2025 SikhsinIndia.com – All Rights Reserved.
-</footer>
+      img.src = baisakhiPhotos[index].src;
 
-<script>
-  const guruHarRaiPhotos = [
-    
-  
-  
-  {
-    src: "https://drive.google.com/thumbnail?id=1hGsF0ZVCxh9QtbKZmJSYj6q5a9ScMP6B&sz=w1000",
-    caption: "Relevance of Lohri and role of Dulla Bhatti"
-  },
-  
-  {
-    src: "https://drive.google.com/thumbnail?id=16TaTvD2CTcXE_bNUPnLspweHB9LmKFK6&sz=w1000",
-    caption: "Relevance of Lohri and role of Dulla Bhatti"
-  },
-  {
-    src: "https://drive.google.com/thumbnail?id=1npPqQGCgnMYXD-7yvBmUcef3uXIa2FXn&sz=w1000",
-    caption: "Relevance of Lohri and role of Dulla Bhatti"
-  },
-  {
-    src: "https://drive.google.com/thumbnail?id=112MHgJ7yNyPakT_Itt2H8BvMPwOtjINb&sz=w1000",
-    caption: "Relevance of Lohri and role of Dulla Bhatti"
-  },
-  {
-    src: "https://drive.google.com/thumbnail?id=1Ib5ppR85bz837nu-1sfakh-Jmef7tUkI&sz=w1000",
-    caption: "Relevance of Lohri and role of Dulla Bhatti"
-  },
-  {
-    src: "https://drive.google.com/thumbnail?id=1XttRn0KapPuPPYUu53TePmZ9P9tJKdOs&sz=w1000",
-    caption: "Relevance of Lohri and role of Dulla Bhatti"
-  },
-  {
-    src: "https://drive.google.com/thumbnail?id=1REGv7HDKXgugAdjn2rUI1A9_6hTUTMDz&sz=w1000",
-    caption: "Relevance of Lohri and role of Dulla Bhatti"
-  },
-  {
-    src: "https://drive.google.com/thumbnail?id=1lYT_AGTrestR5Apd0G23yyh4Z6SWwOtX&sz=w1000",
-    caption: "Relevance of Lohri and role of Dulla Bhatti"
-  },
-  {
-    src: "https://drive.google.com/thumbnail?id=1rUhXgscFXQ3_FQ5gZFB1xdLzSmUHYBg-&sz=w1000",
-    caption: "Relevance of Lohri and role of Dulla Bhatti"
-  }, {
-    src: "https://drive.google.com/thumbnail?id=1BWBiO6lD1cbFnqAeBxp6oFlD_2y-khYS&sz=w1000",
-    caption: "Relevance of Lohri and role of Dulla Bhatti"
-  },
+      document.getElementById("baisakhiCaption").textContent =
+        baisakhiPhotos[index].caption;
 
+      document.getElementById("imageCounter").textContent =
+        (index + 1) + " / " + baisakhiPhotos.length;
+    }
 
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % baisakhiPhotos.length;
+      showImage(currentIndex);
+    }
 
-  ];
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + baisakhiPhotos.length) % baisakhiPhotos.length;
+      showImage(currentIndex);
+    }
 
-  let currentIndex = 0;
-
-  function showImage(index) {
-    const img = document.getElementById("guruHarRaiImg");
-    img.src = guruHarRaiPhotos[index].src;
-
-    document.getElementById("guruHarRaiCaption").textContent =
-      guruHarRaiPhotos[index].caption;
-
-    document.getElementById("imageCounter").textContent =
-      (index + 1) + " / " + guruHarRaiPhotos.length;
-  }
-
-  function nextImage() {
-    currentIndex = (currentIndex + 1) % guruHarRaiPhotos.length;
-    showImage(currentIndex);
-  }
-
-  function prevImage() {
-    currentIndex = (currentIndex - 1 + guruHarRaiPhotos.length) % guruHarRaiPhotos.length;
-    showImage(currentIndex);
-  }
-
-  document.addEventListener("DOMContentLoaded", () => showImage(0));
-</script>
+    // Event listener system ensures script runs after DOM is constructed
+    document.addEventListener("DOMContentLoaded", () => showImage(0));
+  </script>
 
 </body>
 </html>
