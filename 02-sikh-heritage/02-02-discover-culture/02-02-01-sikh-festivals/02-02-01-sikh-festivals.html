@@ -229,6 +229,7 @@
     .btn-back {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 7px;
       font-family: 'Lato', sans-serif;
       font-size: 10px;
@@ -237,6 +238,7 @@
       text-transform: uppercase;
       text-decoration: none;
       width: 450px;
+      box-sizing: border-box;
       color: var(--navy);
       background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
       border: none;
@@ -250,6 +252,9 @@
         0 0 0 3.5px var(--gold);
       transition: filter 0.15s, transform 0.1s;
       flex-shrink: 0;
+      text-align: center;
+      white-space: normal;
+      line-height: 1.4;
     }
 
     .btn-back:hover {
@@ -310,8 +315,13 @@
       }
 
       .btn-back {
-        font-size: 9px;
-        padding: 8px 14px;
+        width: 100%;
+        max-width: 100%;
+        font-size: 11px;
+        padding: 10px 12px;
+        letter-spacing: 1px;
+        white-space: normal;
+        line-height: 1.4;
       }
 
       .footer-left,
@@ -360,7 +370,7 @@
         <br>
         <div class="footer-content">
           <a href="./02-02-01-01-02-happy-new-year.html" class="btn-back">Happy New Year</a>
-        </div>       <br>
+        </div> <br>
         <div class="footer-content">
           <a href="./02-02-01-01-03-sikh-happy-new-year.html" class="btn-back">Happy New Year - Sikh Greetings</a>
         </div>
@@ -375,7 +385,7 @@
         </p>
         <div class="footer-content">
           <a href="./02-02-01-02-01-lohri.html" class="btn-back">Lohri - The Festival of Harvest</a>
-        </div>       <br> 
+        </div> <br>
         <div class="footer-content">
           <a href="./02-02-01-02-02-lohri.html" class="btn-back">Lohri - The Festival of Harvest-Greetings</a>
         </div>
@@ -408,7 +418,7 @@
           <a href="./02-02-01-04-04-Baisakhi-P1.html" class="btn-back">Baisakhi - The Manifestation of Khalsa
             (Punjabi)</a>
           <a href="./02-02-01-04-05-Baisakhi.html" class="btn-back">Baisakhi - The Manifestation of Khalsa-
-          Greetings</a>
+            Greetings</a>
         </div>
       </section>
 
@@ -439,7 +449,7 @@
           could hold on and walk free. The day coincides with Diwali and is marked with the lighting of diyas at
           Gurdwaras, especially the Golden Temple. It stands as a powerful symbol of compassion, justice, and freedom
           for all.</p>
-                <div class="footer-content">
+        <div class="footer-content">
           <a href="./02-02-01-06-bandi-chhor-diwas.html" class="btn-back">Bandi Chhor Divas - The Day of Liberation</a>
         </div>
       </section>
@@ -450,7 +460,7 @@
           the mother's role is deeply revered, echoing teachings on nurturing and selfless devotion found in Gurbani.
           It's a day to express gratitude for her guidance and unconditional support. Families come together to
           celebrate the quiet grace and resilience mothers bring to every home.</p>
-              <div class="footer-content">
+        <div class="footer-content">
           <a href="./02-02-01-07-mothers-day.html" class="btn-back">Mother's Day - Honouring Maternal Love</a>
         </div>
       </section>
@@ -461,7 +471,7 @@
           teachings emphasize the father's role in shaping character, courage, and values within the family. It's an
           occasion to honour his sacrifices and the wisdom passed down through generations. Families mark the day with
           gratitude, recognizing the steady presence fathers bring to their lives.</p>
-                        <div class="footer-content">
+        <div class="footer-content">
           <a href="./02-02-01-08-fathers-day.html" class="btn-back">Father's Day - Honouring Paternal Guidance</a>
         </div>
       </section>
