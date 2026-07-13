@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Admin</title>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<style>
+body {
+  font-family: Arial;
+  background: black;
+  color: #FF9933;
+  margin: 0;
+  text-align: center;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  background: #222;
+  border: 1px solid #FF9933;
+  color: #FF9933;
+  box-sizing: border-box;
+}
+
+button {
+  background: #FF9933;
+  color: black;
+  border: none;
+  padding: 10px;
+  margin: 10px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+button:hover {
+  background: black;
+  color: #FF9933;
+  border: 1px solid #FF9933;
+}
+
+.card {
+  background: #222;
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid #FF9933;
+  border-radius: 8px;
+  text-align: left;
+}
+
+/* ── FIELD MANAGER PANEL ── */
+.field-panel {
+  max-width: 700px;
+  margin: 20px auto;
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #FF9933;
+  text-align: left;
+}
+
+.field-panel h2 {
+  text-align: center;
+  margin-top: 0;
+}
+
+.field-panel .hint {
+  font-size: 12px;
+  color: #cc8b3f;
+  margin: -4px 0 10px 0;
+}
+
+.field-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.field-row > * {
+  flex: 1 1 45%;
+}
+
+table.field-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+table.field-table th, table.field-table td {
+  border: 1px solid #FF9933;
+  padding: 8px;
+  font-size: 13px;
+  text-align: left;
+}
+
+table.field-table th {
+  background: #222;
+}
+
+.status-msg {
+  font-size: 13px;
+  margin-top: 8px;
+  min-height: 18px;
+}
+
+/* ── STATS PANEL ── */
+.stats-panel {
+  max-width: 700px;
+  margin: 20px auto;
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #FF9933;
+  text-align: left;
+}
+
+.stats-panel h2 {
+  text-align: center;
+  margin-top: 0;
+}
+
+.stats-cols {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.stats-cols > div {
+  flex: 1 1 260px;
+}
+
+table.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+table.stats-table th, table.stats-table td {
+  border: 1px solid #FF9933;
+  padding: 8px;
+  font-size: 13px;
+  text-align: left;
+}
+
+table.stats-table th {
+  background: #222;
+}
+
+table.stats-table td.count-col, table.stats-table th.count-col {
+  text-align: center;
+}
+
+table.stats-table tr.total-row td {
+  font-weight: bold;
+  background: #1a1a1a;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════════════════
+     FIELD (SCHEMA) MANAGER — bulk add/rename/delete/
+     retype a field across every document in "Quiz"
+     ══════════════════════════════════════════════ -->
+<div class="field-panel">
+  <h2>🛠 Manage Quiz Table Fields</h2>
+  <p class="hint">These actions apply directly to every document in the Firestore "Quiz" collection. Field changes cannot be undone — review before confirming.</p>
+
+  <input id="fmFieldName" placeholder="Field Name (existing, for rename/delete/retype)">
+  <input id="fmNewFieldName" placeholder="New Field Name (for rename, or new field to add)">
+
+  <div class="field-row">
+    <select id="fmFieldType">
+      <option value="string">String</option>
+      <option value="number">Number</option>
+      <option value="boolean">Boolean</option>
+      <option value="date">Date</option>
+    </select>
+    <input id="fmDefaultValue" placeholder="Default value (for Add Field)">
+  </div>
+
+  <div class="field-row">
+    <button onclick="addFieldToTable()">➕ Add Field</button>
+    <button onclick="renameFieldInTable()">✏️ Rename Field</button>
+    <button onclick="changeFieldTypeInTable()">🔁 Change Type</button>
+    <button onclick="deleteFieldFromTable()">🗑 Delete Field</button>
+  </div>
+
+  <div id="fmStatus" class="status-msg"></div>
+
+  <h3>Current Fields in "Quiz"</h3>
+  <button onclick="refreshFieldList()">↻ Refresh Field List</button>
+  <table class="field-table">
+    <thead>
+      <tr><th>Field Name</th><th>Sample Type</th><th>Present In</th></tr>
+    </thead>
+    <tbody id="fieldTableBody"></tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     QUIZ STATISTICS — Domain breakdown for every
+     Difficulty level (Easy / Moderate / Difficult)
+     ══════════════════════════════════════════════ -->
+<div class="stats-panel">
+  <h2>📊 Quiz Statistics</h2>
+  <button onclick="refreshStats()">↻ Refresh Statistics</button>
+
+  <h3>Domain Breakdown by Difficulty</h3>
+  <table class="stats-table">
+    <thead>
+      <tr>
+        <th>Difficulty</th>
+        <th class="count-col">Gurudwaras</th>
+        <th class="count-col">Gurus</th>
+        <th class="count-col">Sikhism</th>
+        <th class="count-col">Legends</th>
+        <th class="count-col">Misc</th>
+        <th class="count-col">Total</th>
+      </tr>
+    </thead>
+    <tbody id="crossStatsBody"></tbody>
+  </table>
+
+  <h3 style="margin-top:20px;">🔍 Raw Values Found (Diagnostics)</h3>
+  <p class="hint">If the table above shows all zeros, this shows exactly what's stored in your documents so we can fix the matching.</p>
+  <table class="stats-table">
+    <thead>
+      <tr><th>Field Detected</th><th>Raw Value</th><th class="count-col">Count</th></tr>
+    </thead>
+    <tbody id="diagnosticsBody"></tbody>
+  </table>
+</div>
+
+<div class="container">
+  <h2>Quiz Admin Panel</h2>
+
+  <form id="quizForm">
+    <input type="number" id="sno" placeholder="SNo" required>
+    <input type="text" id="question" placeholder="Question" required>
+    <input type="text" id="opt1" placeholder="Option 1" required>
+    <input type="text" id="opt2" placeholder="Option 2" required>
+    <input type="text" id="opt3" placeholder="Option 3" required>
+    <input type="text" id="opt4" placeholder="Option 4" required>
+    <input type="number" id="correct" placeholder="Correct Option (1-4)" min="1" max="4" required>
+
+    <label for="Difficulty" style="display:block; text-align:left; margin-top:6px;">Difficulty</label>
+    <select id="Difficulty" required>
+      <option value="1" selected>1 - Easy</option>
+      <option value="2">2 - Moderate</option>
+      <option value="3">3 - Difficult</option>
+    </select>
+
+    <label for="Domain" style="display:block; text-align:left; margin-top:6px;">Domain</label>
+    <select id="Domain" required>
+      <!-- <option value="" disabled selected>Select Domain</option> -->
+      <option value="Gurus" selected>Gurus</option>
+      <option value="Gurudwaras">Gurudwaras</option>
+      <option value="Sikhism">Sikhism</option>
+      <option value="Legends">Legends</option>
+      <option value="Misc">Misc</option>
+    </select>
+
+    <button type="submit">Save / Update</button>
+    <button type="button" onclick="clearForm()">Clear</button>
+  </form>
+
+  <h3>Quiz Records</h3>
+  <div id="records"></div>
+</div>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+  authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+  projectId: "sikhsinindia-67a6b"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+const recordsDiv = document.getElementById("records");
+const QUIZ_COLLECTION = "Quiz";
+
+// Friendly label for a stored Difficulty code (1/2/3) shown on each record card
+function difficultyLabel(val) {
+  const map = { "1": "1 - Easy", "2": "2 - Moderate", "3": "3 - Difficult" };
+  return map[String(val)] || (val ?? "");
+}
+
+// ══════════════════════════════════════════════
+// EXISTING QUIZ RECORD CRUD (unchanged behaviour)
+// ══════════════════════════════════════════════
+
+// LOAD DATA
+async function loadQuiz() {
+  recordsDiv.innerHTML = "";
+
+  const snapshot = await db.collection(QUIZ_COLLECTION).orderBy("SNo").get();
+
+  snapshot.forEach(doc => {
+    const d = doc.data();
+
+    const div = document.createElement("div");
+    div.className = "card";
+
+    div.innerHTML = `
+      <strong>SNo:</strong> ${d.SNo}<br>
+      <strong>Q:</strong> ${d.Question}<br>
+      1. ${d["Option-1"]}<br>
+      2. ${d["Option-2"]}<br>
+      3. ${d["Option-3"]}<br>
+      4. ${d["Option-4"]}<br>
+      <strong>Correct:</strong> ${d.Correct_Option}<br>
+      <strong>Difficulty:</strong> ${difficultyLabel(d.Difficulty)}<br>
+      <strong>Domain:</strong> ${d.Domain || ""}
+      <br><br>
+      <button onclick='edit(${JSON.stringify(d)})'>Edit</button>
+      <button onclick="remove(${d.SNo})">Delete</button>
+    `;
+
+    recordsDiv.appendChild(div);
+  });
+}
+
+// SAVE / UPDATE
+document.getElementById("quizForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const sno = parseInt(document.getElementById("sno").value);
+
+  const data = {
+    SNo: sno,
+    Question: document.getElementById("question").value,
+    "Option-1": document.getElementById("opt1").value,
+    "Option-2": document.getElementById("opt2").value,
+    "Option-3": document.getElementById("opt3").value,
+    "Option-4": document.getElementById("opt4").value,
+    Correct_Option: parseInt(document.getElementById("correct").value),
+    Difficulty: parseInt(document.getElementById("Difficulty").value),
+    Domain: document.getElementById("Domain").value
+  };
+
+  // CHECK IF EXISTS
+  const snapshot = await db.collection(QUIZ_COLLECTION).where("SNo", "==", sno).get();
+
+  if (!snapshot.empty) {
+    const docId = snapshot.docs[0].id;
+    await db.collection(QUIZ_COLLECTION).doc(docId).update(data);
+  } else {
+    await db.collection(QUIZ_COLLECTION).add(data);
+  }
+
+  clearForm();
+  loadQuiz();
+  refreshStats();
+});
+
+// EDIT
+function edit(d) {
+  document.getElementById("sno").value = d.SNo;
+  document.getElementById("question").value = d.Question;
+  document.getElementById("opt1").value = d["Option-1"];
+  document.getElementById("opt2").value = d["Option-2"];
+  document.getElementById("opt3").value = d["Option-3"];
+  document.getElementById("opt4").value = d["Option-4"];
+  document.getElementById("correct").value = d.Correct_Option;
+  document.getElementById("Difficulty").value = d.Difficulty || "1";
+  document.getElementById("Domain").value = d.Domain || "Gurus";
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// DELETE
+async function remove(sno) {
+  if (!confirm("Delete this question?")) return;
+
+  const snapshot = await db.collection(QUIZ_COLLECTION).where("SNo", "==", sno).get();
+
+  snapshot.forEach(doc => {
+    db.collection(QUIZ_COLLECTION).doc(doc.id).delete();
+  });
+
+  loadQuiz();
+  refreshStats();
+}
+
+// CLEAR
+function clearForm() {
+  document.getElementById("quizForm").reset();
+}
+
+// ══════════════════════════════════════════════
+// FIELD (SCHEMA) MANAGER — bulk operations that
+// touch every document in the Quiz collection
+// ══════════════════════════════════════════════
+
+function setStatus(msg, isError) {
+  const el = document.getElementById("fmStatus");
+  el.textContent = msg;
+  el.style.color = isError ? "#ff4d4d" : "#7CFC00";
+}
+
+// Fetch every document currently in the Quiz collection
+async function getAllQuizDocs() {
+  const snapshot = await db.collection(QUIZ_COLLECTION).get();
+  return snapshot.docs; // array of QueryDocumentSnapshot
+}
+
+// Split an array of docs into Firestore-batch-safe chunks (limit is 500 writes/batch)
+function createBatches(docs, size = 450) {
+  const batches = [];
+  for (let i = 0; i < docs.length; i += size) {
+    batches.push(docs.slice(i, i + size));
+  }
+  return batches;
+}
+
+// Convert a raw value/string into the requested Firestore-friendly type
+function castValue(value, type) {
+  switch (type) {
+    case "number": {
+      const n = parseFloat(value);
+      return isNaN(n) ? 0 : n;
+    }
+    case "boolean": {
+      if (typeof value === "boolean") return value;
+      const s = String(value).trim().toLowerCase();
+      return s === "true" || s === "1" || s === "yes";
+    }
+    case "date": {
+      const d = new Date(value);
+      return isNaN(d.getTime()) ? null : firebase.firestore.Timestamp.fromDate(d);
+    }
+    default: // string
+      return value === undefined || value === null ? "" : String(value);
+  }
+}
+
+// Scan all Quiz documents and list the distinct fields currently in use
+async function refreshFieldList() {
+  setStatus("Loading field list...");
+  try {
+    const docs = await getAllQuizDocs();
+    const fieldMap = {}; // fieldName -> { count, type }
+
+    docs.forEach(doc => {
+      const data = doc.data();
+      Object.keys(data).forEach(key => {
+        if (!fieldMap[key]) {
+          fieldMap[key] = { count: 0, type: typeof data[key] };
+        }
+        fieldMap[key].count++;
+      });
+    });
+
+    let html = "";
+    Object.keys(fieldMap).sort().forEach(name => {
+      const f = fieldMap[name];
+      html += `<tr><td>${name}</td><td>${f.type}</td><td>${f.count}/${docs.length}</td></tr>`;
+    });
+    document.getElementById("fieldTableBody").innerHTML = html || `<tr><td colspan="3">No documents found</td></tr>`;
+
+    setStatus(`Loaded ${docs.length} document(s), ${Object.keys(fieldMap).length} distinct field(s).`);
+  } catch (err) {
+    console.error(err);
+    setStatus("Error loading field list: " + err.message, true);
+  }
+}
+
+// ➕ ADD FIELD — adds a new field (with a default value) to every document that doesn't already have it
+async function addFieldToTable() {
+  const name = document.getElementById("fmNewFieldName").value.trim() || document.getElementById("fmFieldName").value.trim();
+  const type = document.getElementById("fmFieldType").value;
+  const rawDefault = document.getElementById("fmDefaultValue").value;
+
+  if (!name) return alert("Enter the field name to add (in 'New Field Name').");
+
+  const defaultValue = castValue(rawDefault, type);
+
+  try {
+    const docs = await getAllQuizDocs();
+    if (docs.length === 0) return alert("No documents found in the Quiz collection.");
+
+    if (!confirm(`Add field "${name}" (type: ${type}, default: ${JSON.stringify(defaultValue)}) to all ${docs.length} quiz record(s)?`)) return;
+
+    setStatus("Adding field...");
+    const batches = createBatches(docs);
+    let updated = 0;
+
+    for (const chunk of batches) {
+      const batch = db.batch();
+      chunk.forEach(doc => {
+        const data = doc.data();
+        if (!(name in data)) {
+          batch.update(doc.ref, { [name]: defaultValue });
+          updated++;
+        }
+      });
+      await batch.commit();
+    }
+
+    setStatus(`Field "${name}" added to ${updated} record(s).`);
+    refreshFieldList();
+    loadQuiz();
+    refreshStats();
+  } catch (err) {
+    console.error(err);
+    setStatus("Error adding field: " + err.message, true);
+  }
+}
+
+// ✏️ RENAME FIELD — copies the value to the new field name and removes the old one, across all docs
+async function renameFieldInTable() {
+  const oldName = document.getElementById("fmFieldName").value.trim();
+  const newName = document.getElementById("fmNewFieldName").value.trim();
+
+  if (!oldName || !newName) return alert("Enter both the current field name and the new field name.");
+
+  try {
+    const docs = await getAllQuizDocs();
+    const affected = docs.filter(doc => oldName in doc.data());
+
+    if (affected.length === 0) return alert(`No documents contain the field "${oldName}".`);
+
+    if (!confirm(`Rename "${oldName}" to "${newName}" across ${affected.length} record(s)?`)) return;
+
+    setStatus("Renaming field...");
+    const batches = createBatches(affected);
+
+    for (const chunk of batches) {
+      const batch = db.batch();
+      chunk.forEach(doc => {
+        const data = doc.data();
+        batch.update(doc.ref, {
+          [newName]: data[oldName],
+          [oldName]: firebase.firestore.FieldValue.delete()
+        });
+      });
+      await batch.commit();
+    }
+
+    setStatus(`Field renamed from "${oldName}" to "${newName}" in ${affected.length} record(s).`);
+    refreshFieldList();
+    loadQuiz();
+    refreshStats();
+  } catch (err) {
+    console.error(err);
+    setStatus("Error renaming field: " + err.message, true);
+  }
+}
+
+// 🔁 CHANGE TYPE — converts the field's value to the selected type, across all docs that have it
+async function changeFieldTypeInTable() {
+  const name = document.getElementById("fmFieldName").value.trim();
+  const newType = document.getElementById("fmFieldType").value;
+
+  if (!name) return alert("Enter the field name to convert.");
+
+  try {
+    const docs = await getAllQuizDocs();
+    const affected = docs.filter(doc => name in doc.data());
+
+    if (affected.length === 0) return alert(`No documents contain the field "${name}".`);
+
+    if (!confirm(`Convert field "${name}" to type "${newType}" across ${affected.length} record(s)?`)) return;
+
+    setStatus("Converting field type...");
+    const batches = createBatches(affected);
+
+    for (const chunk of batches) {
+      const batch = db.batch();
+      chunk.forEach(doc => {
+        const data = doc.data();
+        const converted = castValue(data[name], newType);
+        batch.update(doc.ref, { [name]: converted });
+      });
+      await batch.commit();
+    }
+
+    setStatus(`Field "${name}" converted to "${newType}" in ${affected.length} record(s).`);
+    refreshFieldList();
+    loadQuiz();
+    refreshStats();
+  } catch (err) {
+    console.error(err);
+    setStatus("Error changing field type: " + err.message, true);
+  }
+}
+
+// 🗑 DELETE FIELD — removes the field entirely from every document that has it
+async function deleteFieldFromTable() {
+  const name = document.getElementById("fmFieldName").value.trim();
+
+  if (!name) return alert("Enter the field name to delete.");
+
+  try {
+    const docs = await getAllQuizDocs();
+    const affected = docs.filter(doc => name in doc.data());
+
+    if (affected.length === 0) return alert(`No documents contain the field "${name}".`);
+
+    if (!confirm(`Permanently delete field "${name}" from ${affected.length} record(s)? This cannot be undone.`)) return;
+
+    setStatus("Deleting field...");
+    const batches = createBatches(affected);
+
+    for (const chunk of batches) {
+      const batch = db.batch();
+      chunk.forEach(doc => {
+        batch.update(doc.ref, { [name]: firebase.firestore.FieldValue.delete() });
+      });
+      await batch.commit();
+    }
+
+    setStatus(`Field "${name}" deleted from ${affected.length} record(s).`);
+    refreshFieldList();
+    loadQuiz();
+    refreshStats();
+  } catch (err) {
+    console.error(err);
+    setStatus("Error deleting field: " + err.message, true);
+  }
+}
+
+// ══════════════════════════════════════════════
+// QUIZ STATISTICS — Domain breakdown per Difficulty
+// ══════════════════════════════════════════════
+
+// Standard difficulty buckets, always shown even at 0
+const DIFFICULTY_LEVELS = ["Easy", "Moderate", "Difficult"];
+
+// Domain columns, always shown even at 0. These match the exact values
+// offered in the Domain dropdown on the quiz form. Anything that doesn't
+// match one of them (including blank) is grouped under "Misc".
+const DOMAIN_CATEGORIES = ["Gurudwaras", "Gurus", "Sikhism", "Legends", "Misc"];
+
+// Look up a value on a document by trying several possible field-name
+// spellings/casings (Firestore keys are case-sensitive, so "difficulty"
+// won't be found via d.Difficulty). Returns {key, value} of the first match.
+function findField(data, candidateNames) {
+  const keys = Object.keys(data);
+  const normalize = s => s.toLowerCase().replace(/[\s_-]/g, "");
+  for (const candidate of candidateNames) {
+    const target = normalize(candidate);
+    const foundKey = keys.find(k => normalize(k) === target);
+    if (foundKey !== undefined) return { key: foundKey, value: data[foundKey] };
+  }
+  return { key: null, value: undefined };
+}
+
+// Fuzzy-match a raw Difficulty value to one of the standard levels.
+// Handles text ("Easy Level"), single-letter codes (E/M/D/H), and
+// numeric codes (1/2/3), in addition to plain case differences.
+function normalizeDifficulty(raw) {
+  if (raw === undefined || raw === null || raw === "") return null;
+
+  // Numeric codes: 1 = Easy, 2 = Moderate, 3 = Difficult
+  if (typeof raw === "number" || /^\d+$/.test(String(raw).trim())) {
+    const n = parseInt(raw, 10);
+    if (n === 1) return "Easy";
+    if (n === 2) return "Moderate";
+    if (n === 3) return "Difficult";
+    return null;
+  }
+
+  const s = String(raw).trim().toLowerCase();
+  if (!s) return null;
+
+  // Single-letter codes
+  if (s === "e") return "Easy";
+  if (s === "m") return "Moderate";
+  if (s === "d" || s === "h") return "Difficult";
+
+  // Text substrings
+  if (s.includes("easy")) return "Easy";
+  if (s.includes("mod") || s.includes("medium") || s.includes("inter")) return "Moderate";
+  if (s.includes("diff") || s.includes("hard")) return "Difficult";
+
+  return null; // still unrecognised
+}
+
+// Match a raw Domain value to one of the fixed domain columns. The quiz
+// form's Domain dropdown only ever saves "Gurus", "Gurudwaras", "Sikhism",
+// "Legends", or "Misc", so an exact (case-insensitive) match is tried
+// first; a fuzzy substring fallback catches older/inconsistent records.
+function normalizeDomain(raw) {
+  const s = (raw === undefined || raw === null ? "" : String(raw)).trim();
+  if (!s) return "Misc";
+
+  const exactMatch = DOMAIN_CATEGORIES.find(cat => cat.toLowerCase() === s.toLowerCase());
+  if (exactMatch) return exactMatch;
+
+  const lower = s.toLowerCase();
+  if (lower.includes("gurudwara") || lower.includes("gurdwara")) return "Gurudwaras";
+  if (lower.includes("guru")) return "Gurus";
+  if (lower.includes("sikh")) return "Sikhism";
+  if (lower.includes("legend")) return "Legends";
+  return "Misc";
+}
+
+async function refreshStats() {
+  try {
+    const docs = await getAllQuizDocs();
+
+    // matrix[difficulty][domain] = count
+    const matrix = {};
+    DIFFICULTY_LEVELS.forEach(level => {
+      matrix[level] = {};
+      DOMAIN_CATEGORIES.forEach(domain => matrix[level][domain] = 0);
+    });
+
+    let unrecognisedDifficultyCount = 0;
+
+    // Diagnostics: raw value -> count, plus which actual field key was used
+    const rawDifficultyCounts = {};
+    let difficultyFieldKey = null;
+    const rawDomainCounts = {};
+    let domainFieldKey = null;
+
+    docs.forEach(doc => {
+      const d = doc.data();
+
+      const difficultyField = findField(d, ["Difficulty", "Level", "Difficulty_Level", "DifficultyLevel", "Diff"]);
+      const domainField = findField(d, ["Domain", "Category", "Topic"]);
+
+      if (difficultyField.key) difficultyFieldKey = difficultyField.key;
+      if (domainField.key) domainFieldKey = domainField.key;
+
+      const rawDiffLabel = difficultyField.value === undefined || difficultyField.value === "" ? "(blank)" : String(difficultyField.value);
+      rawDifficultyCounts[rawDiffLabel] = (rawDifficultyCounts[rawDiffLabel] || 0) + 1;
+
+      const rawDomainLabel = domainField.value === undefined || domainField.value === "" ? "(blank)" : String(domainField.value);
+      rawDomainCounts[rawDomainLabel] = (rawDomainCounts[rawDomainLabel] || 0) + 1;
+
+      const level = normalizeDifficulty(difficultyField.value);
+      const domain = normalizeDomain(domainField.value);
+
+      if (level) {
+        matrix[level][domain]++;
+      } else {
+        unrecognisedDifficultyCount++;
+      }
+    });
+
+    // ── Render cross-tab rows ──
+    let html = "";
+    DIFFICULTY_LEVELS.forEach(level => {
+      const row = matrix[level];
+      const rowTotal = DOMAIN_CATEGORIES.reduce((sum, domain) => sum + row[domain], 0);
+      html += `<tr><td>${level}</td>`;
+      DOMAIN_CATEGORIES.forEach(domain => {
+        html += `<td class="count-col">${row[domain]}</td>`;
+      });
+      html += `<td class="count-col">${rowTotal}</td></tr>`;
+    });
+
+    // Row for questions whose Difficulty value didn't match Easy/Moderate/Difficult at all
+    if (unrecognisedDifficultyCount > 0) {
+      html += `<tr><td>Other / Unrecognised</td><td class="count-col" colspan="${DOMAIN_CATEGORIES.length}">—</td><td class="count-col">${unrecognisedDifficultyCount}</td></tr>`;
+    }
+
+    // ── Column totals + grand total ──
+    let grandTotal = 0;
+    html += `<tr class="total-row"><td>Total</td>`;
+    DOMAIN_CATEGORIES.forEach(domain => {
+      const colTotal = DIFFICULTY_LEVELS.reduce((sum, level) => sum + matrix[level][domain], 0);
+      grandTotal += colTotal;
+      html += `<td class="count-col">${colTotal}</td>`;
+    });
+    grandTotal += unrecognisedDifficultyCount;
+    html += `<td class="count-col">${grandTotal}</td></tr>`;
+
+    document.getElementById("crossStatsBody").innerHTML = html;
+
+    // ── Render diagnostics: exactly what's stored, so mismatches are visible ──
+    let diagHtml = "";
+    const diffKeyLabel = difficultyFieldKey || "(no matching field found)";
+    Object.keys(rawDifficultyCounts).sort().forEach(val => {
+      diagHtml += `<tr><td>Difficulty (key: "${diffKeyLabel}")</td><td>${val}</td><td class="count-col">${rawDifficultyCounts[val]}</td></tr>`;
+    });
+    const domainKeyLabel = domainFieldKey || "(no matching field found)";
+    Object.keys(rawDomainCounts).sort().forEach(val => {
+      diagHtml += `<tr><td>Domain (key: "${domainKeyLabel}")</td><td>${val}</td><td class="count-col">${rawDomainCounts[val]}</td></tr>`;
+    });
+    document.getElementById("diagnosticsBody").innerHTML = diagHtml || `<tr><td colspan="3">No documents found</td></tr>`;
+
+  } catch (err) {
+    console.error(err);
+    document.getElementById("crossStatsBody").innerHTML = `<tr><td colspan="6">Error loading stats: ${err.message}</td></tr>`;
+    document.getElementById("diagnosticsBody").innerHTML = `<tr><td colspan="3">Error loading diagnostics</td></tr>`;
+  }
+}
+
+// INIT
+loadQuiz();
+refreshFieldList();
+refreshStats();
+</script>
+
+<a href="../07-02-quiz-for-kids.html" class="back-button" 
+   style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
+          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
+          line-height: 30px; border-radius: 8px; text-decoration: none; 
+          border: 2px solid black;">
+    <b>Back</b>
+  </a>
+
+</body>
+</html>

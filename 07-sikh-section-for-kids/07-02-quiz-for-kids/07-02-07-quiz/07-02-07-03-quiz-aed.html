@@ -83,6 +83,21 @@ button:hover {
     <input type="text" id="opt3" placeholder="Option 3" required>
     <input type="text" id="opt4" placeholder="Option 4" required>
     <input type="number" id="correct" placeholder="Correct Option (1-4)" min="1" max="4" required>
+<label for="Difficulty">Difficulty</label>
+<select id="Difficulty" required>
+    <option value="1" selected>1 - Easy</option>
+    <option value="2">2 - Moderate</option>
+    <option value="3">3 - Difficult</option>
+</select>
+
+<label for="Domain">Domain</label>
+<select id="Domain" required>
+    <option value="Gurus" selected>Gurus</option>
+    <option value="Gurudwaras">Gurudwaras</option>
+    <option value="Sikhism">Sikhism</option>
+    <option value="Legends">Legends</option>
+    <option value="Misc">Misc</option>
+</select>
 
     <button type="submit">Save / Update</button>
     <button type="button" onclick="clearForm()">Clear</button>
@@ -123,9 +138,11 @@ async function loadQuiz() {
       2. ${d["Option-2"]}<br>
       3. ${d["Option-3"]}<br>
       4. ${d["Option-4"]}<br>
-      <strong>Correct:</strong> ${d.Correct_Option}
+<strong>Correct:</strong> ${d.Correct_Option}<br>
+<strong>Difficulty:</strong> ${d.Difficulty}<br>
+<strong>Domain:</strong> ${d.Domain}<br>
       <br><br>
-      <button onclick='edit(${JSON.stringify(d)})'>Edit</button>
+      <button onclick="edit('${doc.id}')">Edit</button>
       <button onclick="remove(${d.SNo})">Delete</button>
     `;
 
@@ -146,7 +163,9 @@ document.getElementById("quizForm").addEventListener("submit", async (e) => {
     "Option-2": document.getElementById("opt2").value,
     "Option-3": document.getElementById("opt3").value,
     "Option-4": document.getElementById("opt4").value,
-    Correct_Option: parseInt(document.getElementById("correct").value)
+    Correct_Option: parseInt(document.getElementById("correct").value),
+    Difficulty: document.getElementById("Difficulty").value,
+    Domain: document.getElementById("Domain").value
   };
 
   // CHECK IF EXISTS
@@ -164,18 +183,24 @@ document.getElementById("quizForm").addEventListener("submit", async (e) => {
 });
 
 // EDIT
-function edit(d) {
-  document.getElementById("sno").value = d.SNo;
-  document.getElementById("question").value = d.Question;
-  document.getElementById("opt1").value = d["Option-1"];
-  document.getElementById("opt2").value = d["Option-2"];
-  document.getElementById("opt3").value = d["Option-3"];
-  document.getElementById("opt4").value = d["Option-4"];
-  document.getElementById("correct").value = d.Correct_Option;
+async function edit(docId) {
+    const docSnap = await db.collection("Quiz").doc(docId).get();
+    if (!docSnap.exists) return;
 
-  window.scrollTo({ top: 0, behavior: "smooth" });
+    const d = docSnap.data();
+
+    document.getElementById("sno").value = d.SNo;
+    document.getElementById("question").value = d.Question;
+    document.getElementById("opt1").value = d["Option-1"];
+    document.getElementById("opt2").value = d["Option-2"];
+    document.getElementById("opt3").value = d["Option-3"];
+    document.getElementById("opt4").value = d["Option-4"];
+    document.getElementById("correct").value = d.Correct_Option;
+    document.getElementById("Difficulty").value = (d.Difficulty || 1).toString();
+    document.getElementById("Domain").value = d.Domain || "Gurus";
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
-
 // DELETE
 async function remove(sno) {
   if (!confirm("Delete this question?")) return;

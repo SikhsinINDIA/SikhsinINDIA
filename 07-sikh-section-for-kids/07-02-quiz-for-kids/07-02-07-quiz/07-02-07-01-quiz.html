@@ -1,369 +1,827 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <!-- Google tag (gtag.js) -->
+  <!-- Google tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-LHNTFNW14H');
   </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sikh Quiz</title>
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #000;
-  margin: 0;
-  -webkit-text-size-adjust: 100%;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-.container {
-  max-width: 700px;
-  margin: auto;
-  background: #fff;
-  padding: 20px;
-  min-height: 100vh;
-  box-sizing: border-box;
-}
+  <title>Sikhs in India | Sikh Quiz</title>
 
-h2 { text-align: center; }
+  <meta name="description"
+    content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
+  <meta name="author" content="Sikhs in India">
+  <meta name="robots" content="index, follow">
 
-.question {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 20px 0;
-  line-height: 1.4;
-}
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
 
-.options {
-  display: grid;
-  gap: 10px;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
-.option {
-  padding: 14px;
-  border: 2px solid #FF9933;
-  border-radius: 10px;
-  cursor: pointer;
-  background: #fff5eb;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 1.3;
-  transition: 0.2s;
-}
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+    }
 
-.option:active {
-  transform: scale(0.98);
-}
+    /* PAGE BACKGROUND */
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
 
-.option:hover {
-  background: #FF9933;
-  color: #000;
-}
+    /* MAIN CONTAINER */
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+      overflow: hidden;
+    }
 
-.correct {
-  background: #c8f7c5 !important;
-  border-color: green;
-}
+    /* HEADER WITH LOGO */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
 
-.wrong {
-  background: #fde2e2 !important;
-  border-color: red;
-}
+    .logo-wrap {
+      padding: 16px 20px;
+    }
 
-.message {
-  margin-top: 15px;
-  font-weight: bold;
-  text-align: center;
-  font-size: 16px;
-  min-height: 20px;
-}
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
 
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  margin-bottom: 10px;
-  gap: 10px;
-}
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
 
-.footer-btn {
-  display: block;
-  width: 100%;
-  margin: 20px auto;
-  padding: 12px;
-  background: #FF9933;
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 16px;
-}
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 6vw, 54px);
+      font-weight: 900;
+      color: #fff;
+    }
 
-.footer-btn:active {
-  transform: scale(0.98);
-}
+    .hero-title span {
+      color: var(--gold);
+    }
 
-/* RESULT CARD */
-.result-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
-}
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
 
-.result-card {
-  background: #fff;
-  padding: 25px;
-  border-radius: 14px;
-  text-align: center;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
+    /* GOLD BAR */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      text-align: center;
+    }
 
-.result-card h3 {
-  margin-bottom: 10px;
-  font-size: 22px;
-}
+    /* MAIN WRAPPER */
+    .wrapper {
+      padding: 28px 36px;
+    }
 
-.result-card p {
-  font-size: 18px;
-}
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 24px;
+    }
 
-.result-card button {
-  margin-top: 15px;
-  padding: 12px;
-  width: 100%;
-  border: none;
-  background: #FF9933;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 16px;
-}
+    /* SELECTION CONTAINER */
+    .setup-container {
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      margin-bottom: 26px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
 
-/* 📱 MOBILE RESPONSIVE */
-@media (max-width: 600px) {
-  .container {
-    padding: 15px;
-  }
+    .setup-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
 
-  .question {
-    font-size: 18px;
-  }
+    .level-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
 
-  .option {
-    font-size: 15px;
-    padding: 12px;
-  }
+    .btn-level {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--navy);
+      border: 2px solid var(--navy);
+      padding: 12px 24px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
 
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    .btn-level:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--navy);
+    }
 
-  .result-card {
-    padding: 20px;
-  }
-}
-</style>
+    /* ACTIVE QUIZ WRAPPER */
+    .quiz-container {
+      display: none;
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 26px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      color: var(--navy);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .topbar span {
+      color: var(--gold);
+    }
+
+    .question {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option {
+      padding: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-left: 5px solid var(--gold);
+      border-radius: 6px;
+      cursor: pointer;
+      background: #fdfcf9;
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 1.4;
+      color: var(--navy);
+      transition: all 0.2s;
+    }
+
+    .option:active {
+      transform: scale(0.99);
+    }
+
+    .option:hover {
+      background: var(--cream);
+      border-color: var(--gold);
+    }
+
+    .correct {
+      background: #e2f5e1 !important;
+      border-color: #4caf50 !important;
+      border-left-color: #4caf50 !important;
+      color: #1b5e20 !important;
+    }
+
+    .wrong {
+      background: #fde2e2 !important;
+      border-color: #f44336 !important;
+      border-left-color: #f44336 !important;
+      color: #b71c1c !important;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-weight: 700;
+      text-align: center;
+      font-size: 15px;
+      min-height: 22px;
+      color: var(--navy);
+    }
+
+    .footer-btn {
+      display: block;
+      width: 100%;
+      margin: 20px auto 0 auto;
+      padding: 14px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background-color 0.2s;
+    }
+
+    .footer-btn:hover {
+      background: #1d2a54;
+    }
+
+    .footer-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* RESULT MODAL OVERLAY */
+    .result-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(13, 27, 62, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 1000;
+    }
+
+    .result-card {
+      background: var(--cream);
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+      border: 3px solid var(--gold);
+    }
+
+    .result-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      margin-bottom: 15px;
+      font-size: 26px;
+    }
+
+    .result-card p {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .result-card button {
+      padding: 12px;
+      width: 100%;
+      border: none;
+      background: var(--navy);
+      color: #fff;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: background 0.2s;
+    }
+
+    .extra-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 25px;
+    }
+
+    .btn-admin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #fff;
+      background: #1a1a2e;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: 30px;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* 3D gold style for the Back button */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* MOBILE BREAKPOINTS */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .wrapper {
+        padding: 18px 14px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .setup-title {
+        font-size: 18px;
+      }
+
+      .question {
+        font-size: 18px;
+      }
+
+      .option {
+        font-size: 14px;
+        padding: 12px;
+      }
+
+      .footer {
+        padding: 14px 12px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
-  <h2>Sikh Quiz</h2>
+  <div class="poster">
 
-  <div class="topbar">
-    <div>Score: <span id="score">0</span></div>
-    <div>Question: <span id="qNo">1</span></div>
+    <!-- HEADER WITH SIKHSININDIA LOGO -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Sikh <span>Quiz</span></div>
+        <div class="hero-sub">Test Your Knowledge of Sikh History & Heritage</div>
+      </div>
+    </div>
+
+    <div class="intro">
+      Discover the Legends, Gurus, Gurudwaras and Principles of Sikhi
+    </div>
+
+    <div class="wrapper">
+
+      <h1>Sikh History Quiz</h1>
+
+      <!-- STEP 1: CHOOSE DIFFICULTY LEVEL -->
+      <div id="levelSelection" class="setup-container">
+        <div class="setup-title">Choose Difficulty Level</div>
+        <div class="level-buttons">
+          <button class="btn-level" onclick="startQuizWithLevel('Easy')">Easy Level</button>
+          <button class="btn-level" onclick="startQuizWithLevel('Difficult')">Difficult Level</button>
+        </div>
+        <p style="font-size: 13px; color: #666;">Select a level to load 10 random questions according to the blueprint rules.</p>
+      </div>
+
+      <!-- LOADING INDICATOR -->
+      <div id="loadingScreen" class="setup-container" style="display: none;">
+        <div style="font-weight: bold; color: var(--navy); font-size: 16px;">Loading questions from Firebase database...</div>
+      </div>
+
+      <!-- STEP 2: ACTIVE PLAYFIELD -->
+      <div id="quizContainer" class="quiz-container">
+        <div class="topbar">
+          <div>Score: <span id="score">0</span></div>
+          <div>Level: <span id="currentLevelDisplay">-</span></div>
+          <div>Question: <span id="qNo">1</span>/10</div>
+        </div>
+
+        <div id="question" class="question">Loading...</div>
+        <div id="options" class="options"></div>
+        <div id="message" class="message"></div>
+
+        <button class="footer-btn" id="nextBtn" onclick="nextQuestion()">Next</button>
+      </div>
+
+      <div class="extra-buttons">
+        <a href="07-02-07-02-quiz-password.html" class="btn-admin">Admin Dashboard</a>
+      </div>
+
+    </div>
+
+    <!-- SITE FOOTER FRAME -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="../07-02-quiz-for-kids.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </div>
+
   </div>
 
-  <div id="question" class="question">Loading...</div>
-  <div id="options" class="options"></div>
-  <div id="message" class="message"></div>
-
-  <button class="footer-btn" onclick="nextQuestion()">Next</button>
-</div>
-
-<!-- RESULT CARD -->
-<div class="result-overlay" id="resultBox">
-  <div class="result-card">
-    <h3>🎉 Quiz Completed!</h3>
-    <p id="finalScore"></p>
-    <button onclick="restartQuiz()">Restart Quiz</button>
+  <!-- COMPLETION DIALOG MODAL -->
+  <div class="result-overlay" id="resultBox">
+    <div class="result-card">
+      <h3>🎉 Quiz Completed!</h3>
+      <p id="finalScore"></p>
+      <button onclick="restartQuiz()">Restart Quiz</button>
+    </div>
   </div>
-</div>
 
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <!-- Firebase JavaScript SDK Components (Compat mode to protect database bindings) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
-  authDomain: "sikhsinindia-67a6b.firebaseapp.com",
-  projectId: "sikhsinindia-67a6b",
-  storageBucket: "sikhsinindia-67a6b.appspot.com",
-  messagingSenderId: "622603668882",
-  appId: "1:622603668882:web:953c6a07864b235fdd054b"
-};
+  <script>
+    // System Configurations
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b"
+    };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-let quizData = [];
-let currentIndex = 0;
-let score = 0;
-let answered = false;
+    let allFetchedQuestions = [];
+    let quizData = [];
+    let currentIndex = 0;
+    let score = 0;
+    let answered = false;
+    let selectedLevel = "";
 
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-async function loadQuiz() {
-  const snapshot = await db.collection("Quiz").get();
-
-  let allQuestions = snapshot.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data()
-  }));
-
-  // Remove duplicates
-  const uniqueQuestionsMap = new Map();
-  allQuestions.forEach(q => {
-    if (!uniqueQuestionsMap.has(q.Question)) {
-      uniqueQuestionsMap.set(q.Question, q);
+    // Array Randomizer utility
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
     }
-  });
 
-  allQuestions = Array.from(uniqueQuestionsMap.values());
+    // Connects to Firebase collection and downloads dataset once
+    async function startQuizWithLevel(level) {
+      selectedLevel = level;
+      document.getElementById("levelSelection").style.display = "none";
+      document.getElementById("loadingScreen").style.display = "block";
 
-  // Shuffle
-  allQuestions = shuffleArray(allQuestions);
+      try {
+        if (allFetchedQuestions.length === 0) {
+          const snapshot = await db.collection("Quiz").get();
+          let rawQuestions = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }));
 
-  // Pick 10 unique questions
-  quizData = allQuestions.slice(0, 10);
+          // Remove duplicate string keys cleanly
+          const uniqueMap = new Map();
+          rawQuestions.forEach(q => {
+            if (q.Question && !uniqueMap.has(q.Question)) {
+              uniqueMap.set(q.Question, q);
+            }
+          });
+          allFetchedQuestions = Array.from(uniqueMap.values());
 
-  showQuestion();
-}
+          console.log("Total database questions loaded:", allFetchedQuestions.length);
+        }
 
-function showQuestion() {
-  answered = false;
-  document.getElementById("message").textContent = "";
+        buildQuizFromBlueprint(level);
 
-  const q = quizData[currentIndex];
+        document.getElementById("loadingScreen").style.display = "none";
+        document.getElementById("quizContainer").style.display = "block";
+        document.getElementById("currentLevelDisplay").textContent = level;
 
-  document.getElementById("question").textContent = q["Question"];
-  document.getElementById("qNo").textContent = currentIndex + 1;
+        showQuestion();
+      } catch (error) {
+        console.error("Error launching quiz: ", error);
+        alert("Failed to load quiz data. Check console execution contexts.");
+        restartQuiz();
+      }
+    }
 
-  const optionsDiv = document.getElementById("options");
-  optionsDiv.innerHTML = "";
+    // Filters questions strictly matching blueprint specifications and respective level.
+    //
+    //   Easy       (Level 2 / Moderate):  1 Gurudwaras, 6 Gurus, 2 Sikhism, 1 Legends  = 10
+    //   Difficult  (Level 3 / Difficult): 1 Gurudwaras, 3 Gurus, 4 Sikhism, 2 Legends  = 10
+    function buildQuizFromBlueprint(level) {
+      // Determines target database difficulty value:
+      // "Easy" strictly targets "2" (Moderate)
+      // "Difficult" strictly targets "3" (Difficult)
+      const targetLevelValue = (level === "Easy") ? "2" : "3";
 
-  [1,2,3,4].forEach(i => {
-    const div = document.createElement("div");
-    div.className = "option";
-    div.textContent = q["Option-" + i];
-    div.onclick = () => selectAnswer(div, i, q["Correct_Option"]);
-    optionsDiv.appendChild(div);
-  });
+      // Blueprint counts per category, keyed by level so both branches share one source of truth.
+      const blueprint = (level === "Easy")
+        ? { Gurudwaras: 1, Gurus: 6, Sikhism: 2, Legends: 1 }
+        : { Gurudwaras: 1, Gurus: 3, Sikhism: 4, Legends: 2 };
 
-  // 👉 ADD THIS LINE HERE
-  document.querySelector(".footer-btn").disabled = true;
-}
+      // 1. ISOLATE BY LEVEL FIRST: Completely filter out all other levels before matching categories
+      let levelSpecificPool = allFetchedQuestions.filter(q => {
+        const rawLevel = (q.Difficulty !== undefined && q.Difficulty !== null) ? q.Difficulty.toString().toLowerCase().trim() : "";
+        return (rawLevel === targetLevelValue);
+      });
 
-function selectAnswer(element, selectedIndex, correctIndex) {
-  if (answered) return;
-  answered = true;
+      console.log(`Analyzing level isolation pool. Found ${levelSpecificPool.length} questions matching Level ${targetLevelValue}.`);
 
-  const allOptions = document.querySelectorAll(".option");
+      // Helper to pull categories STRICTLY from the filtered level-isolated pool
+      const getCategoryQuestions = (categoryName) => {
+        return levelSpecificPool.filter(q => {
+          const catField = (q.Domain || q.domain || "").toLowerCase().trim();
+          return catField === categoryName.toLowerCase().trim();
+        });
+      };
 
-  allOptions.forEach((opt, index) => {
-    if (index + 1 === correctIndex) opt.classList.add("correct");
-  });
+      let selectedPool = [];
+      let shortfall = 0;
 
-  const correctText = quizData[currentIndex]["Option-" + correctIndex];
+      Object.entries(blueprint).forEach(([categoryName, count]) => {
+        const pool = shuffleArray(getCategoryQuestions(categoryName));
+        const picked = pool.slice(0, count);
+        if (picked.length < count) {
+          console.warn(`Blueprint shortfall: needed ${count} "${categoryName}" questions at Level ${targetLevelValue}, only found ${picked.length}.`);
+          shortfall += (count - picked.length);
+        }
+        selectedPool = selectedPool.concat(picked);
+      });
 
-  if (selectedIndex === correctIndex) {
-    element.classList.add("correct");
-    document.getElementById("message").textContent = "✅ Correct!";
-    score++;
-  } else {
-    element.classList.add("wrong");
-    document.getElementById("message").textContent = "❌ Correct Answer: " + correctText;
-  }
+      // 2. SAME-LEVEL FALLBACK: If the blueprint pool is short of 10, fill the gap strictly from
+      // other categories at the SAME level (keeps difficulty consistent even if category mix drifts).
+      if (selectedPool.length < 10) {
+        console.warn(`Blueprint only produced ${selectedPool.length}/10 questions for Level ${targetLevelValue}. Filling remaining ${10 - selectedPool.length} from other same-level categories...`);
 
-  document.getElementById("score").textContent = score;
+        const selectedIds = new Set(selectedPool.map(q => q.id));
+        let unusedSameLevelQuestions = shuffleArray(levelSpecificPool.filter(q => !selectedIds.has(q.id)));
 
-  // 👉 ADD THIS LINE HERE
-  document.querySelector(".footer-btn").disabled = false;
-}
+        while (selectedPool.length < 10 && unusedSameLevelQuestions.length > 0) {
+          selectedPool.push(unusedSameLevelQuestions.pop());
+        }
+      }
 
-function nextQuestion() {
-  if (!answered) {
-    alert("Please select an answer first!");
-    return;
-  }
+      // 3. ULTIMATE FAILURE FALLBACK: Only if the entire Level pool has fewer than 10 total items in
+      // the database, fall back to global questions to prevent a crash. This should be treated as a
+      // data problem to fix in Firebase, not normal behavior.
+      if (selectedPool.length < 10) {
+        console.error(`CRITICAL: Fewer than 10 total questions exist for Level ${targetLevelValue} in the database. Borrowing from other levels to reach 10.`);
+        const selectedIds = new Set(selectedPool.map(q => q.id));
+        let unusedGlobalQuestions = shuffleArray(allFetchedQuestions.filter(q => !selectedIds.has(q.id)));
 
-  currentIndex++;
+        while (selectedPool.length < 10 && unusedGlobalQuestions.length > 0) {
+          selectedPool.push(unusedGlobalQuestions.pop());
+        }
+      }
 
-  if (currentIndex >= quizData.length) {
-    showResult();
-    return;
-  }
+      quizData = shuffleArray(selectedPool).slice(0, 10);
 
-  showQuestion();
-}
+      // Safety check: warn (but don't crash) if any question in the final quiz doesn't
+      // actually match the requested difficulty — this should only fire if the database
+      // genuinely has fewer than 10 questions at this level.
+      const mismatched = quizData.filter(q => {
+        const rawLevel = (q.Difficulty !== undefined && q.Difficulty !== null) ? q.Difficulty.toString().toLowerCase().trim() : "";
+        return rawLevel !== targetLevelValue;
+      });
+      if (mismatched.length > 0) {
+        console.warn(`${mismatched.length} question(s) in this "${level}" quiz do not match Difficulty ${targetLevelValue}. The Level-${targetLevelValue} pool was too small, so a fallback tier borrowed from elsewhere.`, mismatched);
+      }
+    }
 
-function showResult() {
-  document.getElementById("finalScore").textContent =
-    `Your Score: ${score} / ${quizData.length}`;
-  document.getElementById("resultBox").style.display = "flex";
-}
+    function showQuestion() {
+      answered = false;
+      document.getElementById("message").textContent = "";
 
-function restartQuiz() {
-  currentIndex = 0;
-  score = 0;
-  document.getElementById("resultBox").style.display = "none";
-  document.getElementById("score").textContent = 0;
-  loadQuiz();
-}
+      const q = quizData[currentIndex];
 
-loadQuiz();
-</script>
-  
+      if (!q) {
+        console.error("Index target missing in quizData context:", currentIndex);
+        alert("An error occurred trying to parse the question array.");
+        restartQuiz();
+        return;
+      }
+
+      document.getElementById("question").textContent = q["Question"] || "Question text missing";
+      document.getElementById("qNo").textContent = currentIndex + 1;
+
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+
+      [1, 2, 3, 4].forEach(i => {
+        const optionVal = q["Option-" + i];
+        if (optionVal) {
+          const div = document.createElement("div");
+          div.className = "option";
+          div.textContent = optionVal;
+          div.onclick = () => selectAnswer(div, i, parseInt(q["Correct_Option"]));
+          optionsDiv.appendChild(div);
+        }
+      });
+
+      document.getElementById("nextBtn").disabled = true;
+    }
+
+    function selectAnswer(element, selectedIndex, correctIndex) {
+      if (answered) return;
+      answered = true;
+
+      const allOptions = document.querySelectorAll(".option");
+
+      allOptions.forEach((opt, index) => {
+        if (index + 1 === correctIndex) opt.classList.add("correct");
+      });
+
+      const correctText = quizData[currentIndex]["Option-" + correctIndex];
+
+      if (selectedIndex === correctIndex) {
+        element.classList.add("correct");
+        document.getElementById("message").textContent = "✅ Correct!";
+        score++;
+      } else {
+        element.classList.add("wrong");
+        document.getElementById("message").textContent = "❌ Correct Answer: " + correctText;
+      }
+
+      document.getElementById("score").textContent = score;
+      document.getElementById("nextBtn").disabled = false;
+    }
+
+    function nextQuestion() {
+      if (!answered) return;
+
+      currentIndex++;
+
+      if (currentIndex >= quizData.length || currentIndex >= 10) {
+        showResult();
+        return;
+      }
+
+      showQuestion();
+    }
+
+    function showResult() {
+      document.getElementById("finalScore").textContent = `Your Final Score: ${score} / ${quizData.length}`;
+      document.getElementById("resultBox").style.display = "flex";
+    }
+
+    // Restores the original initial level choice matrix screen
+    function restartQuiz() {
+      currentIndex = 0;
+      score = 0;
+      selectedLevel = "";
+      document.getElementById("resultBox").style.display = "none";
+      document.getElementById("quizContainer").style.display = "none";
+      document.getElementById("score").textContent = 0;
+      document.getElementById("levelSelection").style.display = "block";
+    }
+  </script>
+
 </body>
-<a href="../07-02-quiz-for-kids.html" class="back-button" 
-   style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
-          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
-          line-height: 30px; border-radius: 8px; text-decoration: none; 
-          border: 2px solid black;">
-    <b>Back</b>
-  </a>
-  <br>
-        <a href="07-02-07-02-quiz-password.html" class="back-button" 
-   style="width: 150px; height: 36px; font-size: 12px; background-color: black; 
-          color: white; display: block; margin: 20px auto 0 auto; text-align: center; 
-          line-height: 30px; border-radius: 8px; text-decoration: none; 
-          border: 2px solid black;">
-    <b>Admin</b>
-  </a>
-    <br>
+
 </html>
