@@ -1,234 +1,725 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-LHNTFNW14H');
   </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz Admin</title>
 
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<style>
-body {
-  font-family: Arial;
-  background: black;
-  color: #FF9933;
-  margin: 0;
-  text-align: center;
-}
+  <title>Sikhs in India | Quiz Admin</title>
 
-.container {
-  max-width: 700px;
-  margin: auto;
-  background: #111;
-  padding: 20px;
-  border-radius: 10px;
-}
+  <meta name="description"
+    content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
+  <meta name="author" content="Sikhs in India">
+  <meta name="robots" content="noindex, nofollow">
 
-input {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  background: #222;
-  border: 1px solid #FF9933;
-  color: #FF9933;
-}
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
 
-button {
-  background: #FF9933;
-  color: black;
-  border: none;
-  padding: 10px;
-  margin: 10px 5px;
-  cursor: pointer;
-  border-radius: 5px;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
-button:hover {
-  background: black;
-  color: #FF9933;
-  border: 1px solid #FF9933;
-}
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+    }
 
-.card {
-  background: #222;
-  margin-top: 15px;
-  padding: 10px;
-  border: 1px solid #FF9933;
-  border-radius: 8px;
-  text-align: left;
-}
-</style>
+    /* PAGE BACKGROUND */
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
+
+    /* MAIN CONTAINER */
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* HEADER WITH LOGO */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 6vw, 54px);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* GOLD BAR */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* MAIN WRAPPER */
+    .wrapper {
+      padding: 28px 36px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 24px;
+    }
+
+    /* FORM CARD STYLING */
+    .setup-container {
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 26px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .setup-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      font-size: 22px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    /* FORM LAYOUT */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .full-width {
+      grid-column: span 2;
+    }
+
+    label {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      text-align: left;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-left: 5px solid var(--gold);
+      border-radius: 6px;
+      font-size: 15px;
+      font-family: 'Lato', sans-serif;
+      background: #fdfcf9;
+      color: var(--navy);
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--navy);
+    }
+
+    /* BUTTONS */
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .btn-submit {
+      flex: 2;
+      padding: 14px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: #1d2a54;
+    }
+
+    .btn-clear {
+      flex: 1;
+      padding: 14px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: #7a7a7a;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.2s;
+    }
+
+    .btn-clear:hover {
+      background: #5d5d5d;
+    }
+
+    /* RECORDS CARDS */
+    .records-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      font-size: 26px;
+      margin: 30px 0 15px 0;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 8px;
+    }
+
+    #records {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+      border-left: 5px solid var(--navy);
+      text-align: left;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .card-meta span {
+      color: var(--navy);
+    }
+
+    .card-question {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .card-options-list {
+      margin-left: 15px;
+      margin-bottom: 15px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .correct-badge {
+      display: inline-block;
+      background: #e2f5e1;
+      color: #1b5e20;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-edit {
+      padding: 8px 16px;
+      background: var(--navy);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .btn-edit:hover {
+      background: #1d2a54;
+    }
+
+    .btn-delete {
+      padding: 8px 16px;
+      background: #f44336;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .btn-delete:hover {
+      background: #b71c1c;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: 30px;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* 3D gold style for the Back button */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* MOBILE BREAKPOINTS */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .wrapper {
+        padding: 18px 14px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .setup-container {
+        padding: 18px 14px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full-width {
+        grid-column: span 1;
+      }
+
+      .footer {
+        padding: 14px 12px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
-  <h2>Quiz Admin Panel</h2>
+  <div class="poster">
 
-  <form id="quizForm">
-    <input type="number" id="sno" placeholder="SNo" required>
-    <input type="text" id="question" placeholder="Question" required>
-    <input type="text" id="opt1" placeholder="Option 1" required>
-    <input type="text" id="opt2" placeholder="Option 2" required>
-    <input type="text" id="opt3" placeholder="Option 3" required>
-    <input type="text" id="opt4" placeholder="Option 4" required>
-    <input type="number" id="correct" placeholder="Correct Option (1-4)" min="1" max="4" required>
-<label for="Difficulty">Difficulty</label>
-<select id="Difficulty" required>
-    <option value="1" selected>1 - Easy</option>
-    <option value="2">2 - Moderate</option>
-    <option value="3">3 - Difficult</option>
-</select>
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Admin <span>Dashboard</span></div>
+        <div class="hero-sub">Database Maintenance & Question Management</div>
+      </div>
+    </div>
 
-<label for="Domain">Domain</label>
-<select id="Domain" required>
-    <option value="Gurus" selected>Gurus</option>
-    <option value="Gurudwaras">Gurudwaras</option>
-    <option value="Sikhism">Sikhism</option>
-    <option value="Legends">Legends</option>
-    <option value="Misc">Misc</option>
-</select>
+    <div class="intro">
+      Discover, Write, Update and Organize the Quiz Question Base
+    </div>
 
-    <button type="submit">Save / Update</button>
-    <button type="button" onclick="clearForm()">Clear</button>
-  </form>
+    <div class="wrapper">
 
-  <h3>Quiz Records</h3>
-  <div id="records"></div>
-</div>
+      <h1>Database Editor</h1>
 
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
-  authDomain: "sikhsinindia-67a6b.firebaseapp.com",
-  projectId: "sikhsinindia-67a6b"
-};
+      <div class="setup-container">
+        <div class="setup-title" id="formHeader">Add / Edit Question</div>
+        <form id="quizForm">
+          <div class="form-grid">
+            <div>
+              <label for="sno">SNo (Unique Identifier)</label>
+              <input type="number" id="sno" placeholder="e.g. 45" required>
+            </div>
+            <div>
+              <label for="Difficulty">Difficulty Rating</label>
+              <select id="Difficulty" required>
+                <option value="1">1 - Easy</option>
+                <option value="2" selected>2 - Moderate</option>
+                <option value="3">3 - Difficult</option>
+              </select>
+            </div>
+            <div class="full-width">
+              <label for="question">Question Statement</label>
+              <input type="text" id="question" placeholder="Enter question description..." required>
+            </div>
+            <div>
+              <label for="opt1">Option 1</label>
+              <input type="text" id="opt1" placeholder="Option 1" required>
+            </div>
+            <div>
+              <label for="opt2">Option 2</label>
+              <input type="text" id="opt2" placeholder="Option 2" required>
+            </div>
+            <div>
+              <label for="opt3">Option 3</label>
+              <input type="text" id="opt3" placeholder="Option 3" required>
+            </div>
+            <div>
+              <label for="opt4">Option 4</label>
+              <input type="text" id="opt4" placeholder="Option 4" required>
+            </div>
+            <div>
+              <label for="correct">Correct Option Number</label>
+              <input type="number" id="correct" placeholder="Correct index (1-4)" min="1" max="4" required>
+            </div>
+            <div>
+              <label for="Domain">Category Domain</label>
+              <select id="Domain" required>
+                <option value="Gurus" selected>Gurus</option>
+                <option value="Gurudwaras">Gurudwaras</option>
+                <option value="Sikhism">Sikhism</option>
+                <option value="Legends">Legends</option>
+                <option value="Misc">Misc</option>
+              </select>
+            </div>
+          </div>
+          <div class="button-group">
+            <button type="submit" class="btn-submit">Save / Update Record</button>
+            <button type="button" class="btn-clear" onclick="clearForm()">Clear</button>
+          </div>
+        </form>
+      </div>
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+      <div class="records-title">Quiz Records</div>
+      <div id="records">Loading database records...</div>
 
-const recordsDiv = document.getElementById("records");
+    </div>
 
-// LOAD DATA
-async function loadQuiz() {
-  recordsDiv.innerHTML = "";
+    <div class="footer">
+      <div class="footer-content">
+        <a href="07-02-07-01-quiz.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </div>
 
-  const snapshot = await db.collection("Quiz").orderBy("SNo").get();
+  </div>
 
-  snapshot.forEach(doc => {
-    const d = doc.data();
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
-    const div = document.createElement("div");
-    div.className = "card";
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b"
+    };
 
-    div.innerHTML = `
-      <strong>SNo:</strong> ${d.SNo}<br>
-      <strong>Q:</strong> ${d.Question}<br>
-      1. ${d["Option-1"]}<br>
-      2. ${d["Option-2"]}<br>
-      3. ${d["Option-3"]}<br>
-      4. ${d["Option-4"]}<br>
-<strong>Correct:</strong> ${d.Correct_Option}<br>
-<strong>Difficulty:</strong> ${d.Difficulty}<br>
-<strong>Domain:</strong> ${d.Domain}<br>
-      <br><br>
-      <button onclick="edit('${doc.id}')">Edit</button>
-      <button onclick="remove(${d.SNo})">Delete</button>
-    `;
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-    recordsDiv.appendChild(div);
-  });
-}
+    const recordsDiv = document.getElementById("records");
 
-// SAVE / UPDATE
-document.getElementById("quizForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
+    // LOAD DATA
+    async function loadQuiz() {
+      recordsDiv.innerHTML = "<div style='text-align: center; font-weight: bold;'>Updating local dashboard view...</div>";
 
-  const sno = parseInt(document.getElementById("sno").value);
+      try {
+        const snapshot = await db.collection("Quiz").orderBy("SNo").get();
+        recordsDiv.innerHTML = "";
 
-  const data = {
-    SNo: sno,
-    Question: document.getElementById("question").value,
-    "Option-1": document.getElementById("opt1").value,
-    "Option-2": document.getElementById("opt2").value,
-    "Option-3": document.getElementById("opt3").value,
-    "Option-4": document.getElementById("opt4").value,
-    Correct_Option: parseInt(document.getElementById("correct").value),
-    Difficulty: document.getElementById("Difficulty").value,
-    Domain: document.getElementById("Domain").value
-  };
+        if (snapshot.empty) {
+          recordsDiv.innerHTML = "<div style='text-align: center; color: #666;'>No questions found in the database.</div>";
+          return;
+        }
 
-  // CHECK IF EXISTS
-  const snapshot = await db.collection("Quiz").where("SNo", "==", sno).get();
+        snapshot.forEach(doc => {
+          const d = doc.data();
 
-  if (!snapshot.empty) {
-    const docId = snapshot.docs[0].id;
-    await db.collection("Quiz").doc(docId).update(data);
-  } else {
-    await db.collection("Quiz").add(data);
-  }
+          const div = document.createElement("div");
+          div.className = "card";
 
-  clearForm();
-  loadQuiz();
-});
+          div.innerHTML = `
+            <div class="card-meta">
+              <span>SNo: ${d.SNo}</span>
+              <span>Diff: ${d.Difficulty || 1} | Domain: ${d.Domain || "Misc"}</span>
+            </div>
+            <div class="card-question">${d.Question}</div>
+            <div class="card-options-list">
+              1. ${d["Option-1"]}<br>
+              2. ${d["Option-2"]}<br>
+              3. ${d["Option-3"]}<br>
+              4. ${d["Option-4"]}
+            </div>
+            <div class="correct-badge">Correct Option: ${d.Correct_Option}</div>
+            <div class="card-actions">
+              <button class="btn-edit" onclick="edit('${doc.id}')">Edit</button>
+              <button class="btn-delete" onclick="remove(${d.SNo})">Delete</button>
+            </div>
+          `;
 
-// EDIT
-async function edit(docId) {
-    const docSnap = await db.collection("Quiz").doc(docId).get();
-    if (!docSnap.exists) return;
+          recordsDiv.appendChild(div);
+        });
+      } catch (error) {
+        console.error("Firestore database connection error: ", error);
+        recordsDiv.innerHTML = "<div style='text-align: center; color: red; font-weight: bold;'>Could not load data. Check Firebase configurations.</div>";
+      }
+    }
 
-    const d = docSnap.data();
+    // SAVE / UPDATE
+    document.getElementById("quizForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    document.getElementById("sno").value = d.SNo;
-    document.getElementById("question").value = d.Question;
-    document.getElementById("opt1").value = d["Option-1"];
-    document.getElementById("opt2").value = d["Option-2"];
-    document.getElementById("opt3").value = d["Option-3"];
-    document.getElementById("opt4").value = d["Option-4"];
-    document.getElementById("correct").value = d.Correct_Option;
-    document.getElementById("Difficulty").value = (d.Difficulty || 1).toString();
-    document.getElementById("Domain").value = d.Domain || "Gurus";
+      const sno = parseInt(document.getElementById("sno").value);
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
-}
-// DELETE
-async function remove(sno) {
-  if (!confirm("Delete this question?")) return;
+      const data = {
+        SNo: sno,
+        Question: document.getElementById("question").value,
+        "Option-1": document.getElementById("opt1").value,
+        "Option-2": document.getElementById("opt2").value,
+        "Option-3": document.getElementById("opt3").value,
+        "Option-4": document.getElementById("opt4").value,
+        Correct_Option: parseInt(document.getElementById("correct").value),
+        Difficulty: document.getElementById("Difficulty").value,
+        Domain: document.getElementById("Domain").value
+      };
 
-  const snapshot = await db.collection("Quiz").where("SNo", "==", sno).get();
+      try {
+        // CHECK IF EXISTS
+        const snapshot = await db.collection("Quiz").where("SNo", "==", sno).get();
 
-  snapshot.forEach(doc => {
-    db.collection("Quiz").doc(doc.id).delete();
-  });
+        if (!snapshot.empty) {
+          const docId = snapshot.docs[0].id;
+          await db.collection("Quiz").doc(docId).update(data);
+          alert(`Successfully updated SNo ${sno}`);
+        } else {
+          await db.collection("Quiz").add(data);
+          alert(`Successfully added SNo ${sno}`);
+        }
 
-  loadQuiz();
-}
+        clearForm();
+        loadQuiz();
+      } catch (error) {
+        console.error("Failed to commit updates to collection: ", error);
+        alert("Operation aborted. Check network access settings.");
+      }
+    });
 
-// CLEAR
-function clearForm() {
-  document.getElementById("quizForm").reset();
-}
+    // EDIT
+    async function edit(docId) {
+      try {
+        const docSnap = await db.collection("Quiz").doc(docId).get();
+        if (!docSnap.exists) return;
 
-// INIT
-loadQuiz();
-</script>
+        const d = docSnap.data();
+
+        document.getElementById("sno").value = d.SNo;
+        document.getElementById("question").value = d.Question;
+        document.getElementById("opt1").value = d["Option-1"];
+        document.getElementById("opt2").value = d["Option-2"];
+        document.getElementById("opt3").value = d["Option-3"];
+        document.getElementById("opt4").value = d["Option-4"];
+        document.getElementById("correct").value = d.Correct_Option;
+        document.getElementById("Difficulty").value = (d.Difficulty || 2).toString();
+        document.getElementById("Domain").value = d.Domain || "Gurus";
+
+        document.getElementById("formHeader").textContent = `Editing SNo: ${d.SNo}`;
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } catch (error) {
+        console.error("Error staging editing item: ", error);
+      }
+    }
+
+    // DELETE
+    async function remove(sno) {
+      if (!confirm(`Delete SNo ${sno} completely?`)) return;
+
+      try {
+        const snapshot = await db.collection("Quiz").where("SNo", "==", sno).get();
+
+        const batch = db.batch();
+        snapshot.forEach(doc => {
+          batch.delete(doc.ref);
+        });
+        await batch.commit();
+
+        loadQuiz();
+      } catch (error) {
+        console.error("Deletion transaction error: ", error);
+        alert("Could not complete delete order.");
+      }
+    }
+
+    // CLEAR
+    function clearForm() {
+      document.getElementById("quizForm").reset();
+      document.getElementById("formHeader").textContent = "Add / Edit Question";
+    }
+
+    // INITIALIZE
+    loadQuiz();
+  </script>
 
 </body>
-  <a href="../07-02-quiz-for-kids.html" class="back-button" 
-   style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
-          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
-          line-height: 30px; border-radius: 8px; text-decoration: none; 
-          border: 2px solid black;">
-    <b>Back</b>
-  </a>
+
 </html>

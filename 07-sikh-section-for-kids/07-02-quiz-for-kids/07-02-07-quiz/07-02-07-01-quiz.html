@@ -498,7 +498,7 @@
     <!-- HEADER WITH SIKHSININDIA LOGO -->
     <div class="header">
       <div class="logo-wrap">
-        <img class="logo-img" src="../../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
       </div>
       <div class="hero">
         <div class="hero-title">Sikh <span>Quiz</span></div>
@@ -792,22 +792,54 @@
       document.getElementById("nextBtn").disabled = false;
     }
 
-    function nextQuestion() {
+    async function nextQuestion() {
       if (!answered) return;
 
       currentIndex++;
 
       if (currentIndex >= quizData.length || currentIndex >= 10) {
-        showResult();
+        await showResult();
         return;
       }
 
       showQuestion();
     }
 
-    function showResult() {
+    // Writes the completed quiz's score to the "Quiz_Score" collection.
+    // SNo is auto-incremented using a Firestore transaction against a dedicated
+    // counter document, so concurrent submissions from different users never collide.
+    async function saveQuizScore(type, finalScore) {
+      const counterRef = db.collection("Counters").doc("QuizScoreCounter");
+      const newScoreRef = db.collection("Quiz_Score").doc();
+
+      await db.runTransaction(async (transaction) => {
+        const counterDoc = await transaction.get(counterRef);
+        const currentValue = (counterDoc.exists && typeof counterDoc.data().value === "number")
+          ? counterDoc.data().value
+          : 0;
+        const nextSNo = currentValue + 1;
+
+        transaction.set(counterRef, { value: nextSNo });
+        transaction.set(newScoreRef, {
+          Date_Time: new Date().toLocaleString(),
+          Type: type,
+          Score: finalScore,
+          SNo: nextSNo
+        });
+      });
+    }
+
+    async function showResult() {
       document.getElementById("finalScore").textContent = `Your Final Score: ${score} / ${quizData.length}`;
       document.getElementById("resultBox").style.display = "flex";
+
+      try {
+        await saveQuizScore(selectedLevel, score);
+      } catch (error) {
+        // Don't block the user from seeing their result if the score write fails —
+        // just log it so it can be investigated.
+        console.error("Failed to save score to Quiz_Score:", error);
+      }
     }
 
     // Restores the original initial level choice matrix screen
