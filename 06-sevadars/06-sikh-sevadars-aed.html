@@ -8,134 +8,233 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-LHNTFNW14H');
   </script>
 
-  <!-- Meta description -->
-  <meta name="description"
-    content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <!-- Meta keywords -->
-  <meta name="keywords"
-    content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
+  <title>Sevadar Admin Dashboard | SikhsInIndia.com</title>
 
-  <!-- Author -->
-  <meta name="author" content="Sikhs in India">
-
-  <!-- Robots -->
-  <meta name="robots" content="index, follow">
-
-  <!-- Open Graph meta tags for social media -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Sikh Heritage & Traditions | Gurudwaras, Guru Nanak & Sikh Scriptures">
   <meta property="og:description"
     content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
   <meta property="og:url" content="https://sikhsinindia.com">
-  <meta property="og:type" content="sikhsinindia.com">
+  <meta property="og:type" content="website">
 
+  <meta name="description"
+    content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta name="keywords"
+    content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
+  <meta name="author" content="Sikhs in India">
+  <meta name="robots" content="noindex, nofollow">
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Sikhs in India: History, Culture & Present | SikhsInIndia.com </title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
 
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: black;
-      color: #FF9933;
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 0;
+      padding: 0
+    }
+
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+    }
+
+    /* PAGE BACKGROUND */
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
+
+    /* MAIN CONTAINER */
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* HEADER WITH LOGO */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 6vw, 46px);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* GOLD BAR */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
       text-align: center;
     }
 
-    header {
-      background-color: #FF9933;
-      padding: 1rem;
+    /* MAIN WRAPPER */
+    .wrapper {
+      padding: 28px 36px;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin: 1rem 0;
-      color: black;
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 18px;
     }
 
-    .content,
-    #form-container {
-      padding: 2rem;
-      max-width: 800px;
-      margin: auto;
-      text-align: left;
+    /* GENERIC PANEL CONTAINER (matches quiz setup-container) */
+    .panel {
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 26px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
     }
 
-    label,
-    input,
-    textarea {
+    /* ADD/EDIT FORM */
+    .form-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .form-field label {
       display: block;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .form-field input[type="text"],
+    .form-field input[type="file"] {
       width: 100%;
-      margin-bottom: 1rem;
-      font-size: 1rem;
+      padding: 11px 12px;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 6px;
+      background: var(--cream);
+      color: var(--navy);
     }
 
-    input,
-    textarea {
-      padding: 0.5rem;
-      border: 1px solid #FF9933;
-      border-radius: 5px;
-      background-color: #222;
-      color: #FF9933;
+    .form-field input[type="text"]:focus {
+      outline: none;
+      border-color: var(--gold);
     }
 
-    button {
-      background-color: #FF9933;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      margin: 0.5rem;
-      font-size: 1rem;
-      color: black;
+    .form-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* BUTTONS (navy fill, gold hover — matches quiz btn-level) */
+    .btn-action {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--navy);
+      border: 2px solid var(--navy);
+      padding: 12px 24px;
       cursor: pointer;
-      border-radius: 5px;
+      border-radius: 6px;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    button:hover {
-      background-color: black;
-      color: #FF9933;
-      border: 2px solid #FF9933;
+    .btn-action:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--navy);
     }
 
-    .sevadar-card {
-      background-color: #111;
-      border: 1px solid #FF9933;
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      text-align: left;
+    .btn-action:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
-    .sevadar-card img {
-      max-width: 150px;
-      height: auto;
-      border-radius: 5px;
-    }
-
-    .sevadar-card video {
-      max-width: 250px;
-      margin-top: 0.5rem;
+    .btn-action:disabled:hover {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: #fff;
     }
 
     .loader {
-      width: 16px;
-      height: 16px;
-      border: 3px solid black;
-      border-top: 3px solid transparent;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-top: 2px solid #fff;
       border-radius: 50%;
       display: inline-block;
       animation: spin 0.8s linear infinite;
-      margin-left: 8px;
       vertical-align: middle;
     }
 
@@ -145,49 +244,328 @@
       }
     }
 
-    button:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
+    /* SEVADAR RECORD CARDS */
+    #records-container {
+      display: grid;
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .sevadar-card {
+      background: #fdfcf9;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-left: 5px solid var(--gold);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+      transition: all 0.2s;
+    }
+
+    .sevadar-card:hover {
+      background: var(--cream);
+      border-color: var(--gold);
+    }
+
+    .sevadar-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid var(--gold);
+      flex-shrink: 0;
+    }
+
+    .sevadar-info {
+      flex: 1;
+      min-width: 180px;
+      text-align: left;
+      color: var(--navy);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .sevadar-info .name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .sevadar-info strong {
+      color: var(--navy);
+    }
+
+    .card-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-small {
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--navy);
+      border: none;
+      padding: 9px 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: all 0.2s;
+    }
+
+    .btn-small.edit:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .btn-small.delete {
+      background: #b71c1c;
+    }
+
+    .btn-small.delete:hover {
+      background: #8c1414;
+    }
+
+    .no-results {
+      text-align: center;
+      color: #666;
+      font-style: italic;
+      padding: 20px;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: 30px;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* 3D gold style for the Back button */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* MOBILE BREAKPOINTS */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .wrapper {
+        padding: 18px 14px;
+      }
+
+      .panel {
+        padding: 18px;
+      }
+
+      .sevadar-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .sevadar-info {
+        text-align: center;
+      }
+
+      .card-actions {
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .btn-small {
+        flex: 1;
+        max-width: 140px;
+      }
+
+      .footer {
+        padding: 14px 12px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>Sikh Sevadars</h1>
-  </header>
 
-  <div id="form-container">
-    <h2>Add / Edit Sevadar</h2>
-    <form id="sevadar-form">
-      <input type="hidden" id="docId" />
-      <label>Name: <input type="text" id="name" required></label>
-      <label>Mobile: <input type="text" id="mobile" required></label>
-      <label>Specializes In: <input type="text" id="specializes" required></label>
-      <label>City: <input type="text" id="city" required></label>
-      <label>State: <input type="text" id="state" required></label>
-      <label>Photo URL: <input type="text" id="photo"></label>
-      <label>Upload Photo:
-        <input type="file" id="photoFile" accept="image/*">
-      </label>
+  <div class="poster">
 
-      <label>Video URL: <input type="text" id="video"></label>
-      <button type="submit" id="submitBtn">
-        <span id="submitText">Submit</span>
-        <span id="loader" class="loader" style="display:none;"></span>
-      </button>
+    <!-- HEADER WITH SIKHSININDIA LOGO -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Sevadar <span>Admin</span></div>
+        <div class="hero-sub">Add, Edit & Manage Sikh Sevadar Records</div>
+      </div>
+    </div>
 
-      <button type="button" onclick="clearForm()">Clear</button>
-    </form>
+    <div class="intro">
+      Authorized dashboard — changes here reflect immediately on the public directory
+    </div>
+
+    <div class="wrapper">
+
+      <!-- ADD / EDIT FORM -->
+      <div class="panel">
+        <h2>Add / Edit Sevadar</h2>
+        <form id="sevadar-form" class="form-grid">
+          <input type="hidden" id="docId" />
+
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-field">
+            <label for="mobile">Mobile</label>
+            <input type="text" id="mobile" required>
+          </div>
+          <div class="form-field">
+            <label for="specializes">Specializes In</label>
+            <input type="text" id="specializes" required>
+          </div>
+          <div class="form-field">
+            <label for="city">City</label>
+            <input type="text" id="city" required>
+          </div>
+          <div class="form-field">
+            <label for="state">State</label>
+            <input type="text" id="state" required>
+          </div>
+          <div class="form-field">
+            <label for="photo">Photo URL</label>
+            <input type="text" id="photo">
+          </div>
+          <div class="form-field">
+            <label for="photoFile">Upload Photo</label>
+            <input type="file" id="photoFile" accept="image/*">
+          </div>
+          <div class="form-field">
+            <label for="video">Video URL</label>
+            <input type="text" id="video">
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="submitBtn" class="btn-action">
+              <span id="submitText">Submit</span>
+              <span id="loader" class="loader" style="display:none;"></span>
+            </button>
+            <button type="button" class="btn-action" onclick="clearForm()">Clear</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- RECORDS LIST -->
+      <div class="panel" id="records">
+        <h2>Sikh Sevadars</h2>
+        <div id="records-container"></div>
+      </div>
+
+    </div>
+
+    <!-- SITE FOOTER FRAME -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="../06-sevadars/06-sikh-sevadars.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </div>
+
   </div>
-
-  <div id="records">
-    <h2>Sikh Sevadars</h2>
-    <div id="records-container"></div>
-  </div>
-
-  <button type="button" onclick="goBack()"
-    style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto;">Back</button>
 
   <script>
     const firebaseConfig = {
@@ -210,31 +588,36 @@
 
       try {
         const snapshot = await db.collection("Sikh_Sevadars").get();
+
+        if (snapshot.empty) {
+          container.innerHTML = "<p class='no-results'>No sevadar records yet.</p>";
+          return;
+        }
+
         snapshot.forEach(doc => {
           const data = doc.data();
           const card = document.createElement("div");
           card.className = "sevadar-card";
 
           card.innerHTML = `
-            <p><strong>${data.Name}</strong><br>
-            <strong>Mobile:</strong> ${data.Mobile}<br>
-            <strong>Specializes:</strong> ${data.Specializes}<br>
-            <strong>City:</strong> ${data.City}, <strong>State:</strong> ${data.State}</p>
-            <strong>Image:</strong> ${data.Photo}<br>
-            <img src="${data.Photo}" alt="Sevadar Photo">
-            <br>
-
-            <strong>Video:</strong> ${data.Video}<br>
-             <strong>State:</strong> ${data.State}</p>
-  
-            <button onclick="editSevadar('${doc.id}', ${JSON.stringify(data).replace(/"/g, '&quot;')})">Edit</button>
-            <button onclick="deleteSevadar('${doc.id}')">Delete</button>
+            <img src="${data.Photo || ''}" alt="${data.Name || 'Sevadar Photo'}">
+            <div class="sevadar-info">
+              <span class="name">${data.Name || ''}</span>
+              <strong>Mobile:</strong> ${data.Mobile || ''}<br>
+              <strong>Specializes:</strong> ${data.Specializes || ''}<br>
+              <strong>City:</strong> ${data.City || ''}, <strong>State:</strong> ${data.State || ''}<br>
+              <strong>Video:</strong> ${data.Video || '—'}
+            </div>
+            <div class="card-actions">
+              <button class="btn-small edit" onclick="editSevadar('${doc.id}', ${JSON.stringify(data).replace(/"/g, '&quot;')})">Edit</button>
+              <button class="btn-small delete" onclick="deleteSevadar('${doc.id}')">Delete</button>
+            </div>
           `;
           container.appendChild(card);
         });
       } catch (err) {
         console.error(err);
-        container.innerHTML = "<p>Error loading records.</p>";
+        container.innerHTML = "<p class='no-results'>Error loading records.</p>";
       }
     }
 
@@ -246,17 +629,9 @@
       const id = document.getElementById("docId").value;
       const photoFile = document.getElementById("photoFile").files[0];
 
-      let photoURL = "";
+      let photoURL = document.getElementById("photo").value || "";
 
       try {
-        // Upload photo if selected
-        // if (photoFile) {
-        //   const fileName = `pictures/${Date.now()}_${photoFile.name}`;
-        //   const storageRef = storage.ref(fileName);
-        //   await storageRef.put(photoFile);
-        //   photoURL = await storageRef.getDownloadURL();
-        // }
-
         if (photoFile) {
           photoURL = await uploadToCloudinary(photoFile);
         }
@@ -270,7 +645,6 @@
           Photo: photoURL,
           Video: document.getElementById("video").value,
         };
-
 
         if (id) {
           await db.collection("Sikh_Sevadars").doc(id).update(data);
@@ -314,10 +688,6 @@
       document.getElementById("docId").value = '';
     }
 
-    function goBack() {
-      window.location.href = "../06-sevadars/06-sikh-sevadars.html";
-    }
-
     window.onload = loadSevadars;
 
     async function uploadToCloudinary(file) {
@@ -329,7 +699,6 @@
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", UPLOAD_PRESET);
-
       formData.append("folder", "sikh-sevadars");
 
       const response = await fetch(url, {
@@ -360,8 +729,8 @@
         loader.style.display = "none";
       }
     }
-
   </script>
+
 </body>
 
 </html>
