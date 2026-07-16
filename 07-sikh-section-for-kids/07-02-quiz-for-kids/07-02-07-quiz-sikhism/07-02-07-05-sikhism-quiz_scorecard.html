@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Quiz Scores | Sikhs in India</title>
+
+  <meta name="description" content="Sikh History Quiz scores and participation summary.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+      --green: #4caf50;
+      --red: #f44336;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
+
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* HEADER WITH LOGO */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 6vw, 54px);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .wrapper {
+      padding: 28px 36px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 24px;
+    }
+
+    /* LOADING / EMPTY STATE */
+    .status-box {
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      margin-bottom: 26px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    /* SCORES TABLE CARD */
+    .table-card {
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 26px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      display: none;
+      overflow-x: auto;
+    }
+
+    .table-card h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      font-size: 20px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 420px;
+    }
+
+    thead th {
+      text-align: left;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--navy);
+      padding: 12px 14px;
+    }
+
+    thead th:first-child {
+      border-radius: 6px 0 0 0;
+    }
+
+    thead th:last-child {
+      border-radius: 0 6px 0 0;
+    }
+
+    tbody td {
+      padding: 12px 14px;
+      font-size: 14px;
+      color: var(--navy);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--cream);
+    }
+
+    tbody tr:hover {
+      background: #fff3e2;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .badge-easy {
+      background: #e2f5e1;
+      color: #1b5e20;
+    }
+
+    .badge-difficult {
+      background: #fde2e2;
+      color: #b71c1c;
+    }
+
+    .score-cell {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+    }
+
+    /* SUMMARY FOOTER CARDS */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .summary-card {
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-top: 4px solid var(--gold);
+      border-radius: 8px;
+      padding: 18px 14px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .summary-card .label {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #666;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .summary-card .value {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 900;
+      color: var(--navy);
+    }
+
+    .summary-card .value span {
+      color: var(--gold);
+    }
+
+    /* SITE FOOTER FRAME */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: 30px;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* 3D gold style for the Back button (unchanged from quiz page) */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* MOBILE BREAKPOINTS */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .wrapper {
+        padding: 18px 14px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer {
+        padding: 14px 12px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+
+      /* Collapse the table into stacked cards on narrow screens */
+      table,
+      thead,
+      tbody,
+      th,
+      td,
+      tr {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tbody tr {
+        margin-bottom: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+        padding: 10px 12px;
+        background: #fdfcf9;
+      }
+
+      tbody tr:nth-child(even) {
+        background: var(--cream);
+      }
+
+      tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+        padding: 8px 4px;
+      }
+
+      tbody td:last-child {
+        border-bottom: none;
+      }
+
+      tbody td::before {
+        content: attr(data-label);
+        font-size: 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #999;
+        font-weight: 900;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="poster">
+
+    <!-- HEADER WITH SIKHSININDIA LOGO -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Quiz <span>Scores</span></div>
+        <div class="hero-sub">Sikh History Quiz — Participant Results</div>
+      </div>
+    </div>
+
+    <div class="intro">
+      All Submitted Scores &amp; Overall Performance Summary
+    </div>
+
+    <div class="wrapper">
+
+      <h1>Score Board</h1>
+
+      <!-- LOADING / EMPTY / ERROR STATE -->
+      <div id="statusBox" class="status-box">Loading scores from Firebase database...</div>
+
+      <!-- SCORES TABLE -->
+      <div id="tableCard" class="table-card">
+        <h2>All Participant Scores</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Date &amp; Time</th>
+              <th>Type</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody id="scoresBody"></tbody>
+        </table>
+      </div>
+
+      <!-- SUMMARY FOOTER -->
+      <div id="summaryGrid" class="summary-grid" style="display:none;">
+        <div class="summary-card">
+          <div class="label">Total Participants</div>
+          <div class="value" id="totalParticipants">0</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Avg. Score — Easy</div>
+          <div class="value" id="avgEasy">–</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Avg. Score — Difficult</div>
+          <div class="value" id="avgDifficult">–</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SITE FOOTER FRAME -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="07-02-07-03-sikhism-quiz-landing.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage &amp; Unity</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Firebase JavaScript SDK Components (Compat mode) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    async function loadScores() {
+      const statusBox = document.getElementById("statusBox");
+      const tableCard = document.getElementById("tableCard");
+      const summaryGrid = document.getElementById("summaryGrid");
+      const scoresBody = document.getElementById("scoresBody");
+
+      try {
+        // Ordered ascending by SNo — since SNo is assigned sequentially at the moment each
+        // quiz finishes, ascending SNo is equivalent to ascending Date_Time. We can't sort
+        // directly on Date_Time because it's stored as a locale display string (e.g.
+        // "7/14/2026, 4:32:10 PM"), which does not sort correctly as text.
+        const snapshot = await db.collection("Quiz_Score").orderBy("SNo", "asc").get();
+
+        if (snapshot.empty) {
+          statusBox.textContent = "No quiz scores have been submitted yet.";
+          return;
+        }
+
+        const rows = snapshot.docs.map(doc => doc.data());
+
+        // Build table rows
+        scoresBody.innerHTML = "";
+        rows.forEach(row => {
+          const tr = document.createElement("tr");
+
+          const dateTd = document.createElement("td");
+          dateTd.setAttribute("data-label", "Date & Time");
+          dateTd.textContent = row.Date_Time || "—";
+
+          const typeTd = document.createElement("td");
+          typeTd.setAttribute("data-label", "Type");
+          const badge = document.createElement("span");
+          const typeNormalized = (row.Type || "").toString().trim().toLowerCase();
+          badge.className = "badge " + (typeNormalized === "easy" ? "badge-easy" : "badge-difficult");
+          badge.textContent = row.Type || "—";
+          typeTd.appendChild(badge);
+
+          const scoreTd = document.createElement("td");
+          scoreTd.setAttribute("data-label", "Score");
+          scoreTd.className = "score-cell";
+          scoreTd.textContent = (row.Score !== undefined && row.Score !== null) ? `${row.Score} / 10` : "—";
+
+          tr.appendChild(dateTd);
+          tr.appendChild(typeTd);
+          tr.appendChild(scoreTd);
+          scoresBody.appendChild(tr);
+        });
+
+        // Build summary: total participants + average score per type
+        const easyScores = rows
+          .filter(r => (r.Type || "").toString().trim().toLowerCase() === "easy")
+          .map(r => Number(r.Score))
+          .filter(n => !isNaN(n));
+
+        const difficultScores = rows
+          .filter(r => (r.Type || "").toString().trim().toLowerCase() === "difficult")
+          .map(r => Number(r.Score))
+          .filter(n => !isNaN(n));
+
+        const average = (arr) => arr.length ? (arr.reduce((a, b) => a + b, 0) / arr.length) : null;
+
+        const avgEasy = average(easyScores);
+        const avgDifficult = average(difficultScores);
+
+        document.getElementById("totalParticipants").textContent = rows.length;
+        document.getElementById("avgEasy").innerHTML = avgEasy !== null
+          ? `${avgEasy.toFixed(1)}<span> / 10</span>`
+          : "–";
+        document.getElementById("avgDifficult").innerHTML = avgDifficult !== null
+          ? `${avgDifficult.toFixed(1)}<span> / 10</span>`
+          : "–";
+
+        statusBox.style.display = "none";
+        tableCard.style.display = "block";
+        summaryGrid.style.display = "grid";
+
+      } catch (error) {
+        console.error("Failed to load Quiz_Score data:", error);
+        statusBox.textContent = "Failed to load scores. Please check your connection or Firestore permissions.";
+      }
+    }
+
+    loadScores();
+  </script>
+
+</body>
+
+</html>
