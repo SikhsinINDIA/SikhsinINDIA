@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -7,10 +8,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-LHNTFNW14H');
   </script>
+
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Share Your Feedback | SikhsInIndia.com</title>
 
   <!-- Meta description -->
   <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
@@ -31,227 +35,399 @@
   <meta property="og:url" content="https://sikhsinindia.com">
   <meta property="og:type" content="website">
 
-  <title>Feedback | SikhsInIndia.com</title>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="../pictures/favicon.ico">
-  <link rel="stylesheet" href="commonstyles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --primary-color: #FF9933; /* Kesari (Orange) */
-      --text-color: #000000;    /* Black */
-      --hover-bg-color: #000000;
-      --hover-text-color: #FF9933;
-      --input-border: #FF9933;
-    }
-
-    body {
-      background-color: #fffdf5;
-      color: var(--text-color);
-      font-family: Arial, sans-serif;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    .hidden {
-      display: none;
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --gold-light: #F7941D;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --input-border: rgba(13, 27, 62, 0.2);
     }
 
-    .center-text {
-      text-align: center;
-      color: var(--text-color);
-    }
-
-    nav.nav {
-      background-color: var(--primary-color);
-      padding: 10px;
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
       display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
       justify-content: center;
-    }
-
-    nav.nav a {
-      color: var(--text-color);
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    nav.nav a:hover {
-      color: var(--hover-text-color);
-    }
-
-    .contact_container {
-      display: flex;
-      flex-direction: column;
-      margin: 20px;
-    }
-
-    @media (min-width: 600px) {
-      .contact_container {
-        flex-direction: row;
-      }
-    }
-
-    .contact_container > * {
-      flex-grow: 1;
-      flex-basis: 0;
-      min-width: 0;
-      margin: 0 10px;
-    }
-
-    .quotes {
-      font-weight: bold;
-      font-size: larger;
-      padding: 1px;
-      margin: 5px;
-      text-align: center;
-      color: var(--text-color);
-    }
-
-    .contact-image {
-      display: flex;
-      margin-top: 20px;
-      flex-direction: column;
-      gap: 10px;
       align-items: center;
+      min-height: 100vh;
+      padding: 20px 8px;
+    }
+
+    /* MAIN CONTAINER POSTER SHEET */
+    .poster {
+      width: 100%;
+      max-width: 750px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* BRAND HEADER WINDOW */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 75px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 4vw, 28px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    /* ACCENT METRIC STRIP */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 12px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    /* CONTENT DISPLAY WRAPPER */
+    .wrapper {
+      padding: 32px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 32px;
+    }
+
+    /* LEFT BLOCK: VISUAL & QUOTE */
+    .sidebar-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      background: rgba(13, 27, 62, 0.03);
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px dashed rgba(13, 27, 62, 0.1);
     }
 
     .responsive-image {
       width: 100%;
       height: auto;
-      max-width: 600px;
+      max-width: 240px;
       object-fit: contain;
     }
 
-    .contact-form {
-      width: 100%;
+    .quotes {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--navy-mid);
+      line-height: 1.4;
     }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      width: 80%;
-      margin-top: 30px;
-      padding-bottom: 10px;
+    /* RIGHT BLOCK: FORM MODULE */
+    .form-panel h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--navy);
+      margin-bottom: 20px;
+      font-weight: 900;
     }
 
-    input,
-    button,
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--navy-mid);
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
     textarea {
-      margin-top: 5px;
-      margin-bottom: 5px;
-      padding: 8px;
       width: 100%;
-      border: 2px solid var(--input-border);
-      border-radius: 4px;
-      box-sizing: border-box;
-      background-color: white;
-      color: var(--text-color);
+      padding: 11px 14px;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #222;
+      background: var(--white);
+      border: 1px solid var(--input-border);
+      border-radius: 5px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
-    button {
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(247, 148, 29, 0.15);
+    }
+
+    textarea {
+      height: 100px;
+      resize: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ACTIONS & STATUS */
+    .btn-submit {
+      width: 100%;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      padding: 12px;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 5px;
       cursor: pointer;
-      font-weight: bold;
-      font-size: larger;
-      background-color: var(--primary-color);
-      color: var(--text-color);
-      border: 2px solid var(--text-color);
-      padding: 8px 16px;
-      transition: 0.4s;
-      width: 100%;
+      transition: background 0.2s;
+      margin-top: 8px;
     }
 
-    button:hover:enabled {
-      background-color: var(--hover-bg-color);
-      color: var(--hover-text-color);
-      border-color: var(--hover-bg-color);
+    .btn-submit:hover {
+      background: var(--navy-mid);
     }
 
     .error-message {
-      color: red;
-      font-size: 0.9em;
-      margin-bottom: 5px;
+      color: #d93838;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 4px;
     }
 
     #status {
-      margin-top: 10px;
-      font-weight: bold;
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
     }
 
-    @media (max-width: 600px) {
-      .contact_container {
-        margin: 20px;
-      }
+    /* FOOTER CONTROL BAR */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+    }
 
-      form {
-        max-width: 90%;
-      }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
 
-      .visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* 3D ENGRAVED GOLDEN BACK BUTTON */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    @media(max-width: 680px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+      .hero {
+        padding: 16px;
+        width: 100%;
+      }
+      .wrapper {
+        grid-template-columns: 1fr;
+        padding: 24px 16px;
+        gap: 24px;
+      }
+      .sidebar-panel {
+        padding: 16px;
+      }
+      .footer-content {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 16px;
       }
     }
   </style>
 </head>
 
 <body>
-  <h1 class="visually-hidden">Feedback</h1>
 
-  <div class="contact_container">
-    <div class="contact-image">
-      <img src="../pictures/100_Misc/10_Feedback/Your_Feedback_Matters.png" class="responsive-image" alt="Your Feedback Matters">
-      <div class="quotes">
-        "Strive for continuous improvement, instead of perfection."
+  <div class="poster">
+
+    <!-- PLATFORM HEADER BRAND LAYER -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Transmission <span>Console</span></div>
       </div>
     </div>
 
-    <div class="contact-form">
-      <h2 class="center-text">Please share your Feedback</h2>
-      <form class="contact" id="feedbackForm">
-        <div>
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" maxlength="50" required>
-        </div>
-
-        <div>
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="contact@example.com" required>
-        </div>
-
-        <div>
-          <label for="mobile">Mobile Number</label>
-          <input type="text" id="mobile" name="mobile" placeholder="mobile" maxlength="15" required>
-        </div>
-
-        <div>
-          <label for="feedback">Your Feedback</label>
-          <textarea id="feedback" name="feedback" maxlength="256" required></textarea>
-        </div>
-
-        <input id="honeypot" class="hidden" type="text" />
-
-        <button type="button" onclick="sendEmail()">Submit</button>
-
-        <div id="status" class="center-text"></div>
-      </form>
+    <div class="intro">
+      Information Gateway &bull; Reader Feedback Repository
     </div>
+
+    <div class="wrapper">
+
+      <!-- LEFT COLUMN: SIDE PANEL METRIC -->
+      <div class="sidebar-panel">
+        <img src="../pictures/100_Misc/10_Feedback/Your_Feedback_Matters.png" class="responsive-image" alt="Your Feedback Matters">
+        <div class="quotes">
+          "Strive for continuous improvement, instead of perfection."
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: COMMUNICATIONS PORT -->
+      <div class="form-panel">
+        <h2>Please share your Feedback</h2>
+        
+        <form id="feedbackForm" novalidate>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" maxlength="50" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="contact@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="mobile">Mobile Number</label>
+            <input type="text" id="mobile" name="mobile" placeholder="Mobile phone number" maxlength="15" required>
+          </div>
+
+          <div class="form-group">
+            <label for="feedback">Your Feedback</label>
+            <textarea id="feedback" name="feedback" maxlength="256" required></textarea>
+          </div>
+
+          <input id="honeypot" class="hidden" type="text" />
+
+          <button class="btn-submit" type="button" onclick="sendEmail()">Submit</button>
+
+          <div id="status"></div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- SITE FOOTER FRAME -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="../index.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back
+        </a>
+        <div class="footer-left">&copy; 2026 Sikhs in INDIA. All Rights Reserved.</div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- EmailJS -->
+  <!-- EmailJS Engine Integrations -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script type="text/javascript">
     (function() {
-      emailjs.init("-jtHOddqV8vT6Z7jg"); // Replace with your EmailJS public key
+      emailjs.init("-jtHOddqV8vT6Z7jg");
     })();
   </script>
 
@@ -275,7 +451,7 @@
       [nameInput, emailInput, mobileInput, feedbackInput].forEach(createErrorElement);
 
       function setError(input, message) {
-        input.style.borderColor = "red";
+        input.style.borderColor = "#d93838";
         errorMessages[input.id].textContent = message;
       }
 
@@ -293,30 +469,20 @@
         return true;
       }
 
-function validateEmail() {
-  const email = emailInput.value.trim();
-
-  if (!email) {
-    setError(emailInput, "Email is required.");
-    return false;
-  }
-
-  if (emailInput.type === "email" && !emailInput.checkValidity()) {
-    setError(emailInput, "Enter a valid email (e.g. user@example.com).");
-    return false;
-  }
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (!emailRegex.test(email)) {
-    setError(emailInput, "Enter a valid email (e.g. user@example.com).");
-    return false;
-  }
-
-  clearError(emailInput);
-  return true;
-}
-
+      function validateEmail() {
+        const email = emailInput.value.trim();
+        if (!email) {
+          setError(emailInput, "Email is required.");
+          return false;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          setError(emailInput, "Enter a valid email (e.g. user@example.com).");
+          return false;
+        }
+        clearError(emailInput);
+        return true;
+      }
 
       function validateMobile() {
         const digitsOnly = mobileInput.value.replace(/\D/g, '');
@@ -355,11 +521,13 @@ function validateEmail() {
         const valid = [validateName(), validateEmail(), validateMobile(), validateFeedback()].every(Boolean);
         if (!valid) {
           status.innerText = "Please correct the highlighted fields.";
-          status.style.color = "red";
+          status.style.color = "#d93838";
           return;
         }
 
-        status.innerText = "";
+        status.innerText = "Processing transmission...";
+        status.style.color = "var(--navy)";
+        
         const params = {
           name: nameInput.value,
           email: emailInput.value,
@@ -376,27 +544,17 @@ function validateEmail() {
           })
           .catch(function(error) {
             console.error("❌ FAILED...", error);
-
             if (error.status === 401 || error.status === 403) {
-              status.innerText = "Authorization error — check EmailJS Public Key or allowed domains.";
-            } else if (error.text && error.text.includes("CORS")) {
-              status.innerText = "CORS error — add your site domain in EmailJS allowed origins.";
+              status.innerText = "Authorization error — check EmailJS configurations.";
             } else {
               status.innerText = "Something went wrong. Please try again later.";
             }
-            status.style.color = "red";
+            status.style.color = "#d93838";
           });
       };
     });
   </script>
 
-  <a href="../index.html" class="back-button" 
-    style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
-           color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
-           line-height: 30px; border-radius: 8px; text-decoration: none; 
-           border: 2px solid black;">
-    <b>Back</b>
-  </a>
 </body>
-</html>
 
+</html>

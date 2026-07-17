@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -7,11 +8,15 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-LHNTFNW14H');
   </script>
 
-    <!-- Meta description -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Shri Guru Ram Dass Blood Donation Sewa Society | SikhsInIndia.com</title>
+
+  <!-- Meta description -->
   <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
 
   <!-- Meta keywords -->
@@ -29,215 +34,425 @@
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
   <meta property="og:url" content="https://sikhsinindia.com">
   <meta property="og:type" content="sikhsinindia.com">
-  
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Sikhs in India: History, Culture & Present | SikhsInIndia.com </title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #FF9933;
-      line-height: 1.6;
+      padding: 0
     }
 
-    header {
-      background-color: #FF9933;
-      color: #000;
-      padding: 20px;
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+    }
+
+    /* PAGE BACKGROUND */
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
+
+    /* MAIN CONTAINER */
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* HEADER WITH LOGO */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 4.5vw, 38px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 8px;
+      font-style: italic;
+      font-size: 15px;
+    }
+
+    /* GOLD BAR */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
       text-align: center;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2em;
-    }
-
+    /* IMAGE BANNER SECTION */
     .image-banner {
       text-align: center;
-      margin: 0;
+      background: #000;
       padding: 0;
+      margin: 0;
     }
 
     .image-banner img {
       width: 100%;
-      max-width: 900px; /* limits max width on large screens */
       height: auto;
       display: block;
       margin: 0 auto;
       object-fit: contain;
-      border-bottom: 5px solid #FF9933;
     }
 
-    .container {
-      padding: 20px;
+    /* MAIN WRAPPER */
+    .wrapper {
+      padding: 28px 36px;
     }
 
     h2 {
-      border-bottom: 2px solid #FF9933;
-      padding-bottom: 5px;
-      margin-top: 40px;
-      font-size: 1.4em;
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      font-size: 24px;
+      margin-bottom: 16px;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 6px;
+    }
+
+    /* GENERIC PANEL CONTAINER */
+    .panel {
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 26px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .panel p {
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+
+    .panel strong {
+      color: var(--navy);
     }
 
     ul {
-      list-style-type: square;
-      margin-left: 20px;
+      list-style-type: none;
+      margin-bottom: 12px;
     }
 
-    .btn {
-      display: inline-block;
-      background-color: #FF9933;
-      color: #000;
-      padding: 10px 20px;
-      margin: 10px 5px;
-      border: none;
-      cursor: pointer;
+    ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      color: #333;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    ul li::before {
+      content: "•";
+      color: var(--gold);
       font-weight: bold;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-      font-size: 1em;
-    }
-
-    .btn:hover {
-      background-color: #cc7a29;
-    }
-
-    .contact {
-      margin-top: 40px;
-      padding: 20px;
-      background-color: #111;
-      border-left: 5px solid #FF9933;
-    }
-
-    footer {
-      background-color: #FF9933;
-      color: #000;
-      text-align: center;
-      padding: 10px;
-      margin-top: 40px;
-    }
-
-    a {
-      color: #FF9933;
-    }
-
-    /* Back button styling */
-    .back-button {
-      width: 80%;
-      max-width: 200px;
-      height: 45px;
       font-size: 18px;
-      background-color: #FFA500;
-      color: black;
-      margin: 40px auto 0 auto;
-      display: block;
-      border: none;
-      border-radius: 8px;
+      position: absolute;
+      left: 0;
+      top: -2px;
+    }
+
+    /* BUTTONS STYLE */
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .btn-link {
+      display: inline-block;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #fff;
+      background: var(--navy);
+      border: 2px solid var(--navy);
+      padding: 10px 22px;
       cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
     }
 
-    .back-button:hover {
-      background-color: #FF8C00;
+    .btn-link:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--navy);
     }
 
-    /* Responsive Tweaks */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.5em;
+    /* CONTACT HIGHLIGHT BOX */
+    .contact-box {
+      background: #fdfcf9;
+      border-left: 5px solid var(--gold);
+      padding: 20px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .contact-box p {
+      margin-bottom: 10px;
+    }
+
+    .contact-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: 30px;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* 3D gold style for the Back button */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* MOBILE BREAKPOINTS */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
       }
 
-      .btn {
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .wrapper {
+        padding: 18px 14px;
+      }
+
+      .panel {
+        padding: 18px;
+      }
+
+      .btn-link {
         display: block;
         width: 100%;
-        max-width: 300px;
-        margin: 10px auto;
-        font-size: 1em;
+        text-align: center;
       }
 
-      .container {
-        padding: 15px;
+      .footer {
+        padding: 14px 12px;
       }
 
-      .image-banner img {
-        max-width: 100%;
-      }
-
-      .back-button {
-        width: 90%;
-        font-size: 16px;
-      }
-
-      h2 {
-        font-size: 1.2em;
-      }
-
-      p, li {
-        font-size: 1em;
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
       }
     }
   </style>
 </head>
+
 <body>
 
-  <header>
-    <h1>Shri Guru Ram Dass Blood Donation Sewa Society</h1>
-    <p>Inspired by Sikh values • Serving Humanity since 2008</p>
-  </header>
+  <div class="poster">
 
-  <!-- Image Banner Section -->
-  <div class="image-banner">
-    <img src="../pictures/05-sikh-welfare/01-sri-guru-ram-dass-blood-donation/sri-guru-ram-dass-blood-donation.jpg" alt="Blood Donation Banner" />
-  </div>
+    <!-- HEADER WITH SIKHSININDIA LOGO -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Shri Guru Ram Dass <span>Blood Donation Sewa Society</span></div>
+        <div class="hero-sub">Inspired by Sikh values • Serving Humanity since 2008</div>
+      </div>
+    </div>
 
-  <div class="container">
-    <h2>About Us</h2>
-    <p>
-      Founded in 2008 and registered in July 2009, the Shri Guru Ram Dass Blood Donation Sewa Society is a non-profit volunteer-based NGO operating out of Amritsar, Punjab. It honors the legacy of Guru Ram Dass Ji, the 4th Sikh Guru, by promoting voluntary blood donation and broader social reform.
-    </p>
-    <p><strong>Core Team:</strong> 25 members (11 executives + 14 volunteers)</p>
-    <ul>
-      <li>President: Sukhwinder Singh</li>
-      <li>Advisor: Maninder Singh Simran</li>
-    </ul>
+    <div class="intro">
+      Voluntary Blood Donation & Social Welfare Initiatives — Amritsar, Punjab
+    </div>
 
-    <h2>Mission & Activities</h2>
-    <ul>
-      <li>Promote voluntary blood donation across communities</li>
-      <li>Organize donation camps and support government blood banks</li>
-      <li>Mobilize emergency donors quickly</li>
-      <li>Assist underprivileged patients financially (tests, medicines)</li>
-      <li>Fight social evils: dowry, substance abuse, female foeticide</li>
-      <li>Run cultural/social programs and disaster relief services</li>
-    </ul>
+    <!-- IMAGE BANNER -->
+    <div class="image-banner">
+      <img src="../pictures/05-sikh-welfare/01-sri-guru-ram-dass-blood-donation/sri-guru-ram-dass-blood-donation.jpg" alt="Blood Donation Banner" />
+    </div>
 
-    <h2>Contributions</h2>
-    <ul>
-      <li>Maintain a ready pool of blood donors</li>
-      <li>Provide blood and monetary aid to those in need</li>
-    </ul>
+    <div class="wrapper">
 
-    <h2>Connect With Us</h2>
-    <a class="btn" href="https://www.facebook.com/ShriGuruRamDassBloodDonationSewaSocity/" target="_blank">Facebook Page</a>
-    <a class="btn" href="https://blooddonationcamp.weebly.com/about-us.html" target="_blank">Weblink</a>
+      <!-- ABOUT SECTION -->
+      <div class="panel">
+        <h2>About Us</h2>
+        <p>
+          Founded in 2008 and registered in July 2009, the Shri Guru Ram Dass Blood Donation Sewa Society is a non-profit volunteer-based NGO operating out of Amritsar, Punjab. It honors the legacy of Guru Ram Dass Ji, the 4th Sikh Guru, by promoting voluntary blood donation and broader social reform.
+        </p>
+        <p><strong>Core Team:</strong> 25 members (11 executives + 14 volunteers)</p>
+        <ul style="margin-top: 8px;">
+          <li><strong>President:</strong> Sukhwinder Singh</li>
+          <li><strong>Advisor:</strong> Maninder Singh Simran</li>
+        </ul>
+      </div>
 
-    <div class="contact">
-      <h2>Contact Information</h2>
-      <p><strong>Registered Office:</strong> Brahmbuta Market, Near Sarai Guru Ram Das, Amritsar, Punjab, India</p>
-      <p><strong>Correspondence Address:</strong> JEVA, 2nd Floor, 5 Lawrence Road, Amritsar – 143001, Punjab, India</p>
-      <p><strong>Phone Numbers:</strong> 9878003588, 9872699447, 9878610274</p>
+      <!-- MISSION & CONTRIBUTIONS -->
+      <div class="panel">
+        <h2>Mission & Activities</h2>
+        <ul>
+          <li>Promote voluntary blood donation across communities</li>
+          <li>Organize donation camps and support government blood banks</li>
+          <li>Mobilize emergency donors quickly</li>
+          <li>Assist underprivileged patients financially (tests, medicines)</li>
+          <li>Fight social evils: dowry, substance abuse, female foeticide</li>
+          <li>Run cultural/social programs and disaster relief services</li>
+        </ul>
+
+        <h2 style="margin-top: 24px;">Contributions</h2>
+        <ul>
+          <li>Maintain a ready pool of blood donors</li>
+          <li>Provide blood and monetary aid to those in need</li>
+        </ul>
+      </div>
+
+      <!-- CONNECT & CONTACT -->
+      <div class="panel contact-box">
+        <h2>Connect & Contact</h2>
+        <p><strong>Registered Office:</strong> Brahmbuta Market, Near Sarai Guru Ram Das, Amritsar, Punjab, India</p>
+        <p><strong>Correspondence Address:</strong> JEVA, 2nd Floor, 5 Lawrence Road, Amritsar – 143001, Punjab, India</p>
+        <p><strong>Phone Numbers:</strong> 9878003588, 9872699447, 9878610274</p>
+        
+        <div class="btn-group">
+          <a class="btn-link" href="https://www.facebook.com/ShriGuruRamDassBloodDonationSewaSocity/" target="_blank">Facebook Page</a>
+          <a class="btn-link" href="https://blooddonationcamp.weebly.com/about-us.html" target="_blank">Weblink</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SITE FOOTER FRAME -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="javascript:void(0);" onclick="goBack()" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back
+        </a>
+        <div class="footer-left">&copy; 2025 Shri Guru Ram Dass Blood Donation Sewa Society</div>
+        <div class="footer-right">Seva Above Self</div>
+      </div>
     </div>
   </div>
 
-  <footer>
-    &copy; 2025 Shri Guru Ram Dass Blood Donation Sewa Society | Seva above self
-  </footer>
-
-  <!-- Back Button -->
-  <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
-  <br>
   <script>
     function goBack() {
       window.location.href = "./05-sikh-welfare.html";
@@ -245,6 +460,5 @@
   </script>
 
 </body>
+
 </html>
-
-

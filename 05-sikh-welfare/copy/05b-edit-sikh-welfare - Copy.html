@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+
+    <!-- Character encoding -->
+  <meta charset="UTF-8">
+
+  <!-- Viewport for responsive design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta description -->
+  <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+
+  <!-- Meta keywords -->
+  <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
+
+    <!-- Page title -->
+    <title>Sikhs in India: History, Culture & Present | SikhsInIndia.com </title>
+  
+  <!-- Author -->
+  <meta name="author" content="Sikhs in India">
+
+  <!-- Robots -->
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph meta tags for social media -->
+  <meta property="og:title" content="Sikh Heritage & Traditions | Gurudwaras, Guru Nanak & Sikh Scriptures">
+  <meta property="og:description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+  <meta property="og:url" content="https://sikhsinindia.com">
+  <meta property="og:type" content="sikhsinindia.com">
+
+
+  <title>Sikh Social Welfare Organizations (Firestore)</title>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <style>
+    :root {
+      --primary: #FF9933;
+      --black: #000000;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--black);
+      color: var(--primary);
+      padding: 20px;
+    }
+
+    h2 {
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 10px;
+    }
+
+    input {
+      padding: 8px;
+      margin: 5px;
+      border: 2px solid var(--primary);
+      background-color: var(--black);
+      color: var(--primary);
+    }
+
+    input::placeholder {
+      color: #ffbb66;
+    }
+
+    button {
+      padding: 8px 16px;
+      margin: 5px;
+      background-color: var(--primary);
+      color: var(--black);
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      color: var(--primary);
+    }
+
+    th, td {
+      border: 1px solid var(--primary);
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--primary);
+      color: var(--black);
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Sikh Social Welfare Organizations in India</h2>
+
+<input type="text" id="name" placeholder="Name" />
+<input type="text" id="city" placeholder="City" />
+<input type="text" id="state" placeholder="State" />
+<input type="text" id="type" placeholder="Type" />
+<input type="text" id="webpage" placeholder="Webpage (e.g. file.html)" />
+<input type="hidden" id="docId" />
+<button onclick="addOrUpdateRecord()">Add / Update</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Type</th>
+      <th>Webpage</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="recordsTable"></tbody>
+</table>
+
+<script>
+  // 🔧 Replace with your Firestore config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+    authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+    projectId: "sikhsinindia-67a6b",
+    storageBucket: "sikhsinindia-67a6b.appspot.com",
+    messagingSenderId: "622603668882",
+    appId: "1:622603668882:web:953c6a07864b235fdd054b",
+    measurementId: "G-LHNTFNW14H"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  const collection = db.collection("Sikh_Welfare");
+
+  function addOrUpdateRecord() {
+    const docId = document.getElementById("docId").value;
+    const data = {
+      Name: document.getElementById("name").value,
+      City: document.getElementById("city").value,
+      State: document.getElementById("state").value,
+      Type: document.getElementById("type").value,
+      Webpage: document.getElementById("webpage").value
+    };
+
+    if (docId) {
+      collection.doc(docId).set(data).then(clearForm);
+    } else {
+      collection.add(data).then(clearForm);
+    }
+  }
+
+  function loadRecords() {
+    collection.onSnapshot(snapshot => {
+      const tbody = document.getElementById("recordsTable");
+      tbody.innerHTML = "";
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const row = `<tr>
+          <td>${data.Name}</td>
+          <td>${data.City}</td>
+          <td>${data.State}</td>
+          <td>${data.Type}</td>
+          <td><a href="${data.Webpage}" target="_blank">${data.Webpage}</a></td>
+          <td>
+            <button onclick="editRecord('${doc.id}', ${JSON.stringify(data).replace(/"/g, '&quot;')})">Edit</button>
+            <button onclick="deleteRecord('${doc.id}')">Delete</button>
+          </td>
+        </tr>`;
+        tbody.innerHTML += row;
+      });
+    });
+  }
+
+  function editRecord(id, data) {
+    document.getElementById("docId").value = id;
+    document.getElementById("name").value = data.Name;
+    document.getElementById("city").value = data.City;
+    document.getElementById("state").value = data.State;
+    document.getElementById("type").value = data.Type;
+    document.getElementById("webpage").value = data.Webpage;
+  }
+
+  function deleteRecord(id) {
+    if (confirm("Delete this record?")) {
+      collection.doc(id).delete();
+    }
+  }
+
+  function clearForm() {
+    document.getElementById("docId").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("city").value = "";
+    document.getElementById("state").value = "";
+    document.getElementById("type").value = "";
+    document.getElementById("webpage").value = "";
+  }
+
+  // Load on startup
+  loadRecords();
+</script>
+  <!-- Back Button -->
+  <button type="button" onclick="goBack()" class="back-button">
+    <b>Back</b>
+  </button>
+
+  <script>
+    function goBack() {
+      window.location.href = "./05-sikh-welfare.html";
+    }
+    </script>
+</body>
+</html>

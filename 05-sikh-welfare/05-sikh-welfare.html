@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -7,13 +8,17 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-LHNTFNW14H');
   </script>
 
-    <!-- Meta description -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Sikh Welfare | SikhsInIndia.com</title>
+
+  <!-- Meta description -->
   <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
-   <link rel="canonical" href="https://sikhsinindia.com/05-sikh-welfare/05-sikh-welfare.html">
+  <link rel="canonical" href="https://sikhsinindia.com/05-sikh-welfare/05-sikh-welfare.html">
 
   <!-- Meta keywords -->
   <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
@@ -31,537 +36,745 @@
   <meta property="og:url" content="https://sikhsinindia.com/05-sikh-welfare/05-sikh-welfare.html">
   <meta property="og:type" content="website">
 
-  
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sikh Welfare | SikhsInIndia.com </title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
   <style>
-    body {
-      background-color: #000;
-      color: #FF9933;
-      font-family: Arial, sans-serif;
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 20px;
+      padding: 0
     }
 
-    h1, h2 {
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+    }
+
+    /* PAGE BACKGROUND */
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
+
+    /* MAIN CONTAINER */
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* HEADER WITH LOGO */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .hero {
+      flex: 1;
       text-align: center;
-      font-size: 2rem;
-      margin-bottom: 20px;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
     }
 
-    .filters {
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 6vw, 54px);
+      font-weight: 900;
+      color: #fff;
     }
 
-    .filter-group {
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
+    .hero-title span {
+      color: var(--gold);
     }
 
-    .filter-group label {
-      margin-bottom: 1px;
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* GOLD BAR */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* MAIN WRAPPER */
+    .wrapper {
+      padding: 28px 36px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    /* GENERIC PANEL CONTAINER */
+    .panel {
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 26px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .panel p {
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 12px;
       font-size: 15px;
     }
 
-    select,
-    input[type="text"] {
-      width: 100%;
-      font-size: 16px;
-      padding: 8px 10px;
+    .panel p:last-child {
+      margin-bottom: 0;
     }
 
-    #clearFilters {
-      width: 100%;
-      font-size: 18px;
-      padding: 10px;
-      margin-top: 4px;
+    .panel strong {
+      color: var(--navy);
     }
 
-    #clearFilters:hover {
-      background-color: #FF9933;
+    /* FILTERS */
+    .filters {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
     }
 
-    .table-container {
-      border: 1px solid #FF9933;
-      border-radius: 4px;
-      overflow-x: auto;
-      max-width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
+    .filters select, .filters input {
+      padding: 10px 14px;
+      font-size: 14px;
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 6px;
+      font-weight: 700;
     }
 
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      min-width: 600px;
-      table-layout: fixed;
+    .filters input::placeholder {
+      color: var(--navy);
+      opacity: 0.7;
     }
 
-    th,
-    td {
-      border: 1px solid #FF9933;
-      padding: 1px;
-      text-align: left;
-      white-space: normal;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      max-width: 150px;
-      box-sizing: border-box;
-    }
-
-    th {
-      background-color: #FF9933;
-      color: #000;
-    }
-
-    tr:nth-child(even) {
-      background-color: #1a1a1a;
-    }
-
-    tr:hover {
-      background-color: #333;
-    }
-
-    td.webpage-cell {
-      text-align: center;
-      padding: 5px;
-    }
-
-    .webpage-icon {
-      width: 8px;
-      height: auto;
+    .btn-clear {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--navy);
+      border: 2px solid var(--navy);
+      padding: 10px 22px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
       display: block;
       margin: 0 auto;
-      cursor: pointer;
-      transition: transform 0.2s ease;
     }
 
-    .webpage-icon:hover {
-      transform: scale(1.1);
+    .btn-clear:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--navy);
     }
 
-    .card-container {
-      display: none;
-      max-width: 600px;
-      margin: 0 auto;
+    /* RECORDS CARDS CONTAINER */
+    #records-container {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
     }
 
-    .card {
-      padding: 16px 12px;
-      font-size: 16px;
-      border-bottom: 1px solid #FF9933;
+    .welfare-card {
+      background: #fdfcf9;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-left: 5px solid var(--gold);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: all 0.2s;
     }
 
-    .card strong {
-      font-size: 16px;
+    .welfare-card:hover {
+      background: var(--cream);
+      border-color: var(--gold);
     }
 
-    .card a img {
-      width: 36px;
-      height: 36px;
-      vertical-align: middle;
+    .welfare-info {
+      text-align: left;
+      color: var(--navy);
     }
 
-    .back-button {
-      width: 90%;
-      max-width: 320px;
-      font-size: 20px;
-      padding: 12px 0;
-      margin: 30px auto;
+    .welfare-info .name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 4px;
     }
 
-    .back-button:hover {
-      background-color: #FF9933;
+    .welfare-info .detail {
+      font-size: 14px;
+      color: #333;
+      display: block;
+      line-height: 1.5;
     }
 
-    @media (max-width: 768px) {
-      .table-container {
-        display: none;
-      }
+    .welfare-info .detail strong {
+      color: var(--navy);
+    }
 
-      .card-container {
-        display: block;
-      }
-
-      .filters {
-        padding: 0 1px;
-      }
-
-      .filter-group {
-        margin-bottom: 1px;
-      }
-
-      .filter-group label {
-        font-size: 15px;
-      }
-
-      select,
-      input[type="text"] {
-        font-size: 16px;
-        padding: 1px 1px;
-      }
-
-      #clearFilters {
-        font-size: 18px;
-        padding: 1px;
-        margin-top: 1px;
-      }
-
-      .card {
-        padding: 1px 1px;
-      }
+    .welfare-link-wrap {
+      flex-shrink: 0;
     }
 
     .small-icon {
-      width: 40px;
+      width: 44px;
       height: auto;
+      transition: transform 0.2s ease;
     }
 
-    .back-button {
-      width: 80%;
-      max-width: 200px;
-      height: 45px;
-      font-size: 20px;
-      background-color: #FF9933;
-      color: black;
-      margin: 0 auto;
-      display: block;
-      border: 1mm solid black;
-      border-radius: 8px;
-      cursor: pointer;
+    .small-icon:hover {
+      transform: scale(1.1);
     }
 
-    .back-button:hover {
-      background-color: #FF9933;
-    }
-    button {
-      background-color: #FF9933;
-      border: none;
-      margin: 0.2rem;
-      font-size: 2rem;
-      color: black;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    /* Self Service Form Styling */
-    form#selfServiceForm {
-      max-width: 600px;
-      margin: 0 auto;
+    .no-results {
+      text-align: center;
+      color: #666;
+      font-style: italic;
       padding: 20px;
-      border: 1px solid #FF9933;
-      border-radius: 8px;
     }
 
-    form#selfServiceForm input {
+    /* FORM STYLING */
+    .form-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .form-field label {
+      display: block;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .form-field input {
       width: 100%;
-      padding: 8px;
-      margin-bottom: 15px;
-      font-size: 16px;
+      padding: 11px 12px;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 6px;
+      background: var(--cream);
+      color: var(--navy);
     }
 
-    form#selfServiceForm button {
-      background-color: #FF9933;
-      color: black;
-      font-size: 18px;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
+    .form-field input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn-submit {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold);
+      border: 2px solid var(--gold);
+      padding: 12px 30px;
       cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
       width: 100%;
+      max-width: 200px;
     }
 
-    form#selfServiceForm button:hover {
-      background-color: #FF9933;
+    .btn-submit:hover {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: #fff;
     }
 
     #formStatus {
       text-align: center;
       margin-top: 10px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: 30px;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* 3D gold style for the Back button */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .extra-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 25px;
+    }
+
+    .btn-admin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #fff;
+      background: #1a1a2e;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+
+    /* MOBILE BREAKPOINTS */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .wrapper {
+        padding: 18px 14px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .panel {
+        padding: 18px;
+      }
+
+      .welfare-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .welfare-info {
+        text-align: center;
+      }
+
+      .filters {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .filters select, .filters input {
+        width: 100%;
+        max-width: 320px;
+      }
+
+      .footer {
+        padding: 14px 12px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<h1>Sikh Welfare Organizations in India</h1>
+  <div class="poster">
 
-<div class="filters">
-  <div class="filter-group">
-    <!-- <label for="stateFilter">State:</label> -->
-    <select id="stateFilter"><option value="All">State</option></select>
+    <!-- HEADER WITH SIKHSININDIA LOGO -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Sikh <span>Welfare</span></div>
+        <div class="hero-sub">Supporting and Empowering Communities Across India</div>
+      </div>
+    </div>
+
+    <div class="intro">
+      Explore and connect with Sikh Welfare Societies, Trusts, and Organizations across India
+    </div>
+
+    <div class="wrapper">
+
+      <h1>Sikh Welfare Organizations</h1>
+
+      <!-- FILTERS + RECORDS -->
+      <div class="panel" id="records">
+        <div class="filters">
+          <select id="stateFilter"><option value="All">State</option></select>
+          <select id="cityFilter"><option value="All">City</option></select>
+          <select id="typeFilter"><option value="All">Type</option></select>
+          <input type="text" id="nameFilter" placeholder="Search by Name" />
+        </div>
+        <button type="button" class="btn-clear" id="clearFilters">Clear Filters</button>
+        <div id="records-container" aria-live="polite"></div>
+      </div>
+
+      <!-- SELF-UPLOAD FORM -->
+      <div class="panel">
+        <h2>Sangat to add details of Sikh Welfare Societies across India</h2>
+        <p style="text-align:center; margin-bottom: 18px;">Please share information about active Sikh welfare institutions below.</p>
+
+        <form id="selfServiceForm" class="form-grid">
+          <div class="form-field">
+            <label for="selfName">Name</label>
+            <input type="text" id="selfName" required>
+          </div>
+          <div class="form-field">
+            <label for="selfCity">City</label>
+            <input type="text" id="selfCity" required>
+          </div>
+          <div class="form-field">
+            <label for="selfState">State</label>
+            <input type="text" id="selfState" required>
+          </div>
+          <div class="form-field">
+            <label for="selfType">Type</label>
+            <input type="text" id="selfType" required>
+          </div>
+          <div class="form-field">
+            <label for="selfWebsite">Website</label>
+            <input type="text" id="selfWebsite" placeholder="https://example.com">
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-submit">Submit</button>
+            <p id="formStatus"></p>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- SITE FOOTER FRAME -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="../index.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </div>
+    <div class="extra-buttons">
+      <a href="javascript:void(0);" onclick="admin()" class="btn-admin">Admin Dashboard</a>
+    </div>
   </div>
-  <div class="filter-group">
-    <!-- <label for="cityFilter">City:</label> -->
-    <select id="cityFilter"><option value="All">City</option></select>
-  </div>
-  <div class="filter-group">
-    <!-- <label for="nameFilter">Name:</label> -->
-    <input type="text" id="nameFilter" placeholder="Search by Name" />
-  </div>
-  <div class="filter-group">
-    <!-- <label for="typeFilter">Type:</label> -->
-    <select id="typeFilter"><option value="All">Type</option></select>
-  </div>
-  <!-- <button id="clearFilters">Clear</button> -->
 
-  <button type="button" id="clearFilters" style="width: 100px; height: 40px; font-size: 24px; background-color: #FF9933; color: black;">
-    Clear
-  </button>
-</div>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b",
+      measurementId: "G-LHNTFNW14H"
+    };
 
-<div class="table-container">
-  <table id="recordsTable" aria-label="Sikh Welfare Table">
-    <thead>
-    <tr>
-      <th>State</th>
-      <th>City</th>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Webpage</th>
-    </tr>
-    </thead>
-    <tbody id="tableBody"></tbody>
-  </table>
-</div>
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const welfareCollection = db.collection("Sikh_Welfare");
+    const selfServiceCollection = db.collection("Sikh_Welfare_Self");
 
-<div class="card-container" id="cardContainer" aria-live="polite"></div>
+    const stateFilter = document.getElementById("stateFilter");
+    const cityFilter = document.getElementById("cityFilter");
+    const nameFilter = document.getElementById("nameFilter");
+    const typeFilter = document.getElementById("typeFilter");
+    const clearFiltersBtn = document.getElementById("clearFilters");
+    const container = document.getElementById('records-container');
 
-<!-- Self Service Form -->
-<h2>Sangat to add details of Sikh Welfare Societies across India</h2>
-<form id="selfServiceForm">
-  <label for="selfName">Name:</label><br>
-  <input type="text" id="selfName" name="selfName" required><br>
+    let allRecords = [];
 
-  <label for="selfCity">City:</label><br>
-  <input type="text" id="selfCity" name="selfCity" required><br>
+    async function fetchData() {
+      container.innerHTML = "";
+      try {
+        const querySnapshot = await welfareCollection.get();
+        allRecords = [];
+        const stateSet = new Set();
+        const citySet = new Set();
+        const typeSet = new Set();
+        
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          allRecords.push(data);
+          if (data.State) stateSet.add(data.State);
+          if (data.City) citySet.add(data.City);
+          if (data.Type) typeSet.add(data.Type);
+        });
 
-  <label for="selfState">State:</label><br>
-  <input type="text" id="selfState" name="selfState" required><br>
-
-  <label for="selfType">Type:</label><br>
-  <input type="text" id="selfType" name="selfType" required><br>
-
-  <label for="selfWebsite">Website:</label><br>
-  <input type="text" id="selfWebsite" name="selfWebsite" placeholder="https://example.com"><br>
-
-  <button type="submit">Submit</button>
-  <p id="formStatus"></p>
-</form>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-  import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
-    authDomain: "sikhsinindia-67a6b.firebaseapp.com",
-    projectId: "sikhsinindia-67a6b",
-    storageBucket: "sikhsinindia-67a6b.appspot.com",
-    messagingSenderId: "622603668882",
-    appId: "1:622603668882:web:953c6a07864b235fdd054b",
-    measurementId: "G-LHNTFNW14H"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const welfareCollection = collection(db, "Sikh_Welfare");
-  const selfServiceCollection = collection(db, "Sikh_Welfare_Self");
-
-  const stateFilter = document.getElementById("stateFilter");
-  const cityFilter = document.getElementById("cityFilter");
-  const nameFilter = document.getElementById("nameFilter");
-  const typeFilter = document.getElementById("typeFilter");
-  const clearFiltersBtn = document.getElementById("clearFilters");
-  const tableBody = document.getElementById("tableBody");
-  const cardContainer = document.getElementById("cardContainer");
-
-  let allRecords = [];
-
-  async function fetchData() {
-    tableBody.innerHTML = "";
-    cardContainer.innerHTML = "";
-    try {
-      const querySnapshot = await getDocs(welfareCollection);
-      allRecords = [];
-      const stateSet = new Set();
-      const citySet = new Set();
-      const typeSet = new Set();
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        allRecords.push(data);
-        if (data.State) stateSet.add(data.State);
-        if (data.City) citySet.add(data.City);
-        if (data.Type) typeSet.add(data.Type);
-      });
-      populateFilterOptions(stateFilter, Array.from(stateSet).sort(), "State");
-      populateFilterOptions(cityFilter, Array.from(citySet).sort(), "City");
-      populateFilterOptions(typeFilter, Array.from(typeSet).sort(), "Types");
-      displayRecords(allRecords);
-    } catch (error) {
-      tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">Error loading records.</td></tr>`;
-      cardContainer.innerHTML = `<p style="text-align:center;">Error loading records.</p>`;
-    }
-  }
-
-  function populateFilterOptions(selectElem, options, defaultLabel) {
-    selectElem.innerHTML = `<option value="All">${defaultLabel}</option>`;
-    options.forEach(opt => {
-      const option = document.createElement("option");
-      option.value = opt;
-      option.textContent = opt;
-      selectElem.appendChild(option);
-    });
-  }
-
-  function displayRecords(records) {
-    tableBody.innerHTML = "";
-    cardContainer.innerHTML = "";
-
-    records.forEach(record => {
-      const row = document.createElement("tr");
-      ["State", "City", "Name", "Type", "Webpage"].forEach(field => {
-        const cell = document.createElement("td");
-        if (field === "Webpage" && record[field]) {
-          cell.classList.add("webpage-cell");
-          const link = document.createElement("a");
-          link.href = record[field];
-          link.target = "_blank";
-          link.rel = "noopener noreferrer";
-          const icon = document.createElement("img");
-          icon.src = "../pictures/00-index/click.png";
-          icon.className = "small-icon";
-          icon.alt = "Open Webpage";
-          link.appendChild(icon);
-          cell.appendChild(link);
-        } else {
-          cell.textContent = record[field] || "";
-        }
-        row.appendChild(cell);
-      });
-      tableBody.appendChild(row);
-    });
-
-    records.forEach(record => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML += `<p>${record.Name || ""} - ${record.Type || ""}</p>`;
-      const secondLine = document.createElement("p");
-      secondLine.textContent = `${record.City || ""}, ${record.State || ""}`;
-      if (record.Webpage) {
-        const link = document.createElement("a");
-        link.href = record.Webpage;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        link.title = "Open Webpage";
-        const icon = document.createElement("img");
-        icon.src = "../pictures/00_Index/Click.png";
-        icon.className = "small-icon";
-        icon.alt = "Open Webpage";
-        icon.style.marginLeft = "8px";
-        icon.style.verticalAlign = "middle";
-        link.appendChild(icon);
-        secondLine.appendChild(link);
+        populateFilterOptions(stateFilter, Array.from(stateSet).sort(), "State");
+        populateFilterOptions(cityFilter, Array.from(citySet).sort(), "City");
+        populateFilterOptions(typeFilter, Array.from(typeSet).sort(), "Type");
+        displayRecords(allRecords);
+      } catch (error) {
+        container.innerHTML = `<p class="no-results">Error loading records. Check console for details.</p>`;
+        console.error("Error fetching documents: ", error);
       }
-      card.appendChild(secondLine);
-      cardContainer.appendChild(card);
-    });
-  }
-
-  function filterRecords() {
-    const stateVal = stateFilter.value;
-    const cityVal = cityFilter.value;
-    const typeVal = typeFilter.value;
-    const nameVal = nameFilter.value.trim().toLowerCase();
-    const filtered = allRecords.filter(record => {
-      return (stateVal === "All" || record.State === stateVal)
-          && (cityVal === "All" || record.City === cityVal)
-          && (typeVal === "All" || record.Type === typeVal)
-          && (nameVal === "" || (record.Name && record.Name.toLowerCase().includes(nameVal)));
-    });
-    displayRecords(filtered);
-  }
-
-  stateFilter.addEventListener("change", filterRecords);
-  cityFilter.addEventListener("change", filterRecords);
-  typeFilter.addEventListener("change", filterRecords);
-  nameFilter.addEventListener("input", filterRecords);
-  clearFiltersBtn.addEventListener("click", () => {
-    stateFilter.value = "All";
-    cityFilter.value = "All";
-    typeFilter.value = "All";
-    nameFilter.value = "";
-    displayRecords(allRecords);
-  });
-
-  document.getElementById("selfServiceForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const name = document.getElementById("selfName").value.trim();
-    const city = document.getElementById("selfCity").value.trim();
-    const state = document.getElementById("selfState").value.trim();
-    const type = document.getElementById("selfType").value.trim();
-    const website = document.getElementById("selfWebsite").value.trim();
-    const formStatus = document.getElementById("formStatus");
-    formStatus.textContent = "Submitting...";
-
-    try {
-      await addDoc(selfServiceCollection, {
-        Name: name,
-        City: city,
-        State: state,
-        Type: type,
-        Website: website
-      });
-      formStatus.style.color = "lightgreen";
-      formStatus.textContent = "Submitted successfully!";
-      e.target.reset();
-    } catch (error) {
-      formStatus.style.color = "red";
-      formStatus.textContent = "Error submitting. Try again later.";
-      console.error("Submission error:", error);
     }
-  });
 
-  fetchData();
-</script>
+    function populateFilterOptions(selectElem, options, defaultLabel) {
+      selectElem.innerHTML = `<option value="All">${defaultLabel}</option>`;
+      options.forEach(opt => {
+        const option = document.createElement("option");
+        option.value = opt;
+        option.textContent = opt;
+        selectElem.appendChild(option);
+      });
+    }
 
-<!-- Back and Admin Buttons -->
-<!-- <button type="button" onclick="goBack()" style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center;">Back</button> -->
-<!-- <br> -->
-<!-- <button type="button" onclick="admin()" style="width: 100px; height: 40px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px 20px 0 auto; text-align: center;">Admin</button> -->
+    function displayRecords(records) {
+      container.innerHTML = "";
 
+      if (!records.length) {
+        container.innerHTML = "<p class='no-results'>No organizations found matching these filters.</p>";
+        return;
+      }
 
-  <!-- function goBack() {
-    window.location.href = "../index.html";
-  } -->
+      records.sort((a, b) => (a.Name || "").localeCompare(b.Name || "", 'en', { sensitivity: 'base' }));
 
-<!-- <a href="../index.html" class="back-button" style="display: block; text-align: center; text-decoration: none; line-height: 25px;"> -->
-<!-- <a href="../index.html" class="back-button" style="width: 100px; height: 24px; font-size: 24px; background-color: #FFA500; color: black; display: block; margin: 20px auto 0 auto; text-align: center; line-height: 25px; border-radius: 8px; text-decoration: none;">
-    <b>Back</b>
-</a> -->
+      records.forEach(record => {
+        const card = document.createElement("div");
+        card.className = "welfare-card";
+        
+        let linkHTML = '';
+        if (record.Webpage) {
+          linkHTML = `
+            <div class="welfare-link-wrap">
+              <a href="${record.Webpage}" target="_blank" rel="noopener noreferrer" title="Open Webpage">
+                <img src="../pictures/00-index/click.png" class="small-icon" alt="Open Webpage">
+              </a>
+            </div>
+          `;
+        }
 
-<script>
-  function admin() {
-    window.location.href = "../05-sikh-welfare/05a-password.html";
-  }
-</script>
-<a href="../index.html" class="back-button" 
-   style="width: 150px; height: 20px; font-size: 24px; background-color: #FF9933; 
-          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
-          line-height: 25px; border-radius: 8px; text-decoration: none; 
-          border: 2px solid black;">
-    <b>Back</b>
-  </a>
+        card.innerHTML = `
+          <div class="welfare-info">
+            <span class="name">${record.Name || ""}</span>
+            <span class="detail"><strong>Type:</strong> ${record.Type || ""}</span>
+            <span class="detail">${record.City || ""}, ${record.State || ""}</span>
+          </div>
+          ${linkHTML}
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterRecords() {
+      const stateVal = stateFilter.value;
+      const cityVal = cityFilter.value;
+      const typeVal = typeFilter.value;
+      const nameVal = nameFilter.value.trim().toLowerCase();
+
+      const filtered = allRecords.filter(record => {
+        return (stateVal === "All" || record.State === stateVal)
+            && (cityVal === "All" || record.City === cityVal)
+            && (typeVal === "All" || record.Type === typeVal)
+            && (nameVal === "" || (record.Name && record.Name.toLowerCase().includes(nameVal)));
+      });
+      displayRecords(filtered);
+    }
+
+    stateFilter.addEventListener("change", filterRecords);
+    cityFilter.addEventListener("change", filterRecords);
+    typeFilter.addEventListener("change", filterRecords);
+    nameFilter.addEventListener("input", filterRecords);
+
+    clearFiltersBtn.addEventListener("click", () => {
+      stateFilter.value = "All";
+      cityFilter.value = "All";
+      typeFilter.value = "All";
+      nameFilter.value = "";
+      displayRecords(allRecords);
+    });
+
+    document.getElementById("selfServiceForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("selfName").value.trim();
+      const city = document.getElementById("selfCity").value.trim();
+      const state = document.getElementById("selfState").value.trim();
+      const type = document.getElementById("selfType").value.trim();
+      const website = document.getElementById("selfWebsite").value.trim();
+      const formStatus = document.getElementById("formStatus");
+      formStatus.textContent = "Submitting...";
+
+      try {
+        await selfServiceCollection.add({
+          Name: name,
+          City: city,
+          State: state,
+          Type: type,
+          Website: website
+        });
+        formStatus.style.color = "green";
+        formStatus.textContent = "Submitted successfully!";
+        e.target.reset();
+      } catch (error) {
+        formStatus.style.color = "red";
+        formStatus.textContent = "Error submitting. Try again later.";
+        console.error("Submission error:", error);
+      }
+    });
+
+    function admin() {
+      window.location.href = "../05-sikh-welfare/05a-password.html";
+    }
+
+    window.onload = fetchData;
+  </script>
 
 </body>
+
 </html>
-
-
-
-
-
-
-
-

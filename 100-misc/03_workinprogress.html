@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -7,13 +8,15 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-LHNTFNW14H');
   </script>
-    <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    
-          <!-- Meta description -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Work In Progress | SikhsInIndia.com</title>
+
+  <!-- Meta description -->
   <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
 
   <!-- Meta keywords -->
@@ -31,87 +34,271 @@
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
   <meta property="og:url" content="https://sikhsinindia.com">
   <meta property="og:type" content="sikhsinindia.com">
-    <!-- <title>Sikhs in India: History, Culture & Present | SikhsInIndia.com </title>     -->
-    <style>
-        body {
-            margin: 0;
-            background-color: #000000;
-            color: #FF9933;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
 
-        h1 {
-            color: #FF9933;
-            padding: 2px;
-            font-size: 60px;
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
-        .image-row {
-            margin: 30px 0;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        img {
-            max-width: 80%;
-            height: auto;
-            border: 5px solid #FF9933;
-            box-shadow: 0 0 10px #FF9933;
-        }
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --gold-light: #F7941D;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+    }
 
-            .button {
-            background-color: #FFA500;
-            height: 100px; 
-            width: 150px; 
-            color: black;
-            border: none;
-            padding: 15px 30px;
-            font-size: 24px;
-            cursor: pointer;
-            border-radius: 8px;
-            min-width: 220px;
-            text-align: center;
-        }
-        .button:hover {
-            background-color: #FF8C00; /* Darker orange */
-        }
-        /* Back button styling */
-        .back-button {
-            width: 150px;
-            height: 40px;
-            font-size: 24px;
-            background-color: #FFA500;
-            color: black;
-            margin: 40px auto 0 auto;
-            display: block;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .back-button:hover {
-            background-color: #FF8C00;
-        }
-    </style>
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px 8px;
+    }
 
+    /* MAIN CONTAINER POSTER SHEET */
+    .poster {
+      width: 100%;
+      max-width: 650px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* BRAND HEADER WINDOW */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 75px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    /* ACCENT METRIC STRIP */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 12px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    /* CONTENT WRAPPER */
+    .wrapper {
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 42px);
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .notice-text {
+      font-size: 16px;
+      color: #444;
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    /* IMAGE CONTAINER DISPLAY */
+    .image-row {
+      width: 100%;
+      max-width: 420px;
+      margin: 10px 0;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    /* FOOTER CONTROL BAR */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* 3D ENGRAVED GOLDEN BACK BUTTON */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    @media(max-width: 500px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+      .hero {
+        padding: 16px;
+        width: 100%;
+      }
+      .wrapper {
+        padding: 30px 16px;
+      }
+      .footer-content {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 16px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <h1>Work In Progress</h1>
+  <div class="poster">
 
-    <div class="image-row">
-        <img src="pictures\08_pageunderconstruction\Under_Construction.png" alt="First Image">
+    <!-- PLATFORM HEADER BRAND LAYER -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Platform <span>Update Notice</span></div>
+      </div>
     </div>
 
- <!-- Back Button -->
-    <button type="button" onclick="goBack()" class="back-button">
-        <b>Back</b>
-    </button>
+    <div class="intro">
+      Digital Repository &bull; Knowledge Base Expansion
+    </div>
 
-    <script>
-        function goBack() 
-        {
-            window.location.href = "./03_Gurudwaras in India.html";
-        }
-    </script>
+    <div class="wrapper">
+      <h1>Work In Progress</h1>
+      
+      <p class="notice-text">
+        We are currently updating this section of the archive to bring you more comprehensive insights into historical records and cultural landmarks.
+      </p>
+
+      <div class="image-row">
+        <img src="pictures/08_pageunderconstruction/Under_Construction.png" alt="Under Construction Showcase Image">
+      </div>
+    </div>
+
+    <!-- SITE FOOTER FRAME -->
+    <div class="footer">
+      <div class="footer-content">
+        <button type="button" onclick="goBack()" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back
+        </button>
+        <div class="footer-left">&copy; Sikhs In India Heritage Initiative</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function goBack() {
+      window.location.href = "./03_Gurudwaras in India.html";
+    }
+  </script>
 
 </body>
+
 </html>
