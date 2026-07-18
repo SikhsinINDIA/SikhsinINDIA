@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -10,16 +11,16 @@
 
     gtag('config', 'G-LHNTFNW14H');
   </script>
+
   <!-- Meta description -->
   <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
-   <link rel="canonical" href="https://sikhsinindia.com/07-sikh-section-for-kids/07-01-sikh-stories/07-sikh-stories.html">
+  <link rel="canonical" href="https://sikhsinindia.com/07-sikh-section-for-kids/07-01-sikh-stories/07-sikh-stories.html">
+  
   <!-- Meta keywords -->
   <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
 
   <!-- Author -->
   <meta name="author" content="Sikhs in India">
-
-    <meta property="og:image" content="https://sikhsinindia.com/Stories_of_Sikh_Gurus.jpg">
 
   <!-- Robots -->
   <meta name="robots" content="index, follow">
@@ -31,416 +32,569 @@
   <meta property="og:url" content="https://sikhsinindia.com/07-sikh-section-for-kids/07-01-sikh-stories/07-sikh-stories.html">
   <meta property="og:type" content="website">
 
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Sikh Stories - Sakhies</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sikh Stories - Sakies</title>
   <style>
-    :root {
-      --orange: #FF9933;
-      --black: #000000;
-    }
-
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: var(--black);
-      color: var(--orange);
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    header {
-      background-color: var(--orange);
-      color: var(--black);
-      padding: 20px;
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --kesari: #FF9933;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
+
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* HEADER STYLE WITH EMBEDDED LOGO */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 4.5vw, 36px);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero-title span {
+      color: var(--kesari);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    .intro {
+      background: linear-gradient(90deg, var(--kesari), #ffb347, var(--kesari));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
       text-align: center;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2em;
+    .wrapper {
+      padding: 28px 36px;
     }
 
-    header p {
-      margin: 5px 0 0;
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 8px;
     }
 
-    .container {
-      padding: 20px;
-      max-width: 960px;
-      margin: auto;
+    .sub {
+      color: #555;
+      font-size: 15px;
+      text-align: center;
+      margin-bottom: 24px;
+      font-weight: bold;
     }
 
-    .image-top,
-    .image-center {
-      width: 100%;
-      max-height: 200px;
-      background-color: #222;
-      margin: 20px 0;
+    /* STORIES LIST GRID AREA */
+    .stories-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .story-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .story-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .story-card {
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: var(--orange);
-      font-size: 16px;
-      text-align: center;
-      border: 2px dashed var(--orange);
-      padding: 10px;
+      background: #fff;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border: 2px solid var(--kesari);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    h2 {
-      color: var(--orange);
-      border-bottom: 1px solid var(--orange);
-      padding-bottom: 5px;
+    .story-link:hover .story-card {
+      border-color: var(--navy);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .guru-avatar {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--navy);
+      margin-right: 18px;
+      background: #fcfcfc;
+      flex-shrink: 0;
+    }
+
+    .story-details {
+      flex: 1;
+    }
+
+    .story-meta {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--kesari);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .story-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .story-desc {
+      font-size: 13px;
+      color: #666;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* GLOBAL MEDIA BREAKPOINTS */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .wrapper {
+        padding: 18px 12px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      .story-card {
+        padding: 12px;
+      }
+
+      .guru-avatar {
+        width: 50px;
+        height: 50px;
+        margin-right: 12px;
+      }
+
+      .story-title {
+        font-size: 15px;
+      }
+
+      .story-desc {
+        font-size: 12px;
+      }
+    }
+
+    /* SYSTEM FOOTER BAR */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--kesari);
       margin-top: 30px;
+      border-radius: 0 0 4px 4px;
     }
 
-    p, li {
-      line-height: 1.6;
-      font-size: 1rem;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    .button-group {
-      text-align: center;
-      margin: 40px 0 20px;
+    .footer-content {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
       flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
     }
 
-    .btn {
-      background-color: var(--orange);
-      color: var(--black);
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--kesari);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* 3D Gold Accent Themed Button */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--kesari) 0%, #e8830a 100%);
       border: none;
-      padding: 12px 24px;
-      font-size: 1.5rem;
       border-radius: 5px;
+      padding: 9px 18px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-      min-width: 150px;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--kesari);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
     }
 
-    .btn:hover {
-      background-color: #FF9933;
+    .btn-back:hover {
+      filter: brightness(1.08);
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.5em;
-      }
+    .btn-back:active {
+      transform: scale(0.97);
+    }
 
-      .btn {
-      background-color: var(--orange);
-      color: var(--black);
-      border: none;
-      padding: 12px 24px;
-      font-size: 1.5rem;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      min-width: 150px;
-      }
-
-      .image-top, .image-center {
-        font-size: 14px;
-        padding: 8px;
-      }
-
-      p, li {
-        font-size: 0.95rem;
-      }
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
     }
   </style>
 </head>
+
 <body>
 
-  <header>
-    <h1>Sikh Stories - Sakhies</h1>
+  <div class="poster">
 
-  </header>
-
-
-
-    <!-- This text is a link that opens the HTML file -->
-
-<a href="07-01-bhai-lalo-and-malik-bhago.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/01-guru-nanak-dev-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-   
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;">Guru Nanak Dev Ji <br> 1. Bhai Lalo and Malik Bhago</span><br>
-      <span style="font-size: 1rem;">A Story of Honesty and Kindness</span>
+    <!-- HEADER BLOCK CONTAINER WITH LOGO -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Sikh Stories — <span>Sakhis</span></div>
+        <div class="hero-sub">Inspirational Tales of Wisdom, Devotion, and Humility</div>
+      </div>
     </div>
+
+    <div class="intro">
+      Welcome to the kids section. Select any story below to read and learn about the great teachings of the Sikh Gurus.
+    </div>
+
+    <div class="wrapper">
+
+      <h1>Stories of the Sikh Gurus</h1>
+      <div class="sub">Click on a card below to open the complete story</div>
+
+      <!-- STORIES LIST CONTENT CONTAINER -->
+      <div class="stories-container">
+
+        <!-- Story 1 -->
+        <a href="07-01-bhai-lalo-and-malik-bhago.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/01-guru-nanak-dev-ji.jpg" class="guru-avatar" alt="Guru Nanak Dev Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Nanak Dev Ji</div>
+              <div class="story-title">1. Bhai Lalo and Malik Bhago</div>
+              <div class="story-desc">A Story of Honesty and Kindness</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 2 -->
+        <a href="07-02-sajjan-thug.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/01-guru-nanak-dev-ji.jpg" class="guru-avatar" alt="Guru Nanak Dev Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Nanak Dev Ji</div>
+              <div class="story-title">2. Sajjan Thug</div>
+              <div class="story-desc">A Story of Change and Realization</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 3 -->
+        <a href="07-03-bhoomi-daku-de-vaade.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/01-guru-nanak-dev-ji.jpg" class="guru-avatar" alt="Guru Nanak Dev Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Nanak Dev Ji</div>
+              <div class="story-title">3. Bhoomi Daku De Vaade</div>
+              <div class="story-desc">A Story of Redemption and Sikh Values</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 4 -->
+        <a href="07-04-vali-kandhari.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/01-guru-nanak-dev-ji.jpg" class="guru-avatar" alt="Guru Nanak Dev Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Nanak Dev Ji</div>
+              <div class="story-title">4. Vali Kandhari</div>
+              <div class="story-desc">A Story of Ego and Humility</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 5 -->
+        <a href="07-05-tera-hi-tera.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/01-guru-nanak-dev-ji.jpg" class="guru-avatar" alt="Guru Nanak Dev Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Nanak Dev Ji</div>
+              <div class="story-title">5. Tera Hi Tera</div>
+              <div class="story-desc">A Story of Devotion, Humility, and Simplicity</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 6 -->
+        <a href="07-06-sacha-sauda.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/01-guru-nanak-dev-ji.jpg" class="guru-avatar" alt="Guru Nanak Dev Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Nanak Dev Ji</div>
+              <div class="story-title">6. Sacha Sauda</div>
+              <div class="story-desc">The True Bargain by Guru Nanak Dev Ji</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 7 -->
+        <a href="07-07-bhai-mana.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/02-guru-angad-dev-ji.jpg" class="guru-avatar" alt="Guru Angad Dev Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Angad Dev Ji</div>
+              <div class="story-title">7. Bhai Mana</div>
+              <div class="story-desc">A Story of Ego, Obedience, and Transformation</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 8 -->
+        <a href="07-08-guru-amar-das-ji-and-badshah-akbar.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/03-guru-amar-das-ji.jpg" class="guru-avatar" alt="Guru Amar Das Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Amar Das Ji</div>
+              <div class="story-title">8. Badshah Akbar</div>
+              <div class="story-desc">A Story of Humility, Langar, and Equality</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 9 -->
+        <a href="07-09-amrit-sarovar-di-sthapana-guru-ram-das-ji.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/04-guru-ram-das-ji.jpg" class="guru-avatar" alt="Guru Ram Das Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Ram Das Ji</div>
+              <div class="story-title">9. Amrit Sarovar Di Sthapana</div>
+              <div class="story-desc">Guru Ram Das Ji's Sacred Mission</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 10 -->
+        <a href="07-10-bhai-gopalji-guru-arjan-dev-ji.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/05-guru-arjan-dev-ji.jpg" class="guru-avatar" alt="Guru Arjan Dev Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Arjan Dev Ji</div>
+              <div class="story-title">10. Bhai Gopal Ji</div>
+              <div class="story-desc">A Story of Pure Devotion and Humility</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 11 -->
+        <a href="07-11-guru-hargobind-ji-te-sher.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/06-guru-har-gobind-singh-ji.jpg" class="guru-avatar" alt="Guru Hargobind Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Hargobind Ji</div>
+              <div class="story-title">11. Guru Ji Te Sher</div>
+              <div class="story-desc">A Story of Courage and Spiritual Power</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 12 -->
+        <a href="07-12-japji-sahib-da-muqabla.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/06-guru-har-gobind-singh-ji.jpg" class="guru-avatar" alt="Guru Hargobind Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Hargobind Ji</div>
+              <div class="story-title">12. Japji Sahib Da Muqabla</div>
+              <div class="story-desc">A Story of Divine Wisdom and Spiritual Victory</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 13 -->
+        <a href="07-13-bandi-chhor-diwas-guru-hargobind-ji.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/06-guru-har-gobind-singh-ji.jpg" class="guru-avatar" alt="Guru Hargobind Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Hargobind Ji</div>
+              <div class="story-title">13. Bandi Chhor Diwas</div>
+              <div class="story-desc">Guru Hargobind Ji Frees the 52 Kings</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 14 -->
+        <a href="07-14-guru-har-rai-ji-te-gharra.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/07-guru-har-rai-ji.jpg" class="guru-avatar" alt="Guru Har Rai Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Har Rai Ji</div>
+              <div class="story-title">14. Guru Ji Te Gharra</div>
+              <div class="story-desc">A Story of Forgiveness and Humility</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 15 -->
+        <a href="07-15-guru-har-rai-ji-di-nimarta.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/07-guru-har-rai-ji.jpg" class="guru-avatar" alt="Guru Har Rai Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Har Rai Ji</div>
+              <div class="story-title">15. Guru Ji Di Nimarta</div>
+              <div class="story-desc">A Story of True Humility and Grace</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 16 -->
+        <a href="07-16-guru-harkrishan-ji-brahman-te-chhaju.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/08-shri-guru-harkrishan-ji.jpg" class="guru-avatar" alt="Guru Harkrishan Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Harkrishan Ji</div>
+              <div class="story-title">16. Brahman Te Chhaju</div>
+              <div class="story-desc">A Story of Wisdom and Humility</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 17 -->
+        <a href="07-17-guru-gobind-singh-ji-te-seva-di-mahima.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/10-shri-guru-gobind-singh-ji.jpg" class="guru-avatar" alt="Guru Gobind Singh Ji">
+            <div class="story-details">
+              <div class="story-meta">Guru Gobind Singh Ji</div>
+              <div class="story-title">17. Guru Ji Te Seva Di Mahima</div>
+              <div class="story-desc">A Story of Humble Service and Spiritual Strength</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story 18 -->
+        <a href="07-18-guru-gobind-rai-te-birdh-mata.html" target="_blank" class="story-link">
+          <div class="story-card">
+            <img src="../../pictures/07-sikh-stories/sikh-gurus/10-shri-guru-gobind-singh-ji.jpg" class="guru-avatar" alt="Guru Gobind Rai">
+            <div class="story-details">
+              <div class="story-meta">Guru Gobind Rai</div>
+              <div class="story-title">18. Guru Ji Te Birdh Mata</div>
+              <div class="story-desc">A Story of Compassion and Respect</div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- SITE FOOTER MODULE WITH THEMED BACK BUTTON -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="../07-sikh-section-for-kids.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </div>
+
   </div>
-</a>
-  <br>
-  <br>
 
-  <a href="07-02-sajjan-thug.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/01-guru-nanak-dev-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;">Guru Nanak Dev Ji <br> 2. Sajjan Thug</span><br>
-      <span style="font-size: 1rem;">A Story of Change and Realization</span>
-    </div>
-  </div>
-</a>
-
-
-  <br>
-  <br>
-
-  <a href="07-03-bhoomi-daku-de-vaade.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/01-guru-nanak-dev-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;">Guru Nanak Dev Ji <br> 3. Bhoomi Daku De Vaade</span><br>
-      <span style="font-size: 1rem;">A Story of Redemption and Sikh Values</span>
-    </div>
-  </div>
-
-  <br>
-  <br>
-
-    <a href="07-04-vali-kandhari.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/01-guru-nanak-dev-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;">Guru Nanak Dev Ji <br> 4. Vali Kandhari</span><br>
-      <span style="font-size: 1rem;">A Story of Ego and Humility</span>
-    </div>
-  </div>
-
-<br>
-  <br>
-
-  <a href="07-05-tera-hi-tera.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/01-guru-nanak-dev-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;">Guru Nanak Dev Ji <br> 5. Tera Hi Tera</span><br>
-      <span style="font-size: 1rem;">A Story of Devotion, Humility, and Simplicity</span>
-    </div>
-  </div>
-
-
-<br>
-  <br>
-
-    <a href="07-06-sacha-sauda.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/01-guru-nanak-dev-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;">Guru Nanak Dev Ji <br> 6. Sacha Sauda</span><br>
-      <span style="font-size: 1rem;">The True Bargain by Guru Nanak Dev Ji</span>
-    </div>
-  </div>
-
-  <br>
-  <br>
- <a href="07-07-bhai-mana.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/02-guru-angad-dev-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;">Guru Angad Dev Ji <br> 7. Bhai Mana </span><br>
-      <span style="font-size: 1rem;">A Story of Ego, Obedience, and Transformation</span>
-    </div>
-  </div>
-
-<br>
-<br>
-
- <a href="07-08-guru-amar-das-ji-and-badshah-akbar.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/03-guru-amar-das-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;">Guru Amar Das Ji <br> 8. Badshah Akbar </span><br>
-      <span style="font-size: 1rem;">A Story of Humility, Langar, and Equality</span>
-    </div>
-  </div>
-
-  <br>
-  <br>
-
-   <a href="07-09-amrit-sarovar-di-sthapana-guru-ram-das-ji.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/04-guru-ram-das-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;">Guru Ram Das Ji <br> 9. Amrit Sarovar Di Sthapana </span><br>
-      <span style="font-size: 1rem;">Guru Ram Das Ji's Sacred Mission</span>
-    </div>
-  </div>
-
-
-  <br>
-  <br>
-
-     <a href="07-10-bhai-gopalji-guru-arjan-dev-ji.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/05-guru-arjan-dev-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;">Guru Arjan Dev Ji <br> 10. Bhai Gopal Ji  </span><br>
-      <span style="font-size: 1rem;">A Story of Pure Devotion and Humility</span>
-    </div>
-  </div>
-
-  <br>
-  <br>
-
-       <a href="07-11-guru-hargobind-ji-te-sher.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/06-guru-har-gobind-singh-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;">Guru Hargobind Ji  <br> 11. Guru Ji Te Sher  </span><br>
-      <span style="font-size: 1rem;">A Story of Courage and Spiritual Power</span>
-    </div>
-  </div>
-
-
-  <br>
-  <br>
-  
-      <a href="07-12-japji-sahib-da-muqabla.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/06-guru-har-gobind-singh-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;">Guru Hargobind Ji  <br> 12. Japji Sahib Da Muqabla  </span><br>
-      <span style="font-size: 1rem;">A Story of Divine Wisdom and Spiritual Victory</span>
-    </div>
-  </div>
-
-
-  <br>
-  <br>
-
-            <a href="07-13-bandi-chhor-diwas-guru-hargobind-ji.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/06-guru-har-gobind-singh-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;"> Guru Hargobind Ji  <br> 13.  Bandi Chhor Diwas </span><br>
-      <span style="font-size: 1rem;">Guru Hargobind Ji Frees the 52 Kings</span>
-    </div>
-  </div>
-
-  <br>
-  <br>
-
-
-  <a href="07-14-guru-har-rai-ji-te-gharra.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/07-guru-har-rai-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-
-      <span style="font-size: 1.5rem; font-weight: bold;"> Guru Har Rai Ji  <br> 14. Guru Ji Te Gharra </span><br>
-      <span style="font-size: 1rem;">A Story of Forgiveness and Humility</span>
-    </div>
-  </div>
-
-  <br>
-  <br>
-
-        <a href="07-15-guru-har-rai-ji-di-nimarta.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/07-guru-har-rai-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;"> Guru Har Rai Ji  <br> 15.  Guru Ji Di Nimarta  </span><br>
-      <span style="font-size: 1rem;">A Story of True Humility and Grace</span>
-    </div>
-  </div>
-
-
-
-
-
-
-
-  <br>
-  <br>
-
-
-        <a href="07-16-guru-harkrishan-ji-brahman-te-chhaju.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/08-shri-guru-harkrishan-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-
-            <span style="font-size: 1.5rem; font-weight: bold;"> Guru Harkrishan Ji <br> 16. Brahman Te Chhaju  </span><br>
-      <span style="font-size: 1rem;">A Story of Wisdom and Humility</span>
-    </div>
-  </div>
-
-
-  <br>
-  <br>
-
-          <a href="07-17-guru-gobind-singh-ji-te-seva-di-mahima.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/10-shri-guru-gobind-singh-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;"> Guru Gobind Singh Ji <br> 17.  Guru Ji Te Seva Di Mahima </span><br>
-      <span style="font-size: 1rem;">A Story of Humble Service and Spiritual Strength</span>
-    </div>
-  </div>
-
-
-  <br>
-  <br>
-
-          <a href="07-18-guru-gobind-rai-te-birdh-mata.html" target="_blank" style="color: inherit; text-decoration: none;">
-  <div style="display: flex; align-items: center;">
-    <img src="../../pictures/07-sikh-stories/sikh-gurus/10-shri-guru-gobind-singh-ji.jpg" width="40" height="auto" alt="Guru Nanak Dev Ji" style="margin-right: 10px;">
-    
-    <div>
-      <span style="font-size: 1.5rem; font-weight: bold;"> Guru Gobind Rai  <br> 18.  Guru Ji Te Birdh Mata </span><br>
-      <span style="font-size: 1rem;">A Story of Compassion and Respect</span>
-    </div>
-  </div>
-
-  <br>
-  <br>
-
-<a href="../07-sikh-section-for-kids.html" class="back-button" 
-   style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
-          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
-          line-height: 35px; border-radius: 8px; text-decoration: none; 
-          border: 2px solid black;">
-    <b>Back</b>
-</a>
-
-    <!-- <div class="button-group">
-      <button class="btn" onclick="goBack()">Back</button>
-    </div>
-
-
-    <script>
-        function goBack() 
-        {
-            window.location.href = "../07-sikh-section-for-kids.html";
-        }
-    </script> -->
-
-  
 </body>
 </html>
-
