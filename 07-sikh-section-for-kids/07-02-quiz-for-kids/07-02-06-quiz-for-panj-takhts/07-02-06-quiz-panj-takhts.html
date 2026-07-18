@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -11,9 +12,10 @@
     gtag('config', 'G-LHNTFNW14H');
   </script>
 
-     <!-- Meta description -->
+  <!-- Meta description -->
   <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
-   <link rel="canonical" href="https://sikhsinindia.com/07-sikh-section-for-kids/07-02-quiz-for-kids/07-02-06-quiz-for-panj-takhts/07-02-06-quiz-panj-takhts.html">
+  <link rel="canonical" href="https://sikhsinindia.com/07-sikh-section-for-kids/07-02-quiz-for-kids/07-02-06-quiz-for-panj-takhts/07-02-06-quiz-panj-takhts.html">
+  
   <!-- Meta keywords -->
   <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
 
@@ -30,209 +32,590 @@
   <meta property="og:url" content="https://sikhsinindia.com/07-sikh-section-for-kids/07-02-quiz-for-kids/07-02-06-quiz-for-panj-takhts/07-02-06-quiz-panj-takhts.html">
   <meta property="og:type" content="website">
 
-  
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Sikh Takhts — Select the 5 Takhts from the Top 10 Gurdwaras</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
   <style>
-    /* THEME VARIABLES */
-    :root{
-      --kesari:#FF9933;
-      --black:#000;
-      --ink:#1f2937;
-      --paper:#fff;
-      --peel:#fff5eb;
-      --ok:#c8f7c5;
-      --ok-ink:#0a5d00;
-      --bad:#fde2e2;
-      --bad-ink:#cc0000;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    /* RESET */
-    *,*::before,*::after{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-      background:var(--black);
-      color:var(--black);
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --kesari: #FF9933;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --ok: #c8f7c5;
+      --ok-ink: #0a5d00;
+      --bad: #fde2e2;
+      --bad-ink: #cc0000;
     }
 
-    /* WRAPPER */
-    .wrap{
-      max-width:1100px;
-      margin:0 auto;
-      padding:12px;
-      background:var(--paper);
-      min-height:100vh;
-      position:relative;
-      overflow:hidden;
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
     }
 
-    header{display:grid;gap:6px;margin-bottom:8px;text-align:center}
-    h1{margin:0;color:var(--black);font-size:clamp(20px,4.5vw,28px);line-height:1.2}
-    .sub{color:var(--ink);font-size:13px}
-
-    .topbar{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:6px 0 10px 0;color:var(--black);font-weight:700;font-size:14px}
-    .dot{width:10px;height:10px;border-radius:50%;background:var(--kesari)}
-    .btn{border:2px solid var(--black);background:var(--paper);color:var(--black);border-radius:10px;padding:8px 12px;font-weight:700;cursor:pointer;transition:background .2s,color .2s}
-    .btn.primary{background:var(--kesari);color:var(--black)}
-    .btn:hover{background:var(--black);color:#fff}
-
-    .board{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;width:100%;max-width:100%;box-sizing:border-box}
-    .col{padding:6px;border-radius:10px;border:2px solid var(--black);background:var(--paper);min-width:0}
-    .col h3{margin:0 0 6px 0;text-align:center;font-size:14px;color:var(--ink)}
-
-    .slots{display:flex;flex-direction:column;gap:6px}
-    .pool{display:flex;flex-direction:column;gap:6px}
-
-    .card, .slot {
-  min-height: 56px;
-  height: auto;
-  align-items: center;
-  padding: 8px 12px;
-  flex-wrap: wrap;
-}
- .slot{border:2px dashed var(--kesari);background:var(--peel);font-weight:800;color:var(--black);user-select:none;padding-right:6px}
-    .slot.correct{background:var(--ok);border-color:var(--ok-ink)}
-    .slot.wrong{background:var(--bad);border-color:var(--bad-ink)}
-    .slot .slot-index{min-width:22px;height:100%;display:grid;place-items:center;padding:0 6px;background:var(--kesari);color:var(--black);font-size:12px;font-weight:900;border-right:1px solid var(--black);user-select:none}
-    .slot .slot-attr {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--ink);
-  opacity: .95;
-  white-space: normal; /* ← Allow wrapping */
-  word-break: break-word; /* ← Break long lines */
-  user-select: none;
-  padding-left: 6px;
-  flex: 1;
-}
-    .card{border:2px solid var(--kesari);background:var(--peel);cursor:grab;user-select:none;padding-left:12px}
-    .card[draggable="false"]{cursor:default}
-    .card.pending{outline:3px dashed var(--kesari);outline-offset:2px;background:#ffe7c6;box-shadow:0 0 0 2px rgba(255,153,51,.18) inset}
-    
-    .card .label {
-  flex: 1;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--black);
-  white-space: normal; /* ← Allow wrapping */
-  word-break: break-word; /* ← Allow long words to break */
-}
-
-.compact-text .slot-attr,
-.compact-text .label {
-  font-size: 11px !important;
-  line-height: 1.2;
-  word-break: break-word;
-  white-space: normal;
-  padding: 0 4px;
-}
-
-    #winOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;color:#fff;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;padding:16px}
-    #winOverlay .box{background:#fff;color:var(--black);border:2px solid var(--black);border-radius:14px;padding:18px 20px;max-width:460px;width:calc(100% - 32px)}
-    #winOverlay h2{margin:0 0 8px 0;font-size:22px}
-    #winOverlay .stats{margin:10px 0 14px 0;border:1.5px dashed var(--black);border-radius:12px;padding:10px 12px;font-weight:700;line-height:1.5;text-align:left}
-    #winOverlay .actions{display:flex;align-items:center;justify-content:center;gap:10px}
-    #winOverlay .actions .btn{background:var(--kesari);color:var(--black)}
-    #confetti{position:fixed;inset:0;z-index:9998;pointer-events:none}
-
-    @media (max-width:700px){
-      .board{gap:6px}
-      .slot,.card{height:46px;font-size:11px}
-      .slot .slot-index{min-width:22px;font-size:11px}
-      .card .label{font-size:12px;padding:0 6px}
-      header .sub{font-size:12px}
-      .topbar{font-size:12px;gap:10px}
-      #winOverlay h2{font-size:18px}
-      #winOverlay .stats{font-size:13px}
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
       overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
-.slots .slot {
-    min-height: 60px;  /* taller slots on tablets/phones */
-  }
     }
 
-    @media (max-width:480px){
-      .board{grid-template-columns:1fr 1fr;gap:4px}
-      .col{padding:4px}
-      .slot,.card{height:44px}
-      .card .label{font-size:11px;padding:0 5px}
-        .slots .slot {
-    min-height: 54px;  /* still touch-friendly */
-  }
+    /* HEADER STYLE WITH EMBEDDED LOGO */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
     }
 
-    .back-button{width:80%;max-width:200px;height:45px;font-size:18px;background-color:#FFA500;color:black;margin:40px auto 0 auto;display:block;border:none;border-radius:8px;cursor:pointer}
-    .back-button:hover{background-color:#FF8C00}
+    .logo-wrap {
+      padding: 16px 20px;
+    }
 
-    .slot.correct .slot-index {
-  display: none;
-}
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
 
-/* Make LEFT Takht slots taller */
-.slots .slot {
-  min-height: 80px;   /* ⬆️ increased height for left slots */
-  height: auto;
-  padding: 10px 14px;
-  font-size: 14px;    /* bigger font inside slots */
-}
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
 
-/* Remove card border/background once placed correctly */
-.slot.correct .card {
-  border: none;
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
-  margin: 0;
-}
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 4.5vw, 36px);
+      font-weight: 900;
+      color: #fff;
+    }
 
+    .hero-title span {
+      color: var(--kesari);
+    }
 
-/* Center the text neatly */
-.slot.correct .card .label {
-  padding: 0;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
-}
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    .intro {
+      background: linear-gradient(90deg, var(--kesari), #ffb347, var(--kesari));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .wrapper {
+      padding: 28px 36px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .sub {
+      color: #555;
+      font-size: 15px;
+      text-align: center;
+      margin-bottom: 24px;
+      font-weight: bold;
+    }
+
+    /* CONTROLS AREA */
+    .controls-container {
+      background: #fff;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      margin-bottom: 20px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: #fff;
+      border: 2px solid var(--navy);
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn.primary {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .btn:hover {
+      background: var(--kesari);
+      border-color: var(--kesari);
+      color: var(--navy);
+    }
+
+    /* STATUS HUD BAR */
+    .topbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      background: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 24px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      flex-wrap: wrap;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--kesari);
+    }
+
+    .score-highlight {
+      color: var(--kesari);
+    }
+
+    /* CORE BOARD GRID */
+    .board {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .col {
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .col h3 {
+      margin: 0 0 12px 0;
+      text-align: center;
+      font-size: 16px;
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      font-weight: bold;
+    }
+
+    .slots,
+    .pool {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* SLOTS & CARDS CONFIGURATION */
+    .slot,
+    .card {
+      min-height: 72px;
+      height: auto;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      padding: 8px;
+      margin: 0;
+      font-size: 13px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .slot {
+      border: 2px dashed var(--kesari);
+      background: #fffdfa;
+      font-weight: 800;
+      color: var(--navy);
+      user-select: none;
+    }
+
+    .slots .slot {
+      min-height: 76px;
+    }
+
+    .slot.correct {
+      background: var(--ok);
+      border-color: var(--ok-ink);
+    }
+
+    .slot.wrong {
+      background: var(--bad);
+      border-color: var(--bad-ink);
+    }
+
+    .slot .slot-index {
+      min-width: 28px;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 6px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+      border-radius: 4px;
+    }
+
+    .slot .slot-attr {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--navy);
+      padding-left: 4px;
+      flex: 1;
+      white-space: normal;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .card {
+      border: 2px solid var(--kesari);
+      background: #fffdfa;
+      cursor: grab;
+      user-select: none;
+      width: 100%;
+    }
+
+    .card[draggable="false"] {
+      cursor: default;
+    }
+
+    .card.pending {
+      outline: 3px dashed var(--navy);
+      outline-offset: 2px;
+      background: #ffe7c6;
+    }
+
+    .card .label {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 4px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      white-space: normal;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .slot.correct .card {
+      border: none;
+      background: transparent;
+      min-height: auto;
+      height: auto;
+      padding: 0;
+    }
+
+    .slot.correct .card .label {
+      color: var(--ok-ink);
+      font-size: 13px;
+    }
+
+    .slot.correct .slot-attr {
+      display: none;
+    }
+
+    /* MODAL OVERLAY WRAPPER */
+    #winOverlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(13, 27, 62, 0.85);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #winOverlay .box {
+      background: var(--cream);
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      border: 3px solid var(--kesari);
+      max-width: 420px;
+      width: calc(100% - 32px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    #winOverlay h2 {
+      margin: 0 0 12px;
+      font-size: 24px;
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+    }
+
+    #winOverlay .stats {
+      margin: 10px 0 20px 0;
+      padding: 12px 16px;
+      border: 2px dashed var(--navy);
+      border-radius: 8px;
+      display: block;
+      text-align: left;
+      line-height: 1.6;
+      background: #fff;
+      color: var(--navy);
+      font-weight: bold;
+    }
+
+    #confetti {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      pointer-events: none;
+    }
+
+    /* GLOBAL MEDIA BREAKPOINTS */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .wrapper {
+        padding: 18px 10px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      .board {
+        gap: 10px;
+      }
+
+      .slot,
+      .card {
+        min-height: 64px;
+        font-size: 12px;
+      }
+
+      .slot .slot-index {
+        min-width: 24px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .board {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .col {
+        padding: 8px;
+      }
+
+      .slot,
+      .card {
+        min-height: 56px;
+      }
+    }
+
+    /* SYSTEM FOOTER BAR */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--kesari);
+      margin-top: 30px;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--kesari);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* 3D Gold Accent Themed Button */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--kesari) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--kesari);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Select the 5 Takht Gurdwaras from the Top 10</h1>
-      <div class="sub">Drag or tap the names on the right and place the five Takhts into the empty slots on the left. Distractors are non-Takht gurdwaras.</div>
-    </header>
 
-    <div class="topbar" role="status" aria-live="polite">
-      <div class="dot" aria-hidden="true"></div>
-      <div>Correct: <span id="correctCount">0</span> / 5</div>
-      <div>| Trials: <span id="trialCount">0</span></div>
-      <div>| Score: <span id="scorePct">0%</span></div>
+  <div class="poster">
+
+    <!-- HEADER BLOCK CONTAINER WITH LOGO -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Sikh Takhts <span>Selection Game</span></div>
+        <div class="hero-sub">Identify the Official Seats of Temporal Authority</div>
+      </div>
     </div>
-      <button id="btnReset" class="btn" type="button">Reset</button>
-      <button id="btnShuffle" class="btn primary" type="button">New Round</button>
 
+    <div class="intro">
+      Drag or tap the names on the right and place the five Takhts into the empty slots on the left board column.
+    </div>
 
-    <section class="board" aria-label="Select Takhts from pool">
-      <div class="col">
-        <h3>Takht Slots (place the 5 Takhts here)</h3>
-        <div id="slots" class="slots"></div>
+    <div class="wrapper">
+
+      <h1>Select the 5 Takht Gurdwaras from the Top 10</h1>
+      <div class="sub">Distractors are non-Takht gurdwaras. Correct selections lock into green ✅</div>
+
+      <!-- CONTROLS CONTAINER -->
+      <div class="controls-container">
+        <div class="controls">
+          <button id="btnShuffle" class="btn primary" type="button">New Round</button>
+          <button id="btnReset" class="btn" type="button">Reset</button>
+        </div>
       </div>
 
-      <div class="col">
-        <h3>Top 10 Gurdwaras (Pick the 5 Takhts)</h3>
-        <div id="pool" class="pool"></div>
+      <!-- STATUS BAR HUD -->
+      <div class="topbar" role="status" aria-live="polite">
+        <div class="dot" aria-hidden="true"></div>
+        <div>Score: <span id="scorePct" class="score-highlight">0%</span></div>
+        <div>| Correct: <span id="correctCount">0</span> / 5</div>
+        <div>| Trials: <span id="trialCount">0</span></div>
       </div>
-    </section>
+
+      <!-- BOARD STAGE -->
+      <section class="board" aria-label="Select Takhts from pool">
+        <div class="col">
+          <h3>Takht Slots (place the 5 Takhts here)</h3>
+          <div id="slots" class="slots"></div>
+        </div>
+
+        <div class="col">
+          <h3>Top 10 Gurdwaras (Pick the 5 Takhts)</h3>
+          <div id="pool" class="pool"></div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- SITE FOOTER MODULE WITH THEMED BACK BUTTON -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="../07-02-quiz-for-kids.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </div>
+
   </div>
 
+  <!-- COMPLETION WINNER MODAL DISPLAY -->
   <div id="winOverlay" role="dialog" aria-modal="true" aria-labelledby="winHeading">
     <div class="box">
       <h2 id="winHeading">🎉 You Selected All 5 Takhts! 🎉</h2>
@@ -241,14 +624,20 @@ white-space: nowrap;
         <div><strong>Trials:</strong> <span id="finalTrials">0</span></div>
         <div><strong>Score:</strong> <span id="finalScore">100%</span></div>
       </div>
-      <div class="actions">
-        <button id="playAgain" class="btn" type="button">Play Again</button>
-      </div>
+      <button id="playAgain" class="btn" type="button" style="
+        background: var(--navy);
+        color: #fff;
+        width: 100%;
+        padding: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      ">Play Again</button>
     </div>
   </div>
 
   <canvas id="confetti"></canvas>
 
+  <!-- TEMPLATE LAYOUT BLUEPRINTS -->
   <template id="slot-tpl">
     <div class="slot" data-id="" tabindex="0" aria-label="Takht slot">
       <div class="slot-index" aria-hidden="true">1</div>
@@ -262,51 +651,43 @@ white-space: nowrap;
     </div>
   </template>
 
+  <!-- ENGINE LOGIC INVOCATION SCRIPT -->
   <script>
-    /* TOP 10 GURDWARAS: 5 TAKHTS (isTakht=true) + 5 NON-TAKHTS */
     const ALL_ITEMS = [
-      { id: 'takht-akal',    label: 'Shri Akal Takht Sahib Ji, Amritsar, Punjab',    attr: 'Amritsar, Punjab', isTakht: true },
-      { id: 'takht-kesh',    label: 'Gurudwara Sri Keshgarh Sahib, Anandpur Sahib, Punjab',      attr: 'Anandpur Sahib, Punjab', isTakht: true },
-      { id: 'takht-damdama', label: 'Gurudwara Sri Damdama Sahib Talwandi Sabo, Bathinda, Punjab',    attr: 'Talwandi Sabo (Bathinda), Punjab', isTakht: true },
-      { id: 'takht-patna',   label: 'Gurudwara Sri Patna Sahib, Patna, Bihar',           attr: 'Patna, Bihar', isTakht: true },
-      { id: 'takht-hazur',   label: 'Gurudwara Sri Hazur Sahib Nanded, Maharashtra', attr: 'Nanded, Maharashtra', isTakht: true },
+      { id: 'takht-akal',    label: 'Shri Akal Takht Sahib Ji, Amritsar, Punjab',    isTakht: true },
+      { id: 'takht-kesh',    label: 'Gurudwara Sri Keshgarh Sahib, Anandpur Sahib, Punjab',      isTakht: true },
+      { id: 'takht-damdama', label: 'Gurudwara Sri Damdama Sahib Talwandi Sabo, Bathinda, Punjab',    isTakht: true },
+      { id: 'takht-patna',   label: 'Gurudwara Sri Patna Sahib, Patna, Bihar',           isTakht: true },
+      { id: 'takht-hazur',   label: 'Gurudwara Sri Hazur Sahib Nanded, Maharashtra', isTakht: true },
 
-      { id: 'golden',        label: 'Harmandir Sahib (Golden Temple), Amritsar, Punjab', attr: 'Amritsar, Punjab', isTakht: false },
-      { id: 'bangla',        label: 'Gurdwara Bangla Sahib, New Delhi',           attr: 'New Delhi', isTakht: false },
-      { id: 'sisganj',       label: 'Gurdwara Sis Ganj Sahib, Chandni Chowk, Delhi',         attr: 'Chandni Chowk, Delhi', isTakht: false },
-      { id: 'hemkund',       label: 'Gurdwara Hemkund Sahib, Chamoli, Uttarakhand',          attr: 'Chamoli, Uttarakhand', isTakht: false },
-      { id: 'derabn',        label: 'Gurdwara Dera Baba Nanak, Gurdaspur, Punjab',        attr: 'Gurdaspur, Punjab', isTakht: false },
+      { id: 'golden',        label: 'Harmandir Sahib (Golden Temple), Amritsar, Punjab', isTakht: false },
+      { id: 'bangla',        label: 'Gurdwara Bangla Sahib, New Delhi',           isTakht: false },
+      { id: 'sisganj',       label: 'Gurdwara Sis Ganj Sahib, Chandni Chowk, Delhi',         isTakht: false },
+      { id: 'hemkund',       label: 'Gurdwara Hemkund Sahib, Chamoli, Uttarakhand',          isTakht: false },
+      { id: 'derabn',        label: 'Gurdwara Dera Baba Nanak, Gurdaspur, Punjab',        isTakht: false },
     ];
 
-    /* DOM */
     const slotsEl = document.getElementById('slots');
     const poolEl  = document.getElementById('pool');
-
     const correctEl  = document.getElementById('correctCount');
     const trialsEl   = document.getElementById('trialCount');
     const scorePctEl = document.getElementById('scorePct');
-
     const btnReset   = document.getElementById('btnReset');
     const btnShuffle = document.getElementById('btnShuffle');
-
     const winOverlay   = document.getElementById('winOverlay');
     const playAgainBtn = document.getElementById('playAgain');
-
     const finalCorrectEl = document.getElementById('finalCorrect');
     const finalTrialsEl  = document.getElementById('finalTrials');
     const finalScoreEl   = document.getElementById('finalScore');
-
     const confettiCanvas = document.getElementById('confetti');
     const ctx = confettiCanvas.getContext('2d');
 
-    /* STATE */
     let correct = 0;
     let trials  = 0;
     let pendingId = null;
     let confettiAF = null;
     let confettiBits = [];
 
-    /* HELPERS */
     function shuffle(arr){
       for(let i = arr.length-1; i>0; i--){
         const j = Math.floor(Math.random()*(i+1));
@@ -318,7 +699,7 @@ white-space: nowrap;
     function updateStatus(){
       correctEl.textContent = String(correct);
       trialsEl.textContent  = String(trials);
-      const denom = Math.max(trials,5);
+      const denom = Math.max(trials, 5);
       const scorePct = ((correct/denom)*100).toFixed(1);
       scorePctEl.textContent = `${scorePct}%`;
     }
@@ -332,27 +713,23 @@ white-space: nowrap;
 
     function flashWrong(slot){
       slot.classList.add('wrong');
-      setTimeout(()=>slot.classList.remove('wrong'),350);
+      setTimeout(()=>slot.classList.remove('wrong'), 300);
     }
 
-    /* BUILD GAME */
     function buildGame(){
       slotsEl.innerHTML = '';
       poolEl.innerHTML  = '';
       correct = 0; trials = 0; pendingId = null;
       updateStatus();
-      hideWinOverlay();
+      winOverlay.style.display = 'none';
       stopConfetti();
 
-      // create 5 blank slots
-      for(let i=0;i<5;i++){
-        const frag = document.importNode(document.getElementById('slot-tpl').content,true);
+      for(let i=0; i<5; i++){
+        const frag = document.importNode(document.getElementById('slot-tpl').content, true);
         const slot = frag.querySelector('.slot');
         const idxEl = frag.querySelector('.slot-index');
-        const attrEl = frag.querySelector('.slot-attr');
         slot.dataset.id = '';
         idxEl.textContent = String(i+1);
-        attrEl.textContent = '(empty)';
 
         slot.addEventListener('dragover', e => e.preventDefault());
         slot.addEventListener('drop', e => {
@@ -370,23 +747,22 @@ white-space: nowrap;
           attemptPlace(card, slot);
         });
 
-        slot.addEventListener('keydown',(e)=>{
-          if(e.key==='Enter' || e.key===' '){
+        slot.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            if(!pendingId) return;
+            if (!pendingId) return;
             const card = document.querySelector(`.card[data-id="${CSS.escape(pendingId)}"]`);
-            if(!card){ clearPending(); return; }
-            attemptPlace(card, slot);
+            if (card) attemptPlace(card, slot);
+            else clearPending();
           }
         });
 
-        slotsEl.appendChild(frag);
+        slotsEl.appendChild(slot);
       }
 
-      // build pool of all 10 items (shuffled)
       const cards = shuffle([...ALL_ITEMS]);
       cards.forEach(item=>{
-        const frag = document.importNode(document.getElementById('card-tpl').content,true);
+        const frag = document.importNode(document.getElementById('card-tpl').content, true);
         const card = frag.querySelector('.card');
         const lab  = frag.querySelector('.label');
         card.dataset.id = item.id;
@@ -400,65 +776,75 @@ white-space: nowrap;
           clearPending();
         });
 
-        card.addEventListener('click', ()=>{
+        card.addEventListener('click', (e)=>{
+          e.stopPropagation();
           if(card.getAttribute('draggable') === 'false') return;
-          if(pendingId === card.dataset.id) clearPending();
-          else { clearPending(); pendingId = card.dataset.id; card.classList.add('pending'); }
+          if(pendingId === card.dataset.id) {
+            clearPending();
+          } else {
+            clearPending();
+            pendingId = card.dataset.id;
+            card.classList.add('pending');
+          }
         });
 
-        card.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); card.click(); } });
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.click();
+          }
+        });
 
-        poolEl.appendChild(frag);
+        poolEl.appendChild(card);
       });
 
-      poolEl.addEventListener('click', (e)=>{ if(!e.target.closest('.card')) clearPending(); }, { once:true });
+      poolEl.addEventListener('click', (e) => {
+        if (!e.target.closest('.card')) clearPending();
+      }, { once: true });
     }
 
-    /* ATTEMPT PLACE */
     function attemptPlace(card, slot){
-      trials++; updateStatus();
+      trials++; 
+      updateStatus();
 
-      // reject if slot already filled
       if(slot.classList.contains('correct') || slot.querySelector('.card')){
-        flashWrong(slot); clearPending(); return;
+        flashWrong(slot); 
+        clearPending(); 
+        return;
       }
 
       const isTakht = card.dataset.isTakht === '1';
-if(isTakht){
-  slot.classList.add('correct', 'compact-text');
-  card.classList.add('compact-text');
+      if(isTakht){
+        slot.classList.add('correct');
+        card.setAttribute('draggable', 'false');
+        card.classList.remove('pending');
+        slot.dataset.id = card.dataset.id;
 
-  card.setAttribute('draggable','false');
-  card.classList.remove('pending');
-  slot.dataset.id = card.dataset.id;
+        const indexBox = slot.querySelector('.slot-index');
+        if(indexBox) indexBox.style.display = 'none';
+        
+        const attrBox = slot.querySelector('.slot-attr');
+        if(attrBox) attrBox.remove();
 
-    // Hide the slot index completely
-  const indexBox = slot.querySelector('.slot-index');
-  if(indexBox) indexBox.style.display = 'none';
-
-  // Clear "(empty)" placeholder
-  slot.querySelector('.slot-attr').textContent = '';
-
-  slot.appendChild(card);
-  correct++; updateStatus();
-  if(correct === 5) showWinOverlay();
-}else {
+        slot.appendChild(card);
+        correct++; 
+        updateStatus();
+        
+        if(correct === 5) showWinOverlay();
+      } else {
         flashWrong(slot);
-        // return to pool (keeps order at end)
         poolEl.appendChild(card);
       }
 
       clearPending();
     }
 
-    /* CONTROLS */
-    btnReset.addEventListener('click', ()=> buildGame());
-    btnShuffle.addEventListener('click', ()=> buildGame());
-    playAgainBtn.addEventListener('click', ()=> buildGame());
+    btnReset.addEventListener('click', buildGame);
+    btnShuffle.addEventListener('click', buildGame);
+    playAgainBtn.addEventListener('click', buildGame);
 
-    /* WIN + SCORE */
     function showWinOverlay(){
-      const safeTrials = Math.max(trials,5);
+      const safeTrials = Math.max(trials, 5);
       const scorePct = ((correct/safeTrials)*100).toFixed(1);
       finalCorrectEl.textContent = String(correct);
       finalTrialsEl.textContent = String(trials);
@@ -466,13 +852,12 @@ if(isTakht){
       winOverlay.style.display = 'flex';
       startConfetti();
     }
-    function hideWinOverlay(){ winOverlay.style.display = 'none'; }
 
-    /* CONFETTI */
     function sizeConfetti(){ confettiCanvas.width = window.innerWidth; confettiCanvas.height = window.innerHeight; }
+    
     function startConfetti(){
       sizeConfetti();
-      confettiBits = Array.from({length:160}, ()=>({
+      confettiBits = Array.from({length:180}, ()=>({
         x: Math.random()*confettiCanvas.width,
         y: Math.random()*-confettiCanvas.height,
         r: 2 + Math.random()*4,
@@ -482,7 +867,9 @@ if(isTakht){
       }));
       loopConfetti();
     }
+    
     function stopConfetti(){ if(confettiAF){ cancelAnimationFrame(confettiAF); confettiAF = null; } ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height); }
+    
     function loopConfetti(){
       ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
       for(const p of confettiBits){
@@ -494,30 +881,10 @@ if(isTakht){
       }
       confettiAF = requestAnimationFrame(loopConfetti);
     }
+    
     window.addEventListener('resize', sizeConfetti);
-
-    /* INIT */
     buildGame();
-
-    // Accessibility hint:
-    // - Tab to a card and press Enter/Space to select it.
-    // - Tab to a slot and press Enter/Space to place the selected card.
   </script>
-
-
-  <a href="../07-02-quiz-for-kids.html" class="back-button" 
-   style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
-          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
-          line-height: 30px; border-radius: 8px; text-decoration: none; 
-          border: 2px solid black;">
-    <b>Back</b>
-  </a>
-
-
-  <!-- <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
-  <br />
-  <script>
-    function goBack(){ window.location.href = "../07-02-quiz-for-kids.html"; }
-  </script> -->
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -7,13 +8,12 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-LHNTFNW14H');
   </script>
 
-     <!-- Meta description -->
-  <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
-   <link rel="canonical" href="https://sikhsinindia.com/07-sikh-section-for-kids/07-02-quiz-for-kids/07-02-03-quiz-for-gurus-attributes/07-02-03-quiz-gurus-attributes.html">
+  <!-- Meta description -->
+  <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji, Sikh Gurus Attributes Game">
+  <link rel="canonical" href="https://sikhsinindia.com/07-sikh-section-for-kids/07-02-quiz-for-kids/07-02-03-quiz-for-gurus-attributes/07-02-03-quiz-gurus-attributes.html">
   <!-- Meta keywords -->
   <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
 
@@ -27,193 +27,259 @@
   <meta property="og:title" content="Sikh Heritage & Traditions | Gurudwaras, Guru Nanak & Sikh Scriptures">
   <meta property="og:description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji, Sikh Gurus Attributes Game">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
-  <meta property="og:url" content="https://sikhsinindia.com/07-sikh-section-for-kids/07-02-quiz-for-kids/07-02-03-quiz-for-gurus-attributes/07-02-03-quiz-gurus-attributes.html" >
+  <meta property="og:url" content="https://sikhsinindia.com/07-sikh-section-for-kids/07-02-quiz-for-kids/07-02-03-quiz-for-gurus-attributes/07-02-03-quiz-gurus-attributes.html">
   <meta property="og:type" content="website">
 
-  
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
   <title>Sikh Gurus Attributes Game Quiz</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
   <style>
-    /* =========================================================
-       THEME VARIABLES
-       ========================================================= */
-    :root {
-      --kesari: #FF9933;
-      --black:  #000000;
-      --ink:    #1f2937;
-      --paper:  #ffffff;
-      --peel:   #fff5eb;
-      --ok:     #c8f7c5;
-      --ok-ink: #0a5d00;
-      --bad:    #fde2e2;
-      --bad-ink:#cc0000;
-    }
-
-    /* =========================================================
-       GLOBAL RESET
-       ========================================================= */
-    *,
-    *::before,
-    *::after {
+    * {
       box-sizing: border-box;
-    }
-
-    html,
-    body {
-      height: 100%;
-    }
-
-    body {
       margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--black);
-      color: var(--black);
+      padding: 0;
     }
 
-    /* =========================================================
-       PAGE WRAPPER
-       ========================================================= */
-    .wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 12px;
-      background: var(--paper);
-      min-height: 100vh;
-      position: relative;
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #FF9933;
+      --cream: #f5f0e8;
+      --gold-light: #FF9933;
+      --white: #ffffff;
+      --ok: #c8f7c5;
+      --ok-ink: #0a5d00;
+      --bad: #fde2e2;
+      --bad-ink: #cc0000;
+    }
+
+    /* PAGE BACKGROUND */
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
+
+    /* MAIN CONTAINER */
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
       overflow: hidden;
     }
 
-    /* =========================================================
-       HEADER
-       ========================================================= */
-    header {
-      display: grid;
-      gap: 6px;
-      margin-bottom: 8px;
+    /* HEADER WITH LOGO */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 5vw, 42px);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* GOLD BAR */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
       text-align: center;
     }
 
+    /* MAIN WRAPPER */
+    .wrapper {
+      padding: 28px 36px;
+    }
+
     h1 {
-      margin: 0;
-      color: var(--black);
-      font-size: clamp(20px, 4.5vw, 28px);
-      line-height: 1.2;
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 8px;
     }
 
     .sub {
-      color: var(--ink);
-      font-size: 13px;
+      color: #555;
+      font-size: 15px;
+      text-align: center;
+      margin-bottom: 24px;
+      font-weight: bold;
     }
 
-    /* =========================================================
-       STATUS + CONTROLS
-       ========================================================= */
-    .topbar {
+    /* CONTROLS CONTAINER */
+    .controls-container {
+      background: #fff;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      margin-bottom: 20px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .controls {
       display: flex;
-      align-items: center;
       justify-content: center;
       gap: 12px;
       flex-wrap: wrap;
-      margin: 6px 0 10px 0;
-      color: var(--black);
-      font-weight: 700;
+    }
+
+    button {
+      font-family: 'Lato', sans-serif;
       font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: #fff;
+      border: 2px solid var(--navy);
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    button.primary {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    button:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--navy);
+    }
+
+    /* STATUS BAR */
+    .status {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      background: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 24px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      flex-wrap: wrap;
     }
 
     .dot {
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: var(--kesari);
+      background: var(--gold);
     }
 
-    .btn {
-      border: 2px solid var(--black);
-      background: var(--paper);
-      color: var(--black);
-      border-radius: 10px;
-      padding: 8px 12px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background .2s ease, color .2s ease;
+    .score-highlight {
+      color: var(--gold);
     }
 
-    .btn.primary {
-      background: var(--kesari);
-      color: var(--black);
-    }
-
-    .btn:hover {
-      background: var(--black);
-      color: #fff;
-    }
-
-    /* =========================================================
-       BOARD LAYOUT
-       ========================================================= */
+    /* BOARD LAYOUT */
     .board {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6px;
-      margin-top: 8px;
-      width: 100%;
-      max-width: 100%;
-      box-sizing: border-box;
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 10px;
     }
 
     .col {
-      padding: 6px;
-      border-radius: 10px;
-      border: 2px solid var(--black);
-      background: var(--paper);
-      min-width: 0;
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.08);
     }
 
     .col h3 {
-      margin: 0 0 6px 0;
+      margin: 0 0 12px 0;
       text-align: center;
-      font-size: 14px;
-      color: var(--ink);
+      font-size: 16px;
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      font-weight: bold;
     }
 
-    /* =========================================================
-       SLOTS & CARDS
-       ========================================================= */
-    .slots {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
+    .slots,
     .pool {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
     }
 
+    /* COMPACT RECTANGULAR BLOCKS */
     .slot,
     .card {
       height: 56px;
-      border-radius: 10px;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: 6px;
+      gap: 8px;
       padding: 0;
-      margin: 2px 0;
-      font-size: 12px;
-      transition: background .18s ease, border-color .18s ease, outline .12s ease, box-shadow .12s ease;
+      margin: 0;
+      font-size: 13px;
       overflow: hidden;
+      transition: all 0.2s ease;
     }
 
     .slot {
-      border: 2px dashed var(--kesari);
-      background: var(--peel);
+      border: 2px dashed var(--gold);
+      background: #fffdfa;
       font-weight: 800;
-      color: var(--black);
+      color: var(--navy);
       user-select: none;
-      padding-right: 6px;
     }
 
     .slot.correct {
@@ -227,37 +293,34 @@
     }
 
     .slot .slot-index {
-      min-width: 22px;
+      min-width: 28px;
       height: 100%;
       display: grid;
       place-items: center;
-      padding: 0 6px;
-      background: var(--kesari);
-      color: var(--black);
-      font-size: 12px;
+      padding: 0 4px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 13px;
       font-weight: 900;
-      border-right: 1px solid var(--black);
-      user-select: none;
     }
 
     .slot .slot-attr {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 800;
-      color: var(--ink);
-      opacity: 0.95;
+      color: var(--navy);
+      padding-left: 4px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      user-select: none;
-      padding-left: 6px;
       flex: 1;
     }
 
     .card {
-      border: 2px solid var(--kesari);
-      background: var(--peel);
+      border: 2px solid var(--gold);
+      background: #fffdfa;
       cursor: grab;
       user-select: none;
+      width: 100%;
     }
 
     .card[draggable="false"] {
@@ -265,19 +328,20 @@
     }
 
     .card.pending {
-      outline: 3px dashed var(--kesari);
+      outline: 3px dashed var(--navy);
       outline-offset: 2px;
       background: #ffe7c6;
-      box-shadow: 0 0 0 2px rgba(255,153,51,.18) inset;
     }
 
     .card img {
       height: 100%;
       width: auto;
+      max-width: 50px;
       display: block;
       flex: 0 0 auto;
-      border-right: 1px solid var(--kesari);
+      border-right: 1px solid var(--gold);
       background: #fff;
+      object-fit: contain;
     }
 
     .card .label {
@@ -286,66 +350,69 @@
       display: flex;
       align-items: center;
       padding: 0 8px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
-      color: var(--black);
+      color: var(--navy);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    /* =========================================================
-       WIN OVERLAY + CONFETTI
-       ========================================================= */
+    .slot.correct .card {
+      border: none;
+      background: transparent;
+      height: 100%;
+    }
+
+    .slot.correct .card .label {
+      color: var(--ok-ink);
+    }
+
+    .slot.correct .card img {
+      border-right: 1px solid var(--ok-ink);
+    }
+
+    /* WIN OVERLAY */
     #winOverlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,.85);
+      background: rgba(13, 27, 62, 0.85);
       z-index: 9999;
-      color: #fff;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      text-align: center;
-      padding: 16px;
     }
 
     #winOverlay .box {
-      background: #fff;
-      color: var(--black);
-      border: 2px solid var(--black);
-      border-radius: 14px;
-      padding: 18px 20px;
-      max-width: 460px;
+      background: var(--cream);
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      border: 3px solid var(--gold);
+      max-width: 420px;
       width: calc(100% - 32px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+      font-family: 'Lato', sans-serif;
     }
 
     #winOverlay h2 {
-      margin: 0 0 8px 0;
-      font-size: 22px;
+      margin: 0 0 12px;
+      font-size: 26px;
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
     }
 
     #winOverlay .stats {
-      margin: 10px 0 14px 0;
-      border: 1.5px dashed var(--black);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-weight: 700;
-      line-height: 1.5;
+      margin: 10px 0 20px 0;
+      padding: 12px 16px;
+      border: 2px dashed var(--navy);
+      border-radius: 8px;
+      display: block;
       text-align: left;
-    }
-
-    #winOverlay .actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    #winOverlay .actions .btn {
-      background: var(--kesari);
-      color: var(--black);
+      line-height: 1.6;
+      background: #fff;
+      color: var(--navy);
+      font-weight: bold;
     }
 
     #confetti {
@@ -355,56 +422,74 @@
       pointer-events: none;
     }
 
-    /* =========================================================
-       MOBILE OPTIMIZATION
-       ========================================================= */
-    @media (max-width: 700px) {
+    /* MOBILE BREAKPOINTS */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .wrapper {
+        padding: 18px 10px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
       .board {
-        gap: 6px;
+        gap: 10px;
       }
 
       .slot,
       .card {
-        height: 46px;
+        height: 48px;
         font-size: 11px;
       }
 
       .slot .slot-index {
-        min-width: 22px;
+        min-width: 24px;
+        font-size: 11px;
+      }
+
+      .slot .slot-attr {
         font-size: 11px;
       }
 
       .card .label {
-        font-size: 12px;
+        font-size: 11px;
         padding: 0 6px;
       }
 
-      header .sub {
-        font-size: 12px;
+      .footer {
+        padding: 14px 12px;
       }
 
-      .topbar {
-        font-size: 12px;
-        gap: 10px;
-      }
-
-      #winOverlay h2 {
-        font-size: 18px;
-      }
-
-      #winOverlay .stats {
-        font-size: 13px;
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
       }
     }
 
     @media (max-width: 480px) {
       .board {
-        grid-template-columns: 1fr 1fr;
-        gap: 4px;
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
 
       .col {
-        padding: 4px;
+        padding: 8px;
       }
 
       .slot,
@@ -414,75 +499,162 @@
 
       .card .label {
         font-size: 11px;
-        padding: 0 5px;
+        padding: 0 4px;
       }
     }
 
-    /* =========================================================
-       BACK BUTTON
-       ========================================================= */
-    .back-button {
-      width: 80%;
-      max-width: 200px;
-      height: 45px;
-      font-size: 18px;
-      background-color: #FFA500;
-      color: black;
-      margin: 40px auto 0 auto;
-      display: block;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
+    /* FOOTER BAR */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: 30px;
+      border-radius: 0 0 4px 4px;
     }
 
-    .back-button:hover {
-      background-color: #FF8C00;
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* 3D gold style for the Back button */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
     }
   </style>
 </head>
-<body>
-  <div class="wrap">
-    <!-- =======================================================
-         HEADER
-         ======================================================= -->
-    <header>
-      <h1>Match Sikh Gurus with Their Attributes</h1>
-      <div class="sub">Drag or tap a Guru card onto the attribute it best represents. Both lists are randomized every round.</div>
-    </header>
 
-    <!-- =======================================================
-         STATUS + CONTROLS
-         ======================================================= -->
-    <div class="topbar" role="status" aria-live="polite">
-      <div class="dot" aria-hidden="true"></div>
-      <div>Correct: <span id="correctCount">0</span> / 10</div>
-      <div>| Trials: <span id="trialCount">0</span></div>
-      <div>| Score: <span id="scorePct">0%</span></div>
-      <button id="btnReset" class="btn" type="button">Reset</button>
-      <button id="btnShuffle" class="btn primary" type="button">New Round</button>
+<body>
+
+  <div class="poster">
+
+    <!-- HEADER WITH LOGO -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Sikh Gurus <span>Attributes Game</span></div>
+        <div class="hero-sub">Match the Ten Sikh Gurus with Their Key Divine Virtues</div>
+      </div>
     </div>
 
-    <!-- =======================================================
-         BOARD
-         ======================================================= -->
-    <section class="board" aria-label="Match Gurus to attributes">
-      <!-- LEFT: ATTRIBUTE SLOTS -->
-      <div class="col">
-        <h3>Attributes</h3>
-        <div id="slots" class="slots"></div>
+    <div class="intro">
+      Drag or tap a Guru card onto the attribute it best represents below
+    </div>
+
+    <div class="wrapper">
+
+      <h1>Match Gurus with Attributes</h1>
+      <div class="sub">Both columns are randomized every round. Correct pairings lock into green ✅</div>
+
+      <!-- CONTROLS CONTAINER -->
+      <div class="controls-container">
+        <div class="controls">
+          <button id="btnShuffle" class="primary">New Round</button>
+          <button id="btnReset">Reset</button>
+        </div>
       </div>
 
-      <!-- RIGHT: GURU CARDS -->
-      <div class="col">
-        <h3>Guru Cards</h3>
-        <div id="pool" class="pool"></div>
+      <!-- STATUS BAR -->
+      <div class="status">
+        <div class="dot"></div>
+        <div>Score: <span id="scorePct" class="score-highlight">0%</span></div>
+        <div>| Correct: <span id="correctCount">0</span>/10</div>
+        <div>| Trials: <span id="trialCount">0</span></div>
       </div>
-    </section>
+
+      <!-- BOARD -->
+      <section class="board" aria-label="Match Gurus to attributes">
+        <!-- LEFT: ATTRIBUTES -->
+        <div class="col">
+          <h3>Attributes</h3>
+          <div id="slots" class="slots">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+
+        <!-- RIGHT: POOL -->
+        <div class="col">
+          <h3>Guru Cards</h3>
+          <div id="pool" class="pool">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- SITE FOOTER FRAME -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="../07-02-quiz-for-kids.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- =========================================================
-       WIN OVERLAY
-       ========================================================= -->
+  <!-- WIN OVERLAY -->
   <div id="winOverlay" role="dialog" aria-modal="true" aria-labelledby="winHeading">
     <div class="box">
       <h2 id="winHeading">🎉 You Matched Them All! 🎉</h2>
@@ -491,139 +663,76 @@
         <div><strong>Trials:</strong> <span id="finalTrials">0</span></div>
         <div><strong>Score:</strong> <span id="finalScore">100%</span></div>
       </div>
-      <div class="actions">
-        <button id="playAgain" class="btn" type="button">Play Again</button>
-      </div>
+      <button id="playAgain" style="
+        padding: 12px 24px;
+        border-radius: 6px;
+        border: none;
+        background: var(--navy);
+        color: #fff;
+        font-weight: 700;
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        width: 100%;
+        transition: background 0.2s;
+      ">Play Again</button>
     </div>
   </div>
 
-  <!-- =========================================================
-       CONFETTI CANVAS
-       ========================================================= -->
   <canvas id="confetti"></canvas>
 
-  <!-- =========================================================
-       TEMPLATES
-       ========================================================= -->
+  <!-- TEMPLATES -->
   <template id="slot-tpl">
-    <div class="slot" data-id="" tabindex="0" aria-label="Attribute slot">
+    <div class="slot" data-id="" tabindex="0">
       <div class="slot-index" aria-hidden="true">1</div>
       <div class="slot-attr">Attribute</div>
     </div>
   </template>
 
   <template id="card-tpl">
-    <div class="card" draggable="true" data-id="" tabindex="0" role="button" aria-label="Guru card">
+    <div class="card" draggable="true" data-id="" tabindex="0" role="button">
       <img alt="" src="" />
       <div class="label">Guru Name</div>
     </div>
   </template>
 
-  <!-- =========================================================
-       SCRIPT
-       ========================================================= -->
+  <!-- SCRIPT -->
   <script>
-    /* ---------------------------------------------------------
-       DATA (GURU ↔ ATTRIBUTE)
-       --------------------------------------------------------- */
     const ALL_ITEMS = [
-      {
-        id:    'Guru1',
-        label: 'Guru Nanak Dev Ji',
-        attr:  'Humility',
-        img:   '../../../pictures/07-sikh-stories/sikh-gurus/01-guru-nanak-dev-ji.jpg'
-      },
-      {
-        id:    'Guru2',
-        label: 'Guru Angad Dev Ji',
-        attr:  'Obedience',
-        img:   '../../../pictures/07-sikh-stories/sikh-gurus/02-guru-angad-dev-ji.jpg'
-      },
-      {
-        id:    'Guru3',
-        label: 'Guru Amar Das Ji',
-        attr:  'Equality',
-        img:   '../../../pictures/07-sikh-stories/sikh-gurus/03-guru-amar-das-ji.jpg'
-      },
-      {
-        id:    'Guru4',
-        label: 'Guru Ram Das Ji',
-        attr:  'Service',
-        img:   '../../../pictures/07-sikh-stories/sikh-gurus/04-guru-ram-das-ji.jpg'
-      },
-      {
-        id:    'Guru5',
-        label: 'Guru Arjan Dev Ji',
-        attr:  'Self-Sacrifice',
-        img:   '../../../pictures/07-sikh-stories/sikh-gurus/05-guru-arjan-dev-ji.jpg'
-      },
-      {
-        id:    'Guru6',
-        label: 'Guru Hargobind Ji',
-        attr:  'Justice',
-        img:   '../../../pictures/07-sikh-stories/sikh-gurus/06-guru-har-gobind-singh-ji.jpg'
-      },
-      {
-        id:    'Guru7',
-        label: 'Guru Har Rai Ji',
-        attr:  'Mercy',
-        img:   '../../../pictures/07-sikh-stories/sikh-gurus/07-guru-har-rai-ji.jpg'
-      },
-      {
-        id:    'Guru8',
-        label: 'Guru Harkrishan Ji',
-        attr:  'Purity',
-        img:   '../../../pictures/07-sikh-stories/sikh-gurus/08-shri-guru-harkrishan-ji.jpg'
-      },
-      {
-        id:    'Guru9',
-        label: 'Guru Tegh Bahadur Ji',
-        attr:  'Tranquility',
-        img:   '../../../pictures/07-sikh-stories/sikh-gurus/09-shri-guru-teg-bahadur-ji.jpg'
-      },
-      {
-        id:    'Guru10',
-        label: 'Guru Gobind Singh Ji',
-        attr:  'Royal Courage',
-        img:   '../../../pictures/07-sikh-stories/sikh-gurus/10-shri-guru-gobind-singh-ji.jpg'
-      }
+      { id: 'Guru1', label: 'Guru Nanak Dev Ji', attr: 'Humility', img: '../../../pictures/07-sikh-stories/sikh-gurus/01-guru-nanak-dev-ji.jpg' },
+      { id: 'Guru2', label: 'Guru Angad Dev Ji', attr: 'Obedience', img: '../../../pictures/07-sikh-stories/sikh-gurus/02-guru-angad-dev-ji.jpg' },
+      { id: 'Guru3', label: 'Guru Amar Das Ji', attr: 'Equality', img: '../../../pictures/07-sikh-stories/sikh-gurus/03-guru-amar-das-ji.jpg' },
+      { id: 'Guru4', label: 'Guru Ram Das Ji', attr: 'Service', img: '../../../pictures/07-sikh-stories/sikh-gurus/04-guru-ram-das-ji.jpg' },
+      { id: 'Guru5', label: 'Guru Arjan Dev Ji', attr: 'Self-Sacrifice', img: '../../../pictures/07-sikh-stories/sikh-gurus/05-guru-arjan-dev-ji.jpg' },
+      { id: 'Guru6', label: 'Guru Hargobind Ji', attr: 'Justice', img: '../../../pictures/07-sikh-stories/sikh-gurus/06-guru-har-gobind-singh-ji.jpg' },
+      { id: 'Guru7', label: 'Guru Har Rai Ji', attr: 'Mercy', img: '../../../pictures/07-sikh-stories/sikh-gurus/07-guru-har-rai-ji.jpg' },
+      { id: 'Guru8', label: 'Guru Harkrishan Ji', attr: 'Purity', img: '../../../pictures/07-sikh-stories/sikh-gurus/08-shri-guru-harkrishan-ji.jpg' },
+      { id: 'Guru9', label: 'Guru Tegh Bahadur Ji', attr: 'Tranquility', img: '../../../pictures/07-sikh-stories/sikh-gurus/09-shri-guru-teg-bahadur-ji.jpg' },
+      { id: 'Guru10', label: 'Guru Gobind Singh Ji', attr: 'Royal Courage', img: '../../../pictures/07-sikh-stories/sikh-gurus/10-shri-guru-gobind-singh-ji.jpg' }
     ];
 
-    /* ---------------------------------------------------------
-       DOM ELEMENTS
-       --------------------------------------------------------- */
-    const slotsEl        = document.getElementById('slots');
-    const poolEl         = document.getElementById('pool');
-
-    const correctEl      = document.getElementById('correctCount');
-    const trialsEl       = document.getElementById('trialCount');
-    const scorePctEl     = document.getElementById('scorePct');
-
-    const btnReset       = document.getElementById('btnReset');
-    const btnShuffle     = document.getElementById('btnShuffle');
-
-    const winOverlay     = document.getElementById('winOverlay');
-    const playAgainBtn   = document.getElementById('playAgain');
-
+    const slotsEl = document.getElementById('slots');
+    const poolEl = document.getElementById('pool');
+    const correctEl = document.getElementById('correctCount');
+    const trialsEl = document.getElementById('trialCount');
+    const scorePctEl = document.getElementById('scorePct');
+    const btnReset = document.getElementById('btnReset');
+    const btnShuffle = document.getElementById('btnShuffle');
+    const winOverlay = document.getElementById('winOverlay');
+    const playAgainBtn = document.getElementById('playAgain');
     const finalCorrectEl = document.getElementById('finalCorrect');
-    const finalTrialsEl  = document.getElementById('finalTrials');
-    const finalScoreEl   = document.getElementById('finalScore');
-
+    const finalTrialsEl = document.getElementById('finalTrials');
+    const finalScoreEl = document.getElementById('finalScore');
     const confettiCanvas = document.getElementById('confetti');
-    const ctx            = confettiCanvas.getContext('2d');
+    const ctx = confettiCanvas.getContext('2d');
 
-    /* ---------------------------------------------------------
-       STATE
-       --------------------------------------------------------- */
-    let correct      = 0;
-    let trials       = 0;
-    let pendingId    = null;   // for tap-to-place
-    let confettiAF   = null;   // requestAnimationFrame handle
-    let confettiBits = [];     // particles
+    let correct = 0;
+    let trials = 0;
+    let pendingId = null;
+    let confettiAF = null;
+    let confettiBits = [];
 
-    /* ---------------------------------------------------------
-       HELPERS
-       --------------------------------------------------------- */
     function shuffle(arr) {
       for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -634,18 +743,16 @@
 
     function updateStatus() {
       correctEl.textContent = String(correct);
-      trialsEl.textContent  = String(trials);
-      const denom           = Math.max(trials, 10);
-      const scorePct        = ((correct / denom) * 100).toFixed(1);
+      trialsEl.textContent = String(trials);
+      const denom = Math.max(trials, 10);
+      const scorePct = ((correct / denom) * 100).toFixed(1);
       scorePctEl.textContent = `${scorePct}%`;
     }
 
     function clearPending() {
       if (!pendingId) return;
       const el = document.querySelector(`.card[data-id="${CSS.escape(pendingId)}"]`);
-      if (el) {
-        el.classList.remove('pending');
-      }
+      if (el) el.classList.remove('pending');
       pendingId = null;
     }
 
@@ -654,109 +761,73 @@
       setTimeout(() => slot.classList.remove('wrong'), 300);
     }
 
-    /* ---------------------------------------------------------
-       BUILD GAME
-       --------------------------------------------------------- */
     function buildGame() {
-      // Reset UI
       slotsEl.innerHTML = '';
-      poolEl.innerHTML  = '';
-
-      // Reset state
-      correct   = 0;
-      trials    = 0;
+      poolEl.innerHTML = '';
+      correct = 0;
+      trials = 0;
       pendingId = null;
       updateStatus();
-
-      // Hide overlay + stop confetti
-      hideWinOverlay();
+      winOverlay.style.display = 'none';
       stopConfetti();
 
-      // Randomize slots and cards independently
       const slotItems = shuffle([...ALL_ITEMS]);
       const cardItems = shuffle([...ALL_ITEMS]);
 
-      // Build 10 ATTRIBUTE SLOTS (randomized order)
       slotItems.forEach((item, idx) => {
         const frag = document.importNode(document.getElementById('slot-tpl').content, true);
         const slot = frag.querySelector('.slot');
-        const idxEl = frag.querySelector('.slot-index');
-        const attrEl = frag.querySelector('.slot-attr');
-
-        // dataset + a11y
         slot.dataset.id = item.id;
         slot.setAttribute('aria-label', `Attribute slot: ${item.attr}`);
-        idxEl.textContent = String(idx + 1);
-        attrEl.textContent = item.attr;
+        frag.querySelector('.slot-index').textContent = String(idx + 1);
+        frag.querySelector('.slot-attr').textContent = item.attr;
 
-        // drag-over support
-        slot.addEventListener('dragover', (e) => {
-          e.preventDefault();
-        });
-
-        // drop support
+        slot.addEventListener('dragover', (e) => e.preventDefault());
         slot.addEventListener('drop', (e) => {
           e.preventDefault();
           const id = e.dataTransfer.getData('text/plain');
           const card = document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);
-          if (!card) return;
-          attemptPlace(card, slot);
+          if (card) attemptPlace(card, slot);
         });
 
-        // tap-to-place support
         slot.addEventListener('click', () => {
           if (!pendingId) return;
           const card = document.querySelector(`.card[data-id="${CSS.escape(pendingId)}"]`);
-          if (!card) {
-            clearPending();
-            return;
-          }
-          attemptPlace(card, slot);
+          if (card) attemptPlace(card, slot);
+          else clearPending();
         });
 
-        // keyboard: Enter/Space to place selected
         slot.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             if (!pendingId) return;
             const card = document.querySelector(`.card[data-id="${CSS.escape(pendingId)}"]`);
-            if (!card) {
-              clearPending();
-              return;
-            }
-            attemptPlace(card, slot);
+            if (card) attemptPlace(card, slot);
+            else clearPending();
           }
         });
 
         slotsEl.appendChild(frag);
       });
 
-      // Build GURU CARDS (randomized order)
       cardItems.forEach((item) => {
         const frag = document.importNode(document.getElementById('card-tpl').content, true);
         const card = frag.querySelector('.card');
-        const img  = frag.querySelector('img');
-        const lab  = frag.querySelector('.label');
+        const img = frag.querySelector('img');
+        const lab = frag.querySelector('.label');
 
-        // dataset
         card.dataset.id = item.id;
-
-        // content
         img.src = item.img;
         img.alt = item.label;
         lab.textContent = item.label;
-
-        // a11y
         card.setAttribute('aria-label', item.label);
 
-        // drag start
         card.addEventListener('dragstart', (e) => {
           e.dataTransfer.setData('text/plain', card.dataset.id);
           e.dataTransfer.effectAllowed = 'move';
           clearPending();
         });
 
-        // tap / click select toggle
         card.addEventListener('click', () => {
           if (card.getAttribute('draggable') === 'false') return;
           if (pendingId === card.dataset.id) {
@@ -768,7 +839,6 @@
           }
         });
 
-        // keyboard: Enter/Space select
         card.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
@@ -779,118 +849,76 @@
         poolEl.appendChild(frag);
       });
 
-      // Clicking empty pool area clears pending (once)
       poolEl.addEventListener('click', (e) => {
-        if (!e.target.closest('.card')) {
-          clearPending();
-        }
+        if (!e.target.closest('.card')) clearPending();
       }, { once: true });
     }
 
-    /* ---------------------------------------------------------
-       ATTEMPT PLACE (shared by drag & tap)
-       --------------------------------------------------------- */
     function attemptPlace(card, slot) {
-      // Every attempt counts
       trials++;
       updateStatus();
 
-      // If slot already locked, reject
       if (slot.classList.contains('correct')) {
         flashWrong(slot);
         clearPending();
         return;
       }
 
-      // Determine correctness via id match
       const targetId = slot.dataset.id;
-      const cardId   = card.dataset.id;
+      const cardId = card.dataset.id;
       const isCorrect = (targetId === cardId);
 
       if (isCorrect) {
-        // Lock slot: keep index + attribute label, append card at end
         slot.classList.add('correct');
         card.setAttribute('draggable', 'false');
         card.classList.remove('pending');
 
-        // Remove any card already inside slot (shouldn't happen here)
         const existing = slot.querySelector('.card');
-        if (existing) {
-          poolEl.appendChild(existing);
-        }
+        if (existing) poolEl.appendChild(existing);
 
         slot.appendChild(card);
 
-        // Increase correct count
         correct++;
         updateStatus();
 
-        // Check win condition
         if (correct === ALL_ITEMS.length) {
           showWinOverlay();
         }
       } else {
-        // wrong => visual feedback and bounce back
         flashWrong(slot);
         poolEl.appendChild(card);
       }
-
-      // clear pending highlight
       clearPending();
     }
 
-    /* ---------------------------------------------------------
-       CONTROLS
-       --------------------------------------------------------- */
-    btnReset.addEventListener('click', () => {
-      buildGame();
-    });
+    btnReset.addEventListener('click', buildGame);
+    btnShuffle.addEventListener('click', buildGame);
+    playAgainBtn.addEventListener('click', buildGame);
 
-    btnShuffle.addEventListener('click', () => {
-      buildGame();
-    });
-
-    playAgainBtn.addEventListener('click', () => {
-      buildGame();
-    });
-
-    /* ---------------------------------------------------------
-       WIN OVERLAY + SCORE
-       --------------------------------------------------------- */
     function showWinOverlay() {
       const safeTrials = Math.max(trials, 10);
-      const scorePct   = ((correct / safeTrials) * 100).toFixed(1);
-
+      const scorePct = ((correct / safeTrials) * 100).toFixed(1);
       finalCorrectEl.textContent = String(correct);
-      finalTrialsEl.textContent  = String(trials);
-      finalScoreEl.textContent   = `${scorePct}%`;
-
+      finalTrialsEl.textContent = String(trials);
+      finalScoreEl.textContent = `${scorePct}%`;
       winOverlay.style.display = 'flex';
-
       startConfetti();
     }
 
-    function hideWinOverlay() {
-      winOverlay.style.display = 'none';
-    }
-
-    /* ---------------------------------------------------------
-       CONFETTI
-       --------------------------------------------------------- */
     function sizeConfetti() {
-      confettiCanvas.width  = window.innerWidth;
+      confettiCanvas.width = window.innerWidth;
       confettiCanvas.height = window.innerHeight;
     }
 
     function startConfetti() {
       sizeConfetti();
       confettiBits = Array.from({ length: 180 }, () => ({
-        x:  Math.random() * confettiCanvas.width,
-        y:  Math.random() * -confettiCanvas.height,
-        r:  2 + Math.random() * 4,
+        x: Math.random() * confettiCanvas.width,
+        y: Math.random() * -confettiCanvas.height,
+        r: 2 + Math.random() * 4,
         vy: 1 + Math.random() * 3,
         vx: (Math.random() - 0.5) * 1.5,
-        c:  `hsl(${Math.random() * 360}, 100%, 50%)`
+        c: `hsl(${Math.random() * 360}, 100%, 50%)`
       }));
       loopConfetti();
     }
@@ -919,33 +947,9 @@
     }
 
     window.addEventListener('resize', sizeConfetti);
-
-    /* ---------------------------------------------------------
-       INIT
-       --------------------------------------------------------- */
     buildGame();
   </script>
 
-
-  <a href="../07-02-quiz-for-kids.html" class="back-button" 
-   style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
-          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
-          line-height: 30px; border-radius: 8px; text-decoration: none; 
-          border: 2px solid black;">
-    <b>Back</b>
-  </a>
-
-  <!-- =========================================================
-       BACK BUTTON
-       ========================================================= -->
-  <!-- <button type="button" onclick="goBack()" class="back-button"><b>Back</b></button>
-  <br />
-  <script>
-    function goBack() {
-      window.location.href = "../07-02-quiz-for-kids.html";
-    }
-  </script> -->
 </body>
+
 </html>
-
-
