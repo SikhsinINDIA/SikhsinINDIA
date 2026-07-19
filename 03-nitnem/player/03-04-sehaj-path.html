@@ -135,12 +135,51 @@
       margin-bottom: 24px;
     }
 
+    /* NOW PLAYING FILE DISPLAY */
+    .now-playing-banner {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: var(--navy);
+      margin-bottom: 6px;
+      font-weight: 700;
+      background: rgba(247, 148, 29, 0.08);
+      padding: 10px 14px;
+      border-radius: 5px;
+      border-left: 4px solid var(--gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .now-playing-banner strong {
+      color: var(--navy-mid);
+      word-break: break-all;
+      margin-left: 6px;
+    }
+
+    /* LOGGED IN USER BADGE */
+    .user-badge {
+      display: flex;
+      justify-content: flex-end;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: var(--navy);
+      margin-bottom: 14px;
+      font-weight: 700;
+      padding-right: 4px;
+    }
+
+    .user-badge strong {
+      color: #e8830a;
+      margin-left: 5px;
+    }
+
     /* AUDIO PLAYER CONTAINER */
     .audio-container {
       width: 100%;
       display: flex;
       justify-content: center;
-      margin-bottom: 24px;
+      margin-bottom: 14px;
       border: 3px solid var(--gold);
       border-radius: 10px;
       padding: 20px;
@@ -151,6 +190,81 @@
     .audio-container audio {
       width: 100%;
       outline: none;
+    }
+
+    /* GLOBAL CONTROLS ROW */
+    .control-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .btn-control {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: linear-gradient(135deg, #ffb347 0%, var(--gold) 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 12px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+    }
+
+    .btn-control:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-control:active {
+      transform: scale(0.98);
+    }
+
+    /* 3D RESUME BUTTON Styling */
+    .btn-resume {
+      display: none; /* Hidden by default, toggled via JS */
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: linear-gradient(135deg, #ffb347 0%, var(--gold) 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 14px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      margin-bottom: 24px;
+    }
+
+    .btn-resume:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-resume:active {
+      transform: scale(0.99);
     }
 
     /* TRACK CONTROLS LIST */
@@ -238,46 +352,6 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       font-weight: 700;
-    }
-
-    /* 3D Gold Action Buttons */
-    .btn-action {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-family: 'Lato', sans-serif;
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--navy);
-      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
-      border: none;
-      border-radius: 5px;
-      padding: 9px 18px;
-      cursor: pointer;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 220, 120, 0.5),
-        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
-        0 0 0 2px #9a5800,
-        0 0 0 3.5px var(--gold);
-      transition: filter 0.15s, transform 0.1s;
-      flex-shrink: 0;
-    }
-
-    .btn-action:hover {
-      filter: brightness(1.08);
-    }
-
-    .btn-action:active {
-      transform: scale(0.97);
-      filter: brightness(0.93);
-    }
-
-    .btn-action svg {
-      width: 12px;
-      height: 12px;
     }
 
     /* RESPONSIVE DESIGN ADJUSTMENTS */
@@ -383,12 +457,34 @@
 
     <div class="wrapper playerBox" id="playerBox">
 
+      <!-- NOW PLAYING FILE DISPLAY ON TOP OF THE PLAYER -->
+      <div class="now-playing-banner">
+        <span>🎵 Now Playing: <strong id="playing-file-name">None (Select a track)</strong></span>
+        <span>🎵 Now Playing: <strong id="currentTrackNum">None (Select a track)</strong></span>
+      </div>
+
+      <!-- LOGGED IN USER DISPLAY ABOVE PLAYER -->
+      <div class="user-badge">
+        <span>📧 Session: <strong id="user-email">Checking Auth...</strong></span>
+      </div>
+
       <!-- AUDIO PLAYER CONTAINER -->
       <div class="audio-container">
         <audio id="audio-player" controls preload="auto">
           Your browser does not support the audio element.
         </audio>
       </div>
+
+      <!-- PLAY AND PAUSE CONTROLS BELOW PLAYER -->
+      <div class="control-row">
+        <button id="btn-global-play" class="btn-control">▶️ Play</button>
+        <button id="btn-global-pause" class="btn-control">⏸️ Pause</button>
+      </div>
+
+      <!-- RESUME SESSION BUTTON -->
+      <button id="btn-resume" class="btn-resume">
+        🔄 Resume Last Session (Track 1)
+      </button>
 
       <!-- TRACK LIST -->
       <div class="track-list">
@@ -439,72 +535,196 @@
   </div>
 
   <script>
+    const trackCodes = {
+      1: 'XZguNr5ZVlfaTHLf1dhr0w5ntyDvRXt7YI3y',
+      2: 'XZxuNr5ZkF0Tdls6xDBpCNRs3yNR75LdaYsk',
+      3: 'XZlBNr5ZfGutITslnsVspao6V1eYnXeQu27k',
+      4: 'XZh1Nr5ZQ3Pei83Sn6BDGR0bdISE2k9meIoV',
+      5: 'XZ21Nr5ZFnSqJbniMgB9rOtsyDMl151hnNck',
+      6: 'XZs1Nr5ZIyC3pMdnSbkriHNlEIu6U4fSRc7V',
+      7: 'XZ11Nr5ZyovVw5var0jKMgoWRz7eUXz1QuTk',
+      8: 'XZi1Nr5ZvpvmResgVXk1VinYNnlbpfiK8Poy',
+      9: 'XZ7eNr5ZpY8xuwsEgTFE68WsNB78lVSWYQLk',
+      10: 'XZVeNr5Z5fIIEn9q4TRExrvd6bJWsHJWNDcX',
+      11: 'XZJeNr5ZoTDYxYYqahVMk6s6Yo5ktYVXTWpy',
+      12: 'XZYeNr5Zjje53w9rK9buND8qYa5i47EGKEok',
+      13: 'XZfeNr5ZSKcNuGiU8cpcjkf98Tcj5zoth3P7',
+      14: 'XZseNr5ZkVqaIqAtTVQlApVssXtR2JmNkW6y',
+      15: 'XZeeNr5ZIokfI4z0PhmkkSC0c9CTcFGrIkgX',
+      16: 'XZMeNr5ZMnJKjrMiCX7zvM11QaocSpSRtNH7',
+      17: 'XZgeNr5Z9ypAEano8NuTnqv9Y49eRmw7A5N7',
+      18: 'XZCeNr5ZWExzQl3Pwe8JzDP6GI3bYf1AKEaV',
+      19: 'XZweNr5Zzljn3wqwfx5CH0ShHE9HRQ8GuXQk',
+      20: 'XZOeNr5ZNvz6TnB5VcL82e4fuUMx0St22DC7',
+      21: 'XZUeNr5ZuvycrymLWzYbelXT2f6zoQKMBBIV',
+      22: 'XZIeNr5Z56GqysXqckQjYtzxXjmWbSSIxR3X',
+      23: 'XZNeNr5ZQYWLFQxGRd0otBsPWTbIMuXpQwvy',
+      24: 'XZ3eNr5Zk4kV6rp2SqQJnMBVV3l6YVOfWq7k'
+    };
+
     const audioPlayer = document.getElementById('audio-player');
     const statusText = document.getElementById('status');
+    const fileNameDisplay = document.getElementById('playing-file-name');
+    const trackNumDisplay = document.getElementById('currentTrackNum');
     const buttons = document.querySelectorAll('.track-item-btn');
+    const resumeBtn = document.getElementById('btn-resume');
+    const emailDisplay = document.getElementById('user-email');
+    const globalPlayBtn = document.getElementById('btn-global-play');
+    const globalPauseBtn = document.getElementById('btn-global-pause');
 
     let currentTrackNum = null;
+    let lastSavedTime = 0;
+
+    // Firebase Auth Listener with safe asynchronous check
+    // Upgraded Auth Tracker to read from URL parameters or localStorage
+    function initAuthTracker() {
+      // 1. Try to grab email from the address bar (Works perfectly for local file:// links)
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlEmail = urlParams.get('email');
+      
+      // 2. Try to grab from localStorage (Backup plan for local servers)
+      const savedEmail = localStorage.getItem('loggedInUserEmail');
+      
+      if (urlEmail) {
+        const decodedEmail = decodeURIComponent(urlEmail);
+        emailDisplay.innerText = decodedEmail;
+        localStorage.setItem('loggedInUserEmail', decodedEmail); // Save it so page refreshes don't lose it
+      } else if (savedEmail) {
+        emailDisplay.innerText = savedEmail;
+      } else if (window.firebase && firebase.auth) {
+        // 3. Fallback to Firebase Auth
+        firebase.auth().onAuthStateChanged(user => {
+          if (user && user.email) {
+            emailDisplay.innerText = user.email;
+            localStorage.setItem('loggedInUserEmail', user.email);
+          } else {
+            emailDisplay.innerText = "Guest Session";
+          }
+        });
+      } else {
+        emailDisplay.innerText = "Guest Session";
+      }
+    }
+
+    function updateButtonVisuals() {
+      buttons.forEach((btn, index) => {
+        const trackNum = index + 1;
+        const baseText = `Audio Track ${trackNum}`;
+        
+        if (trackNum === currentTrackNum) {
+          if (!audioPlayer.paused) {
+            btn.innerHTML = `⏸️ ${baseText}`;
+            btn.classList.add('active');
+          } else {
+            btn.innerHTML = `▶️ ${baseText}`;
+            btn.classList.remove('active');
+          }
+        } else {
+          btn.innerHTML = `▶️ ${baseText}`;
+          btn.classList.remove('active');
+        }
+      });
+    }
 
     // Check for saved progress on page load
     window.addEventListener('DOMContentLoaded', () => {
+      initAuthTracker();
+      
       const savedTrack = localStorage.getItem('sehaj_path_track');
       const savedTime = localStorage.getItem('sehaj_path_time');
       if (savedTrack && savedTime) {
         currentTrackNum = parseInt(savedTrack);
-        statusText.innerText = `Saved position found on Track ${savedTrack}. Click it to resume.`;
+        statusText.innerText = `Saved position found on Track ${savedTrack}. Click Play or Resume below.`;
+        trackNumDisplay.innerText = "Audio Track " + savedTrack;
+        
+        resumeBtn.innerText = `🔄 Resume Session: Track ${savedTrack}`;
+        resumeBtn.style.display = 'inline-flex';
+
         if (buttons[currentTrackNum - 1]) {
           buttons[currentTrackNum - 1].style.borderLeft = "5px solid #ffb347";
         }
       }
     });
 
+    // Global Play button logic
+    globalPlayBtn.addEventListener('click', () => {
+      if (audioPlayer.src && currentTrackNum) {
+        audioPlayer.play().catch(error => { statusText.innerText = "Playback error: " + error.message; });
+      } else {
+        const savedTrack = localStorage.getItem('sehaj_path_track');
+        if (savedTrack) {
+          const trackNum = parseInt(savedTrack);
+          const code = trackCodes[trackNum];
+          if (code) playAudio(trackNum, code);
+        } else {
+          statusText.innerText = "Please select an audio track from the list below to play.";
+        }
+      }
+    });
+
+    // Global Pause button logic
+    globalPauseBtn.addEventListener('click', () => {
+      if (audioPlayer.src && !audioPlayer.paused) {
+        audioPlayer.pause();
+      }
+    });
+
+    // Handle 3D Resume Button Click Action
+    resumeBtn.addEventListener('click', () => {
+      const savedTrack = localStorage.getItem('sehaj_path_track');
+      if (savedTrack) {
+        const trackNum = parseInt(savedTrack);
+        const code = trackCodes[trackNum];
+        if (code) {
+          playAudio(trackNum, code);
+        }
+      }
+    });
+
     function playAudio(trackNum, code) {
-      // 1. FIX: If clicking the track that is already active, toggle play/pause smoothly
       if (currentTrackNum === trackNum && audioPlayer.src) {
         if (audioPlayer.paused) {
-          audioPlayer.play()
-            .then(() => {
-              statusText.innerText = "Resumed Audio Track " + trackNum + "...";
-              buttons[trackNum - 1].classList.add('active');
-            })
-            .catch(error => { statusText.innerText = "Playback error: " + error.message; });
+          audioPlayer.play().catch(error => { statusText.innerText = "Playback error: " + error.message; });
         } else {
           audioPlayer.pause();
-          statusText.innerText = "Paused";
-          buttons[trackNum - 1].classList.remove('active');
         }
         return;
       }
 
-      // 2. Set new active track parameters
       currentTrackNum = trackNum;
       localStorage.setItem('sehaj_path_track', trackNum);
       statusText.innerText = "Connecting to storage server for Track " + trackNum + "...";
       
-      // Request pCloud API 
+      buttons.forEach((btn, index) => {
+        if (index === (trackNum - 1)) {
+          btn.style.borderLeft = "5px solid #ffb347";
+        } else {
+          btn.style.borderLeft = "5px solid var(--gold)";
+        }
+      });
+      
       fetch(`https://api.pcloud.com/getpublinkdownload?code=${code}`)
         .then(response => response.json())
         .then(data => {
           if (data.result === 0 && data.hosts && data.hosts.length > 0) {
             const streamUrl = `https://${data.hosts[0]}${data.path}`;
             
+            // Extract and clean media file name from the path property
+            const rawFileName = data.path.split('/').pop();
+            fileNameDisplay.innerText = decodeURIComponent(rawFileName);
+            
             audioPlayer.src = streamUrl;
             audioPlayer.load();
             
-            // Restore timestamp progress for this specific track if it exists
             const savedTrack = localStorage.getItem('sehaj_path_track');
             const savedTime = localStorage.getItem('sehaj_path_time');
             if (savedTrack && parseInt(savedTrack) === trackNum && savedTime) {
               audioPlayer.currentTime = parseFloat(savedTime);
             }
             
-            audioPlayer.play()
-              .then(() => {
-                statusText.innerText = "Playing Audio Track " + trackNum + "...";
-              })
-              .catch(error => {
-                statusText.innerText = "Playback error: " + error.message;
-              });
+            audioPlayer.play().catch(error => {
+              statusText.innerText = "Playback error: " + error.message;
+            });
           } else {
             statusText.innerText = "Failed to load audio from source server.";
           }
@@ -512,38 +732,60 @@
         .catch(err => {
           statusText.innerText = "Network Error: Unable to fetch media stream.";
         });
-
-      // Update button visual state classes
-      buttons.forEach((btn, index) => {
-        btn.style.borderLeft = ""; // clear temporary loading accent
-        if (index === (trackNum - 1)) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
     }
 
-    // 3. Automatically track and save timeline location updates
-    audioPlayer.addEventListener('timeupdate', () => {
-      if (currentTrackNum && !audioPlayer.paused) {
-        localStorage.setItem('sehaj_path_time', audioPlayer.currentTime);
+    audioPlayer.addEventListener('play', () => {
+      if (currentTrackNum) {
+        statusText.innerText = "Playing Audio Track " + currentTrackNum + "...";
+        trackNumDisplay.innerText = "Audio Track " + currentTrackNum;
+        updateButtonVisuals();
+        resumeBtn.style.display = 'none';
       }
     });
 
     audioPlayer.addEventListener('pause', () => {
-      if(audioPlayer.currentTime !== audioPlayer.duration) {
-         statusText.innerText = "Paused";
-         if (currentTrackNum && buttons[currentTrackNum - 1]) {
-           buttons[currentTrackNum - 1].classList.remove('active');
-         }
+      if (currentTrackNum) {
+        localStorage.setItem('sehaj_path_time', audioPlayer.currentTime);
+      }
+      if (audioPlayer.currentTime !== audioPlayer.duration) {
+        statusText.innerText = "Paused";
+        updateButtonVisuals();
       }
     });
 
+    // AUTO-ADVANCE SEQUENCING LOGIC
     audioPlayer.addEventListener('ended', () => {
-      statusText.innerText = "Track finished playing.";
-      buttons.forEach(btn => btn.classList.remove('active'));
-      localStorage.removeItem('sehaj_path_time'); // clear progress for completely finished tracks
+      localStorage.removeItem('sehaj_path_time'); // Clear progress of finished track
+      
+      const nextTrackNum = currentTrackNum + 1;
+      const nextCode = trackCodes[nextTrackNum];
+      
+      if (nextCode) {
+        statusText.innerText = `Track ${currentTrackNum} finished. Loading Track ${nextTrackNum}...`;
+        playAudio(nextTrackNum, nextCode);
+      } else {
+        statusText.innerText = "All tracks finished in this session.";
+        fileNameDisplay.innerText = "None (Select a track)";
+        trackNumDisplay.innerText = "None (Select a track)";
+        currentTrackNum = null;
+        updateButtonVisuals();
+      }
+    });
+
+    audioPlayer.addEventListener('timeupdate', () => {
+      if (currentTrackNum && !audioPlayer.paused) {
+        const currentTime = audioPlayer.currentTime;
+        if (Math.abs(currentTime - lastSavedTime) > 3) {
+          localStorage.setItem('sehaj_path_time', currentTime);
+          lastSavedTime = currentTime;
+        }
+      }
+    });
+
+    window.addEventListener('beforeunload', () => {
+      if (currentTrackNum && audioPlayer.currentTime) {
+        localStorage.setItem('sehaj_path_time', audioPlayer.currentTime);
+      }
     });
   </script>
 
