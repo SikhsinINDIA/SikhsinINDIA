@@ -124,7 +124,7 @@
     }
 
     .playerBox {
-      display: block;
+      display: none; /* Controlled by app.js auth listener */
     }
 
     h1 {
@@ -135,22 +135,34 @@
       margin-bottom: 24px;
     }
 
-    /* AUDIO PLAYER CONTAINER */
-    .audio-container {
+    /* YOUTUBE PLAYER CONTAINER */
+    .video-container {
       width: 100%;
       display: flex;
       justify-content: center;
       margin-bottom: 24px;
       border: 3px solid var(--gold);
       border-radius: 10px;
-      padding: 20px;
+      overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
-      background: var(--navy);
+      background: #000;
     }
 
-    .audio-container audio {
+    /* Responsive Iframe Aspect Ratio Container */
+    .video-ratio-wrapper {
+      position: relative;
       width: 100%;
-      outline: none;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+    }
+
+    .video-ratio-wrapper iframe, 
+    .video-ratio-wrapper div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
     }
 
     /* TRACK CONTROLS LIST */
@@ -187,12 +199,6 @@
 
     .track-item-btn:active {
       transform: translateX(2px);
-    }
-    
-    .track-item-btn.active {
-      background-color: var(--navy);
-      color: #fff;
-      border-left: 5px solid #fff;
     }
 
     /* STATUS MESSAGE BAR */
@@ -321,6 +327,28 @@
       }
     }
 
+     .footer {
+        padding: 14px 12px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+
+      .btn-back {
+        font-size: 9px;
+        padding: 8px 14px;
+      }
+
+      .footer-left,
+      .footer-right {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+     /* Back button — 3D gold */
     .btn-back {
       display: inline-flex;
       align-items: center;
@@ -373,7 +401,8 @@
       <div class="hero">
         <div class="hero-title">Sehaj <span>Path</span></div>
         <div class="hero-sub1">Embrace the Wisdom of Shri Guru Granth Sahib Ji - at Your Own Pace</div>
-        <div class="hero-sub">Sehaj Path is the gradual, unhurried, cover-to-cover reading of the Sri Guru Granth Sahib Ji, the eternal Guru and central scripture of Sikhism.</div>
+
+         <div class="hero-sub">Sehaj Path is the gradual, unhurried, cover-to-cover reading of the Sri Guru Granth Sahib Ji, the eternal Guru and central scripture of Sikhism.</div>
       </div>
     </div>
 
@@ -383,44 +412,34 @@
 
     <div class="wrapper playerBox" id="playerBox">
 
-      <!-- AUDIO PLAYER CONTAINER -->
-      <div class="audio-container">
-        <audio id="audio-player" controls preload="auto">
-          Your browser does not support the audio element.
-        </audio>
+      <!-- <h1>Gurbani Selections</h1> -->
+
+      <div class="video-container">
+        <div class="video-ratio-wrapper">
+          <div id="youtube-player"></div>
+        </div>
       </div>
 
-      <!-- TRACK LIST -->
       <div class="track-list">
-        <button class="track-item-btn" onclick="playAudio(1, 'XZguNr5ZVlfaTHLf1dhr0w5ntyDvRXt7YI3y')">▶️ Audio Track 1</button>
-        <button class="track-item-btn" onclick="playAudio(2, 'XZxuNr5ZkF0Tdls6xDBpCNRs3yNR75LdaYsk')">▶️ Audio Track 2</button>
-        <button class="track-item-btn" onclick="playAudio(3, 'XZlBNr5ZfGutITslnsVspao6V1eYnXeQu27k')">▶️ Audio Track 3</button>
-        <button class="track-item-btn" onclick="playAudio(4, 'XZh1Nr5ZQ3Pei83Sn6BDGR0bdISE2k9meIoV')">▶️ Audio Track 4</button>
-        <button class="track-item-btn" onclick="playAudio(5, 'XZ21Nr5ZFnSqJbniMgB9rOtsyDMl151hnNck')">▶️ Audio Track 5</button>
-        <button class="track-item-btn" onclick="playAudio(6, 'XZs1Nr5ZIyC3pMdnSbkriHNlEIu6U4fSRc7V')">▶️ Audio Track 6</button>
-        <button class="track-item-btn" onclick="playAudio(7, 'XZ11Nr5ZyovVw5var0jKMgoWRz7eUXz1QuTk')">▶️ Audio Track 7</button>
-        <button class="track-item-btn" onclick="playAudio(8, 'XZi1Nr5ZvpvmResgVXk1VinYNnlbpfiK8Poy')">▶️ Audio Track 8</button>
-        <button class="track-item-btn" onclick="playAudio(9, 'XZ7eNr5ZpY8xuwsEgTFE68WsNB78lVSWYQLk')">▶️ Audio Track 9</button>
-        <button class="track-item-btn" onclick="playAudio(10, 'XZVeNr5Z5fIIEn9q4TRExrvd6bJWsHJWNDcX')">▶️ Audio Track 10</button>
-        <button class="track-item-btn" onclick="playAudio(11, 'XZJeNr5ZoTDYxYYqahVMk6s6Yo5ktYVXTWpy')">▶️ Audio Track 11</button>
-        <button class="track-item-btn" onclick="playAudio(12, 'XZYeNr5Zjje53w9rK9buND8qYa5i47EGKEok')">▶️ Audio Track 12</button>
-        <button class="track-item-btn" onclick="playAudio(13, 'XZfeNr5ZSKcNuGiU8cpcjkf98Tcj5zoth3P7')">▶️ Audio Track 13</button>
-        <button class="track-item-btn" onclick="playAudio(14, 'XZseNr5ZkVqaIqAtTVQlApVssXtR2JmNkW6y')">▶️ Audio Track 14</button>
-        <button class="track-item-btn" onclick="playAudio(15, 'XZeeNr5ZIokfI4z0PhmkkSC0c9CTcFGrIkgX')">▶️ Audio Track 15</button>
-        <button class="track-item-btn" onclick="playAudio(16, 'XZMeNr5ZMnJKjrMiCX7zvM11QaocSpSRtNH7')">▶️ Audio Track 16</button>
-        <button class="track-item-btn" onclick="playAudio(17, 'XZgeNr5Z9ypAEano8NuTnqv9Y49eRmw7A5N7')">▶️ Audio Track 17</button>
-        <button class="track-item-btn" onclick="playAudio(18, 'XZCeNr5ZWExzQl3Pwe8JzDP6GI3bYf1AKEaV')">▶️ Audio Track 18</button>
-        <button class="track-item-btn" onclick="playAudio(19, 'XZweNr5Zzljn3wqwfx5CH0ShHE9HRQ8GuXQk')">▶️ Audio Track 19</button>
-        <button class="track-item-btn" onclick="playAudio(20, 'XZOeNr5ZNvz6TnB5VcL82e4fuUMx0St22DC7')">▶️ Audio Track 20</button>
-        <button class="track-item-btn" onclick="playAudio(21, 'XZUeNr5ZuvycrymLWzYbelXT2f6zoQKMBBIV')">▶️ Audio Track 21</button>
-        <button class="track-item-btn" onclick="playAudio(22, 'XZIeNr5Z56GqysXqckQjYtzxXjmWbSSIxR3X')">▶️ Audio Track 22</button>
-        <button class="track-item-btn" onclick="playAudio(23, 'XZNeNr5ZQYWLFQxGRd0otBsPWTbIMuXpQwvy')">▶️ Audio Track 23</button>
-        <button class="track-item-btn" onclick="playAudio(24, 'XZ3eNr5Zk4kV6rp2SqQJnMBVV3l6YVOfWq7k')">▶️ Audio Track 24</button>
+        <button class="track-item-btn" onclick="playVideo('video1')">▶️ Video 1 (0001Japji)</button>
+        <button class="track-item-btn" onclick="playVideo('video2')">▶️ Video 2 (0008Sodar)</button>
+        <button class="track-item-btn" onclick="playVideo('video3')">▶️ Video 3 (0012Sohila)</button>
+        <button class="track-item-btn" onclick="playVideo('video4')">▶️ Video 4 (0014Sri-g1)</button>
+        <button class="track-item-btn" onclick="playVideo('video5')">▶️ Video 5 (0026Sri-g3)</button>
+        <button class="track-item-btn" onclick="playVideo('video6')">▶️ Video 6 (0034Sri-g3)</button>
+        <button class="track-item-btn" onclick="playVideo('video7')">▶️ Video 7 (0042Sri-g5)</button>
+        <button class="track-item-btn" onclick="playVideo('video8')">▶️ Video 8 (0053Sri-a1)</button>
+        <button class="track-item-btn" onclick="playVideo('video9')">▶️ Video 9 (0058Sri-a1)</button>
+        <button class="track-item-btn" onclick="playVideo('video10')">▶️ Video 10 (0064Sri-a3)</button>
+        <button class="track-item-btn" onclick="playVideo('video11')">▶️ Video 11 (0066Sri-a3)</button>
+        <button class="track-item-btn" onclick="playVideo('video12')">▶️ Video 12 (0071Sri-g1)</button>
+        <button class="track-item-btn" onclick="playVideo('video13')">▶️ Video 13 (0074Sri-g1)</button>
+        <button class="track-item-btn" onclick="playVideo('video14')">▶️ Video 14 (0083Sri-v4)</button>
       </div>
 
-      <p id="status">Select a track to begin playing...</p>
+      <p id="status">Connecting to media server...</p>
 
-      <!-- ── FOOTER ── -->
+     <!-- ── FOOTER ── -->
       <div class="footer">
         <div class="footer-content">
           <a href="../03-nitnem-path.html" class="btn-back">
@@ -428,9 +447,9 @@
               stroke-linejoin="round">
               <path d="M19 12H5M5 12l7-7M5 12l7 7" />
             </svg>
-            Back to Nitnem Path
+         Back to Nitnem Path
           </a>
-          <div class="footer-left">© 2026 Sikhs in India</div>
+          <div class="footer-left">© 2025 Sikhs in India</div>
           <div class="footer-right">Preserving Sikh Heritage & Unity</div>
         </div>
       </div>
@@ -438,116 +457,9 @@
     </div>
   </div>
 
-  <script>
-    const audioPlayer = document.getElementById('audio-player');
-    const statusText = document.getElementById('status');
-    const buttons = document.querySelectorAll('.track-item-btn');
-
-    let currentTrackNum = null;
-
-    // Check for saved progress on page load
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedTrack = localStorage.getItem('sehaj_path_track');
-      const savedTime = localStorage.getItem('sehaj_path_time');
-      if (savedTrack && savedTime) {
-        currentTrackNum = parseInt(savedTrack);
-        statusText.innerText = `Saved position found on Track ${savedTrack}. Click it to resume.`;
-        if (buttons[currentTrackNum - 1]) {
-          buttons[currentTrackNum - 1].style.borderLeft = "5px solid #ffb347";
-        }
-      }
-    });
-
-    function playAudio(trackNum, code) {
-      // 1. FIX: If clicking the track that is already active, toggle play/pause smoothly
-      if (currentTrackNum === trackNum && audioPlayer.src) {
-        if (audioPlayer.paused) {
-          audioPlayer.play()
-            .then(() => {
-              statusText.innerText = "Resumed Audio Track " + trackNum + "...";
-              buttons[trackNum - 1].classList.add('active');
-            })
-            .catch(error => { statusText.innerText = "Playback error: " + error.message; });
-        } else {
-          audioPlayer.pause();
-          statusText.innerText = "Paused";
-          buttons[trackNum - 1].classList.remove('active');
-        }
-        return;
-      }
-
-      // 2. Set new active track parameters
-      currentTrackNum = trackNum;
-      localStorage.setItem('sehaj_path_track', trackNum);
-      statusText.innerText = "Connecting to storage server for Track " + trackNum + "...";
-      
-      // Request pCloud API 
-      fetch(`https://api.pcloud.com/getpublinkdownload?code=${code}`)
-        .then(response => response.json())
-        .then(data => {
-          if (data.result === 0 && data.hosts && data.hosts.length > 0) {
-            const streamUrl = `https://${data.hosts[0]}${data.path}`;
-            
-            audioPlayer.src = streamUrl;
-            audioPlayer.load();
-            
-            // Restore timestamp progress for this specific track if it exists
-            const savedTrack = localStorage.getItem('sehaj_path_track');
-            const savedTime = localStorage.getItem('sehaj_path_time');
-            if (savedTrack && parseInt(savedTrack) === trackNum && savedTime) {
-              audioPlayer.currentTime = parseFloat(savedTime);
-            }
-            
-            audioPlayer.play()
-              .then(() => {
-                statusText.innerText = "Playing Audio Track " + trackNum + "...";
-              })
-              .catch(error => {
-                statusText.innerText = "Playback error: " + error.message;
-              });
-          } else {
-            statusText.innerText = "Failed to load audio from source server.";
-          }
-        })
-        .catch(err => {
-          statusText.innerText = "Network Error: Unable to fetch media stream.";
-        });
-
-      // Update button visual state classes
-      buttons.forEach((btn, index) => {
-        btn.style.borderLeft = ""; // clear temporary loading accent
-        if (index === (trackNum - 1)) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-    }
-
-    // 3. Automatically track and save timeline location updates
-    audioPlayer.addEventListener('timeupdate', () => {
-      if (currentTrackNum && !audioPlayer.paused) {
-        localStorage.setItem('sehaj_path_time', audioPlayer.currentTime);
-      }
-    });
-
-    audioPlayer.addEventListener('pause', () => {
-      if(audioPlayer.currentTime !== audioPlayer.duration) {
-         statusText.innerText = "Paused";
-         if (currentTrackNum && buttons[currentTrackNum - 1]) {
-           buttons[currentTrackNum - 1].classList.remove('active');
-         }
-      }
-    });
-
-    audioPlayer.addEventListener('ended', () => {
-      statusText.innerText = "Track finished playing.";
-      buttons.forEach(btn => btn.classList.remove('active'));
-      localStorage.removeItem('sehaj_path_time'); // clear progress for completely finished tracks
-    });
-  </script>
-
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script type="module" src="app.js"></script>
 
 </body>
+
 </html>

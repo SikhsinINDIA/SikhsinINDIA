@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>pCloud Bulk Link Generator</title>
+
+<style>
+body{
+    font-family:Arial;
+    margin:40px;
+    background:#f4f4f4;
+}
+.container{
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    max-width:900px;
+    margin:auto;
+}
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+}
+button{
+    padding:10px 20px;
+    cursor:pointer;
+    margin-right:10px;
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+th,td{
+    border:1px solid #ddd;
+    padding:8px;
+}
+th{
+    background:#0078D7;
+    color:white;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>pCloud Bulk Audio Link Generator</h2>
+
+<input id="token" placeholder="Enter pCloud Auth Token">
+
+<input id="folderid" placeholder="Folder ID">
+
+<button onclick="generate()">Generate Links</button>
+
+<button onclick="downloadCSV()">Download CSV</button>
+
+<table id="table">
+<thead>
+<tr>
+<th>File Name</th>
+<th>Public Link</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+</div>
+
+<script>
+
+let csv=[];
+
+async function generate(){
+
+const token=document.getElementById("token").value;
+const folder=document.getElementById("folderid").value;
+
+csv=[];
+
+const tbody=document.querySelector("#table tbody");
+tbody.innerHTML="";
+
+const list=await fetch(
+`https://api.pcloud.com/listfolder?auth=${token}&folderid=${folder}`
+);
+
+const data=await list.json();
+
+if(!data.metadata){
+    alert("Folder not found");
+    return;
+}
+
+for(const file of data.metadata.contents){
+
+if(file.isfolder) continue;
+
+const res=await fetch(
+`https://api.pcloud.com/getfilepublink?auth=${token}&fileid=${file.fileid}`
+);
+
+const link=await res.json();
+
+const url=link.link || "";
+
+csv.push([file.name,url]);
+
+const row=document.createElement("tr");
+
+row.innerHTML=`
+<td>${file.name}</td>
+<td><a href="${url}" target="_blank">${url}</a></td>
+`;
+
+tbody.appendChild(row);
+
+}
+
+alert("Finished");
+
+}
+
+function downloadCSV(){
+
+let text="File Name,Public Link\n";
+
+csv.forEach(r=>{
+text+=`"${r[0]}","${r[1]}"\n`;
+});
+
+const blob=new Blob([text],{type:"text/csv"});
+
+const a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download="pcloud_links.csv";
+
+a.click();
+
+}
+
+</script>
+
+</body>
+</html>

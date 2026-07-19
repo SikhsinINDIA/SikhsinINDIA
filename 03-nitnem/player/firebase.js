@@ -5,7 +5,8 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
-  signOut
+  signOut,
+  sendPasswordResetEmail // Added for forgot password functionality
 } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
 
 import {
@@ -22,7 +23,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
 
 const firebaseConfig = {
- apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+  apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
   authDomain: "sikhsinindia-67a6b.firebaseapp.com",
   databaseURL: "https://sikhsinindia-67a6b-default-rtdb.firebaseio.com",
   projectId: "sikhsinindia-67a6b",
@@ -42,6 +43,7 @@ export {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail, // Added for forgot password functionality
   doc,
   setDoc,
   getDoc,
