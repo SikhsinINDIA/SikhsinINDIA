@@ -12,6 +12,7 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <title>Sikhs in India | Sehaj Paath</title>
 
@@ -104,10 +105,10 @@
     .hero-sub1 {
       color: rgba(255, 255, 255, .75);
       margin-top: 6px;
-      font-weight: bold;
+      font-style: bold;
       font-size: 20px;
     }
-
+    
     /* GOLD INTRO BAR */
     .intro {
       background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
@@ -161,7 +162,7 @@
     /* LOGGED IN USER BADGE */
     .user-badge {
       display: flex;
-      justify-content: flex-end;
+      justify-flex-end;
       font-family: 'Lato', sans-serif;
       font-size: 13px;
       color: var(--navy);
@@ -175,43 +176,27 @@
       margin-left: 5px;
     }
 
-    /* UNIFIED MEDIA CONTAINER */
-    .media-container {
-      position: relative;
+    /* RESPONSIVE YOUTUBE PLAYER CONTAINER */
+    .video-container {
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 14px;
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
       border: 3px solid var(--gold);
       border-radius: 10px;
-      padding: 10px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
-      background: var(--navy);
-      overflow: hidden;
+      background: #000;
+      margin-bottom: 14px;
     }
 
-    .media-container audio {
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      outline: none;
-      margin: 10px 0;
-    }
-
-    /* YOUTUBE IFRAME CANVAS STYLES */
-    #youtube-player {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border-radius: 6px;
-      overflow: hidden;
-      border: none;
-      display: block;
-    }
-
-    /* HIDDEN PLAYER TOGGLE */
-    #youtube-player.hidden-player,
-    .hidden-player {
-      display: none !important;
+      height: 100%;
+      border: 0;
     }
 
     /* GLOBAL CONTROLS ROW */
@@ -254,7 +239,7 @@
       transform: scale(0.98);
     }
 
-    /* 3D RESUME BUTTON */
+    /* 3D RESUME BUTTON Styling */
     .btn-resume {
       display: none;
       align-items: center;
@@ -324,11 +309,11 @@
     .track-item-btn:active {
       transform: translateX(2px);
     }
-
+    
     .track-item-btn.active {
       background-color: var(--navy);
       color: #fff;
-      border-left: 5px solid #ffb347;
+      border-left: 5px solid #fff;
     }
 
     /* STATUS MESSAGE BAR */
@@ -345,7 +330,7 @@
       min-height: 43px;
     }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     .footer {
       background: var(--navy-mid);
       padding: 16px 36px;
@@ -469,8 +454,7 @@
       <div class="hero">
         <div class="hero-title">Sehaj <span>Path</span></div>
         <div class="hero-sub1">Embrace the Wisdom of Shri Guru Granth Sahib Ji - at Your Own Pace</div>
-        <div class="hero-sub">Sehaj Path is the gradual, unhurried, cover-to-cover reading of the Sri Guru Granth Sahib
-          Ji, the eternal Guru and central scripture of Sikhism.</div>
+        <div class="hero-sub">Sehaj Path is the gradual, unhurried, cover-to-cover reading of the Sri Guru Granth Sahib Ji, the eternal Guru and central scripture of Sikhism.</div>
       </div>
     </div>
 
@@ -480,10 +464,10 @@
 
     <div class="wrapper playerBox" id="playerBox">
 
-      <!-- NOW PLAYING FILE DISPLAY ON TOP OF THE PLAYER -->
+      <!-- NOW PLAYING DISPLAY ON TOP OF THE PLAYER -->
       <div class="now-playing-banner">
-        <span>🎵 Now Playing: <strong id="playing-file-name">None (Select a track)</strong></span>
-        <span>🔢 Position: <strong id="currentTrackNum">None (Select a track)</strong></span>
+        <span>🎥 Now Playing: <strong id="playing-file-name">None (Select a track)</strong></span>
+        <span>🎥 Video Track: <strong id="currentTrackNum">None (Select a track)</strong></span>
       </div>
 
       <!-- LOGGED IN USER DISPLAY ABOVE PLAYER -->
@@ -491,13 +475,9 @@
         <span>📧 Session: <strong id="user-email">Checking Auth...</strong></span>
       </div>
 
-      <!-- MEDIA PLAYER HOLDER CONTAINER -->
-      <div class="media-container">
+      <!-- RESPONSIVE YOUTUBE PLAYER HOUSING -->
+      <div class="video-container">
         <div id="youtube-player"></div>
-
-        <audio id="audio-player" controls preload="auto" style="display: none;">
-          Your browser does not support the audio element.
-        </audio>
       </div>
 
       <!-- PLAY AND PAUSE CONTROLS BELOW PLAYER -->
@@ -508,26 +488,26 @@
 
       <!-- RESUME SESSION BUTTON -->
       <button id="btn-resume" class="btn-resume">
-        🔄 Resume Last Session
+        🔄 Resume Last Session (Track 1)
       </button>
 
       <!-- TRACK LIST -->
-      <div class="track-list" id="track-list-container">
-        <button class="track-item-btn" data-track="1" data-type="video" data-source="PlRXmCN9xUM">▶️ Video 1 (0001Japji)</button>
-        <button class="track-item-btn" data-track="2" data-type="video" data-source="nUJfbaT3cGo">▶️ Video 2 (0001Japji)</button>
-        <button class="track-item-btn" data-track="3" data-type="video" data-source="6tGA8JrfdlU">▶️ Video 3 (0001Japji)</button>
-        <button class="track-item-btn" data-track="4" data-type="video" data-source="ncqt3GniNYI">▶️ Video 4 (0001Japji)</button>
-        <button class="track-item-btn" data-track="5" data-type="video" data-source="f0A92XLwOyg">▶️ Video 5 (0001Japji)</button>
-        <button class="track-item-btn" data-track="6" data-type="video" data-source="VJCLbi00Wd0">▶️ Video 6 (0001Japji)</button>
-        <button class="track-item-btn" data-track="7" data-type="video" data-source="kVKuInQZ2t8">▶️ Video 7 (0001Japji)</button>
-        <button class="track-item-btn" data-track="8" data-type="video" data-source="Il8zWCkB5iU">▶️ Video 8 (0001Japji)</button>
-        <button class="track-item-btn" data-track="9" data-type="video" data-source="8lqQ0nER9fk">▶️ Video 9 (0001Japji)</button>
-        <button class="track-item-btn" data-track="10" data-type="video" data-source="otsFJrf2_xc">▶️ Video 10 (0001Japji)</button>
+      <div class="track-list">
+        <button class="track-item-btn" onclick="playVideo(1, 'PlRXmCN9xUM')">▶️ Video Track 1</button>
+        <button class="track-item-btn" onclick="playVideo(2, 'nUJfbaT3cGo')">▶️ Video Track 2</button>
+        <button class="track-item-btn" onclick="playVideo(3, '6tGA8JrfdlU')">▶️ Video Track 3</button>
+        <button class="track-item-btn" onclick="playVideo(4, 'ncqt3GniNYI')">▶️ Video Track 4</button>
+        <button class="track-item-btn" onclick="playVideo(5, 'f0A92XLwOyg')">▶️ Video Track 5</button>
+        <button class="track-item-btn" onclick="playVideo(6, 'VJCLbi00Wd0')">▶️ Video Track 6</button>
+        <button class="track-item-btn" onclick="playVideo(7, 'kVKuInQZ2t8')">▶️ Video Track 7</button>
+        <button class="track-item-btn" onclick="playVideo(8, 'Il8zWCkB5iU')">▶️ Video Track 8</button>
+        <button class="track-item-btn" onclick="playVideo(9, '8lqQ0nER9fk')">▶️ Video Track 9</button>
+        <button class="track-item-btn" onclick="playVideo(10, 'otsFJrf2_xc')">▶️ Video Track 10</button>
       </div>
 
-      <p id="status">Select a track to begin playing...</p>
+      <p id="status">Loading Player Framework...</p>
 
-      <!-- FOOTER -->
+      <!-- ── FOOTER ── -->
       <div class="footer">
         <div class="footer-content">
           <a href="../03-nitnem-path.html" class="btn-back">
@@ -545,6 +525,9 @@
     </div>
   </div>
 
+  <!-- Load the YouTube IFrame API script dynamically -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
   <script>
     const trackCodes = {
       1: 'PlRXmCN9xUM',
@@ -559,7 +542,7 @@
       10: 'otsFJrf2_xc'
     };
 
-    const audioPlayer = document.getElementById('audio-player');
+    let player = null;
     const statusText = document.getElementById('status');
     const fileNameDisplay = document.getElementById('playing-file-name');
     const trackNumDisplay = document.getElementById('currentTrackNum');
@@ -570,136 +553,70 @@
     const globalPauseBtn = document.getElementById('btn-global-pause');
 
     let currentTrackNum = null;
-    let currentVideoId = null;
     let lastSavedTime = 0;
-    let ytPlayer = null;
-    let ytReady = false;
-    let pendingTrack = null;
+    let progressInterval = null;
 
-    // 1. MEDIA DISPLAY CONTROLLER
-    function switchMediaDisplay(mode) {
-      const ytEl = document.getElementById('youtube-player');
-      if (mode === 'video') {
-        audioPlayer.pause();
-        audioPlayer.style.display = 'none';
-        if (ytEl) ytEl.classList.remove('hidden-player');
-      } else {
-        if (ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
-          ytPlayer.pauseVideo();
-        }
-        if (ytEl) ytEl.classList.add('hidden-player');
-        audioPlayer.style.display = 'block';
-      }
-    }
-
-    // 2. YOUTUBE FRAMEWORK ASYNC INITIALIZER
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    window.onYouTubeIframeAPIReady = function () {
-      ytPlayer = new YT.Player('youtube-player', {
+    // Initialize YouTube IFrame Player framework
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('youtube-player', {
         height: '100%',
         width: '100%',
-        videoId: 'PlRXmCN9xUM',
+        videoId: '',
         playerVars: {
           'autoplay': 0,
           'controls': 1,
           'rel': 0,
           'modestbranding': 1,
-          'enablejsapi': 1,
-          'origin': window.location.origin || '*'
+          'origin': window.location.origin  // Passes local or remote host validation strings safely
         },
         events: {
-          'onReady': () => { 
-            ytReady = true; 
-            if (pendingTrack) {
-              playVideoTrack(pendingTrack.num, pendingTrack.id);
-              pendingTrack = null;
-            }
-          },
+          'onReady': onPlayerReady,
           'onStateChange': onPlayerStateChange
         }
       });
-    };
+    }
+
+    function onPlayerReady(event) {
+      statusText.innerText = "Select a track to begin playing...";
+      checkSavedProgress();
+    }
 
     function onPlayerStateChange(event) {
-      let videoName = `Video ${currentTrackNum} (0001Japji)`;
-      buttons.forEach(btn => {
-        if (btn.getAttribute('data-source') === currentVideoId) {
-          videoName = btn.textContent.replace(/[▶️⏸️]\s*/g, '').trim();
-        }
-      });
-
       if (event.data === YT.PlayerState.PLAYING) {
-        statusText.innerText = `Playing ${videoName}...`;
+        statusText.innerText = "Playing Video Track " + currentTrackNum + "...";
         trackNumDisplay.innerText = "Video Track " + currentTrackNum;
-        fileNameDisplay.innerText = videoName;
-        updateButtonVisuals();
+        fileNameDisplay.innerText = "Sehaj Paath - Episode " + currentTrackNum;
+        updateButtonVisuals(true);
         resumeBtn.style.display = 'none';
-      } else if (event.data === YT.PlayerState.PAUSED) {
+        startTrackingProgress();
+      } 
+      else if (event.data === YT.PlayerState.PAUSED) {
+        saveCurrentTime();
         statusText.innerText = "Paused";
-        updateButtonVisuals();
-      } else if (event.data === YT.PlayerState.ENDED) {
-        localStorage.removeItem('sehaj_path_time');
-        const nextTrackNum = currentTrackNum + 1;
-        const nextVideoId = trackCodes[nextTrackNum];
+        updateButtonVisuals(false);
+        stopTrackingProgress();
+      } 
+      else if (event.data === YT.PlayerState.ENDED) {
+        stopTrackingProgress();
+        localStorage.removeItem('sehaj_path_time'); // Clear progress tracking values for completed entries
         
-        if (nextVideoId) {
-          statusText.innerText = `Video finished. Advancing to Video Track ${nextTrackNum}...`;
-          playVideoTrack(nextTrackNum, nextVideoId);
+        const nextTrackNum = currentTrackNum + 1;
+        const nextCode = trackCodes[nextTrackNum];
+        
+        if (nextCode) {
+          statusText.innerText = `Track ${currentTrackNum} finished. Loading Track ${nextTrackNum}...`;
+          playVideo(nextTrackNum, nextCode);
         } else {
-          statusText.innerText = "Session complete. All tracks finished.";
+          statusText.innerText = "All tracks finished in this session.";
           fileNameDisplay.innerText = "None (Select a track)";
           trackNumDisplay.innerText = "None (Select a track)";
           currentTrackNum = null;
-          currentVideoId = null;
-          updateButtonVisuals();
+          updateButtonVisuals(false);
         }
       }
     }
 
-    // 3. TARGET VIDEO INTERACTION CONTROLLER
-    function playVideoTrack(trackNum, videoId) {
-      switchMediaDisplay('video');
-
-      if (currentTrackNum === trackNum && currentVideoId === videoId && ytReady && ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
-        const state = ytPlayer.getPlayerState();
-        if (state === YT.PlayerState.PLAYING) {
-          ytPlayer.pauseVideo();
-        } else {
-          ytPlayer.playVideo();
-        }
-        return;
-      }
-
-      currentTrackNum = trackNum;
-      currentVideoId = videoId;
-      localStorage.setItem('sehaj_path_track', trackNum);
-      localStorage.setItem('sehaj_path_video_id', videoId);
-
-      if (ytReady && ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
-        ytPlayer.loadVideoById(videoId);
-        ytPlayer.playVideo();
-        
-        const savedTrack = localStorage.getItem('sehaj_path_track');
-        const savedTime = localStorage.getItem('sehaj_path_time');
-        if (savedTrack && parseInt(savedTrack) === trackNum && savedTime) {
-          setTimeout(() => {
-            if (ytPlayer && typeof ytPlayer.seekTo === 'function') {
-              ytPlayer.seekTo(parseFloat(savedTime), true);
-            }
-          }, 600);
-        }
-      } else {
-        pendingTrack = { num: trackNum, id: videoId };
-        statusText.innerText = "Connecting video source frame. Initializing...";
-      }
-      updateButtonVisuals();
-    }
-
-    // 4. USER AUTH VALUE LOADER
+    // Session authentication parser
     function initAuthTracker() {
       const urlParams = new URLSearchParams(window.location.search);
       const urlEmail = urlParams.get('email');
@@ -725,28 +642,19 @@
       }
     }
 
-    // 5. UPDATE BUTTON VISUAL STATES
-    function updateButtonVisuals() {
-      buttons.forEach((btn) => {
-        const trackNum = parseInt(btn.getAttribute('data-track'));
-        const type = btn.getAttribute('data-type');
-        const source = btn.getAttribute('data-source');
+    function updateButtonVisuals(isPlaying) {
+      buttons.forEach((btn, index) => {
+        const trackNum = index + 1;
+        const baseText = `Video Track ${trackNum}`;
         
-        let isPlaying = false;
-        if (type === 'video') {
-          if (currentTrackNum === trackNum && currentVideoId === source && ytPlayer && ytReady && typeof ytPlayer.getPlayerState === 'function') {
-            isPlaying = (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING);
+        if (trackNum === currentTrackNum) {
+          if (isPlaying) {
+            btn.innerHTML = `⏸️ ${baseText}`;
+            btn.classList.add('active');
+          } else {
+            btn.innerHTML = `▶️ ${baseText}`;
+            btn.classList.remove('active');
           }
-        } else {
-          if (currentTrackNum === trackNum) {
-            isPlaying = !audioPlayer.paused;
-          }
-        }
-        
-        let baseText = btn.textContent.replace(/[▶️⏸️]\s*/g, '').trim();
-        if (isPlaying) {
-          btn.innerHTML = `⏸️ ${baseText}`;
-          btn.classList.add('active');
         } else {
           btn.innerHTML = `▶️ ${baseText}`;
           btn.classList.remove('active');
@@ -754,204 +662,137 @@
       });
     }
 
-    // TRACK LIST DELEGATION ROUTER
-    document.getElementById('track-list-container').addEventListener('click', (e) => {
-      const targetBtn = e.target.closest('.track-item-btn');
-      if (!targetBtn) return;
-      
-      const trackNum = parseInt(targetBtn.getAttribute('data-track'));
-      const type = targetBtn.getAttribute('data-type');
-      const source = targetBtn.getAttribute('data-source');
-      
-      if (type === 'video') {
-        playVideoTrack(trackNum, source);
-      } else if (type === 'audio') {
-        playAudio(trackNum, source);
-      }
-    });
-
-    // CHECK PROGRESS CONFIGURATIONS ON LOAD
-    window.addEventListener('DOMContentLoaded', () => {
-      initAuthTracker();
-      
+    function checkSavedProgress() {
       const savedTrack = localStorage.getItem('sehaj_path_track');
       const savedTime = localStorage.getItem('sehaj_path_time');
-      const savedVideoId = localStorage.getItem('sehaj_path_video_id');
-      
       if (savedTrack && savedTime) {
         currentTrackNum = parseInt(savedTrack);
-        currentVideoId = savedVideoId || trackCodes[currentTrackNum];
-        statusText.innerText = `Saved position found on Track ${savedTrack}. Click Play or Resume.`;
-        trackNumDisplay.innerText = "Video Track " + currentTrackNum;
+        statusText.innerText = `Saved position found on Track ${savedTrack}. Click Play or Resume below.`;
+        trackNumDisplay.innerText = "Video Track " + savedTrack;
         
         resumeBtn.innerText = `🔄 Resume Session: Track ${savedTrack}`;
         resumeBtn.style.display = 'inline-flex';
 
-        updateButtonVisuals();
+        if (buttons[currentTrackNum - 1]) {
+          buttons[currentTrackNum - 1].style.borderLeft = "5px solid #ffb347";
+        }
       }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initAuthTracker();
     });
 
-    // GLOBAL PLAY CONTROLLER
     globalPlayBtn.addEventListener('click', () => {
-      const ytEl = document.getElementById('youtube-player');
-      if (currentTrackNum && trackCodes[currentTrackNum]) {
-        if (ytEl && ytEl.classList.contains('hidden-player')) {
-          playVideoTrack(currentTrackNum, currentVideoId || trackCodes[currentTrackNum]);
-        } else {
-          if (ytPlayer && ytReady) ytPlayer.playVideo();
-        }
+      if (player && currentTrackNum) {
+        player.playVideo();
       } else {
         const savedTrack = localStorage.getItem('sehaj_path_track');
         if (savedTrack) {
           const trackNum = parseInt(savedTrack);
-          const savedVideoId = localStorage.getItem('sehaj_path_video_id') || trackCodes[trackNum];
-          if (savedVideoId) {
-            playVideoTrack(trackNum, savedVideoId);
-          }
+          const code = trackCodes[trackNum];
+          if (code) playVideo(trackNum, code);
         } else {
-          playVideoTrack(1, trackCodes[1]);
+          statusText.innerText = "Please select a video track from the list below to play.";
         }
       }
     });
 
-    // GLOBAL PAUSE CONTROLLER
     globalPauseBtn.addEventListener('click', () => {
-      const ytEl = document.getElementById('youtube-player');
-      if (ytEl && !ytEl.classList.contains('hidden-player')) {
-        if (ytPlayer && ytReady) ytPlayer.pauseVideo();
-      } else if (audioPlayer.src && !audioPlayer.paused) {
-        audioPlayer.pause();
+      if (player && typeof player.pauseVideo === 'function') {
+        player.pauseVideo();
       }
     });
 
-    // SESSION RESUME CONTROLLER
     resumeBtn.addEventListener('click', () => {
       const savedTrack = localStorage.getItem('sehaj_path_track');
       if (savedTrack) {
         const trackNum = parseInt(savedTrack);
-        const savedVideoId = localStorage.getItem('sehaj_path_video_id') || trackCodes[trackNum];
-        if (savedVideoId) {
-          playVideoTrack(trackNum, savedVideoId);
+        const code = trackCodes[trackNum];
+        if (code) {
+          playVideo(trackNum, code);
         }
       }
     });
 
-    // AUDIO ROUTINE (Fallback/Legacy support)
-    function playAudio(trackNum, code) {
-      switchMediaDisplay('audio');
+    // Unified play routing logic handling pre-checks for data persistence loops cleanly
+    function playVideo(trackNum, code) {
+      if (!player || typeof player.loadVideoById !== 'function') {
+        statusText.innerText = "Player framework is still buffering. Please wait...";
+        return;
+      }
 
-      if (currentTrackNum === trackNum && audioPlayer.src) {
-        if (audioPlayer.paused) {
-          audioPlayer.play().catch(error => { statusText.innerText = "Playback error: " + error.message; });
+      if (currentTrackNum === trackNum) {
+        const state = player.getPlayerState();
+        if (state === YT.PlayerState.PLAYING) {
+          player.pauseVideo();
         } else {
-          audioPlayer.pause();
+          player.playVideo();
         }
         return;
       }
 
+      // 1. Check existing saved data values BEFORE writing clean state structures down
+      const savedTrack = localStorage.getItem('sehaj_path_track');
+      const savedTime = localStorage.getItem('sehaj_path_time');
+      let startSeconds = 0;
+      
+      // Keep track time references ONLY if it aligns with the requested tracking sequence item
+      if (savedTrack && parseInt(savedTrack) === trackNum && savedTime) {
+        startSeconds = parseFloat(savedTime);
+      } else {
+        // Clear cached tracking timestamps to prevent old file duration leaks across switches
+        localStorage.removeItem('sehaj_path_time');
+      }
+
+      // 2. Commit secure states safely
       currentTrackNum = trackNum;
       localStorage.setItem('sehaj_path_track', trackNum);
-      statusText.innerText = "Connecting to storage server for Track " + trackNum + "...";
+      statusText.innerText = "Connecting to streaming host server for Track " + trackNum + "...";
       
-      updateButtonVisuals();
+      buttons.forEach((btn, index) => {
+        if (index === (trackNum - 1)) {
+          btn.style.borderLeft = "5px solid #ffb347";
+        } else {
+          btn.style.borderLeft = "5px solid var(--gold)";
+        }
+      });
       
-      fetch(`https://api.pcloud.com/getpublinkdownload?code=${code}`)
-        .then(response => response.json())
-        .then(data => {
-          if (data.result === 0 && data.hosts && data.hosts.length > 0) {
-            const streamUrl = `https://${data.hosts[0]}${data.path}`;
-            const rawFileName = data.path.split('/').pop();
-            
-            fileNameDisplay.innerText = decodeURIComponent(rawFileName);
-            audioPlayer.src = streamUrl;
-            audioPlayer.load();
-            
-            const savedTrack = localStorage.getItem('sehaj_path_track');
-            const savedTime = localStorage.getItem('sehaj_path_time');
-            if (savedTrack && parseInt(savedTrack) === trackNum && savedTime) {
-              audioPlayer.currentTime = parseFloat(savedTime);
-            }
-            
-            audioPlayer.play().catch(error => {
-              statusText.innerText = "Playback error: " + error.message;
-            });
-          } else {
-            statusText.innerText = "Failed to load audio from cloud storage.";
-          }
-        })
-        .catch(err => {
-          statusText.innerText = "Network Error: Unable to fetch media stream.";
-        });
+      player.loadVideoById({
+        videoId: code,
+        startSeconds: startSeconds
+      });
     }
 
-    audioPlayer.addEventListener('play', () => {
-      if (currentTrackNum) {
-        statusText.innerText = "Playing Audio Track " + currentTrackNum + "...";
-        trackNumDisplay.innerText = "Audio Track " + currentTrackNum;
-        updateButtonVisuals();
-        resumeBtn.style.display = 'none';
-      }
-    });
-
-    audioPlayer.addEventListener('pause', () => {
-      if (currentTrackNum) {
-        localStorage.setItem('sehaj_path_time', audioPlayer.currentTime);
-      }
-      if (audioPlayer.currentTime !== audioPlayer.duration) {
-        statusText.innerText = "Paused";
-        updateButtonVisuals();
-      }
-    });
-
-    audioPlayer.addEventListener('ended', () => {
-      localStorage.removeItem('sehaj_path_time');
-      const nextTrackNum = currentTrackNum + 1;
-      const nextCode = trackCodes[nextTrackNum];
-      
-      if (nextCode) {
-        statusText.innerText = `Track ${currentTrackNum} finished. Loading Track ${nextTrackNum}...`;
-        playAudio(nextTrackNum, nextCode);
-      } else {
-        statusText.innerText = "Session complete. All tracks finished.";
-        fileNameDisplay.innerText = "None (Select a track)";
-        trackNumDisplay.innerText = "None (Select a track)";
-        currentTrackNum = null;
-        updateButtonVisuals();
-      }
-    });
-
-    audioPlayer.addEventListener('timeupdate', () => {
-      if (currentTrackNum && !audioPlayer.paused) {
-        const currentTime = audioPlayer.currentTime;
-        if (Math.abs(currentTime - lastSavedTime) > 3) {
-          localStorage.setItem('sehaj_path_time', currentTime);
-          lastSavedTime = currentTime;
-        }
-      }
-    });
-
-    setInterval(() => {
-      if (currentTrackNum && ytPlayer && ytReady && typeof ytPlayer.getCurrentTime === 'function') {
-        const ytEl = document.getElementById('youtube-player');
-        if (ytEl && !ytEl.classList.contains('hidden-player') && ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
-          const currentTime = ytPlayer.getCurrentTime();
+    function startTrackingProgress() {
+      if (progressInterval) clearInterval(progressInterval);
+      progressInterval = setInterval(() => {
+        if (player && typeof player.getCurrentTime === 'function') {
+          const currentTime = player.getCurrentTime();
           if (Math.abs(currentTime - lastSavedTime) > 3) {
             localStorage.setItem('sehaj_path_time', currentTime);
             lastSavedTime = currentTime;
           }
         }
+      }, 1000);
+    }
+
+    function stopTrackingProgress() {
+      if (progressInterval) clearInterval(progressInterval);
+    }
+
+    function saveCurrentTime() {
+      if (currentTrackNum && player && typeof player.getCurrentTime === 'function') {
+        localStorage.setItem('sehaj_path_time', player.getCurrentTime());
       }
-    }, 1000);
+    }
 
     window.addEventListener('beforeunload', () => {
-      const ytEl = document.getElementById('youtube-player');
-      if (currentTrackNum && ytPlayer && ytReady && typeof ytPlayer.getCurrentTime === 'function' && ytEl && !ytEl.classList.contains('hidden-player')) {
-        localStorage.setItem('sehaj_path_time', ytPlayer.getCurrentTime());
-      } else if (currentTrackNum && audioPlayer.currentTime) {
-        localStorage.setItem('sehaj_path_time', audioPlayer.currentTime);
-      }
+      saveCurrentTime();
     });
   </script>
-</body>
 
+  <script type="module" src="app.js"></script>
+
+</body>
 </html>

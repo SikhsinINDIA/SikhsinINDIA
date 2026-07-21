@@ -104,7 +104,7 @@
     .hero-sub1 {
       color: rgba(255, 255, 255, .75);
       margin-top: 6px;
-      font-weight: bold;
+      font-style: bold;
       font-size: 20px;
     }
 
@@ -175,7 +175,7 @@
       margin-left: 5px;
     }
 
-    /* UNIFIED MEDIA CONTAINER */
+    /* UNIFIED MEDIA CONTAINER WITH RELATIVE ANCHORING */
     .media-container {
       position: relative;
       width: 100%;
@@ -186,7 +186,7 @@
       margin-bottom: 14px;
       border: 3px solid var(--gold);
       border-radius: 10px;
-      padding: 10px;
+      padding: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
       background: var(--navy);
       overflow: hidden;
@@ -195,7 +195,6 @@
     .media-container audio {
       width: 100%;
       outline: none;
-      margin: 10px 0;
     }
 
     /* YOUTUBE IFRAME CANVAS STYLES */
@@ -208,10 +207,14 @@
       display: block;
     }
 
-    /* HIDDEN PLAYER TOGGLE */
+    /* VISUAL ACCESSIBILITY OVERLAY REPLACING DISPLAY:NONE */
     #youtube-player.hidden-player,
     .hidden-player {
-      display: none !important;
+      position: absolute !important;
+      left: -9999px !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      height: 0 !important;
     }
 
     /* GLOBAL CONTROLS ROW */
@@ -254,7 +257,7 @@
       transform: scale(0.98);
     }
 
-    /* 3D RESUME BUTTON */
+    /* 3D RESUME BUTTON Styling */
     .btn-resume {
       display: none;
       align-items: center;
@@ -345,7 +348,7 @@
       min-height: 43px;
     }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     .footer {
       background: var(--navy-mid);
       padding: 16px 36px;
@@ -493,9 +496,10 @@
 
       <!-- MEDIA PLAYER HOLDER CONTAINER -->
       <div class="media-container">
-        <div id="youtube-player"></div>
+        <!-- Starts out hidden off-screen cleanly to prevent iframe size compilation breakdown -->
+        <div id="youtube-player" class="hidden-player"></div>
 
-        <audio id="audio-player" controls preload="auto" style="display: none;">
+        <audio id="audio-player" controls preload="auto">
           Your browser does not support the audio element.
         </audio>
       </div>
@@ -514,20 +518,44 @@
       <!-- TRACK LIST -->
       <div class="track-list" id="track-list-container">
         <button class="track-item-btn" data-track="1" data-type="video" data-source="PlRXmCN9xUM">▶️ Video 1 (0001Japji)</button>
-        <button class="track-item-btn" data-track="2" data-type="video" data-source="nUJfbaT3cGo">▶️ Video 2 (0001Japji)</button>
-        <button class="track-item-btn" data-track="3" data-type="video" data-source="6tGA8JrfdlU">▶️ Video 3 (0001Japji)</button>
-        <button class="track-item-btn" data-track="4" data-type="video" data-source="ncqt3GniNYI">▶️ Video 4 (0001Japji)</button>
-        <button class="track-item-btn" data-track="5" data-type="video" data-source="f0A92XLwOyg">▶️ Video 5 (0001Japji)</button>
-        <button class="track-item-btn" data-track="6" data-type="video" data-source="VJCLbi00Wd0">▶️ Video 6 (0001Japji)</button>
-        <button class="track-item-btn" data-track="7" data-type="video" data-source="kVKuInQZ2t8">▶️ Video 7 (0001Japji)</button>
-        <button class="track-item-btn" data-track="8" data-type="video" data-source="Il8zWCkB5iU">▶️ Video 8 (0001Japji)</button>
-        <button class="track-item-btn" data-track="9" data-type="video" data-source="8lqQ0nER9fk">▶️ Video 9 (0001Japji)</button>
-        <button class="track-item-btn" data-track="10" data-type="video" data-source="otsFJrf2_xc">▶️ Video 10 (0001Japji)</button>
+        <button class="track-item-btn" data-track="1" data-type="video" data-source="nUJfbaT3cGo">▶️ Video 2 (0001Japji)</button>
+        <button class="track-item-btn" data-track="1" data-type="video" data-source="6tGA8JrfdlU">▶️ Video 3 (0001Japji)</button>
+        <button class="track-item-btn" data-track="1" data-type="video" data-source="ncqt3GniNYI">▶️ Video 4 (0001Japji)</button>
+        <button class="track-item-btn" data-track="1" data-type="video" data-source="f0A92XLwOyg">▶️ Video 5 (0001Japji)</button>
+        <button class="track-item-btn" data-track="1" data-type="video" data-source="VJCLbi00Wd0">▶️ Video 6 (0001Japji)</button>
+        <button class="track-item-btn" data-track="1" data-type="video" data-source="kVKuInQZ2t8">▶️ Video 7 (0001Japji)</button>
+        <button class="track-item-btn" data-track="1" data-type="video" data-source="Il8zWCkB5iU">▶️ Video 8 (0001Japji)</button>
+        <button class="track-item-btn" data-track="1" data-type="video" data-source="8lqQ0nER9fk">▶️ Video 9 (0001Japji)</button>
+        <button class="track-item-btn" data-track="1" data-type="video" data-source="otsFJrf2_xc">▶️ Video 10 (0001Japji)</button>
+
+        <button class="track-item-btn" data-track="2" data-type="audio" data-source="XZxuNr5ZkF0Tdls6xDBpCNRs3yNR75LdaYsk">▶️ Audio Track 2</button>
+        <button class="track-item-btn" data-track="3" data-type="audio" data-source="XZlBNr5ZfGutITslnsVspao6V1eYnXeQu27k">▶️ Audio Track 3</button>
+        <button class="track-item-btn" data-track="4" data-type="audio" data-source="XZh1Nr5ZQ3Pei83Sn6BDGR0bdISE2k9meIoV">▶️ Audio Track 4</button>
+        <button class="track-item-btn" data-track="5" data-type="audio" data-source="XZ21Nr5ZFnSqJbniMgB9rOtsyDMl151hnNck">▶️ Audio Track 5</button>
+        <button class="track-item-btn" data-track="6" data-type="audio" data-source="XZs1Nr5ZIyC3pMdnSbkriHNlEIu6U4fSRc7V">▶️ Audio Track 6</button>
+        <button class="track-item-btn" data-track="7" data-type="audio" data-source="XZ11Nr5ZyovVw5var0jKMgoWRz7eUXz1QuTk">▶️ Audio Track 7</button>
+        <button class="track-item-btn" data-track="8" data-type="audio" data-source="XZi1Nr5ZvpvmResgVXk1VinYNnlbpfiK8Poy">▶️ Audio Track 8</button>
+        <button class="track-item-btn" data-track="9" data-type="audio" data-source="XZ7eNr5ZpY8xuwsEgTFE68WsNB78lVSWYQLk">▶️ Audio Track 9</button>
+        <button class="track-item-btn" data-track="10" data-type="audio" data-source="XZVeNr5Z5fIIEn9q4TRExrvd6bJWsHJWNDcX">▶️ Audio Track 10</button>
+        <button class="track-item-btn" data-track="11" data-type="audio" data-source="XZJeNr5ZoTDYxYYqahVMk6s6Yo5ktYVXTWpy">▶️ Audio Track 11</button>
+        <button class="track-item-btn" data-track="12" data-type="audio" data-source="XZYeNr5Zjje53w9rK9buND8qYa5i47EGKEok">▶️ Audio Track 12</button>
+        <button class="track-item-btn" data-track="13" data-type="audio" data-source="XZfeNr5ZSKcNuGiU8cpcjkf98Tcj5zoth3P7">▶️ Audio Track 13</button>
+        <button class="track-item-btn" data-track="14" data-type="audio" data-source="XZseNr5ZkVqaIqAtTVQlApVssXtR2JmNkW6y">▶️ Audio Track 14</button>
+        <button class="track-item-btn" data-track="15" data-type="audio" data-source="XZeeNr5ZIokfI4z0PhmkkSC0c9CTcFGrIkgX">▶️ Audio Track 15</button>
+        <button class="track-item-btn" data-track="16" data-type="audio" data-source="XZMeNr5ZMnJKjrMiCX7zvM11QaocSpSRtNH7">▶️ Audio Track 16</button>
+        <button class="track-item-btn" data-track="17" data-type="audio" data-source="XZgeNr5Z9ypAEano8NuTnqv9Y49eRmw7A5N7">▶️ Audio Track 17</button>
+        <button class="track-item-btn" data-track="18" data-type="audio" data-source="XZCeNr5ZWExzQl3Pwe8JzDP6GI3bYf1AKEaV">▶️ Audio Track 18</button>
+        <button class="track-item-btn" data-track="19" data-type="audio" data-source="XZweNr5Zzljn3wqwfx5CH0ShHE9HRQ8GuXQk">▶️ Audio Track 19</button>
+        <button class="track-item-btn" data-track="20" data-type="audio" data-source="XZOeNr5ZNvz6TnB5VcL82e4fuUMx0St22DC7">▶️ Audio Track 20</button>
+        <button class="track-item-btn" data-track="21" data-type="audio" data-source="XZUeNr5ZuvycrymLWzYbelXT2f6zoQKMBBIV">▶️ Audio Track 21</button>
+        <button class="track-item-btn" data-track="22" data-type="audio" data-source="XZIeNr5Z56GqysXqckQjYtzxXjmWbSSIxR3X">▶️ Audio Track 22</button>
+        <button class="track-item-btn" data-track="23" data-type="audio" data-source="XZNeNr5ZQYWLFQxGRd0otBsPWTbIMuXpQwvy">▶️ Audio Track 23</button>
+        <button class="track-item-btn" data-track="24" data-type="audio" data-source="XZ3eNr5Zk4kV6rp2SqQJnMBVV3l6YVOfWq7k">▶️ Audio Track 24</button>
       </div>
 
       <p id="status">Select a track to begin playing...</p>
 
-      <!-- FOOTER -->
+      <!-- ── FOOTER ── -->
       <div class="footer">
         <div class="footer-content">
           <a href="../03-nitnem-path.html" class="btn-back">
@@ -546,17 +574,32 @@
   </div>
 
   <script>
+    // Fixed: Restored cloud storage server hashes for tracks 2-10
     const trackCodes = {
       1: 'PlRXmCN9xUM',
-      2: 'nUJfbaT3cGo',
-      3: '6tGA8JrfdlU',
-      4: 'ncqt3GniNYI',
-      5: 'f0A92XLwOyg',
-      6: 'VJCLbi00Wd0',
-      7: 'kVKuInQZ2t8',
-      8: 'Il8zWCkB5iU',
-      9: '8lqQ0nER9fk',
-      10: 'otsFJrf2_xc'
+      2: 'XZxuNr5ZkF0Tdls6xDBpCNRs3yNR75LdaYsk',
+      3: 'XZlBNr5ZfGutITslnsVspao6V1eYnXeQu27k',
+      4: 'XZh1Nr5ZQ3Pei83Sn6BDGR0bdISE2k9meIoV',
+      5: 'XZ21Nr5ZFnSqJbniMgB9rOtsyDMl151hnNck',
+      6: 'XZs1Nr5ZIyC3pMdnSbkriHNlEIu6U4fSRc7V',
+      7: 'XZ11Nr5ZyovVw5var0jKMgoWRz7eUXz1QuTk',
+      8: 'XZi1Nr5ZvpvmResgVXk1VinYNnlbpfiK8Poy',
+      9: 'XZ7eNr5ZpY8xuwsEgTFE68WsNB78lVSWYQLk',
+      10: 'XZVeNr5Z5fIIEn9q4TRExrvd6bJWsHJWNDcX',
+      11: 'XZJeNr5ZoTDYxYYqahVMk6s6Yo5ktYVXTWpy',
+      12: 'XZYeNr5Zjje53w9rK9buND8qYa5i47EGKEok',
+      13: 'XZfeNr5ZSKcNuGiU8cpcjkf98Tcj5zoth3P7',
+      14: 'XZseNr5ZkVqaIqAtTVQlApVssXtR2JmNkW6y',
+      15: 'XZeeNr5ZIokfI4z0PhmkkSC0c9CTcFGrIkgX',
+      16: 'XZMeNr5ZMnJKjrMiCX7zvM11QaocSpSRtNH7',
+      17: 'XZgeNr5Z9ypAEano8NuTnqv9Y49eRmw7A5N7',
+      18: 'XZCeNr5ZWExzQl3Pwe8JzDP6GI3bYf1AKEaV',
+      19: 'XZweNr5Zzljn3wqwfx5CH0ShHE9HRQ8GuXQk',
+      20: 'XZOeNr5ZNvz6TnB5VcL82e4fuUMx0St22DC7',
+      21: 'XZUeNr5ZuvycrymLWzYbelXT2f6zoQKMBBIV',
+      22: 'XZIeNr5Z56GqysXqckQjYtzxXjmWbSSIxR3X',
+      23: 'XZNeNr5ZQYWLFQxGRd0otBsPWTbIMuXpQwvy',
+      24: 'XZ3eNr5Zk4kV6rp2SqQJnMBVV3l6YVOfWq7k'
     };
 
     const audioPlayer = document.getElementById('audio-player');
@@ -570,13 +613,12 @@
     const globalPauseBtn = document.getElementById('btn-global-pause');
 
     let currentTrackNum = null;
-    let currentVideoId = null;
+    let currentVideoId = null; // Track explicit loaded video hash
     let lastSavedTime = 0;
     let ytPlayer = null;
     let ytReady = false;
-    let pendingTrack = null;
 
-    // 1. MEDIA DISPLAY CONTROLLER
+    // 1. DUAL MEDIA DISPLAY CONTROLLER
     function switchMediaDisplay(mode) {
       const ytEl = document.getElementById('youtube-player');
       if (mode === 'video') {
@@ -608,33 +650,27 @@
           'controls': 1,
           'rel': 0,
           'modestbranding': 1,
-          'enablejsapi': 1,
-          'origin': window.location.origin || '*'
+          'enablejsapi': 1
         },
         events: {
-          'onReady': () => { 
-            ytReady = true; 
-            if (pendingTrack) {
-              playVideoTrack(pendingTrack.num, pendingTrack.id);
-              pendingTrack = null;
-            }
-          },
+          'onReady': () => { ytReady = true; },
           'onStateChange': onPlayerStateChange
         }
       });
     };
 
     function onPlayerStateChange(event) {
-      let videoName = `Video ${currentTrackNum} (0001Japji)`;
+      // Look up current button configuration text dynamically
+      let videoName = "Video (0001Japji)";
       buttons.forEach(btn => {
         if (btn.getAttribute('data-source') === currentVideoId) {
-          videoName = btn.textContent.replace(/[▶️⏸️]\s*/g, '').trim();
+          videoName = btn.textContent.replace(/[▶️⏸️]\s*/g, '');
         }
       });
 
       if (event.data === YT.PlayerState.PLAYING) {
         statusText.innerText = `Playing ${videoName}...`;
-        trackNumDisplay.innerText = "Video Track " + currentTrackNum;
+        trackNumDisplay.innerText = "Video Track 1";
         fileNameDisplay.innerText = videoName;
         updateButtonVisuals();
         resumeBtn.style.display = 'none';
@@ -643,58 +679,46 @@
         updateButtonVisuals();
       } else if (event.data === YT.PlayerState.ENDED) {
         localStorage.removeItem('sehaj_path_time');
-        const nextTrackNum = currentTrackNum + 1;
-        const nextVideoId = trackCodes[nextTrackNum];
-        
-        if (nextVideoId) {
-          statusText.innerText = `Video finished. Advancing to Video Track ${nextTrackNum}...`;
-          playVideoTrack(nextTrackNum, nextVideoId);
-        } else {
-          statusText.innerText = "Session complete. All tracks finished.";
-          fileNameDisplay.innerText = "None (Select a track)";
-          trackNumDisplay.innerText = "None (Select a track)";
-          currentTrackNum = null;
-          currentVideoId = null;
-          updateButtonVisuals();
-        }
+        statusText.innerText = "Video finished. Advancing to Audio Track 2...";
+        playAudio(2, trackCodes[2]);
       }
     }
 
     // 3. TARGET VIDEO INTERACTION CONTROLLER
     function playVideoTrack(trackNum, videoId) {
-      switchMediaDisplay('video');
-
-      if (currentTrackNum === trackNum && currentVideoId === videoId && ytReady && ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
-        const state = ytPlayer.getPlayerState();
-        if (state === YT.PlayerState.PLAYING) {
-          ytPlayer.pauseVideo();
-        } else {
-          ytPlayer.playVideo();
+      const ytEl = document.getElementById('youtube-player');
+      
+      // Fixed: Verify both track number AND current loaded source identifier matches
+      if (currentTrackNum === trackNum && currentVideoId === videoId && ytEl && !ytEl.classList.contains('hidden-player')) {
+        if (ytReady && ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
+          const state = ytPlayer.getPlayerState();
+          if (state === YT.PlayerState.PLAYING) {
+            ytPlayer.pauseVideo();
+          } else {
+            ytPlayer.playVideo();
+          }
         }
         return;
       }
 
+      switchMediaDisplay('video');
       currentTrackNum = trackNum;
       currentVideoId = videoId;
       localStorage.setItem('sehaj_path_track', trackNum);
       localStorage.setItem('sehaj_path_video_id', videoId);
 
-      if (ytReady && ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
-        ytPlayer.loadVideoById(videoId);
-        ytPlayer.playVideo();
+      if (ytReady && ytPlayer) {
+        ytPlayer.loadVideoById({ videoId: videoId });
         
         const savedTrack = localStorage.getItem('sehaj_path_track');
         const savedTime = localStorage.getItem('sehaj_path_time');
-        if (savedTrack && parseInt(savedTrack) === trackNum && savedTime) {
+        if (savedTrack && parseInt(savedTrack) === 1 && savedTime) {
           setTimeout(() => {
-            if (ytPlayer && typeof ytPlayer.seekTo === 'function') {
-              ytPlayer.seekTo(parseFloat(savedTime), true);
-            }
+            ytPlayer.seekTo(parseFloat(savedTime), true);
           }, 600);
         }
       } else {
-        pendingTrack = { num: trackNum, id: videoId };
-        statusText.innerText = "Connecting video source frame. Initializing...";
+        statusText.innerText = "Connecting video source frame. Click Play once more...";
       }
       updateButtonVisuals();
     }
@@ -727,6 +751,7 @@
 
     // 5. UPDATE BUTTON VISUAL STATES
     function updateButtonVisuals() {
+      // Fixed: Scans target attribute parameters directly instead of hardcoding index steps
       buttons.forEach((btn) => {
         const trackNum = parseInt(btn.getAttribute('data-track'));
         const type = btn.getAttribute('data-type');
@@ -743,7 +768,8 @@
           }
         }
         
-        let baseText = btn.textContent.replace(/[▶️⏸️]\s*/g, '').trim();
+        // Clean up formatting emoji symbols dynamically without modifying custom text string
+        let baseText = btn.textContent.replace(/[▶️⏸️]\s*/g, '');
         if (isPlaying) {
           btn.innerHTML = `⏸️ ${baseText}`;
           btn.classList.add('active');
@@ -754,7 +780,7 @@
       });
     }
 
-    // TRACK LIST DELEGATION ROUTER
+    // UNIFIED TRACK LIST DELEGATION ROUTER
     document.getElementById('track-list-container').addEventListener('click', (e) => {
       const targetBtn = e.target.closest('.track-item-btn');
       if (!targetBtn) return;
@@ -780,9 +806,11 @@
       
       if (savedTrack && savedTime) {
         currentTrackNum = parseInt(savedTrack);
-        currentVideoId = savedVideoId || trackCodes[currentTrackNum];
+        if (currentTrackNum === 1) {
+          currentVideoId = savedVideoId || 'PlRXmCN9xUM';
+        }
         statusText.innerText = `Saved position found on Track ${savedTrack}. Click Play or Resume.`;
-        trackNumDisplay.innerText = "Video Track " + currentTrackNum;
+        trackNumDisplay.innerText = currentTrackNum === 1 ? "Video Track 1" : "Audio Track " + savedTrack;
         
         resumeBtn.innerText = `🔄 Resume Session: Track ${savedTrack}`;
         resumeBtn.style.display = 'inline-flex';
@@ -794,30 +822,36 @@
     // GLOBAL PLAY CONTROLLER
     globalPlayBtn.addEventListener('click', () => {
       const ytEl = document.getElementById('youtube-player');
-      if (currentTrackNum && trackCodes[currentTrackNum]) {
+      if (currentTrackNum === 1) {
         if (ytEl && ytEl.classList.contains('hidden-player')) {
-          playVideoTrack(currentTrackNum, currentVideoId || trackCodes[currentTrackNum]);
+          playVideoTrack(1, currentVideoId || 'PlRXmCN9xUM');
         } else {
           if (ytPlayer && ytReady) ytPlayer.playVideo();
+        }
+      } else if (currentTrackNum && currentTrackNum > 1) {
+        if (audioPlayer.src) {
+          audioPlayer.play().catch(error => { statusText.innerText = "Playback error: " + error.message; });
         }
       } else {
         const savedTrack = localStorage.getItem('sehaj_path_track');
         if (savedTrack) {
           const trackNum = parseInt(savedTrack);
-          const savedVideoId = localStorage.getItem('sehaj_path_video_id') || trackCodes[trackNum];
-          if (savedVideoId) {
-            playVideoTrack(trackNum, savedVideoId);
+          if (trackNum === 1) {
+            const savedVideoId = localStorage.getItem('sehaj_path_video_id') || 'PlRXmCN9xUM';
+            playVideoTrack(1, savedVideoId);
+          } else {
+            const code = trackCodes[trackNum];
+            if (code) playAudio(trackNum, code);
           }
         } else {
-          playVideoTrack(1, trackCodes[1]);
+          statusText.innerText = "Please select a track from the catalog below to start.";
         }
       }
     });
 
     // GLOBAL PAUSE CONTROLLER
     globalPauseBtn.addEventListener('click', () => {
-      const ytEl = document.getElementById('youtube-player');
-      if (ytEl && !ytEl.classList.contains('hidden-player')) {
+      if (currentTrackNum === 1) {
         if (ytPlayer && ytReady) ytPlayer.pauseVideo();
       } else if (audioPlayer.src && !audioPlayer.paused) {
         audioPlayer.pause();
@@ -829,14 +863,17 @@
       const savedTrack = localStorage.getItem('sehaj_path_track');
       if (savedTrack) {
         const trackNum = parseInt(savedTrack);
-        const savedVideoId = localStorage.getItem('sehaj_path_video_id') || trackCodes[trackNum];
-        if (savedVideoId) {
-          playVideoTrack(trackNum, savedVideoId);
+        if (trackNum === 1) {
+          const savedVideoId = localStorage.getItem('sehaj_path_video_id') || 'PlRXmCN9xUM';
+          playVideoTrack(1, savedVideoId);
+        } else {
+          const code = trackCodes[trackNum];
+          if (code) playAudio(trackNum, code);
         }
       }
     });
 
-    // AUDIO ROUTINE (Fallback/Legacy support)
+    // 6. STANDARD AUDIO STREAMING ROUTINE (Tracks 2-24)
     function playAudio(trackNum, code) {
       switchMediaDisplay('audio');
 
@@ -884,6 +921,7 @@
         });
     }
 
+    // 7. SYNC EVENT LISTENERS
     audioPlayer.addEventListener('play', () => {
       if (currentTrackNum) {
         statusText.innerText = "Playing Audio Track " + currentTrackNum + "...";
@@ -920,8 +958,9 @@
       }
     });
 
+    // Real-time tracking intervals for local storage state saving
     audioPlayer.addEventListener('timeupdate', () => {
-      if (currentTrackNum && !audioPlayer.paused) {
+      if (currentTrackNum && currentTrackNum > 1 && !audioPlayer.paused) {
         const currentTime = audioPlayer.currentTime;
         if (Math.abs(currentTime - lastSavedTime) > 3) {
           localStorage.setItem('sehaj_path_time', currentTime);
@@ -931,9 +970,8 @@
     });
 
     setInterval(() => {
-      if (currentTrackNum && ytPlayer && ytReady && typeof ytPlayer.getCurrentTime === 'function') {
-        const ytEl = document.getElementById('youtube-player');
-        if (ytEl && !ytEl.classList.contains('hidden-player') && ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
+      if (currentTrackNum === 1 && ytPlayer && ytReady && typeof ytPlayer.getCurrentTime === 'function') {
+        if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
           const currentTime = ytPlayer.getCurrentTime();
           if (Math.abs(currentTime - lastSavedTime) > 3) {
             localStorage.setItem('sehaj_path_time', currentTime);
@@ -944,8 +982,7 @@
     }, 1000);
 
     window.addEventListener('beforeunload', () => {
-      const ytEl = document.getElementById('youtube-player');
-      if (currentTrackNum && ytPlayer && ytReady && typeof ytPlayer.getCurrentTime === 'function' && ytEl && !ytEl.classList.contains('hidden-player')) {
+      if (currentTrackNum === 1 && ytPlayer && ytReady && typeof ytPlayer.getCurrentTime === 'function') {
         localStorage.setItem('sehaj_path_time', ytPlayer.getCurrentTime());
       } else if (currentTrackNum && audioPlayer.currentTime) {
         localStorage.setItem('sehaj_path_time', audioPlayer.currentTime);
