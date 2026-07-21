@@ -571,6 +571,8 @@
 
     let currentTrackNum = null;
     let currentVideoId = null;
+    let activePlayerTrackNum = null; // Tracks which track is loaded into YouTube iFrame
+    let activePlayerVideoId = null;  // Tracks active video ID in YouTube iFrame
     let lastSavedTime = 0;
     let ytPlayer = null;
     let ytReady = false;
@@ -602,7 +604,7 @@
       ytPlayer = new YT.Player('youtube-player', {
         height: '100%',
         width: '100%',
-        videoId: 'PlRXmCN9xUM',
+        videoId: '',
         playerVars: {
           'autoplay': 0,
           'controls': 1,
@@ -639,10 +641,20 @@
         updateButtonVisuals();
         resumeBtn.style.display = 'none';
       } else if (event.data === YT.PlayerState.PAUSED) {
+        // Explicitly record exact timestamp on Pause
+        if (ytPlayer && typeof ytPlayer.getCurrentTime === 'function') {
+          const currentTime = ytPlayer.getCurrentTime();
+          if (currentTime > 0) {
+            localStorage.setItem('sehaj_path_time', currentTime);
+            lastSavedTime = currentTime;
+          }
+        }
         statusText.innerText = "Paused";
         updateButtonVisuals();
       } else if (event.data === YT.PlayerState.ENDED) {
         localStorage.removeItem('sehaj_path_time');
+        activePlayerTrackNum = null;
+        activePlayerVideoId = null;
         const nextTrackNum = currentTrackNum + 1;
         const nextVideoId = trackCodes[nextTrackNum];
         
@@ -664,7 +676,8 @@
     function playVideoTrack(trackNum, videoId) {
       switchMediaDisplay('video');
 
-      if (currentTrackNum === trackNum && currentVideoId === videoId && ytReady && ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
+      // Check if this exact video is ALREADY active inside the YouTube iframe player
+      if (activePlayerTrackNum === trackNum && activePlayerVideoId === videoId && ytReady && ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
         const state = ytPlayer.getPlayerState();
         if (state === YT.PlayerState.PLAYING) {
           ytPlayer.pauseVideo();
@@ -676,22 +689,27 @@
 
       currentTrackNum = trackNum;
       currentVideoId = videoId;
+      activePlayerTrackNum = trackNum;
+      activePlayerVideoId = videoId;
+
       localStorage.setItem('sehaj_path_track', trackNum);
       localStorage.setItem('sehaj_path_video_id', videoId);
 
+      // Determine starting timestamp from LocalStorage if matching saved track
+      let startTime = 0;
+      const savedTrack = localStorage.getItem('sehaj_path_track');
+      const savedTime = localStorage.getItem('sehaj_path_time');
+      if (savedTrack && parseInt(savedTrack) === trackNum && savedTime) {
+        startTime = parseFloat(savedTime);
+      }
+
       if (ytReady && ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
-        ytPlayer.loadVideoById(videoId);
+        // Pass startSeconds natively to load and start from the paused position instantly
+        ytPlayer.loadVideoById({
+          videoId: videoId,
+          startSeconds: startTime
+        });
         ytPlayer.playVideo();
-        
-        const savedTrack = localStorage.getItem('sehaj_path_track');
-        const savedTime = localStorage.getItem('sehaj_path_time');
-        if (savedTrack && parseInt(savedTrack) === trackNum && savedTime) {
-          setTimeout(() => {
-            if (ytPlayer && typeof ytPlayer.seekTo === 'function') {
-              ytPlayer.seekTo(parseFloat(savedTime), true);
-            }
-          }, 600);
-        }
       } else {
         pendingTrack = { num: trackNum, id: videoId };
         statusText.innerText = "Connecting video source frame. Initializing...";
@@ -798,7 +816,11 @@
         if (ytEl && ytEl.classList.contains('hidden-player')) {
           playVideoTrack(currentTrackNum, currentVideoId || trackCodes[currentTrackNum]);
         } else {
-          if (ytPlayer && ytReady) ytPlayer.playVideo();
+          if (ytPlayer && ytReady && activePlayerTrackNum === currentTrackNum) {
+            ytPlayer.playVideo();
+          } else {
+            playVideoTrack(currentTrackNum, currentVideoId || trackCodes[currentTrackNum]);
+          }
         }
       } else {
         const savedTrack = localStorage.getItem('sehaj_path_track');
@@ -818,7 +840,15 @@
     globalPauseBtn.addEventListener('click', () => {
       const ytEl = document.getElementById('youtube-player');
       if (ytEl && !ytEl.classList.contains('hidden-player')) {
-        if (ytPlayer && ytReady) ytPlayer.pauseVideo();
+        if (ytPlayer && ytReady) {
+          ytPlayer.pauseVideo();
+          if (typeof ytPlayer.getCurrentTime === 'function') {
+            const currentTime = ytPlayer.getCurrentTime();
+            if (currentTime > 0) {
+              localStorage.setItem('sehaj_path_time', currentTime);
+            }
+          }
+        }
       } else if (audioPlayer.src && !audioPlayer.paused) {
         audioPlayer.pause();
       }
@@ -923,7 +953,7 @@
     audioPlayer.addEventListener('timeupdate', () => {
       if (currentTrackNum && !audioPlayer.paused) {
         const currentTime = audioPlayer.currentTime;
-        if (Math.abs(currentTime - lastSavedTime) > 3) {
+        if (Math.abs(currentTime - lastSavedTime) > 1) {
           localStorage.setItem('sehaj_path_time', currentTime);
           lastSavedTime = currentTime;
         }
@@ -935,7 +965,7 @@
         const ytEl = document.getElementById('youtube-player');
         if (ytEl && !ytEl.classList.contains('hidden-player') && ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
           const currentTime = ytPlayer.getCurrentTime();
-          if (Math.abs(currentTime - lastSavedTime) > 3) {
+          if (currentTime > 0) {
             localStorage.setItem('sehaj_path_time', currentTime);
             lastSavedTime = currentTime;
           }
