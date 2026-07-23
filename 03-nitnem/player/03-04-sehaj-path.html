@@ -159,6 +159,41 @@
       margin-left: 6px;
     }
 
+    /* PROGRESS STATS & BAR */
+    .progress-card {
+      background: #fff;
+      padding: 14px;
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,0.08);
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .progress-stats-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 12px;
+      background: #e0e0e0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold), #ffb347);
+      transition: width 0.4s ease;
+    }
+
     /* LOGGED IN USER BADGE */
     .user-badge {
       display: flex;
@@ -487,6 +522,17 @@
         <span>🔢 Position: <strong id="currentTrackNum">None (Select a track)</strong></span>
       </div>
 
+      <!-- SEHAJ PATH REAL-TIME PROGRESS DISPLAY -->
+      <div class="progress-card">
+        <div class="progress-stats-row">
+          <span>✨ Completed: <strong id="percent-completed" style="color: #2e7d32;">0.00%</strong></span>
+          <span>⌛ Remaining: <strong id="percent-remaining" style="color: #c62828;">100.00%</strong></span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progress-bar-fill"></div>
+        </div>
+      </div>
+
       <!-- LOGGED IN USER DISPLAY ABOVE PLAYER -->
       <div class="user-badge">
         <span>📧 Session: <strong id="user-email">Checking Auth...</strong></span>
@@ -604,13 +650,6 @@
 
         <button class="track-item-btn" data-track="81" data-type="video" data-source="l79P1rEcp6Y">▶️ Video 81 </button>
 
-       
-
-
-
-
-
-
       </div>
 
       <p id="status">Select a track to begin playing...</p>
@@ -634,95 +673,39 @@
   </div>
 
   <script>
+    // Exact durations in seconds for all 81 tracks
+    const trackDurations = {
+      1: 3607, 2: 3645, 3: 3598, 4: 3655, 5: 3570, 6: 3601, 7: 3625, 8: 3824, 9: 3603, 10: 3597,
+      11: 3662, 12: 3685, 13: 3628, 14: 3587, 15: 3599, 16: 3624, 17: 3661, 18: 3645, 19: 3673, 20: 2540,
+      21: 3413, 22: 3532, 23: 3549, 24: 3583, 25: 3615, 26: 3581, 27: 3711, 28: 3663, 29: 3572, 30: 3655,
+      31: 3580, 32: 3579, 33: 3565, 34: 3583, 35: 3612, 36: 3608, 37: 3639, 38: 3633, 39: 3635, 40: 3663,
+      41: 3617, 42: 3636, 43: 3626, 44: 3633, 45: 3675, 46: 3614, 47: 3618, 48: 3601, 49: 3636, 50: 3600,
+      51: 3571, 52: 3577, 53: 3649, 54: 3625, 55: 3596, 56: 3656, 57: 3633, 58: 3758, 59: 3654, 60: 3638,
+      61: 3604, 62: 3672, 63: 3673, 64: 3654, 65: 3591, 66: 3628, 67: 3601, 68: 3589, 69: 3626, 70: 3594,
+      71: 3605, 72: 3605, 73: 3621, 74: 3581, 75: 3623, 76: 3589, 77: 3607, 78: 3538, 79: 3608, 80: 3658,
+      81: 4986
+    };
+
+    // Calculate Grand Total Duration (293,736 Seconds)
+    const TOTAL_SEHAJ_PATH_DURATION = Object.values(trackDurations).reduce((acc, curr) => acc + curr, 0);
+
     const trackCodes = {
-      1: 'PlRXmCN9xUM',
-      2: 'nUJfbaT3cGo',
-      3: '6tGA8JrfdlU',
-      4: 'ncqt3GniNYI',
-      5: 'f0A92XLwOyg',
-      6: 'VJCLbi00Wd0',
-      7: 'kVKuInQZ2t8',
-      8: 'Il8zWCkB5iU',
-      9: '8lqQ0nER9fk',
-      10: 'otsFJrf2_xc',
-
-      11: 'hAKw9ELo238',
-      12: 'ccdXXgdNxOo',
-      13: 'yrcG23TjVdE',
-      14: 'z6OEHrw2wTM',
-      15: '0p3UClCYOyU',
-      16: 'pvfF94GluUI',
-      17: 'KhUeCIbSiXA',
-      18: 'v6hXpegoXpE',
-      19: '63Gu9sVdZqs',
-      20: '41eNBJ0XA40',
-
-      21: 'QEfh2a8Gfc0',
-      22: 'Vqbzhtdmhcs',
-      23: 'H4oe1Fopqjo',
-      24: '29uVLc77ONQ',
-      25: 'gzHV9XqiBXc',
-      26: 'C1D43V_5kJ4',
-      27: 'XlkJZhTA_No',
-      28: 'JsqdQvVX9Zg',
-      29: '99i2q6ZdkoM',
-      30: 'u_gc6HvgIeE',
-
-      31: 'SH_l7RmSEK0',
-      32: 'awQ7SRqbppk',
-      33: 'iel3piSFgqI',
-      34: 'ZkRVspo3-KA',
-      35: 'JDWu3LFq-zg',
-      36: '0-DmgkyQcc4',
-      37: '1dUPutpl8-0',
-      38: 'Uj9dIgYk4Zo',
-      39: 'Y4qPpicDhKg',
-      40: 'c1spFnRueWw',
-
-      41: 'GcI2Ajj84l0',
-      42: 'lCS_T2s3Prw',
-      43: 'rhFmz9Iw2N4',
-      44: '5VxGINT_DUY',
-      45: 'gw1NSJMiDDk',
-      46: 'wEeJS9g3tKw',
-      47: '6k12i1FdWgY',
-      48: 'QATmdE4S23E',
-      49: 'U8qZM2kuhv8',
-      50: 'qboKF8u-r7s',
-
-      51: 'DQbEh_7ibGE',
-      52: 'Gip2vH_ya-U',
-      53: '8tYIAfzBm_w',
-      54: 'gcAhUTodH1c',
-      55: 'N78ENxJNk-U',
-      56: 'oXjyh9cUEdI',
-      57: 'yIYZvs193L0',
-      58: 'MN2GoCXsBdg',
-      59: 'B6UVb8GpkKw',
-      60: 'W_nuZqDGFPA',
-
-      61: 'QTiyLCkGkBQ',
-      62: 'hykf7y8l39w',
-      63: 's4gUraEcOBw',
-      64: 'ImrLxuCcUZs',
-      65: 'MxWWX-T87no',
-      66: 'RdDrR0x3-R4',
-      67: 'qDFvY3MHfqk',
-      68: '-SplbuurkaQ',
-      69: '93EMgf_-DC4',
-      70: 'kUIYelEW2N0',
-
-      71: 'YGyvS1M07eM',
-      72: 'uAViaiDYGgs',
-      73: 'g1LDWg09XIg',
-      74: '2c1jyt_2-NA',
-      75: 'Jqs3wPqswkw',
-      76: '03B27mjiUqY',
-      77: 'nZiVM4--tw8',
-      78: 'G-Cl5OXDTDg',
-      79: 'guTvrV1i6CE',
-      80: 'm6NRPYO38Rs',
-
+      1: 'PlRXmCN9xUM', 2: 'nUJfbaT3cGo', 3: '6tGA8JrfdlU', 4: 'ncqt3GniNYI', 5: 'f0A92XLwOyg',
+      6: 'VJCLbi00Wd0', 7: 'kVKuInQZ2t8', 8: 'Il8zWCkB5iU', 9: '8lqQ0nER9fk', 10: 'otsFJrf2_xc',
+      11: 'hAKw9ELo238', 12: 'ccdXXgdNxOo', 13: 'yrcG23TjVdE', 14: 'z6OEHrw2wTM', 15: '0p3UClCYOyU',
+      16: 'pvfF94GluUI', 17: 'KhUeCIbSiXA', 18: 'v6hXpegoXpE', 19: '63Gu9sVdZqs', 20: '41eNBJ0XA40',
+      21: 'QEfh2a8Gfc0', 22: 'Vqbzhtdmhcs', 23: 'H4oe1Fopqjo', 24: '29uVLc77ONQ', 25: 'gzHV9XqiBXc',
+      26: 'C1D43V_5kJ4', 27: 'XlkJZhTA_No', 28: 'JsqdQvVX9Zg', 29: '99i2q6ZdkoM', 30: 'u_gc6HvgIeE',
+      31: 'SH_l7RmSEK0', 32: 'awQ7SRqbppk', 33: 'iel3piSFgqI', 34: 'ZkRVspo3-KA', 35: 'JDWu3LFq-zg',
+      36: '0-DmgkyQcc4', 37: '1dUPutpl8-0', 38: 'Uj9dIgYk4Zo', 39: 'Y4qPpicDhKg', 40: 'c1spFnRueWw',
+      41: 'GcI2Ajj84l0', 42: 'lCS_T2s3Prw', 43: 'rhFmz9Iw2N4', 44: '5VxGINT_DUY', 45: 'gw1NSJMiDDk',
+      46: 'wEeJS9g3tKw', 47: '6k12i1FdWgY', 48: 'QATmdE4S23E', 49: 'U8qZM2kuhv8', 50: 'qboKF8u-r7s',
+      51: 'DQbEh_7ibGE', 52: 'Gip2vH_ya-U', 53: '8tYIAfzBm_w', 54: 'gcAhUTodH1c', 55: 'N78ENxJNk-U',
+      56: 'oXjyh9cUEdI', 57: 'yIYZvs193L0', 58: 'MN2GoCXsBdg', 59: 'B6UVb8GpkKw', 60: 'W_nuZqDGFPA',
+      61: 'QTiyLCkGkBQ', 62: 'hykf7y8l39w', 63: 's4gUraEcOBw', 64: 'ImrLxuCcUZs', 65: 'MxWWX-T87no',
+      66: 'RdDrR0x3-R4', 67: 'qDFvY3MHfqk', 68: '-SplbuurkaQ', 69: '93EMgf_-DC4', 70: 'kUIYelEW2N0',
+      71: 'YGyvS1M07eM', 72: 'uAViaiDYGgs', 73: 'g1LDWg09XIg', 74: '2c1jyt_2-NA', 75: 'Jqs3wPqswkw',
+      76: '03B27mjiUqY', 77: 'nZiVM4--tw8', 78: 'G-Cl5OXDTDg', 79: 'guTvrV1i6CE', 80: 'm6NRPYO38Rs',
       81: 'l79P1rEcp6Y'
     };
 
@@ -736,14 +719,48 @@
     const globalPlayBtn = document.getElementById('btn-global-play');
     const globalPauseBtn = document.getElementById('btn-global-pause');
 
+    // Percentage UI elements
+    const percentCompletedEl = document.getElementById('percent-completed');
+    const percentRemainingEl = document.getElementById('percent-remaining');
+    const progressBarFill = document.getElementById('progress-bar-fill');
+
     let currentTrackNum = null;
     let currentVideoId = null;
-    let activePlayerTrackNum = null; // Tracks which track is loaded into YouTube iFrame
-    let activePlayerVideoId = null;  // Tracks active video ID in YouTube iFrame
+    let activePlayerTrackNum = null;
+    let activePlayerVideoId = null;
     let lastSavedTime = 0;
     let ytPlayer = null;
     let ytReady = false;
     let pendingTrack = null;
+
+    // DYNAMIC PROGRESS CALCULATION FUNCTION
+    function updateSehajPathProgress(trackNum, currentTrackTime = 0) {
+      if (!trackNum) {
+        percentCompletedEl.innerText = "0.00%";
+        percentRemainingEl.innerText = "100.00%";
+        progressBarFill.style.width = "0%";
+        return;
+      }
+
+      // Calculate total seconds from all fully completed prior tracks
+      let accumulatedSeconds = 0;
+      for (let i = 1; i < trackNum; i++) {
+        accumulatedSeconds += trackDurations[i] || 0;
+      }
+
+      // Add elapsed duration of the currently playing track
+      accumulatedSeconds += parseFloat(currentTrackTime || 0);
+
+      // Clamp accumulated seconds to total duration max
+      accumulatedSeconds = Math.min(accumulatedSeconds, TOTAL_SEHAJ_PATH_DURATION);
+
+      const percentCompleted = (accumulatedSeconds / TOTAL_SEHAJ_PATH_DURATION) * 100;
+      const percentRemaining = Math.max(0, 100 - percentCompleted);
+
+      percentCompletedEl.innerText = `${percentCompleted.toFixed(2)}%`;
+      percentRemainingEl.innerText = `${percentRemaining.toFixed(2)}%`;
+      progressBarFill.style.width = `${percentCompleted.toFixed(2)}%`;
+    }
 
     // 1. MEDIA DISPLAY CONTROLLER
     function switchMediaDisplay(mode) {
@@ -794,7 +811,7 @@
     };
 
     function onPlayerStateChange(event) {
-      let videoName = `Video ${currentTrackNum} (0001Japji)`;
+      let videoName = `Video ${currentTrackNum}`;
       buttons.forEach(btn => {
         if (btn.getAttribute('data-source') === currentVideoId) {
           videoName = btn.textContent.replace(/[▶️⏸️]\s*/g, '').trim();
@@ -808,12 +825,12 @@
         updateButtonVisuals();
         resumeBtn.style.display = 'none';
       } else if (event.data === YT.PlayerState.PAUSED) {
-        // Explicitly record exact timestamp on Pause
         if (ytPlayer && typeof ytPlayer.getCurrentTime === 'function') {
           const currentTime = ytPlayer.getCurrentTime();
           if (currentTime > 0) {
             localStorage.setItem('sehaj_path_time', currentTime);
             lastSavedTime = currentTime;
+            updateSehajPathProgress(currentTrackNum, currentTime);
           }
         }
         statusText.innerText = "Paused";
@@ -829,9 +846,10 @@
           statusText.innerText = `Video finished. Advancing to Video Track ${nextTrackNum}...`;
           playVideoTrack(nextTrackNum, nextVideoId);
         } else {
-          statusText.innerText = "Session complete. All tracks finished.";
+          statusText.innerText = "Sehaj Path complete! All 81 tracks finished.";
           fileNameDisplay.innerText = "None (Select a track)";
           trackNumDisplay.innerText = "None (Select a track)";
+          updateSehajPathProgress(81, trackDurations[81]);
           currentTrackNum = null;
           currentVideoId = null;
           updateButtonVisuals();
@@ -843,7 +861,6 @@
     function playVideoTrack(trackNum, videoId) {
       switchMediaDisplay('video');
 
-      // Check if this exact video is ALREADY active inside the YouTube iframe player
       if (activePlayerTrackNum === trackNum && activePlayerVideoId === videoId && ytReady && ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
         const state = ytPlayer.getPlayerState();
         if (state === YT.PlayerState.PLAYING) {
@@ -862,7 +879,6 @@
       localStorage.setItem('sehaj_path_track', trackNum);
       localStorage.setItem('sehaj_path_video_id', videoId);
 
-      // Determine starting timestamp from LocalStorage if matching saved track
       let startTime = 0;
       const savedTrack = localStorage.getItem('sehaj_path_track');
       const savedTime = localStorage.getItem('sehaj_path_time');
@@ -870,8 +886,9 @@
         startTime = parseFloat(savedTime);
       }
 
+      updateSehajPathProgress(trackNum, startTime);
+
       if (ytReady && ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
-        // Pass startSeconds natively to load and start from the paused position instantly
         ytPlayer.loadVideoById({
           videoId: videoId,
           startSeconds: startTime
@@ -963,9 +980,13 @@
       const savedTime = localStorage.getItem('sehaj_path_time');
       const savedVideoId = localStorage.getItem('sehaj_path_video_id');
 
-      if (savedTrack && savedTime) {
+      if (savedTrack) {
         currentTrackNum = parseInt(savedTrack);
         currentVideoId = savedVideoId || trackCodes[currentTrackNum];
+        const timeVal = savedTime ? parseFloat(savedTime) : 0;
+
+        updateSehajPathProgress(currentTrackNum, timeVal);
+
         statusText.innerText = `Saved position found on Track ${savedTrack}. Click Play or Resume.`;
         trackNumDisplay.innerText = "Video Track " + currentTrackNum;
 
@@ -1013,6 +1034,7 @@
             const currentTime = ytPlayer.getCurrentTime();
             if (currentTime > 0) {
               localStorage.setItem('sehaj_path_time', currentTime);
+              updateSehajPathProgress(currentTrackNum, currentTime);
             }
           }
         }
@@ -1069,6 +1091,8 @@
               audioPlayer.currentTime = parseFloat(savedTime);
             }
 
+            updateSehajPathProgress(trackNum, audioPlayer.currentTime || 0);
+
             audioPlayer.play().catch(error => {
               statusText.innerText = "Playback error: " + error.message;
             });
@@ -1093,6 +1117,7 @@
     audioPlayer.addEventListener('pause', () => {
       if (currentTrackNum) {
         localStorage.setItem('sehaj_path_time', audioPlayer.currentTime);
+        updateSehajPathProgress(currentTrackNum, audioPlayer.currentTime);
       }
       if (audioPlayer.currentTime !== audioPlayer.duration) {
         statusText.innerText = "Paused";
@@ -1109,9 +1134,10 @@
         statusText.innerText = `Track ${currentTrackNum} finished. Loading Track ${nextTrackNum}...`;
         playAudio(nextTrackNum, nextCode);
       } else {
-        statusText.innerText = "Session complete. All tracks finished.";
+        statusText.innerText = "Sehaj Path complete! All 81 tracks finished.";
         fileNameDisplay.innerText = "None (Select a track)";
         trackNumDisplay.innerText = "None (Select a track)";
+        updateSehajPathProgress(81, trackDurations[81]);
         currentTrackNum = null;
         updateButtonVisuals();
       }
@@ -1123,10 +1149,12 @@
         if (Math.abs(currentTime - lastSavedTime) > 1) {
           localStorage.setItem('sehaj_path_time', currentTime);
           lastSavedTime = currentTime;
+          updateSehajPathProgress(currentTrackNum, currentTime);
         }
       }
     });
 
+    // YouTube 1-second Interval Progress Refresh Loop
     setInterval(() => {
       if (currentTrackNum && ytPlayer && ytReady && typeof ytPlayer.getCurrentTime === 'function') {
         const ytEl = document.getElementById('youtube-player');
@@ -1135,6 +1163,7 @@
           if (currentTime > 0) {
             localStorage.setItem('sehaj_path_time', currentTime);
             lastSavedTime = currentTime;
+            updateSehajPathProgress(currentTrackNum, currentTime);
           }
         }
       }
