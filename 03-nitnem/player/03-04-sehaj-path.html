@@ -28,9 +28,9 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
     rel="stylesheet">
 
-  <!-- Load Safe Compat CDNs -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js"></script>
+  <!-- Firebase App & Firestore SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 
   <style>
     * {
@@ -57,6 +57,7 @@
       padding: 20px 8px;
     }
 
+    /* MAIN CONTAINER */
     .poster {
       width: 100%;
       max-width: 960px;
@@ -64,6 +65,7 @@
       box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
     }
 
+    /* HEADER */
     .header {
       display: flex;
       background: var(--navy);
@@ -112,6 +114,7 @@
       font-size: 20px;
     }
 
+    /* GOLD INTRO BAR */
     .intro {
       background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
       padding: 14px 20px;
@@ -122,6 +125,7 @@
       text-align: center;
     }
 
+    /* CONTENT AREA */
     .wrapper {
       padding: 28px 36px;
     }
@@ -138,6 +142,7 @@
       margin-bottom: 24px;
     }
 
+    /* NOW PLAYING FILE DISPLAY */
     .now-playing-banner {
       font-family: 'Lato', sans-serif;
       font-size: 13px;
@@ -159,6 +164,7 @@
       margin-left: 6px;
     }
 
+    /* PROGRESS STATS & BAR */
     .progress-card {
       background: #fff;
       padding: 14px;
@@ -193,6 +199,7 @@
       transition: width 0.4s ease;
     }
 
+    /* LOGGED IN USER BADGE */
     .user-badge {
       display: flex;
       justify-content: flex-end;
@@ -209,6 +216,7 @@
       margin-left: 5px;
     }
 
+    /* UNIFIED MEDIA CONTAINER */
     .media-container {
       position: relative;
       width: 100%;
@@ -231,6 +239,7 @@
       margin: 10px 0;
     }
 
+    /* YOUTUBE IFRAME CANVAS STYLES */
     #youtube-player {
       width: 100%;
       aspect-ratio: 16 / 9;
@@ -240,11 +249,13 @@
       display: block;
     }
 
+    /* HIDDEN PLAYER TOGGLE */
     #youtube-player.hidden-player,
     .hidden-player {
       display: none !important;
     }
 
+    /* GLOBAL CONTROLS ROW */
     .control-row {
       display: flex;
       gap: 12px;
@@ -288,12 +299,13 @@
       background: linear-gradient(135deg, #4caf50 0%, var(--green-active) 100%) !important;
       color: #ffffff !important;
       box-shadow:
-        inset 0 1px 0 rgba(255, 220, 120, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
         inset 0 -2px 0 rgba(0, 0, 0, 0.3),
         0 0 0 2px #1b5e20,
         0 0 0 3.5px #4caf50 !important;
     }
 
+    /* RESUME BUTTON */
     .btn-resume {
       display: none;
       align-items: center;
@@ -328,6 +340,7 @@
       transform: scale(0.99);
     }
 
+    /* TRACK CONTROLS LIST (3 COLUMNS - 27 EACH) */
     .track-list {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -374,6 +387,7 @@
       border-left: 4px solid #ffb347;
     }
 
+    /* STATUS MESSAGE BAR */
     #status {
       font-size: 14px;
       font-weight: 700;
@@ -387,6 +401,7 @@
       min-height: 43px;
     }
 
+    /* FOOTER */
     .footer {
       background: var(--navy-mid);
       padding: 16px 36px;
@@ -417,6 +432,7 @@
       font-weight: 700;
     }
 
+    /* RESPONSIVE DESIGN ADJUSTMENTS */
     @media(max-width:850px) {
       .track-list {
         grid-template-columns: repeat(2, 1fr);
@@ -527,11 +543,12 @@
     </div>
 
     <div class="intro" id="title">
-      <span>📧 User: <strong id="user-email">Checking Auth...</strong></span>
+      <span>📧 Session: <strong id="user-email">Checking Auth...</strong></span>
     </div>
 
     <div class="wrapper playerBox" id="playerBox">
 
+      <!-- MEDIA PLAYER HOLDER CONTAINER -->
       <div class="media-container">
         <div id="youtube-player"></div>
 
@@ -540,11 +557,13 @@
         </audio>
       </div>
 
+      <!-- PLAY AND PAUSE CONTROLS BELOW PLAYER -->
       <div class="control-row">
         <button id="btn-global-play" class="btn-control">▶️ Play</button>
         <button id="btn-global-pause" class="btn-control">⏸️ Pause</button>
       </div>
 
+      <!-- NOW PLAYING & PROGRESS INFO -->
       <div class="now-playing-banner">
         <span>🎵 Now Playing: <strong id="playing-file-name">None (Select a track)</strong></span>
         <span>🔢 Position: <strong id="currentTrackNum">None (Select a track)</strong></span>
@@ -561,13 +580,15 @@
       </div>
 
       <div class="user-badge">
-        <span>📧 Session User: <strong id="user-email-badge">Checking Auth...</strong></span>
+        <span>📧 Session: <strong id="user-email-badge">Checking Auth...</strong></span>
       </div>
 
+      <!-- RESUME SESSION BUTTON -->
       <button id="btn-resume" class="btn-resume">
         🔄 Resume Last Session
       </button>
 
+      <!-- TRACK LIST (3 COLUMNS - 27 ITEMS EACH) -->
       <div class="track-list" id="track-list-container">
         <button class="track-item-btn" data-track="1" data-type="video" data-source="PlRXmCN9xUM">▶️ Video 1 </button>
         <button class="track-item-btn" data-track="2" data-type="video" data-source="nUJfbaT3cGo">▶️ Video 2 </button>
@@ -656,6 +677,7 @@
 
       <p id="status">Select a track to begin playing...</p>
 
+      <!-- FOOTER -->
       <div class="footer">
         <div class="footer-content">
           <a href="../03-nitnem-path.html" class="btn-back">
@@ -674,12 +696,12 @@
   </div>
 
   <script>
+    // --- FIREBASE INITIALIZATION ---
     const firebaseConfig = {
       apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
       authDomain: "sikhsinindia-67a6b.firebaseapp.com",
-      databaseURL: "https://sikhsinindia-67a6b-default-rtdb.firebaseio.com",
       projectId: "sikhsinindia-67a6b",
-      storageBucket: "sikhsinindia-67a6b.firebasestorage.app",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
       messagingSenderId: "622603668882",
       appId: "1:622603668882:web:953c6a07864b235fdd054b",
       measurementId: "G-LHNTFNW14H"
@@ -688,6 +710,111 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
+    // --- SEHAJ_PATH FIRESTORE SAVE & SYNC LOGIC ---
+    async function saveProgressToFirestore(trackNum, currentTime, videoId) {
+      const userEmail = localStorage.getItem('loggedInUserEmail');
+      if (!userEmail || userEmail === "Guest Session" || !trackNum) return;
+
+      try {
+        const querySnapshot = await db.collection("sehaj_path")
+          .where("login", "==", userEmail.trim())
+          .get();
+
+        if (!querySnapshot.empty) {
+          const userDocRef = querySnapshot.docs[0].ref;
+          await userDocRef.update({
+            last_track: Number(trackNum),
+            last_time: Number(currentTime || 0),
+            last_video_id: videoId || "",
+            last_updated: firebase.firestore.FieldValue.serverTimestamp()
+          });
+        }
+      } catch (error) {
+        console.error("Error saving progress to Firestore: ", error);
+      }
+    }
+
+    async function fetchProgressFromFirestore() {
+      const userEmail = localStorage.getItem('loggedInUserEmail');
+      if (!userEmail || userEmail === "Guest Session") return null;
+
+      try {
+        const querySnapshot = await db.collection("sehaj_path")
+          .where("login", "==", userEmail.trim())
+          .get();
+
+        if (!querySnapshot.empty) {
+          const userData = querySnapshot.docs[0].data();
+          if (userData.last_track) {
+            return {
+              track: userData.last_track,
+              time: userData.last_time || 0,
+              videoId: userData.last_video_id || ""
+            };
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching progress from Firestore: ", error);
+      }
+      return null;
+    }
+
+    // --- SEHAJ_PATH FIRESTORE AUTHENTICATION & MEMBER CREATION FUNCTIONS ---
+    async function registerNewMember(loginName, mobileNumber, passwordInput) {
+      try {
+        const existingUser = await db.collection("sehaj_path")
+          .where("login", "==", loginName.trim())
+          .get();
+
+        if (!existingUser.empty) {
+          return { success: false, message: "Login username already taken." };
+        }
+
+        const docRef = await db.collection("sehaj_path").add({
+          date_time: firebase.firestore.FieldValue.serverTimestamp(),
+          login: loginName.trim(),
+          mobile: Number(mobileNumber),
+          password: passwordInput,
+          last_track: 1,
+          last_time: 0
+        });
+
+        localStorage.setItem('loggedInUserEmail', loginName.trim());
+        return { success: true, docId: docRef.id };
+      } catch (error) {
+        console.error("Error registering member: ", error);
+        return { success: false, message: error.message };
+      }
+    }
+
+    async function loginMember(loginName, passwordInput) {
+      try {
+        const querySnapshot = await db.collection("sehaj_path")
+          .where("login", "==", loginName.trim())
+          .where("password", "==", passwordInput)
+          .get();
+
+        if (!querySnapshot.empty) {
+          const userDoc = querySnapshot.docs[0];
+          const userData = userDoc.data();
+
+          localStorage.setItem("loggedInUserEmail", userData.login);
+          localStorage.setItem("userMobile", userData.mobile);
+
+          if (emailDisplay) emailDisplay.innerText = userData.login;
+          if (emailDisplayBadge) emailDisplayBadge.innerText = userData.login;
+
+          return { success: true, user: userData, id: userDoc.id };
+        } else {
+          return { success: false, message: "Invalid username or password." };
+        }
+      } catch (error) {
+        console.error("Error logging in: ", error);
+        return { success: false, message: error.message };
+      }
+    }
+
+    // Exact durations in seconds for all 81 tracks
     const trackDurations = {
       1: 3607, 2: 3645, 3: 3598, 4: 3655, 5: 3570, 6: 3601, 7: 3625, 8: 3824, 9: 3603, 10: 3597,
       11: 3662, 12: 3685, 13: 3628, 14: 3587, 15: 3599, 16: 3624, 17: 3661, 18: 3645, 19: 3673, 20: 2540,
@@ -837,6 +964,7 @@
             localStorage.setItem('sehaj_path_time', currentTime);
             lastSavedTime = currentTime;
             updateSehajPathProgress(currentTrackNum, currentTime);
+            saveProgressToFirestore(currentTrackNum, currentTime, currentVideoId);
           }
         }
         statusText.innerText = "Paused";
@@ -856,6 +984,7 @@
           fileNameDisplay.innerText = "None (Select a track)";
           trackNumDisplay.innerText = "None (Select a track)";
           updateSehajPathProgress(81, trackDurations[81]);
+          saveProgressToFirestore(81, trackDurations[81], currentVideoId);
           currentTrackNum = null;
           currentVideoId = null;
           updateButtonVisuals();
@@ -892,6 +1021,7 @@
       }
 
       updateSehajPathProgress(trackNum, startTime);
+      saveProgressToFirestore(trackNum, startTime, videoId);
 
       if (ytReady && ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
         ytPlayer.loadVideoById({
@@ -908,20 +1038,20 @@
 
     function initAuthTracker() {
       const urlParams = new URLSearchParams(window.location.search);
-      const urlUser = urlParams.get('login') || urlParams.get('email');
-      const savedUser = localStorage.getItem('loggedInUserEmail');
+      const urlEmail = urlParams.get('email') || urlParams.get('login');
+      const savedEmail = localStorage.getItem('loggedInUserEmail');
 
-      let userVal = "Guest Session";
+      let userEmailVal = "Guest Session";
 
-      if (urlUser) {
-        userVal = decodeURIComponent(urlUser);
-        localStorage.setItem('loggedInUserEmail', userVal);
-      } else if (savedUser) {
-        userVal = savedUser;
+      if (urlEmail) {
+        userEmailVal = decodeURIComponent(urlEmail);
+        localStorage.setItem('loggedInUserEmail', userEmailVal);
+      } else if (savedEmail) {
+        userEmailVal = savedEmail;
       }
 
-      if (emailDisplay) emailDisplay.innerText = userVal;
-      if (emailDisplayBadge) emailDisplayBadge.innerText = userVal;
+      if (emailDisplay) emailDisplay.innerText = userEmailVal;
+      if (emailDisplayBadge) emailDisplayBadge.innerText = userEmailVal;
     }
 
     function updateButtonVisuals() {
@@ -992,11 +1122,23 @@
 
       if (type === 'video') {
         playVideoTrack(trackNum, source);
+      } else if (type === 'audio') {
+        playAudio(trackNum, source);
       }
     });
 
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', async () => {
       initAuthTracker();
+
+      // Check Firestore Database first for synced progress
+      const cloudProgress = await fetchProgressFromFirestore();
+      if (cloudProgress) {
+        localStorage.setItem('sehaj_path_track', cloudProgress.track);
+        localStorage.setItem('sehaj_path_time', cloudProgress.time);
+        if (cloudProgress.videoId) {
+          localStorage.setItem('sehaj_path_video_id', cloudProgress.videoId);
+        }
+      }
 
       const savedTrack = localStorage.getItem('sehaj_path_track');
       const savedTime = localStorage.getItem('sehaj_path_time');
@@ -1055,6 +1197,7 @@
             if (currentTime > 0) {
               localStorage.setItem('sehaj_path_time', currentTime);
               updateSehajPathProgress(currentTrackNum, currentTime);
+              saveProgressToFirestore(currentTrackNum, currentTime, currentVideoId);
             }
           }
         }
@@ -1074,6 +1217,106 @@
       }
     });
 
+    function playAudio(trackNum, code) {
+      switchMediaDisplay('audio');
+
+      if (currentTrackNum === trackNum && audioPlayer.src) {
+        if (audioPlayer.paused) {
+          audioPlayer.play().catch(error => { statusText.innerText = "Playback error: " + error.message; });
+        } else {
+          audioPlayer.pause();
+        }
+        return;
+      }
+
+      currentTrackNum = trackNum;
+      localStorage.setItem('sehaj_path_track', trackNum);
+      statusText.innerText = "Connecting to storage server for Track " + trackNum + "...";
+
+      updateButtonVisuals();
+
+      fetch(`https://api.pcloud.com/getpublinkdownload?code=${code}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.result === 0 && data.hosts && data.hosts.length > 0) {
+            const streamUrl = `https://${data.hosts[0]}${data.path}`;
+            const rawFileName = data.path.split('/').pop();
+
+            fileNameDisplay.innerText = decodeURIComponent(rawFileName);
+            audioPlayer.src = streamUrl;
+            audioPlayer.load();
+
+            const savedTrack = localStorage.getItem('sehaj_path_track');
+            const savedTime = localStorage.getItem('sehaj_path_time');
+            if (savedTrack && parseInt(savedTrack) === trackNum && savedTime) {
+              audioPlayer.currentTime = parseFloat(savedTime);
+            }
+
+            updateSehajPathProgress(trackNum, audioPlayer.currentTime || 0);
+
+            audioPlayer.play().catch(error => {
+              statusText.innerText = "Playback error: " + error.message;
+            });
+          } else {
+            statusText.innerText = "Failed to load audio from cloud storage.";
+          }
+        })
+        .catch(err => {
+          statusText.innerText = "Network Error: Unable to fetch media stream.";
+        });
+    }
+
+    audioPlayer.addEventListener('play', () => {
+      if (currentTrackNum) {
+        statusText.innerText = "Playing Audio Track " + currentTrackNum + "...";
+        trackNumDisplay.innerText = "Audio Track " + currentTrackNum;
+        updateButtonVisuals();
+        resumeBtn.style.display = 'none';
+      }
+    });
+
+    audioPlayer.addEventListener('pause', () => {
+      if (currentTrackNum) {
+        localStorage.setItem('sehaj_path_time', audioPlayer.currentTime);
+        updateSehajPathProgress(currentTrackNum, audioPlayer.currentTime);
+        saveProgressToFirestore(currentTrackNum, audioPlayer.currentTime, "");
+      }
+      if (audioPlayer.currentTime !== audioPlayer.duration) {
+        statusText.innerText = "Paused";
+        updateButtonVisuals();
+      }
+    });
+
+    audioPlayer.addEventListener('ended', () => {
+      localStorage.removeItem('sehaj_path_time');
+      const nextTrackNum = currentTrackNum + 1;
+      const nextCode = trackCodes[nextTrackNum];
+
+      if (nextCode) {
+        statusText.innerText = `Track ${currentTrackNum} finished. Loading Track ${nextTrackNum}...`;
+        playAudio(nextTrackNum, nextCode);
+      } else {
+        statusText.innerText = "Sehaj Path complete! All 81 tracks finished.";
+        fileNameDisplay.innerText = "None (Select a track)";
+        trackNumDisplay.innerText = "None (Select a track)";
+        updateSehajPathProgress(81, trackDurations[81]);
+        saveProgressToFirestore(81, trackDurations[81], "");
+        currentTrackNum = null;
+        updateButtonVisuals();
+      }
+    });
+
+    audioPlayer.addEventListener('timeupdate', () => {
+      if (currentTrackNum && !audioPlayer.paused) {
+        const currentTime = audioPlayer.currentTime;
+        if (Math.abs(currentTime - lastSavedTime) > 1) {
+          localStorage.setItem('sehaj_path_time', currentTime);
+          lastSavedTime = currentTime;
+          updateSehajPathProgress(currentTrackNum, currentTime);
+        }
+      }
+    });
+
     setInterval(() => {
       if (currentTrackNum && ytPlayer && ytReady && typeof ytPlayer.getCurrentTime === 'function') {
         const ytEl = document.getElementById('youtube-player');
@@ -1083,6 +1326,7 @@
             localStorage.setItem('sehaj_path_time', currentTime);
             lastSavedTime = currentTime;
             updateSehajPathProgress(currentTrackNum, currentTime);
+            saveProgressToFirestore(currentTrackNum, currentTime, currentVideoId);
           }
         }
       }
@@ -1091,7 +1335,12 @@
     window.addEventListener('beforeunload', () => {
       const ytEl = document.getElementById('youtube-player');
       if (currentTrackNum && ytPlayer && ytReady && typeof ytPlayer.getCurrentTime === 'function' && ytEl && !ytEl.classList.contains('hidden-player')) {
-        localStorage.setItem('sehaj_path_time', ytPlayer.getCurrentTime());
+        const cTime = ytPlayer.getCurrentTime();
+        localStorage.setItem('sehaj_path_time', cTime);
+        saveProgressToFirestore(currentTrackNum, cTime, currentVideoId);
+      } else if (currentTrackNum && audioPlayer.currentTime) {
+        localStorage.setItem('sehaj_path_time', audioPlayer.currentTime);
+        saveProgressToFirestore(currentTrackNum, audioPlayer.currentTime, "");
       }
     });
   </script>
