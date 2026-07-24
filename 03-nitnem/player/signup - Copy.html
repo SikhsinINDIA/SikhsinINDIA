@@ -13,7 +13,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <title>Sikhs in India | Login Account</title>
+  <title>Sikhs in India | Register Account</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
@@ -21,7 +21,7 @@
     * {
       box-sizing: border-box;
       margin: 0;
-      padding: 0;
+      padding: 0
     }
 
     :root {
@@ -50,6 +50,7 @@
       overflow: hidden;
     }
 
+    /* HEADER */
     .header {
       display: flex;
       flex-direction: column;
@@ -79,6 +80,7 @@
       color: var(--gold);
     }
 
+    /* FORM CONTAINER */
     .wrapper {
       padding: 30px 24px;
       display: flex;
@@ -128,36 +130,19 @@
       color: var(--gold);
     }
 
+    /* ── FOOTER AREA ── */
     .footer {
       background: var(--navy-mid);
-      padding: 16px 24px;
+      padding: 20px;
       border-top: 2px solid var(--gold);
       margin-top: 20px;
-    }
-
-    .footer-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      gap: 14px;
+      gap: 12px;
     }
 
-    .footer-left {
-      font-size: 9px;
-      color: rgba(255, 255, 255, 0.45);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .footer-right {
-      font-size: 9px;
-      color: var(--gold);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-
+    /* 3D GOLD ACTION BUTTON */
     .btn-action {
       display: inline-flex;
       align-items: center;
@@ -193,6 +178,80 @@
       filter: brightness(0.93);
     }
 
+    .footer-text {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 24px;
+      border-top: 2px solid var(--gold);
+      margin-top: 20px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+    }
+
+    .footer-left {
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 9px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* 3D GOLD MAIN SUBMIT BUTTON */
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 12px 24px;
+      width: 100%;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+    }
+
+    .btn-action:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-action:active {
+      transform: scale(0.98);
+      filter: brightness(0.93);
+    }
+
+    /* Back button — 3D gold style matching footer */
     .btn-back {
       display: inline-flex;
       align-items: center;
@@ -221,15 +280,20 @@
       max-width: 200px;
     }
 
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+      filter: brightness(0.93);
+    }
+
     .btn-back svg {
       width: 12px;
       height: 12px;
     }
   </style>
-
-  <!-- Load Safe Compat CDNs -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js"></script>
 </head>
 
 <body>
@@ -237,19 +301,20 @@
   <div class="poster">
     <div class="header">
       <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
-      <div class="hero-title">Sehaj Path - <span>Login</span></div>
+      <div class="hero-title">Register for <span>Sehaj Path</span></div>
     </div>
 
     <div class="wrapper">
-      <h2>Account Login</h2>
+      <h2>Create Account for Sehaj Path</h2>
       
-      <input id="login-name" type="text" placeholder="Login Name (Username)">
-      <input id="password" type="password" placeholder="Password">
+      <input id="email" type="email" placeholder="Email Address">
+      <input id="phone" type="tel" placeholder="Phone Number">
+      <input id="password" type="password" placeholder="Create Password">
 
-      <button onclick="login()" class="btn-action">Login</button>
+      <button onclick="signup()" class="btn-action">Register Profile</button>
 
       <div class="nav-link-wrap">
-        <a class="nav-link" href="signup.html">Don't have an account? Sign up here</a>
+        <a class="nav-link" href="login.html">Already have an account? Login here</a>
       </div>
     </div>
 
@@ -266,54 +331,40 @@
       </div>
     </div>
   </div>
+  </div>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
-      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
-      databaseURL: "https://sikhsinindia-67a6b-default-rtdb.firebaseio.com",
-      projectId: "sikhsinindia-67a6b",
-      storageBucket: "sikhsinindia-67a6b.firebasestorage.app",
-      messagingSenderId: "622603668882",
-      appId: "1:622603668882:web:953c6a07864b235fdd054b",
-      measurementId: "G-LHNTFNW14H"
-    };
+  <script type="module">
+    import {
+      auth, db,
+      createUserWithEmailAndPassword,
+      doc, setDoc
+    } from "./firebase.js";
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+    window.signup = async () => {
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const password = document.getElementById("password").value;
 
-    async function login() {
-      const loginName = document.getElementById("login-name").value.trim();
-      const pass = document.getElementById("password").value;
-
-      if (!loginName || !pass) {
-        alert("Please fill in both Login Name and Password.");
+      if (!email || !phone || !password) {
+        alert("Please fill out all registration fields");
         return;
       }
 
       try {
-        const querySnapshot = await db.collection("sehaj_path")
-          .where("login", "==", loginName)
-          .where("password", "==", pass)
-          .get();
+        const userCred = await createUserWithEmailAndPassword(auth, email, password);
 
-        if (!querySnapshot.empty) {
-          const userData = querySnapshot.docs[0].data();
+        await setDoc(doc(db, "users", userCred.user.uid), {
+          email,
+          phone,
+          createdAt: new Date()
+        });
 
-          localStorage.setItem("loggedInUserEmail", userData.login);
-          localStorage.setItem("userMobile", userData.mobile);
-
-          alert("Login successful!");
-          // Redirect directly to 03-04-sehaj-path.html
-          window.location.href = "03-04-sehaj-path.html";
-        } else {
-          alert("Invalid Login Name or Password.");
-        }
+        alert("Registration successful!");
+        window.location.href = "login.html";
       } catch (error) {
-        console.error("Login error:", error);
-        alert("Login failed: " + error.message);
+        alert("Registration Failed: " + error.message);
       }
-    }
+    };
   </script>
 
 </body>
