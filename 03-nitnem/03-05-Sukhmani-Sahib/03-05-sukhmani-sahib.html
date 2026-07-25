@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Sikhs in India | Sukhmani Sahib</title>
+
+  <meta name="description"
+    content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta name="keywords"
+    content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
+  <meta name="author" content="Sikhs in India">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://sikhsinindia.com/03-nitnem/player/03-05-sukhmani-sahib.html">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Firebase App & Firestore SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+      --green-active: #2e7d32;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
+
+    .poster {
+      width: 100%;
+      max-width: 960px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+    }
+
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 6vw, 54px);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    .hero-sub1 {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .wrapper {
+      padding: 28px 36px;
+    }
+
+    .playerBox {
+      display: block;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 24px;
+    }
+
+    .now-playing-banner {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: var(--navy);
+      margin-bottom: 12px;
+      font-weight: 700;
+      background: rgba(247, 148, 29, 0.08);
+      padding: 10px 14px;
+      border-radius: 5px;
+      border-left: 4px solid var(--gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: nowrap;
+      width: 100%;
+    }
+
+    .now-playing-banner span:first-child {
+      text-align: left;
+    }
+
+    .now-playing-banner span:last-child {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .now-playing-banner strong {
+      color: var(--navy-mid);
+      word-break: break-all;
+      margin-left: 6px;
+    }
+
+    .progress-card {
+      background: #fff;
+      padding: 14px;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    .progress-stats-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 12px;
+      background: #e0e0e0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold), #ffb347);
+      transition: width 0.4s ease;
+    }
+
+    .media-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 14px;
+      border: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+      background: var(--navy);
+      overflow: hidden;
+    }
+
+    .media-container audio {
+      width: 100%;
+      outline: none;
+      margin: 10px 0;
+    }
+
+    #yt-player-container {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    #yt-player-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .hidden-player {
+      display: none !important;
+    }
+
+    .control-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .btn-control {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: linear-gradient(135deg, #ffb347 0%, var(--gold) 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 12px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: background 0.3s, color 0.3s, filter 0.15s, transform 0.1s;
+    }
+
+    .btn-control:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-control:active {
+      transform: scale(0.98);
+    }
+
+    .btn-control.is-active-green {
+      background: linear-gradient(135deg, #4caf50 0%, var(--green-active) 100%) !important;
+      color: #ffffff !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+        0 0 0 2px #1b5e20,
+        0 0 0 3.5px #4caf50 !important;
+    }
+
+    .track-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(27, auto);
+      grid-auto-flow: column;
+      gap: 10px;
+      margin-top: 24px;
+      margin-bottom: 20px;
+    }
+
+    .track-item-btn {
+      display: flex;
+      align-items: center;
+      text-align: left;
+      width: 100%;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      background: #fff;
+      padding: 10px 12px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-left: 4px solid var(--gold);
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      cursor: pointer;
+      transition: transform 0.1s, background-color 0.2s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .track-item-btn:hover {
+      background-color: #faf6f0;
+      transform: translateX(2px);
+    }
+
+    .track-item-btn:active {
+      transform: translateX(1px);
+    }
+
+    .track-item-btn.active {
+      background-color: var(--navy);
+      color: #fff;
+      border-left: 4px solid #ffb347;
+    }
+
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+      filter: brightness(0.93);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    @media(max-width:850px) {
+      .track-list {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media(max-width:580px) {
+      body {
+        padding: 10px 4px;
+      }
+
+      .track-list {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        grid-auto-flow: row;
+        gap: 6px;
+        margin-top: 16px;
+        margin-bottom: 12px;
+      }
+
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .wrapper {
+        padding: 18px 10px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .now-playing-banner {
+        font-size: 11px;
+        padding: 8px 10px;
+      }
+
+      .track-item-btn {
+        font-size: 11px;
+        padding: 8px 4px;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .footer {
+        padding: 14px 12px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="poster">
+
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Sukhmani<span>Sahib</span></div>
+        <div class="hero-sub1">Embrace the Wisdom of Shri Guru Granth Sahib Ji - at Your Own Pace</div>
+        <div class="hero-sub">Sukhmani Sahib is a collection of hymns from the Sri Guru Granth Sahib, offering solace and spiritual guidance.</div>
+        <div class="hero-sub1" style="color: #F7941D;">The Sukhmani Sahib will resume from where you left off during your last login.</div>
+      </div>
+    </div>
+
+    <div class="intro" id="title">
+      <span>📧 Session: <strong id="user-email">Checking Auth...</strong></span>
+    </div>
+
+    <div class="wrapper playerBox" id="playerBox">
+
+      <div class="media-container">
+        <!-- Wrapper container for YT Player -->
+        <div id="yt-player-container">
+          <div id="youtube-player"></div>
+        </div>
+
+        <audio id="audio-player" controls preload="auto" style="display: none;">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <div class="control-row">
+        <button id="btn-global-play" class="btn-control">▶️ Play</button>
+        <button id="btn-global-pause" class="btn-control">⏸️ Pause</button>
+      </div>
+
+      <div class="now-playing-banner">
+        <span>🎵 Now Playing: <strong id="currentTrackNum">None (Select a track)</strong></span>
+        <span>🔢 Position: <strong id="currentPositionTime">0:00 / 0:00</strong></span>
+      </div>
+
+      <div class="progress-card">
+        <div class="progress-stats-row">
+          <span>✨ Sukhmani Sahib Completed: <strong id="percent-completed" style="color: #2e7d32;">0.00%</strong></span>
+          <span>⌛ Remaining: <strong id="percent-remaining" style="color: #c62828;">100.00%</strong></span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="footer-content">
+          <a href="../03-nitnem-path.html" class="btn-back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+            </svg>
+            Back to Nitnem Path
+          </a>
+          <div class="footer-left">© 2026 Sikhs in India</div>
+          <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+        </div>
+      </div>
+
+      <!-- <div class="track-list" id="track-list-container">
+        <button class="track-item-btn" data-track="1" data-type="video" data-source="KJ8D_ObQNzQ">▶️ Video 1 </button>
+      </div> -->
+
+    </div>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b",
+      measurementId: "G-LHNTFNW14H"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const trackDurations = {
+      1: 7527
+    };
+
+    const TOTAL_SUKHMANI_SAHIB_DURATION = Object.values(trackDurations).reduce((acc, curr) => acc + curr, 0);
+
+    const trackCodes = {
+      1: 'KJ8D_ObQNzQ'
+    };
+
+    const audioPlayer = document.getElementById('audio-player');
+    const trackNumDisplay = document.getElementById('currentTrackNum');
+    const buttons = document.querySelectorAll('.track-item-btn');
+    const emailDisplay = document.getElementById('user-email');
+    const globalPlayBtn = document.getElementById('btn-global-play');
+    const globalPauseBtn = document.getElementById('btn-global-pause');
+    const trackPositionDisplay = document.getElementById('currentPositionTime');
+
+    const percentCompletedEl = document.getElementById('percent-completed');
+    const percentRemainingEl = document.getElementById('percent-remaining');
+    const progressBarFill = document.getElementById('progress-bar-fill');
+
+    let currentTrackNum = null;
+    let currentVideoId = null;
+    let activePlayerTrackNum = null;
+    let activePlayerVideoId = null;
+    let lastSavedTime = 0;
+    let ytPlayer = null;
+    let ytReady = false;
+    let pendingTrack = null;
+    let loggedInDocId = localStorage.getItem('loggedInDocId') || null;
+
+    async function saveProgressToFirestore(trackNum, currentTime, videoId) {
+      if (!loggedInDocId) return;
+      const roundedTime = Math.floor(currentTime || 0);
+
+      try {
+        await db.collection("sukhmani_sahib").doc(loggedInDocId).update({
+          last_track: trackNum,
+          last_time: roundedTime,
+          last_video_id: videoId || trackCodes[trackNum] || "",
+          last_updated: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      } catch (e) {
+        console.error("Firestore sync error:", e);
+      }
+    }
+
+    function updateSukhmaniSahibProgress(trackNum, currentTrackTime = 0) {
+      if (!trackNum) {
+        percentCompletedEl.innerText = "0.00%";
+        percentRemainingEl.innerText = "100.00%";
+        progressBarFill.style.width = "0%";
+        return;
+      }
+
+      let accumulatedSeconds = 0;
+      for (let i = 1; i < trackNum; i++) {
+        accumulatedSeconds += trackDurations[i] || 0;
+      }
+
+      accumulatedSeconds += parseFloat(currentTrackTime || 0);
+      accumulatedSeconds = Math.min(accumulatedSeconds, TOTAL_SUKHMANI_SAHIB_DURATION);
+
+      const percentCompleted = (accumulatedSeconds / TOTAL_SUKHMANI_SAHIB_DURATION) * 100;
+      const percentRemaining = Math.max(0, 100 - percentCompleted);
+
+      percentCompletedEl.innerText = `${percentCompleted.toFixed(2)}%`;
+      percentRemainingEl.innerText = `${percentRemaining.toFixed(2)}%`;
+      progressBarFill.style.width = `${percentCompleted.toFixed(2)}%`;
+    }
+
+    function switchMediaDisplay(mode) {
+      const ytContainer = document.getElementById('yt-player-container');
+      if (mode === 'video') {
+        audioPlayer.pause();
+        audioPlayer.style.display = 'none';
+        if (ytContainer) ytContainer.classList.remove('hidden-player');
+      } else {
+        if (ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+          ytPlayer.pauseVideo();
+        }
+        if (ytContainer) ytContainer.classList.add('hidden-player');
+        audioPlayer.style.display = 'block';
+      }
+    }
+
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.onYouTubeIframeAPIReady = function () {
+      ytPlayer = new YT.Player('youtube-player', {
+        height: '100%',
+        width: '100%',
+        videoId: 'KJ8D_ObQNzQ',
+        playerVars: {
+          'autoplay': 0,
+          'controls': 1,
+          'rel': 0,
+          'modestbranding': 1,
+          'enablejsapi': 1
+        },
+        events: {
+          'onReady': () => {
+            ytReady = true;
+            if (pendingTrack) {
+              playVideoTrack(pendingTrack.num, pendingTrack.id, pendingTrack.startTime);
+              pendingTrack = null;
+            }
+          },
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    };
+
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.PLAYING) {
+        trackNumDisplay.innerText = "Video Track " + currentTrackNum;
+        updateButtonVisuals();
+      } else if (event.data === YT.PlayerState.PAUSED) {
+        if (ytPlayer && typeof ytPlayer.getCurrentTime === 'function') {
+          const currentTime = ytPlayer.getCurrentTime();
+          if (currentTime > 0) {
+            localStorage.setItem('sukhmani_sahib_time', currentTime);
+            lastSavedTime = currentTime;
+            saveProgressToFirestore(currentTrackNum, currentTime, currentVideoId);
+            updateSukhmaniSahibProgress(currentTrackNum, currentTime);
+          }
+        }
+        updateButtonVisuals();
+      } else if (event.data === YT.PlayerState.ENDED) {
+        localStorage.removeItem('sukhmani_sahib_time');
+        saveProgressToFirestore(currentTrackNum, 0, currentVideoId);
+        activePlayerTrackNum = null;
+        activePlayerVideoId = null;
+        const nextTrackNum = currentTrackNum + 1;
+        const nextVideoId = trackCodes[nextTrackNum];
+
+        if (nextVideoId) {
+          playVideoTrack(nextTrackNum, nextVideoId, 0);
+        } else {
+          trackNumDisplay.innerText = "None (Select a track)";
+          updateSukhmaniSahibProgress(1, trackDurations[1]);
+          currentTrackNum = null;
+          currentVideoId = null;
+          updateButtonVisuals();
+        }
+      }
+    }
+
+    function playVideoTrack(trackNum, videoId, overrideStartTime = null) {
+      switchMediaDisplay('video');
+
+      if (activePlayerTrackNum === trackNum && activePlayerVideoId === videoId && ytReady && ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
+        const state = ytPlayer.getPlayerState();
+        if (state === YT.PlayerState.PLAYING) {
+          ytPlayer.pauseVideo();
+        } else {
+          ytPlayer.playVideo();
+        }
+        return;
+      }
+
+      currentTrackNum = trackNum;
+      currentVideoId = videoId;
+      activePlayerTrackNum = trackNum;
+      activePlayerVideoId = videoId;
+
+      localStorage.setItem('sukhmani_sahib_track', trackNum);
+      localStorage.setItem('sukhmani_sahib_video_id', videoId);
+
+      let startTime = 0;
+      if (overrideStartTime !== null) {
+        startTime = overrideStartTime;
+      } else {
+        const savedTrack = localStorage.getItem('sukhmani_sahib_track');
+        const savedTime = localStorage.getItem('sukhmani_sahib_time');
+        if (savedTrack && parseInt(savedTrack) === trackNum && savedTime) {
+          startTime = Math.max(0, parseFloat(savedTime) - 10);
+        }
+      }
+
+      updateSukhmaniSahibProgress(trackNum, startTime);
+
+      if (ytReady && ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+        ytPlayer.loadVideoById({
+          videoId: videoId,
+          startSeconds: startTime
+        });
+        ytPlayer.playVideo();
+      } else {
+        pendingTrack = { num: trackNum, id: videoId, startTime: startTime };
+      }
+      updateButtonVisuals();
+    }
+
+    async function initAuthTracker() {
+      const savedEmail = localStorage.getItem('loggedInUserEmail');
+      let userEmailVal = savedEmail || "Guest Session";
+
+      if (emailDisplay) emailDisplay.innerText = userEmailVal;
+
+      if (loggedInDocId) {
+        try {
+          const docSnap = await db.collection("sukhmani_sahib").doc(loggedInDocId).get();
+          if (docSnap.exists) {
+            const data = docSnap.data();
+            if (data.last_track) {
+              const trackNum = parseInt(data.last_track);
+              const rawTime = parseFloat(data.last_time || 0);
+              const rewindTime = Math.max(0, rawTime - 10);
+              const vId = data.last_video_id || trackCodes[trackNum];
+
+              currentTrackNum = trackNum;
+              currentVideoId = vId;
+
+              localStorage.setItem('sukhmani_sahib_track', trackNum);
+              localStorage.setItem('sukhmani_sahib_time', rewindTime);
+              localStorage.setItem('sukhmani_sahib_video_id', vId);
+
+              updateSukhmaniSahibProgress(trackNum, rewindTime);
+              trackNumDisplay.innerText = "Video Track " + trackNum;
+
+              if (globalPauseBtn && globalPlayBtn) {
+                globalPauseBtn.classList.add('is-active-green');
+                globalPlayBtn.classList.remove('is-active-green');
+              }
+            }
+          }
+        } catch (e) {
+          console.error("Error loading user cloud state: ", e);
+        }
+      }
+    }
+
+    function formatTime(seconds) {
+      if (!seconds || isNaN(seconds)) return "0:00";
+      const sec = Math.floor(seconds);
+      const h = Math.floor(sec / 3600);
+      const m = Math.floor((sec % 3600) / 60);
+      const s = sec % 60;
+
+      if (h > 0) {
+        return `${h}:${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+      }
+      return `${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    function updateButtonVisuals() {
+      let isPlaying = false;
+      let isPaused = false;
+
+      const ytContainer = document.getElementById('yt-player-container');
+      if (ytContainer && !ytContainer.classList.contains('hidden-player') && ytPlayer && ytReady && typeof ytPlayer.getPlayerState === 'function') {
+        const state = ytPlayer.getPlayerState();
+        if (state === YT.PlayerState.PLAYING) {
+          isPlaying = true;
+        } else if (state === YT.PlayerState.PAUSED) {
+          isPaused = true;
+        }
+      } else if (audioPlayer.src) {
+        if (!audioPlayer.paused) {
+          isPlaying = true;
+        } else if (audioPlayer.currentTime > 0) {
+          isPaused = true;
+        }
+      }
+
+      if (isPlaying) {
+        globalPlayBtn.classList.add('is-active-green');
+        globalPauseBtn.classList.remove('is-active-green');
+      } else if (isPaused) {
+        globalPauseBtn.classList.add('is-active-green');
+        globalPlayBtn.classList.remove('is-active-green');
+      } else {
+        globalPlayBtn.classList.remove('is-active-green');
+        globalPauseBtn.classList.remove('is-active-green');
+      }
+
+      buttons.forEach((btn) => {
+        const trackNum = parseInt(btn.getAttribute('data-track'));
+        const type = btn.getAttribute('data-type');
+        const source = btn.getAttribute('data-source');
+
+        let btnPlaying = false;
+        if (type === 'video') {
+          if (currentTrackNum === trackNum && currentVideoId === source && ytPlayer && ytReady && typeof ytPlayer.getPlayerState === 'function') {
+            btnPlaying = (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING);
+          }
+        } else {
+          if (currentTrackNum === trackNum) {
+            btnPlaying = !audioPlayer.paused;
+          }
+        }
+
+        let baseText = btn.textContent.replace(/[▶️⏸️]\s*/g, '').trim();
+        if (btnPlaying) {
+          btn.innerHTML = `⏸️ ${baseText}`;
+          btn.classList.add('active');
+        } else {
+          btn.innerHTML = `▶️ ${baseText}`;
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    document.getElementById('track-list-container').addEventListener('click', (e) => {
+      const targetBtn = e.target.closest('.track-item-btn');
+      if (!targetBtn) return;
+
+      const trackNum = parseInt(targetBtn.getAttribute('data-track'));
+      const type = targetBtn.getAttribute('data-type');
+      const source = targetBtn.getAttribute('data-source');
+
+      if (type === 'video') {
+        playVideoTrack(trackNum, source, 0);
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initAuthTracker();
+    });
+
+    globalPlayBtn.addEventListener('click', () => {
+      const ytContainer = document.getElementById('yt-player-container');
+      if (currentTrackNum && trackCodes[currentTrackNum]) {
+        if (ytContainer && ytContainer.classList.contains('hidden-player')) {
+          playVideoTrack(currentTrackNum, currentVideoId || trackCodes[currentTrackNum]);
+        } else {
+          if (ytPlayer && ytReady && activePlayerTrackNum === currentTrackNum) {
+            ytPlayer.playVideo();
+          } else {
+            playVideoTrack(currentTrackNum, currentVideoId || trackCodes[currentTrackNum]);
+          }
+        }
+      } else {
+        const savedTrack = localStorage.getItem('sukhmani_sahib_track');
+        if (savedTrack) {
+          const trackNum = parseInt(savedTrack);
+          const savedVideoId = localStorage.getItem('sukhmani_sahib_video_id') || trackCodes[trackNum];
+          const savedTime = localStorage.getItem('sukhmani_sahib_time');
+          const startTime = savedTime ? Math.max(0, parseFloat(savedTime) - 10) : 0;
+          playVideoTrack(trackNum, savedVideoId, startTime);
+        } else {
+          playVideoTrack(1, trackCodes[1], 0);
+        }
+      }
+    });
+
+    globalPauseBtn.addEventListener('click', () => {
+      const ytContainer = document.getElementById('yt-player-container');
+      if (ytContainer && !ytContainer.classList.contains('hidden-player')) {
+        if (ytPlayer && ytReady) {
+          ytPlayer.pauseVideo();
+          if (typeof ytPlayer.getCurrentTime === 'function') {
+            const currentTime = ytPlayer.getCurrentTime();
+            if (currentTime > 0) {
+              localStorage.setItem('sukhmani_sahib_time', currentTime);
+              saveProgressToFirestore(currentTrackNum, currentTime, currentVideoId);
+              updateSukhmaniSahibProgress(currentTrackNum, currentTime);
+            }
+          }
+        }
+      }
+    });
+
+    setInterval(() => {
+      if (currentTrackNum && ytPlayer && ytReady && typeof ytPlayer.getCurrentTime === 'function') {
+        const ytContainer = document.getElementById('yt-player-container');
+        if (ytContainer && !ytContainer.classList.contains('hidden-player') && ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
+          const currentTime = ytPlayer.getCurrentTime();
+          const duration = ytPlayer.getDuration() || trackDurations[currentTrackNum] || 0;
+
+          if (currentTime > 0) {
+            localStorage.setItem('sukhmani_sahib_time', currentTime);
+            lastSavedTime = currentTime;
+            updateSukhmaniSahibProgress(currentTrackNum, currentTime);
+
+            if (trackPositionDisplay) {
+              trackPositionDisplay.innerText = `${formatTime(currentTime)} / ${formatTime(duration)}`;
+            }
+
+            updateButtonVisuals();
+          }
+        }
+      }
+    }, 1000);
+
+    window.addEventListener('beforeunload', () => {
+      const ytContainer = document.getElementById('yt-player-container');
+      if (currentTrackNum && ytPlayer && ytReady && typeof ytPlayer.getCurrentTime === 'function' && ytContainer && !ytContainer.classList.contains('hidden-player')) {
+        const curTime = ytPlayer.getCurrentTime();
+        localStorage.setItem('sukhmani_sahib_time', curTime);
+        saveProgressToFirestore(currentTrackNum, curTime, currentVideoId);
+      }
+    });
+  </script>
+</body>
+
+</html>
