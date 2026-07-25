@@ -138,21 +138,33 @@
       margin-bottom: 24px;
     }
 
-    .now-playing-banner {
-      font-family: 'Lato', sans-serif;
-      font-size: 13px;
-      color: var(--navy);
-      margin-bottom: 12px;
-      font-weight: 700;
-      background: rgba(247, 148, 29, 0.08);
-      padding: 10px 14px;
-      border-radius: 5px;
-      border-left: 4px solid var(--gold);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.now-playing-banner {
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  color: var(--navy);
+  margin-bottom: 12px;
+  font-weight: 700;
+  background: rgba(247, 148, 29, 0.08);
+  padding: 10px 14px;
+  border-radius: 5px;
+  border-left: 4px solid var(--gold);
 
+  /* Alignment controls */
+  display: flex;
+  justify-content: space-between; /* Pushes left item to far-left, right item to far-right */
+  align-items: center;            /* Vertically centers both items */
+  flex-wrap: nowrap;              /* Keeps both items strictly on the same line */
+  width: 100%;
+}
+
+.now-playing-banner span:first-child {
+  text-align: left;
+}
+
+.now-playing-banner span:last-child {
+  text-align: right;
+  white-space: nowrap;            /* Prevents the position time from wrapping onto two lines */
+}
     .now-playing-banner strong {
       color: var(--navy-mid);
       word-break: break-all;
@@ -418,16 +430,19 @@
     }
 
     @media(max-width:850px) {
+      /* Keep 3 columns on tablet screens */
       .track-list {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
-        grid-auto-flow: row;
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
     @media(max-width:580px) {
+      /* Keep 3 columns on mobile screens and optimize sizing */
       .track-list {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        grid-auto-flow: row;
+        gap: 6px; /* Slightly tighter spacing for narrow screens */
       }
 
       .header {
@@ -445,7 +460,7 @@
       }
 
       .wrapper {
-        padding: 18px 14px;
+        padding: 18px 10px; /* Adjusted side padding to give buttons more room */
       }
 
       h1 {
@@ -453,8 +468,10 @@
       }
 
       .track-item-btn {
-        font-size: 13px;
-        padding: 12px;
+        font-size: 11px; /* Slightly smaller text so "Video 81" fits neatly on tight screens */
+        padding: 8px 4px;
+        justify-content: center;
+        text-align: center;
       }
 
       .footer {
@@ -545,16 +562,22 @@
         <button id="btn-global-pause" class="btn-control">⏸️ Pause</button>
       </div>
 
-      <div class="now-playing-banner">
 <div class="now-playing-banner">
   <span>🎵 Now Playing: <strong id="currentTrackNum">None (Select a track)</strong></span>
   <span>🔢 Position: <strong id="currentPositionTime">0:00 / 0:00</strong></span>
 </div>
+
+      <div id="status">Status: Ready to play. Select a track to begin.</div>
+
+      <div class="track-list" id="track-list-container">
+        <!-- Track buttons will be dynamically generated here -->
       </div>
+</div>
+
 
       <div class="progress-card">
         <div class="progress-stats-row">
-          <span>✨ Completed: <strong id="percent-completed" style="color: #2e7d32;">0.00%</strong></span>
+          <span>✨ Sehaj PathCompleted: <strong id="percent-completed" style="color: #2e7d32;">0.00%</strong></span>
           <span>⌛ Remaining: <strong id="percent-remaining" style="color: #c62828;">100.00%</strong></span>
         </div>
         <div class="progress-bar-container">
@@ -562,13 +585,28 @@
         </div>
       </div>
 
-      <div class="user-badge">
+      <!-- <div class="user-badge">
         <span>📧 Session: <strong id="user-email-badge">Checking Auth...</strong></span>
+      </div> -->
+
+
+
+<div class="footer">
+        <div class="footer-content">
+          <a href="../03-nitnem-path.html" class="btn-back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+            </svg>
+            Back to Nitnem Path
+          </a>
+          <div class="footer-left">© 2026 Sikhs in India</div>
+          <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+        </div>
       </div>
 
-      <button id="btn-resume" class="btn-resume">
-        🔄 Resume Last Session
-      </button>
+    </div>
+  </div>
 
       <div class="track-list" id="track-list-container">
         <button class="track-item-btn" data-track="1" data-type="video" data-source="PlRXmCN9xUM">▶️ Video 1 </button>
@@ -656,24 +694,9 @@
         <button class="track-item-btn" data-track="81" data-type="video" data-source="l79P1rEcp6Y">▶️ Video 81 </button>
       </div>
 
-      <p id="status">Select a track to begin playing...</p>
 
-      <div class="footer">
-        <div class="footer-content">
-          <a href="../03-nitnem-path.html" class="btn-back">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M19 12H5M5 12l7-7M5 12l7 7" />
-            </svg>
-            Back to Nitnem Path
-          </a>
-          <div class="footer-left">© 2026 Sikhs in India</div>
-          <div class="footer-right">Preserving Sikh Heritage & Unity</div>
-        </div>
-      </div>
 
-    </div>
-  </div>
+      
 
   <script>
     const firebaseConfig = {
@@ -724,7 +747,7 @@
     };
 
     const audioPlayer = document.getElementById('audio-player');
-    const statusText = document.getElementById('status');
+    // const statusText = document.getElementById('status');
     const fileNameDisplay = document.getElementById('playing-file-name');
     const trackNumDisplay = document.getElementById('currentTrackNum');
     const buttons = document.querySelectorAll('.track-item-btn');
@@ -835,100 +858,95 @@
     };
 
     function onPlayerStateChange(event) {
-      let videoName = `Video ${currentTrackNum}`;
-      buttons.forEach(btn => {
-        if (btn.getAttribute('data-source') === currentVideoId) {
-          videoName = btn.textContent.replace(/[▶️⏸️]\s*/g, '').trim();
-        }
-      });
+  let videoName = `Video ${currentTrackNum}`;
+  buttons.forEach(btn => {
+    if (btn.getAttribute('data-source') === currentVideoId) {
+      videoName = btn.textContent.replace(/[▶️⏸️]\s*/g, '').trim();
+    }
+  });
 
-      if (event.data === YT.PlayerState.PLAYING) {
-        statusText.innerText = `Playing ${videoName}...`;
-        trackNumDisplay.innerText = "Video Track " + currentTrackNum;
-        fileNameDisplay.innerText = videoName;
-        updateButtonVisuals();
-        resumeBtn.style.display = 'none';
-      } else if (event.data === YT.PlayerState.PAUSED) {
-        if (ytPlayer && typeof ytPlayer.getCurrentTime === 'function') {
-          const currentTime = ytPlayer.getCurrentTime();
-          if (currentTime > 0) {
-            localStorage.setItem('sehaj_path_time', currentTime);
-            lastSavedTime = currentTime;
-            saveProgressToFirestore(currentTrackNum, currentTime, currentVideoId);
-            updateSehajPathProgress(currentTrackNum, currentTime);
-          }
-        }
-        statusText.innerText = "Paused";
-        updateButtonVisuals();
-      } else if (event.data === YT.PlayerState.ENDED) {
-        localStorage.removeItem('sehaj_path_time');
-        saveProgressToFirestore(currentTrackNum, 0, currentVideoId);
-        activePlayerTrackNum = null;
-        activePlayerVideoId = null;
-        const nextTrackNum = currentTrackNum + 1;
-        const nextVideoId = trackCodes[nextTrackNum];
+  if (event.data === YT.PlayerState.PLAYING) {
+    trackNumDisplay.innerText = "Video Track " + currentTrackNum;
+    fileNameDisplay.innerText = videoName;
+    updateButtonVisuals();
 
-        if (nextVideoId) {
-          statusText.innerText = `Video finished. Advancing to Video Track ${nextTrackNum}...`;
-          playVideoTrack(nextTrackNum, nextVideoId, 0);
-        } else {
-          statusText.innerText = "Sehaj Path complete! All 81 tracks finished.";
-          fileNameDisplay.innerText = "None (Select a track)";
-          trackNumDisplay.innerText = "None (Select a track)";
-          updateSehajPathProgress(81, trackDurations[81]);
-          currentTrackNum = null;
-          currentVideoId = null;
-          updateButtonVisuals();
-        }
+  } else if (event.data === YT.PlayerState.PAUSED) {
+    if (ytPlayer && typeof ytPlayer.getCurrentTime === 'function') {
+      const currentTime = ytPlayer.getCurrentTime();
+      if (currentTime > 0) {
+        localStorage.setItem('sehaj_path_time', currentTime);
+        lastSavedTime = currentTime;
+        saveProgressToFirestore(currentTrackNum, currentTime, currentVideoId);
+        updateSehajPathProgress(currentTrackNum, currentTime);
       }
     }
+    updateButtonVisuals();
+  } else if (event.data === YT.PlayerState.ENDED) {
+    localStorage.removeItem('sehaj_path_time');
+    saveProgressToFirestore(currentTrackNum, 0, currentVideoId);
+    activePlayerTrackNum = null;
+    activePlayerVideoId = null;
+    const nextTrackNum = currentTrackNum + 1;
+    const nextVideoId = trackCodes[nextTrackNum];
 
-    function playVideoTrack(trackNum, videoId, overrideStartTime = null) {
-      switchMediaDisplay('video');
-
-      if (activePlayerTrackNum === trackNum && activePlayerVideoId === videoId && ytReady && ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
-        const state = ytPlayer.getPlayerState();
-        if (state === YT.PlayerState.PLAYING) {
-          ytPlayer.pauseVideo();
-        } else {
-          ytPlayer.playVideo();
-        }
-        return;
-      }
-
-      currentTrackNum = trackNum;
-      currentVideoId = videoId;
-      activePlayerTrackNum = trackNum;
-      activePlayerVideoId = videoId;
-
-      localStorage.setItem('sehaj_path_track', trackNum);
-      localStorage.setItem('sehaj_path_video_id', videoId);
-
-      let startTime = 0;
-      if (overrideStartTime !== null) {
-        startTime = overrideStartTime;
-      } else {
-        const savedTrack = localStorage.getItem('sehaj_path_track');
-        const savedTime = localStorage.getItem('sehaj_path_time');
-        if (savedTrack && parseInt(savedTrack) === trackNum && savedTime) {
-          startTime = Math.max(0, parseFloat(savedTime) - 10);
-        }
-      }
-
-      updateSehajPathProgress(trackNum, startTime);
-
-      if (ytReady && ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
-        ytPlayer.loadVideoById({
-          videoId: videoId,
-          startSeconds: startTime
-        });
-        ytPlayer.playVideo();
-      } else {
-        pendingTrack = { num: trackNum, id: videoId, startTime: startTime };
-        statusText.innerText = "Connecting video source frame. Initializing...";
-      }
+    if (nextVideoId) {
+      playVideoTrack(nextTrackNum, nextVideoId, 0);
+    } else {
+      fileNameDisplay.innerText = "None (Select a track)";
+      trackNumDisplay.innerText = "None (Select a track)";
+      updateSehajPathProgress(81, trackDurations[81]);
+      currentTrackNum = null;
+      currentVideoId = null;
       updateButtonVisuals();
     }
+  }
+}
+
+    function playVideoTrack(trackNum, videoId, overrideStartTime = null) {
+  switchMediaDisplay('video');
+
+  if (activePlayerTrackNum === trackNum && activePlayerVideoId === videoId && ytReady && ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
+    const state = ytPlayer.getPlayerState();
+    if (state === YT.PlayerState.PLAYING) {
+      ytPlayer.pauseVideo();
+    } else {
+      ytPlayer.playVideo();
+    }
+    return;
+  }
+
+  currentTrackNum = trackNum;
+  currentVideoId = videoId;
+  activePlayerTrackNum = trackNum;
+  activePlayerVideoId = videoId;
+
+  localStorage.setItem('sehaj_path_track', trackNum);
+  localStorage.setItem('sehaj_path_video_id', videoId);
+
+  let startTime = 0;
+  if (overrideStartTime !== null) {
+    startTime = overrideStartTime;
+  } else {
+    const savedTrack = localStorage.getItem('sehaj_path_track');
+    const savedTime = localStorage.getItem('sehaj_path_time');
+    if (savedTrack && parseInt(savedTrack) === trackNum && savedTime) {
+      startTime = Math.max(0, parseFloat(savedTime) - 10);
+    }
+  }
+
+  updateSehajPathProgress(trackNum, startTime);
+
+  if (ytReady && ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+    ytPlayer.loadVideoById({
+      videoId: videoId,
+      startSeconds: startTime
+    });
+    ytPlayer.playVideo();
+  } else {
+    pendingTrack = { num: trackNum, id: videoId, startTime: startTime };
+  }
+  updateButtonVisuals();
+}
 
  async function initAuthTracker() {
   const savedEmail = localStorage.getItem('loggedInUserEmail');
@@ -956,13 +974,10 @@
           localStorage.setItem('sehaj_path_video_id', vId);
 
           updateSehajPathProgress(trackNum, rewindTime);
-          statusText.innerText = `Loaded saved position from cloud: Track ${trackNum} at ${Math.floor(rewindTime)}s (10s rewind applied).`;
           trackNumDisplay.innerText = "Video Track " + trackNum;
 
-          resumeBtn.innerText = `🔄 Resume Session: Track ${trackNum}`;
-          resumeBtn.style.display = 'inline-flex';
 
-          // Set Pause button to green visually upon login completion
+
           if (globalPauseBtn && globalPlayBtn) {
             globalPauseBtn.classList.add('is-active-green');
             globalPlayBtn.classList.remove('is-active-green');
@@ -1133,10 +1148,13 @@ setInterval(() => {
         lastSavedTime = currentTime;
         updateSehajPathProgress(currentTrackNum, currentTime);
         
-        // Update the position text (e.g., "0:06 / 1:00:06")
+        // Update position text
         if (trackPositionDisplay) {
           trackPositionDisplay.innerText = `${formatTime(currentTime)} / ${formatTime(duration)}`;
         }
+
+        // Keep Play button green while playing
+        updateButtonVisuals();
       }
     }
   }
