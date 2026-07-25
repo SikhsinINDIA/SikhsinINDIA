@@ -546,8 +546,10 @@
       </div>
 
       <div class="now-playing-banner">
-        <span>🎵 Now Playing: <strong id="currentTrackNum">None (Select a track)</strong></span>
-        <span>🔢 Position: <strong id="currentTrackNum">None (Select a track)</strong></span>
+<div class="now-playing-banner">
+  <span>🎵 Now Playing: <strong id="currentTrackNum">None (Select a track)</strong></span>
+  <span>🔢 Position: <strong id="currentPositionTime">0:00 / 0:00</strong></span>
+</div>
       </div>
 
       <div class="progress-card">
@@ -973,6 +975,19 @@
   }
 }
 
+function formatTime(seconds) {
+  if (!seconds || isNaN(seconds)) return "0:00";
+  const sec = Math.floor(seconds);
+  const h = Math.floor(sec / 3600);
+  const m = Math.floor((sec % 3600) / 60);
+  const s = sec % 60;
+
+  if (h > 0) {
+    return `${h}:${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+  }
+  return `${m}:${s < 10 ? '0' : ''}${s}`;
+}
+
     function updateButtonVisuals() {
       let isPlaying = false;
       let isPaused = false;
@@ -1102,19 +1117,30 @@
       }
     });
 
-    setInterval(() => {
-      if (currentTrackNum && ytPlayer && ytReady && typeof ytPlayer.getCurrentTime === 'function') {
-        const ytEl = document.getElementById('youtube-player');
-        if (ytEl && !ytEl.classList.contains('hidden-player') && ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
-          const currentTime = ytPlayer.getCurrentTime();
-          if (currentTime > 0) {
-            localStorage.setItem('sehaj_path_time', currentTime);
-            lastSavedTime = currentTime;
-            updateSehajPathProgress(currentTrackNum, currentTime);
-          }
+    // Reference the new element at the top with your other variable declarations
+const trackPositionDisplay = document.getElementById('currentPositionTime');
+
+// Inside your existing setInterval (around line 533)
+setInterval(() => {
+  if (currentTrackNum && ytPlayer && ytReady && typeof ytPlayer.getCurrentTime === 'function') {
+    const ytEl = document.getElementById('youtube-player');
+    if (ytEl && !ytEl.classList.contains('hidden-player') && ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
+      const currentTime = ytPlayer.getCurrentTime();
+      const duration = ytPlayer.getDuration() || trackDurations[currentTrackNum] || 0;
+      
+      if (currentTime > 0) {
+        localStorage.setItem('sehaj_path_time', currentTime);
+        lastSavedTime = currentTime;
+        updateSehajPathProgress(currentTrackNum, currentTime);
+        
+        // Update the position text (e.g., "0:06 / 1:00:06")
+        if (trackPositionDisplay) {
+          trackPositionDisplay.innerText = `${formatTime(currentTime)} / ${formatTime(duration)}`;
         }
       }
-    }, 1000);
+    }
+  }
+}, 1000);
 
     window.addEventListener('beforeunload', () => {
       const ytEl = document.getElementById('youtube-player');
