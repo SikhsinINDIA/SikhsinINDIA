@@ -13,7 +13,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <title>Sikhs in India | Account Login</title>
+  <title>Sikhs in India | Account Signup</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
@@ -94,18 +94,6 @@
       margin-bottom: 8px;
     }
 
-    .input-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .input-group label {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--navy);
-    }
-
     input {
       width: 100%;
       padding: 14px 16px;
@@ -125,7 +113,9 @@
     }
 
     .nav-link-wrap {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       margin-top: 10px;
     }
 
@@ -134,6 +124,7 @@
       color: var(--navy);
       text-decoration: underline;
       font-weight: 700;
+      cursor: pointer;
     }
 
     .nav-link:hover {
@@ -233,23 +224,15 @@
       max-width: 200px;
     }
 
-    .btn-back:hover {
-      filter: brightness(1.08);
-    }
-
-    .btn-back:active {
-      transform: scale(0.97);
-      filter: brightness(0.93);
-    }
-
     .btn-back svg {
       width: 12px;
       height: 12px;
     }
   </style>
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <!-- Load Safe Compat CDNs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js"></script>
 </head>
 
 <body>
@@ -257,26 +240,20 @@
   <div class="poster">
     <div class="header">
       <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
-      <div class="hero-title">Sehaj Path - <span>Login</span></div>
+      <div class="hero-title">Sehaj Path - <span>Signup</span></div>
     </div>
 
     <div class="wrapper">
-      <h2>Welcome Back</h2>
+      <h2>Create New Account</h2>
       
-      <div class="input-group">
-        <label for="identifier">Email or Mobile Number</label>
-        <input id="identifier" type="text" placeholder="e.g. name@example.com or 9876543210">
-      </div>
+      <input id="login-name" type="text" placeholder="Login Name (Username)">
+      <input id="mobile" type="tel" placeholder="Mobile Number">
+      <input id="password" type="password" placeholder="Password">
 
-      <div class="input-group">
-        <label for="password">Password</label>
-        <input id="password" type="password" placeholder="Enter your password">
-      </div>
-
-      <button onclick="login()" class="btn-action">Secure Login</button>
+      <button onclick="signup()" class="btn-action">Create Account</button>
 
       <div class="nav-link-wrap">
-        <a class="nav-link" href="signup.html">New user? Create an Account</a>
+        <a class="nav-link" href="login.html">Already have an account? Login</a>
       </div>
     </div>
 
@@ -298,8 +275,9 @@
     const firebaseConfig = {
       apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
       authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      databaseURL: "https://sikhsinindia-67a6b-default-rtdb.firebaseio.com",
       projectId: "sikhsinindia-67a6b",
-      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      storageBucket: "sikhsinindia-67a6b.firebasestorage.app",
       messagingSenderId: "622603668882",
       appId: "1:622603668882:web:953c6a07864b235fdd054b",
       measurementId: "G-LHNTFNW14H"
@@ -308,48 +286,55 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    async function login() {
-      const identifierInput = document.getElementById("identifier").value.trim();
-      const passInput = document.getElementById("password").value;
+    async function signup() {
+      const loginName = document.getElementById("login-name").value.trim();
+      const mobileVal = document.getElementById("mobile").value.trim();
+      const pass = document.getElementById("password").value;
 
-      if (!identifierInput || !passInput) {
-        alert("Please enter both your Email/Mobile Number and Password.");
+      if (!loginName || !mobileVal || !pass) {
+        alert("Please fill in all details.");
         return;
       }
 
-      const isEmail = identifierInput.includes("@");
-      let query;
-
-      if (isEmail) {
-        // Search Firestore matching the Email field
-        query = db.collection("sehaj_path")
-          .where("email_login", "==", identifierInput.toLowerCase())
-          .where("password", "==", passInput);
-      } else {
-        // Search Firestore matching the Mobile field (stripping non-digits)
-        const phoneNum = Number(identifierInput.replace(/[^\d]/g, ''));
-        query = db.collection("sehaj_path")
-          .where("mobile", "==", phoneNum)
-          .where("password", "==", passInput);
+      const mobileNum = Number(mobileVal);
+      if (isNaN(mobileNum)) {
+        alert("Please enter a valid numeric mobile number.");
+        return;
       }
 
       try {
-        const querySnapshot = await query.get();
-
-        if (!querySnapshot.empty) {
-          const userDoc = querySnapshot.docs[0];
-          const userData = userDoc.data();
-
-          localStorage.setItem("loggedInDocId", userDoc.id);
-          localStorage.setItem("loggedInUserEmail", userData.email_login || "");
-          localStorage.setItem("userMobile", userData.mobile || "");
-
-          window.location.href = "03-04-sehaj-path.html";
-        } else {
-          alert("Invalid Email/Mobile or Password.");
+        const existingLogin = await db.collection("sehaj_path").where("login", "==", loginName).get();
+        if (!existingLogin.empty) {
+          alert("Login name is already taken. Please choose another.");
+          return;
         }
+
+        const existingMobile = await db.collection("sehaj_path").where("mobile", "==", mobileNum).get();
+        if (!existingMobile.empty) {
+          alert("Mobile number is already registered.");
+          return;
+        }
+
+        const now = new Date();
+        const dateTimeStr = now.toISOString().replace('T', ' ').substring(0, 19);
+
+        await db.collection("sehaj_path").add({
+          login: loginName,
+          mobile: mobileNum,
+          password: pass,
+          date_time: dateTimeStr
+        });
+
+        alert("Account registered successfully!");
+        localStorage.setItem('loggedInUserEmail', loginName);
+        localStorage.setItem('userMobile', mobileNum);
+
+        // Redirect directly to 03-04-sehaj-path.html
+        window.location.href = "03-04-sehaj-path.html";
+
       } catch (error) {
-        alert("Authentication Failed: " + error.message);
+        console.error("Signup error:", error);
+        alert("Error registering user: " + error.message);
       }
     }
   </script>

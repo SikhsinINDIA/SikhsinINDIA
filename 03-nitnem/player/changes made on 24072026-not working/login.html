@@ -13,7 +13,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <title>Sikhs in India | Account Login</title>
+  <title>Sikhs in India | Login Account</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
@@ -92,18 +92,6 @@
       text-align: center;
       font-size: 24px;
       margin-bottom: 8px;
-    }
-
-    .input-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .input-group label {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--navy);
     }
 
     input {
@@ -233,23 +221,15 @@
       max-width: 200px;
     }
 
-    .btn-back:hover {
-      filter: brightness(1.08);
-    }
-
-    .btn-back:active {
-      transform: scale(0.97);
-      filter: brightness(0.93);
-    }
-
     .btn-back svg {
       width: 12px;
       height: 12px;
     }
   </style>
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <!-- Load Safe Compat CDNs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js"></script>
 </head>
 
 <body>
@@ -261,22 +241,15 @@
     </div>
 
     <div class="wrapper">
-      <h2>Welcome Back</h2>
+      <h2>Account Login</h2>
       
-      <div class="input-group">
-        <label for="identifier">Email or Mobile Number</label>
-        <input id="identifier" type="text" placeholder="e.g. name@example.com or 9876543210">
-      </div>
+      <input id="login-name" type="text" placeholder="Login Name (Username)">
+      <input id="password" type="password" placeholder="Password">
 
-      <div class="input-group">
-        <label for="password">Password</label>
-        <input id="password" type="password" placeholder="Enter your password">
-      </div>
-
-      <button onclick="login()" class="btn-action">Secure Login</button>
+      <button onclick="login()" class="btn-action">Login</button>
 
       <div class="nav-link-wrap">
-        <a class="nav-link" href="signup.html">New user? Create an Account</a>
+        <a class="nav-link" href="signup.html">Don't have an account? Sign up here</a>
       </div>
     </div>
 
@@ -298,8 +271,9 @@
     const firebaseConfig = {
       apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
       authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      databaseURL: "https://sikhsinindia-67a6b-default-rtdb.firebaseio.com",
       projectId: "sikhsinindia-67a6b",
-      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      storageBucket: "sikhsinindia-67a6b.firebasestorage.app",
       messagingSenderId: "622603668882",
       appId: "1:622603668882:web:953c6a07864b235fdd054b",
       measurementId: "G-LHNTFNW14H"
@@ -309,47 +283,35 @@
     const db = firebase.firestore();
 
     async function login() {
-      const identifierInput = document.getElementById("identifier").value.trim();
-      const passInput = document.getElementById("password").value;
+      const loginName = document.getElementById("login-name").value.trim();
+      const pass = document.getElementById("password").value;
 
-      if (!identifierInput || !passInput) {
-        alert("Please enter both your Email/Mobile Number and Password.");
+      if (!loginName || !pass) {
+        alert("Please fill in both Login Name and Password.");
         return;
       }
 
-      const isEmail = identifierInput.includes("@");
-      let query;
-
-      if (isEmail) {
-        // Search Firestore matching the Email field
-        query = db.collection("sehaj_path")
-          .where("email_login", "==", identifierInput.toLowerCase())
-          .where("password", "==", passInput);
-      } else {
-        // Search Firestore matching the Mobile field (stripping non-digits)
-        const phoneNum = Number(identifierInput.replace(/[^\d]/g, ''));
-        query = db.collection("sehaj_path")
-          .where("mobile", "==", phoneNum)
-          .where("password", "==", passInput);
-      }
-
       try {
-        const querySnapshot = await query.get();
+        const querySnapshot = await db.collection("sehaj_path")
+          .where("login", "==", loginName)
+          .where("password", "==", pass)
+          .get();
 
         if (!querySnapshot.empty) {
-          const userDoc = querySnapshot.docs[0];
-          const userData = userDoc.data();
+          const userData = querySnapshot.docs[0].data();
 
-          localStorage.setItem("loggedInDocId", userDoc.id);
-          localStorage.setItem("loggedInUserEmail", userData.email_login || "");
-          localStorage.setItem("userMobile", userData.mobile || "");
+          localStorage.setItem("loggedInUserEmail", userData.login);
+          localStorage.setItem("userMobile", userData.mobile);
 
+          alert("Login successful!");
+          // Redirect directly to 03-04-sehaj-path.html
           window.location.href = "03-04-sehaj-path.html";
         } else {
-          alert("Invalid Email/Mobile or Password.");
+          alert("Invalid Login Name or Password.");
         }
       } catch (error) {
-        alert("Authentication Failed: " + error.message);
+        console.error("Login error:", error);
+        alert("Login failed: " + error.message);
       }
     }
   </script>
