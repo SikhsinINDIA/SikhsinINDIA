@@ -43,7 +43,7 @@
 
     .poster {
       width: 100%;
-      max-width: 540px;
+      max-width: 960px;
       background: var(--cream);
       box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
       border-radius: 4px;
@@ -52,11 +52,12 @@
 
     .header {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: linear-gradient(160deg, var(--navy), #1a2a5e);
-      padding: 24px;
-      text-align: center;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
     }
 
     .logo-img {
@@ -64,12 +65,18 @@
       background: #fff;
       padding: 4px;
       border-radius: 6px;
-      margin-bottom: 14px;
+    }
+
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
     }
 
     .hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(26px, 5vw, 36px);
+      font-size: clamp(28px, 6vw, 54px);
       font-weight: 900;
       color: #fff;
     }
@@ -78,11 +85,26 @@
       color: var(--gold);
     }
 
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    .hero-sub1 {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
     .wrapper {
       padding: 30px 24px;
       display: flex;
       flex-direction: column;
       gap: 16px;
+      max-width: 540px;
+      margin: 0 auto;
     }
 
     h2 {
@@ -136,10 +158,10 @@
 
     .footer-content {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      text-align: center;
       gap: 14px;
+      flex-wrap: wrap;
     }
 
     .footer-left {
@@ -216,8 +238,6 @@
         0 0 0 3.5px var(--gold);
       transition: filter 0.15s, transform 0.1s;
       flex-shrink: 0;
-      width: 100%;
-      max-width: 200px;
     }
 
     .btn-back:hover {
@@ -233,6 +253,28 @@
       width: 12px;
       height: 12px;
     }
+
+    @media(max-width:580px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
   </style>
 
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
@@ -243,8 +285,15 @@
 
   <div class="poster">
     <div class="header">
-      <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
-      <div class="hero-title">Register for <span>Sehaj Path</span></div>
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Sehaj <span>Path</span></div>
+        <div class="hero-sub1">Embrace the Wisdom of Shri Guru Granth Sahib Ji - at Your Own Pace</div>
+        <div class="hero-sub">Sehaj Path is the gradual, unhurried, cover-to-cover reading of the Sri Guru Granth Sahib
+          Ji, the eternal Guru and central scripture of Sikhism.</div>
+      </div>
     </div>
 
     <div class="wrapper">
