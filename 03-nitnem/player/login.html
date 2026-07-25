@@ -260,25 +260,28 @@
       <div class="hero-title">Sehaj Path - <span>Login</span></div>
     </div>
 
-    <div class="wrapper">
-      <h2>Welcome Back</h2>
-      
-      <div class="input-group">
-        <label for="identifier">Email or Mobile Number</label>
-        <input id="identifier" type="text" placeholder="e.g. name@example.com or 9876543210">
-      </div>
+    <!-- Wrapped in a form with autocomplete="off" -->
+    <form id="loginForm" autocomplete="off" onsubmit="event.preventDefault(); login();">
+      <div class="wrapper">
+        <h2>Welcome Back</h2>
+        
+        <div class="input-group">
+          <label for="identifier">Email or Mobile Number</label>
+          <input id="identifier" type="text" placeholder="e.g. name@example.com or 9876543210" autocomplete="off" value="" />
+        </div>
 
-      <div class="input-group">
-        <label for="password">Password</label>
-        <input id="password" type="password" placeholder="Enter your password">
-      </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="Enter your password" autocomplete="new-password" value="" />
+        </div>
 
-      <button onclick="login()" class="btn-action">Secure Login</button>
+        <button type="submit" class="btn-action">Secure Login</button>
 
-      <div class="nav-link-wrap">
-        <a class="nav-link" href="signup.html">New user? Create an Account</a>
+        <div class="nav-link-wrap">
+          <a class="nav-link" href="signup.html">New user? Create an Account</a>
+        </div>
       </div>
-    </div>
+    </form>
 
     <div class="footer">
       <div class="footer-content">
@@ -295,6 +298,15 @@
   </div>
 
   <script>
+    // Clear all fields automatically when the page loads or re-appears from history
+    window.addEventListener("pageshow", function () {
+      const loginForm = document.getElementById("loginForm");
+      if (loginForm) loginForm.reset();
+      
+      document.getElementById("identifier").value = "";
+      document.getElementById("password").value = "";
+    });
+
     const firebaseConfig = {
       apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
       authDomain: "sikhsinindia-67a6b.firebaseapp.com",
@@ -321,12 +333,10 @@
       let query;
 
       if (isEmail) {
-        // Search Firestore matching the Email field
         query = db.collection("sehaj_path")
           .where("email_login", "==", identifierInput.toLowerCase())
           .where("password", "==", passInput);
       } else {
-        // Search Firestore matching the Mobile field (stripping non-digits)
         const phoneNum = Number(identifierInput.replace(/[^\d]/g, ''));
         query = db.collection("sehaj_path")
           .where("mobile", "==", phoneNum)

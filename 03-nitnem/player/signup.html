@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHNTFNW14H"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -21,7 +21,7 @@
     * {
       box-sizing: border-box;
       margin: 0;
-      padding: 0
+      padding: 0;
     }
 
     :root {
@@ -54,10 +54,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: var(--navy);
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
       padding: 24px;
       text-align: center;
-      background: linear-gradient(160deg, var(--navy), #1a2a5e);
     }
 
     .logo-img {
@@ -104,7 +103,7 @@
       background: #fff;
       color: var(--navy);
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     input:focus {
@@ -251,9 +250,9 @@
     <div class="wrapper">
       <h2>Create Account for Sehaj Path</h2>
       
-      <input id="email" type="email" placeholder="Email Address">
-      <input id="phone" type="tel" placeholder="Mobile Number">
-      <input id="password" type="password" placeholder="Create Password">
+      <input id="email" type="email" placeholder="Email Address" required>
+      <input id="phone" type="tel" placeholder="Mobile Number" required>
+      <input id="password" type="password" placeholder="Create Password" required>
 
       <button onclick="signup()" class="btn-action">Register Profile</button>
 
@@ -321,7 +320,7 @@
         await db.collection("sehaj_path").add({
           date_time: formattedDate,
           email_login: email,
-          mobile: Number(phone),
+          mobile: phone,
           password: password,
           last_track: 1,
           last_time: 0,

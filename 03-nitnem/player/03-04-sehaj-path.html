@@ -546,7 +546,7 @@
       </div>
 
       <div class="now-playing-banner">
-        <span>🎵 Now Playing: <strong id="playing-file-name">None (Select a track)</strong></span>
+        <span>🎵 Now Playing: <strong id="currentTrackNum">None (Select a track)</strong></span>
         <span>🔢 Position: <strong id="currentTrackNum">None (Select a track)</strong></span>
       </div>
 
@@ -928,44 +928,50 @@
       updateButtonVisuals();
     }
 
-    async function initAuthTracker() {
-      const savedEmail = localStorage.getItem('loggedInUserEmail');
-      let userEmailVal = savedEmail || "Guest Session";
+ async function initAuthTracker() {
+  const savedEmail = localStorage.getItem('loggedInUserEmail');
+  let userEmailVal = savedEmail || "Guest Session";
 
-      if (emailDisplay) emailDisplay.innerText = userEmailVal;
-      if (emailDisplayBadge) emailDisplayBadge.innerText = userEmailVal;
+  if (emailDisplay) emailDisplay.innerText = userEmailVal;
+  if (emailDisplayBadge) emailDisplayBadge.innerText = userEmailVal;
 
-      if (loggedInDocId) {
-        try {
-          const docSnap = await db.collection("sehaj_path").doc(loggedInDocId).get();
-          if (docSnap.exists) {
-            const data = docSnap.data();
-            if (data.last_track) {
-              const trackNum = parseInt(data.last_track);
-              const rawTime = parseFloat(data.last_time || 0);
-              const rewindTime = Math.max(0, rawTime - 10);
-              const vId = data.last_video_id || trackCodes[trackNum];
+  if (loggedInDocId) {
+    try {
+      const docSnap = await db.collection("sehaj_path").doc(loggedInDocId).get();
+      if (docSnap.exists) {
+        const data = docSnap.data();
+        if (data.last_track) {
+          const trackNum = parseInt(data.last_track);
+          const rawTime = parseFloat(data.last_time || 0);
+          const rewindTime = Math.max(0, rawTime - 10);
+          const vId = data.last_video_id || trackCodes[trackNum];
 
-              currentTrackNum = trackNum;
-              currentVideoId = vId;
+          currentTrackNum = trackNum;
+          currentVideoId = vId;
 
-              localStorage.setItem('sehaj_path_track', trackNum);
-              localStorage.setItem('sehaj_path_time', rewindTime);
-              localStorage.setItem('sehaj_path_video_id', vId);
+          localStorage.setItem('sehaj_path_track', trackNum);
+          localStorage.setItem('sehaj_path_time', rewindTime);
+          localStorage.setItem('sehaj_path_video_id', vId);
 
-              updateSehajPathProgress(trackNum, rewindTime);
-              statusText.innerText = `Loaded saved position from cloud: Track ${trackNum} at ${Math.floor(rewindTime)}s (10s rewind applied).`;
-              trackNumDisplay.innerText = "Video Track " + trackNum;
+          updateSehajPathProgress(trackNum, rewindTime);
+          statusText.innerText = `Loaded saved position from cloud: Track ${trackNum} at ${Math.floor(rewindTime)}s (10s rewind applied).`;
+          trackNumDisplay.innerText = "Video Track " + trackNum;
 
-              resumeBtn.innerText = `🔄 Resume Session: Track ${trackNum}`;
-              resumeBtn.style.display = 'inline-flex';
-            }
+          resumeBtn.innerText = `🔄 Resume Session: Track ${trackNum}`;
+          resumeBtn.style.display = 'inline-flex';
+
+          // Set Pause button to green visually upon login completion
+          if (globalPauseBtn && globalPlayBtn) {
+            globalPauseBtn.classList.add('is-active-green');
+            globalPlayBtn.classList.remove('is-active-green');
           }
-        } catch (e) {
-          console.error("Error loading user cloud state: ", e);
         }
       }
+    } catch (e) {
+      console.error("Error loading user cloud state: ", e);
     }
+  }
+}
 
     function updateButtonVisuals() {
       let isPlaying = false;
