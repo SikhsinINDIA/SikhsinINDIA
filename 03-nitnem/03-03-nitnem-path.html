@@ -58,7 +58,17 @@
       background-color: #000;
       color: #FF9933;
       text-align: center;
-      /* center all cells by default */
+    }
+
+    /* Target all links inside table cells */
+    td a {
+      color: #FFFFFF !important;
+      text-decoration: underline;
+      transition: color 0.2s ease;
+    }
+
+    td a:hover {
+      color: #FF9933 !important;
     }
 
     th {
@@ -97,18 +107,18 @@
     .back-button:hover {
       background-color: #FF8C00;
     }
-      h1 {
-        text-align: center;
-        font-size: 36px;
-        margin-bottom: 20px;
-      }
+
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
 
     /* Responsive styles */
     @media (max-width: 768px) {
       body {
         padding: 20px 10px;
       }
-
 
       table,
       thead,
@@ -136,10 +146,8 @@
         padding: 10px;
         position: relative;
         text-align: center;
-        /* center by default */
       }
 
-      /* Justify Importance column on mobile too */
       td:nth-child(3) {
         text-align: center;
       }
