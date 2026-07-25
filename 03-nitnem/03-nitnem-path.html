@@ -1,148 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <!-- Google tag (gtag.js) -->
+
+  <!-- Google tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-LHNTFNW14H');
   </script>
 
-      <!-- Meta description -->
-  <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
-   <link rel="canonical" href="https://sikhsinindia.com/03-nitnem/03-nitnem-path.html">
-  <!-- Meta keywords -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Nitnem Path | SikhsInIndia.com</title>
+
+  <meta name="description"
+    content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
   <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
-
-  <!-- Author -->
   <meta name="author" content="Sikhs in India">
-
-  <!-- Robots -->
   <meta name="robots" content="index, follow">
 
-  <!-- Open Graph meta tags for social media -->
+  <link rel="canonical" href="https://sikhsinindia.com/03-nitnem/03-nitnem-path.html">
+
   <meta property="og:title" content="Sikh Heritage & Traditions | Gurudwaras, Guru Nanak & Sikh Scriptures, Sikhs in India: History, Culture & Present | SikhsInIndia.com">
   <meta property="og:description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
   <meta property="og:url" content="https://sikhsinindia.com/03-nitnem/03-nitnem-path.html">
   <meta property="og:type" content="website">
 
-  
-    <meta charset="UTF-8">
-    <title>Nitnem Path | SikhsInIndia.com </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            background-color: black;
-            color: #FF9933; /* Kesari (orange/yellow) */
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #FF9933; /* Brighter kesari */
-            margin-bottom: 40px;
-            font-size: 5    4px;
-        }
-        /* Container for image + button pairs */
-        .btn-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-        /* Images styling */
-        .btn-row img {
-            width: auto;       /* fixed width */
-            height: 98px;      /* fixed height */
-            object-fit: cover;  /* maintain aspect ratio, crop if needed */
-            margin-right: 10px; /* space between image and button */
-            border-radius: 10px;
-            border: 2px solid #FF9933;
-        }
-        /* Buttons styling */
-        .button {
-            background-color: #FF9933;
-            height: 100px; 
-            width: 150px; 
-            color: black;
-            border: none;
-            padding: 15px 30px;
-            font-size: 24px;
-            cursor: pointer;
-            border-radius: 8px;
-            min-width: 220px;
-            text-align: center;
-        }
-        .button:hover {
-            background-color: #FF9933; /* Darker orange */
-        }
-        /* Back button styling */
-        .back-button {
-            width: 150px;
-            height: 40px;
-            font-size: 24px;
-            background-color: #FF9933;
-            color: black;
-            margin: 40px auto 0 auto;
-            display: block;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .back-button:hover {
-            background-color: #FF9933;
-        }
-    </style>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+    }
+
+    /* GLOBAL IMAGE FIX */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* PAGE */
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
+
+    /* MAIN CONTAINER */
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 90px;
+      width: auto;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+      object-fit: contain;
+    }
+
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 6vw, 54px);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* GOLD INTRO BAR */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 15px;
+      text-align: center;
+    }
+
+    /* CONTENT AREA */
+    .wrapper {
+      padding: 32px 36px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 28px;
+    }
+
+    /* GRID MENU FOR PATH OPTIONS */
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 22px;
+    }
+
+    .path-card {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 2px solid rgba(0, 0, 0, 0.08);
+      border-radius: 10px;
+      padding: 14px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+    }
+
+    .path-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(247, 148, 29, 0.25);
+    }
+
+    /* IMAGE UN-CLIPPING FIX */
+    .path-card img {
+      width: 110px;
+      height: 85px;
+      object-fit: contain;
+      background: var(--navy);
+      border-radius: 8px;
+      border: 2px solid var(--gold);
+      flex-shrink: 0;
+      padding: 2px;
+    }
+
+    .path-card-info {
+      margin-left: 16px;
+      flex: 1;
+    }
+
+    .path-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .path-card-desc {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    .path-card-arrow {
+      color: var(--gold);
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: 10px;
+      transition: transform 0.2s;
+    }
+
+    .path-card:hover .path-card-arrow {
+      transform: translateX(4px);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: 36px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* BACK BUTTON — 3D GOLD */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+      filter: brightness(0.93);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* MOBILE RESPONSIVE ADJUSTMENTS */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .wrapper {
+        padding: 20px 14px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .path-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .path-card img {
+        width: 90px;
+        height: 75px;
+      }
+
+      .path-card-title {
+        font-size: 17px;
+      }
+
+      .path-card-desc {
+        font-size: 12px;
+      }
+
+      .footer {
+        padding: 14px 12px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+
+      .btn-back {
+        font-size: 9px;
+        padding: 8px 14px;
+      }
+
+      .footer-left,
+      .footer-right {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <h1>Nitnem Path</h1>
+  <div class="poster">
 
+    <!-- HEADER -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Nitnem <span>Path</span></div>
+        <div class="hero-sub">Daily Devotional Prayers & Scriptures</div>
+      </div>
+    </div>
 
-         <div class="btn-row">
-                <a href="../03-nitnem/03-01-mool-mantra.html">
-                    <img src="../pictures/03-nitnem/mool-mantra.jpg" alt="Sikh Gurus" style="cursor:pointer;">
-                </a>
+    <!-- INTRO BAR -->
+    <div class="intro">
+      Sacred Verses for Daily Reflection, Discipline, & Spiritual Connection
     </div>
-     <div class="btn-row">
-                <a href="../03-nitnem/03-02-ardaas.html">
-                    <img src="../pictures/03-nitnem/ardaas.jpg" alt="Sikh Gurus" style="cursor:pointer;">
-                </a>
-    </div>
-     <div class="btn-row">
-                <a href="../03-nitnem/03-03-nitnem-path.html">
-                    <img src="../pictures/03-nitnem/nitnem-nitnem.jpg" alt="Sikh Gurus" style="cursor:pointer;">
-                </a>
-    </div>
-     <div class="btn-row">
-                <a href="../03-nitnem/03-04-Sehaj-Path/Sehaj-Path.html">
-                    <img src="../pictures/03-nitnem/sehaj-path.jpg" alt="Sehaj Path" style="cursor:pointer;">
-                </a>
-    </div>
-    <!-- br' -->
-<a href="../index.html" class="back-button" 
-   style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
-          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
-          line-height: 35px; border-radius: 8px; text-decoration: none; 
-          border: 2px solid black;">
-    <b>Back</b>
-  </a>
 
-    <!-- Back Button -->
-    <!-- <button type="button" onclick="goBack()" class="back-button">
-        <b>Back</b>
-    </button>
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="wrapper">
 
-    <script>
-        function goBack() 
-        {
-            window.location.href = "../index.html";
-        }
-    </script> -->
+      <h1>Select Nitnem Section</h1>
+
+      <div class="path-grid">
+
+        <!-- MOOL MANTRA -->
+        <a href="../03-nitnem/03-01-mool-mantra.html" class="path-card">
+          <img src="../pictures/03-nitnem/mool-mantra.jpg" alt="Mool Mantra">
+          <div class="path-card-info">
+            <div class="path-card-title">Mool Mantar</div>
+            <div class="path-card-desc">The root verse and supreme essence of Sikh theology.</div>
+          </div>
+          <div class="path-card-arrow">➔</div>
+        </a>
+
+        <!-- ARDAAS -->
+        <a href="../03-nitnem/03-02-ardaas.html" class="path-card">
+          <img src="../pictures/03-nitnem/ardaas.jpg" alt="Ardaas">
+          <div class="path-card-info">
+            <div class="path-card-title">Ardaas</div>
+            <div class="path-card-desc">The solemn Sikh prayer of supplication and remembrance.</div>
+          </div>
+          <div class="path-card-arrow">➔</div>
+        </a>
+
+        <!-- NITNEM PATH PDFS -->
+        <a href="../03-nitnem/03-03-nitnem-path.html" class="path-card">
+          <img src="../pictures/03-nitnem/nitnem-nitnem.jpg" alt="Nitnem Path PDFs">
+          <div class="path-card-info">
+            <div class="path-card-title">Nitnem Path PDFs</div>
+            <div class="path-card-desc">Downloadable Banis in Punjabi, Hindi, and English.</div>
+          </div>
+          <div class="path-card-arrow">➔</div>
+        </a>
+
+        <!-- SEHAJ PATH -->
+        <a href="../03-nitnem/03-04-Sehaj-Path/Sehaj-Path.html" class="path-card">
+          <img src="../pictures/03-nitnem/sehaj-path.jpg" alt="Sehaj Path">
+          <div class="path-card-info">
+            <div class="path-card-title">Sehaj Path</div>
+            <div class="path-card-desc">Complete devotional reading of Sri Guru Granth Sahib Ji.</div>
+          </div>
+          <div class="path-card-arrow">➔</div>
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="../index.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back to Sikhs in India
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </div>
+
+  </div>
 
 </body>
+
 </html>
