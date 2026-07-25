@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHNTFNW14H"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -13,7 +13,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <title>Sikhs in India | Register Account</title>
+  <title>Sikhs in India | Sehaj Path </title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
@@ -54,9 +54,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+      background: var(--navy);
       padding: 24px;
       text-align: center;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
     }
 
     .logo-img {
@@ -93,6 +94,18 @@
       margin-bottom: 8px;
     }
 
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .input-group label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
     input {
       width: 100%;
       padding: 14px 16px;
@@ -103,7 +116,7 @@
       background: #fff;
       color: var(--navy);
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color 0.2s;
     }
 
     input:focus {
@@ -244,22 +257,31 @@
   <div class="poster">
     <div class="header">
       <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
-      <div class="hero-title">Register for <span>Sehaj Path</span></div>
+      <div class="hero-title">Sehaj Path - <span>Login</span></div>
     </div>
 
-    <div class="wrapper">
-      <h2>Create Account for Sehaj Path</h2>
-      
-      <input id="email" type="email" placeholder="Email Address" required>
-      <input id="phone" type="tel" placeholder="Mobile Number" required>
-      <input id="password" type="password" placeholder="Create Password" required>
+    <!-- Wrapped in a form with autocomplete="off" -->
+    <form id="loginForm" autocomplete="off" onsubmit="event.preventDefault(); login();">
+      <div class="wrapper">
+        <h2>Welcome Back</h2>
+        
+        <div class="input-group">
+          <label for="identifier">Email or Mobile Number</label>
+          <input id="identifier" type="text" placeholder="e.g. name@example.com or 9876543210" autocomplete="off" value="" />
+        </div>
 
-      <button onclick="signup()" class="btn-action">Register Profile</button>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="Enter your password" autocomplete="new-password" value="" />
+        </div>
 
-      <div class="nav-link-wrap">
-        <a class="nav-link" href="login.html">Already have an account? Login here</a>
+        <button type="submit" class="btn-action">Secure Login</button>
+
+        <div class="nav-link-wrap">
+          <a class="nav-link" href="signup.html">New user? Create an Account</a>
+        </div>
       </div>
-    </div>
+    </form>
 
     <div class="footer">
       <div class="footer-content">
@@ -276,6 +298,15 @@
   </div>
 
   <script>
+    // Clear all fields automatically when the page loads or re-appears from history
+    window.addEventListener("pageshow", function () {
+      const loginForm = document.getElementById("loginForm");
+      if (loginForm) loginForm.reset();
+      
+      document.getElementById("identifier").value = "";
+      document.getElementById("password").value = "";
+    });
+
     const firebaseConfig = {
       apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
       authDomain: "sikhsinindia-67a6b.firebaseapp.com",
@@ -289,49 +320,46 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    async function signup() {
-      const email = document.getElementById("email").value.trim().toLowerCase();
-      const phone = document.getElementById("phone").value.trim();
-      const password = document.getElementById("password").value;
+    async function login() {
+      const identifierInput = document.getElementById("identifier").value.trim();
+      const passInput = document.getElementById("password").value;
 
-      if (!email || !phone || !password) {
-        alert("Please fill out all registration fields (Email, Mobile, and Password).");
+      if (!identifierInput || !passInput) {
+        alert("Please enter both your Email/Mobile Number and Password.");
         return;
       }
 
+      const isEmail = identifierInput.includes("@");
+      let query;
+
+      if (isEmail) {
+        query = db.collection("sehaj_path")
+          .where("email_login", "==", identifierInput.toLowerCase())
+          .where("password", "==", passInput);
+      } else {
+        const phoneNum = Number(identifierInput.replace(/[^\d]/g, ''));
+        query = db.collection("sehaj_path")
+          .where("mobile", "==", phoneNum)
+          .where("password", "==", passInput);
+      }
+
       try {
-        const existingDoc = await db.collection("sehaj_path")
-          .where("email_login", "==", email)
-          .get();
+        const querySnapshot = await query.get();
 
-        if (!existingDoc.empty) {
-          alert("An account with this email address already exists.");
-          return;
+        if (!querySnapshot.empty) {
+          const userDoc = querySnapshot.docs[0];
+          const userData = userDoc.data();
+
+          localStorage.setItem("loggedInDocId", userDoc.id);
+          localStorage.setItem("loggedInUserEmail", userData.email_login || "");
+          localStorage.setItem("userMobile", userData.mobile || "");
+
+          window.location.href = "03-04-sehaj-path.html";
+        } else {
+          alert("Invalid Email/Mobile or Password.");
         }
-
-        const now = new Date();
-        const formattedDate = now.getFullYear() + "-" +
-          String(now.getMonth() + 1).padStart(2, '0') + "-" +
-          String(now.getDate()).padStart(2, '0') + " " +
-          String(now.getHours()).padStart(2, '0') + ":" +
-          String(now.getMinutes()).padStart(2, '0') + ":" +
-          String(now.getSeconds()).padStart(2, '0');
-
-        await db.collection("sehaj_path").add({
-          date_time: formattedDate,
-          email_login: email,
-          mobile: phone,
-          password: password,
-          last_track: 1,
-          last_time: 0,
-          last_video_id: "PlRXmCN9xUM",
-          last_updated: firebase.firestore.FieldValue.serverTimestamp()
-        });
-
-        alert("Registration successful! Please login.");
-        window.location.href = "login.html";
       } catch (error) {
-        alert("Registration Failed: " + error.message);
+        alert("Authentication Failed: " + error.message);
       }
     }
   </script>
