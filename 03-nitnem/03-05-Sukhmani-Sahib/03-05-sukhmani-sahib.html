@@ -156,13 +156,13 @@
     }
 
     .now-playing-banner span:first-child {
-      text-align: left;
+      text-align: center;
     }
 
-    .now-playing-banner span:last-child {
+    /* .now-playing-banner span:last-child {
       text-align: right;
       white-space: nowrap;
-    }
+    } */
 
     .now-playing-banner strong {
       color: var(--navy-mid);
@@ -495,7 +495,7 @@
     </div>
 
     <div class="intro" id="title">
-      <span>📧 Session: <strong id="user-email">Checking Auth...</strong></span>
+      <span>📧 Session: <strong id="user-email">Guest Session</strong></span>
     </div>
 
     <div class="wrapper playerBox" id="playerBox">
@@ -517,13 +517,14 @@
       </div>
 
       <div class="now-playing-banner">
-        <span>🎵 Now Playing: <strong id="currentTrackNum">None (Select a track)</strong></span>
+        <!-- <span>🎵 Now Playing: <strong id="currentTrackNum">Video Track 1</strong></span> -->
         <span>🔢 Position: <strong id="currentPositionTime">0:00 / 0:00</strong></span>
       </div>
 
       <div class="progress-card">
         <div class="progress-stats-row">
           <span>✨ Sukhmani Sahib Completed: <strong id="percent-completed" style="color: #2e7d32;">0.00%</strong></span>
+
           <span>⌛ Remaining: <strong id="percent-remaining" style="color: #c62828;">100.00%</strong></span>
         </div>
         <div class="progress-bar-container">
@@ -588,8 +589,8 @@
     const percentRemainingEl = document.getElementById('percent-remaining');
     const progressBarFill = document.getElementById('progress-bar-fill');
 
-    let currentTrackNum = null;
-    let currentVideoId = null;
+    let currentTrackNum = 1;
+    let currentVideoId = 'KJ8D_ObQNzQ';
     let activePlayerTrackNum = null;
     let activePlayerVideoId = null;
     let lastSavedTime = 0;
@@ -770,6 +771,14 @@
 
       if (emailDisplay) emailDisplay.innerText = userEmailVal;
 
+      const savedTrack = localStorage.getItem('sukhmani_sahib_track') || 1;
+      const savedTime = localStorage.getItem('sukhmani_sahib_time') || 0;
+      currentTrackNum = parseInt(savedTrack);
+      currentVideoId = localStorage.getItem('sukhmani_sahib_video_id') || trackCodes[currentTrackNum];
+
+      updateSukhmaniSahibProgress(currentTrackNum, savedTime);
+      trackNumDisplay.innerText = "Video Track " + currentTrackNum;
+
       if (loggedInDocId) {
         try {
           const docSnap = await db.collection("sukhmani_sahib").doc(loggedInDocId).get();
@@ -790,11 +799,6 @@
 
               updateSukhmaniSahibProgress(trackNum, rewindTime);
               trackNumDisplay.innerText = "Video Track " + trackNum;
-
-              if (globalPauseBtn && globalPlayBtn) {
-                globalPauseBtn.classList.add('is-active-green');
-                globalPlayBtn.classList.remove('is-active-green');
-              }
             }
           }
         } catch (e) {
@@ -874,18 +878,21 @@
       });
     }
 
-    document.getElementById('track-list-container').addEventListener('click', (e) => {
-      const targetBtn = e.target.closest('.track-item-btn');
-      if (!targetBtn) return;
+    const trackContainer = document.getElementById('track-list-container');
+    if (trackContainer) {
+      trackContainer.addEventListener('click', (e) => {
+        const targetBtn = e.target.closest('.track-item-btn');
+        if (!targetBtn) return;
 
-      const trackNum = parseInt(targetBtn.getAttribute('data-track'));
-      const type = targetBtn.getAttribute('data-type');
-      const source = targetBtn.getAttribute('data-source');
+        const trackNum = parseInt(targetBtn.getAttribute('data-track'));
+        const type = targetBtn.getAttribute('data-type');
+        const source = targetBtn.getAttribute('data-source');
 
-      if (type === 'video') {
-        playVideoTrack(trackNum, source, 0);
-      }
-    });
+        if (type === 'video') {
+          playVideoTrack(trackNum, source, 0);
+        }
+      });
+    }
 
     window.addEventListener('DOMContentLoaded', () => {
       initAuthTracker();
