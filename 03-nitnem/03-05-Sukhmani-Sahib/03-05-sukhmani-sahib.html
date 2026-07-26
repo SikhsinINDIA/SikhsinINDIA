@@ -159,11 +159,6 @@
       text-align: center;
     }
 
-    /* .now-playing-banner span:last-child {
-      text-align: right;
-      white-space: nowrap;
-    } */
-
     .now-playing-banner strong {
       color: var(--navy-mid);
       word-break: break-all;
@@ -513,11 +508,11 @@
 
       <div class="control-row">
         <button id="btn-global-play" class="btn-control">▶️ Play</button>
-        <button id="btn-global-pause" class="btn-control">⏸️ Pause</button>
+        <!-- Added initial green highlight class on pause button -->
+        <button id="btn-global-pause" class="btn-control is-active-green">⏸️ Pause</button>
       </div>
 
       <div class="now-playing-banner">
-        <!-- <span>🎵 Now Playing: <strong id="currentTrackNum">Video Track 1</strong></span> -->
         <span>🔢 Position: <strong id="currentPositionTime">0:00 / 0:00</strong></span>
       </div>
 
@@ -545,10 +540,6 @@
           <div class="footer-right">Preserving Sikh Heritage & Unity</div>
         </div>
       </div>
-
-      <!-- <div class="track-list" id="track-list-container">
-        <button class="track-item-btn" data-track="1" data-type="video" data-source="KJ8D_ObQNzQ">▶️ Video 1 </button>
-      </div> -->
 
     </div>
   </div>
@@ -686,7 +677,7 @@
 
     function onPlayerStateChange(event) {
       if (event.data === YT.PlayerState.PLAYING) {
-        trackNumDisplay.innerText = "Video Track " + currentTrackNum;
+        if (trackNumDisplay) trackNumDisplay.innerText = "Video Track " + currentTrackNum;
         updateButtonVisuals();
       } else if (event.data === YT.PlayerState.PAUSED) {
         if (ytPlayer && typeof ytPlayer.getCurrentTime === 'function') {
@@ -710,7 +701,7 @@
         if (nextVideoId) {
           playVideoTrack(nextTrackNum, nextVideoId, 0);
         } else {
-          trackNumDisplay.innerText = "None (Select a track)";
+          if (trackNumDisplay) trackNumDisplay.innerText = "None (Select a track)";
           updateSukhmaniSahibProgress(1, trackDurations[1]);
           currentTrackNum = null;
           currentVideoId = null;
@@ -777,7 +768,7 @@
       currentVideoId = localStorage.getItem('sukhmani_sahib_video_id') || trackCodes[currentTrackNum];
 
       updateSukhmaniSahibProgress(currentTrackNum, savedTime);
-      trackNumDisplay.innerText = "Video Track " + currentTrackNum;
+      if (trackNumDisplay) trackNumDisplay.innerText = "Video Track " + currentTrackNum;
 
       if (loggedInDocId) {
         try {
@@ -798,13 +789,16 @@
               localStorage.setItem('sukhmani_sahib_video_id', vId);
 
               updateSukhmaniSahibProgress(trackNum, rewindTime);
-              trackNumDisplay.innerText = "Video Track " + trackNum;
+              if (trackNumDisplay) trackNumDisplay.innerText = "Video Track " + trackNum;
             }
           }
         } catch (e) {
           console.error("Error loading user cloud state: ", e);
         }
       }
+
+      // Explicitly trigger button states so Pause starts highlighted green
+      updateButtonVisuals();
     }
 
     function formatTime(seconds) {
@@ -829,26 +823,26 @@
         const state = ytPlayer.getPlayerState();
         if (state === YT.PlayerState.PLAYING) {
           isPlaying = true;
-        } else if (state === YT.PlayerState.PAUSED) {
+        } else {
           isPaused = true;
         }
       } else if (audioPlayer.src) {
         if (!audioPlayer.paused) {
           isPlaying = true;
-        } else if (audioPlayer.currentTime > 0) {
+        } else {
           isPaused = true;
         }
+      } else {
+        // Unstarted / initial state defaults to paused
+        isPaused = true;
       }
 
       if (isPlaying) {
         globalPlayBtn.classList.add('is-active-green');
         globalPauseBtn.classList.remove('is-active-green');
-      } else if (isPaused) {
+      } else {
         globalPauseBtn.classList.add('is-active-green');
         globalPlayBtn.classList.remove('is-active-green');
-      } else {
-        globalPlayBtn.classList.remove('is-active-green');
-        globalPauseBtn.classList.remove('is-active-green');
       }
 
       buttons.forEach((btn) => {
@@ -939,6 +933,7 @@
           }
         }
       }
+      updateButtonVisuals();
     });
 
     setInterval(() => {
