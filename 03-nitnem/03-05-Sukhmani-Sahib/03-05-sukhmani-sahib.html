@@ -559,13 +559,13 @@
     const db = firebase.firestore();
 
     const trackDurations = {
-      1: 7527
+      1: 4718
     };
 
     const TOTAL_SUKHMANI_SAHIB_DURATION = Object.values(trackDurations).reduce((acc, curr) => acc + curr, 0);
 
     const trackCodes = {
-      1: 'KJ8D_ObQNzQ'
+      1: 'v=-OI4X__krvU&t'      
     };
 
     const audioPlayer = document.getElementById('audio-player');
@@ -581,7 +581,7 @@
     const progressBarFill = document.getElementById('progress-bar-fill');
 
     let currentTrackNum = 1;
-    let currentVideoId = 'KJ8D_ObQNzQ';
+    let currentVideoId = 'v=-OI4X__krvU&t';
     let activePlayerTrackNum = null;
     let activePlayerVideoId = null;
     let lastSavedTime = 0;
@@ -654,7 +654,7 @@
       ytPlayer = new YT.Player('youtube-player', {
         height: '100%',
         width: '100%',
-        videoId: 'KJ8D_ObQNzQ',
+        videoId: 'v=-OI4X__krvU&t',
         playerVars: {
           'autoplay': 0,
           'controls': 1,
