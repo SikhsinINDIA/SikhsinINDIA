@@ -565,7 +565,7 @@
     const TOTAL_SUKHMANI_SAHIB_DURATION = Object.values(trackDurations).reduce((acc, curr) => acc + curr, 0);
 
     const trackCodes = {
-      1: 'v=-OI4X__krvU&t'      
+      1: '-OI4X__krvU'      
     };
 
     const audioPlayer = document.getElementById('audio-player');
@@ -581,7 +581,7 @@
     const progressBarFill = document.getElementById('progress-bar-fill');
 
     let currentTrackNum = 1;
-    let currentVideoId = 'v=-OI4X__krvU&t';
+    let currentVideoId = '-OI4X__krvU';
     let activePlayerTrackNum = null;
     let activePlayerVideoId = null;
     let lastSavedTime = 0;
@@ -654,7 +654,7 @@
       ytPlayer = new YT.Player('youtube-player', {
         height: '100%',
         width: '100%',
-        videoId: 'v=-OI4X__krvU&t',
+        videoId: '-OI4X__krvU',
         playerVars: {
           'autoplay': 0,
           'controls': 1,
