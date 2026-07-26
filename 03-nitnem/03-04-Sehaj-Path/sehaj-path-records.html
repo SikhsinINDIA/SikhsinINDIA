@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Sikhs in India | Sehaj Path Records</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Firebase App & Firestore SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
+
+    .poster {
+      width: 100%;
+      max-width: 1000px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .header {
+      background: var(--navy);
+      text-align: center;
+      padding: 28px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 6vw, 42px);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .wrapper {
+      padding: 28px;
+    }
+
+    /* Table Styles */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      background: var(--white);
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    th {
+      background-color: var(--navy-mid);
+      color: #fff;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    tr:hover {
+      background-color: #f9f6f0;
+    }
+
+    .loading-text, .no-data {
+      text-align: center;
+      padding: 20px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .badge {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="poster">
+    <div class="header">
+      <div class="hero-title">Sehaj Path <span>Records</span></div>
+    </div>
+
+    <div class="wrapper">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Doc ID</th>
+              <th>Track / Ang</th>
+              <th>Last Position</th>
+              <th>Video ID</th>
+              <th>Last Updated</th>
+            </tr>
+          </thead>
+          <tbody id="records-table-body">
+            <tr>
+              <td colspan="5" class="loading-text">Loading records from Sehaj Path...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b",
+      measurementId: "G-LHNTFNW14H"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    function formatSeconds(seconds) {
+      if (!seconds || isNaN(seconds)) return "0:00";
+      const sec = Math.floor(seconds);
+      const h = Math.floor(sec / 3600);
+      const m = Math.floor((sec % 3600) / 60);
+      const s = sec % 60;
+      if (h > 0) {
+        return `${h}:${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+      }
+      return `${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    function formatDate(timestamp) {
+      if (!timestamp) return "N/A";
+      const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+      return date.toLocaleString();
+    }
+
+    // Fetch and display records from 'sehaj_path' collection
+    function loadSehajPathRecords() {
+      const tableBody = document.getElementById('records-table-body');
+
+      db.collection("sehaj_path").onSnapshot((snapshot) => {
+        if (snapshot.empty) {
+          tableBody.innerHTML = `<tr><td colspan="5" class="no-data">No records found in sehaj_path.</td></tr>`;
+          return;
+        }
+
+        let html = '';
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+
+          const docId = doc.id;
+          const track = data.last_track || data.ang || 'N/A';
+          const time = data.last_time ? formatSeconds(data.last_time) : '0:00';
+          const videoId = data.last_video_id || data.video_id || 'N/A';
+          const updated = formatDate(data.last_updated);
+
+          html += `
+            <tr>
+              <td><strong>${docId}</strong></td>
+              <td><span class="badge">${track}</span></td>
+              <td>${time}</td>
+              <td><code>${videoId}</code></td>
+              <td>${updated}</td>
+            </tr>
+          `;
+        });
+
+        tableBody.innerHTML = html;
+      }, (error) => {
+        console.error("Error fetching sehaj_path records: ", error);
+        tableBody.innerHTML = `<tr><td colspan="5" class="no-data" style="color: red;">Failed to load records. Check console/permissions.</td></tr>`;
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSehajPathRecords();
+    });
+  </script>
+</body>
+
+</html>
