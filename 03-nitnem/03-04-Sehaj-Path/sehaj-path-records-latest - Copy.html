@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Sikhs in India | Sehaj Path &amp; Sukhmani Sahib Records</title>
+  <title>Sikhs in India | Sehaj Path Records</title>
 
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
@@ -151,35 +151,6 @@
     </div>
   </div>
 
-  <div class="poster" style="margin-top: 24px;">
-    <div class="header">
-      <div class="hero-title">Sukhmani <span>Sahib</span></div>
-    </div>
-
-    <div class="wrapper">
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>S.No</th>
-              <th>Login / Email ID</th>
-              <th>Track / Ang</th>
-              <th>Last Position</th>
-              <th>Video ID</th>
-              <th>Created On</th>
-              <th>Last Updated</th>
-            </tr>
-          </thead>
-          <tbody id="sukhmani-table-body">
-            <tr>
-              <td colspan="7" class="loading-text">Loading records from Sukhmani Sahib...</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
@@ -220,14 +191,13 @@
       return isNaN(d.getTime()) ? null : d;
     }
 
-    // Fetch and display records from any collection into the given table body,
-    // excluding sensitive fields such as password.
-    function loadRecords(collectionName, tableBodyId, emptyLabel) {
-      const tableBody = document.getElementById(tableBodyId);
+    // Fetch and display records from 'sehaj_path' collection
+    function loadSehajPathRecords() {
+      const tableBody = document.getElementById('records-table-body');
 
-      db.collection(collectionName).onSnapshot((snapshot) => {
+      db.collection("sehaj_path").onSnapshot((snapshot) => {
         if (snapshot.empty) {
-          tableBody.innerHTML = `<tr><td colspan="7" class="no-data">No records found in ${emptyLabel}.</td></tr>`;
+          tableBody.innerHTML = `<tr><td colspan="7" class="no-data">No records found in sehaj_path.</td></tr>`;
           return;
         }
 
@@ -279,14 +249,13 @@
 
         tableBody.innerHTML = html;
       }, (error) => {
-        console.error(`Error fetching ${collectionName} records: `, error);
+        console.error("Error fetching sehaj_path records: ", error);
         tableBody.innerHTML = `<tr><td colspan="7" class="no-data" style="color: red;">Failed to load records. Check console/permissions.</td></tr>`;
       });
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      loadRecords('sehaj_path', 'records-table-body', 'sehaj_path');
-      loadRecords('sukhmani_sahib', 'sukhmani-table-body', 'sukhmani_sahib');
+      loadSehajPathRecords();
     });
   </script>
 </body>
