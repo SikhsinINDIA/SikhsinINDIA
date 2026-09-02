@@ -179,7 +179,7 @@
                         <option value="" disabled selected>-- Select Category --</option>
                         <option value="Gurgaddi Diwas">Gurgaddi Diwas</option>
                         <option value="Celebration">Celebration</option>
-                                                <option value="Shaheedi Diwas">Shaheedi Diwas</option>
+                        <option value="Shaheedi Diwas">Shaheedi Diwas</option>
                         <option value="Joti Jot Diwas">Joti Jot Diwas</option>
                         <option value="Prakash Purab">Prakash Purab</option>
                         <option value="Historical">Historical</option>
@@ -248,11 +248,12 @@
 
         let eventsCache = [];
 
-        // Fetch all events from Firestore
+        // Fetch all events from Firestore sorted by Date ascending
         async function fetchCalendarEvents() {
             const calendarList = document.getElementById("calendarList");
             try {
-                const snapshot = await db.collection("Calendar").get();
+                // Fetch sorted directly from Firestore query
+                const snapshot = await db.collection("Calendar").orderBy("Date", "asc").get();
 
                 if (snapshot.empty) {
                     calendarList.innerHTML = "<tr><td colspan='4' style='text-align:center;'>No events found.</td></tr>";
@@ -265,10 +266,34 @@
                     ...doc.data()
                 }));
 
+                // Guarantee JavaScript client-side sorting in ascending order
+                eventsCache.sort((a, b) => {
+                    const dateA = a.Date && a.Date.toDate ? a.Date.toDate() : new Date(a.Date || 0);
+                    const dateB = b.Date && b.Date.toDate ? b.Date.toDate() : new Date(b.Date || 0);
+                    return dateA - dateB;
+                });
+
                 renderTable();
             } catch (error) {
                 console.error("Error fetching data:", error);
-                calendarList.innerHTML = "<tr><td colspan='4' style='text-align:center;'>Error loading data.</td></tr>";
+                // Fallback fetch if index is missing for orderBy
+                try {
+                    const fallbackSnapshot = await db.collection("Calendar").get();
+                    eventsCache = fallbackSnapshot.docs.map(doc => ({
+                        id: doc.id,
+                        ...doc.data()
+                    }));
+                    
+                    eventsCache.sort((a, b) => {
+                        const dateA = a.Date && a.Date.toDate ? a.Date.toDate() : new Date(a.Date || 0);
+                        const dateB = b.Date && b.Date.toDate ? b.Date.toDate() : new Date(b.Date || 0);
+                        return dateA - dateB;
+                    });
+
+                    renderTable();
+                } catch (err) {
+                    calendarList.innerHTML = "<tr><td colspan='4' style='text-align:center;'>Error loading data.</td></tr>";
+                }
             }
         }
 

@@ -108,62 +108,48 @@
   }
   .nav-links-bar .nav-link:hover { color: var(--orange) !important; }
 
-  /* ── CONTINUOUS SEAMLESS MARQUEE (MOBILE FIXED) ── */
   /* ── CONTINUOUS SEAMLESS MARQUEE ── */
-.marquee-bar {
-  background: #001538;
-  color: #ffffff;
-  border-top: 2px solid var(--orange);
-  border-bottom: 2px solid var(--orange);
-  font-size: 13px;
-  padding: 6px 0;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  /* Force GPU layer */
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-}
-
-.marquee-wrapper {
-  display: flex;
-  width: max-content;
-  will-change: transform;
-  /* Hardware acceleration helpers */
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  /* Animation (will be controlled more reliably from JS) */
-  animation: marquee-scroll 25s linear infinite;
-  -webkit-animation: marquee-scroll 25s linear infinite;
-}
-
-/* Pause only on real desktop hover */
-@media (hover: hover) and (pointer: fine) {
-  .marquee-bar:hover .marquee-wrapper {
-    animation-play-state: paused;
-    -webkit-animation-play-state: paused;
+  .marquee-bar {
+    background: #001538;
+    color: #ffffff;
+    border-top: 2px solid var(--orange);
+    border-bottom: 2px solid var(--orange);
+    font-size: 13px;
+    padding: 6px 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
   }
-}
 
-@keyframes marquee-scroll {
-  0%   { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); }
-}
+  .marquee-wrapper {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    animation: marquee-scroll 25s linear infinite;
+    -webkit-animation: marquee-scroll 25s linear infinite;
+  }
 
-@-webkit-keyframes marquee-scroll {
-  0%   { -webkit-transform: translate3d(0, 0, 0); }
-  100% { -webkit-transform: translate3d(-50%, 0, 0); }
-}
+  @media (hover: hover) and (pointer: fine) {
+    .marquee-bar:hover .marquee-wrapper {
+      animation-play-state: paused;
+      -webkit-animation-play-state: paused;
+    }
+  }
+
+  @keyframes marquee-scroll {
+    0%   { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+  }
 
   @-webkit-keyframes marquee-scroll {
-    0% {
-      -webkit-transform: translate3d(0%, 0, 0);
-    }
-    100% {
-      -webkit-transform: translate3d(-50%, 0, 0);
-    }
+    0%   { -webkit-transform: translate3d(0, 0, 0); }
+    100% { -webkit-transform: translate3d(-50%, 0, 0); }
   }
 
   .marquee-block {
@@ -204,6 +190,19 @@
   .marquee-item span.item-cat {
     color: #72b3ff;
     font-weight: 700;
+  }
+
+  /* ── EVENT TODAY BADGE ── */
+  .badge-today {
+    background: #FFD700;
+    color: #000000;
+    font-weight: 900;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-right: 6px;
+    text-transform: uppercase;
+    font-size: 10.5px;
+    letter-spacing: 0.5px;
   }
 
   /* ── CRISP FAST-BLINKING EVENT STYLE ── */
@@ -660,6 +659,7 @@
 
                       eventsHTML += `
                           <span class="marquee-item ${isToday ? 'blinking-event' : ''}">
+                              ${isToday ? '<span class="badge-today">Event Today</span>' : ''}
                               <span class="item-date">${formattedDate}</span> &nbsp;-&nbsp; 
                               <span class="item-cat">${category}</span> &nbsp;-&nbsp; 
                               ${description}
@@ -668,24 +668,19 @@
               });
           }
 
-       // ... existing code that builds eventsHTML ...
+          marqueeWrapper.innerHTML = `
+              <div class="marquee-block">${eventsHTML}</div>
+              <div class="marquee-block">${eventsHTML}</div>
+          `;
 
-marqueeWrapper.innerHTML = `
-  <div class="marquee-block">${eventsHTML}</div>
-  <div class="marquee-block">${eventsHTML}</div>
-`;
+          // Force animation restart after dynamic content loads
+          marqueeWrapper.style.animation = 'none';
+          marqueeWrapper.style.webkitAnimation = 'none';
 
-// === CRITICAL MOBILE FIX ===
-// Force animation restart after dynamic content is loaded
-marqueeWrapper.style.animation = 'none';
-marqueeWrapper.style.webkitAnimation = 'none';
+          void marqueeWrapper.offsetWidth;
 
-// Trigger reflow
-void marqueeWrapper.offsetWidth;
-
-// Re-apply animation
-marqueeWrapper.style.animation = 'marquee-scroll 25s linear infinite';
-marqueeWrapper.style.webkitAnimation = 'marquee-scroll 25s linear infinite';
+          marqueeWrapper.style.animation = 'marquee-scroll 25s linear infinite';
+          marqueeWrapper.style.webkitAnimation = 'marquee-scroll 25s linear infinite';
 
       } catch (error) {
           console.error("Error fetching Calendar records: ", error);
