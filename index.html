@@ -109,43 +109,53 @@
   .nav-links-bar .nav-link:hover { color: var(--orange) !important; }
 
   /* ── CONTINUOUS SEAMLESS MARQUEE (MOBILE FIXED) ── */
-  .marquee-bar {
-    background: #001538;
-    color: #ffffff;
-    border-top: 2px solid var(--orange);
-    border-bottom: 2px solid var(--orange);
-    font-size: 13px;
-    padding: 6px 0;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-  }
+  /* ── CONTINUOUS SEAMLESS MARQUEE ── */
+.marquee-bar {
+  background: #001538;
+  color: #ffffff;
+  border-top: 2px solid var(--orange);
+  border-bottom: 2px solid var(--orange);
+  font-size: 13px;
+  padding: 6px 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  /* Force GPU layer */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
 
-  .marquee-wrapper {
-    display: flex;
-    width: max-content;
-    animation: marquee-scroll 25s linear infinite;
-    -webkit-animation: marquee-scroll 25s linear infinite;
-    will-change: transform;
-  }
+.marquee-wrapper {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  /* Hardware acceleration helpers */
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Animation (will be controlled more reliably from JS) */
+  animation: marquee-scroll 25s linear infinite;
+  -webkit-animation: marquee-scroll 25s linear infinite;
+}
 
-  /* Pause scrolling on hover for desktop ONLY (prevents mobile touch freeze) */
-  @media (hover: hover) and (pointer: fine) {
-    .marquee-bar:hover .marquee-wrapper {
-      animation-play-state: paused;
-    }
+/* Pause only on real desktop hover */
+@media (hover: hover) and (pointer: fine) {
+  .marquee-bar:hover .marquee-wrapper {
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
   }
+}
 
-  @keyframes marquee-scroll {
-    0% {
-      transform: translate3d(0%, 0, 0);
-      -webkit-transform: translate3d(0%, 0, 0);
-    }
-    100% {
-      transform: translate3d(-50%, 0, 0);
-      -webkit-transform: translate3d(-50%, 0, 0);
-    }
-  }
+@keyframes marquee-scroll {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+@-webkit-keyframes marquee-scroll {
+  0%   { -webkit-transform: translate3d(0, 0, 0); }
+  100% { -webkit-transform: translate3d(-50%, 0, 0); }
+}
 
   @-webkit-keyframes marquee-scroll {
     0% {
@@ -658,10 +668,24 @@
               });
           }
 
-          marqueeWrapper.innerHTML = `
-              <div class="marquee-block">${eventsHTML}</div>
-              <div class="marquee-block">${eventsHTML}</div>
-          `;
+       // ... existing code that builds eventsHTML ...
+
+marqueeWrapper.innerHTML = `
+  <div class="marquee-block">${eventsHTML}</div>
+  <div class="marquee-block">${eventsHTML}</div>
+`;
+
+// === CRITICAL MOBILE FIX ===
+// Force animation restart after dynamic content is loaded
+marqueeWrapper.style.animation = 'none';
+marqueeWrapper.style.webkitAnimation = 'none';
+
+// Trigger reflow
+void marqueeWrapper.offsetWidth;
+
+// Re-apply animation
+marqueeWrapper.style.animation = 'marquee-scroll 25s linear infinite';
+marqueeWrapper.style.webkitAnimation = 'marquee-scroll 25s linear infinite';
 
       } catch (error) {
           console.error("Error fetching Calendar records: ", error);
