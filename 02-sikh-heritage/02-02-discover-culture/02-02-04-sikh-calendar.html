@@ -204,7 +204,6 @@
 
     th {
       background-color: var(--navy);
-      color: #white;
       color: #ffffff;
       font-family: 'Playfair Display', serif;
       font-weight: 700;
@@ -212,6 +211,63 @@
 
     tr:nth-child(even) {
       background-color: rgba(13, 27, 62, 0.02);
+    }
+
+    /* GOOGLE DRIVE PDF CONTAINER */
+    .pdf-container {
+      margin: 25px 0 15px 0;
+      padding: 18px;
+      background: #fff;
+      border: 2px dashed var(--gold);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .pdf-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--navy);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .pdf-viewer {
+      width: 100%;
+      height: 480px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #ffffff;
+      background: var(--navy);
+      border: 2px solid var(--gold);
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-download:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .btn-download svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
     }
 
     /* ── FOOTER ── */
@@ -323,6 +379,10 @@
         max-width: 100%;
       }
 
+      .pdf-viewer {
+        height: 320px;
+      }
+
       .footer {
         padding: 14px 12px;
       }
@@ -372,103 +432,102 @@
     <div class="wrapper">
 
       <!-- SCROLLABLE CHRONICLE GRAPHICS -->
-      <img src="../../pictures/02-sikh-heritage/02-05-sikh-calendar/Sikh Calendar 2026-1.jpg" alt="Sikh Calendar Leaflet 1" class="calendar-graphic">
+      <!-- <img src="../../pictures/02-sikh-heritage/02-05-sikh-calendar/Sikh Calendar 2026-1.jpg" alt="Sikh Calendar Leaflet 1" class="calendar-graphic">
       <img src="../../pictures/02-sikh-heritage/02-05-sikh-calendar/Sikh Calendar 2026-2.jpg" alt="Sikh Calendar Leaflet 2" class="calendar-graphic">
-      <img src="../../pictures/02-sikh-heritage/02-05-sikh-calendar/Sikh Calendar 2026-3.jpg" alt="Sikh Calendar Leaflet 3" class="calendar-graphic">
+      <img src="../../pictures/02-sikh-heritage/02-05-sikh-calendar/Sikh Calendar 2026-3.jpg" alt="Sikh Calendar Leaflet 3" class="calendar-graphic"> -->
 
       <h1>The Sikh Calendar & Historical Dates</h1>
 
       <section>
         <h2>Sikh Calendar - Nanakshahi</h2>
-        <p>Until the 13th of March, 1998, the Sikhs used a Hindu lunar calendar to determine their feast days[cite: 13]. They now use their own Nanakshahi calendar which started on 14 March 1999 Gregorian (1 Chet 531 Nanakshahi) and aligns with the Gregorian calendar[cite: 13]. The era (1 Chet 1 Nanakshahi) marks the birth of the 1st Guru, Nanak Dev Ji, in the Punjab in 1469[cite: 13]. Although influenced by the Hindu Solar Calendar, the Sikh Organization affirms that Nanakshahi dates are fixed relative to the Gregorian calendar[cite: 13].</p>
+        <p>Until the 13th of March, 1998, the Sikhs used a Hindu lunar calendar to determine their feast days. They now use their own Nanakshahi calendar which started on 14 March 1999 Gregorian (1 Chet 531 Nanakshahi) and aligns with the Gregorian calendar. The era (1 Chet 1 Nanakshahi) marks the birth of the 1st Guru, Nanak Dev Ji, in the Punjab in 1469. Although influenced by the Hindu Solar Calendar, the Sikh Organization affirms that Nanakshahi dates are fixed relative to the Gregorian calendar.</p>
       </section>
 
       <section>
         <h2>Baramaha - The Twelve Months of the Sikh Year</h2>
-        <p>Baramaha is the name of a poetic composition in the Sri Guru Granth Sahib that mentions the twelve Indian months[cite: 13]. Guru Arjan Dev Ji composed a well-known Baramaha in Raag Majh, which is often recited in Gurudwaras on Sangrand[cite: 13]. Guru Nanak Dev Ji also composed a Baramaha in Raag Tukhari[cite: 13]. These compositions use the changing moods of nature throughout the year to symbolize spiritual emotions and yearnings of the soul[cite: 13].</p>
+        <p>Baramaha is the name of a poetic composition in the Sri Guru Granth Sahib that mentions the twelve Indian months. Guru Arjan Dev Ji composed a well-known Baramaha in Raag Majh, which is often recited in Gurudwaras on Sangrand. Guru Nanak Dev Ji also composed a Baramaha in Raag Tukhari. These compositions use the changing moods of nature throughout the year to symbolize spiritual emotions and yearnings of the soul.</p>
 
         <div class="table-responsive">
           <table>
             <thead>
               <tr>
                 <th>Sikh Month</th>
-                <th>Begins (Gregorian Date)</th>
+                <th>Begins (Gregorian Date 2026)</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>Chet</td><td>March 14[cite: 13]</td></tr>
-              <tr><td>Vaisakh</td><td>April 14[cite: 13]</td></tr>
-              <tr><td>Jeth</td><td>May 15[cite: 13]</td></tr>
-              <tr><td>Harh</td><td>June 15[cite: 13]</td></tr>
-              <tr><td>Sawan</td><td>July 16[cite: 13]</td></tr>
-              <tr><td>Bhadon</td><td>August 16[cite: 13]</td></tr>
-              <tr><td>Asu</td><td>September 15[cite: 13]</td></tr>
-              <tr><td>Katik</td><td>October 15[cite: 13]</td></tr>
-              <tr><td>Maghar</td><td>November 14[cite: 13]</td></tr>
-              <tr><td>Poh</td><td>December 14[cite: 13]</td></tr>
-              <tr><td>Magh</td><td>January 13[cite: 13]</td></tr>
-              <tr><td>Phagan</td><td>February 12[cite: 13]</td></tr>
+              <tr><td>Chet</td><td>March 14</td></tr>
+              <tr><td>Vaisakh</td><td>April 14</td></tr>
+              <tr><td>Jeth</td><td>May 15</td></tr>
+              <tr><td>Harh</td><td>June 15</td></tr>
+              <tr><td>Sawan</td><td>July 16</td></tr>
+              <tr><td>Bhadon</td><td>August 16</td></tr>
+              <tr><td>Asu</td><td>September 15</td></tr>
+              <tr><td>Katik</td><td>October 15</td></tr>
+              <tr><td>Maghar</td><td>November 14</td></tr>
+              <tr><td>Poh</td><td>December 14</td></tr>
+              <tr><td>Magh</td><td>January 13 (2027)</td></tr>
+              <tr><td>Phagan</td><td>February 12 (2027)</td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
       <section>
-        <h2>Nanakshahi Calendar (Fixed Dates) Gurpurabs</h2>
+        <h2>Nanakshahi Calendar Gurpurabs (2026–2027)</h2>
         <div class="table-responsive">
           <table>
             <thead>
               <tr>
                 <th>Gurpurab Guru Sahib</th>
                 <th>Nanakshahi</th>
-                <th>Common Era</th>
+                <th>Common Era (2026–2027)</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>Parkash Utsav Guru Gobind Singh Sahib</td><td>23 Poh</td><td>05-Jan[cite: 13]</td></tr>
-              <tr><td>Parkash Utsav Guru Har Rai Sahib</td><td>19 Magh</td><td>31-Jan[cite: 13]</td></tr>
-              <tr><td>Gurgadi Guru Har Rai Sahib</td><td>1 Chet</td><td>14-Mar[cite: 13]</td></tr>
-              <tr><td>Nanakshahi New Year</td><td>1 Chet</td><td>14-Mar[cite: 13]</td></tr>
-              <tr><td>Hola Muhalla</td><td>1 Chet</td><td>14-Mar[cite: 13]</td></tr>
-              <tr><td>Jotijot Guru Hargobind Sahib</td><td>6 Chet</td><td>19-Mar[cite: 13]</td></tr>
-              <tr><td>Parkash Guru Nanak Sahib *</td><td>1 Vaisakh</td><td>14-Apr[cite: 13]</td></tr>
-              <tr><td>Khalsa Day – Vaisakhi</td><td>1 Vaisakh</td><td>14-Apr[cite: 13]</td></tr>
-              <tr><td>Jotijot Guru Angad Sahib</td><td>3 Vaisakh</td><td>16-Apr[cite: 13]</td></tr>
-              <tr><td>Gurgadi Guru Amar Das Sahib</td><td>3 Vaisakh</td><td>16-Apr[cite: 13]</td></tr>
-              <tr><td>Jotijot Guru Harkrishan Sahib</td><td>3 Vaisakh</td><td>16-Apr[cite: 13]</td></tr>
-              <tr><td>Gurgadi Guru Tegh Bahadur Sahib</td><td>3 Vaisakh</td><td>16-Apr[cite: 13]</td></tr>
-              <tr><td>Parkash Guru Angad Sahib</td><td>5 Vaisakh</td><td>18-Apr[cite: 13]</td></tr>
-              <tr><td>Parkash Guru Tegh Bahadur Sahib</td><td>5 Vaisakh</td><td>18-Apr[cite: 13]</td></tr>
-              <tr><td>Parkash Guru Arjun Sahib</td><td>19 Vaisakh</td><td>02-May[cite: 13]</td></tr>
-              <tr><td>Parkash Guru Amar Das Sahib</td><td>9 Jeth</td><td>23-May[cite: 13]</td></tr>
-              <tr><td>Gurgadi Guru Hargobind Sahib</td><td>28 Jeth</td><td>11-Jun[cite: 13]</td></tr>
-              <tr><td>Martyrdom Guru Arjun Sahib</td><td>2 Harh</td><td>16-Jun[cite: 13]</td></tr>
-              <tr><td>Parkash Guru Hargobind Sahib</td><td>21 Harh</td><td>05-Jul[cite: 13]</td></tr>
-              <tr><td>Miri-Piri Day Guru Hargobind Sahib</td><td>6 Sawan</td><td>21-Jul[cite: 13]</td></tr>
-              <tr><td>Parkash Guru Harkrishan Sahib</td><td>8 Sawan</td><td>23-Jul[cite: 13]</td></tr>
-              <tr><td>First Parkash Guru Granth Sahib</td><td>17 Bhadon</td><td>01-Sep[cite: 13]</td></tr>
-              <tr><td>Jotijot Guru Amar Das Sahib</td><td>2 Asu</td><td>16-Sep[cite: 13]</td></tr>
-              <tr><td>Gurgadi Guru Ramdas Sahib</td><td>2 Asu</td><td>16-Sep[cite: 13]</td></tr>
-              <tr><td>Jotijot Guru Ramdas Sahib</td><td>2 Asu</td><td>16-Sep[cite: 13]</td></tr>
-              <tr><td>Gurgadi Guru Arjun Sahib</td><td>2 Asu</td><td>16-Sep[cite: 13]</td></tr>
-              <tr><td>Gurgadi Guru Angad Sahib</td><td>4 Asu</td><td>18-Sep[cite: 13]</td></tr>
-              <tr><td>Jotijot Guru Nanak Sahib</td><td>8 Asu</td><td>22-Sep[cite: 13]</td></tr>
-              <tr><td>Parkash Guru Ramdas Sahib</td><td>25 Asu</td><td>09-Oct[cite: 13]</td></tr>
-              <tr><td>Jotijot Guru Har Rai Sahib</td><td>6 Katik</td><td>20-Oct[cite: 13]</td></tr>
-              <tr><td>Gurgadi Guru Harkrishan Sahib</td><td>6 Katik</td><td>20-Oct[cite: 13]</td></tr>
-              <tr><td>Gurgadi Guru Granth Sahib</td><td>6 Katik</td><td>20-Oct[cite: 13]</td></tr>
-              <tr><td>Jotijot Guru Gobind Singh Sahib</td><td>7 Katik</td><td>21-Oct[cite: 13]</td></tr>
-              <tr><td>Gurgadi Guru Gobind Singh Sahib</td><td>11 Maghar</td><td>24-Nov[cite: 13]</td></tr>
-              <tr><td>Martyrdom Guru Tegh Bahadur Sahib</td><td>11 Maghar</td><td>24-Nov[cite: 13]</td></tr>
-              <tr><td>Martyrdom Elder Sahibzadas</td><td>8 Poh</td><td>21-Dec[cite: 13]</td></tr>
-              <tr><td>Martyrdom Younger Sahibzadas</td><td>13 Poh</td><td>26-Dec[cite: 13]</td></tr>
+              <tr><td>Parkash Utsav Guru Gobind Singh Sahib</td><td>10 Poh</td><td>25-Dec-2026</td></tr>
+              <tr><td>Parkash Utsav Guru Har Rai Sahib</td><td>19 Magh</td><td>31-Jan-2027</td></tr>
+              <tr><td>Gurgadi Guru Har Rai Sahib</td><td>1 Chet</td><td>14-Mar-2026</td></tr>
+              <tr><td>Nanakshahi New Year</td><td>1 Chet</td><td>14-Mar-2026</td></tr>
+              <tr><td>Jotijot Guru Hargobind Sahib</td><td>6 Chet</td><td>19-Mar-2026</td></tr>
+              <tr><td>Parkash Guru Nanak Sahib *</td><td>1 Vaisakh</td><td>14-Apr-2026</td></tr>
+              <tr><td>Khalsa Day – Vaisakhi</td><td>1 Vaisakh</td><td>14-Apr-2026</td></tr>
+              <tr><td>Jotijot Guru Angad Sahib</td><td>3 Vaisakh</td><td>16-Apr-2026</td></tr>
+              <tr><td>Gurgadi Guru Amar Das Sahib</td><td>3 Vaisakh</td><td>16-Apr-2026</td></tr>
+              <tr><td>Jotijot Guru Harkrishan Sahib</td><td>3 Vaisakh</td><td>16-Apr-2026</td></tr>
+              <tr><td>Gurgadi Guru Tegh Bahadur Sahib</td><td>3 Vaisakh</td><td>16-Apr-2026</td></tr>
+              <tr><td>Parkash Guru Angad Sahib</td><td>5 Vaisakh</td><td>18-Apr-2026</td></tr>
+              <tr><td>Parkash Guru Tegh Bahadur Sahib</td><td>5 Vaisakh</td><td>18-Apr-2026</td></tr>
+              <tr><td>Parkash Guru Arjun Sahib</td><td>19 Vaisakh</td><td>02-May-2026</td></tr>
+              <tr><td>Parkash Guru Amar Das Sahib</td><td>9 Jeth</td><td>23-May-2026</td></tr>
+              <tr><td>Gurgadi Guru Hargobind Sahib</td><td>28 Jeth</td><td>11-Jun-2026</td></tr>
+              <tr><td>Martyrdom Guru Arjun Sahib</td><td>2 Harh</td><td>16-Jun-2026</td></tr>
+              <tr><td>Parkash Guru Hargobind Sahib</td><td>21 Harh</td><td>05-Jul-2026</td></tr>
+              <tr><td>Miri-Piri Day Guru Hargobind Sahib</td><td>6 Sawan</td><td>21-Jul-2026</td></tr>
+              <tr><td>Parkash Guru Harkrishan Sahib</td><td>8 Sawan</td><td>23-Jul-2026</td></tr>
+              <tr><td>First Parkash Guru Granth Sahib</td><td>17 Bhadon</td><td>01-Sep-2026</td></tr>
+              <tr><td>Jotijot Guru Amar Das Sahib</td><td>2 Asu</td><td>16-Sep-2026</td></tr>
+              <tr><td>Gurgadi Guru Ramdas Sahib</td><td>2 Asu</td><td>16-Sep-2026</td></tr>
+              <tr><td>Jotijot Guru Ramdas Sahib</td><td>2 Asu</td><td>16-Sep-2026</td></tr>
+              <tr><td>Gurgadi Guru Arjun Sahib</td><td>2 Asu</td><td>16-Sep-2026</td></tr>
+              <tr><td>Gurgadi Guru Angad Sahib</td><td>4 Asu</td><td>18-Sep-2026</td></tr>
+              <tr><td>Jotijot Guru Nanak Sahib</td><td>8 Asu</td><td>22-Sep-2026</td></tr>
+              <tr><td>Parkash Guru Ramdas Sahib</td><td>25 Asu</td><td>09-Oct-2026</td></tr>
+              <tr><td>Jotijot Guru Har Rai Sahib</td><td>6 Katik</td><td>20-Oct-2026</td></tr>
+              <tr><td>Gurgadi Guru Harkrishan Sahib</td><td>6 Katik</td><td>20-Oct-2026</td></tr>
+              <tr><td>Gurgadi Guru Granth Sahib</td><td>6 Katik</td><td>20-Oct-2026</td></tr>
+              <tr><td>Jotijot Guru Gobind Singh Sahib</td><td>7 Katik</td><td>21-Oct-2026</td></tr>
+              <tr><td>Gurgadi Guru Gobind Singh Sahib</td><td>11 Maghar</td><td>24-Nov-2026</td></tr>
+              <tr><td>Martyrdom Guru Tegh Bahadur Sahib</td><td>11 Maghar</td><td>24-Nov-2026</td></tr>
+              <tr><td>Martyrdom Elder Sahibzadas</td><td>8 Poh</td><td>23-Dec-2026</td></tr>
+              <tr><td>Martyrdom Younger Sahibzadas</td><td>13 Poh</td><td>28-Dec-2026</td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
       <section>
-        <h2>Other Important Days</h2>
+        <h2>Other Important Days (2026–2027)</h2>
         <div class="table-responsive">
           <table>
             <thead>
@@ -479,46 +538,44 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td rowspan="4">Chet</td><td>1 Chet / 14 March</td><td>Nanakshahi New Year Day[cite: 13]</td></tr>
-              <tr><td>2 Chet / 15 March</td><td>S. Baghel Singh’s conquest of Delhi[cite: 13]</td></tr>
-              <tr><td>12 Chet / 25 March</td><td>Shaheedi Bhai Subeg Singh, Bhai Shahbaz Singh[cite: 13]</td></tr>
-              <tr><td>27 Chet / 9 April</td><td>Birthday Sahibzada Jujhar Singh Ji[cite: 13]</td></tr>
-              <tr><td>Vaisakh</td><td>1 Vaisakh / 14 April</td><td>Vaisakhi – Birth Anniversary of Khalsa[cite: 13]</td></tr>
-              <tr><td rowspan="3">Jeth</td><td>3 Jeth / 17 May</td><td>Chhota Ghallughara[cite: 13]</td></tr>
-              <tr><td>21 Jeth / 4 June</td><td>1984 Ghallughara (Attack on Sri Akal Takht Sahib)[cite: 13]</td></tr>
-              <tr><td>23 Jeth / 6 June</td><td>Shaheedi Sant Baba Jarnail Singh Ji[cite: 13]</td></tr>
-              <tr><td rowspan="3">Harh</td><td>11 Harh / 25 June</td><td>Shaheedi Baba Banda Singh Ji Bahadur[cite: 13]</td></tr>
-              <tr><td>15 Harh / 29 June</td><td>Barsi Maharaja Ranjit Singh Ji[cite: 13]</td></tr>
-              <tr><td>25 Harh / 9 July</td><td>Shaheedi Bhai Mani Singh Ji[cite: 13]</td></tr>
-              <tr><td rowspan="2">Sawan</td><td>1 Sawan / 16 July</td><td>Shaheedi Bhai Taru Singh Ji[cite: 13]</td></tr>
-              <tr><td>24 Sawan / 8 August</td><td>Morcha Guru Ka Bagh[cite: 13]</td></tr>
-              <tr><td>Bhadon</td><td>15 Bhadon / 30 August</td><td>Mela Baba Bakala[cite: 13]</td></tr>
-              <tr><td rowspan="2">Assu</td><td>17 Assu / 1 October</td><td>Foundation Day Singh Sabha[cite: 13]</td></tr>
-              <tr><td>21 Assu / 5 October</td><td>Mela Beerh Baba Buddha Ji[cite: 13]</td></tr>
-              <tr><td rowspan="5">Katik</td><td>8 Katik / 22 October</td><td>Khalsa Darbar[cite: 13]</td></tr>
-              <tr><td>14 Katik / 28 October</td><td>Foundation Day Chief Khalsa Diwan[cite: 13]</td></tr>
-              <tr><td>14 Katik / 28 October</td><td>Saka Panja Sahib[cite: 13]</td></tr>
-              <tr><td>18 Katik / 1 November</td><td>Punjabi Suba Day[cite: 13]</td></tr>
-              <tr><td>30 Katik / 13 November</td><td>Shaheedi Baba Deep Singh Ji Shaheed[cite: 13]</td></tr>
-              <tr><td rowspan="6">Maghar</td><td>1 Maghar / 14 November</td><td>Foundation Day SGPC[cite: 13]</td></tr>
-              <tr><td>11 Maghar / 24 November</td><td>Shaheedi Bhai Mati Das Ji, and Bhai Sati Das Ji[cite: 13]</td></tr>
-              <tr><td>15 Maghar / 28 November</td><td>Birthday Sahibzada Zorawar Singh Ji[cite: 13]</td></tr>
-              <tr><td>19 Maghar / 2 December</td><td>Shaheedi Baba Gurbakhsh Singh Ji[cite: 13]</td></tr>
-              <tr><td>29 Maghar / 12 December</td><td>Birthday Sahibzada Fateh Singh Ji[cite: 13]</td></tr>
-              <tr><td>30 Maghar / 13 December</td><td>Foundation Day Shromani Akali Dal[cite: 13]</td></tr>
-              <tr><td rowspan="3">Poh</td><td>8 Poh / 21 December</td><td>Shaheedi Sahibzada Ajit Singh, Sahibzada Jujhar Singh[cite: 13]</td></tr>
-              <tr><td>8 Poh / 21 December</td><td>Shaheedi Baba Jeevan Singh Ji[cite: 13]</td></tr>
-              <tr><td>13 Poh / 26 December</td><td>Shaheedi Sahibzada Zorawar Singh, Sahibzada Fateh Singh, and Mata Gujri Ji’s passing away[cite: 13]</td></tr>
-              <tr><td rowspan="6">Magh</td><td>1 Magh / 13 January</td><td>Mela Maghi Muktsar[cite: 13]</td></tr>
-              <tr><td>1 Magh / 13 January</td><td>Foundation Day Sri Harimandar Sahib[cite: 13]</td></tr>
-              <tr><td>7 Magh / 19 January</td><td>Morcha for Keys[cite: 13]</td></tr>
-              <tr><td>25 Magh / 6 February</td><td>Mela Kottha Sahib[cite: 13]</td></tr>
-              <tr><td>27 Magh / 8 February</td><td>Great Holocaust[cite: 13]</td></tr>
-              <tr><td>30 Magh / 11 February</td><td>Birthday Sahibzada Ajit Singh Ji[cite: 13]</td></tr>
-              <tr><td rowspan="4">Phagun</td><td>10 Phagun / 21 February</td><td>Saka Nankana Sahib[cite: 13]</td></tr>
-              <tr><td>10 Phagun / 21 February</td><td>Jaito Morcha[cite: 13]</td></tr>
-              <tr><td>10 Phagun / 21 February</td><td>Saka Nankana Sahib[cite: 13]</td></tr>
-              <tr><td>10 Phagun / 21 February</td><td>Jaito Morcha[cite: 13]</td></tr>
+              <tr><td rowspan="4">Chet</td><td>1 Chet / 14 March 2026</td><td>Nanakshahi New Year Day</td></tr>
+              <tr><td>2 Chet / 15 March 2026</td><td>S. Baghel Singh’s conquest of Delhi</td></tr>
+              <tr><td>12 Chet / 25 March 2026</td><td>Shaheedi Bhai Subeg Singh, Bhai Shahbaz Singh</td></tr>
+              <tr><td>27 Chet / 9 April 2026</td><td>Birthday Sahibzada Jujhar Singh Ji</td></tr>
+              <tr><td>Vaisakh</td><td>1 Vaisakh / 14 April 2026</td><td>Vaisakhi – Birth Anniversary of Khalsa</td></tr>
+              <tr><td rowspan="3">Jeth</td><td>3 Jeth / 17 May 2026</td><td>Chhota Ghallughara</td></tr>
+              <tr><td>21 Jeth / 4 June 2026</td><td>1984 Ghallughara (Attack on Sri Akal Takht Sahib)</td></tr>
+              <tr><td>23 Jeth / 6 June 2026</td><td>Shaheedi Sant Baba Jarnail Singh Ji</td></tr>
+              <tr><td rowspan="3">Harh</td><td>11 Harh / 25 June 2026</td><td>Shaheedi Baba Banda Singh Ji Bahadur</td></tr>
+              <tr><td>15 Harh / 29 June 2026</td><td>Barsi Maharaja Ranjit Singh Ji</td></tr>
+              <tr><td>25 Harh / 9 July 2026</td><td>Shaheedi Bhai Mani Singh Ji</td></tr>
+              <tr><td rowspan="2">Sawan</td><td>1 Sawan / 16 July 2026</td><td>Shaheedi Bhai Taru Singh Ji</td></tr>
+              <tr><td>24 Sawan / 8 August 2026</td><td>Morcha Guru Ka Bagh</td></tr>
+              <tr><td>Bhadon</td><td>12 Bhadon / 28 August 2026</td><td>Mela Baba Bakala</td></tr>
+              <tr><td rowspan="2">Assu</td><td>17 Assu / 1 October 2026</td><td>Foundation Day Singh Sabha</td></tr>
+              <tr><td>21 Assu / 5 October 2026</td><td>Mela Beerh Baba Buddha Ji</td></tr>
+              <tr><td rowspan="5">Katik</td><td>8 Katik / 22 October 2026</td><td>Khalsa Darbar</td></tr>
+              <tr><td>14 Katik / 28 October 2026</td><td>Foundation Day Chief Khalsa Diwan</td></tr>
+              <tr><td>14 Katik / 28 October 2026</td><td>Saka Panja Sahib</td></tr>
+              <tr><td>18 Katik / 1 November 2026</td><td>Punjabi Suba Day</td></tr>
+              <tr><td>30 Katik / 13 November 2026</td><td>Shaheedi Baba Deep Singh Ji Shaheed</td></tr>
+              <tr><td rowspan="6">Maghar</td><td>1 Maghar / 14 November 2026</td><td>Foundation Day SGPC</td></tr>
+              <tr><td>11 Maghar / 24 November 2026</td><td>Shaheedi Bhai Mati Das Ji, and Bhai Sati Das Ji</td></tr>
+              <tr><td>15 Maghar / 28 November 2026</td><td>Birthday Sahibzada Zorawar Singh Ji</td></tr>
+              <tr><td>19 Maghar / 2 December 2026</td><td>Shaheedi Baba Gurbakhsh Singh Ji</td></tr>
+              <tr><td>29 Maghar / 12 December 2026</td><td>Birthday Sahibzada Fateh Singh Ji</td></tr>
+              <tr><td>30 Maghar / 13 December 2026</td><td>Foundation Day Shromani Akali Dal</td></tr>
+              <tr><td rowspan="3">Poh</td><td>8 Poh / 23 December 2026</td><td>Shaheedi Sahibzada Ajit Singh, Sahibzada Jujhar Singh</td></tr>
+              <tr><td>2 Poh / 17 December 2026</td><td>Shaheedi Baba Jeevan Singh Ji</td></tr>
+              <tr><td>13 Poh / 28 December 2026</td><td>Shaheedi Sahibzada Zorawar Singh, Sahibzada Fateh Singh, and Mata Gujri Ji’s passing away</td></tr>
+              <tr><td rowspan="6">Magh</td><td>1 Magh / 14 January 2027</td><td>Mela Maghi Muktsar</td></tr>
+              <tr><td>1 Magh / 14 January 2027</td><td>Foundation Day Sri Harimandar Sahib</td></tr>
+              <tr><td>7 Magh / 20 January 2027</td><td>Morcha for Keys</td></tr>
+              <tr><td>25 Magh / 7 February 2027</td><td>Mela Kottha Sahib</td></tr>
+              <tr><td>27 Magh / 9 February 2027</td><td>Great Holocaust</td></tr>
+              <tr><td>30 Magh / 12 February 2027</td><td>Birthday Sahibzada Ajit Singh Ji</td></tr>
+              <tr><td rowspan="2">Phagun</td><td>10 Phagun / 21 February 2027</td><td>Saka Nankana Sahib</td></tr>
+              <tr><td>10 Phagun / 21 February 2027</td><td>Jaito Morcha</td></tr>
             </tbody>
           </table>
         </div>
@@ -534,34 +591,47 @@
                 <th>Parkash Guru Nanak Sahib</th>
                 <th>Hola Mohalla</th>
                 <th>Bandi Chhor Divas</th>
-                <th>Birthday Bhagat Kabeer</th>
-                <th>Birthday Bhagat Naam Dev</th>
-                <th>Birthday Bhagat Ravidas</th>
+                <th>Birthday Bhagat Ravidas Ji</th>
+                <th>Birthday Bhagat Kabir Ji</th>
+                <th>Birthday Bhagat Namdev Ji</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>2025</td>
-                <td>Wednesday, November 5, 2025[cite: 13]</td>
-                <td>Saturday, March 15, 2025[cite: 13]</td>
-                <td>Monday, October 20, 2025[cite: 13]</td>
-                <td>Wednesday, June 11, 2025[cite: 13]</td>
-                <td>Sunday, November 2, 2025[cite: 13]</td>
-                <td>Wednesday, February 12, 2025[cite: 13]</td>
+                <td>2026</td>
+                <td>Tuesday, November 24, 2026</td>
+                <td>Wednesday, March 4, 2026</td>
+                <td>Sunday, November 8, 2026</td>
+                <td>Sunday, February 1, 2026</td>
+                <td>Monday, June 29, 2026</td>
+                <td>Friday, November 20, 2026</td>
               </tr>
               <tr>
-                <td>2026</td>
-                <td>Tuesday, November 24, 2026[cite: 13]</td>
-                <td>Wednesday, March 4, 2026[cite: 13]</td>
-                <td>Sunday, November 8, 2026[cite: 13]</td>
-                <td>Monday, June 29, 2026[cite: 13]</td>
-                <td>Friday, November 20, 2026[cite: 13]</td>
-                <td>Sunday, February 1, 2026[cite: 13]</td>
+                <td>2027</td>
+                <td>Saturday, November 13, 2027</td>
+                <td>Tuesday, March 23, 2027</td>
+                <td>Friday, October 29, 2027</td>
+                <td>Saturday, February 20, 2027</td>
+                <td>Friday, June 18, 2027</td>
+                <td>Tuesday, November 9, 2027</td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
+
+      <!-- GOOGLE DRIVE PDF DISPLAY AND DOWNLOAD SECTION -->
+      <div class="pdf-container">
+        <div class="pdf-title">Nanakshahi Calendar 2026 Document</div>
+        <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1_NS8Ru_lKOvQaP7GeNfKyZ7Lf6U2V69b/preview" allow="autoplay" title="Nanakshahi Calendar 2026 PDF Viewer"></iframe>
+        <br>
+        <a href="https://drive.google.com/uc?export=download&id=1_NS8Ru_lKOvQaP7GeNfKyZ7Lf6U2V69b" target="_blank" class="btn-download">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+          </svg>
+          Download Nanakshahi Calendar 2026 PDF
+        </a>
+      </div>
 
       <!-- ── FOOTER ── -->
       <div class="footer">
@@ -573,8 +643,8 @@
             </svg>
             Back to Sikh Culture
           </a>
-          <div class="footer-left">© 2025 Sikh Calendar</div>
-          <div class="footer-right">Nanakshahi Samvat 556</div>
+          <div class="footer-left">© 2026 Sikh Calendar</div>
+          <div class="footer-right">Nanakshahi Samvat 558</div>
         </div>
       </div>
 

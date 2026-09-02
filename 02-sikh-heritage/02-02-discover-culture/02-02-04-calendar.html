@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Management</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+            overflow-x: auto;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            padding: 10px;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            flex: 1 0 auto;
+        }
+
+        .form-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #0d1b3e;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #162147;
+        }
+
+        .btn-cancel {
+            background-color: #7f8c8d;
+        }
+
+        .btn-cancel:hover {
+            background-color: #626567;
+        }
+
+        .btn-edit {
+            background-color: #2980b9;
+            margin-right: 5px;
+        }
+
+        .btn-edit:hover {
+            background-color: #1f618d;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #0d1b3e;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #333;
+            color: white;
+            margin-top: auto;
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        footer button {
+            background-color: maroon;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Calendar Management</h1>
+
+        <!-- Form Section -->
+        <div class="form-card">
+            <h3 id="formTitle">Add Calendar Event</h3>
+            <form id="calendarForm">
+                <input type="hidden" id="docId">
+
+                <div class="form-group">
+                    <label for="category">Category (String):</label>
+                    <input type="text" id="category" placeholder="e.g. Prakash Purab" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventDate">Date & Time (Timestamp):</label>
+                    <input type="datetime-local" id="eventDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description (String):</label>
+                    <textarea id="description" rows="3" placeholder="e.g. 1st Prakash - Sri Guru Granth Sahib Ji" required></textarea>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" id="saveBtn">Save Event</button>
+                    <button type="button" id="cancelBtn" class="btn-cancel" style="display: none;">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Data Table Section -->
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Date & Time</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="calendarList">
+                    <tr>
+                        <td colspan="4" style="text-align:center;">Loading records...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <a href="index.html"><button>Back to Main Menu</button></a>
+    </footer>
+
+    <!-- Firebase Compat SDKs (v9/v10 Compat) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+
+    <script>
+        // Your provided Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+            authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+            projectId: "sikhsinindia-67a6b",
+            storageBucket: "sikhsinindia-67a6b.appspot.com"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
+        let eventsCache = [];
+
+        // Fetch all events from Firestore
+        async function fetchCalendarEvents() {
+            const calendarList = document.getElementById("calendarList");
+            try {
+                const snapshot = await db.collection("Calendar").get();
+
+                if (snapshot.empty) {
+                    calendarList.innerHTML = "<tr><td colspan='4' style='text-align:center;'>No events found.</td></tr>";
+                    eventsCache = [];
+                    return;
+                }
+
+                eventsCache = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+
+                renderTable();
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                calendarList.innerHTML = "<tr><td colspan='4' style='text-align:center;'>Error loading data.</td></tr>";
+            }
+        }
+
+        // Render data rows in table
+        function renderTable() {
+            const calendarList = document.getElementById("calendarList");
+            calendarList.innerHTML = "";
+
+            eventsCache.forEach(item => {
+                const row = document.createElement("tr");
+
+                let formattedDate = "";
+                if (item.Date && item.Date.toDate) {
+                    formattedDate = item.Date.toDate().toLocaleString();
+                } else if (item.Date) {
+                    formattedDate = new Date(item.Date).toLocaleString();
+                }
+
+                row.innerHTML = `
+                    <td>${item.Category || ""}</td>
+                    <td>${formattedDate}</td>
+                    <td>${item.Description || ""}</td>
+                    <td>
+                        <button class="btn-edit" onclick="editRecord('${item.id}')">Edit</button>
+                        <button class="btn-delete" onclick="deleteRecord('${item.id}')">Delete</button>
+                    </td>
+                `;
+                calendarList.appendChild(row);
+            });
+        }
+
+        // Add or Update record form handler
+        document.getElementById("calendarForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const docId = document.getElementById("docId").value;
+            const category = document.getElementById("category").value.trim();
+            const dateInput = document.getElementById("eventDate").value;
+            const description = document.getElementById("description").value.trim();
+
+            // Convert HTML5 datetime-local string to Firestore Timestamp
+            const jsDate = new Date(dateInput);
+            const firestoreTimestamp = firebase.firestore.Timestamp.fromDate(jsDate);
+
+            const recordData = {
+                Category: category,
+                Date: firestoreTimestamp,
+                Description: description
+            };
+
+            try {
+                if (docId) {
+                    // Update existing document
+                    await db.collection("Calendar").doc(docId).update(recordData);
+                    alert("Event updated successfully!");
+                } else {
+                    // Create new document
+                    await db.collection("Calendar").add(recordData);
+                    alert("Event added successfully!");
+                }
+
+                resetForm();
+                await fetchCalendarEvents();
+            } catch (error) {
+                console.error("Error saving record:", error);
+                alert("Failed to save event.");
+            }
+        });
+
+        // Edit button callback
+        window.editRecord = function (id) {
+            const item = eventsCache.find(e => e.id === id);
+            if (!item) return;
+
+            document.getElementById("docId").value = item.id;
+            document.getElementById("category").value = item.Category || "";
+            document.getElementById("description").value = item.Description || "";
+
+            // Format date for datetime-local picker input (YYYY-MM-DDTHH:mm)
+            if (item.Date && item.Date.toDate) {
+                const dateObj = item.Date.toDate();
+                const year = dateObj.getFullYear();
+                const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                const day = String(dateObj.getDate()).padStart(2, '0');
+                const hours = String(dateObj.getHours()).padStart(2, '0');
+                const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+
+                document.getElementById("eventDate").value = `${year}-${month}-${day}T${hours}:${minutes}`;
+            }
+
+            document.getElementById("formTitle").textContent = "Edit Calendar Event";
+            document.getElementById("saveBtn").textContent = "Update Event";
+            document.getElementById("cancelBtn").style.display = "inline-block";
+        };
+
+        // Delete button callback
+        window.deleteRecord = async function (id) {
+            if (confirm("Are you sure you want to delete this event?")) {
+                try {
+                    await db.collection("Calendar").doc(id).delete();
+                    alert("Event deleted successfully!");
+                    await fetchCalendarEvents();
+                } catch (error) {
+                    console.error("Error deleting event:", error);
+                    alert("Failed to delete event.");
+                }
+            }
+        };
+
+        // Reset form
+        document.getElementById("cancelBtn").addEventListener("click", resetForm);
+
+        function resetForm() {
+            document.getElementById("calendarForm").reset();
+            document.getElementById("docId").value = "";
+            document.getElementById("formTitle").textContent = "Add Calendar Event";
+            document.getElementById("saveBtn").textContent = "Save Event";
+            document.getElementById("cancelBtn").style.display = "none";
+        }
+
+        // Initial fetch on page load
+        fetchCalendarEvents();
+    </script>
+</body>
+
+</html>

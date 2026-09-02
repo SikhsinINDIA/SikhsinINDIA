@@ -11,15 +11,7 @@
 
     gtag('config', 'G-LHNTFNW14H');
   </script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
 
-    gtag('config', 'G-LHNTFNW14H');
-  </script>
   <!-- Meta description -->
   <meta name="description"
     content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
@@ -42,12 +34,12 @@
   <meta property="og:type" content="website">
 
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Sikhs in India | Discover • Learn • Connect | SikhsInIndia.com </title>
 
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 <style>
   :root {
     --navy: #002B6D;
@@ -64,6 +56,7 @@
     background: var(--cream);
     font-size: 14px;
     overflow-x: hidden;
+    width: 100%;
   }
 
   /* ── NAVBAR / HEADER ── */
@@ -76,7 +69,7 @@
     color: white;
     padding: 14px 20px 12px;
     flex: 1;
-        display: flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
   }
@@ -89,18 +82,18 @@
   }
   .hero h1 span { color: var(--orange); }
   .hero p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin: 0;
     opacity: 0.9;
   }
-.logo-img {
+  .logo-img {
     height: 110px;
     width: auto;
     background: #fff;
     padding: 4px;
     border-radius: 6px;
     display: block;
-}
+  }
 
   /* ── NAV LINKS ROW ── */
   .nav-links-bar {
@@ -110,21 +103,109 @@
   .nav-links-bar .nav-link {
     color: rgba(255,255,255,.85) !important;
     font-size: 12.5px;
-    padding: 3px 15px !important;
+    padding: 4px 12px !important;
     white-space: nowrap;
   }
   .nav-links-bar .nav-link:hover { color: var(--orange) !important; }
 
-  /* ── SECTION TITLE ── */
-  .section-title {
+  /* ── CONTINUOUS SEAMLESS MARQUEE ── */
+  .marquee-bar {
+    background: #001538;
+    color: #ffffff;
+    border-top: 2px solid var(--orange);
+    border-bottom: 2px solid var(--orange);
+    font-size: 13px;
+    padding: 6px 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .marquee-wrapper {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 25s linear infinite;
+  }
+
+  /* Pause scrolling on hover/touch */
+  .marquee-bar:hover .marquee-wrapper,
+  .marquee-bar:active .marquee-wrapper {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .marquee-block {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .marquee-header {
+    background: var(--orange);
     color: var(--navy);
-    font-weight: 800;
-    font-size: 1rem;
-    margin-bottom: 10px !important;
+    font-weight: 900;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-right: 15px;
+    margin-left: 20px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-size: 12px;
   }
-  .section-title span { color: var(--orange); }
+
+  .marquee-item {
+    margin-right: 25px;
+    display: inline-block;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+  }
+
+  .marquee-item span.item-date {
+    color: var(--orange);
+    font-weight: 700;
+  }
+
+  .marquee-item span.item-cat {
+    color: #72b3ff;
+    font-weight: 700;
+  }
+
+  /* ── CRISP FAST-BLINKING EVENT STYLE ── */
+  .marquee-item.blinking-event {
+    animation: fast-blink 0.4s linear infinite alternate;
+    border: 1px solid #FFD700;
+    background: #b30000;
+    color: #ffffff !important;
+    font-weight: 800;
+  }
+
+  .marquee-item.blinking-event span.item-date,
+  .marquee-item.blinking-event span.item-cat {
+    color: #FFD700 !important;
+    font-weight: 900;
+  }
+
+  @keyframes fast-blink {
+    from {
+      opacity: 1;
+      background: #b30000;
+    }
+    to {
+      opacity: 0.35;
+      background: #001538;
+    }
+  }
 
   /* ── FEATURE GRID ── */
   .features-section { padding: 12px 0 8px; }
@@ -135,50 +216,38 @@
     padding: 10px 8px 12px;
     text-align: center;
     box-shadow: 0 2px 8px rgba(0,43,109,.10);
-    border-top: 6px solid var(--orange);
-        border-left: 6px solid var(--orange);
+    border-top: 5px solid var(--orange);
+    border-left: 5px solid var(--orange);
     transition: transform .2s;
-  display: block;
-    text-decoration: none !important;
-  color: inherit;
-    /* KEY: full-height flex column so ALL cards stretch equally */
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-decoration: none !important;
+    color: inherit;
+    height: 100%;
   }
 
-  .feature-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.img-wrap {
-  line-height: 0; /* removes weird spacing that can shift image */
-}
   .feature-card:hover { transform: translateY(-3px); }
 
-  /* Fixed-height image zone — SAME for every card regardless of image size */
   .feature-card .img-wrap {
     width: 100%;
-    height: 80px;                 /* ← one fixed height for ALL images */
+    height: 70px;
     display: flex;
-    align-items: center;          /* vertical centre */
-    justify-content: center;      /* horizontal centre */
-    margin-bottom: 8px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
     flex-shrink: 0;
   }
+
   .feature-card .img-wrap img {
     max-width: 100%;
-    max-height: 100%;             /* image scales DOWN to fit the box */
+    max-height: 100%;
     width: auto;
     height: auto;
     object-fit: contain;
     display: block;
   }
 
-  /* Text block — grows to fill remaining card height so h4+p always align */
   .feature-card .text-wrap {
     display: flex;
     flex-direction: column;
@@ -186,6 +255,7 @@
     justify-content: flex-start;
     flex: 1;
   }
+
   .feature-card h4 {
     font-size: 12px;
     font-weight: 700;
@@ -193,30 +263,13 @@
     margin: 0 0 3px;
     line-height: 1.25;
   }
+
   .feature-card p {
     font-size: 11px;
     color: #666;
     margin: 0;
     line-height: 1.3;
   }
-
-  /* ── PILLARS ── */
-  .pillars-section { background: var(--navy); padding: 10px 0; }
-  .pillar {
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(247,148,29,.35);
-    border-radius: 10px;
-    padding: 10px 8px;
-    text-align: center;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .pillar img { width:36px; height:36px; object-fit:contain; margin-bottom:5px; filter:brightness(0) invert(1); }
-  .pillar h4 { color: var(--orange); font-size: 13px; font-weight: 800; margin-bottom: 2px; letter-spacing: 1px; }
-  .pillar p  { color: rgba(255,255,255,.82); font-size: 11px; margin: 0; line-height: 1.3; }
 
   /* ── COMMUNITY ── */
   .community-section { padding: 10px 0 8px; }
@@ -226,85 +279,102 @@
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,43,109,.10);
     height: 100%;
-    border-left: 6px solid var(--navy);
-        border-top: 6px solid var(--navy);
+    border-left: 5px solid var(--navy);
+    border-top: 5px solid var(--navy);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-  .community-card h3 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-  .community-card p  { font-size: 12px; color: #555; margin-bottom: 8px; flex: 1; }
-  .btn-navy {
-    background: var(--navy); color: white; border: none;
-    font-size: 12px; padding: 5px 14px; border-radius: 6px; align-self: flex-start;
-  }
-  .btn-navy:hover { background: #001a44; color: white; }
-  .btn-orange {
-    background: var(--orange); color: white; border: none;
-    font-size: 12px; padding: 5px 14px; border-radius: 6px;
-  }
-  .btn-orange:hover { background: #db7d00; color: white; }
-  .btn-outline-orange {
-    border: 2px solid var(--orange); color: var(--orange);
-    font-size: 12px; padding: 5px 14px; border-radius: 6px; background: transparent;
-  }
-  .btn-outline-orange:hover { background: var(--orange); color: white; }
-footer .social {
-  justify-content: center;
-}
-.social {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
+
   /* ── FOOTER ── */
-  footer { background: var(--navy); color: white; padding: 10px 0 6px; }
+  footer { background: var(--navy); color: white; padding: 12px 0 8px; }
   footer h5 { font-size: 13px; font-weight: 700; color: var(--orange); margin-bottom: 4px; }
   footer .brand-footer { font-size: 15px; font-weight: 800; color: var(--white); letter-spacing: 1px; }
   footer .brand-footer span { color: var(--orange); }
   footer p { font-size: 11px; margin-bottom: 3px; color: rgba(255,255,255,.8); }
   footer a { color: rgba(255,255,255,.8); text-decoration: none; font-size: 11px; }
   footer a:hover { color: var(--orange); }
-  footer hr { border-color: rgba(255,255,255,.2); margin: 6px 0; }
+  footer hr { border-color: rgba(255,255,255,.2); margin: 8px 0; }
   footer .copyright { font-size: 11px; color: rgba(255,255,255,.6); text-align: center; }
 
-  /* ── MOBILE ── */
-  @media (max-width: 768px) {
-    .hero h1 { font-size: 0.82rem; }
-    .hero p  { font-size: 0.6rem; }
-    .logo-img { height: 70px; }
-    .feature-card .img-wrap { height: 60px; }
-    footer { text-align: center; }
-    .nav-links-bar ul { flex-wrap: wrap; justify-content: center; }
+  .social {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 6px;
   }
-.social a{
-    color:#F7941D;
-    font-size:30px;
-    margin-right:14px;
-}
+  .social a {
+    color: #F7941D;
+    font-size: 24px;
+  }
+
+  /* ── MOBILE OPTIMIZATIONS ── */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 8px 12px;
+    }
+    .hero h1 { 
+      font-size: 0.95rem; 
+    }
+    .hero p { 
+      font-size: 0.75rem; 
+    }
+    .logo-img { 
+      height: 65px; 
+    }
+    .nav-links-bar ul { 
+      justify-content: center; 
+    }
+    .nav-links-bar .nav-link {
+      font-size: 11.5px;
+      padding: 3px 8px !important;
+    }
+    .marquee-bar {
+      padding: 4px 0;
+    }
+    .marquee-header {
+      font-size: 11px;
+      padding: 1px 6px;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+    .marquee-item {
+      font-size: 11.5px;
+      margin-right: 18px;
+    }
+    .feature-card {
+      padding: 8px 4px 10px;
+    }
+    .feature-card .img-wrap { 
+      height: 55px; 
+    }
+    .feature-card h4 {
+      font-size: 11px;
+    }
+    .feature-card p {
+      font-size: 10px;
+    }
+    .community-card h3 img {
+      width: 110px !important;
+    }
+    footer { 
+      text-align: center; 
+    }
+  }
 </style>
 </head>
 <body>
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 <!-- ── HEADER ── -->
 <nav class="navbar">
   <div class="container">
     <div class="d-flex align-items-center w-100">
-
-      <!-- Logo -->
-      <img class="logo-img"
-           src="./pictures/00-index/sikhsinindia.png"
-           alt="Sikhs In India Logo">
-
-      <!-- Hero text -->
+      <img class="logo-img" src="./pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
       <div class="hero">
         <h1>Preserving Heritage • Inspiring Future</h1>
-           <h1><span>Discovering &amp; Living the Spirit of Sikhism</span></h1>
-
+        <h1><span>Discovering &amp; Living the Spirit of Sikhism</span></h1>
         <p>Your trusted source for Sikh History, Heritage, Culture &amp; Community</p>
       </div>
-
     </div>
   </div>
 </nav>
@@ -313,17 +383,22 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <div class="nav-links-bar">
   <div class="container">
     <ul class="nav d-flex flex-row flex-wrap">
-      <!-- <li class="nav-item"><a class="nav-link" href="#">Home</a></li> -->
       <li class="nav-item"><a class="nav-link" href="./01-about-sikhism/01-about-sikhism.html">About Sikhism</a></li>
       <li class="nav-item"><a class="nav-link" href="./02-sikh-heritage/02-sikh-heritage.html">Sikh Heritage</a></li>
       <li class="nav-item"><a class="nav-link" href="./04-gurudwaras/04-gurudwaras-in-india.html">Gurudwaras</a></li>
       <li class="nav-item"><a class="nav-link" href="./03-nitnem/03-nitnem-path.html">Nitnem</a></li>
       <li class="nav-item"><a class="nav-link" href="./06-sevadars/06-sikh-sevadars.html">Sikh Sevadars</a></li>
-            <li class="nav-item"><a class="nav-link" href="./05-sikh-welfare/05-sikh-welfare.html">Sikh Welfare Org</a></li>
+      <li class="nav-item"><a class="nav-link" href="./05-sikh-welfare/05-sikh-welfare.html">Sikh Welfare Org</a></li>
       <li class="nav-item"><a class="nav-link" href="./07-sikh-section-for-kids/07-sikh-section-for-kids.html">Kids Section</a></li>
       <li class="nav-item"><a class="nav-link" href="./08-sikh-matrimonials/08-sikh-matrimonials.html">Matrimonials</a></li>
-      <!-- <li class="nav-item"><a class="nav-link" href="./100-misc/09-contact-us.html">Contact</a></li> -->
     </ul>
+  </div>
+</div>
+
+<!-- ── CONTINUOUS SEAMLESS MARQUEE ── -->
+<div class="marquee-bar">
+  <div class="marquee-wrapper" id="marqueeWrapper">
+    <div class="marquee-block">Loading current month events...</div>
   </div>
 </div>
 
@@ -331,220 +406,141 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <section class="features-section">
   <div class="container">
     <div class="row g-2">
-
-      <!-- <div class="col-4 col-md-4">
-        <div class="feature-card">
-          <div class="img-wrap">
-             <a href="./01-about-sikhism/01-about-sikhism.html">
-            <img src="./pictures/00-index/01-ek-onkar.png" alt="About Sikhism">
-          </div>
+      <div class="col-4 col-md-4">
+        <a href="./01-about-sikhism/01-about-sikhism.html" class="feature-card">
+          <div class="img-wrap"><img src="./pictures/00-index/01-ek-onkar.png" alt="About Sikhism"></div>
           <div class="text-wrap">
-   
             <h4>About Sikhism</h4>
-            <p>Sikh Gurus and their teachings</p>
-                     </a>
+            <p>Sikh Gurus and their Teachings</p>
           </div>
-        </div>
-      </div> -->
+        </a>
+      </div>
 
       <div class="col-4 col-md-4">
-  <a href="./01-about-sikhism/01-about-sikhism.html" class="feature-card">
-    
-    <div class="img-wrap">
-      <img src="./pictures/00-index/01-ek-onkar.png" alt="About Sikhism">
-    </div>
-
-    <div class="text-wrap">
-      <h4>About Sikhism</h4>
-      <p>Sikh Gurus and their Teachings</p>
-    </div>
-
-  </a>
-</div>
-
-      <div class="col-4 col-md-4">
-          <a href="./02-sikh-heritage/02-sikh-heritage/02-sikh-heritage.html" class="feature-card">
-
-          <div class="img-wrap">
-            <img src="./pictures/00-index/02-sikh-heritage.png" alt="Sikh Heritage">
-          </div>
+        <a href="./02-sikh-heritage/02-sikh-heritage/02-sikh-heritage.html" class="feature-card">
+          <div class="img-wrap"><img src="./pictures/00-index/02-sikh-heritage.png" alt="Sikh Heritage"></div>
           <div class="text-wrap">
             <h4>Sikh Heritage & Traditions</h4>
             <p>Core Values & Philosophy</p>
           </div>
-            </a>
-
+        </a>
       </div>
 
       <div class="col-4 col-md-4">
-                  <a href="./04-gurudwaras/04-gurudwaras-in-india.html" class="feature-card">
-        <!-- <div class="feature-card"> -->
-          <div class="img-wrap">
-            <img src="./pictures/00-index/03-gurudwaras.png" alt="Gurudwaras">
-          </div>
+        <a href="./04-gurudwaras/04-gurudwaras-in-india.html" class="feature-card">
+          <div class="img-wrap"><img src="./pictures/00-index/03-gurudwaras.png" alt="Gurudwaras"></div>
           <div class="text-wrap">
             <h4>Gurudwaras of India</h4>
             <p>Gateway to the Guru</p>
           </div>
-</a>
+        </a>
       </div>
 
       <div class="col-4 col-md-4">
-      <a href="./03-nitnem/03-nitnem-path.html" class="feature-card">
-          <div class="img-wrap">
-            <img src="./pictures/00-index/04-nitnem.png" alt="Nitnem">
-          </div>
+        <a href="./03-nitnem/03-nitnem-path.html" class="feature-card">
+          <div class="img-wrap"><img src="./pictures/00-index/04-nitnem.png" alt="Nitnem"></div>
           <div class="text-wrap">
             <h4>Nitnem</h4>
             <p>Daily Sikh Prayers</p>
           </div>
-      </a>
+        </a>
       </div>
 
       <div class="col-4 col-md-4">
-      <a href="./06-sevadars/06-sikh-sevadars.html" class="feature-card">
-          <div class="img-wrap">
-            <img src="./pictures/00-index/05-sikh-sevadar.png" alt="Sikh Sevadars">
-          </div>
+        <a href="./06-sevadars/06-sikh-sevadars.html" class="feature-card">
+          <div class="img-wrap"><img src="./pictures/00-index/05-sikh-sevadar.png" alt="Sikh Sevadars"></div>
           <div class="text-wrap">
             <h4>Sikh Sevadars</h4>
             <p>Bhai Ji / Granthi Ji / Pathi Ji / Kirtani Ji</p>
           </div>
-      </a>
+        </a>
       </div>
 
       <div class="col-4 col-md-4">
-      <a href="./05-sikh-welfare/05-sikh-welfare.html" class="feature-card">
-          <div class="img-wrap">
-            <img src="./pictures/00-index/06-khanda.png" alt="Welfare Organizations">
-          </div>
+        <a href="./05-sikh-welfare/05-sikh-welfare.html" class="feature-card">
+          <div class="img-wrap"><img src="./pictures/00-index/06-khanda.png" alt="Welfare Organizations"></div>
           <div class="text-wrap">
             <h4>Sikh Welfare Organizations</h4>
             <p>Nishkam Sikh Sewa Societies</p>
           </div>
-      </a>
+        </a>
       </div>
 
       <div class="col-4 col-md-4">
-      <a href="./07-sikh-section-for-kids/07-sikh-section-for-kids.html" class="feature-card">
-          <div class="img-wrap">
-            <img src="./pictures/00-index/07-sikh-section-for-kids.png" alt="Sikh Education">
-          </div>
+        <a href="./07-sikh-section-for-kids/07-sikh-section-for-kids.html" class="feature-card">
+          <div class="img-wrap"><img src="./pictures/00-index/07-sikh-section-for-kids.png" alt="Sikh Education"></div>
           <div class="text-wrap">
             <h4>Sikh Education for Kids</h4>
             <p>Interactive Learning & Engagement</p>
           </div>
-      </a>
+        </a>
       </div>
 
       <div class="col-4 col-md-4">
-      <a href="./08-sikh-matrimonials/08-sikh-matrimonials.html" class="feature-card">
-          <div class="img-wrap">
-            <img src="./pictures/00-index/08-sikh-matrimonials.jpg" alt="Sikh Matrimonials">
-          </div>
+        <a href="./08-sikh-matrimonials/08-sikh-matrimonials.html" class="feature-card">
+          <div class="img-wrap"><img src="./pictures/00-index/08-sikh-matrimonials.jpg" alt="Sikh Matrimonials"></div>
           <div class="text-wrap">
             <h4>Sikh Matrimonials</h4>
             <p>Find your Sikh Soulmate</p>
           </div>
-      </a>
+        </a>
       </div>
 
       <div class="col-4 col-md-4">
-      <a href="./09-purpose-of-life/09-purpose-of-life.html" class="feature-card">
-          <div class="img-wrap">
-            <img src="./pictures/00-index/09-purpose-of-life.png" alt="Purpose of Life">
-          </div>
+        <a href="./09-purpose-of-life/09-purpose-of-life.html" class="feature-card">
+          <div class="img-wrap"><img src="./pictures/00-index/09-purpose-of-life.png" alt="Purpose of Life"></div>
           <div class="text-wrap">
             <h4>Find your Purpose of Life</h4>
             <p>Live a Fulfilling Life</p>
           </div>
-      </a>
+        </a>
       </div>
-
     </div>
   </div>
 </section>
-
-<!-- ── PILLARS ── -->
-<!-- <section class="pillars-section">
-  <div class="container">
-    <div class="row g-2">
-      <div class="col-6 col-md-3">
-        <div class="pillar">
-          <img src="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" alt="Learn">
-          <h4>LEARN</h4>
-          <p>Sikh history, teachings &amp; philosophy</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="pillar">
-          <img src="https://cdn-icons-png.flaticon.com/512/3105/3105588.png" alt="Discover">
-          <h4>DISCOVER</h4>
-          <p>Gurudwaras, places &amp; traditions</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="pillar">
-          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" alt="Connect">
-          <h4>CONNECT</h4>
-          <p>Global Sikh community</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="pillar">
-          <img src="https://cdn-icons-png.flaticon.com/512/4228/4228785.png" alt="Serve">
-          <h4>SERVE</h4>
-          <p>Seva, equality &amp; brotherhood</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
 
 <!-- ── COMMUNITY ── -->
 <section class="community-section">
   <div class="container">
     <div class="row g-2">
+      <div class="col-12 col-md-4">
+        <div class="community-card">
+          <h3 style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;">
+            <a href="./00-index/01-add-record.html">
+              <img src="./pictures/00-index/15-become-a-member.png" alt="" style="width:140px;height:auto;flex-shrink:0;">
+            </a>
+            <a href="./00-index/01-add-record.html" style="text-decoration:none;color:inherit;">
+              <p>Join the Sikhs In India community and stay connected with the global Sangat</p>
+            </a>
+          </h3>
+        </div>
+      </div>
 
-<div class="col-12 col-md-4">
-  <div class="community-card">
-    <h3 style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;">
-        <a href="./00-index/01-add-record.html">
-      <img src="./pictures/00-index/15-become-a-member.png" alt="" 
-           style="width:150px;height:auto;flex-shrink:0;">  </a>
-          <a href="./00-index/01-add-record.html" style="text-decoration:none;color:inherit;">
-                  <p>Join the Sikhs In India community and stay connected with the global Sangat</p>
-          </a>
-    </h3>
-  </div>
-</div>
+      <div class="col-12 col-md-4">
+        <div class="community-card">
+          <h3 style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;">
+            <a href="./100-misc/10-feedback.html">
+              <img src="./pictures/00-index/16-feedback.png" alt="" style="width:140px;height:auto;flex-shrink:0;">
+            </a>
+            <a href="./100-misc/10-feedback.html" style="text-decoration:none;color:inherit;">
+              <p>Help us improve the website and share your suggestions with the team</p>
+            </a>
+          </h3>
+        </div>
+      </div>
 
-<div class="col-12 col-md-4">
-  <div class="community-card">
-    <h3 style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;">
-        <a href="./100-misc/10-feedback.html">
-      <img src="./pictures/00-index/16-feedback.png" alt="" 
-           style="width:150px;height:auto;flex-shrink:0;">  </a>
-          <a href="./100-misc/10-feedback.html" style="text-decoration:none;color:inherit;">
-                  <p>Help us improve the website and share your suggestions with the team</p>
-          </a>
-    </h3>
-  </div>
-</div>
-
-<div class="col-12 col-md-4">
-  <div class="community-card">
-    <h3 style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;">
-        <a href="./100-misc/09-contact-us.html">
-      <img src="./pictures/00-index/17-contact-us.png" alt="" 
-           style="width:150px;height:auto;flex-shrink:0;">  </a>
-          <a href="./100-misc/09-contact-us.html" style="text-decoration:none;color:inherit;">
-                  <p>Questions or suggestions? We'd love to hear from you. Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh!</p>
-          </a>
-    </h3>
-  </div>
-</div>
-
+      <div class="col-12 col-md-4">
+        <div class="community-card">
+          <h3 style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;">
+            <a href="./100-misc/09-contact-us.html">
+              <img src="./pictures/00-index/17-contact-us.png" alt="" style="width:140px;height:auto;flex-shrink:0;">
+            </a>
+            <a href="./100-misc/09-contact-us.html" style="text-decoration:none;color:inherit;">
+              <p>Questions or suggestions? We'd love to hear from you. Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh!</p>
+            </a>
+          </h3>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -552,38 +548,114 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <!-- ── FOOTER ── -->
 <footer>
   <div class="container">
-    <div class="row g-2 align-items-start  justify-content-center">
-      <div class="col-6 col-md-4">
+    <div class="row g-2 align-items-start justify-content-center">
+      <div class="col-12 col-md-4">
         <div class="brand-footer"><span>SIKHS</span> IN INDIA</div>
         <p class="mt-1">Discover • Learn • Connect • Serve</p>
-<div class="social">
-  <a href="https://www.facebook.com/groups/1472776657526407" target="_blank"><i class="fab fa-facebook-f"></i></a>
-  <a href="https://www.instagram.com/sikhs_in_india" target="_blank"><i class="fab fa-instagram"></i></a>
-  <a href="https://www.youtube.com/@SikhsInIndia" target="_blank"><i class="fab fa-youtube"></i></a>
-  <a href="https://www.linkedin.com/groups/18803017/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-</div>
-
+        <div class="social">
+          <a href="https://www.facebook.com/groups/1472776657526407" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/sikhs_in_india" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@SikhsInIndia" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.linkedin.com/groups/18803017/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
       </div>
-      <!-- <div class="col-6 col-md-4">
-        <h5>Quick Links</h5>
-        <p><a href="#">About Sikhism</a></p>
-        <p><a href="#">Guru Sahiban</a></p>
-        <p><a href="#">Festivals</a></p>
-        <p><a href="#">Gallery</a></p>
-      </div> -->
-      <!-- <div class="col-12 col-md-4 mx-auto">
-        <h5>Visit Us</h5>
-        <p>🌐 <a href="#">www.sikhsinindia.com</a></p>
-        <p style="font-size:10px;color:rgba(255,255,255,.5);font-style:italic;margin-top:4px;">
-          ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ
-        </p>
-      </div> -->
     </div>
     <hr>
-    <p class="copyright">© 2025 SikhsInIndia.com | Preserving Heritage • Inspiring Future</p>
+    <p class="copyright">© 2026 SikhsInIndia.com | Preserving Heritage • Inspiring Future</p>
   </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Firebase Compat SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  async function loadCurrentMonthFestivals() {
+      const marqueeWrapper = document.getElementById("marqueeWrapper");
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      const currentMonth = now.getMonth();
+      const currentDate = now.getDate();
+
+      const monthName = now.toLocaleString('en-US', { month: 'long' });
+      const headerTitle = `${monthName} Events`;
+
+      const startOfMonth = new Date(currentYear, currentMonth, 1, 0, 0, 0);
+      const endOfMonth = new Date(currentYear, currentMonth + 1, 0, 23, 59, 59);
+
+      try {
+          const snapshot = await db.collection("Calendar")
+              .where("Date", ">=", firebase.firestore.Timestamp.fromDate(startOfMonth))
+              .where("Date", "<=", firebase.firestore.Timestamp.fromDate(endOfMonth))
+              .orderBy("Date", "asc")
+              .get();
+
+          let eventsHTML = `<span class="marquee-header">${headerTitle}</span>`;
+
+          if (snapshot.empty) {
+              eventsHTML += `<span class="marquee-item">No scheduled festivals found for ${monthName}.</span>`;
+          } else {
+              snapshot.docs.forEach((doc) => {
+                  const data = doc.data();
+                  let eventDateObj = null;
+
+                  if (data.Date && data.Date.toDate) {
+                      eventDateObj = data.Date.toDate();
+                  } else if (data.Date) {
+                      eventDateObj = new Date(data.Date);
+                  }
+
+                  if (eventDateObj) {
+                      const isToday = (
+                          eventDateObj.getFullYear() === currentYear &&
+                          eventDateObj.getMonth() === currentMonth &&
+                          eventDateObj.getDate() === currentDate
+                      );
+
+                      const formattedDate = eventDateObj.toLocaleDateString('en-US', {
+                          month: 'long',
+                          day: 'numeric',
+                          year: 'numeric'
+                      });
+
+                      const category = data.Category || "";
+                      const description = data.Description || "";
+
+                      eventsHTML += `
+                          <span class="marquee-item ${isToday ? 'blinking-event' : ''}">
+                              <span class="item-date">${formattedDate}</span> &nbsp;-&nbsp; 
+                              <span class="item-cat">${category}</span> &nbsp;-&nbsp; 
+                              ${description}
+                          </span>`;
+                  }
+              });
+          }
+
+          marqueeWrapper.innerHTML = `
+              <div class="marquee-block">${eventsHTML}</div>
+              <div class="marquee-block">${eventsHTML}</div>
+          `;
+
+      } catch (error) {
+          console.error("Error fetching Calendar records: ", error);
+          marqueeWrapper.innerHTML = `<div class="marquee-block"><span class="marquee-item">Unable to load festivals at this time.</span></div>`;
+      }
+  }
+
+  document.addEventListener("DOMContentLoaded", loadCurrentMonthFestivals);
+</script>
+
 </body>
 </html>
