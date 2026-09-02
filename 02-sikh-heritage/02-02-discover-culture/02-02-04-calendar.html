@@ -59,12 +59,14 @@
         }
 
         .form-group input,
+        .form-group select,
         .form-group textarea {
             width: 100%;
             padding: 8px 12px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
+            background-color: #fff;
         }
 
         .form-buttons {
@@ -170,9 +172,18 @@
             <form id="calendarForm">
                 <input type="hidden" id="docId">
 
+                <!-- Dropdown for Category -->
                 <div class="form-group">
-                    <label for="category">Category (String):</label>
-                    <input type="text" id="category" placeholder="e.g. Prakash Purab" required>
+                    <label for="category">Category (Select Option):</label>
+                    <select id="category" required>
+                        <option value="" disabled selected>-- Select Category --</option>
+                        <option value="Gurgaddi Diwas">Gurgaddi Diwas</option>
+                        <option value="Celebration">Celebration</option>
+                                                <option value="Shaheedi Diwas">Shaheedi Diwas</option>
+                        <option value="Joti Jot Diwas">Joti Jot Diwas</option>
+                        <option value="Prakash Purab">Prakash Purab</option>
+                        <option value="Historical">Historical</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -294,7 +305,7 @@
             e.preventDefault();
 
             const docId = document.getElementById("docId").value;
-            const category = document.getElementById("category").value.trim();
+            const category = document.getElementById("category").value;
             const dateInput = document.getElementById("eventDate").value;
             const description = document.getElementById("description").value.trim();
 

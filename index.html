@@ -108,7 +108,7 @@
   }
   .nav-links-bar .nav-link:hover { color: var(--orange) !important; }
 
-  /* ── CONTINUOUS SEAMLESS MARQUEE ── */
+  /* ── CONTINUOUS SEAMLESS MARQUEE (MOBILE FIXED) ── */
   .marquee-bar {
     background: #001538;
     color: #ffffff;
@@ -125,20 +125,34 @@
     display: flex;
     width: max-content;
     animation: marquee-scroll 25s linear infinite;
+    -webkit-animation: marquee-scroll 25s linear infinite;
+    will-change: transform;
   }
 
-  /* Pause scrolling on hover/touch */
-  .marquee-bar:hover .marquee-wrapper,
-  .marquee-bar:active .marquee-wrapper {
-    animation-play-state: paused;
+  /* Pause scrolling on hover for desktop ONLY (prevents mobile touch freeze) */
+  @media (hover: hover) and (pointer: fine) {
+    .marquee-bar:hover .marquee-wrapper {
+      animation-play-state: paused;
+    }
   }
 
   @keyframes marquee-scroll {
     0% {
-      transform: translateX(0%);
+      transform: translate3d(0%, 0, 0);
+      -webkit-transform: translate3d(0%, 0, 0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translate3d(-50%, 0, 0);
+      -webkit-transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @-webkit-keyframes marquee-scroll {
+    0% {
+      -webkit-transform: translate3d(0%, 0, 0);
+    }
+    100% {
+      -webkit-transform: translate3d(-50%, 0, 0);
     }
   }
 
@@ -146,6 +160,7 @@
     display: flex;
     align-items: center;
     white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .marquee-header {
