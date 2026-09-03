@@ -2,421 +2,787 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendar Management</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
 
-        html {
-            height: 100%;
-            overflow-x: auto;
-        }
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 10px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background-color: #f4f4f4;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+  <title>Sikhs in India | Calendar Management</title>
 
-        .container {
-            padding: 10px;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            flex: 1 0 auto;
-        }
+  <!-- SEO Meta -->
+  <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
+  <meta name="author" content="Sikhs in India">
+  <meta name="robots" content="index, follow">
 
-        .form-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333;
-        }
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+    }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-            background-color: #fff;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        .form-buttons {
-            display: flex;
-            gap: 10px;
-        }
+    /* PAGE BACKGROUND */
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+      min-height: 100vh;
+    }
 
-        button {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            background-color: #0d1b3e;
-            color: white;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
+    /* MAIN POSTER CONTAINER */
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+    }
 
-        button:hover {
-            background-color: #162147;
-        }
+    /* HEADER */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
 
-        .btn-cancel {
-            background-color: #7f8c8d;
-        }
+    .logo-wrap {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .btn-cancel:hover {
-            background-color: #626567;
-        }
+    .logo-img {
+      height: 90px;
+      width: auto;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+      display: block;
+    }
 
-        .btn-edit {
-            background-color: #2980b9;
-            margin-right: 5px;
-        }
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-        .btn-edit:hover {
-            background-color: #1f618d;
-        }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 5vw, 42px);
+      font-weight: 900;
+      color: #fff;
+    }
 
-        .btn-delete {
-            background-color: #e74c3c;
-        }
+    .hero-title span {
+      color: var(--gold);
+    }
 
-        .btn-delete:hover {
-            background-color: #c0392b;
-        }
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
 
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
+    /* GOLD INTRO BAR */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 12px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      text-align: center;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+    /* MAIN CONTENT WRAPPER */
+    .wrapper {
+      padding: 28px 36px;
+      flex: 1;
+    }
 
-        th,
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
+    /* FORM CARD SECTION */
+    .form-card {
+      background: var(--white);
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      margin-bottom: 28px;
+    }
 
-        th {
-            background-color: #0d1b3e;
-            color: white;
-        }
+    .form-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--navy);
+      margin-bottom: 16px;
+      border-left: 4px solid var(--gold);
+      padding-left: 10px;
+    }
 
-        tr:hover {
-            background-color: #f1f1f1;
-        }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
 
-        footer {
-            text-align: center;
-            padding: 15px;
-            background-color: #333;
-            color: white;
-            margin-top: auto;
-            position: sticky;
-            bottom: 0;
-            width: 100%;
-            z-index: 100;
-        }
+    @media (min-width: 600px) {
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .form-group-full {
+        grid-column: span 2;
+      }
+    }
 
-        footer button {
-            background-color: maroon;
-        }
-    </style>
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    /* 16px font prevents mobile iOS auto-zoom on inputs */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      background-color: #fff;
+      color: #333;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 5px rgba(247, 148, 29, 0.4);
+    }
+
+    .form-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #ffffff;
+      background: var(--navy);
+      border: 2px solid var(--gold);
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      min-height: 42px;
+    }
+
+    .btn-action:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .btn-cancel {
+      background: #7f8c8d;
+      border-color: #626567;
+    }
+
+    .btn-cancel:hover {
+      background: #626567;
+      color: #fff;
+    }
+
+    /* TABLE LAYOUT & STYLES */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      margin: 18px 0;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      text-align: left;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      color: #333;
+    }
+
+    th {
+      background-color: var(--navy);
+      color: #ffffff;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    tr:nth-child(even) {
+      background-color: rgba(13, 27, 62, 0.02);
+    }
+
+    /* TABLE BUTTONS */
+    .btn-table-edit {
+      background-color: var(--navy);
+      color: #fff;
+      border: 1px solid var(--gold);
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 4px;
+
+    }
+
+    .btn-table-edit:hover {
+      background-color: var(--gold);
+      color: var(--navy);
+    }
+
+    .btn-table-delete {
+      background-color: #e74c3c;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn-table-delete:hover {
+      background-color: #c0392b;
+    }
+
+    /* MOBILE RESPONSIVE TABLE (CARD DISPLAY) */
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+
+      tr {
+        border-bottom: 2px solid var(--gold);
+        padding: 12px 0;
+      }
+
+      tr:last-child {
+        border-bottom: none;
+      }
+
+      td {
+        border: none;
+        position: relative;
+        padding: 8px 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+      }
+
+      td::before {
+        content: attr(data-label);
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        color: var(--navy);
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-right: 15px;
+        flex-shrink: 0;
+      }
+
+      td:last-child {
+        justify-content: flex-end;
+        gap: 8px;
+        padding-top: 10px;
+      }
+
+      td:last-child::before {
+        display: none;
+      }
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: auto;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* Back button — 3D gold style */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+      filter: brightness(0.93);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* MOBILE BREAKPOINTS */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .wrapper {
+        padding: 18px 14px;
+      }
+
+      .form-card {
+        padding: 16px;
+      }
+
+      .footer {
+        padding: 14px 12px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+
+      .btn-back {
+        font-size: 9px;
+        padding: 8px 14px;
+      }
+
+      .footer-left,
+      .footer-right {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <h1>Calendar Management</h1>
+  <div class="poster">
 
-        <!-- Form Section -->
-        <div class="form-card">
-            <h3 id="formTitle">Add Calendar Event</h3>
-            <form id="calendarForm">
-                <input type="hidden" id="docId">
-
-                <!-- Dropdown for Category -->
-                <div class="form-group">
-                    <label for="category">Category (Select Option):</label>
-                    <select id="category" required>
-                        <option value="" disabled selected>-- Select Category --</option>
-                        <option value="Gurgaddi Diwas">Gurgaddi Diwas</option>
-                        <option value="Celebration">Celebration</option>
-                        <option value="Shaheedi Diwas">Shaheedi Diwas</option>
-                        <option value="Joti Jot Diwas">Joti Jot Diwas</option>
-                        <option value="Prakash Purab">Prakash Purab</option>
-                        <option value="Historical">Historical</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="eventDate">Date & Time (Timestamp):</label>
-                    <input type="datetime-local" id="eventDate" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="description">Description (String):</label>
-                    <textarea id="description" rows="3" placeholder="e.g. 1st Prakash - Sri Guru Granth Sahib Ji" required></textarea>
-                </div>
-
-                <div class="form-buttons">
-                    <button type="submit" id="saveBtn">Save Event</button>
-                    <button type="button" id="cancelBtn" class="btn-cancel" style="display: none;">Cancel</button>
-                </div>
-            </form>
-        </div>
-
-        <!-- Data Table Section -->
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>Date & Time</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="calendarList">
-                    <tr>
-                        <td colspan="4" style="text-align:center;">Loading records...</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <!-- HEADER -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Calendar <span>Management</span></div>
+        <div class="hero-sub">Sikh Calendar Events & Historical Records Admin</div>
+      </div>
     </div>
 
-    <footer>
-        <a href="index.html"><button>Back to Main Menu</button></a>
-    </footer>
+    <!-- INTRO BAR -->
+    <div class="intro">
+      Manage and Update Sacrosanct Historical Commemorations & Events
+    </div>
 
-    <!-- Firebase Compat SDKs (v9/v10 Compat) -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="wrapper">
 
-    <script>
-        // Your provided Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
-            authDomain: "sikhsinindia-67a6b.firebaseapp.com",
-            projectId: "sikhsinindia-67a6b",
-            storageBucket: "sikhsinindia-67a6b.appspot.com"
-        };
+      <!-- FORM SECTION -->
+      <div class="form-card" id="formCard">
+        <h3 id="formTitle">Add Calendar Event</h3>
+        <form id="calendarForm">
+          <input type="hidden" id="docId">
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const storage = firebase.storage();
+          <div class="form-grid">
+            <!-- Dropdown for Category -->
+            <div class="form-group">
+              <label for="category">Category (Select Option):</label>
+              <select id="category" required>
+                <option value="" disabled selected>-- Select Category --</option>
+                <option value="Gurgaddi Diwas">Gurgaddi Diwas</option>
+                <option value="Celebration">Celebration</option>
+                <option value="Shaheedi Diwas">Shaheedi Diwas</option>
+                <option value="Joti Jot Diwas">Joti Jot Diwas</option>
+                <option value="Prakash Purab">Prakash Purab</option>
+                <option value="Historical">Historical</option>
+                <option value="Birthday">Birthday</option>
+              </select>
+            </div>
 
-        let eventsCache = [];
+            <div class="form-group">
+              <label for="eventDate">Date & Time (Timestamp):</label>
+              <input type="datetime-local" id="eventDate" required>
+            </div>
 
-        // Fetch all events from Firestore sorted by Date ascending
-        async function fetchCalendarEvents() {
-            const calendarList = document.getElementById("calendarList");
-            try {
-                // Fetch sorted directly from Firestore query
-                const snapshot = await db.collection("Calendar").orderBy("Date", "asc").get();
+            <div class="form-group form-group-full">
+              <label for="description">Description (String):</label>
+              <textarea id="description" rows="3" placeholder="e.g. 1st Prakash - Sri Guru Granth Sahib Ji" required></textarea>
+            </div>
+          </div>
 
-                if (snapshot.empty) {
-                    calendarList.innerHTML = "<tr><td colspan='4' style='text-align:center;'>No events found.</td></tr>";
-                    eventsCache = [];
-                    return;
-                }
+          <div class="form-buttons">
+            <button type="submit" id="saveBtn" class="btn-action" style="flex: 2;">Save Event</button>
+            <button type="button" id="cancelBtn" class="btn-action btn-cancel" style="display: none; flex: 1;">Cancel</button>
+          </div>
+        </form>
+      </div>
 
-                eventsCache = snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                }));
+      <!-- DATA TABLE SECTION -->
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Date & Time</th>
+              <th>Description</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="calendarList">
+            <tr>
+              <td colspan="4" style="text-align:center;">Loading records...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-                // Guarantee JavaScript client-side sorting in ascending order
-                eventsCache.sort((a, b) => {
-                    const dateA = a.Date && a.Date.toDate ? a.Date.toDate() : new Date(a.Date || 0);
-                    const dateB = b.Date && b.Date.toDate ? b.Date.toDate() : new Date(b.Date || 0);
-                    return dateA - dateB;
-                });
+    </div>
 
-                renderTable();
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                // Fallback fetch if index is missing for orderBy
-                try {
-                    const fallbackSnapshot = await db.collection("Calendar").get();
-                    eventsCache = fallbackSnapshot.docs.map(doc => ({
-                        id: doc.id,
-                        ...doc.data()
-                    }));
-                    
-                    eventsCache.sort((a, b) => {
-                        const dateA = a.Date && a.Date.toDate ? a.Date.toDate() : new Date(a.Date || 0);
-                        const dateB = b.Date && b.Date.toDate ? b.Date.toDate() : new Date(b.Date || 0);
-                        return dateA - dateB;
-                    });
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="./02-02-04-sikh-calendar.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back to Main Menu
+        </a>
+        <div class="footer-left">© 2026 Sikh Calendar</div>
+        <div class="footer-right">Nanakshahi Samvat 558</div>
+      </div>
+    </div>
 
-                    renderTable();
-                } catch (err) {
-                    calendarList.innerHTML = "<tr><td colspan='4' style='text-align:center;'>Error loading data.</td></tr>";
-                }
-            }
+  </div>
+
+  <!-- Firebase Compat SDKs (v9/v10 Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+
+    let eventsCache = [];
+
+    // Fetch all events from Firestore sorted by Date ascending
+    async function fetchCalendarEvents() {
+      const calendarList = document.getElementById("calendarList");
+      try {
+        const snapshot = await db.collection("Calendar").orderBy("Date", "asc").get();
+
+        if (snapshot.empty) {
+          calendarList.innerHTML = "<tr><td colspan='4' style='text-align:center;'>No events found.</td></tr>";
+          eventsCache = [];
+          return;
         }
 
-        // Render data rows in table
-        function renderTable() {
-            const calendarList = document.getElementById("calendarList");
-            calendarList.innerHTML = "";
+        eventsCache = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
 
-            eventsCache.forEach(item => {
-                const row = document.createElement("tr");
-
-                let formattedDate = "";
-                if (item.Date && item.Date.toDate) {
-                    formattedDate = item.Date.toDate().toLocaleString();
-                } else if (item.Date) {
-                    formattedDate = new Date(item.Date).toLocaleString();
-                }
-
-                row.innerHTML = `
-                    <td>${item.Category || ""}</td>
-                    <td>${formattedDate}</td>
-                    <td>${item.Description || ""}</td>
-                    <td>
-                        <button class="btn-edit" onclick="editRecord('${item.id}')">Edit</button>
-                        <button class="btn-delete" onclick="deleteRecord('${item.id}')">Delete</button>
-                    </td>
-                `;
-                calendarList.appendChild(row);
-            });
-        }
-
-        // Add or Update record form handler
-        document.getElementById("calendarForm").addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            const docId = document.getElementById("docId").value;
-            const category = document.getElementById("category").value;
-            const dateInput = document.getElementById("eventDate").value;
-            const description = document.getElementById("description").value.trim();
-
-            // Convert HTML5 datetime-local string to Firestore Timestamp
-            const jsDate = new Date(dateInput);
-            const firestoreTimestamp = firebase.firestore.Timestamp.fromDate(jsDate);
-
-            const recordData = {
-                Category: category,
-                Date: firestoreTimestamp,
-                Description: description
-            };
-
-            try {
-                if (docId) {
-                    // Update existing document
-                    await db.collection("Calendar").doc(docId).update(recordData);
-                    alert("Event updated successfully!");
-                } else {
-                    // Create new document
-                    await db.collection("Calendar").add(recordData);
-                    alert("Event added successfully!");
-                }
-
-                resetForm();
-                await fetchCalendarEvents();
-            } catch (error) {
-                console.error("Error saving record:", error);
-                alert("Failed to save event.");
-            }
+        // Guarantee JavaScript client-side sorting in ascending order
+        eventsCache.sort((a, b) => {
+          const dateA = a.Date && a.Date.toDate ? a.Date.toDate() : new Date(a.Date || 0);
+          const dateB = b.Date && b.Date.toDate ? b.Date.toDate() : new Date(b.Date || 0);
+          return dateA - dateB;
         });
 
-        // Edit button callback
-        window.editRecord = function (id) {
-            const item = eventsCache.find(e => e.id === id);
-            if (!item) return;
+        renderTable();
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // Fallback fetch if index is missing for orderBy
+        try {
+          const fallbackSnapshot = await db.collection("Calendar").get();
+          eventsCache = fallbackSnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }));
 
-            document.getElementById("docId").value = item.id;
-            document.getElementById("category").value = item.Category || "";
-            document.getElementById("description").value = item.Description || "";
+          eventsCache.sort((a, b) => {
+            const dateA = a.Date && a.Date.toDate ? a.Date.toDate() : new Date(a.Date || 0);
+            const dateB = b.Date && b.Date.toDate ? b.Date.toDate() : new Date(b.Date || 0);
+            return dateA - dateB;
+          });
 
-            // Format date for datetime-local picker input (YYYY-MM-DDTHH:mm)
-            if (item.Date && item.Date.toDate) {
-                const dateObj = item.Date.toDate();
-                const year = dateObj.getFullYear();
-                const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-                const day = String(dateObj.getDate()).padStart(2, '0');
-                const hours = String(dateObj.getHours()).padStart(2, '0');
-                const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+          renderTable();
+        } catch (err) {
+          calendarList.innerHTML = "<tr><td colspan='4' style='text-align:center;'>Error loading data.</td></tr>";
+        }
+      }
+    }
 
-                document.getElementById("eventDate").value = `${year}-${month}-${day}T${hours}:${minutes}`;
-            }
+    // Render data rows in table with mobile labels
+    function renderTable() {
+      const calendarList = document.getElementById("calendarList");
+      calendarList.innerHTML = "";
 
-            document.getElementById("formTitle").textContent = "Edit Calendar Event";
-            document.getElementById("saveBtn").textContent = "Update Event";
-            document.getElementById("cancelBtn").style.display = "inline-block";
-        };
+      eventsCache.forEach(item => {
+        const row = document.createElement("tr");
 
-        // Delete button callback
-        window.deleteRecord = async function (id) {
-            if (confirm("Are you sure you want to delete this event?")) {
-                try {
-                    await db.collection("Calendar").doc(id).delete();
-                    alert("Event deleted successfully!");
-                    await fetchCalendarEvents();
-                } catch (error) {
-                    console.error("Error deleting event:", error);
-                    alert("Failed to delete event.");
-                }
-            }
-        };
-
-        // Reset form
-        document.getElementById("cancelBtn").addEventListener("click", resetForm);
-
-        function resetForm() {
-            document.getElementById("calendarForm").reset();
-            document.getElementById("docId").value = "";
-            document.getElementById("formTitle").textContent = "Add Calendar Event";
-            document.getElementById("saveBtn").textContent = "Save Event";
-            document.getElementById("cancelBtn").style.display = "none";
+        let formattedDate = "";
+        if (item.Date && item.Date.toDate) {
+          formattedDate = item.Date.toDate().toLocaleString([], { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        } else if (item.Date) {
+          formattedDate = new Date(item.Date).toLocaleString([], { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
         }
 
-        // Initial fetch on page load
-        fetchCalendarEvents();
-    </script>
+        row.innerHTML = `
+          <td data-label="Category">${item.Category || ""}</td>
+          <td data-label="Date & Time">${formattedDate}</td>
+          <td data-label="Description">${item.Description || ""}</td>
+          <td>
+            <button class="btn-table-edit" onclick="editRecord('${item.id}')">Edit</button>
+            <button class="btn-table-delete" onclick="deleteRecord('${item.id}')">Delete</button>
+          </td>
+        `;
+        calendarList.appendChild(row);
+      });
+    }
+
+    // Add or Update record form handler
+    document.getElementById("calendarForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const docId = document.getElementById("docId").value;
+      const category = document.getElementById("category").value;
+      const dateInput = document.getElementById("eventDate").value;
+      const description = document.getElementById("description").value.trim();
+
+      const jsDate = new Date(dateInput);
+      const firestoreTimestamp = firebase.firestore.Timestamp.fromDate(jsDate);
+
+      const recordData = {
+        Category: category,
+        Date: firestoreTimestamp,
+        Description: description
+      };
+
+      try {
+        if (docId) {
+          await db.collection("Calendar").doc(docId).update(recordData);
+          alert("Event updated successfully!");
+        } else {
+          await db.collection("Calendar").add(recordData);
+          alert("Event added successfully!");
+        }
+
+        resetForm();
+        await fetchCalendarEvents();
+      } catch (error) {
+        console.error("Error saving record:", error);
+        alert("Failed to save event.");
+      }
+    });
+
+    // Edit button callback with smooth auto-scroll to form
+    window.editRecord = function (id) {
+      const item = eventsCache.find(e => e.id === id);
+      if (!item) return;
+
+      document.getElementById("docId").value = item.id;
+      document.getElementById("category").value = item.Category || "";
+      document.getElementById("description").value = item.Description || "";
+
+      if (item.Date && item.Date.toDate) {
+        const dateObj = item.Date.toDate();
+        const year = dateObj.getFullYear();
+        const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+        const day = String(dateObj.getDate()).padStart(2, '0');
+        const hours = String(dateObj.getHours()).padStart(2, '0');
+        const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+
+        document.getElementById("eventDate").value = `${year}-${month}-${day}T${hours}:${minutes}`;
+      }
+
+      document.getElementById("formTitle").textContent = "Edit Calendar Event";
+      document.getElementById("saveBtn").textContent = "Update Event";
+      document.getElementById("cancelBtn").style.display = "inline-flex";
+
+      // Scroll smooth to the form card
+      document.getElementById("formCard").scrollIntoView({ behavior: "smooth", block: "start" });
+
+      setTimeout(() => {
+        document.getElementById("category").focus();
+      }, 300);
+    };
+
+    // Delete button callback
+    window.deleteRecord = async function (id) {
+      if (confirm("Are you sure you want to delete this event?")) {
+        try {
+          await db.collection("Calendar").doc(id).delete();
+          alert("Event deleted successfully!");
+          await fetchCalendarEvents();
+        } catch (error) {
+          console.error("Error deleting event:", error);
+          alert("Failed to delete event.");
+        }
+      }
+    };
+
+    // Reset form
+    document.getElementById("cancelBtn").addEventListener("click", resetForm);
+
+    function resetForm() {
+      document.getElementById("calendarForm").reset();
+      document.getElementById("docId").value = "";
+      document.getElementById("formTitle").textContent = "Add Calendar Event";
+      document.getElementById("saveBtn").textContent = "Save Event";
+      document.getElementById("cancelBtn").style.display = "none";
+    }
+
+    // Initial fetch on page load
+    fetchCalendarEvents();
+  </script>
 </body>
 
 </html>
