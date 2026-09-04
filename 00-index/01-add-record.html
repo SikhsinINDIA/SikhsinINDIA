@@ -424,6 +424,11 @@
               <input type="text" id="name" placeholder="Your Full Name" required />
             </div>
 
+           <div class="form-group">
+              <label for="gname">Greeting Name <span class="required">*</span></label>
+              <input type="text" id="gname" placeholder="Your Greeting Name" required />
+            </div>
+
             <div class="form-group">
               <label for="password">Password <span class="required">*</span></label>
               <input type="password" id="password" placeholder="Choose a secure password" required />
@@ -527,6 +532,7 @@
     function clearForm(keepEmail = true) {
       if (!keepEmail) document.getElementById("email").value = "";
       document.getElementById("name").value = "";
+            document.getElementById("gname").value = "";
       document.getElementById("password").value = "";
       document.getElementById("mobile").value = "";
       document.getElementById("age").value = "";
@@ -555,6 +561,7 @@
 
       const email = document.getElementById("email").value.trim();
       const name = document.getElementById("name").value.trim();
+      const gname = document.getElementById("gname").value.trim();
       const password = document.getElementById("password").value;
       const mobile = document.getElementById("mobile").value.trim();
       const ageVal = document.getElementById("age").value.trim();
@@ -566,6 +573,7 @@
       if (!email) { alert("Email is required."); return; }
       if (!validateEmail(email)) { alert("Email address is incorrect."); return; }
       if (!name) { alert("Name is required."); return; }
+      if (!gname) { alert("Greeting Name is required."); return; }
       if (!password) { alert("Password is required."); return; }
       if (!validatePassword(password)) {
         alert("Password must be at least 8 characters long and contain both letters and numbers.");
@@ -590,6 +598,7 @@
       const data = {
         Email: email,
         Name: name,
+        GreetingName: gname,
         Password: password,
         Mobile: Number(mobile),
         Age: ageVal ? Number(ageVal) : null,
@@ -603,7 +612,7 @@
       db.collection("sikhdatabaseindia").doc(email).set(data)
         .then(() => {
           document.getElementById("status").innerText = "🎉 Congratulations! You are now a member of Sikhs in INDIA.";
-          sendEmail(email, name, mobile, ageVal, address, city, state, gender);
+          sendEmail(email, name, gname, mobile, ageVal, address, city, state, gender);
           clearForm(false);
         })
         .catch(error => {
@@ -612,10 +621,11 @@
         });
     });
 
-    function sendEmail(email, name, mobile, age, address, city, state, gender) {
+    function sendEmail(email, name, gname, mobile, age, address, city, state, gender) {
       const emailParams = {
         email: email,
         name: name,
+        gname: gname,
         mobile: mobile,
         age: age,
         address: address,
@@ -624,18 +634,19 @@
         gender: gender
       };
 
-      emailjs.send("service_dlzwpyu", "template_x1uksg8", emailParams)
-        .then(response => {
-          console.log("✅ Email sent to user:", response.status, response.text);
-        })
-        .catch(error => {
-          console.error("❌ Failed to send email to user:", error);
-          document.getElementById("status").innerText = "Error sending email: " + error.message;
-        });
+      // emailjs.send("service_dlzwpyu", "template_x1uksg8", emailParams)
+      //   .then(response => {
+      //     console.log("✅ Email sent to user:", response.status, response.text);
+      //   })
+      //   .catch(error => {
+      //     console.error("❌ Failed to send email to user:", error);
+      //     document.getElementById("status").innerText = "Error sending email: " + error.message;
+      //   });
 
       const backupParams = {
         email: "sikhsinindia@gmail.com",
         name: name,
+        gname: gname,
         mobile: mobile,
         age: age,
         address: address,
@@ -645,13 +656,13 @@
         useremail: email
       };
 
-      emailjs.send("service_dlzwpyu", "template_x1uksg8", backupParams)
-        .then(response => {
-          console.log("✅ Backup email sent to admin:", response.status, response.text);
-        })
-        .catch(error => {
-          console.error("❌ Failed to send backup email to admin:", error);
-        });
+      // emailjs.send("service_dlzwpyu", "template_x1uksg8", backupParams)
+      //   .then(response => {
+      //     console.log("✅ Backup email sent to admin:", response.status, response.text);
+      //   })
+      //   .catch(error => {
+      //     console.error("❌ Failed to send backup email to admin:", error);
+      //   });
     }
   </script>
 

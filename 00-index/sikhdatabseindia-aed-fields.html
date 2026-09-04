@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Sikh Database Schema Manager | SikhsInIndia.com</title>
+
+  <!-- Meta description -->
+  <meta name="description" content="Manage schema fields for sikhdatabaseindia records across SikhsInIndia platform.">
+  <meta name="author" content="Sikhs in India">
+  <meta name="robots" content="index, follow">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <!-- Firebase Legacy Compatibility SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+      min-height: 100vh;
+    }
+
+    .poster {
+      width: 100%;
+      max-width: 960px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 90px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 4vw, 32px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .wrapper {
+      padding: 28px 36px;
+      flex: 1;
+    }
+
+    h2, h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 22px;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 6px;
+    }
+
+    h3 {
+      font-size: 18px;
+      color: var(--navy-mid);
+    }
+
+    /* FORM PANEL */
+    .panel {
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    input[type="text"], select {
+      padding: 11px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #fafafa;
+      color: #333;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(247, 148, 29, 0.15);
+      background-color: #fff;
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .btn-main {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--navy);
+      border: 2px solid var(--navy);
+      padding: 10px 18px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-main:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--navy);
+    }
+
+    .btn-danger {
+      background: #d93838;
+      border-color: #d93838;
+    }
+
+    .btn-danger:hover {
+      background: #a82020;
+      border-color: #a82020;
+      color: #fff;
+    }
+
+    /* TABLE LAYOUT */
+    .table-responsive {
+      width: 100%;
+      max-height: 480px;
+      overflow-x: auto;
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      text-align: left;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background-color: var(--navy);
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    tr:hover td {
+      background-color: #fcfbfa;
+    }
+
+    .btn-action {
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      background: #fff;
+      transition: all 0.15s;
+    }
+
+    .btn-action.edit {
+      border-color: var(--navy);
+      color: var(--navy);
+      margin-right: 4px;
+    }
+
+    .btn-action.edit:hover {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: auto;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+    }
+
+    .btn-back:hover { filter: brightness(1.08); }
+    .btn-back:active { transform: scale(0.97); }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    @media(max-width:768px) {
+      .header { flex-direction: column; align-items: center; }
+      .logo-wrap { padding: 16px 20px 4px 20px; }
+      .hero { padding: 18px; width: 100%; }
+      .wrapper { padding: 18px 12px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .footer-content { flex-direction: column; text-align: center; gap: 16px; }
+      .table-responsive { max-height: 380px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="poster">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Sikh Database <span>Schema Manager</span></div>
+      </div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="intro">
+      Manage Field Structures and Types for `sikhdatabaseindia` Registry
+    </div>
+
+    <div class="wrapper">
+
+      <!-- CONTROL FORM -->
+      <div class="panel">
+        <h2>Field Modification Panel</h2>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fieldName">Target Field Name</label>
+            <input type="text" id="fieldName" placeholder="e.g. Address, Age, Mobile" />
+          </div>
+
+          <div class="form-group">
+            <label for="newFieldName">New Field Name (Rename)</label>
+            <input type="text" id="newFieldName" placeholder="Enter new field name" />
+          </div>
+
+          <div class="form-group">
+            <label for="fieldType">Data Type</label>
+            <select id="fieldType">
+              <option value="string">String</option>
+              <option value="int64">Int64 (Integer)</option>
+              <option value="number">Number</option>
+              <option value="timestamp">Timestamp / Date</option>
+              <option value="boolean">Boolean</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button class="btn-main" onclick="addField()">Add Field</button>
+          <button class="btn-main" onclick="renameField()">Rename Field</button>
+          <button class="btn-main" onclick="changeType()">Change Type</button>
+          <button class="btn-main btn-danger" onclick="deleteField()">Delete Field</button>
+        </div>
+      </div>
+
+      <!-- FIELDS TABLE -->
+      <h3>Registered Fields (`sikhdatabaseindia`)</h3>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>S.No.</th>
+              <th>Field Name</th>
+              <th>Data Type</th>
+              <th>Quick Select</th>
+            </tr>
+          </thead>
+          <tbody id="fieldTable">
+            <tr>
+              <td colspan="4" style="text-align:center; padding: 20px; color: var(--gold); font-weight: bold;">
+                Loading schema configuration...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="./01-add-record.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back
+        </a>
+        <div style="font-size: 11px; color: rgba(255,255,255,0.6);">
+          © 2026 SikhsInIndia.com | Database Schema Management Engine
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b",
+      measurementId: "G-LHNTFNW14H"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Default Fields configured for `sikhdatabaseindia`
+    let fields = [
+      { name: "Address", type: "string" },
+      { name: "Age", type: "int64" },
+      { name: "City", type: "string" },
+      { name: "Date_created", type: "timestamp" },
+      { name: "Email", type: "string" },
+      { name: "Gender", type: "string" },
+      { name: "Mobile", type: "int64" },
+      { name: "Name", type: "string" },
+      { name: "Password", type: "string" },
+      { name: "State", type: "string" }
+    ];
+
+    /* RENDER FIELDS TABLE */
+    function render() {
+      let html = "";
+      fields.forEach((f, i) => {
+        html += `
+          <tr>
+            <td><strong>${i + 1}</strong></td>
+            <td><strong>${f.name}</strong></td>
+            <td><code>${f.type}</code></td>
+            <td>
+              <button class="btn-action edit" onclick="selectField('${f.name}', '${f.type}')">Select</button>
+            </td>
+          </tr>`;
+      });
+      document.getElementById("fieldTable").innerHTML = html;
+    }
+
+    /* SELECT FIELD INTO FORM */
+    function selectField(name, type) {
+      document.getElementById("fieldName").value = name;
+      document.getElementById("newFieldName").value = name;
+      document.getElementById("fieldType").value = type;
+    }
+
+    /* LOAD SCHEMA FROM FIRESTORE */
+    async function loadFields() {
+      try {
+        const doc = await db.collection("Config").doc("SikhDatabaseIndiaFields").get();
+
+        if (doc.exists && doc.data().fields?.length) {
+          fields = doc.data().fields.map(f => {
+            if (typeof f === "string") return { name: f, type: "string" };
+            return f;
+          });
+        }
+      } catch (err) {
+        console.log("Using default sikhdatabaseindia fields");
+      }
+      render();
+    }
+
+    /* SAVE SCHEMA TO FIRESTORE */
+    async function save() {
+      try {
+        await db.collection("Config").doc("SikhDatabaseIndiaFields").set({ fields });
+        render();
+        alert("Schema updated and saved successfully!");
+      } catch (err) {
+        console.error(err);
+        alert("Error saving schema data: " + err.message);
+      }
+    }
+
+    /* ADD FIELD */
+    function addField() {
+      const name = document.getElementById("fieldName").value.trim();
+      const type = document.getElementById("fieldType").value;
+
+      if (!name) return alert("Please enter a field name.");
+      if (fields.find(f => f.name.toLowerCase() === name.toLowerCase())) {
+        return alert("Field already exists!");
+      }
+
+      fields.push({ name, type });
+      render();
+      save();
+    }
+
+    /* DELETE FIELD */
+    function deleteField() {
+      const name = document.getElementById("fieldName").value.trim();
+      if (!name) return alert("Please enter or select a field to delete.");
+
+      if (!confirm(`Are you sure you want to delete field: ${name}?`)) return;
+
+      fields = fields.filter(f => f.name.toLowerCase() !== name.toLowerCase());
+      save();
+    }
+
+    /* RENAME FIELD */
+    function renameField() {
+      const oldName = document.getElementById("fieldName").value.trim();
+      const newName = document.getElementById("newFieldName").value.trim();
+
+      if (!oldName || !newName) return alert("Please specify both current and new field names.");
+
+      const field = fields.find(f => f.name.toLowerCase() === oldName.toLowerCase());
+      if (!field) return alert("Field not found.");
+
+      field.name = newName;
+      save();
+    }
+
+    /* CHANGE FIELD TYPE */
+    function changeType() {
+      const name = document.getElementById("fieldName").value.trim();
+      const newType = document.getElementById("fieldType").value;
+
+      const field = fields.find(f => f.name.toLowerCase() === name.toLowerCase());
+      if (!field) return alert("Field not found.");
+
+      field.type = newType;
+      save();
+    }
+
+    // Initialize Schema Engine on page load
+    window.onload = loadFields;
+  </script>
+
+</body>
+
+</html>

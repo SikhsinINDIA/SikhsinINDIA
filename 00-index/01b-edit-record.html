@@ -45,7 +45,7 @@
     * {
       box-sizing: border-box;
       margin: 0;
-      padding: 0
+      padding: 0;
     }
 
     :root {
@@ -271,10 +271,12 @@
       font-size: 14px;
     }
 
-    /* SCROLLABLE TABLE RESPONSIVE WRAPPER */
+    /* ALWAYS-VISIBLE HORIZONTAL SCROLLBAR TABLE WRAPPER */
     .table-responsive {
       width: 100%;
-      overflow-x: auto;
+      max-height: 480px;
+      overflow-x: scroll;
+      overflow-y: auto;
       background: #fff;
       border-radius: 8px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -284,7 +286,8 @@
 
     table {
       width: 100%;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 0;
       text-align: left;
       font-size: 13px;
       white-space: nowrap;
@@ -295,7 +298,11 @@
       border-bottom: 1px solid #eee;
     }
 
+    /* STICKY TABLE HEADER FOR SMOOTH VERTICAL SCROLLING */
     th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
       background-color: var(--navy);
       color: #fff;
       font-family: 'Playfair Display', serif;
@@ -341,7 +348,6 @@
       color: #fff;
     }
 
-    /* FOOTER CONTROL BAR */
     .footer {
       background: var(--navy-mid);
       padding: 16px 36px;
@@ -363,7 +369,6 @@
       line-height: 1.4;
     }
 
-    /* 3D ENGRAVED GOLDEN BACK BUTTON */
     .btn-back {
       display: inline-flex;
       align-items: center;
@@ -402,7 +407,6 @@
       height: 12px;
     }
 
-    /* RESPONSIVE CSS MEDIA QUERY OVERRIDES */
     @media(max-width:900px) {
       .form-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -454,6 +458,10 @@
         text-align: center;
         gap: 16px;
       }
+
+      .table-responsive {
+        max-height: 380px;
+      }
     }
   </style>
 </head>
@@ -462,7 +470,7 @@
 
   <div class="poster">
 
-    <!-- PLATFORM HEADER BRAND LAYER -->
+    <!-- HEADER -->
     <div class="header">
       <div class="logo-wrap">
         <img class="logo-img" src="../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
@@ -478,15 +486,18 @@
 
     <div class="wrapper">
 
-      <!-- MASTER VIEW DATA ENGINE TABLE -->
+      <!-- DATA TABLE -->
       <div id="recordsContainer">
         <h3>System Registered Operational Members</h3>
         <div class="table-responsive">
           <table id="recordsTable">
             <thead>
               <tr>
+                <th>S.No.</th>
+                <th>Actions</th>
                 <th>Email</th>
                 <th>Name</th>
+                <th>GName</th>
                 <th>Mobile</th>
                 <th>Age</th>
                 <th>Gender</th>
@@ -494,12 +505,11 @@
                 <th>City</th>
                 <th>State</th>
                 <th>Date Created</th>
-                <th>Actions</th>
               </tr>
             </thead>
             <tbody id="recordsTableBody">
               <tr>
-                <td colspan="10" style="text-align: center; padding: 20px; color: var(--gold); font-weight: bold;">
+                <td colspan="12" style="text-align: center; padding: 20px; color: var(--gold); font-weight: bold;">
                   Syncing structural runtime records...
                 </td>
               </tr>
@@ -508,8 +518,8 @@
         </div>
       </div>
 
-      <!-- MASTER MODIFICATION AND STORAGE DATA EDIT FORM -->
-      <div class="panel">
+      <!-- EDIT FORM -->
+      <div class="panel" id="editPanel">
         <h2>Identity Record Modification Panel</h2>
         <form id="editForm">
           <div class="form-grid">
@@ -527,6 +537,11 @@
             <div class="form-group span-2">
               <label for="name">Account Full Legal Name <span class="required">*</span></label>
               <input type="text" id="name" placeholder="Full identity profile name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="gname">Gurdwaras/GName</label>
+              <input type="text" id="gname" placeholder="GName details" />
             </div>
 
             <div class="form-group">
@@ -582,7 +597,7 @@
 
     </div>
 
-    <!-- PERSISTENT REPOSITORY LEGAL FRAME FOOTER -->
+    <!-- FOOTER -->
     <div class="footer">
       <div class="footer-content">
         <a href="./01-add-record.html" class="btn-back">
@@ -599,7 +614,6 @@
     </div>
   </div>
 
-  <!-- PERSISTENT BACKEND DATABASE TRANSLATION MANAGEMENT LOGIC SCRIPTS -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
@@ -631,22 +645,30 @@
 
     function loadAllRecords() {
       const tbody = document.getElementById("recordsTableBody");
-      tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 20px; color: var(--gold); font-weight: bold;">Syncing structural runtime records...</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="12" style="text-align: center; padding: 20px; color: var(--gold); font-weight: bold;">Syncing structural runtime records...</td></tr>';
 
       db.collection("sikhdatabaseindia").orderBy("Date_created", "desc").get()
         .then(querySnapshot => {
           if (querySnapshot.empty) {
-            tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 20px; color: #d93838;">No operational dataset found in cloud context.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="12" style="text-align: center; padding: 20px; color: #d93838;">No operational dataset found in cloud context.</td></tr>';
             return;
           }
 
           let rows = '';
+          let serialNo = 1;
+
           querySnapshot.forEach(doc => {
             const data = doc.data();
             rows += `
               <tr>
+                <td><strong>${serialNo++}</strong></td>
+                <td>
+                  <button class="btn-action edit" onclick="editRecord('${data.Email}')">Edit</button>
+                  <button class="btn-action delete" onclick="deleteRecord('${data.Email}')">Delete</button>
+                </td>
                 <td><strong>${data.Email || ''}</strong></td>
                 <td>${data.Name || ''}</td>
+                <td>${data.GName || ''}</td>
                 <td>${data.Mobile || ''}</td>
                 <td>${data.Age || ''}</td>
                 <td>${data.Gender || ''}</td>
@@ -654,10 +676,6 @@
                 <td>${data.City || ''}</td>
                 <td>${data.State || ''}</td>
                 <td>${formatDate(data.Date_created)}</td>
-                <td>
-                  <button class="btn-action edit" onclick="editRecord('${data.Email}')">Edit</button>
-                  <button class="btn-action delete" onclick="deleteRecord('${data.Email}')">Delete</button>
-                </td>
               </tr>
             `;
           });
@@ -666,13 +684,13 @@
         })
         .catch(error => {
           console.error("Error fetching records:", error);
-          tbody.innerHTML = `<tr><td colspan="10" style="text-align: center; color: #d93838; font-weight:bold;">Error syncing database context framework: ${error.message}</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="12" style="text-align: center; color: #d93838; font-weight:bold;">Error syncing database context framework: ${error.message}</td></tr>`;
         });
     }
 
     function loadData() {
       const email = document.getElementById("email").value.trim();
-      if (!email) return alert("Please specify an target email identity parameter value.");
+      if (!email) return alert("Please specify a target email identity parameter value.");
 
       db.collection("sikhdatabaseindia").doc(email).get()
         .then(doc => {
@@ -684,6 +702,7 @@
 
           const data = doc.data();
           document.getElementById("name").value = data.Name || "";
+          document.getElementById("gname").value = data.GName || "";
           document.getElementById("password").value = data.Password || "";
           document.getElementById("mobile").value = data.Mobile || "";
           document.getElementById("age").value = data.Age || "";
@@ -719,6 +738,7 @@
     function clearForm(clearEmail = true) {
       if (clearEmail) document.getElementById("email").value = "";
       document.getElementById("name").value = "";
+      document.getElementById("gname").value = "";
       document.getElementById("password").value = "";
       document.getElementById("mobile").value = "";
       document.getElementById("age").value = "";
@@ -739,6 +759,7 @@
 
       const email = document.getElementById("email").value.trim();
       const name = document.getElementById("name").value.trim();
+      const gname = document.getElementById("gname").value.trim();
       const password = document.getElementById("password").value.trim();
       const mobile = document.getElementById("mobile").value.trim();
       const age = document.getElementById("age").value.trim();
@@ -762,6 +783,7 @@
       db.collection("sikhdatabaseindia").doc(email).set({
         Email: email,
         Name: name,
+        GName: gname,
         Password: password,
         Mobile: mobile,
         Age: age,
@@ -788,8 +810,10 @@
           if (!doc.exists) return alert("No target record matched with the index email key.");
           const data = doc.data();
 
-          document.getElementById("email").value = data.Email || '';
+          const emailInput = document.getElementById("email");
+          emailInput.value = data.Email || '';
           document.getElementById("name").value = data.Name || '';
+          document.getElementById("gname").value = data.GName || '';
           document.getElementById("password").value = data.Password || '';
           document.getElementById("mobile").value = data.Mobile || '';
           document.getElementById("age").value = data.Age || '';
@@ -808,8 +832,14 @@
           } else {
             document.getElementById("Date_created").value = '';
           }
+          
           document.getElementById("status").innerText = `Currently isolating modification tracking profile for: ${email}`;
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+
+          // Smooth scroll to the form panel and jump cursor directly to the Email field
+          document.getElementById("editPanel").scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setTimeout(() => {
+            emailInput.focus();
+          }, 300);
         });
     }
 

@@ -21,13 +21,14 @@
   <meta name="author" content="Sikhs in India">
   <meta name="robots" content="index, follow">
 
+  <!-- Canonical points to primary page -->
   <link rel="canonical" href="https://sikhsinindia.com/02-sikh-heritage/02-04-sikh-festivals/02-04-03-Baisakhi.html">
 
   <meta property="og:title" content="Baisakhi Festival | Sikh Traditions & Cultural Significance">
   <meta property="og:description" content="Discover the profound heritage of Baisakhi, celebrating the birth of the Khalsa and the spirit of righteousness.">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
   <meta property="og:url" content="https://sikhsinindia.com/02-sikh-heritage/02-04-sikh-festivals/02-04-03-Baisakhi.html">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
@@ -47,7 +48,6 @@
       --white: #ffffff;
     }
 
-    /* PAGE BACKGROUND */
     body {
       font-family: 'Lato', sans-serif;
       background: #1a1a2e;
@@ -56,7 +56,6 @@
       padding: 20px 8px;
     }
 
-    /* MAIN CONTAINER DISPLAY */
     .poster {
       width: 100%;
       max-width: 860px;
@@ -66,7 +65,6 @@
       flex-direction: column;
     }
 
-    /* BRAND LOGO HEADER ARRANGEMENT */
     .header {
       display: flex;
       background: var(--navy);
@@ -110,7 +108,6 @@
       font-size: clamp(12px, 2.5vw, 16px);
     }
 
-    /* TRADITIONAL ACCENT BAR */
     .intro {
       background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
       padding: 14px 20px;
@@ -121,13 +118,29 @@
       text-align: center;
     }
 
-    /* INNER SPACING CONTENT AREA */
     .wrapper {
       padding: 28px 36px;
       flex: 1;
     }
 
-    /* IMAGE INTERFACE CARD */
+    .text-content {
+      background: #fff;
+      border: 1px solid rgba(13, 27, 62, 0.08);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      color: #333;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .text-content h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
     .card {
       width: 100%;
       background: #fff;
@@ -148,7 +161,6 @@
       margin-bottom: 16px;
     }
 
-    /* CONTROLS BAR */
     .image-controls {
       display: flex;
       justify-content: center;
@@ -196,7 +208,6 @@
       margin-top: 14px;
     }
 
-    /* STANDARDIZED UNIFORM FOOTER BLOCK */
     .footer {
       background: var(--navy-mid);
       padding: 24px 16px;
@@ -233,7 +244,6 @@
       font-weight: 700;
     }
 
-    /* Styled 3D Gold Action Back Link */
     .btn-back {
       display: inline-flex;
       align-items: center;
@@ -271,54 +281,17 @@
       height: 12px;
     }
 
-    /* SCREEN RESPONSIVENESS MEDIA QUERIES */
     @media(max-width:768px) {
-      .header {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .logo-wrap {
-        padding: 16px 20px 4px 20px;
-      }
-
-      .hero {
-        padding: 18px;
-        width: 100%;
-      }
-
-      .wrapper {
-        padding: 18px 14px;
-      }
-
-      .card {
-        padding: 10px;
-      }
-
-      .card img {
-        max-height: 50vh;
-      }
-
-      .control-btn {
-        font-size: 13px;
-        padding: 8px 14px;
-      }
-
-      .image-counter {
-        font-size: 13px;
-        padding: 6px 12px;
-      }
-
-      #baisakhiCaption {
-        font-size: 15px;
-      }
-
-      .footer-row {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 16px;
-      }
+      .header { flex-direction: column; align-items: center; }
+      .logo-wrap { padding: 16px 20px 4px 20px; }
+      .hero { padding: 18px; width: 100%; }
+      .wrapper { padding: 18px 14px; }
+      .card { padding: 10px; }
+      .card img { max-height: 50vh; }
+      .control-btn { font-size: 13px; padding: 8px 14px; }
+      .image-counter { font-size: 13px; padding: 6px 12px; }
+      #baisakhiCaption { font-size: 15px; }
+      .footer-row { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
     }
   </style>
 </head>
@@ -338,18 +311,23 @@
       </div>
     </div>
 
-    <!-- INTRODUCTION EMBELLISHMENT STRIP -->
     <div class="intro">
       Celebrating the Creation of the Khalsa and the Spirit of Eternal Chardi Kala
     </div>
 
-    <!-- MAIN GRID WRAPPER SPACE -->
+    <!-- MAIN WRAPPER SPACE -->
     <div class="wrapper">
+
+      <article class="text-content">
+        <h2>Significance of Baisakhi</h2>
+        <p>
+          Baisakhi marks the historic creation of the Khalsa Panth by Sri Guru Gobind Singh Ji in 1699 at Anandpur Sahib. It represents the spirit of righteousness, selflessness, and spiritual devotion.
+        </p>
+      </article>
 
       <div class="card">
         <img id="baisakhiImg" alt="Baisakhi Festival Sikh Tradition Slide" loading="lazy">
 
-        <!-- Controls container system row -->
         <div class="image-controls">
           <button class="control-btn" onclick="prevImage()">◀ Prev</button>
           <div class="image-counter" id="imageCounter">1 / 9</div>
@@ -361,7 +339,7 @@
 
     </div>
 
-    <!-- PREMIUM STRUCTURAL FOOTER BLOCK -->
+    <!-- FOOTER BLOCK -->
     <footer class="footer" role="contentinfo">
       <div class="footer-content">
         <div class="footer-row">
@@ -383,39 +361,39 @@
     const baisakhiPhotos = [
       {
         src: "https://drive.google.com/thumbnail?id=1VHa9HSdLU2ZW77BG6iX125WTZnSmaz6W&sz=w1000",
-        caption: "Baisakhi – Sikh Tradition & Cultural Significance"
+        caption: "Baisakhi – Sikh Tradition & Cultural Significance Card 1"
       },
       {
         src: "https://drive.google.com/thumbnail?id=1AmjYklMz9N2vrm5a-kgXsYyGAjh_eAxx&sz=w1000",
-        caption: "Baisakhi – Sikh Tradition & Cultural Significance"
+        caption: "Baisakhi – Sikh Tradition & Cultural Significance Card 2"
       },
       {
         src: "https://drive.google.com/thumbnail?id=1-2wIax6P5rG9xG7QcbhBZYqo5JqKpSL9&sz=w1000",
-        caption: "Baisakhi – Sikh Tradition & Cultural Significance"
+        caption: "Baisakhi – Sikh Tradition & Cultural Significance Card 3"
       },
       {
         src: "https://drive.google.com/thumbnail?id=1yw0PcTfQTYR2CSwNWUQARzFUWfarr8uf&sz=w1000",
-        caption: "Baisakhi – Sikh Tradition & Cultural Significance"
+        caption: "Baisakhi – Sikh Tradition & Cultural Significance Card 4"
       },
       {
         src: "https://drive.google.com/thumbnail?id=1JxsGjrHLpwlE4-EI0puKWm5QJq-dp6qh&sz=w1000",
-        caption: "Baisakhi – Sikh Tradition & Cultural Significance"
+        caption: "Baisakhi – Sikh Tradition & Cultural Significance Card 5"
       },
       {
         src: "https://drive.google.com/thumbnail?id=1WFGoaWxsHKRJs0dQhDSQzqWXllxptGUe&sz=w1000",
-        caption: "Baisakhi – Sikh Tradition & Cultural Significance"
+        caption: "Baisakhi – Sikh Tradition & Cultural Significance Card 6"
       },
       {
         src: "https://drive.google.com/thumbnail?id=1ZT4f1yC5KUuvtllO2L0Qm0zoB1_cJ6TV&sz=w1000",
-        caption: "Baisakhi – Sikh Tradition & Cultural Significance"
+        caption: "Baisakhi – Sikh Tradition & Cultural Significance Card 7"
       },
       {
         src: "https://drive.google.com/thumbnail?id=1TlKtw9XXG8iux-s5OuqMgE1muz44hKyD&sz=w1000",
-        caption: "Baisakhi – Sikh Tradition & Cultural Significance"
+        caption: "Baisakhi – Sikh Tradition & Cultural Significance Card 8"
       },
       {
         src: "https://drive.google.com/thumbnail?id=1aRW1eSNPhYslDZuIQlPPnY5kZpJFUFno&sz=w1000",
-        caption: "Baisakhi – Sikh Tradition & Cultural Significance"
+        caption: "Baisakhi – Sikh Tradition & Cultural Significance Card 9"
       }
     ];
 
@@ -444,7 +422,6 @@
       showImage(currentIndex);
     }
 
-    // Event listener system ensures script runs after DOM is constructed
     document.addEventListener("DOMContentLoaded", () => showImage(0));
   </script>
 
