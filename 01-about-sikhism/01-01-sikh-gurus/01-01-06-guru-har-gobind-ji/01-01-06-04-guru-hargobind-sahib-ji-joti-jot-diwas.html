@@ -15,20 +15,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <title>Sri Guru Ram Das Ji - Photo Album | Sikhs in India</title>
+  <title>Sri Guru Hargobind Sahib Ji - Joti Jot Diwas | Sikhs in India</title>
 
   <!-- SEO Meta -->
-  <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
-  <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
+  <meta name="description" content="Sri Guru Hargobind Sahib Ji - Joti Jot Diwas.">
+  <meta name="keywords" content="Sri Guru Hargobind Sahib Ji - Joti Jot Diwas, Sikhs in India">
   <meta name="author" content="Sikhs in India">
   <meta name="robots" content="index, follow">
 
-  <link rel="canonical" href="https://sikhsinindia.com/01-about-sikhism/01-08-album-of-gurus/01-08-04-guru-ram-das-ji.html">
+  <link rel="canonical" href="https://sikhsinindia.com/01-about-sikhism/01-01-sikh-gurus/01-01-06-guru-har-gobind-ji/01-01-06-04-guru-hargobind-sahib-ji-joti-jot-diwas.html">
 
-  <meta property="og:title" content="Sikh Heritage & Traditions | Gurudwaras, Guru Nanak & Sikh Scriptures">
-  <meta property="og:description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta property="og:title" content="Sri Guru Hargobind Sahib Ji - Joti Jot Diwas.">
+  <meta property="og:description" content="Sri Guru Hargobind Sahib Ji - Joti Jot Diwas.">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
-  <meta property="og:url" content="https://sikhsinindia.com/01-about-sikhism/01-08-album-of-gurus/01-08-04-guru-ram-das-ji.html">
+  <meta property="og:url" content="https://sikhsinindia.com/01-about-sikhism/01-01-sikh-gurus/01-01-06-guru-har-gobind-ji/01-01-06-04-guru-hargobind-sahib-ji-joti-jot-diwas.html">
   <meta property="og:type" content="website">
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -129,104 +129,81 @@
       flex: 1;
     }
 
-    /* GRID ALBUM INTERFACE CARD */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      text-align: center;
+      font-size: clamp(24px, 5vw, 34px);
+      margin-bottom: 6px;
+    }
+
+    /* IMAGE INTERFACE CARD */
     .card {
       width: 100%;
       background: #fff;
       border: 1px solid rgba(13, 27, 62, 0.08);
       border-radius: 8px;
-      padding: 24px;
+      padding: 16px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
       margin-bottom: 20px;
     }
 
-    .album {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .album img {
+    .card img {
       width: 100%;
       height: auto;
-      max-height: 250px;
+      max-height: 65vh;
       object-fit: contain;
-      border-radius: 6px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background: #fff;
-      border: 1px solid rgba(13, 27, 62, 0.05);
-      cursor: pointer;
       display: block;
+      border-radius: 6px;
+      margin-bottom: 16px;
     }
 
-    .album img:hover {
-      transform: scale(1.04);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    }
-
-    /* LIGHTBOX SYSTEM */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(13, 27, 62, 0.95);
+    /* CONTROLS BAR */
+    .image-controls {
+      display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      padding: 20px;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    .lightbox img {
-      max-width: 90%;
-      max-height: 75vh;
-      border-radius: 8px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-      background: #fff;
-      object-fit: contain;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-family: 'Lato', sans-serif;
-      font-size: 14px;
-      font-weight: bold;
-      background: var(--gold);
-      color: var(--navy);
+    .control-btn {
+      background-color: var(--navy);
+      color: #fff;
       border: none;
-      border-radius: 5px;
-      padding: 8px 16px;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    .download-btn {
-      margin-top: 20px;
-      background: #fff;
-      color: var(--navy);
-      border: 2px solid var(--navy);
+      padding: 10px 18px;
       font-family: 'Lato', sans-serif;
-      font-weight: bold;
       font-size: 14px;
-      padding: 10px 20px;
+      font-weight: bold;
       border-radius: 5px;
       cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.2s, color 0.2s;
+      transition: background-color 0.2s;
     }
 
-    .download-btn:hover {
-      background: var(--gold);
+    .control-btn:hover {
+      background-color: var(--gold);
       color: var(--navy);
-      border-color: var(--gold);
+    }
+
+    .image-counter {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      background-color: rgba(13, 27, 62, 0.05);
+      padding: 8px 16px;
+      border-radius: 5px;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    #guruHarRaiCaption {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--navy);
+      text-align: center;
+      margin-top: 14px;
     }
 
     /* ── FOOTER ── */
@@ -321,12 +298,25 @@
       }
 
       .card {
-        padding: 14px;
+        padding: 10px;
       }
 
-      .album {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 12px;
+      .card img {
+        max-height: 50vh;
+      }
+
+      .control-btn {
+        font-size: 13px;
+        padding: 8px 14px;
+      }
+
+      .image-counter {
+        font-size: 13px;
+        padding: 6px 12px;
+      }
+
+      #guruHarRaiCaption {
+        font-size: 15px;
       }
 
       .footer {
@@ -364,52 +354,43 @@
         <img class="logo-img" src="../../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
       </div>
       <div class="hero">
-        <div class="hero-title">Sri Guru Ram Das Ji <span>Photo Album</span></div>
-        <div class="hero-sub">Fourth Divine Light · Creator of Ramdaspur (Amritsar)</div>
+        <div class="hero-title">Sri Guru Hargobind Sahib Ji <span>Joti Jot Diwas</span></div>
+        <div class="hero-sub">Sixth Divine Light  ·  Guru from 1606 to 1644</div>
       </div>
     </div>
 
     <!-- INTRO BAR -->
     <div class="intro">
-      Explore Visual Heritage, Sacred Arts, and Pious Memories of the Fourth Spiritual Master of Sikhism
+      Observing the Sacred Remembrance, Eternal Merging, and Timeless Divine Teachings of the Sixth Sikh Guru
     </div>
 
     <!-- MAIN CONTENT AREA -->
     <div class="wrapper">
 
       <div class="card">
-        <div class="album">
-          <img src="https://drive.google.com/thumbnail?id=1YVULNQur42YD2Xz8P4oPmUd4iis1On1g&sz=w1000" data-id="1YVULNQur42YD2Xz8P4oPmUd4iis1On1g" alt="Guru Ram Das Ji 1" onclick="openLightbox(this)">
-          <img src="https://drive.google.com/thumbnail?id=1937O4_3Xbl3T9RtLiaPC4RvHSrV9uPVe&sz=w1000" data-id="1937O4_3Xbl3T9RtLiaPC4RvHSrV9uPVe" alt="Guru Ram Das Ji 3" onclick="openLightbox(this)">
-          <img src="https://drive.google.com/thumbnail?id=1WVSw6Cj0uTZdvqLHaQRxNx5maWuSrSg_&sz=w1000" data-id="1WVSw6Cj0uTZdvqLHaQRxNx5maWuSrSg_" alt="Guru Ram Das Ji 2" onclick="openLightbox(this)">
-          <img src="https://drive.google.com/thumbnail?id=1ZFWEBT3D5EnHUhufFvnI3c_5ETAhlXRK&sz=w1000" data-id="1ZFWEBT3D5EnHUhufFvnI3c_5ETAhlXRK" alt="Guru Ram Das Ji 4" onclick="openLightbox(this)">
-          <img src="https://drive.google.com/thumbnail?id=1-96_4nZAbJNepUxei43w2D7vgSXqAWMK&sz=w1000" data-id="1-96_4nZAbJNepUxei43w2D7vgSXqAWMK" alt="Guru Ram Das Ji 5" onclick="openLightbox(this)">
-          <img src="https://drive.google.com/thumbnail?id=1bPB3W2FYqeH3PvuHmakpvO__wpKm3OUT&sz=w1000" data-id="1bPB3W2FYqeH3PvuHmakpvO__wpKm3OUT" alt="Guru Ram Das Ji 6" onclick="openLightbox(this)">
-          <img src="https://drive.google.com/thumbnail?id=1kdQyepJzAwMy51Q64ZEYhfNNSgxPfAYl&sz=w1000" data-id="1kdQyepJzAwMy51Q64ZEYhfNNSgxPfAYl" alt="Guru Ram Das Ji 7" onclick="openLightbox(this)">
-          <img src="https://drive.google.com/thumbnail?id=1YkLti2XCX3pMeS7H95Ihc__EIuePafuG&sz=w1000" data-id="1YkLti2XCX3pMeS7H95Ihc__EIuePafuG" alt="Guru Ram Das Ji 8" onclick="openLightbox(this)">
-          <img src="https://drive.google.com/thumbnail?id=1DGP478zRN3PorMFK6d3LgNq7no3fH_Z5&sz=w1000" data-id="1DGP478zRN3PorMFK6d3LgNq7no3fH_Z5" alt="Guru Ram Das Ji 9" onclick="openLightbox(this)">
-          <img src="https://drive.google.com/thumbnail?id=19for2kWa6PjfqP1KLnMD1xolmLjrZMrU&sz=w1000" data-id="19for2kWa6PjfqP1KLnMD1xolmLjrZMrU" alt="Guru Amar Das Ji" onclick="openLightbox(this)">
+        <img id="guruAmarDasJiImg" alt="Sri Guru Hargobind Sahib Ji - Joti Jot Diwas Slide" loading="lazy">
+
+        <!-- Controls container system row -->
+        <div class="image-controls">
+          <button class="control-btn" onclick="prevImage()">◀ Prev</button>
+          <div class="image-counter" id="imageCounter">1 / 8</div>
+          <button class="control-btn" onclick="nextImage()">Next ▶</button>
         </div>
+
+        <p id="guruHarRaiCaption"></p>
       </div>
 
-    </div>
-
-    <!-- Lightbox Layout -->
-    <div class="lightbox" id="lightbox">
-      <button class="close-btn" onclick="closeLightbox()">✕ Close</button>
-      <img id="lightbox-img" src="" alt="">
-      <a id="download-link" class="download-btn" href="#" download>⬇ Download Image</a>
     </div>
 
     <!-- ── FOOTER ── -->
     <footer class="footer" role="contentinfo">
       <div class="footer-content">
         <div class="footer-row">
-          <a href="./01-01-04-guru-ram-das-ji.html" class="btn-back">
+          <a href="./01-01-06-guru-har-gobind-ji.html" class="btn-back">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M19 12H5M5 12l7-7M5 12l7 7" />
             </svg>
-            Back to Sri Guru Ram Das Ji
+            Back to Sri Guru Hargobind Sahib Ji
           </a>
         </div>
         <div class="footer-row footer-left">© 2025 SikhsinIndia.com – All Rights Reserved.</div>
@@ -419,30 +400,67 @@
   </div>
 
   <script>
-    function openLightbox(img) {
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightbox-img');
-      const downloadLink = document.getElementById('download-link');
+    const guruAmarDasJiPhotos = [
+      {
+        src: "https://drive.google.com/thumbnail?id=1c9liUS_g_rZhHjy0YNxZJer4poDUks_Z&sz=w1000",
+        caption: "Sri Guru Hargobind Sahib Ji - Joti Jot Diwas"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1nVUsPLCr4s5J35z08QpU93YLTMXB2ZZy&sz=w1000",
+        caption: "Sri Guru Hargobind Sahib Ji - Joti Jot Diwas"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1p3DEvJAPMS7SdiRbEFhp-pbJ21bvzSAh&sz=w1000",
+        caption: "Sri Guru Hargobind Sahib Ji - Joti Jot Diwas"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1cRZPUFSOQ_EcMBSBW2WBm7Ndaj05st6f&sz=w1000",
+        caption: "Sri Guru Hargobind Sahib Ji - Joti Jot Diwas"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1BwksVBt5m0kOBSdkMrzAbMbn0Oljr5n5&sz=w1000",
+        caption: "Sri Guru Hargobind Sahib Ji - Joti Jot Diwas"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1xIykY-A6HUzHdVaBXYFta9ez2b14ixQ-&sz=w1000",
+        caption: "Sri Guru Hargobind Sahib Ji - Joti Jot Diwas"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1P0nIgWIfYd3o8XbWdX0BL5YnJ3TjkmYa&sz=w1000",
+        caption: "Sri Guru Hargobind Sahib Ji - Joti Jot Diwas"
+      },
+      {
+        src: "https://drive.google.com/thumbnail?id=1TqEEnyulKA_NhqMWgDEKZ8OpH0rxkq2a&sz=w1000",
+        caption: "Sri Guru Hargobind Sahib Ji - Joti Jot Diwas"
+      }
+    ];
 
-      const fileId = img.getAttribute('data-id');
-      const fullImgUrl = `https://drive.google.com/thumbnail?id=${fileId}&sz=w2000`;
-      const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+    let currentIndex = 0;
 
-      lightbox.style.display = 'flex';
-      lightboxImg.src = fullImgUrl;
-      lightboxImg.alt = img.alt;
-      downloadLink.href = downloadUrl;
+    function showImage(index) {
+      const img = document.getElementById("guruAmarDasJiImg");
+      img.src = guruAmarDasJiPhotos[index].src;
+
+      document.getElementById("guruHarRaiCaption").textContent =
+        guruAmarDasJiPhotos[index].caption;
+
+      document.getElementById("imageCounter").textContent =
+        (index + 1) + " / " + guruAmarDasJiPhotos.length;
     }
 
-    function closeLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % guruAmarDasJiPhotos.length;
+      showImage(currentIndex);
     }
 
-    document.getElementById('lightbox').addEventListener('click', function(e) {
-      if (e.target.id === 'lightbox') closeLightbox();
-    });
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + guruAmarDasJiPhotos.length) % guruAmarDasJiPhotos.length;
+      showImage(currentIndex);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => showImage(0));
   </script>
 
 </body>
 
-</html>
+</html> 
