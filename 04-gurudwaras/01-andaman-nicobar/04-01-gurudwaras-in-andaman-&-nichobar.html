@@ -10,20 +10,22 @@
     gtag('config', 'G-LHNTFNW14H');
   </script>
 
-  <meta name="description" content="Explore Gurudwara Singh Sabha Ji in Andaman & Nicobar Islands along with rich Sikh heritage, traditions, and Gurudwaras across India.">
-  <link rel="canonical" href="https://sikhsinindia.com/04-gurudwaras/01-andaman-nicobar/04-01-02-gurudwara-singh-sabha.html">
-  <meta name="keywords" content="Sikhs in India, Sikh Heritage, Gurudwaras, Andaman & Nicobar Islands, Gurudwara Singh Sabha Ji, Waheguru">
+  <meta name="description" content="Explore the Gurudwaras of the Andaman &amp; Nicobar Islands - Gurudwara Dr. Diwan Singh Shaheed Ji (Police Gurudwara) and Gurudwara Singh Sabha Ji, Port Blair.">
+  <link rel="canonical" href="https://sikhsinindia.com/04-gurudwaras/01-andaman-nicobar/04-01-gurudwaras-in-andaman-&-nichobar.html">
+
+  <meta name="keywords" content="Sikhs in India, Sikh Heritage, Gurudwaras, Andaman &amp; Nicobar Islands, Port Blair, Gurudwara Dr. Diwan Singh Shaheed, Gurudwara Singh Sabha, Waheguru">
   <meta name="author" content="Sikhs in India">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Gurudwaras in Andaman & Nicobar Islands | SikhsInIndia.com">
-  <meta property="og:description" content="Explore Gurudwaras in Andaman & Nicobar Islands including Gurudwara Dr. Diwan Singh Shaheed Ji and Gurudwara Singh Sabha Ji.">
+
+  <meta property="og:title" content="Gurudwaras in Andaman &amp; Nicobar Islands | SikhsInIndia.com">
+  <meta property="og:description" content="Explore the Gurudwaras of the Andaman &amp; Nicobar Islands - Gurudwara Dr. Diwan Singh Shaheed Ji (Police Gurudwara) and Gurudwara Singh Sabha Ji, Port Blair.">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
-  <meta property="og:url" content="https://sikhsinindia.com/04-gurudwaras/01-andaman-nicobar/04-01-02-gurudwara-singh-sabha.html">
+  <meta property="og:url" content="https://sikhsinindia.com/04-gurudwaras/01-andaman-nicobar/04-01-gurudwaras-in-andaman-&-nichobar.html">
   <meta property="og:type" content="website">
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Gurudwaras in Andaman & Nicobar Islands | SikhsInIndia.com</title>
+  <title>Gurudwaras in Andaman &amp; Nicobar Islands | SikhsInIndia.com</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
@@ -122,7 +124,7 @@
     }
     .hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 6vw, 48px);
+      font-size: clamp(26px, 5.5vw, 46px);
       font-weight: 900;
       color: var(--white);
       line-height: 1.1;
@@ -177,12 +179,96 @@
       text-align: center;
     }
 
-    /* ── CARD / GURU SECTIONS ── */
-    .gurus-wrapper {
-      background: var(--cream);
-      padding: 28px 36px;
+    /* ── SECTION HEADINGS ── */
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--navy);
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .section-heading span { color: var(--gold); }
+    .section-sub {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
     }
 
+    /* ── CITY GRID ── */
+    .cities-wrapper { background: var(--cream); padding: 28px 36px; }
+    .city-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+      gap: 14px;
+    }
+    .city-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      border: 1px solid rgba(184,145,58,0.35);
+      border-left: 4px solid rgba(184,145,58,0.35);
+      border-radius: 8px;
+      padding: 14px 16px;
+      text-decoration: none;
+      min-height: 68px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    a.city-card {
+      border-left-color: var(--gold);
+      box-shadow: 0 2px 8px rgba(13,27,62,0.08);
+    }
+    a.city-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+      box-shadow: 0 8px 20px rgba(13,27,62,0.18);
+    }
+    a.city-card:active { transform: scale(0.985); }
+    .city-icon { width: 34px; height: 34px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .city-icon svg { width: 30px; height: 30px; }
+    .city-body { flex: 1; min-width: 0; }
+    .city-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+    }
+    .city-note {
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-top: 4px;
+      color: var(--gold);
+    }
+    .city-arrow { flex-shrink: 0; color: var(--gold); display: flex; align-items: center; }
+    .city-arrow svg { width: 16px; height: 16px; }
+    .city-card.soon {
+      background: rgba(255,255,255,0.55);
+      border-style: dashed;
+      border-left-style: solid;
+    }
+    .city-card.soon .city-name { color: #6a6a78; font-weight: 400; }
+    .city-card.soon .city-note { color: #9a9aa5; }
+    .city-card.soon .city-icon svg { opacity: 0.45; }
+
+    .legend {
+      margin-top: 20px;
+      font-size: 11px;
+      color: #555;
+      text-align: center;
+      line-height: 1.7;
+    }
+    .legend b { color: var(--navy); }
+
+    /* ── GURUDWARA SECTIONS ── */
+    .gurus-wrapper { background: var(--cream); padding: 28px 36px; }
     .guru-section {
       display: flex;
       align-items: flex-start;
@@ -191,11 +277,7 @@
       border-bottom: 1px solid rgba(184,145,58,0.25);
     }
     .guru-section:last-child { border-bottom: none; }
-
-    .guru-image-wrap {
-      flex-shrink: 0;
-      text-align: center;
-    }
+    .guru-image-wrap { flex-shrink: 0; text-align: center; }
     .guru-image {
       width: 180px;
       height: 140px;
@@ -207,7 +289,6 @@
       cursor: pointer;
     }
     .guru-image:hover { transform: scale(1.04); }
-
     .guru-text { flex: 1; min-width: 0; }
     .guru-name-heading {
       font-family: 'Playfair Display', serif;
@@ -228,6 +309,82 @@
       padding-bottom: 8px;
       border-bottom: 1px solid rgba(184,145,58,0.3);
     }
+    .guru-description {
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: #333;
+      margin-bottom: 12px;
+    }
+    .guru-description p { margin-bottom: 8px; }
+    .guru-description p:last-child { margin-bottom: 0; }
+
+    /* ── GALLERY ── */
+    .gallery-wrapper { background: var(--cream); padding: 28px 36px 8px; }
+    .gallery-main {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      border-radius: 10px;
+      display: block;
+      cursor: pointer;
+      background: var(--navy);
+    }
+    .gallery-thumbs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .gallery-thumb {
+      width: 100%;
+      height: 78px;
+      object-fit: cover;
+      border: 2px solid rgba(184,145,58,0.4);
+      border-radius: 7px;
+      display: block;
+      cursor: pointer;
+      opacity: 0.72;
+      transition: opacity 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+    .gallery-thumb:hover { opacity: 1; transform: translateY(-2px); }
+    .gallery-thumb.active { opacity: 1; border-color: var(--gold); }
+    .gallery-hint {
+      margin-top: 10px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* Detail page body */
+    .detail-wrapper { background: var(--cream); padding: 20px 36px 28px; }
+
+    /* ── FACT LIST ── */
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .fact {
+      background: var(--white);
+      border: 1px solid rgba(184,145,58,0.35);
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .fact-label {
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .fact-value { font-size: 12.5px; color: var(--navy); line-height: 1.6; }
 
     /* ── QUOTE PANEL ── */
     .quote-panel {
@@ -281,6 +438,7 @@
       color: rgba(255,255,255,0.45);
       letter-spacing: 2px;
       text-transform: uppercase;
+      line-height: 1.7;
     }
     .footer-right {
       font-size: 10px;
@@ -371,79 +529,109 @@
     }
     .lb-download:hover { background: #e8830a; }
 
-    /* ══════════════════════════════════════
+    /* ══════════════════════
        MOBILE — up to 480px (small phones)
-    ══════════════════════════════════════ */
+    ══════════════════════ */
     @media (max-width: 480px) {
+
       body { padding: 0; background: var(--navy); }
       .poster { box-shadow: none; }
 
+      /* Header — stack logo above hero text */
       .header { flex-direction: column; align-items: stretch; }
-      .logo-wrap {
-        padding: 12px 16px 8px;
-        justify-content: center;
-      }
+      .logo-wrap { padding: 12px 16px 8px; justify-content: center; }
       .logo-img { height: 60px; }
 
-      .hero { padding: 16px 14px 14px; text-align: center; }
+      /* Hero */
+      .hero { padding: 16px 14px 14px; }
       .hero-eyebrow { font-size: 9px; letter-spacing: 2px; margin-bottom: 8px; }
-      .hero-title   { font-size: 26px; letter-spacing: 0; margin-bottom: 4px; }
+      .hero-title   { font-size: 25px; letter-spacing: 0; margin-bottom: 4px; }
       .hero-subtitle{ font-size: 14px; margin-bottom: 10px; }
       .hero-tagline { font-size: 9px; letter-spacing: 1.5px; }
       .gold-rule    { margin: 10px auto; }
       .gold-rule::before, .gold-rule::after { max-width: 50px; }
 
+      /* Intro banner */
       .intro-banner { padding: 10px 14px; }
       .intro-banner p { font-size: 12px; line-height: 1.55; }
 
+      /* Section headings */
+      .section-heading { font-size: 18px; }
+      .section-sub { font-size: 9px; letter-spacing: 1.5px; margin-bottom: 14px; }
+
+      /* Cities — single column, full-width tap targets */
+      .cities-wrapper { padding: 18px 12px; }
+      .city-grid { grid-template-columns: 1fr; gap: 10px; }
+      .city-card { padding: 12px 14px; min-height: 60px; }
+      .city-name { font-size: 15px; }
+      .city-note { font-size: 9px; letter-spacing: 1px; }
+      .legend { font-size: 10.5px; margin-top: 16px; }
+
+      /* Gurudwara cards — always stack vertically, centred */
       .gurus-wrapper { padding: 14px 12px; }
       .guru-section,
       .guru-section.reverse {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 14px;
+        gap: 12px;
         padding: 18px 0;
       }
       .guru-image-wrap { width: 100%; display: flex; flex-direction: column; align-items: center; }
-      .guru-image { width: 100%; max-width: 260px; height: 180px; }
+      .guru-image { width: 100%; max-width: 300px; height: 190px; }
       .guru-name-heading { font-size: 17px; }
-      .guru-attribute { font-size: 9px; letter-spacing: 1px; margin-bottom: 12px; }
+      .guru-attribute { font-size: 9px; letter-spacing: 1px; margin-bottom: 8px; }
+      .guru-description { font-size: 12.5px; line-height: 1.7; text-align: left; }
 
+      /* Gallery */
+      .gallery-wrapper { padding: 14px 12px 6px; }
+      .gallery-main { height: 215px; }
+      .gallery-thumbs { gap: 7px; }
+      .gallery-thumb { height: 56px; }
+      .gallery-hint { font-size: 9px; letter-spacing: 1.5px; }
+
+      /* Detail */
+      .detail-wrapper { padding: 16px 12px 20px; }
+      .facts { grid-template-columns: 1fr; gap: 10px; margin-top: 14px; }
+
+      /* Quote */
       .quote-panel { margin: 0 12px 20px; padding: 16px 16px 16px 20px; }
       .quote-mark  { font-size: 42px; top: 14px; left: 12px; }
       .quote-text  { font-size: 13px; padding-left: 20px; }
       .quote-attr  { font-size: 9px; padding-left: 20px; }
 
+      /* Footer */
       .footer { padding: 14px 12px; }
-      .footer-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 12px;
-      }
-      .btn-back, .btn-detailed { font-size: 10px; padding: 8px 16px; }
-      .footer-left  { font-size: 9px; }
+      .footer-content { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+      /* Same gold button, just a comfortable touch target on phones */
+      .btn-back, .btn-detailed { font-size: 10px; padding: 9px 22px; min-height: 44px; }
+      .footer-left  { font-size: 9px; letter-spacing: 1px; }
       .footer-right { font-size: 9px; letter-spacing: 1px; }
 
+      /* Lightbox */
       .lb-close { top: 10px; right: 10px; font-size: 12px; padding: 5px 10px; }
       .lb-download { font-size: 11px; padding: 9px 16px; }
     }
 
     /* ── TABLET — 481px to 768px ── */
     @media (min-width: 481px) and (max-width: 768px) {
+
       body { padding: 10px 6px; }
+
       .logo-img { height: 72px; }
       .logo-wrap { padding: 12px 14px; }
 
       .hero { padding: 22px 24px 18px; }
       .hero-eyebrow { font-size: 10px; letter-spacing: 3px; }
-      .hero-title   { font-size: clamp(26px, 5vw, 40px); }
+      .hero-title   { font-size: clamp(22px, 5vw, 38px); }
       .hero-subtitle{ font-size: clamp(13px, 2.5vw, 18px); }
       .hero-tagline { font-size: 10px; letter-spacing: 2px; }
 
       .intro-banner { padding: 10px 20px; }
       .intro-banner p { font-size: 12.5px; }
+
+      .cities-wrapper { padding: 22px 20px; }
+      .city-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
 
       .gurus-wrapper { padding: 18px 20px; }
       .guru-section,
@@ -455,21 +643,24 @@
         padding: 20px 0;
       }
       .guru-image-wrap { width: 100%; display: flex; flex-direction: column; align-items: center; }
-      .guru-image { width: 220px; height: 160px; }
+      .guru-image { width: 100%; max-width: 340px; height: 200px; }
+      .guru-description { font-size: 13px; text-align: left; }
+
+      .gallery-wrapper { padding: 18px 20px 6px; }
+      .gallery-main { height: 300px; }
+      .gallery-thumb { height: 68px; }
+
+      .detail-wrapper { padding: 18px 20px 22px; }
 
       .quote-panel { margin: 0 20px 24px; }
 
       .footer { padding: 14px 20px; }
-      .footer-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 10px;
-      }
+      .footer-content { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
     }
 
-    /* ── DESKTOP — 769px and above ── */
+    /* ── DESKTOP — 769px and above (default) ── */
     @media (min-width: 769px) {
+      /* Alternating layout active on desktop only */
       .guru-section.reverse { flex-direction: row-reverse; }
     }
   </style>
@@ -509,8 +700,11 @@
              onclick="openLightbox(this.src, 'Gurudwara Dr. Diwan Singh Shaheed Ji')">
       </div>
       <div class="guru-text">
-        <div class="guru-name-heading"><span>Gurudwara Dr. Diwan Singh Shaheed Ji</span> (Police Gurudwara)</div>
-        <div class="guru-attribute">Location: Port Blair, Andaman &amp; Nicobar Islands</div>
+        <div class="guru-name-heading"><span>Gurudwara Dr. Diwan Singh Shaheed Ji</span><br>(Police Gurudwara)</div>
+        <div class="guru-attribute">Location: Aberdeen Bazaar, Port Blair</div>
+        <div class="guru-description">
+          <p>Established in 1937 by freedom fighter Dr. Diwan Singh Kalapani, notable for its wooden architecture built on iron pillars.</p>
+        </div>
         <button type="button" class="btn-detailed" onclick="location.href='../../04-gurudwaras/01-andaman-nicobar/04-01-01-gurudwara-dr.-diwan-singh-shaheed.html'">
           Visit Page
         </button>
@@ -526,7 +720,10 @@
       </div>
       <div class="guru-text">
         <div class="guru-name-heading"><span>Gurudwara Singh Sabha Ji</span></div>
-        <div class="guru-attribute">Location: Andaman &amp; Nicobar Islands</div>
+        <div class="guru-attribute">Location: Sri Vijaya Puram, near Minnie Bay, Port Blair</div>
+        <div class="guru-description">
+          <p>Renowned for its peaceful ambiance, vibrant raagi jatha devotional music, and workshops on turban-tying traditions.</p>
+        </div>
         <button type="button" class="btn-detailed" onclick="location.href='../../04-gurudwaras/01-andaman-nicobar/04-01-02-gurudwara-singh-sabha.html'">
           Visit Page
         </button>
@@ -538,8 +735,8 @@
   <!-- ── QUOTE ── -->
   <div class="quote-panel">
     <div class="quote-mark">"</div>
-    <div class="quote-text">Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh — the Khalsa belongs to the Almighty, and victory too is His.</div>
-    <div class="quote-attr">— Sikh Salutation</div>
+    <div class="quote-text">Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh &mdash; the Khalsa belongs to the Almighty, and victory too is His.</div>
+    <div class="quote-attr">&mdash; Sikh Salutation</div>
   </div>
 
   <!-- ── FOOTER / BACK BUTTON ── -->
@@ -602,6 +799,11 @@
   // Close lightbox on background click
   document.getElementById('lightbox').addEventListener('click', function(e) {
     if (e.target === this) closeLightbox();
+  });
+
+  // Close lightbox with the Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
   });
 </script>
 

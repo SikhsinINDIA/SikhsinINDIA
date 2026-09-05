@@ -10,13 +10,15 @@
     gtag('config', 'G-LHNTFNW14H');
   </script>
 
-  <meta name="description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta name="description" content="Explore the Gurudwaras of Ladakh - Gurudwara Pathar Sahib near Leh, Gurudwara Charan Kamal Sahib at Kargil, and Gurudwara Datun Sahib in Leh bazaar.">
   <link rel="canonical" href="https://sikhsinindia.com/04-gurudwaras/18-ladakh/04-18-gurudwaras-in-ladakh.html">
-  <meta name="keywords" content="Sikhs in India, Sikh Heritage, traditions, Gurdwaras, Guru Nanak, Guru Gobind, Guru Tegh, Japji Sahib, Rehras Sahib, Guru Granth Sahib Ji, Waheguru">
+
+  <meta name="keywords" content="Sikhs in India, Sikh Heritage, Gurudwaras, Ladakh, Leh, Kargil, Pathar Sahib, Charan Kamal Sahib, Datun Sahib, Guru Nanak Dev Ji, Waheguru">
   <meta name="author" content="Sikhs in India">
   <meta name="robots" content="index, follow">
+
   <meta property="og:title" content="Gurudwaras in Ladakh | SikhsInIndia.com">
-  <meta property="og:description" content="Explore the rich Sikh heritage in India, including traditions, Gurudwaras, teachings of Guru Nanak, Guru Gobind Singh, Sikh scriptures like Japji Sahib and Guru Granth Sahib Ji.">
+  <meta property="og:description" content="Explore the Gurudwaras of Ladakh - Gurudwara Pathar Sahib near Leh, Gurudwara Charan Kamal Sahib at Kargil, and Gurudwara Datun Sahib in Leh bazaar.">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
   <meta property="og:url" content="https://sikhsinindia.com/04-gurudwaras/18-ladakh/04-18-gurudwaras-in-ladakh.html">
   <meta property="og:type" content="website">
@@ -122,11 +124,11 @@
     }
     .hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(30px, 6vw, 54px);
+      font-size: clamp(26px, 5.5vw, 46px);
       font-weight: 900;
       color: var(--white);
-      line-height: 1.05;
-      letter-spacing: -1px;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
       margin-bottom: 6px;
     }
     .hero-title span { color: var(--gold-light); }
@@ -174,110 +176,215 @@
       font-weight: 700;
       line-height: 1.6;
       letter-spacing: 0.3px;
-    }
-
-    /* ── GURUDWARA CARDS ── */
-    .cards-wrapper {
-      background: var(--cream);
-      padding: 28px 36px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 22px;
-    }
-
-    .card {
-      background: var(--white);
-      border: 1px solid rgba(184,145,58,0.35);
-      border-top: 3px solid var(--gold);
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 4px 14px rgba(13,27,62,0.10);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 24px rgba(13,27,62,0.18);
-    }
-
-    .card-image-wrap { position: relative; }
-    .card-image {
-      width: 100%;
-      height: 170px;
-      object-fit: cover;
-      display: block;
-      cursor: pointer;
-    }
-    .card-badge {
-      position: absolute;
-      bottom: 8px; left: 8px;
-      background: var(--navy);
-      color: var(--gold);
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      padding: 3px 10px;
-      border-radius: 20px;
-      text-transform: uppercase;
-    }
-
-    .card-body {
-      padding: 16px 18px 18px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
       text-align: center;
     }
-    .card-title {
+
+    /* ── SECTION HEADINGS ── */
+    .section-heading {
       font-family: 'Playfair Display', serif;
-      font-size: 17px;
+      font-size: 22px;
       font-weight: 900;
       color: var(--navy);
-      line-height: 1.25;
+      text-align: center;
       margin-bottom: 4px;
     }
-    .card-title span { color: var(--gold); }
-    .card-location {
+    .section-heading span { color: var(--gold); }
+    .section-sub {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* ── CITY GRID ── */
+    .cities-wrapper { background: var(--cream); padding: 28px 36px; }
+    .city-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+      gap: 14px;
+    }
+    .city-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      border: 1px solid rgba(184,145,58,0.35);
+      border-left: 4px solid rgba(184,145,58,0.35);
+      border-radius: 8px;
+      padding: 14px 16px;
+      text-decoration: none;
+      min-height: 68px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    a.city-card {
+      border-left-color: var(--gold);
+      box-shadow: 0 2px 8px rgba(13,27,62,0.08);
+    }
+    a.city-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+      box-shadow: 0 8px 20px rgba(13,27,62,0.18);
+    }
+    a.city-card:active { transform: scale(0.985); }
+    .city-icon { width: 34px; height: 34px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .city-icon svg { width: 30px; height: 30px; }
+    .city-body { flex: 1; min-width: 0; }
+    .city-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+    }
+    .city-note {
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-top: 4px;
+      color: var(--gold);
+    }
+    .city-arrow { flex-shrink: 0; color: var(--gold); display: flex; align-items: center; }
+    .city-arrow svg { width: 16px; height: 16px; }
+    .city-card.soon {
+      background: rgba(255,255,255,0.55);
+      border-style: dashed;
+      border-left-style: solid;
+    }
+    .city-card.soon .city-name { color: #6a6a78; font-weight: 400; }
+    .city-card.soon .city-note { color: #9a9aa5; }
+    .city-card.soon .city-icon svg { opacity: 0.45; }
+
+    .legend {
+      margin-top: 20px;
+      font-size: 11px;
+      color: #555;
+      text-align: center;
+      line-height: 1.7;
+    }
+    .legend b { color: var(--navy); }
+
+    /* ── GURUDWARA SECTIONS ── */
+    .gurus-wrapper { background: var(--cream); padding: 28px 36px; }
+    .guru-section {
+      display: flex;
+      align-items: flex-start;
+      gap: 22px;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(184,145,58,0.25);
+    }
+    .guru-section:last-child { border-bottom: none; }
+    .guru-image-wrap { flex-shrink: 0; text-align: center; }
+    .guru-image {
+      width: 180px;
+      height: 140px;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      border-radius: 10px;
+      display: block;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .guru-image:hover { transform: scale(1.04); }
+    .guru-text { flex: 1; min-width: 0; }
+    .guru-name-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+    .guru-name-heading span { color: var(--gold); }
+    .guru-attribute {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(184,145,58,0.3);
+    }
+    .guru-description {
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: #333;
+      margin-bottom: 12px;
+    }
+    .guru-description p { margin-bottom: 8px; }
+    .guru-description p:last-child { margin-bottom: 0; }
+
+    /* ── GALLERY ── */
+    .gallery-wrapper { background: var(--cream); padding: 28px 36px 8px; }
+    .gallery-main {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      border-radius: 10px;
+      display: block;
+      cursor: pointer;
+      background: var(--navy);
+    }
+    .gallery-thumbs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .gallery-thumb {
+      width: 100%;
+      height: 78px;
+      object-fit: cover;
+      border: 2px solid rgba(184,145,58,0.4);
+      border-radius: 7px;
+      display: block;
+      cursor: pointer;
+      opacity: 0.72;
+      transition: opacity 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+    .gallery-thumb:hover { opacity: 1; transform: translateY(-2px); }
+    .gallery-thumb.active { opacity: 1; border-color: var(--gold); }
+    .gallery-hint {
+      margin-top: 10px;
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--gold);
       font-weight: 700;
-      padding-bottom: 10px;
-      margin-bottom: 14px;
-      border-bottom: 1px solid rgba(184,145,58,0.3);
+      text-align: center;
     }
 
-    /* 3D gold button — matches the Back button style */
-    .btn-gold {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      font-family: 'Lato', sans-serif;
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--navy);
-      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
-      border: none;
-      border-radius: 5px;
-      padding: 10px 18px;
-      cursor: pointer;
-      box-shadow:
-        inset 0 1px 0 rgba(255,220,120,0.5),
-        inset 0 -2px 0 rgba(0,0,0,0.2),
-        0 0 0 2px #9a5800,
-        0 0 0 3.5px var(--gold);
-      transition: filter 0.15s, transform 0.1s;
-      margin: auto auto 0;
+    /* Detail page body */
+    .detail-wrapper { background: var(--cream); padding: 20px 36px 28px; }
+
+    /* ── FACT LIST ── */
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
     }
-    .btn-gold:hover { filter: brightness(1.08); }
-    .btn-gold:active { transform: scale(0.97); filter: brightness(0.93); }
-    .btn-gold svg { width: 12px; height: 12px; }
+    .fact {
+      background: var(--white);
+      border: 1px solid rgba(184,145,58,0.35);
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .fact-label {
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .fact-value { font-size: 12.5px; color: var(--navy); line-height: 1.6; }
 
     /* ── QUOTE PANEL ── */
     .quote-panel {
@@ -313,40 +420,6 @@
       padding-left: 30px;
     }
 
-    /* ── THREE VALUES ── */
-    .values {
-      background: var(--navy);
-      padding: 28px 36px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border-top: 3px solid var(--gold);
-    }
-    .value-item {
-      text-align: center;
-      padding: 18px 14px;
-      position: relative;
-    }
-    .value-item + .value-item::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 20%; bottom: 20%;
-      width: 1px;
-      background: rgba(247,148,29,0.3);
-    }
-    .value-icon { width: 42px; height: 42px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; }
-    .value-icon svg { width: 42px; height: 42px; }
-    .value-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 5px;
-    }
-    .value-desc { font-size: 11px; color: rgba(255,255,255,0.7); line-height: 1.5; }
-
     /* ── FOOTER ── */
     .footer {
       background: var(--navy-mid);
@@ -365,6 +438,7 @@
       color: rgba(255,255,255,0.45);
       letter-spacing: 2px;
       text-transform: uppercase;
+      line-height: 1.7;
     }
     .footer-right {
       font-size: 10px;
@@ -374,13 +448,13 @@
       font-weight: 700;
     }
 
-    /* Back button — 3D gold, matches Feedback style */
-    .btn-back {
+    /* Standard Button Template Layout — 3D gold style */
+    .btn-back, .btn-detailed {
       display: inline-flex;
       align-items: center;
       gap: 7px;
       font-family: 'Lato', sans-serif;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 900;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -389,7 +463,7 @@
       background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
       border: none;
       border-radius: 5px;
-      padding: 9px 18px;
+      padding: 10px 20px;
       cursor: pointer;
       box-shadow:
         inset 0 1px 0 rgba(255,220,120,0.5),
@@ -399,9 +473,9 @@
       transition: filter 0.15s, transform 0.1s;
       flex-shrink: 0;
     }
-    .btn-back:hover { filter: brightness(1.08); }
-    .btn-back:active { transform: scale(0.97); filter: brightness(0.93); }
-    .btn-back svg { width: 12px; height: 12px; }
+    .btn-back:hover, .btn-detailed:hover { filter: brightness(1.08); }
+    .btn-back:active, .btn-detailed:active { transform: scale(0.97); filter: brightness(0.93); }
+    .btn-back svg, .btn-detailed svg { width: 12px; height: 12px; }
 
     /* ── LIGHTBOX ── */
     .lightbox {
@@ -455,33 +529,23 @@
     }
     .lb-download:hover { background: #e8830a; }
 
-    /* Hidden SEO links */
-    .seo-links { display: none; }
-
-    /* ══════════════════════════════════════
+    /* ══════════════════════
        MOBILE — up to 480px (small phones)
-    ══════════════════════════════════════ */
+    ══════════════════════ */
     @media (max-width: 480px) {
 
       body { padding: 0; background: var(--navy); }
-
       .poster { box-shadow: none; }
 
       /* Header — stack logo above hero text */
       .header { flex-direction: column; align-items: stretch; }
-      .logo-wrap {
-        padding: 12px 16px 8px;
-        justify-content: center;
-      }
+      .logo-wrap { padding: 12px 16px 8px; justify-content: center; }
       .logo-img { height: 60px; }
 
       /* Hero */
-      .hero {
-        padding: 16px 14px 14px;
-        text-align: center;
-      }
+      .hero { padding: 16px 14px 14px; }
       .hero-eyebrow { font-size: 9px; letter-spacing: 2px; margin-bottom: 8px; }
-      .hero-title   { font-size: 30px; letter-spacing: 0; margin-bottom: 4px; }
+      .hero-title   { font-size: 25px; letter-spacing: 0; margin-bottom: 4px; }
       .hero-subtitle{ font-size: 14px; margin-bottom: 10px; }
       .hero-tagline { font-size: 9px; letter-spacing: 1.5px; }
       .gold-rule    { margin: 10px auto; }
@@ -491,11 +555,44 @@
       .intro-banner { padding: 10px 14px; }
       .intro-banner p { font-size: 12px; line-height: 1.55; }
 
-      /* Cards — single column */
-      .cards-wrapper { padding: 16px 12px; grid-template-columns: 1fr; gap: 16px; }
-      .card-image { height: 190px; }
-      .card-title { font-size: 16px; }
-      .card-location { font-size: 9px; letter-spacing: 1px; }
+      /* Section headings */
+      .section-heading { font-size: 18px; }
+      .section-sub { font-size: 9px; letter-spacing: 1.5px; margin-bottom: 14px; }
+
+      /* Cities — single column, full-width tap targets */
+      .cities-wrapper { padding: 18px 12px; }
+      .city-grid { grid-template-columns: 1fr; gap: 10px; }
+      .city-card { padding: 12px 14px; min-height: 60px; }
+      .city-name { font-size: 15px; }
+      .city-note { font-size: 9px; letter-spacing: 1px; }
+      .legend { font-size: 10.5px; margin-top: 16px; }
+
+      /* Gurudwara cards — always stack vertically, centred */
+      .gurus-wrapper { padding: 14px 12px; }
+      .guru-section,
+      .guru-section.reverse {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+        padding: 18px 0;
+      }
+      .guru-image-wrap { width: 100%; display: flex; flex-direction: column; align-items: center; }
+      .guru-image { width: 100%; max-width: 300px; height: 190px; }
+      .guru-name-heading { font-size: 17px; }
+      .guru-attribute { font-size: 9px; letter-spacing: 1px; margin-bottom: 8px; }
+      .guru-description { font-size: 12.5px; line-height: 1.7; text-align: left; }
+
+      /* Gallery */
+      .gallery-wrapper { padding: 14px 12px 6px; }
+      .gallery-main { height: 215px; }
+      .gallery-thumbs { gap: 7px; }
+      .gallery-thumb { height: 56px; }
+      .gallery-hint { font-size: 9px; letter-spacing: 1.5px; }
+
+      /* Detail */
+      .detail-wrapper { padding: 16px 12px 20px; }
+      .facts { grid-template-columns: 1fr; gap: 10px; margin-top: 14px; }
 
       /* Quote */
       .quote-panel { margin: 0 12px 20px; padding: 16px 16px 16px 20px; }
@@ -503,24 +600,12 @@
       .quote-text  { font-size: 13px; padding-left: 20px; }
       .quote-attr  { font-size: 9px; padding-left: 20px; }
 
-      /* Values — single column */
-      .values { grid-template-columns: 1fr; padding: 20px 14px; gap: 4px; }
-      .value-item { padding: 14px 10px; }
-      .value-item + .value-item::before { display: none; }
-      .value-item + .value-item { border-top: 1px solid rgba(247,148,29,0.2); }
-      .value-name { font-size: 12px; }
-      .value-desc { font-size: 11px; }
-
       /* Footer */
       .footer { padding: 14px 12px; }
-      .footer-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 10px;
-      }
-      .btn-back { font-size: 9px; padding: 8px 14px; }
-      .footer-left  { font-size: 9px; }
+      .footer-content { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+      /* Same gold button, just a comfortable touch target on phones */
+      .btn-back, .btn-detailed { font-size: 10px; padding: 9px 22px; min-height: 44px; }
+      .footer-left  { font-size: 9px; letter-spacing: 1px; }
       .footer-right { font-size: 9px; letter-spacing: 1px; }
 
       /* Lightbox */
@@ -528,9 +613,7 @@
       .lb-download { font-size: 11px; padding: 9px 16px; }
     }
 
-    /* ══════════════════════════════════════
-       TABLET — 481px to 768px
-    ══════════════════════════════════════ */
+    /* ── TABLET — 481px to 768px ── */
     @media (min-width: 481px) and (max-width: 768px) {
 
       body { padding: 10px 6px; }
@@ -540,32 +623,45 @@
 
       .hero { padding: 22px 24px 18px; }
       .hero-eyebrow { font-size: 10px; letter-spacing: 3px; }
-      .hero-title   { font-size: clamp(26px, 5.5vw, 42px); }
+      .hero-title   { font-size: clamp(22px, 5vw, 38px); }
       .hero-subtitle{ font-size: clamp(13px, 2.5vw, 18px); }
       .hero-tagline { font-size: 10px; letter-spacing: 2px; }
 
       .intro-banner { padding: 10px 20px; }
       .intro-banner p { font-size: 12.5px; }
 
-      /* Cards — two columns */
-      .cards-wrapper { padding: 20px; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-      .card-image { height: 160px; }
+      .cities-wrapper { padding: 22px 20px; }
+      .city-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
 
-      /* Quote */
-      .quote-panel { margin: 0 20px 24px; }
-
-      /* Values */
-      .values { padding: 22px 20px; }
-      .value-name { font-size: 12px; }
-
-      /* Footer */
-      .footer { padding: 14px 20px; }
-      .footer-content {
+      .gurus-wrapper { padding: 18px 20px; }
+      .guru-section,
+      .guru-section.reverse {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 10px;
+        gap: 14px;
+        padding: 20px 0;
       }
+      .guru-image-wrap { width: 100%; display: flex; flex-direction: column; align-items: center; }
+      .guru-image { width: 100%; max-width: 340px; height: 200px; }
+      .guru-description { font-size: 13px; text-align: left; }
+
+      .gallery-wrapper { padding: 18px 20px 6px; }
+      .gallery-main { height: 300px; }
+      .gallery-thumb { height: 68px; }
+
+      .detail-wrapper { padding: 18px 20px 22px; }
+
+      .quote-panel { margin: 0 20px 24px; }
+
+      .footer { padding: 14px 20px; }
+      .footer-content { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+    }
+
+    /* ── DESKTOP — 769px and above (default) ── */
+    @media (min-width: 769px) {
+      /* Alternating layout active on desktop only */
+      .guru-section.reverse { flex-direction: row-reverse; }
     }
   </style>
 </head>
@@ -580,146 +676,98 @@
            alt="Sikhs In India Logo">
     </div>
     <div class="hero">
-      <div class="hero-eyebrow">Gurudwaras · The Land of High Passes</div>
+      <div class="hero-eyebrow">Sikh Heritage &amp; Holy Places</div>
       <div class="hero-title">GURUDWARAS IN <span>LADAKH</span></div>
-      <div class="hero-subtitle">Sacred Footsteps in the Himalayas</div>
+      <div class="hero-subtitle">Shrines of the High Passes</div>
       <div class="gold-rule"><div class="gold-rule-diamond"></div></div>
-      <div class="hero-tagline">Faith &nbsp;·&nbsp; Heritage &nbsp;·&nbsp; Service &nbsp;·&nbsp; Devotion</div>
+      <div class="hero-tagline">Faith &nbsp;·&nbsp; Seva &nbsp;·&nbsp; Sangat &nbsp;·&nbsp; Heritage</div>
     </div>
   </div>
 
   <!-- ── INTRO BANNER ── -->
   <div class="intro-banner">
-    <p>High among the mountains of Ladakh stand Gurudwaras that mark the travels of Guru Nanak Dev Ji through these lands — places of quiet devotion, langar and seva, cared for with reverence by the local community and the Indian Army alike.</p>
+    <p>Guru Nanak Dev Ji travelled through these mountains, and the shrines of Pathar Sahib, Charan Kamal Sahib and Datun Sahib mark his passage across the high desert of Ladakh.</p>
   </div>
 
-  <!-- ── GURUDWARA CARDS ── -->
-  <div class="cards-wrapper">
+  <!-- ── GURUDWARA SECTIONS ── -->
+  <div class="gurus-wrapper">
 
-    <!-- Gurudwara 1 -->
-    <div class="card">
-      <div class="card-image-wrap">
-        <img class="card-image"
-             src="../../pictures/04_Gurudwaras/18_Ladakh/02_18_01_Gurudwara Pathar Sahib, Leh, Ladakh/Gurdwara Pathar Sahib, Ladakh_01.jpg"
-             alt="Gurudwara Pathar Sahib Ji - Leh - Ladakh"
-             onclick="openLightbox(this.src, 'Gurudwara Pathar Sahib Ji, Leh')">
-        <span class="card-badge">Leh</span>
+    <!-- Gurudwara Pathar Sahib Ji - Leh -->
+    <div class="guru-section">
+      <div class="guru-image-wrap">
+        <img src="../../pictures/04_Gurudwaras/18_Ladakh/02_18_01_Gurudwara Pathar Sahib, Leh, Ladakh/Gurdwara Pathar Sahib, Ladakh_01.jpg"
+             alt="Gurudwara Pathar Sahib Ji - Leh" class="guru-image"
+             onclick="openLightbox(this.src, 'Gurudwara Pathar Sahib Ji - Leh')">
       </div>
-      <div class="card-body">
-        <div class="card-title"><span>Gurudwara Pathar</span> Sahib Ji</div>
-        <div class="card-location">Leh &nbsp;·&nbsp; Ladakh</div>
-        <a class="btn-gold" href="../../04-gurudwaras/18-ladakh/04-18-01-gurudwara-pathar-sahib-leh-ladakh.html">
+      <div class="guru-text">
+        <div class="guru-name-heading"><span>Gurudwara Pathar Sahib Ji - Leh</span></div>
+        <div class="guru-attribute">Location: Ladakh</div>
+        <div class="guru-description">
+          <p>Guru Nanak Dev Ji visited this site during his Udasi pilgrimage around 1517 CE.</p>
+        </div>
+        <button type="button" class="btn-detailed" onclick="location.href='../../04-gurudwaras/18-ladakh/04-18-01-gurudwara-pathar-sahib-leh-ladakh.html'">
           Visit Page
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
-               stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M19 12l-7-7M19 12l-7 7"/>
-          </svg>
-        </a>
+        </button>
       </div>
     </div>
 
-    <!-- Gurudwara 2 -->
-    <div class="card">
-      <div class="card-image-wrap">
-        <img class="card-image"
-             src="../../pictures/04_Gurudwaras/18_Ladakh/02_18_02_Gurudwara Charan Kamal Sahib Ji - Ladakh/Gurudwara Charan Kamal Sahib, Kargil District - Ladakh_01.jpg"
-             alt="Gurudwara Charan Kamal Sahib Ji - Ladakh"
-             onclick="openLightbox(this.src, 'Gurudwara Charan Kamal Sahib Ji, Kargil')">
-        <span class="card-badge">Kargil</span>
+    <!-- Gurudwara Charan Kamal Sahib Ji -->
+    <div class="guru-section reverse">
+      <div class="guru-image-wrap">
+        <img src="../../pictures/04_Gurudwaras/18_Ladakh/02_18_02_Gurudwara Charan Kamal Sahib Ji - Ladakh/Gurudwara Charan Kamal Sahib, Kargil District - Ladakh_01.jpg"
+             alt="Gurudwara Charan Kamal Sahib Ji" class="guru-image"
+             onclick="openLightbox(this.src, 'Gurudwara Charan Kamal Sahib Ji')">
       </div>
-      <div class="card-body">
-        <div class="card-title"><span>Gurudwara Charan</span> Kamal Sahib Ji</div>
-        <div class="card-location">Kargil District &nbsp;·&nbsp; Ladakh</div>
-        <a class="btn-gold" href="../../04-gurudwaras/18-ladakh/04-18-02-gurudwara-charan-kamal-sahib-ji-ladakh.html">
+      <div class="guru-text">
+        <div class="guru-name-heading"><span>Gurudwara Charan Kamal Sahib Ji</span></div>
+        <div class="guru-attribute">Location: Ladakh</div>
+        <div class="guru-description">
+          <p>During his northern Udasi, Guru Nanak Dev Ji visited Kargil after Leh and stayed several days near the banks of the Suru River, close to what is now Iqbal Bridge; the place is where he engaged in spiritual…</p>
+        </div>
+        <button type="button" class="btn-detailed" onclick="location.href='../../04-gurudwaras/18-ladakh/04-18-02-gurudwara-charan-kamal-sahib-ji-ladakh.html'">
           Visit Page
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
-               stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M19 12l-7-7M19 12l-7 7"/>
-          </svg>
-        </a>
+        </button>
       </div>
     </div>
 
-    <!-- Gurudwara 3 -->
-    <div class="card">
-      <div class="card-image-wrap">
-        <img class="card-image"
-             src="../../pictures/04_Gurudwaras/18_Ladakh/02_18_03_Gurudwara Gurdwara Datun Sahib Ji - Ladakh/Gurdwara Datun Sahib, Ladakh_01.jpg"
-             alt="Gurudwara Datun Sahib Ji - Ladakh"
-             onclick="openLightbox(this.src, 'Gurudwara Datun Sahib Ji, Ladakh')">
-        <span class="card-badge">Ladakh</span>
+    <!-- Gurudwara Datun Sahib Ji -->
+    <div class="guru-section">
+      <div class="guru-image-wrap">
+        <img src="../../pictures/04_Gurudwaras/18_Ladakh/02_18_03_Gurudwara Gurdwara Datun Sahib Ji - Ladakh/Gurdwara Datun Sahib, Ladakh_01.jpg"
+             alt="Gurudwara Datun Sahib Ji" class="guru-image"
+             onclick="openLightbox(this.src, 'Gurudwara Datun Sahib Ji')">
       </div>
-      <div class="card-body">
-        <div class="card-title"><span>Gurudwara Datun</span> Sahib Ji</div>
-        <div class="card-location">Ladakh</div>
-        <a class="btn-gold" href="../../04-gurudwaras/18-ladakh/04-18-03-gurudwara-datun-sahib-ji-ladakh.html">
+      <div class="guru-text">
+        <div class="guru-name-heading"><span>Gurudwara Datun Sahib Ji</span></div>
+        <div class="guru-attribute">Location: Ladakh</div>
+        <div class="guru-description">
+          <p>The site is not a traditional Gurdwara building but centers around an ancient Meswak (Neem) tree, believed to have been planted by Guru Nanak Dev Ji during his Udasi (missionary travel) around 1516–1517 CE</p>
+        </div>
+        <button type="button" class="btn-detailed" onclick="location.href='../../04-gurudwaras/18-ladakh/04-18-03-gurudwara-datun-sahib-ji-ladakh.html'">
           Visit Page
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
-               stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M19 12l-7-7M19 12l-7 7"/>
-          </svg>
-        </a>
+        </button>
       </div>
     </div>
 
-  </div><!-- /cards-wrapper -->
+  </div><!-- /gurus-wrapper -->
 
   <!-- ── QUOTE ── -->
   <div class="quote-panel">
     <div class="quote-mark">"</div>
-    <div class="quote-text">Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh — the Khalsa belongs to the Almighty, and victory too is His.</div>
-    <div class="quote-attr">— Sikh Salutation</div>
+    <div class="quote-text">Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh &mdash; the Khalsa belongs to the Almighty, and victory too is His.</div>
+    <div class="quote-attr">&mdash; Sikh Salutation</div>
   </div>
 
-  <!-- ── THREE VALUES ── -->
-  <div class="values">
-    <div class="value-item">
-      <div class="value-icon">
-        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 4 L22 36" stroke="#F7941D" stroke-width="3" stroke-linecap="round"/>
-          <path d="M14 12 L30 12" stroke="#F7941D" stroke-width="3" stroke-linecap="round"/>
-          <polygon points="22,2 19,12 25,12" fill="#F7941D"/>
-          <circle cx="22" cy="38" r="3" fill="#F7941D"/>
-        </svg>
-      </div>
-      <div class="value-name">Shaheedee</div>
-      <div class="value-desc">Martyrdom in the service of the Guru and the Khalsa Panth.</div>
-    </div>
-    <div class="value-item">
-      <div class="value-icon">
-        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 36 C22 36 6 26 6 16 C6 10 11 6 16 8 C18.5 9 20.5 11 22 13 C23.5 11 25.5 9 28 8 C33 6 38 10 38 16 C38 26 22 36 22 36Z" stroke="#F7941D" stroke-width="2.5" fill="rgba(247,148,29,0.15)"/>
-          <path d="M16 22 L20 26 L28 18" stroke="#F7941D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="value-name">Devotion</div>
-      <div class="value-desc">Unwavering love and loyalty to the Guru and the Waheguru.</div>
-    </div>
-    <div class="value-item">
-      <div class="value-icon">
-        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 30 L8 18 L16 26 L22 10 L28 26 L36 18 L36 30 Z" stroke="#F7941D" stroke-width="2.5" fill="rgba(247,148,29,0.15)" stroke-linejoin="round"/>
-          <rect x="8" y="30" width="28" height="5" rx="1.5" fill="#F7941D" opacity="0.7"/>
-          <circle cx="22" cy="10" r="2.5" fill="#F7941D"/>
-          <circle cx="8" cy="18" r="2" fill="#F7941D"/>
-          <circle cx="36" cy="18" r="2" fill="#F7941D"/>
-        </svg>
-      </div>
-      <div class="value-name">Seva</div>
-      <div class="value-desc">Selfless service — the foundation of Sikh community life.</div>
-    </div>
-  </div>
-
-  <!-- ── FOOTER ── -->
+  <!-- ── FOOTER / BACK BUTTON ── -->
   <div class="footer">
     <div class="footer-content">
-      <a href="../../04-gurudwaras/04-gurudwaras-in-india.html" class="btn-back">
+      <button type="button" class="btn-back" onclick="goBack()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
              stroke-linecap="round" stroke-linejoin="round">
           <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
         </svg>
-        Back to Gurudwaras in India
-      </a>
+        Back
+      </button>
       <div class="footer-left">© Sikhs in India · sikhsinindia.com</div>
       <div class="footer-right">Waheguru Ji Ka Khalsa · Waheguru Ji Ki Fateh</div>
     </div>
@@ -741,6 +789,10 @@
 </div>
 
 <script>
+  function goBack() {
+    window.location.href = "../../04-gurudwaras/04-gurudwaras-in-india.html";
+  }
+
   function openLightbox(src, name) {
     const lb = document.getElementById('lightbox');
     const img = document.getElementById('lightbox-img');
@@ -748,9 +800,11 @@
     img.alt = name || '';
     lb.classList.add('open');
   }
+
   function closeLightbox() {
     document.getElementById('lightbox').classList.remove('open');
   }
+
   function downloadCurrentImage() {
     const src = document.getElementById('lightbox-img').src;
     const a = document.createElement('a');
@@ -760,9 +814,15 @@
     a.click();
     document.body.removeChild(a);
   }
+
   // Close lightbox on background click
   document.getElementById('lightbox').addEventListener('click', function(e) {
     if (e.target === this) closeLightbox();
+  });
+
+  // Close lightbox with the Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
   });
 </script>
 
