@@ -15,22 +15,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <title>Sri Guru Tegh Bahadur Ji - Photo Gallery | Sikhs in India</title>
+  <title>Guru Tegh Bahadur Ji - Photo Gallery | SikhsInIndia.com</title>
 
   <!-- SEO Meta -->
-  <meta name="description" content="View rare photos, divine portraits, and spiritual art depicting Sri Guru Tegh Bahadur Ji, the Ninth Sikh Guru.">
-  <meta name="keywords" content="Guru Tegh Bahadur Ji Photos, Guru Tegh Bahadur Images, Sikh Guru Portraits, Divine Reflections, Sikhs in India">
+  <meta name="description" content="View portraits, paintings and devotional artwork of Sri Guru Tegh Bahadur Ji, the Ninth Sikh Guru, known as Hind Di Chadar, the Shield of India.">
+  <meta name="keywords" content="Guru Tegh Bahadur Ji photos, Guru Tegh Bahadur images, Sikh Guru portraits, Ninth Sikh Guru, Hind Di Chadar, Sikhs in India">
   <meta name="author" content="Sikhs in India">
   <meta name="robots" content="index, follow">
 
-  <link rel="canonical" href="https://sikhsinindia.com/01-about-sikhism/01-01-sikh-gurus/01-01-09-01-guru-tegh-bahadur-ji-photos.html">
+  <link rel="canonical" href="https://sikhsinindia.com/01-about-sikhism/01-01-sikh-gurus/01-01-09-guru-tegh-bahadur-ji/01-01-09-01-guru-tegh-bahadur-ji-photos.html">
 
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Sri Guru Tegh Bahadur Ji - Photo Gallery">
-  <meta property="og:description" content="Explore photos, portraits, and divine reflections honoring Sri Guru Tegh Bahadur Ji.">
+  <meta property="og:title" content="Guru Tegh Bahadur Ji - Photo Gallery | SikhsInIndia.com">
+  <meta property="og:description" content="View portraits, paintings and devotional artwork of Sri Guru Tegh Bahadur Ji, the Ninth Sikh Guru, known as Hind Di Chadar, the Shield of India.">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
-  <meta property="og:url" content="https://sikhsinindia.com/01-about-sikhism/01-01-sikh-gurus/01-01-09-01-guru-tegh-bahadur-ji-photos.html">
+  <meta property="og:url" content="https://sikhsinindia.com/01-about-sikhism/01-01-sikh-gurus/01-01-09-guru-tegh-bahadur-ji/01-01-09-01-guru-tegh-bahadur-ji-photos.html">
   <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Guru Tegh Bahadur Ji - Photo Gallery | SikhsInIndia.com">
+  <meta name="twitter:description" content="View portraits, paintings and devotional artwork of Sri Guru Tegh Bahadur Ji, the Ninth Sikh Guru, known as Hind Di Chadar, the Shield of India.">
+  <meta name="twitter:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
   
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
@@ -449,30 +454,6 @@
 
     document.addEventListener("DOMContentLoaded", () => showImage(0));
 
-    // #region agent log
-    (function () {
-      const expectedRel = "/01-about-sikhism/01-01-sikh-gurus/01-01-09-guru-tegh-bahadur-ji/01-01-09-01-guru-tegh-bahadur-ji-photos.html";
-      const canonical = document.querySelector('link[rel="canonical"]');
-      const ogUrl = document.querySelector('meta[property="og:url"]');
-      const ogImage = document.querySelector('meta[property="og:image"]');
-      const logo = document.querySelector(".logo-img");
-      const back = document.querySelector(".btn-back");
-      const canonicalHref = canonical ? canonical.href : null;
-      const ogHref = ogUrl ? ogUrl.getAttribute("content") : null;
-      fetch("http://127.0.0.1:7354/ingest/02708f7b-7da7-4387-9227-508fd90dbb37", { method: "POST", headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "1bb7a2" }, body: JSON.stringify({ sessionId: "1bb7a2", runId: "pre-fix", hypothesisId: "A", location: "01-01-09-01-guru-tegh-bahadur-ji-photos.html:canonical", message: "canonical vs page path", data: { pageHref: location.href, pagePathname: location.pathname, canonicalHref: canonicalHref, expectedRel: expectedRel, canonicalHasAlbumSegment: !!(canonicalHref && canonicalHref.indexOf("01-08-album-of-gurus") !== -1), canonicalMatchesExpected: !!(canonicalHref && canonicalHref.indexOf(expectedRel) !== -1) }, timestamp: Date.now() }) }).catch(function () {});
-      fetch("http://127.0.0.1:7354/ingest/02708f7b-7da7-4387-9227-508fd90dbb37", { method: "POST", headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "1bb7a2" }, body: JSON.stringify({ sessionId: "1bb7a2", runId: "pre-fix", hypothesisId: "B", location: "01-01-09-01-guru-tegh-bahadur-ji-photos.html:og", message: "og:url and og:image", data: { ogHref: ogHref, ogImage: ogImage ? ogImage.getAttribute("content") : null, ogHasAlbumSegment: !!(ogHref && ogHref.indexOf("01-08-album-of-gurus") !== -1), ogMatchesExpected: !!(ogHref && ogHref.indexOf(expectedRel) !== -1), ogEqualsCanonical: ogHref === canonicalHref }, timestamp: Date.now() }) }).catch(function () {});
-      fetch("http://127.0.0.1:7354/ingest/02708f7b-7da7-4387-9227-508fd90dbb37", { method: "POST", headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "1bb7a2" }, body: JSON.stringify({ sessionId: "1bb7a2", runId: "pre-fix", hypothesisId: "C", location: "01-01-09-01-guru-tegh-bahadur-ji-photos.html:logo", message: "logo resolved path", data: { rawSrc: logo ? logo.getAttribute("src") : null, resolvedSrc: logo ? logo.src : null, expectedSuffix: "/pictures/00-index/sikhsinindia.png", logoResolvesToPictures: !!(logo && logo.src.indexOf("/pictures/00-index/sikhsinindia.png") !== -1) }, timestamp: Date.now() }) }).catch(function () {});
-      fetch("http://127.0.0.1:7354/ingest/02708f7b-7da7-4387-9227-508fd90dbb37", { method: "POST", headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "1bb7a2" }, body: JSON.stringify({ sessionId: "1bb7a2", runId: "pre-fix", hypothesisId: "D", location: "01-01-09-01-guru-tegh-bahadur-ji-photos.html:back", message: "back button href", data: { rawHref: back ? back.getAttribute("href") : null, resolvedHref: back ? back.href : null, expectedFile: "01-01-09-guru-tegh-bahadur-ji.html", backPointsToParent: !!(back && back.href.indexOf("01-01-09-guru-tegh-bahadur-ji.html") !== -1) }, timestamp: Date.now() }) }).catch(function () {});
-      if (logo) {
-        logo.addEventListener("load", function () {
-          fetch("http://127.0.0.1:7354/ingest/02708f7b-7da7-4387-9227-508fd90dbb37", { method: "POST", headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "1bb7a2" }, body: JSON.stringify({ sessionId: "1bb7a2", runId: "pre-fix", hypothesisId: "E", location: "01-01-09-01-guru-tegh-bahadur-ji-photos.html:logo-load", message: "logo load result", data: { naturalWidth: logo.naturalWidth, complete: logo.complete }, timestamp: Date.now() }) }).catch(function () {});
-        });
-        logo.addEventListener("error", function () {
-          fetch("http://127.0.0.1:7354/ingest/02708f7b-7da7-4387-9227-508fd90dbb37", { method: "POST", headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "1bb7a2" }, body: JSON.stringify({ sessionId: "1bb7a2", runId: "pre-fix", hypothesisId: "E", location: "01-01-09-01-guru-tegh-bahadur-ji-photos.html:logo-error", message: "logo failed to load", data: { resolvedSrc: logo.src }, timestamp: Date.now() }) }).catch(function () {});
-        });
-      }
-    })();
-    // #endregion
   </script>
 
 </body>

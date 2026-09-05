@@ -448,30 +448,6 @@
 
     document.addEventListener("DOMContentLoaded", () => showImage(0));
 
-    // #region agent log
-    (function () {
-      const expectedRel = "/01-about-sikhism/01-01-sikh-gurus/01-01-09-guru-tegh-bahadur-ji/01-01-09-01-guru-tegh-bahadur-ji-photos.html";
-      const canonical = document.querySelector('link[rel="canonical"]');
-      const ogUrl = document.querySelector('meta[property="og:url"]');
-      const ogImage = document.querySelector('meta[property="og:image"]');
-      const logo = document.querySelector(".logo-img");
-      const back = document.querySelector(".btn-back");
-      const canonicalHref = canonical ? canonical.href : null;
-      const ogHref = ogUrl ? ogUrl.getAttribute("content") : null;
-      fetch("http://127.0.0.1:7354/ingest/02708f7b-7da7-4387-9227-508fd90dbb37", { method: "POST", headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "1bb7a2" }, body: JSON.stringify({ sessionId: "1bb7a2", runId: "pre-fix", hypothesisId: "A", location: "01-01-09-01-guru-tegh-bahadur-ji-photos.html:canonical", message: "canonical vs page path", data: { pageHref: location.href, pagePathname: location.pathname, canonicalHref: canonicalHref, expectedRel: expectedRel, canonicalHasAlbumSegment: !!(canonicalHref && canonicalHref.indexOf("01-08-album-of-gurus") !== -1), canonicalMatchesExpected: !!(canonicalHref && canonicalHref.indexOf(expectedRel) !== -1) }, timestamp: Date.now() }) }).catch(function () {});
-      fetch("http://127.0.0.1:7354/ingest/02708f7b-7da7-4387-9227-508fd90dbb37", { method: "POST", headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "1bb7a2" }, body: JSON.stringify({ sessionId: "1bb7a2", runId: "pre-fix", hypothesisId: "B", location: "01-01-09-01-guru-tegh-bahadur-ji-photos.html:og", message: "og:url and og:image", data: { ogHref: ogHref, ogImage: ogImage ? ogImage.getAttribute("content") : null, ogHasAlbumSegment: !!(ogHref && ogHref.indexOf("01-08-album-of-gurus") !== -1), ogMatchesExpected: !!(ogHref && ogHref.indexOf(expectedRel) !== -1), ogEqualsCanonical: ogHref === canonicalHref }, timestamp: Date.now() }) }).catch(function () {});
-      fetch("http://127.0.0.1:7354/ingest/02708f7b-7da7-4387-9227-508fd90dbb37", { method: "POST", headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "1bb7a2" }, body: JSON.stringify({ sessionId: "1bb7a2", runId: "pre-fix", hypothesisId: "C", location: "01-01-09-01-guru-tegh-bahadur-ji-photos.html:logo", message: "logo resolved path", data: { rawSrc: logo ? logo.getAttribute("src") : null, resolvedSrc: logo ? logo.src : null, expectedSuffix: "/pictures/00-index/sikhsinindia.png", logoResolvesToPictures: !!(logo && logo.src.indexOf("/pictures/00-index/sikhsinindia.png") !== -1) }, timestamp: Date.now() }) }).catch(function () {});
-      fetch("http://127.0.0.1:7354/ingest/02708f7b-7da7-4387-9227-508fd90dbb37", { method: "POST", headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "1bb7a2" }, body: JSON.stringify({ sessionId: "1bb7a2", runId: "pre-fix", hypothesisId: "D", location: "01-01-09-01-guru-tegh-bahadur-ji-photos.html:back", message: "back button href", data: { rawHref: back ? back.getAttribute("href") : null, resolvedHref: back ? back.href : null, expectedFile: "01-01-09-guru-tegh-bahadur-ji.html", backPointsToParent: !!(back && back.href.indexOf("01-01-09-guru-tegh-bahadur-ji.html") !== -1) }, timestamp: Date.now() }) }).catch(function () {});
-      if (logo) {
-        logo.addEventListener("load", function () {
-          fetch("http://127.0.0.1:7354/ingest/02708f7b-7da7-4387-9227-508fd90dbb37", { method: "POST", headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "1bb7a2" }, body: JSON.stringify({ sessionId: "1bb7a2", runId: "pre-fix", hypothesisId: "E", location: "01-01-09-01-guru-tegh-bahadur-ji-photos.html:logo-load", message: "logo load result", data: { naturalWidth: logo.naturalWidth, complete: logo.complete }, timestamp: Date.now() }) }).catch(function () {});
-        });
-        logo.addEventListener("error", function () {
-          fetch("http://127.0.0.1:7354/ingest/02708f7b-7da7-4387-9227-508fd90dbb37", { method: "POST", headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "1bb7a2" }, body: JSON.stringify({ sessionId: "1bb7a2", runId: "pre-fix", hypothesisId: "E", location: "01-01-09-01-guru-tegh-bahadur-ji-photos.html:logo-error", message: "logo failed to load", data: { resolvedSrc: logo.src }, timestamp: Date.now() }) }).catch(function () {});
-        });
-      }
-    })();
-    // #endregion
   </script>
 
 </body>
