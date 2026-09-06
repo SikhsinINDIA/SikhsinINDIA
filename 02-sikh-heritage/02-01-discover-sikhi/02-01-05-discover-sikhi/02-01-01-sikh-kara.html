@@ -769,75 +769,50 @@
     </div>
   </div>
 
- <script>
-  // Get live page URL or fall back to canonical
-  const canonicalElem = document.querySelector('link[rel="canonical"]');
-  const liveUrl = (window.location.protocol.startsWith('http'))
-    ? window.location.href
-    : (canonicalElem ? canonicalElem.href : 'https://sikhsinindia.com');
+  <script>
+    // Get live page URL or fall back to canonical web URL for local testing
+    const canonicalElem = document.querySelector('link[rel="canonical"]');
+    const liveUrl = (window.location.protocol.startsWith('http')) 
+      ? window.location.href 
+      : (canonicalElem ? canonicalElem.href : 'https://sikhsinindia.com');
 
-  const pageTitle = document.title;
-  const pageUrlEnc = encodeURIComponent(liveUrl);
-  const pageTitleEnc = encodeURIComponent(pageTitle);
+    const rawTitle = document.title;
+    const pageUrlEnc = encodeURIComponent(liveUrl);
+    const pageTitleEnc = encodeURIComponent(rawTitle);
 
-  // 1. WhatsApp – works perfectly (pre-fills message)
-  document.getElementById('whatsappShare').addEventListener('click', function () {
-    const waUrl = `https://api.whatsapp.com/send?text=${pageTitleEnc}%20${pageUrlEnc}`;
-    window.open(waUrl, '_blank', 'noopener,noreferrer');
-  });
+    // 1. WhatsApp Handler
+    document.getElementById('whatsappShare').addEventListener('click', function() {
+      const waUrl = `https://api.whatsapp.com/send?text=${pageTitleEnc}%20${pageUrlEnc}`;
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+    });
 
-  // 2. Facebook – official share dialog (creates a post with the link)
-  document.getElementById('facebookShare').addEventListener('click', function () {
-    const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${pageUrlEnc}`;
-    window.open(fbUrl, 'facebook-share-dialog', 'width=700,height=600,scrollbars=yes,resizable=yes');
-  });
+    // 2. Facebook Handler
+    document.getElementById('facebookShare').addEventListener('click', function() {
+      const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${pageUrlEnc}`;
+      window.open(fbUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
+    });
 
-  // 3. Instagram – best possible web solution
-  // Copies link → opens Instagram → tells user to paste into Story / DM / post
-  document.getElementById('instagramShare').addEventListener('click', async function () {
-    let copied = false;
-
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(liveUrl);
-        copied = true;
+    // 3. Instagram / Universal Share Handler
+    document.getElementById('instagramShare').addEventListener('click', async function() {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: rawTitle,
+            url: liveUrl
+          });
+        } catch (err) {
+          // User canceled share sheet
+        }
       } else {
-        // Fallback for older browsers / non-HTTPS
-        const temp = document.createElement('textarea');
-        temp.value = liveUrl;
-        temp.style.position = 'fixed';
-        temp.style.left = '-9999px';
-        document.body.appendChild(temp);
-        temp.select();
-        copied = document.execCommand('copy');
-        document.body.removeChild(temp);
+        try {
+          await navigator.clipboard.writeText(liveUrl);
+          alert('Link copied to clipboard!\n\nYou can now open Instagram and paste the link in a DM or story.');
+        } catch (err) {
+          alert('Share URL: ' + liveUrl);
+        }
       }
-    } catch (err) {
-      copied = false;
-    }
-
-    // Open Instagram
-    window.open('https://www.instagram.com/', '_blank', 'noopener,noreferrer');
-
-    // Friendly instruction
-    setTimeout(function () {
-      if (copied) {
-        alert(
-          'Link copied!\n\n' +
-          'Instagram is open.\n' +
-          '1. Create a new Story or post\n' +
-          '2. Paste the link (or add it as a sticker)'
-        );
-      } else {
-        alert(
-          'Instagram is open.\n\n' +
-          'Please copy this link and paste it into your Story or post:\n\n' +
-          liveUrl
-        );
-      }
-    }, 400);
-  });
-</script>
+    });
+  </script>
 
 </body>
 
