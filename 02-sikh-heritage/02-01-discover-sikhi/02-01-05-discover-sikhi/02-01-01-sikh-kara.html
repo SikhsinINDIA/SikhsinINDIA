@@ -769,86 +769,75 @@
     </div>
   </div>
 
-  <script>
-    // Get live page URL or fall back to canonical web URL for local testing
-    const canonicalElem = document.querySelector('link[rel="canonical"]');
-    const liveUrl = (window.location.protocol.startsWith('http')) 
-      ? window.location.href 
-      : (canonicalElem ? canonicalElem.href : 'https://sikhsinindia.com');
+ <script>
+  // Get live page URL or fall back to canonical
+  const canonicalElem = document.querySelector('link[rel="canonical"]');
+  const liveUrl = (window.location.protocol.startsWith('http'))
+    ? window.location.href
+    : (canonicalElem ? canonicalElem.href : 'https://sikhsinindia.com');
 
-    const rawTitle = document.title;
-    const pageUrlEnc = encodeURIComponent(liveUrl);
-    const pageTitleEnc = encodeURIComponent(rawTitle);
+  const pageTitle = document.title;
+  const pageUrlEnc = encodeURIComponent(liveUrl);
+  const pageTitleEnc = encodeURIComponent(pageTitle);
 
-    // 1. WhatsApp Handler
-    document.getElementById('whatsappShare').addEventListener('click', function() {
-      const waUrl = `https://api.whatsapp.com/send?text=${pageTitleEnc}%20${pageUrlEnc}`;
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
-    });
+  // 1. WhatsApp – works perfectly (pre-fills message)
+  document.getElementById('whatsappShare').addEventListener('click', function () {
+    const waUrl = `https://api.whatsapp.com/send?text=${pageTitleEnc}%20${pageUrlEnc}`;
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+  });
 
-    // 2. Facebook Handler
-    // Opens Facebook's share dialog with the current page URL.
-    document.getElementById('facebookShare').addEventListener('click', function() {
-      const fbUrl =
-        'https://www.facebook.com/sharer/sharer.php?u=' + pageUrlEnc;
+  // 2. Facebook – official share dialog (creates a post with the link)
+  document.getElementById('facebookShare').addEventListener('click', function () {
+    const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${pageUrlEnc}`;
+    window.open(fbUrl, 'facebook-share-dialog', 'width=700,height=600,scrollbars=yes,resizable=yes');
+  });
 
-      window.open(
-        fbUrl,
-        'facebook-share-dialog',
-        'width=700,height=600,scrollbars=yes,resizable=yes'
-      );
-    });
+  // 3. Instagram – best possible web solution
+  // Copies link → opens Instagram → tells user to paste into Story / DM / post
+  document.getElementById('instagramShare').addEventListener('click', async function () {
+    let copied = false;
 
-    // 3. Instagram Handler
-    // Instagram does not provide a standard web URL that can publish a
-    // webpage directly to a Story. Copy the page URL and open Instagram.
-    document.getElementById('instagramShare').addEventListener('click', async function() {
-      let copied = false;
-
-      try {
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(liveUrl);
-          copied = true;
-        } else {
-          const temp = document.createElement('textarea');
-          temp.value = liveUrl;
-          temp.style.position = 'fixed';
-          temp.style.left = '-9999px';
-          temp.style.top = '0';
-          document.body.appendChild(temp);
-          temp.focus();
-          temp.select();
-          copied = document.execCommand('copy');
-          document.body.removeChild(temp);
-        }
-      } catch (err) {
-        copied = false;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(liveUrl);
+        copied = true;
+      } else {
+        // Fallback for older browsers / non-HTTPS
+        const temp = document.createElement('textarea');
+        temp.value = liveUrl;
+        temp.style.position = 'fixed';
+        temp.style.left = '-9999px';
+        document.body.appendChild(temp);
+        temp.select();
+        copied = document.execCommand('copy');
+        document.body.removeChild(temp);
       }
+    } catch (err) {
+      copied = false;
+    }
 
-      // Open Instagram directly.
-      window.open(
-        'https://www.instagram.com/',
-        '_blank',
-        'noopener,noreferrer'
-      );
+    // Open Instagram
+    window.open('https://www.instagram.com/', '_blank', 'noopener,noreferrer');
 
-      setTimeout(function() {
-        if (copied) {
-          alert(
-            'Page link copied!\n\n' +
-            'Instagram has been opened. You can now paste the link into a DM, Story, or your profile link.'
-          );
-        } else {
-          alert(
-            'Instagram has been opened.\n\n' +
-            'Copy and paste this page link into Instagram:\n\n' +
-            liveUrl
-          );
-        }
-      }, 300);
-    });
-
-  </script>
+    // Friendly instruction
+    setTimeout(function () {
+      if (copied) {
+        alert(
+          'Link copied!\n\n' +
+          'Instagram is open.\n' +
+          '1. Create a new Story or post\n' +
+          '2. Paste the link (or add it as a sticker)'
+        );
+      } else {
+        alert(
+          'Instagram is open.\n\n' +
+          'Please copy this link and paste it into your Story or post:\n\n' +
+          liveUrl
+        );
+      }
+    }, 400);
+  });
+</script>
 
 </body>
 
