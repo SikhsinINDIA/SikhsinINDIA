@@ -403,6 +403,137 @@
       text-align: center; 
     }
   }
+
+  /* ── TODAY IN SIKH HISTORY ── */
+  .tsh-section {
+    background: var(--cream);
+    padding: 18px 0 6px;
+  }
+  .tsh-card {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--white);
+    border: 1px solid rgba(247,148,29,0.35);
+    border-top: 4px solid var(--orange);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,43,109,0.10);
+  }
+  .tsh-head {
+    background: var(--navy);
+    padding: 12px 20px;
+    text-align: center;
+  }
+  .tsh-kicker {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .tsh-date {
+    color: #ffffff;
+    font-size: 13px;
+    margin-top: 5px;
+    opacity: 0.92;
+  }
+  .tsh-dot { color: var(--orange); }
+  .tsh-nk  { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; opacity: 0.65; }
+
+  .tsh-body { padding: 18px 22px 14px; text-align: center; }
+  .tsh-chip {
+    display: inline-block;
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    padding: 4px 11px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .tsh-chip-gurpurab   { background: rgba(247,148,29,0.16); color: #a75f05; }
+  .tsh-chip-historical { background: rgba(0,43,109,0.10);  color: var(--navy); }
+
+  .tsh-lead {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .tsh-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.25;
+    margin: 0 0 8px;
+  }
+  .tsh-detail {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.65;
+    margin: 0 auto;
+    max-width: 640px;
+  }
+  .tsh-caveat {
+    font-size: 11.5px;
+    color: #777;
+    font-style: italic;
+    margin: 10px auto 0;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+  .tsh-none { font-size: 14px; color: #666; margin: 6px 0; }
+
+  .tsh-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 16px 14px;
+    border-top: 1px solid rgba(247,148,29,0.25);
+    margin-top: 6px;
+  }
+  .tsh-btn {
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: rgba(247,148,29,0.14);
+    border: 1px solid rgba(247,148,29,0.5);
+    border-radius: 6px;
+    padding: 9px 14px;
+    min-height: 40px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    white-space: nowrap;
+  }
+  .tsh-btn:hover  { background: rgba(247,148,29,0.28); }
+  .tsh-btn:active { transform: scale(0.97); }
+  .tsh-btn-today  { background: var(--orange); color: #ffffff; border-color: var(--orange); }
+  .tsh-btn-today:hover { background: #e8830a; }
+  .tsh-today-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+
+  @media (max-width: 576px) {
+    .tsh-section { padding: 12px 10px 4px; }
+    .tsh-head    { padding: 10px 14px; }
+    .tsh-kicker  { font-size: 10px; letter-spacing: 2px; }
+    .tsh-date    { font-size: 12px; }
+    .tsh-body    { padding: 14px 14px 10px; }
+    .tsh-title   { font-size: 18px; }
+    .tsh-detail  { font-size: 13px; }
+    .tsh-nav     { padding: 10px 10px 12px; gap: 6px; }
+    .tsh-btn     { font-size: 10px; padding: 9px 10px; min-height: 44px; }
+  }
 </style>
 </head>
 <body>
@@ -443,6 +574,14 @@
     <div class="marquee-block">Loading current month events...</div>
   </div>
 </div>
+
+
+<!-- ── TODAY IN SIKH HISTORY ── -->
+<section class="tsh-section">
+  <div class="container">
+    <div id="todaySikhHistory"></div>
+  </div>
+</section>
 
 <!-- ── FEATURES ── -->
 <section class="features-section">
@@ -709,5 +848,6 @@
   document.addEventListener("DOMContentLoaded", loadCurrentMonthFestivals);
 </script>
 
+<script src="js/sikh-history.js"></script>
 </body>
 </html>
