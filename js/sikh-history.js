@@ -119,25 +119,34 @@
     else if (what === 'today') render(new Date());
   }
 
+  function use(list) {
+    records = {};
+    list.forEach(function (r) { records[r.date] = r; });
+    var now = new Date();
+    todayKey = keyOf(now);
+    render(now);
+  }
+
   function start() {
     var mount = document.getElementById(MOUNT_ID);
     if (!mount) return;
     mount.addEventListener('click', onClick);
 
+    /* data/sikh-history.js sets this. Using it avoids fetch(), which browsers
+       block when the page is opened straight from disk (file://). */
+    if (window.SIKH_HISTORY && window.SIKH_HISTORY.length) {
+      use(window.SIKH_HISTORY);
+      return;
+    }
+
+    /* no data script on the page - fall back to fetching the JSON */
     fetch(DATA_URL, { cache: 'no-cache' })
       .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         return r.json();
       })
-      .then(function (list) {
-        records = {};
-        list.forEach(function (r) { records[r.date] = r; });
-        var now = new Date();
-        todayKey = keyOf(now);
-        render(now);
-      })
+      .then(use)
       .catch(function (err) {
-        /* stay quiet on the page, but leave a trace for us */
         console.error('Today in Sikh History: could not load ' + DATA_URL, err);
         mount.innerHTML =
           '<div class="tsh-card"><div class="tsh-head">' +

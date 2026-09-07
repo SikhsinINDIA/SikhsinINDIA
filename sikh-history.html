@@ -391,6 +391,7 @@
   </div>
 </footer>
 
+<script src="data/sikh-history.js"></script>
 <script>
 (function () {
   'use strict';
@@ -577,25 +578,33 @@
   elFilter.addEventListener('change', renderList);
 
   /* ── start ── */
-  fetch(DATA_URL, { cache: 'no-cache' })
-    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-    .then(function (list) {
-      all = list.slice().sort(function (a, b) { return a.date.localeCompare(b.date); });
-      all.forEach(function (r) { byDate[r.date] = r; });
-      todayKey = keyToday();
+  function use(list) {
+    all = list.slice().sort(function (a, b) { return a.date.localeCompare(b.date); });
+    all.forEach(function (r) { byDate[r.date] = r; });
+    todayKey = keyToday();
 
-      var wanted = (location.search.match(/[?&]date=(\d{2}-\d{2})/) || [])[1];
-      if (wanted && byDate[wanted]) month = parseInt(wanted.slice(0, 2), 10) - 1;
+    var wanted = (location.search.match(/[?&]date=(\d{2}-\d{2})/) || [])[1];
+    if (wanted && byDate[wanted]) month = parseInt(wanted.slice(0, 2), 10) - 1;
 
-      renderMonths();
-      renderList();
-      if (wanted && byDate[wanted]) renderDetail(wanted);
-    })
-    .catch(function (err) {
-      console.error('Sikh history: could not load ' + DATA_URL, err);
-      elCount.textContent = '';
-      elList.innerHTML = '<li class="sh-empty">This page is briefly unavailable. Please try again shortly.</li>';
-    });
+    renderMonths();
+    renderList();
+    if (wanted && byDate[wanted]) renderDetail(wanted);
+  }
+
+  /* data/sikh-history.js sets this. Using it avoids fetch(), which browsers
+     block when the page is opened straight from disk (file://). */
+  if (window.SIKH_HISTORY && window.SIKH_HISTORY.length) {
+    use(window.SIKH_HISTORY);
+  } else {
+    fetch(DATA_URL, { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(use)
+      .catch(function (err) {
+        console.error('Sikh history: could not load ' + DATA_URL, err);
+        elCount.textContent = '';
+        elList.innerHTML = '<li class="sh-empty">This page is briefly unavailable. Please try again shortly.</li>';
+      });
+  }
 })();
 </script>
 
