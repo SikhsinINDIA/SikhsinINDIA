@@ -103,6 +103,10 @@
           '<button type="button" class="tsh-btn" data-tsh="next" aria-label="Next day">' +
             esc(shortDate(next)) + ' &rarr;</button>' +
         '</div>' +
+        '<div class="tsh-explore">' +
+          '<a class="tsh-explore-link" href="sikh-history.html?date=' + keyOf(d) + '">' +
+            'Explore all 365 days &rarr;</a>' +
+        '</div>' +
       '</div>';
   }
 

@@ -523,7 +523,26 @@
     color: var(--orange);
   }
 
+  .tsh-explore {
+    text-align: center;
+    padding: 0 16px 14px;
+  }
+  .tsh-explore-link {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--navy);
+    border-bottom: 2px solid var(--orange);
+    padding: 4px 2px;
+    min-height: 30px;
+  }
+  .tsh-explore-link:hover { color: var(--orange); }
+
   @media (max-width: 576px) {
+    .tsh-explore-link { font-size: 10.5px; padding: 8px 2px; min-height: 44px; }
     .tsh-section { padding: 12px 10px 4px; }
     .tsh-head    { padding: 10px 14px; }
     .tsh-kicker  { font-size: 10px; letter-spacing: 2px; }

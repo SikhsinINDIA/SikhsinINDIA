@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Sikh History - 365 Days | SikhsInIndia.com</title>
+  <meta name="description" content="Explore Sikh history day by day - Gurpurabs, Shaheedi Diwas, battles, morchas and remembrances across all 365 days, with Nanakshahi dates.">
+  <link rel="canonical" href="https://sikhsinindia.com/sikh-history.html">
+
+  <meta name="keywords" content="Sikh history, 365 days, Gurpurab, Shaheedi Diwas, Nanakshahi calendar, Sikh heritage, Sikhs in India">
+  <meta name="author" content="Sikhs in India">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="Sikh History - 365 Days | SikhsInIndia.com">
+  <meta property="og:description" content="Explore Sikh history day by day - Gurpurabs, Shaheedi Diwas, battles, morchas and remembrances across all 365 days, with Nanakshahi dates.">
+  <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+  <meta property="og:url" content="https://sikhsinindia.com/sikh-history.html">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sikh History - 365 Days | SikhsInIndia.com">
+  <meta name="twitter:description" content="Explore Sikh history day by day - Gurpurabs, Shaheedi Diwas, battles, morchas and remembrances across all 365 days, with Nanakshahi dates.">
+  <meta name="twitter:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #002B6D;
+      --orange: #F7941D;
+      --cream: #faf6ee;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--cream);
+      color: #222;
+      line-height: 1.5;
+    }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 14px; }
+
+    /* ── HEADER ── */
+    .sh-header {
+      background: var(--navy);
+      border-bottom: 3px solid var(--orange);
+      padding: 14px 0;
+    }
+    .sh-header-inner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .sh-logo {
+      height: 62px;
+      width: auto;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+    .sh-titles h1 {
+      color: var(--white);
+      font-size: 22px;
+      line-height: 1.2;
+      font-weight: 800;
+    }
+    .sh-titles h1 span { color: var(--orange); }
+    .sh-titles p {
+      color: rgba(255,255,255,0.72);
+      font-size: 12.5px;
+      margin-top: 3px;
+    }
+
+    /* ── CONTROLS ── */
+    .sh-controls { padding: 16px 0 6px; }
+    .sh-search-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    .sh-search {
+      flex: 1 1 240px;
+      min-width: 0;
+      font: inherit;
+      font-size: 14px;
+      padding: 10px 12px;
+      border: 1px solid rgba(0,43,109,0.25);
+      border-radius: 8px;
+      background: var(--white);
+      min-height: 44px;
+    }
+    .sh-search:focus { outline: 2px solid var(--orange); outline-offset: 1px; }
+    .sh-select {
+      font: inherit;
+      font-size: 13.5px;
+      padding: 10px 12px;
+      border: 1px solid rgba(0,43,109,0.25);
+      border-radius: 8px;
+      background: var(--white);
+      min-height: 44px;
+    }
+
+    .sh-months {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .sh-month {
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 9px 4px;
+      min-height: 40px;
+      border: 1px solid rgba(0,43,109,0.2);
+      background: var(--white);
+      color: var(--navy);
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .sh-month:hover { background: rgba(247,148,29,0.16); }
+    .sh-month.active {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+
+    /* ── DETAIL PANEL ── */
+    .sh-detail {
+      background: var(--white);
+      border: 1px solid rgba(247,148,29,0.4);
+      border-top: 4px solid var(--orange);
+      border-radius: 10px;
+      padding: 0;
+      margin-bottom: 18px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,43,109,0.10);
+    }
+    .sh-detail[hidden] { display: none; }
+    .sh-detail-head {
+      background: var(--navy);
+      color: var(--white);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .sh-detail-date { font-size: 14px; font-weight: 700; }
+    .sh-detail-nk { font-size: 11.5px; color: rgba(255,255,255,0.72); }
+    .sh-close {
+      font: inherit;
+      font-size: 12px;
+      background: none;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: var(--white);
+      border-radius: 6px;
+      padding: 6px 12px;
+      min-height: 36px;
+      cursor: pointer;
+    }
+    .sh-close:hover { background: rgba(255,255,255,0.12); }
+    .sh-detail-body { padding: 18px; }
+    .sh-lead {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .sh-detail-title {
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .sh-detail-text { font-size: 14.5px; color: #333; line-height: 1.7; }
+    .sh-caveat {
+      font-size: 12px;
+      color: #777;
+      font-style: italic;
+      margin-top: 10px;
+      line-height: 1.55;
+    }
+    .sh-detail-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 12px 18px 16px;
+      border-top: 1px solid rgba(247,148,29,0.25);
+      flex-wrap: wrap;
+    }
+    .sh-btn {
+      font: inherit;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      color: var(--navy);
+      background: rgba(247,148,29,0.15);
+      border: 1px solid rgba(247,148,29,0.5);
+      border-radius: 7px;
+      padding: 9px 14px;
+      min-height: 44px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .sh-btn:hover { background: rgba(247,148,29,0.3); }
+    .sh-btn:active { transform: scale(0.98); }
+
+    /* ── DAY LIST ── */
+    .sh-count {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    .sh-list { list-style: none; padding-bottom: 24px; }
+    .sh-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      width: 100%;
+      text-align: left;
+      font: inherit;
+      background: var(--white);
+      border: 1px solid rgba(0,43,109,0.14);
+      border-left: 4px solid rgba(0,43,109,0.18);
+      border-radius: 8px;
+      padding: 11px 14px;
+      margin-bottom: 7px;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    }
+    .sh-item:hover {
+      border-left-color: var(--orange);
+      box-shadow: 0 3px 10px rgba(0,43,109,0.10);
+    }
+    .sh-item:active { transform: scale(0.996); }
+    .sh-item.is-anchored { border-left-color: var(--orange); }
+    .sh-item.is-today { background: rgba(247,148,29,0.10); border-color: var(--orange); }
+
+    /* the spans inside a <button> need to be told to stack */
+    .sh-daybox { flex-shrink: 0; width: 62px; text-align: center; display: block; }
+    .sh-daynum { display: block; font-size: 20px; font-weight: 800; color: var(--navy); line-height: 1.05; }
+    .sh-daynk  { display: block; font-size: 9.5px; color: #888; margin-top: 3px; line-height: 1.3; }
+    .sh-itembody { flex: 1; min-width: 0; display: block; }
+    .sh-itemtitle { display: block; font-size: 14.5px; font-weight: 700; color: var(--navy); line-height: 1.3; }
+    .sh-itemdetail {
+      font-size: 12.5px;
+      color: #555;
+      margin-top: 2px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .sh-tags { margin-top: 5px; display: flex; gap: 5px; flex-wrap: wrap; }
+    .sh-chip {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 20px;
+    }
+    .sh-chip-gurpurab   { background: rgba(247,148,29,0.18); color: #a75f05; }
+    .sh-chip-historical { background: rgba(0,43,109,0.10);  color: var(--navy); }
+    .sh-chip-theme      { background: #eee; color: #777; }
+    .sh-chip-today      { background: var(--orange); color: #fff; }
+
+    .sh-empty { padding: 26px 10px; text-align: center; color: #777; font-size: 14px; }
+
+    /* ── FOOTER ── */
+    .sh-footer {
+      background: var(--navy);
+      border-top: 3px solid var(--orange);
+      padding: 16px 0;
+      margin-top: 10px;
+    }
+    .sh-footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .sh-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--orange) 0%, #e8830a 100%);
+      border-radius: 5px;
+      padding: 10px 20px;
+      min-height: 44px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,220,120,0.5),
+        inset 0 -2px 0 rgba(0,0,0,0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--orange);
+    }
+    .sh-back:hover { filter: brightness(1.08); }
+    .sh-back svg { width: 12px; height: 12px; }
+    .sh-note { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 1.5px; text-transform: uppercase; }
+
+    @media (max-width: 640px) {
+      .sh-months { grid-template-columns: repeat(3, 1fr); }
+      .sh-month { min-height: 44px; font-size: 13px; }
+      .sh-close { min-height: 44px; }
+      .sh-titles h1 { font-size: 18px; }
+      .sh-logo { height: 52px; }
+      .sh-detail-title { font-size: 18px; }
+      .sh-detail-body { padding: 14px; }
+      .sh-detail-nav { padding: 10px 12px 14px; }
+      .sh-btn { flex: 1 1 auto; text-align: center; }
+      .sh-footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="sh-header">
+  <div class="wrap sh-header-inner">
+    <img class="sh-logo" src="./pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+    <div class="sh-titles">
+      <h1>Sikh History &mdash; <span>365 Days</span></h1>
+      <p>Every day of the year, with its Nanakshahi date</p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ── CONTROLS ── -->
+  <div class="sh-controls">
+    <div class="sh-search-row">
+      <input type="search" id="shSearch" class="sh-search"
+             placeholder="Search a person, place or event - try Saragarhi, Vaisakhi, Anandpur"
+             aria-label="Search Sikh history">
+      <select id="shFilter" class="sh-select" aria-label="Filter by type">
+        <option value="all">All days</option>
+        <option value="anchored">Recorded events only</option>
+        <option value="Gurpurab">Gurpurab</option>
+        <option value="Historical">Historical</option>
+        <option value="theme">Themes for reflection</option>
+      </select>
+    </div>
+
+    <div class="sh-months" id="shMonths"></div>
+  </div>
+
+  <!-- ── DETAIL ── -->
+  <section class="sh-detail" id="shDetail" hidden aria-live="polite"></section>
+
+  <!-- ── DAY LIST ── -->
+  <div class="sh-count" id="shCount"></div>
+  <ul class="sh-list" id="shList"></ul>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="sh-footer">
+  <div class="wrap sh-footer-inner">
+    <a class="sh-back" href="./index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
+      </svg>
+      Back to Home
+    </a>
+    <div class="sh-note">&copy; Sikhs in India &middot; sikhsinindia.com</div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var DATA_URL = 'data/sikh-history.json';
+  var MONTHS = ['January','February','March','April','May','June',
+                'July','August','September','October','November','December'];
+  var SHORT  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  var all = [];          // every record, in date order
+  var byDate = {};       // MM-DD -> record
+  var month = new Date().getMonth();   // 0-11
+  var todayKey = null;
+
+  var elMonths = document.getElementById('shMonths');
+  var elList   = document.getElementById('shList');
+  var elCount  = document.getElementById('shCount');
+  var elDetail = document.getElementById('shDetail');
+  var elSearch = document.getElementById('shSearch');
+  var elFilter = document.getElementById('shFilter');
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+  function keyToday() { var d = new Date(); return pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function monthOf(rec) { return parseInt(rec.date.slice(0, 2), 10) - 1; }
+  function dayOf(rec)   { return parseInt(rec.date.slice(3), 10); }
+
+  function matchesFilter(rec) {
+    var f = elFilter.value;
+    if (f === 'all') return true;
+    if (f === 'anchored') return !!rec.anchored;
+    if (f === 'theme') return !rec.anchored;
+    return rec.category === f;
+  }
+
+  function currentList() {
+    var q = elSearch.value.trim().toLowerCase();
+    if (q) {
+      /* searching looks across the whole year, not just the open month */
+      return all.filter(function (r) {
+        return matchesFilter(r) &&
+          (r.title + ' ' + r.detail + ' ' + r.description + ' ' + r.nanakshahi)
+            .toLowerCase().indexOf(q) !== -1;
+      });
+    }
+    return all.filter(function (r) { return monthOf(r) === month && matchesFilter(r); });
+  }
+
+  function renderMonths() {
+    elMonths.innerHTML = MONTHS.map(function (m, i) {
+      return '<button type="button" class="sh-month' + (i === month ? ' active' : '') +
+             '" data-month="' + i + '">' + SHORT[i] + '</button>';
+    }).join('');
+  }
+
+  function renderList() {
+    var rows = currentList();
+    var q = elSearch.value.trim();
+
+    elCount.textContent = q
+      ? rows.length + ' ' + (rows.length === 1 ? 'day matches' : 'days match') + ' "' + q + '" across the year'
+      : rows.length + ' ' + (rows.length === 1 ? 'day' : 'days') + ' in ' + MONTHS[month];
+
+    if (!rows.length) {
+      elList.innerHTML = '<li class="sh-empty">Nothing found. Try a different word, or reset the filter.</li>';
+      return;
+    }
+
+    elList.innerHTML = rows.map(function (r) {
+      var isToday = r.date === todayKey;
+      var catClass = r.category === 'Gurpurab' ? 'gurpurab' : 'historical';
+      return '<li>' +
+        '<button type="button" class="sh-item' + (r.anchored ? ' is-anchored' : '') +
+          (isToday ? ' is-today' : '') + '" data-date="' + r.date + '">' +
+          '<span class="sh-daybox">' +
+            '<span class="sh-daynum">' + dayOf(r) + '</span>' +
+            (q ? '<span class="sh-daynk">' + SHORT[monthOf(r)] + '</span>' : '') +
+            (r.nanakshahi ? '<span class="sh-daynk">' + esc(r.nanakshahi) + '</span>' : '') +
+          '</span>' +
+          '<span class="sh-itembody">' +
+            '<span class="sh-itemtitle">' + esc(r.title) + '</span>' +
+            (r.detail ? '<span class="sh-itemdetail">' + esc(r.detail) + '</span>' : '') +
+            '<span class="sh-tags">' +
+              '<span class="sh-chip sh-chip-' + catClass + '">' + esc(r.category) + '</span>' +
+              (r.anchored ? '' : '<span class="sh-chip sh-chip-theme">Theme</span>') +
+              (isToday ? '<span class="sh-chip sh-chip-today">Today</span>' : '') +
+            '</span>' +
+          '</span>' +
+        '</button></li>';
+    }).join('');
+  }
+
+  function shiftDate(key, delta) {
+    var m = parseInt(key.slice(0, 2), 10) - 1, d = parseInt(key.slice(3), 10);
+    var dt = new Date(2025, m, d);           // 2025 is not a leap year: 365 days
+    dt.setDate(dt.getDate() + delta);
+    return pad(dt.getMonth() + 1) + '-' + pad(dt.getDate());
+  }
+
+  function renderDetail(key) {
+    var r = byDate[key];
+    if (!r) { elDetail.hidden = true; return; }
+
+    var prev = shiftDate(key, -1), next = shiftDate(key, 1);
+    var m = monthOf(r);
+    var lead = r.anchored
+      ? (r.year ? 'On this day in ' + esc(r.year) : 'Marked on this day')
+      : 'A theme for reflection';
+
+    elDetail.innerHTML =
+      '<div class="sh-detail-head">' +
+        '<div>' +
+          '<div class="sh-detail-date">' + dayOf(r) + ' ' + MONTHS[m] + '</div>' +
+          (r.nanakshahi ? '<div class="sh-detail-nk">' + esc(r.nanakshahi) + ' Nanakshahi</div>' : '') +
+        '</div>' +
+        '<button type="button" class="sh-close" data-act="close">&#10005; Close</button>' +
+      '</div>' +
+      '<div class="sh-detail-body">' +
+        '<div class="sh-lead">' + lead + '</div>' +
+        '<div class="sh-detail-title">' + esc(r.title) + '</div>' +
+        (r.detail ? '<p class="sh-detail-text">' + esc(r.detail) + '</p>' : '') +
+        (r.anchored ? '' :
+          '<p class="sh-caveat">This day has no single recorded event in our records; ' +
+          'the theme above is offered for reflection.</p>') +
+      '</div>' +
+      '<div class="sh-detail-nav">' +
+        '<button type="button" class="sh-btn" data-goto="' + prev + '">&larr; ' +
+          SHORT[parseInt(prev.slice(0,2),10)-1] + ' ' + parseInt(prev.slice(3),10) + '</button>' +
+        '<button type="button" class="sh-btn" data-act="copy">Copy link to this day</button>' +
+        '<button type="button" class="sh-btn" data-goto="' + next + '">' +
+          SHORT[parseInt(next.slice(0,2),10)-1] + ' ' + parseInt(next.slice(3),10) + ' &rarr;</button>' +
+      '</div>';
+
+    elDetail.hidden = false;
+
+    /* keep the address bar in step so the day can be linked and shared */
+    try {
+      history.replaceState(null, '', location.pathname + '?date=' + key);
+    } catch (e) { /* not fatal */ }
+
+    if (m !== month && !elSearch.value.trim()) { month = m; renderMonths(); renderList(); }
+  }
+
+  /* ── events ── */
+  elMonths.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-month]');
+    if (!b) return;
+    month = parseInt(b.getAttribute('data-month'), 10);
+    elSearch.value = '';
+    renderMonths(); renderList();
+  });
+
+  elList.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-date]');
+    if (!b) return;
+    renderDetail(b.getAttribute('data-date'));
+    elDetail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  elDetail.addEventListener('click', function (e) {
+    var go = e.target.closest('[data-goto]');
+    if (go) { renderDetail(go.getAttribute('data-goto')); return; }
+    var act = e.target.closest('[data-act]');
+    if (!act) return;
+    if (act.getAttribute('data-act') === 'close') {
+      elDetail.hidden = true;
+      try { history.replaceState(null, '', location.pathname); } catch (e2) {}
+    } else if (act.getAttribute('data-act') === 'copy') {
+      /* the address bar already carries ?date=MM-DD for the open day */
+      var url = location.href;
+      var done = function () { act.textContent = 'Link copied'; setTimeout(function () {
+        act.textContent = 'Copy link to this day'; }, 1600); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done, done);
+      } else { done(); }
+    }
+  });
+
+  elSearch.addEventListener('input', renderList);
+  elFilter.addEventListener('change', renderList);
+
+  /* ── start ── */
+  fetch(DATA_URL, { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function (list) {
+      all = list.slice().sort(function (a, b) { return a.date.localeCompare(b.date); });
+      all.forEach(function (r) { byDate[r.date] = r; });
+      todayKey = keyToday();
+
+      var wanted = (location.search.match(/[?&]date=(\d{2}-\d{2})/) || [])[1];
+      if (wanted && byDate[wanted]) month = parseInt(wanted.slice(0, 2), 10) - 1;
+
+      renderMonths();
+      renderList();
+      if (wanted && byDate[wanted]) renderDetail(wanted);
+    })
+    .catch(function (err) {
+      console.error('Sikh history: could not load ' + DATA_URL, err);
+      elCount.textContent = '';
+      elList.innerHTML = '<li class="sh-empty">This page is briefly unavailable. Please try again shortly.</li>';
+    });
+})();
+</script>
+
+</body>
+</html>
