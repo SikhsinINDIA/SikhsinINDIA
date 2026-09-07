@@ -15,6 +15,9 @@
   var MOUNT_ID = 'todaySikhHistory';
   var DATA_URL = 'data/sikh-history.json';
 
+  /* how many of the day's other events the homepage card lists */
+  var MAX_ON_CARD = 4;
+
   var MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -74,6 +77,33 @@
         ? (rec.year ? 'On this day in ' + esc(rec.year) : 'Marked on this day')
         : 'A theme to reflect on today';
 
+      /* Most days carry more than one recorded event. The rest are listed
+         under the headline, oldest first, so the day reads as a timeline. */
+      var more = '';
+      if (rec.more && rec.more.length) {
+        /* Some days carry a dozen entries. The card shows the first few and
+           points at the 365-day page for the rest, rather than growing until
+           it pushes the whole homepage down. */
+        var shown = rec.more.slice(0, MAX_ON_CARD);
+        var hidden = rec.more.length - shown.length;
+        more =
+          '<div class="tsh-more">' +
+            '<div class="tsh-more-head">Also on this day</div>' +
+            '<ul class="tsh-more-list">' +
+              shown.map(function (m) {
+                return '<li><span class="tsh-more-year">' + esc(m.year) + '</span>' +
+                  esc(m.title) +
+                  (m.note ? '<span class="tsh-more-note">' + esc(m.note) + '</span>' : '') +
+                  '</li>';
+              }).join('') +
+            '</ul>' +
+            (hidden > 0
+              ? '<div class="tsh-more-rest">' + hidden +
+                ' more on this day &mdash; see the 365-day page below</div>'
+              : '') +
+          '</div>';
+      }
+
       body =
         chip +
         '<div class="tsh-lead">' + lead + '</div>' +
@@ -81,7 +111,8 @@
         (rec.detail ? '<p class="tsh-detail">' + esc(rec.detail) + '</p>' : '') +
         (rec.anchored ? '' :
           '<p class="tsh-caveat">This day has no single recorded event in our records; ' +
-          'the theme above is offered for reflection.</p>');
+          'the theme above is offered for reflection.</p>') +
+        more;
     }
 
     mount.innerHTML =

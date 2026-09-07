@@ -486,6 +486,55 @@
   }
   .tsh-none { font-size: 14px; color: #666; margin: 6px 0; }
 
+  /* the day's remaining recorded events, listed under the headline */
+  .tsh-more {
+    margin: 16px auto 0;
+    max-width: 640px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 43, 109, .12);
+    text-align: left;
+  }
+  .tsh-more-head {
+    font-size: 10.5px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .tsh-more-list { list-style: none; margin: 0; padding: 0; }
+  .tsh-more-list li {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.55;
+    padding: 5px 0 5px 62px;
+    position: relative;
+  }
+  .tsh-more-year {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 52px;
+    font-weight: 800;
+    font-size: 12px;
+    color: var(--navy);
+    font-variant-numeric: tabular-nums;
+  }
+  .tsh-more-note {
+    display: block;
+    font-size: 11px;
+    font-style: italic;
+    color: #777;
+    margin-top: 2px;
+  }
+  .tsh-more-rest {
+    font-size: 11.5px;
+    color: #777;
+    font-style: italic;
+    margin-top: 8px;
+    padding-left: 62px;
+  }
+
   .tsh-nav {
     display: flex;
     align-items: center;
@@ -550,6 +599,9 @@
     .tsh-body    { padding: 14px 14px 10px; }
     .tsh-title   { font-size: 18px; }
     .tsh-detail  { font-size: 13px; }
+    .tsh-more-list li  { font-size: 12px; padding-left: 54px; }
+    .tsh-more-year     { width: 46px; font-size: 11px; }
+    .tsh-more-rest     { padding-left: 54px; font-size: 11px; }
     .tsh-nav     { padding: 10px 10px 12px; gap: 6px; }
     .tsh-btn     { font-size: 10px; padding: 9px 10px; min-height: 44px; }
   }

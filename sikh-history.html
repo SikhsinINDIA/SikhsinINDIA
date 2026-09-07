@@ -195,6 +195,50 @@
       margin-top: 10px;
       line-height: 1.55;
     }
+
+    /* the day's remaining recorded events */
+    .sh-more {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(0, 43, 109, .12);
+    }
+    .sh-more-head {
+      font-size: 11px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .sh-more-list { list-style: none; margin: 0; padding: 0; }
+    .sh-more-list li {
+      display: flex;
+      gap: 12px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, .05);
+    }
+    .sh-more-list li:last-child { border-bottom: 0; }
+    .sh-more-year {
+      flex: 0 0 46px;
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--navy);
+      font-variant-numeric: tabular-nums;
+    }
+    .sh-more-body { font-size: 13.5px; color: #333; line-height: 1.55; }
+    .sh-more-detail { color: #666; }
+    .sh-more-note {
+      display: block;
+      font-size: 11.5px;
+      font-style: italic;
+      color: #777;
+      margin-top: 3px;
+    }
+    @media (max-width: 560px) {
+      .sh-more-list li { gap: 9px; }
+      .sh-more-year  { flex-basis: 40px; font-size: 12px; }
+      .sh-more-body  { font-size: 12.5px; }
+    }
     .sh-detail-nav {
       display: flex;
       align-items: center;
@@ -437,7 +481,10 @@
       /* searching looks across the whole year, not just the open month */
       return all.filter(function (r) {
         return matchesFilter(r) &&
-          (r.title + ' ' + r.detail + ' ' + r.description + ' ' + r.nanakshahi)
+          (r.title + ' ' + r.detail + ' ' + r.description + ' ' + r.nanakshahi +
+           ' ' + (r.more || []).map(function (m) {
+             return m.year + ' ' + m.title + ' ' + (m.detail || '');
+           }).join(' '))
             .toLowerCase().indexOf(q) !== -1;
       });
     }
@@ -495,6 +542,25 @@
     return pad(dt.getMonth() + 1) + '-' + pad(dt.getDate());
   }
 
+  /* Most days hold more than one recorded event. The ones that did not become
+     the headline are listed beneath it, oldest first, so the day reads as a
+     timeline rather than a single fact. */
+  function moreList(r) {
+    if (!r.more || !r.more.length) return '';
+    return '<div class="sh-more">' +
+      '<div class="sh-more-head">Also on this day</div>' +
+      '<ul class="sh-more-list">' +
+        r.more.map(function (m) {
+          return '<li>' +
+            '<span class="sh-more-year">' + esc(m.year) + '</span>' +
+            '<span class="sh-more-body">' + esc(m.title) +
+              (m.detail ? ' <span class="sh-more-detail">' + esc(m.detail) + '</span>' : '') +
+              (m.note ? '<span class="sh-more-note">' + esc(m.note) + '</span>' : '') +
+            '</span></li>';
+        }).join('') +
+      '</ul></div>';
+  }
+
   function renderDetail(key) {
     var r = byDate[key];
     if (!r) { elDetail.hidden = true; return; }
@@ -520,6 +586,7 @@
         (r.anchored ? '' :
           '<p class="sh-caveat">This day has no single recorded event in our records; ' +
           'the theme above is offered for reflection.</p>') +
+        moreList(r) +
       '</div>' +
       '<div class="sh-detail-nav">' +
         '<button type="button" class="sh-btn" data-goto="' + prev + '">&larr; ' +
