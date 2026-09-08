@@ -35,14 +35,7 @@
           '<p class="hnm-gurmukhi">' + esc(d.verseGurmukhi) + '</p>' +
           (d.verseTranslation ? '<p class="hnm-translation">' + esc(d.verseTranslation) + '</p>' : '') +
           '<div class="hnm-ang">Ang ' + esc(d.ang) + '</div>' +
-          '<a class="hnm-cta" href="' + esc(d.sourceUrl) + '" target="_blank" rel="noopener">Read Full Hukamnama &rarr;</a>' +
-          '<div class="hnm-links">' +
-            '<a href="' + esc(d.listenUrl) + '" target="_blank" rel="noopener">&#127911; Listen to Hukamnama</a>' +
-            '<span class="hnm-links-dot">&middot;</span>' +
-            '<a href="' + esc(d.sourceUrl) + '" target="_blank" rel="noopener">&#128214; Punjabi</a>' +
-            '<span class="hnm-links-dot">&middot;</span>' +
-            '<a href="' + esc(d.sourceUrl) + '" target="_blank" rel="noopener">&#127760; English</a>' +
-          '</div>' +
+          '<a class="hnm-cta" href="hukamnama.html">Read Full Hukamnama &rarr;</a>' +
         '</div>' +
       '</div>';
   }

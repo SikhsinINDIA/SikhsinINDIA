@@ -1,8 +1,10 @@
 /* ──────────────────────────────────────────────────────────────
    Update Daily Hukamnama
    Fetches today's Hukamnama (as published from Sri Harmandir Sahib,
-   Amritsar) from the BaniDB API and writes a small, static summary
-   to data/hukamnama.json and data/hukamnama.js.
+   Amritsar) from the BaniDB API and writes the full shabad - every
+   line, in Gurmukhi with an English translation - to data/hukamnama.json
+   and data/hukamnama.js, so it can be displayed entirely on this site
+   with no redirect to SGPC or any other site.
 
    Runs on a daily schedule via .github/workflows/update-hukamnama.yml
    so the homepage never needs a manual edit. If the fetch fails for
@@ -52,6 +54,16 @@ async function main() {
   const titleVerse = shabad.verses[0];
   const previewVerse = pickPreviewVerse(shabad.verses);
 
+  /* The full shabad, line by line, so the site can show the complete
+     Hukamnama itself rather than sending readers to another site. */
+  const verses = shabad.verses.map(function (v) {
+    return {
+      gurmukhi: v.verse.unicode || '',
+      translation: (v.translation && v.translation.en &&
+        (v.translation.en.bdb || v.translation.en.ssk)) || ''
+    };
+  });
+
   const out = {
     date: dateIso,
     dateDisplay: dateDisplay,
@@ -65,8 +77,7 @@ async function main() {
     verseGurmukhi: (previewVerse && previewVerse.verse.unicode) || '',
     verseTranslation: (previewVerse && previewVerse.translation && previewVerse.translation.en &&
       (previewVerse.translation.en.bdb || previewVerse.translation.en.ssk)) || '',
-    sourceUrl: 'https://sgpc.net/hukamnama/',
-    listenUrl: 'https://hs.sgpc.net/',
+    verses: verses,
     updated: new Date().toISOString()
   };
 
