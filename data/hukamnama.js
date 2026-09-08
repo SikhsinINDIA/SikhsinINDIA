@@ -12,5 +12,5 @@ window.HUKAMNAMA = {
   "verseTranslation": "Those Saints and devotees who serve the Lord have all their sins washed away.",
   "sourceUrl": "https://sgpc.net/hukamnama/",
   "listenUrl": "https://hs.sgpc.net/",
-  "updated": "2026-09-08T16:49:43.808Z"
+  "updated": "2026-09-08T17:03:39.704Z"
 };
