@@ -192,6 +192,7 @@
     .map-wrapper {
       background: var(--cream);
       padding: 22px 20px 10px;
+      position: relative;
     }
     .map-wrapper svg#india-map {
       width: 100%;
@@ -287,12 +288,83 @@
        not - so the colour swap it was meant to apply has been dead code all
        along. Rather than fight that specificity war over `fill`, this rule
        lights states up on properties none of the ID rules touch, so it wins
-       cleanly and works for every state's own colour. */
+       cleanly and works for every state's own colour.
+
+       `:active` is included alongside `:hover` because touchscreens have no
+       hover phase at all - nothing rests on a state before a finger taps it,
+       so a mouse-only hover effect is simply invisible on a phone no matter
+       how it's built. `:active` fires the instant a finger presses down, so
+       mobile visitors get the same glow as a real confirmation, if only for
+       the moment before the tap navigates away. */
     .map-wrapper svg#india-map .region:hover,
+    .map-wrapper svg#india-map .region:active,
     .map-wrapper svg#india-map .region.demo-hover {
       stroke: var(--gold);
       stroke-width: 2.4;
       filter: brightness(1.18) saturate(1.5) drop-shadow(0 0 5px rgba(247,148,29,0.85));
+    }
+
+    /* ── TAP HINT: a self-playing cue that needs no hover to be seen ──
+       A pulsing hand + expanding ripple, centred over the map, animating on
+       its own from the moment the page loads. It fades out the first time a
+       visitor actually touches or hovers the map, or after a few cycles if
+       they don't - so it teaches the interaction once without becoming a
+       standing annoyance on repeat visits. */
+    .tap-hint-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 92px;
+      height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 5;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    .tap-hint-overlay.tap-hint-hidden { opacity: 0; }
+    .tap-hint-ripple {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      opacity: 0;
+      animation: tapHintRipple 1.8s ease-out infinite;
+    }
+    .tap-hint-ripple.tap-hint-ripple-delay { animation-delay: 0.6s; }
+    .tap-hint-hand-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 46px;
+      height: 46px;
+      margin: -23px 0 0 -23px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+      animation: tapHintPress 1.8s ease-in-out infinite;
+    }
+    .tap-hint-hand {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      color: var(--navy);
+      animation: tapHintPress 1.8s ease-in-out infinite;
+    }
+    @keyframes tapHintRipple {
+      0%   { transform: scale(0.55); opacity: 0.65; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+    @keyframes tapHintPress {
+      0%, 100% { transform: scale(1) translateY(0); }
+      40%      { transform: scale(0.86) translateY(2px); }
+      55%      { transform: scale(1.05) translateY(-1px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tap-hint-ripple, .tap-hint-hand-bg, .tap-hint-hand { animation: none; }
     }
 
     /* A standing nudge, since first-time visitors have no reason to expect
@@ -1157,6 +1229,17 @@
     
     
       </svg>
+
+    <!-- Self-playing tap cue - visible whether or not the device supports hover -->
+    <div class="tap-hint-overlay" id="tapHintOverlay" aria-hidden="true">
+      <div class="tap-hint-ripple"></div>
+      <div class="tap-hint-ripple tap-hint-ripple-delay"></div>
+      <div class="tap-hint-hand-bg"></div>
+      <svg class="tap-hint-hand" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 3a1.5 1.5 0 0 1 3 0v7h.5V5a1.5 1.5 0 0 1 3 0v5h.5V6.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1.2c-1.9 0-3.1-.7-4.3-2.2l-2.8-3.5a1.4 1.4 0 0 1 2.1-1.8L9 15.5V3z"/>
+      </svg>
+    </div>
+
     <div class="map-hint">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
            stroke-linecap="round" stroke-linejoin="round">
@@ -1722,6 +1805,33 @@ var simplemaps_countrymap_mapdata={
     }
 
     window.addEventListener('load', function () { setTimeout(runDemo, 900); });
+  })();
+</script>
+
+<!-- ── TAP HINT dismissal ──
+     Stops the pulsing hand the moment a visitor actually engages with the
+     map (a real tap or click), rather than waiting out a fixed timer once
+     the point has already been made; a timeout is kept only as a fallback
+     for visitors who never touch the map at all. Deliberately not tied to
+     mouseover/hover - the mouse merely passing over the map on its way
+     somewhere else isn't the same as a visitor engaging with it, and would
+     dismiss the hint before it had done its job. -->
+<script>
+  (function () {
+    var overlay = document.getElementById('tapHintOverlay');
+    var mapSvg = document.getElementById('india-map');
+    if (!overlay || !mapSvg) return;
+
+    var dismissed = false;
+    function dismiss() {
+      if (dismissed) return;
+      dismissed = true;
+      overlay.classList.add('tap-hint-hidden');
+      setTimeout(function () { if (overlay.parentNode) overlay.remove(); }, 550);
+    }
+
+    mapSvg.addEventListener('pointerdown', dismiss, { once: true });
+    setTimeout(dismiss, 7000);
   })();
 </script>
 
