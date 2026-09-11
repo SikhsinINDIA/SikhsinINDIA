@@ -396,6 +396,38 @@
     .btn-back:active { transform: scale(0.97); filter: brightness(0.93); }
     .btn-back svg { width: 12px; height: 12px; }
 
+    .btn-back1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--navy);
+    background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+    border: none;
+    border-radius: 5px;
+    padding: 9px 18px;
+    cursor: pointer;
+    box-shadow:
+        inset 0 1px 0 rgba(255,220,120,0.5),
+        inset 0 -2px 0 rgba(0,0,0,0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+    transition: filter 0.15s, transform 0.1s;
+    flex-shrink: 0;
+
+    /* Center horizontally */
+    margin: 0 auto;
+    width: fit-content;
+}
+    .btn-back1:active { transform: scale(0.97); filter: brightness(0.93); }
+    .btn-back1 svg { width: 12px; height: 12px; }
+
     /* ── LIGHTBOX ── */
     .lightbox {
       display: none;
@@ -657,6 +689,9 @@
     @media (max-width:600px) {
       .gsb-lang-switcher { top: 4px; right: 4px; padding: 4px 8px; font-size: 10px; gap: 5px; }
     }
+
+           .footer-content1 { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+
   </style>
 </head>
 <body>
@@ -710,7 +745,16 @@
          alt="Panj Pyaras"
          class="header-image">
   </div><!-- /gurus-wrapper -->
-
+  <br>
+       <div class="footer-content1">
+        <a href="01-01-11-02-guru-granth-sahib-ji-first-prakash.html" class="btn-back1">
+          Sri Guru Granth Sahib Ji - First Prakash GuruPurab
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12H19M19 12l-7-7M19 12l-7 7"/>
+          </svg>
+        </a>
+      </div>
+        <br>
   <!-- ── QUOTE ── -->
   <div class="quote-panel">
     <div class="quote-mark">"</div>
@@ -766,6 +810,7 @@
       <div class="value-desc">The living Guru of the Sikhs — eternal, ever-present, ever-true.</div>
     </div>
   </div>
+
 
   <!-- ── FOOTER ── -->
   
