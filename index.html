@@ -1015,18 +1015,41 @@
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 
+  const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'];
+
+  // Resolves a Date/Timestamp to its calendar date IN INDIA (Asia/Kolkata),
+  // ignoring both the stored time-of-day and the viewer's own timezone, so every
+  // visitor worldwide sees the same event date that was entered for India.
+  function getIndiaDateParts(date) {
+      const parts = new Intl.DateTimeFormat('en-CA', {
+          timeZone: 'Asia/Kolkata',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+      }).formatToParts(date);
+      const map = {};
+      parts.forEach(p => { if (p.type !== 'literal') map[p.type] = p.value; });
+      return { year: parseInt(map.year, 10), month: parseInt(map.month, 10) - 1, day: parseInt(map.day, 10) };
+  }
+
   async function loadCurrentMonthFestivals() {
       const marqueeWrapper = document.getElementById("marqueeWrapper");
-      const now = new Date();
-      const currentYear = now.getFullYear();
-      const currentMonth = now.getMonth();
-      const currentDate = now.getDate();
+      const today = getIndiaDateParts(new Date());
+      const currentYear = today.year;
+      const currentMonth = today.month;
+      const currentDate = today.day;
 
-      const monthName = now.toLocaleString('en-US', { month: 'long' });
+      const monthName = MONTH_NAMES[currentMonth];
       const headerTitle = `${monthName} Events`;
 
-      const startOfMonth = new Date(currentYear, currentMonth, 1, 0, 0, 0);
-      const endOfMonth = new Date(currentYear, currentMonth + 1, 0, 23, 59, 59);
+      // Month boundaries expressed as explicit India-local (+05:30) instants,
+      // so the query window matches the India calendar month regardless of
+      // the viewer's own timezone.
+      const pad = n => String(n).padStart(2, '0');
+      const daysInMonth = new Date(Date.UTC(currentYear, currentMonth + 1, 0)).getUTCDate();
+      const startOfMonth = new Date(`${currentYear}-${pad(currentMonth + 1)}-01T00:00:00+05:30`);
+      const endOfMonth = new Date(`${currentYear}-${pad(currentMonth + 1)}-${pad(daysInMonth)}T23:59:59+05:30`);
 
       try {
           const snapshot = await db.collection("Calendar")
@@ -1051,17 +1074,14 @@
                   }
 
                   if (eventDateObj) {
+                      const eventParts = getIndiaDateParts(eventDateObj);
                       const isToday = (
-                          eventDateObj.getFullYear() === currentYear &&
-                          eventDateObj.getMonth() === currentMonth &&
-                          eventDateObj.getDate() === currentDate
+                          eventParts.year === currentYear &&
+                          eventParts.month === currentMonth &&
+                          eventParts.day === currentDate
                       );
 
-                      const formattedDate = eventDateObj.toLocaleDateString('en-US', {
-                          month: 'long',
-                          day: 'numeric',
-                          year: 'numeric'
-                      });
+                      const formattedDate = `${MONTH_NAMES[eventParts.month]} ${eventParts.day}, ${eventParts.year}`;
 
                       const category = data.Category || "";
                       const description = data.Description || "";
