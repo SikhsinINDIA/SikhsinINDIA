@@ -1,92 +1,64 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-09-12",
-  "dateDisplay": "12 September 2026",
-  "ang": 666,
-  "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
-  "raagEnglish": "Raag Dhanaasree",
-  "writerEnglish": "Guru Amar Daas Ji",
-  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੩ ॥",
-  "titleEnglish": "Dhanaasaree, Third Mehla:",
-  "verseGurmukhi": "ਨਾਵੈ ਕੀ ਕੀਮਤਿ ਮਿਤਿ ਕਹੀ ਨ ਜਾਇ ॥",
-  "verseTranslation": "The value and worth of the Lord's Name cannot be described.",
+  "date": "2026-09-13",
+  "dateDisplay": "13 September 2026",
+  "ang": 696,
+  "raagGurmukhi": "ਰਾਗੁ ਜੈਤਸਰੀ",
+  "raagEnglish": "Raag Jaithsree",
+  "writerEnglish": "Guru Raam Daas Ji",
+  "titleGurmukhi": "ਜੈਤਸਰੀ ਮਹਲਾ ੪ ਘਰੁ ੧ ਚਉਪਦੇ",
+  "titleEnglish": "Jaitsree, Fourth Mehla, First House, Chau-Padhay:",
+  "verseGurmukhi": "ਮੇਰੈ ਹੀਅਰੈ ਰਤਨੁ ਨਾਮੁ ਹਰਿ ਬਸਿਆ ਗੁਰਿ ਹਾਥੁ ਧਰਿਓ ਮੇਰੈ ਮਾਥਾ ॥",
+  "verseTranslation": "The Jewel of the Lord's Name abides within my heart; the Guru has placed His hand on my forehead.",
   "verses": [
     {
-      "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੩ ॥",
-      "translation": "Dhanaasaree, Third Mehla:"
+      "gurmukhi": "ਜੈਤਸਰੀ ਮਹਲਾ ੪ ਘਰੁ ੧ ਚਉਪਦੇ",
+      "translation": "Jaitsree, Fourth Mehla, First House, Chau-Padhay:"
     },
     {
-      "gurmukhi": "ਨਾਵੈ ਕੀ ਕੀਮਤਿ ਮਿਤਿ ਕਹੀ ਨ ਜਾਇ ॥",
-      "translation": "The value and worth of the Lord's Name cannot be described."
+      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
     },
     {
-      "gurmukhi": "ਸੇ ਜਨ ਧੰਨੁ ਜਿਨ ਇਕ ਨਾਮਿ ਲਿਵ ਲਾਇ ॥",
-      "translation": "Blessed are those humble beings, who lovingly focus their minds on the Naam, the Name of the Lord."
+      "gurmukhi": "ਮੇਰੈ ਹੀਅਰੈ ਰਤਨੁ ਨਾਮੁ ਹਰਿ ਬਸਿਆ ਗੁਰਿ ਹਾਥੁ ਧਰਿਓ ਮੇਰੈ ਮਾਥਾ ॥",
+      "translation": "The Jewel of the Lord's Name abides within my heart; the Guru has placed His hand on my forehead."
     },
     {
-      "gurmukhi": "ਗੁਰਮਤਿ ਸਾਚੀ ਸਾਚਾ ਵੀਚਾਰੁ ॥",
-      "translation": "True are the Guru's Teachings, and True is contemplative meditation."
+      "gurmukhi": "ਜਨਮ ਜਨਮ ਕੇ ਕਿਲਬਿਖ ਦੁਖ ਉਤਰੇ ਗੁਰਿ ਨਾਮੁ ਦੀਓ ਰਿਨੁ ਲਾਥਾ ॥੧॥",
+      "translation": "The sins and pains of countless incarnations have been cast out. The Guru has blessed me with the Naam, the Name of the Lord, and my debt has been paid off. ||1||"
     },
     {
-      "gurmukhi": "ਆਪੇ ਬਖਸੇ ਦੇ ਵੀਚਾਰੁ ॥੧॥",
-      "translation": "God Himself forgives, and bestows contemplative meditation. ||1||"
+      "gurmukhi": "ਮੇਰੇ ਮਨ ਭਜੁ ਰਾਮ ਨਾਮੁ ਸਭਿ ਅਰਥਾ ॥",
+      "translation": "O my mind, vibrate the Lord's Name, and all your affairs shall be resolved."
     },
     {
-      "gurmukhi": "ਹਰਿ ਨਾਮੁ ਅਚਰਜੁ ਪ੍ਰਭੁ ਆਪਿ ਸੁਣਾਏ ॥",
-      "translation": "The Lord's Name is wonderful! God Himself imparts it."
+      "gurmukhi": "ਗੁਰਿ ਪੂਰੈ ਹਰਿ ਨਾਮੁ ਦ੍ਰਿੜਾਇਆ ਬਿਨੁ ਨਾਵੈ ਜੀਵਨੁ ਬਿਰਥਾ ॥ ਰਹਾਉ ॥",
+      "translation": "The Perfect Guru has implanted the Lord's Name within me; without the Name, life is useless. ||Pause||"
     },
     {
-      "gurmukhi": "ਕਲੀ ਕਾਲ ਵਿਚਿ ਗੁਰਮੁਖਿ ਪਾਏ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "In the Dark Age of Kali Yuga, the Gurmukhs obtain it. ||1||Pause||"
+      "gurmukhi": "ਬਿਨੁ ਗੁਰ ਮੂੜ ਭਏ ਹੈ ਮਨਮੁਖ ਤੇ ਮੋਹ ਮਾਇਆ ਨਿਤ ਫਾਥਾ ॥",
+      "translation": "Without the Guru, the self-willed manmukhs are foolish and ignorant; they are forever entangled in emotional attachment to Maya."
     },
     {
-      "gurmukhi": "ਹਮ ਮੂਰਖ ਮੂਰਖ ਮਨ ਮਾਹਿ ॥",
-      "translation": "We are ignorant; ignorance fills our minds."
+      "gurmukhi": "ਤਿਨ ਸਾਧੂ ਚਰਣ ਨ ਸੇਵੇ ਕਬਹੂ ਤਿਨ ਸਭੁ ਜਨਮੁ ਅਕਾਥਾ ॥੨॥",
+      "translation": "They never serve the feet of the Holy; their lives are totally useless. ||2||"
     },
     {
-      "gurmukhi": "ਹਉਮੈ ਵਿਚਿ ਸਭ ਕਾਰ ਕਮਾਹਿ ॥",
-      "translation": "We do all our deeds in ego."
+      "gurmukhi": "ਜਿਨ ਸਾਧੂ ਚਰਣ ਸਾਧ ਪਗ ਸੇਵੇ ਤਿਨ ਸਫਲਿਓ ਜਨਮੁ ਸਨਾਥਾ ॥",
+      "translation": "Those who serve at the feet of the Holy, the feet of the Holy, their lives are made fruitful, and they belong to the Lord."
     },
     {
-      "gurmukhi": "ਗੁਰ ਪਰਸਾਦੀ ਹੰਉਮੈ ਜਾਇ ॥",
-      "translation": "By Guru's Grace, egotism is eradicated."
+      "gurmukhi": "ਮੋ ਕਉ ਕੀਜੈ ਦਾਸੁ ਦਾਸ ਦਾਸਨ ਕੋ ਹਰਿ ਦਇਆ ਧਾਰਿ ਜਗੰਨਾਥਾ ॥੩॥",
+      "translation": "Make me the slave of the slave of the slaves of the Lord; bless me with Your Mercy, O Lord of the Universe. ||3||"
     },
     {
-      "gurmukhi": "ਆਪੇ ਬਖਸੇ ਲਏ ਮਿਲਾਇ ॥੨॥",
-      "translation": "Forgiving us, the Lord blends us with Himself. ||2||"
+      "gurmukhi": "ਹਮ ਅੰਧੁਲੇ ਗਿਆਨਹੀਨ ਅਗਿਆਨੀ ਕਿਉ ਚਾਲਹ ਮਾਰਗਿ ਪੰਥਾ ॥",
+      "translation": "I am blind, ignorant and totally without wisdom; how can I walk on the Path?"
     },
     {
-      "gurmukhi": "ਬਿਖਿਆ ਕਾ ਧਨੁ ਬਹੁਤੁ ਅਭਿਮਾਨੁ ॥",
-      "translation": "Poisonous wealth gives rise to great arrogance."
-    },
-    {
-      "gurmukhi": "ਅਹੰਕਾਰਿ ਡੂਬੈ ਨ ਪਾਵੈ ਮਾਨੁ ॥",
-      "translation": "Drowning in egotism, no one is honored."
-    },
-    {
-      "gurmukhi": "ਆਪੁ ਛੋਡਿ ਸਦਾ ਸੁਖੁ ਹੋਈ ॥",
-      "translation": "Forsaking self-conceit, one finds lasting peace."
-    },
-    {
-      "gurmukhi": "ਗੁਰਮਤਿ ਸਾਲਾਹੀ ਸਚੁ ਸੋਈ ॥੩॥",
-      "translation": "Under Guru's Instruction, he praises the True Lord. ||3||"
-    },
-    {
-      "gurmukhi": "ਆਪੇ ਸਾਜੇ ਕਰਤਾ ਸੋਇ ॥",
-      "translation": "The Creator Lord Himself fashions all."
-    },
-    {
-      "gurmukhi": "ਤਿਸੁ ਬਿਨੁ ਦੂਜਾ ਅਵਰੁ ਨ ਕੋਇ ॥",
-      "translation": "Without Him, there is no other at all."
-    },
-    {
-      "gurmukhi": "ਜਿਸੁ ਸਚਿ ਲਾਏ ਸੋਈ ਲਾਗੈ ॥",
-      "translation": "He alone is attached to Truth, whom the Lord Himself so attaches."
-    },
-    {
-      "gurmukhi": "ਨਾਨਕ ਨਾਮਿ ਸਦਾ ਸੁਖੁ ਆਗੈ ॥੪॥੮॥",
-      "translation": "O Nanak, through the Naam, lasting peace is attained in the hereafter. ||4||8||"
+      "gurmukhi": "ਹਮ ਅੰਧੁਲੇ ਕਉ ਗੁਰ ਅੰਚਲੁ ਦੀਜੈ ਜਨ ਨਾਨਕ ਚਲਹ ਮਿਲੰਥਾ ॥੪॥੧॥",
+      "translation": "I am blind - O Guru, please let me grasp the hem of Your robe, so that servant Nanak may walk in harmony with You. ||4||1||"
     }
   ],
-  "updated": "2026-09-12T06:02:53.814Z"
+  "updated": "2026-09-13T06:26:39.834Z"
 };
