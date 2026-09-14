@@ -1,64 +1,44 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-09-13",
-  "dateDisplay": "13 September 2026",
-  "ang": 696,
-  "raagGurmukhi": "ਰਾਗੁ ਜੈਤਸਰੀ",
-  "raagEnglish": "Raag Jaithsree",
-  "writerEnglish": "Guru Raam Daas Ji",
-  "titleGurmukhi": "ਜੈਤਸਰੀ ਮਹਲਾ ੪ ਘਰੁ ੧ ਚਉਪਦੇ",
-  "titleEnglish": "Jaitsree, Fourth Mehla, First House, Chau-Padhay:",
-  "verseGurmukhi": "ਮੇਰੈ ਹੀਅਰੈ ਰਤਨੁ ਨਾਮੁ ਹਰਿ ਬਸਿਆ ਗੁਰਿ ਹਾਥੁ ਧਰਿਓ ਮੇਰੈ ਮਾਥਾ ॥",
-  "verseTranslation": "The Jewel of the Lord's Name abides within my heart; the Guru has placed His hand on my forehead.",
+  "date": "2026-09-14",
+  "dateDisplay": "14 September 2026",
+  "ang": 631,
+  "raagGurmukhi": "ਰਾਗੁ ਸੋਰਠਿ",
+  "raagEnglish": "Raag Sorath",
+  "writerEnglish": "Guru Tegh Bahaadur Ji",
+  "titleGurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੯ ॥",
+  "titleEnglish": "Sorat'h, Ninth Mehla:",
+  "verseGurmukhi": "ਮਨ ਕੀ ਮਨ ਹੀ ਮਾਹਿ ਰਹੀ ॥",
+  "verseTranslation": "The mind remains in the mind.",
   "verses": [
     {
-      "gurmukhi": "ਜੈਤਸਰੀ ਮਹਲਾ ੪ ਘਰੁ ੧ ਚਉਪਦੇ",
-      "translation": "Jaitsree, Fourth Mehla, First House, Chau-Padhay:"
+      "gurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੯ ॥",
+      "translation": "Sorat'h, Ninth Mehla:"
     },
     {
-      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
-      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
+      "gurmukhi": "ਮਨ ਕੀ ਮਨ ਹੀ ਮਾਹਿ ਰਹੀ ॥",
+      "translation": "The mind remains in the mind."
     },
     {
-      "gurmukhi": "ਮੇਰੈ ਹੀਅਰੈ ਰਤਨੁ ਨਾਮੁ ਹਰਿ ਬਸਿਆ ਗੁਰਿ ਹਾਥੁ ਧਰਿਓ ਮੇਰੈ ਮਾਥਾ ॥",
-      "translation": "The Jewel of the Lord's Name abides within my heart; the Guru has placed His hand on my forehead."
+      "gurmukhi": "ਨਾ ਹਰਿ ਭਜੇ ਨ ਤੀਰਥ ਸੇਵੇ ਚੋਟੀ ਕਾਲਿ ਗਹੀ ॥੧॥ ਰਹਾਉ ॥",
+      "translation": "He does not meditate on the Lord, nor does he perform service at sacred shrines, and so death seizes him by the hair. ||1||Pause||"
     },
     {
-      "gurmukhi": "ਜਨਮ ਜਨਮ ਕੇ ਕਿਲਬਿਖ ਦੁਖ ਉਤਰੇ ਗੁਰਿ ਨਾਮੁ ਦੀਓ ਰਿਨੁ ਲਾਥਾ ॥੧॥",
-      "translation": "The sins and pains of countless incarnations have been cast out. The Guru has blessed me with the Naam, the Name of the Lord, and my debt has been paid off. ||1||"
+      "gurmukhi": "ਦਾਰਾ ਮੀਤ ਪੂਤ ਰਥ ਸੰਪਤਿ ਧਨ ਪੂਰਨ ਸਭ ਮਹੀ ॥",
+      "translation": "Wife, friends, children, carriages, property, total wealth, the entire world"
     },
     {
-      "gurmukhi": "ਮੇਰੇ ਮਨ ਭਜੁ ਰਾਮ ਨਾਮੁ ਸਭਿ ਅਰਥਾ ॥",
-      "translation": "O my mind, vibrate the Lord's Name, and all your affairs shall be resolved."
+      "gurmukhi": "ਅਵਰ ਸਗਲ ਮਿਥਿਆ ਏ ਜਾਨਉ ਭਜਨੁ ਰਾਮੁ ਕੋ ਸਹੀ ॥੧॥",
+      "translation": "- know that all of these things are false. The Lord's meditation alone is true. ||1||"
     },
     {
-      "gurmukhi": "ਗੁਰਿ ਪੂਰੈ ਹਰਿ ਨਾਮੁ ਦ੍ਰਿੜਾਇਆ ਬਿਨੁ ਨਾਵੈ ਜੀਵਨੁ ਬਿਰਥਾ ॥ ਰਹਾਉ ॥",
-      "translation": "The Perfect Guru has implanted the Lord's Name within me; without the Name, life is useless. ||Pause||"
+      "gurmukhi": "ਫਿਰਤ ਫਿਰਤ ਬਹੁਤੇ ਜੁਗ ਹਾਰਿਓ ਮਾਨਸ ਦੇਹ ਲਹੀ ॥",
+      "translation": "Wandering, wandering around for so many ages, he has grown weary, and finally, he obtained this human body."
     },
     {
-      "gurmukhi": "ਬਿਨੁ ਗੁਰ ਮੂੜ ਭਏ ਹੈ ਮਨਮੁਖ ਤੇ ਮੋਹ ਮਾਇਆ ਨਿਤ ਫਾਥਾ ॥",
-      "translation": "Without the Guru, the self-willed manmukhs are foolish and ignorant; they are forever entangled in emotional attachment to Maya."
-    },
-    {
-      "gurmukhi": "ਤਿਨ ਸਾਧੂ ਚਰਣ ਨ ਸੇਵੇ ਕਬਹੂ ਤਿਨ ਸਭੁ ਜਨਮੁ ਅਕਾਥਾ ॥੨॥",
-      "translation": "They never serve the feet of the Holy; their lives are totally useless. ||2||"
-    },
-    {
-      "gurmukhi": "ਜਿਨ ਸਾਧੂ ਚਰਣ ਸਾਧ ਪਗ ਸੇਵੇ ਤਿਨ ਸਫਲਿਓ ਜਨਮੁ ਸਨਾਥਾ ॥",
-      "translation": "Those who serve at the feet of the Holy, the feet of the Holy, their lives are made fruitful, and they belong to the Lord."
-    },
-    {
-      "gurmukhi": "ਮੋ ਕਉ ਕੀਜੈ ਦਾਸੁ ਦਾਸ ਦਾਸਨ ਕੋ ਹਰਿ ਦਇਆ ਧਾਰਿ ਜਗੰਨਾਥਾ ॥੩॥",
-      "translation": "Make me the slave of the slave of the slaves of the Lord; bless me with Your Mercy, O Lord of the Universe. ||3||"
-    },
-    {
-      "gurmukhi": "ਹਮ ਅੰਧੁਲੇ ਗਿਆਨਹੀਨ ਅਗਿਆਨੀ ਕਿਉ ਚਾਲਹ ਮਾਰਗਿ ਪੰਥਾ ॥",
-      "translation": "I am blind, ignorant and totally without wisdom; how can I walk on the Path?"
-    },
-    {
-      "gurmukhi": "ਹਮ ਅੰਧੁਲੇ ਕਉ ਗੁਰ ਅੰਚਲੁ ਦੀਜੈ ਜਨ ਨਾਨਕ ਚਲਹ ਮਿਲੰਥਾ ॥੪॥੧॥",
-      "translation": "I am blind - O Guru, please let me grasp the hem of Your robe, so that servant Nanak may walk in harmony with You. ||4||1||"
+      "gurmukhi": "ਨਾਨਕ ਕਹਤ ਮਿਲਨ ਕੀ ਬਰੀਆ ਸਿਮਰਤ ਕਹਾ ਨਹੀ ॥੨॥੨॥",
+      "translation": "Says Nanak, this is the opportunity to meet the Lord; why don't you remember Him in meditation? ||2||2||"
     }
   ],
-  "updated": "2026-09-13T06:26:39.834Z"
+  "updated": "2026-09-14T06:36:35.714Z"
 };
