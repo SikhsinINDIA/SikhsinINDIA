@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHNTFNW14H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Akhand Path | Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+  <style>
+    .poster { max-width: 980px; }
+    .pill { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:700; }
+    .pill.sent { background:#e6f7ec; color:#146c3a; }
+    .pill.pending { background:#fff7e6; color:#8a5a00; }
+    .pill.error { background:#fdeaea; color:#a11; }
+    #adminPanel { display: none; }
+  </style>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+
+<body>
+
+  <div class="poster">
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Akhand <span>Path</span></div>
+        <div class="hero-sub">Admin — Program Setup &amp; Attendance</div>
+      </div>
+    </div>
+
+    <div class="wrapper">
+
+      <!-- LOGIN / BOOTSTRAP -->
+      <div id="loginPanel">
+        <h2>Admin Login</h2>
+        <p class="muted" style="margin-bottom:14px;">Restricted to akhandpath.sikhsinindia@gmail.com only.</p>
+
+        <div class="form-row">
+          <label>Email</label>
+          <input id="loginEmail" type="email" value="akhandpath.sikhsinindia@gmail.com" readonly style="background:#eee;">
+        </div>
+        <div class="form-row">
+          <label>Password</label>
+          <input id="loginPassword" type="password" placeholder="Password">
+        </div>
+        <button class="btn-action" onclick="adminLogin()">Login</button>
+        <p id="loginStatus" class="muted" style="text-align:center;margin-top:10px;min-height:18px;"></p>
+
+        <div class="nav-link-wrap">
+          <a class="nav-link" href="#" id="showBootstrap">First time — create the admin account</a>
+        </div>
+
+        <div id="bootstrapForm" hidden style="margin-top:18px;border-top:1px dashed rgba(0,0,0,0.15);padding-top:18px;">
+          <h2>Create Admin Account (one time only)</h2>
+          <div class="form-row">
+            <label>Password</label>
+            <input id="bootstrapPassword" type="password" placeholder="Choose a password (min 6 characters)">
+          </div>
+          <button class="btn-action" onclick="adminBootstrap()">Create Admin Account</button>
+        </div>
+      </div>
+
+      <!-- ADMIN PANEL -->
+      <div id="adminPanel">
+
+        <div class="card">
+          <div class="card-title">Logged in as <span id="adminEmailLabel"></span></div>
+          <button class="btn-back" onclick="adminLogout()">Logout</button>
+        </div>
+
+        <h2>Create New Akhand Path Program</h2>
+        <div class="card">
+          <div class="form-grid">
+            <div class="form-row">
+              <label>Honoree Name *</label>
+              <input id="newName" type="text" placeholder="e.g. Satbir Singh Arora">
+            </div>
+            <div class="form-row">
+              <label>Honoree Photo URL</label>
+              <input id="newPhotoUrl" type="url" placeholder="https://...">
+            </div>
+            <div class="form-row">
+              <label>Contact Email</label>
+              <input id="newEmail" type="email" placeholder="Family contact email">
+            </div>
+            <div class="form-row">
+              <label>Contact Mobile</label>
+              <input id="newMobie" type="tel" placeholder="Family contact mobile number">
+            </div>
+            <div class="form-row">
+              <label>Purpose *</label>
+              <input id="newPurpose" type="text" list="purposeSuggestions" placeholder="e.g. Salana Yaad, Birthday, Barsi...">
+              <datalist id="purposeSuggestions"></datalist>
+            </div>
+            <div class="form-row">
+              <label>Sponsored / Initiated By *</label>
+              <input id="newSponsor" type="text" placeholder="e.g. His son Gurpreet Singh and family">
+            </div>
+            <div class="form-row">
+              <label>Duration (hours)</label>
+              <input id="newDurationHours" type="number" value="81.5" min="1" step="0.1">
+              <p class="muted" style="margin-top:4px;">Defaults to 81.5h — the real, measured total of the 81-video sequence
+                is 81h 29m 36s (fetched directly from YouTube), rounded up slightly for a small safety margin. One full pass
+                = one complete reading. Lower this and the session ends mid-way through the sequence; raise it and the
+                sequence loops back to track 1 to fill the extra time.</p>
+            </div>
+            <div class="form-row">
+              <label>Start Date *</label>
+              <input id="newStartDate" type="date">
+            </div>
+            <div class="form-row">
+              <label>Start Time *</label>
+              <input id="newStartTime" type="time" value="06:00">
+            </div>
+          </div>
+          <button class="btn-action" onclick="createSession()">Create Program</button>
+          <p id="createStatus" class="muted" style="margin-top:10px;min-height:18px;"></p>
+        </div>
+
+        <h2>All Programs</h2>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Honoree</th><th>Purpose</th><th>Start</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="sessionsTableBody">
+              <tr><td colspan="6" class="loading-text">Loading programs...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- MANAGE SELECTED SESSION -->
+        <div id="managePanel" hidden>
+          <h2>Managing: <span id="manageTitle"></span></h2>
+
+          <div class="card">
+            <div class="card-title">Session Link</div>
+            <p class="muted">Share or use this link for the public viewing page:</p>
+            <input id="manageLink" type="text" readonly onclick="this.select()">
+            <button class="btn-back" style="margin-top:8px;" onclick="endSessionEarly()">End This Session Now</button>
+          </div>
+
+          <h2>Invitees</h2>
+          <div class="card">
+            <div class="form-grid">
+              <div class="form-row">
+                <label>Full Name *</label>
+                <input id="inviteeName" type="text" placeholder="e.g. Gurcharan Singh">
+              </div>
+              <div class="form-row">
+                <label>Greeting Name *</label>
+                <input id="inviteeGname" type="text" placeholder="e.g. Gurcharan (used to address them)">
+              </div>
+              <div class="form-row">
+                <label>Email *</label>
+                <input id="inviteeMail" type="email" placeholder="invitee@example.com">
+              </div>
+            </div>
+            <button class="btn-action" onclick="addInvitee()">Add Invitee &amp; Send Invite</button>
+            <p id="inviteeStatus" class="muted" style="margin-top:10px;min-height:18px;"></p>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr><th>Name</th><th>Greeting Name</th><th>Login ID (Email)</th><th>Password</th><th>Invite Status</th></tr>
+              </thead>
+              <tbody id="inviteesTableBody">
+                <tr><td colspan="5" class="loading-text">No invitees yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Attendance Report</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr><th>Name</th><th>Email</th><th>Total Duration</th><th>Status</th></tr>
+              </thead>
+              <tbody id="attendanceTableBody">
+                <tr><td colspan="4" class="loading-text">No attendance recorded yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn-back" onclick="downloadCsv()">Download CSV</button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-content">
+        <a href="index.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back to Akhand Path
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import {
+      auth, db, provisioningAuth,
+      signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut,
+      doc, setDoc, getDoc, updateDoc, collection, query, orderBy, limit, getDocs, onSnapshot,
+      serverTimestamp, Timestamp,
+      ADMIN_EMAIL, INVITEE_PASSWORD, PURPOSE_SUGGESTIONS,
+      EMAILJS_PUBLIC_KEY, EMAILJS_PRIVATE_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID,
+      emailKey, SESSIONS_COLLECTION, nextAkhandPathId
+    } from "./firebase.js";
+    import { computePosition, formatDurationHM } from "./sync.js";
+    import { watchAttendance, renderAttendanceTable, exportAttendanceCsv } from "./attendance.js";
+
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY, privateKey: EMAILJS_PRIVATE_KEY });
+
+    function errText(err) {
+      if (!err) return "Unknown error";
+      if (typeof err === "string") return err;
+      if (err.text) return err.text; // EmailJS rejects with {status, text}
+      if (err.message) return err.message; // Firebase / native Error
+      try { return JSON.stringify(err); } catch (_) { return String(err); }
+    }
+
+    let activeSessionId = null;
+    let activeSessionData = null;
+    let latestAttendanceRows = [];
+    let unsubAttendance = null;
+    let unsubInvitees = null;
+
+    /* ---------------- PURPOSE SUGGESTIONS ---------------- */
+    const purposeList = document.getElementById("purposeSuggestions");
+    PURPOSE_SUGGESTIONS.forEach((p) => {
+      const opt = document.createElement("option");
+      opt.value = p;
+      purposeList.appendChild(opt);
+    });
+
+    /* ---------------- AUTH ---------------- */
+    window.adminLogin = async () => {
+      const email = document.getElementById("loginEmail").value.trim();
+      const password = document.getElementById("loginPassword").value;
+      const status = document.getElementById("loginStatus");
+      if (!password) { status.textContent = "Enter the password."; return; }
+      status.textContent = "Logging in...";
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+      } catch (err) {
+        status.textContent = "Login failed: " + err.message;
+      }
+    };
+
+    document.getElementById("showBootstrap").addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById("bootstrapForm").hidden = false;
+    });
+
+    window.adminBootstrap = async () => {
+      const password = document.getElementById("bootstrapPassword").value;
+      const status = document.getElementById("loginStatus");
+      if (!password || password.length < 6) { status.textContent = "Password must be at least 6 characters."; return; }
+      status.textContent = "Creating admin account...";
+      try {
+        await createUserWithEmailAndPassword(auth, ADMIN_EMAIL, password);
+        status.textContent = "Admin account created and logged in.";
+      } catch (err) {
+        status.textContent = "Could not create admin account: " + err.message;
+      }
+    };
+
+    window.adminLogout = async () => { await signOut(auth); };
+
+    onAuthStateChanged(auth, (user) => {
+      const loginPanel = document.getElementById("loginPanel");
+      const adminPanel = document.getElementById("adminPanel");
+
+      if (user && user.email === ADMIN_EMAIL) {
+        loginPanel.style.display = "none";
+        adminPanel.style.display = "block";
+        document.getElementById("adminEmailLabel").textContent = user.email;
+        loadSessions();
+      } else {
+        adminPanel.style.display = "none";
+        loginPanel.style.display = "block";
+        if (user && user.email !== ADMIN_EMAIL) {
+          document.getElementById("loginStatus").textContent =
+            `"${user.email}" is not authorized to administer Akhand Path. Please log out and use the admin account.`;
+        }
+      }
+    });
+
+    /* ---------------- SESSIONS ---------------- */
+    function statusLabel(session) {
+      const pos = computePosition(session);
+      if (pos.phase === "live") return `Live (${formatDurationHM(pos.elapsedMs)} elapsed)`;
+      if (pos.phase === "scheduled") return `Scheduled (starts in ${formatDurationHM(pos.startsInMs)})`;
+      return "Completed";
+    }
+
+    async function loadSessions() {
+      const tbody = document.getElementById("sessionsTableBody");
+      const q = query(collection(db, SESSIONS_COLLECTION), orderBy("akhand_path_id", "desc"), limit(50));
+      const snap = await getDocs(q);
+      if (snap.empty) {
+        tbody.innerHTML = `<tr><td colspan="6" class="no-data">No programs created yet.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = "";
+      snap.forEach((d) => {
+        const s = d.data();
+        const tr = document.createElement("tr");
+        const startLabel = s.start_at && s.start_at.toDate ? s.start_at.toDate().toLocaleString() : "—";
+        tr.innerHTML = `
+          <td>${s.akhand_path_id != null ? s.akhand_path_id : ""}</td>
+          <td>${escapeHtml(s.name || "")}</td>
+          <td>${escapeHtml(s.purpose || "")}</td>
+          <td>${startLabel}</td>
+          <td>${statusLabel(s)}</td>
+          <td><button class="btn-back" type="button">Manage</button></td>
+        `;
+        tr.querySelector("button").addEventListener("click", () => manageSession(d.id, s));
+        tbody.appendChild(tr);
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    }
+
+    window.createSession = async () => {
+      const status = document.getElementById("createStatus");
+      const name = document.getElementById("newName").value.trim();
+      const photoUrl = document.getElementById("newPhotoUrl").value.trim();
+      const email = document.getElementById("newEmail").value.trim();
+      const mobie = document.getElementById("newMobie").value.trim();
+      const purpose = document.getElementById("newPurpose").value.trim();
+      const sponsor = document.getElementById("newSponsor").value.trim();
+      const durationHours = parseFloat(document.getElementById("newDurationHours").value) || 81.5;
+      const startDate = document.getElementById("newStartDate").value;
+      const startTime = document.getElementById("newStartTime").value;
+
+      if (!name || !purpose || !sponsor || !startDate || !startTime) {
+        status.textContent = "Please fill in all required fields (marked *).";
+        return;
+      }
+
+      const startAt = new Date(`${startDate}T${startTime}`);
+      if (isNaN(startAt.getTime())) { status.textContent = "Invalid start date/time."; return; }
+
+      status.textContent = "Creating program...";
+      try {
+        const newId = await nextAkhandPathId();
+        const sessionId = String(newId);
+        await setDoc(doc(db, SESSIONS_COLLECTION, sessionId), {
+          akhand_path_id: newId,
+          name,
+          photo_url: photoUrl,
+          email,
+          mobie,
+          purpose,
+          sponsor,
+          duration_hours: durationHours,
+          start_at: Timestamp.fromDate(startAt),
+          durations: {},
+          status: "scheduled",
+          created_by: auth.currentUser.uid,
+          created_at: serverTimestamp()
+        });
+        status.textContent = "Program created.";
+        document.getElementById("newName").value = "";
+        document.getElementById("newPhotoUrl").value = "";
+        document.getElementById("newEmail").value = "";
+        document.getElementById("newMobie").value = "";
+        document.getElementById("newPurpose").value = "";
+        document.getElementById("newSponsor").value = "";
+        await loadSessions();
+        const snap = await getDoc(doc(db, SESSIONS_COLLECTION, sessionId));
+        manageSession(sessionId, snap.data());
+      } catch (err) {
+        status.textContent = "Could not create program: " + err.message;
+      }
+    };
+
+    window.endSessionEarly = async () => {
+      if (!activeSessionId) return;
+      if (!confirm("End this Akhand Path session now? This cannot be undone.")) return;
+      await updateDoc(doc(db, SESSIONS_COLLECTION, activeSessionId), { status: "ended" });
+      await loadSessions();
+      const snap = await getDoc(doc(db, SESSIONS_COLLECTION, activeSessionId));
+      manageSession(activeSessionId, snap.data());
+    };
+
+    /* ---------------- MANAGE A SESSION ---------------- */
+    function manageSession(sessionId, data) {
+      activeSessionId = sessionId;
+      activeSessionData = data;
+      document.getElementById("managePanel").hidden = false;
+      document.getElementById("manageTitle").textContent = `${data.name} — ${data.purpose}`;
+      const link = `${window.location.origin}${window.location.pathname.replace(/admin\.html$/, "index.html")}?session=${sessionId}`;
+      document.getElementById("manageLink").value = link;
+
+      watchInvitees(sessionId);
+      watchSessionAttendance(sessionId);
+      document.getElementById("managePanel").scrollIntoView({ behavior: "smooth" });
+    }
+
+    /* ---------------- INVITEES ---------------- */
+    function watchInvitees(sessionId) {
+      if (unsubInvitees) unsubInvitees();
+      const ref = collection(db, SESSIONS_COLLECTION, sessionId, "invitees");
+      unsubInvitees = onSnapshot(ref, (snap) => {
+        const tbody = document.getElementById("inviteesTableBody");
+        if (snap.empty) {
+          tbody.innerHTML = `<tr><td colspan="5" class="no-data">No invitees yet.</td></tr>`;
+          return;
+        }
+        tbody.innerHTML = "";
+        snap.forEach((d) => {
+          const inv = d.data();
+          const pillClass = inv.email_error ? "error" : inv.email_sent ? "sent" : "pending";
+          const pillText = inv.email_error ? "Email failed" : inv.email_sent ? "Invited" : "Pending";
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${escapeHtml(inv.name || "")}</td>
+            <td>${escapeHtml(inv.gname || "")}</td>
+            <td>${escapeHtml(inv.mail || "")}</td>
+            <td>${INVITEE_PASSWORD}</td>
+            <td><span class="pill ${pillClass}">${pillText}</span></td>
+          `;
+          tbody.appendChild(tr);
+        });
+      });
+    }
+
+    window.addInvitee = async () => {
+      const status = document.getElementById("inviteeStatus");
+      const name = document.getElementById("inviteeName").value.trim();
+      const gname = document.getElementById("inviteeGname").value.trim();
+      const mail = document.getElementById("inviteeMail").value.trim().toLowerCase();
+
+      if (!name || !gname || !mail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) {
+        status.textContent = "Please enter a valid full name, greeting name, and email address.";
+        return;
+      }
+      if (!activeSessionId) { status.textContent = "No program selected."; return; }
+
+      status.textContent = "Creating invitee account...";
+      const inviteeRef = doc(db, SESSIONS_COLLECTION, activeSessionId, "invitees", emailKey(mail));
+      try {
+        // Uses the SECONDARY Firebase app instance so this doesn't sign the admin out.
+        try {
+          await createUserWithEmailAndPassword(provisioningAuth, mail, INVITEE_PASSWORD);
+        } catch (authErr) {
+          if (authErr.code !== "auth/email-already-in-use") throw authErr;
+          // Already has an Akhand Path login from a previous program — fine, same shared password.
+        }
+
+        await setDoc(inviteeRef, {
+          name, gname, mail,
+          invited_at: serverTimestamp(),
+          email_sent: false
+        });
+
+        status.textContent = "Account ready. Sending invite email...";
+        await sendInviteEmail({ name, gname, mail });
+        await updateDoc(inviteeRef, { email_sent: true });
+        status.textContent = `Invitee "${name}" added and emailed.`;
+        document.getElementById("inviteeName").value = "";
+        document.getElementById("inviteeGname").value = "";
+        document.getElementById("inviteeMail").value = "";
+      } catch (err) {
+        status.textContent = "Could not add invitee: " + errText(err);
+        try {
+          await setDoc(inviteeRef, { email_error: errText(err) }, { merge: true });
+        } catch (_) { /* best effort */ }
+      }
+    };
+
+    async function sendInviteEmail({ name, gname, mail }) {
+      const s = activeSessionData;
+      const start = s.start_at && s.start_at.toDate ? s.start_at.toDate() : new Date();
+      const end = new Date(start.getTime() + (s.duration_hours || 48) * 3600 * 1000);
+      const loginLink = `${window.location.origin}${window.location.pathname.replace(/admin\.html$/, "login.html")}?session=${activeSessionId}`;
+
+      const payload = {
+        email: mail,
+        name: s.name,
+        name1: s.sponsor,
+        purpose: s.purpose,
+        objective: s.purpose,
+        date1: start.toLocaleDateString(),
+        time1: start.toLocaleTimeString(),
+        date2: end.toLocaleDateString(),
+        time2: end.toLocaleTimeString(),
+        login_id: mail,
+        login_link: loginLink,
+        gname: gname
+      };
+
+      return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, payload);
+    }
+
+    /* ---------------- ATTENDANCE ---------------- */
+    function watchSessionAttendance(sessionId) {
+      if (unsubAttendance) unsubAttendance();
+      unsubAttendance = watchAttendance(sessionId, (rows) => {
+        latestAttendanceRows = rows;
+        renderAttendanceTable(document.getElementById("attendanceTableBody"), rows);
+      });
+    }
+
+    window.downloadCsv = () => {
+      const s = activeSessionData || {};
+      exportAttendanceCsv(latestAttendanceRows, `akhand-path-${(s.name || "attendance").replace(/\s+/g, "-")}`);
+    };
+  </script>
+
+</body>
+</html>

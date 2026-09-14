@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHNTFNW14H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <title>Akhand Path | SikhsInIndia.com</title>
+
+  <meta name="description"
+    content="Watch and take part in the continuous 48-hour Akhand Path of Sri Guru Granth Sahib Ji, live and synchronized for every viewer.">
+  <meta name="keywords" content="Akhand Path, Guru Granth Sahib, Gurbani, Sikh practice, Sikhs in India">
+  <meta name="author" content="Sikhs in India">
+  <meta name="robots" content="noindex, follow">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <!-- MARQUEE — always-visible top-right ticker -->
+  <div class="akhand-marquee" id="marquee" hidden>
+    <img id="marqueePhoto" src="" alt="">
+    <div class="akhand-marquee-track">
+      <span id="marqueeText">Akhand Path</span>
+    </div>
+  </div>
+
+  <div class="poster">
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Akhand <span>Path</span></div>
+        <div class="hero-sub">The continuous, uninterrupted recitation of Sri Guru Granth Sahib Ji</div>
+      </div>
+    </div>
+
+    <div class="intro" id="sessionPicker-bar">
+      <select id="sessionPicker" style="max-width:420px;margin:0 auto;display:block;"></select>
+    </div>
+
+    <div class="wrapper">
+
+      <!-- DEDICATION BANNER — honoree name/photo/purpose, always visible -->
+      <div class="dedication-banner" id="dedicationBanner" hidden>
+        <img class="dedication-photo" id="dedicationPhoto" src="" alt="Honoree photo">
+        <div class="dedication-text">
+          <div class="dedication-label">This Akhand Path is dedicated to</div>
+          <div class="dedication-name" id="dedicationName">—</div>
+          <div class="dedication-purpose" id="dedicationPurpose">—</div>
+        </div>
+      </div>
+
+      <div id="statusBar" class="status-bar scheduled">Loading Akhand Path session...</div>
+
+      <div class="video-container">
+        <div id="youtube-player"></div>
+        <div id="videoFallback" class="video-fallback" hidden>
+          ⚠️ The video player could not load. This is usually caused by an ad blocker, browser extension, or
+          network/firewall blocking YouTube — please check those, or try a different browser/network, then reload
+          this page.
+        </div>
+      </div>
+
+      <!-- AUTH / LOGIN PROMPT -->
+      <div class="card" id="authCard">
+        <div class="card-title">Session</div>
+        <p class="muted" id="authStatus">Checking login status...</p>
+        <div id="authActions" style="margin-top:10px;"></div>
+      </div>
+
+      <!-- MY ATTENDANCE -->
+      <div class="card" id="myAttendanceCard" hidden>
+        <div class="card-title">My Attendance</div>
+        <p class="muted">Total time you've listened during this Akhand Path (updates live):</p>
+        <p style="font-size:28px;font-family:'Playfair Display',serif;color:var(--navy);font-weight:900;margin-top:6px;" id="myAttendanceTime">0:00</p>
+      </div>
+
+      <!-- FULL ATTENDANCE REPORT -->
+      <h2>Attendance Report</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Total Duration</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="attendanceTableBody">
+            <tr><td colspan="4" class="loading-text">Loading attendance...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-content">
+        <a href="../03-nitnem-path.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back to Nitnem Path
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import {
+      auth, db, onAuthStateChanged, signOut,
+      doc, getDoc, onSnapshot, collection, query, orderBy, limit, getDocs,
+      emailKey, SESSIONS_COLLECTION
+    } from "./firebase.js";
+    import { AkhandPathSync, computePosition, formatDurationHM } from "./sync.js";
+    import { createAttendanceTracker, watchAttendance, renderAttendanceTable, formatSeconds } from "./attendance.js";
+
+    /* Hardcoded here rather than stored per-program in Firestore — every
+       Akhand Path plays this same fixed playlist on a continuous loop, so
+       there's nothing session-specific to configure. Full 81-track sequence
+       matching Sehaj Path's real trackCodes list. */
+    const VIDEO_SEQUENCE = [
+      { key: "video1", title: "Video 1", youtubeId: "PlRXmCN9xUM", durationSeconds: 3606 },
+      { key: "video2", title: "Video 2", youtubeId: "nUJfbaT3cGo", durationSeconds: 3645 },
+      { key: "video3", title: "Video 3", youtubeId: "6tGA8JrfdlU", durationSeconds: 3598 },
+      { key: "video4", title: "Video 4", youtubeId: "ncqt3GniNYI", durationSeconds: 3655 },
+      { key: "video5", title: "Video 5", youtubeId: "f0A92XLwOyg", durationSeconds: 3570 },
+      { key: "video6", title: "Video 6", youtubeId: "VJCLbi00Wd0", durationSeconds: 3601 },
+      { key: "video7", title: "Video 7", youtubeId: "kVKuInQZ2t8", durationSeconds: 3624 },
+      { key: "video8", title: "Video 8", youtubeId: "Il8zWCkB5iU", durationSeconds: 3824 },
+      { key: "video9", title: "Video 9", youtubeId: "8lqQ0nER9fk", durationSeconds: 3602 },
+      { key: "video10", title: "Video 10", youtubeId: "otsFJrf2_xc", durationSeconds: 3597 },
+      { key: "video11", title: "Video 11", youtubeId: "hAKw9ELo238", durationSeconds: 3661 },
+      { key: "video12", title: "Video 12", youtubeId: "ccdXXgdNxOo", durationSeconds: 3684 },
+      { key: "video13", title: "Video 13", youtubeId: "yrcG23TjVdE", durationSeconds: 3627 },
+      { key: "video14", title: "Video 14", youtubeId: "z6OEHrw2wTM", durationSeconds: 3587 },
+      { key: "video15", title: "Video 15", youtubeId: "0p3UClCYOyU", durationSeconds: 3598 },
+      { key: "video16", title: "Video 16", youtubeId: "pvfF94GluUI", durationSeconds: 3624 },
+      { key: "video17", title: "Video 17", youtubeId: "KhUeCIbSiXA", durationSeconds: 3661 },
+      { key: "video18", title: "Video 18", youtubeId: "v6hXpegoXpE", durationSeconds: 3645 },
+      { key: "video19", title: "Video 19", youtubeId: "63Gu9sVdZqs", durationSeconds: 3673 },
+      { key: "video20", title: "Video 20", youtubeId: "41eNBJ0XA40", durationSeconds: 2540 },
+      { key: "video21", title: "Video 21", youtubeId: "QEfh2a8Gfc0", durationSeconds: 3413 },
+      { key: "video22", title: "Video 22", youtubeId: "Vqbzhtdmhcs", durationSeconds: 3531 },
+      { key: "video23", title: "Video 23", youtubeId: "H4oe1Fopqjo", durationSeconds: 3549 },
+      { key: "video24", title: "Video 24", youtubeId: "29uVLc77ONQ", durationSeconds: 3582 },
+      { key: "video25", title: "Video 25", youtubeId: "gzHV9XqiBXc", durationSeconds: 3615 },
+      { key: "video26", title: "Video 26", youtubeId: "C1D43V_5kJ4", durationSeconds: 3581 },
+      { key: "video27", title: "Video 27", youtubeId: "XlkJZhTA_No", durationSeconds: 3710 },
+      { key: "video28", title: "Video 28", youtubeId: "JsqdQvVX9Zg", durationSeconds: 3663 },
+      { key: "video29", title: "Video 29", youtubeId: "99i2q6ZdkoM", durationSeconds: 3571 },
+      { key: "video30", title: "Video 30", youtubeId: "u_gc6HvgIeE", durationSeconds: 3655 },
+      { key: "video31", title: "Video 31", youtubeId: "SH_l7RmSEK0", durationSeconds: 3580 },
+      { key: "video32", title: "Video 32", youtubeId: "awQ7SRqbppk", durationSeconds: 3579 },
+      { key: "video33", title: "Video 33", youtubeId: "iel3piSFgqI", durationSeconds: 3565 },
+      { key: "video34", title: "Video 34", youtubeId: "ZkRVspo3-KA", durationSeconds: 3583 },
+      { key: "video35", title: "Video 35", youtubeId: "JDWu3LFq-zg", durationSeconds: 3612 },
+      { key: "video36", title: "Video 36", youtubeId: "0-DmgkyQcc4", durationSeconds: 3608 },
+      { key: "video37", title: "Video 37", youtubeId: "1dUPutpl8-0", durationSeconds: 3639 },
+      { key: "video38", title: "Video 38", youtubeId: "Uj9dIgYk4Zo", durationSeconds: 3633 },
+      { key: "video39", title: "Video 39", youtubeId: "Y4qPpicDhKg", durationSeconds: 3635 },
+      { key: "video40", title: "Video 40", youtubeId: "c1spFnRueWw", durationSeconds: 3662 },
+      { key: "video41", title: "Video 41", youtubeId: "GcI2Ajj84l0", durationSeconds: 3616 },
+      { key: "video42", title: "Video 42", youtubeId: "lCS_T2s3Prw", durationSeconds: 3636 },
+      { key: "video43", title: "Video 43", youtubeId: "rhFmz9Iw2N4", durationSeconds: 3626 },
+      { key: "video44", title: "Video 44", youtubeId: "5VxGINT_DUY", durationSeconds: 3633 },
+      { key: "video45", title: "Video 45", youtubeId: "gw1NSJMiDDk", durationSeconds: 3674 },
+      { key: "video46", title: "Video 46", youtubeId: "wEeJS9g3tKw", durationSeconds: 3614 },
+      { key: "video47", title: "Video 47", youtubeId: "6k12i1FdWgY", durationSeconds: 3618 },
+      { key: "video48", title: "Video 48", youtubeId: "QATmdE4S23E", durationSeconds: 3601 },
+      { key: "video49", title: "Video 49", youtubeId: "U8qZM2kuhv8", durationSeconds: 3636 },
+      { key: "video50", title: "Video 50", youtubeId: "qboKF8u-r7s", durationSeconds: 3599 },
+      { key: "video51", title: "Video 51", youtubeId: "DQbEh_7ibGE", durationSeconds: 3570 },
+      { key: "video52", title: "Video 52", youtubeId: "Gip2vH_ya-U", durationSeconds: 3577 },
+      { key: "video53", title: "Video 53", youtubeId: "8tYIAfzBm_w", durationSeconds: 3648 },
+      { key: "video54", title: "Video 54", youtubeId: "gcAhUTodH1c", durationSeconds: 3625 },
+      { key: "video55", title: "Video 55", youtubeId: "N78ENxJNk-U", durationSeconds: 3596 },
+      { key: "video56", title: "Video 56", youtubeId: "oXjyh9cUEdI", durationSeconds: 3656 },
+      { key: "video57", title: "Video 57", youtubeId: "yIYZvs193L0", durationSeconds: 3633 },
+      { key: "video58", title: "Video 58", youtubeId: "MN2GoCXsBdg", durationSeconds: 3698 },
+      { key: "video59", title: "Video 59", youtubeId: "B6UVb8GpkKw", durationSeconds: 3653 },
+      { key: "video60", title: "Video 60", youtubeId: "W_nuZqDGFPA", durationSeconds: 3638 },
+      { key: "video61", title: "Video 61", youtubeId: "QTiyLCkGkBQ", durationSeconds: 3603 },
+      { key: "video62", title: "Video 62", youtubeId: "hykf7y8l39w", durationSeconds: 3671 },
+      { key: "video63", title: "Video 63", youtubeId: "s4gUraEcOBw", durationSeconds: 3673 },
+      { key: "video64", title: "Video 64", youtubeId: "ImrLxuCcUZs", durationSeconds: 3653 },
+      { key: "video65", title: "Video 65", youtubeId: "MxWWX-T87no", durationSeconds: 3590 },
+      { key: "video66", title: "Video 66", youtubeId: "RdDrR0x3-R4", durationSeconds: 3628 },
+      { key: "video67", title: "Video 67", youtubeId: "qDFvY3MHfqk", durationSeconds: 3601 },
+      { key: "video68", title: "Video 68", youtubeId: "-SplbuurkaQ", durationSeconds: 3588 },
+      { key: "video69", title: "Video 69", youtubeId: "93EMgf_-DC4", durationSeconds: 3626 },
+      { key: "video70", title: "Video 70", youtubeId: "kUIYelEW2N0", durationSeconds: 3593 },
+      { key: "video71", title: "Video 71", youtubeId: "YGyvS1M07eM", durationSeconds: 3604 },
+      { key: "video72", title: "Video 72", youtubeId: "uAViaiDYGgs", durationSeconds: 3605 },
+      { key: "video73", title: "Video 73", youtubeId: "g1LDWg09XIg", durationSeconds: 3621 },
+      { key: "video74", title: "Video 74", youtubeId: "2c1jyt_2-NA", durationSeconds: 3581 },
+      { key: "video75", title: "Video 75", youtubeId: "Jqs3wPqswkw", durationSeconds: 3622 },
+      { key: "video76", title: "Video 76", youtubeId: "03B27mjiUqY", durationSeconds: 3588 },
+      { key: "video77", title: "Video 77", youtubeId: "nZiVM4--tw8", durationSeconds: 3606 },
+      { key: "video78", title: "Video 78", youtubeId: "G-Cl5OXDTDg", durationSeconds: 3538 },
+      { key: "video79", title: "Video 79", youtubeId: "guTvrV1i6CE", durationSeconds: 3607 },
+      { key: "video80", title: "Video 80", youtubeId: "m6NRPYO38Rs", durationSeconds: 3658 },
+      { key: "video81", title: "Video 81", youtubeId: "l79P1rEcp6Y", durationSeconds: 4985 }
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    let sessionId = params.get("session");
+
+    const dedicationBanner = document.getElementById("dedicationBanner");
+    const dedicationPhoto = document.getElementById("dedicationPhoto");
+    const dedicationName = document.getElementById("dedicationName");
+    const dedicationPurpose = document.getElementById("dedicationPurpose");
+    const marquee = document.getElementById("marquee");
+    const marqueePhoto = document.getElementById("marqueePhoto");
+    const marqueeText = document.getElementById("marqueeText");
+    const statusBar = document.getElementById("statusBar");
+    const authStatus = document.getElementById("authStatus");
+    const authActions = document.getElementById("authActions");
+    const myAttendanceCard = document.getElementById("myAttendanceCard");
+    const myAttendanceTime = document.getElementById("myAttendanceTime");
+    const attendanceTableBody = document.getElementById("attendanceTableBody");
+    const sessionPicker = document.getElementById("sessionPicker");
+
+    const DEFAULT_PHOTO = "../../pictures/00-index/sikhsinindia.png";
+
+    let latestSession = null;
+    let ytPlayer = null;
+    let ytPlayerReady = false; // true only once the player's OWN onReady event has fired — `ytPlayer` alone isn't enough, since it's assigned the instant `new YT.Player()` is called, before the player can actually accept commands like loadVideoById()
+    let syncEngine = null;
+    let attendanceTracker = null;
+    let currentUser = null;
+    let currentPhase = "scheduled";
+    let unsubAttendance = null;
+
+    /* ---------------- SESSION PICKER (browse past / upcoming programs) ---------------- */
+    async function populateSessionPicker() {
+      try {
+        const q = query(collection(db, SESSIONS_COLLECTION), orderBy("start_at", "desc"), limit(30));
+        const snap = await getDocs(q);
+        sessionPicker.innerHTML = "";
+        if (snap.empty) {
+          sessionPicker.innerHTML = `<option>No Akhand Path programs configured yet</option>`;
+          return;
+        }
+        snap.forEach((d) => {
+          const data = d.data();
+          const opt = document.createElement("option");
+          opt.value = d.id;
+          const startLabel = data.start_at && data.start_at.toDate ? data.start_at.toDate().toLocaleDateString() : "";
+          opt.textContent = `${data.name || "Untitled"} — ${data.purpose || ""} (${startLabel})`;
+          if (d.id === sessionId) opt.selected = true;
+          sessionPicker.appendChild(opt);
+        });
+        if (!sessionId) {
+          sessionPicker.value = snap.docs[0].id;
+        }
+      } catch (err) {
+        console.error("Could not load session list:", err);
+      }
+    }
+
+    sessionPicker.addEventListener("change", () => {
+      const chosen = sessionPicker.value;
+      if (chosen) window.location.href = `index.html?session=${encodeURIComponent(chosen)}`;
+    });
+
+    /* ---------------- DETERMINE WHICH SESSION TO SHOW ---------------- */
+    async function resolveSessionId() {
+      if (sessionId) return sessionId;
+      // No ?session= given: find the most recently started program (prefer one that's currently live).
+      const q = query(collection(db, SESSIONS_COLLECTION), orderBy("start_at", "desc"), limit(10));
+      const snap = await getDocs(q);
+      if (snap.empty) return null;
+      let fallback = snap.docs[0].id;
+      for (const d of snap.docs) {
+        const pos = computePosition(d.data());
+        if (pos.phase === "live") return d.id;
+      }
+      return fallback;
+    }
+
+    /* ---------------- RENDER DEDICATION + MARQUEE ---------------- */
+    function renderDedication(session) {
+      const photo = session.photo_url || DEFAULT_PHOTO;
+
+      dedicationPhoto.src = photo;
+      dedicationName.textContent = session.name || "—";
+      dedicationPurpose.textContent = session.purpose ? `On the occasion of: ${session.purpose}` : "";
+      dedicationBanner.hidden = false;
+
+      marqueePhoto.src = photo;
+      marqueeText.textContent = `🙏 Akhand Path dedicated to ${session.name || ""} — ${session.purpose || ""} 🙏`;
+      marquee.hidden = false;
+
+      document.title = `Akhand Path for ${session.name || ""} | SikhsInIndia.com`;
+    }
+
+    /* ---------------- STATUS BAR ---------------- */
+    function formatDateTime(ms) {
+      return new Date(ms).toLocaleString(undefined, {
+        weekday: "short", year: "numeric", month: "short", day: "numeric",
+        hour: "2-digit", minute: "2-digit"
+      });
+    }
+
+    function renderStatus(pos) {
+      currentPhase = pos.phase;
+      statusBar.className = "status-bar " + (pos.phase === "live" ? "live" : pos.phase === "completed" ? "completed" : "scheduled");
+
+      if (pos.phase === "missing") {
+        statusBar.textContent = "No Akhand Path session found.";
+      } else if (pos.phase === "scheduled") {
+        const completion = formatDateTime(pos.startMs + pos.durationMs);
+        statusBar.textContent =
+          `Akhand Path Sahib Ji begins in ${formatDurationHM(pos.startsInMs)} — please check back then. ` +
+          `Expected to complete: ${completion}.`;
+      } else if (pos.phase === "live") {
+        const elapsed = formatDurationHM(pos.elapsedMs);
+        const total = formatDurationHM(pos.durationMs);
+        const remaining = formatDurationHM(pos.durationMs - pos.elapsedMs);
+        const percent = Math.min(100, (pos.elapsedMs / pos.durationMs) * 100).toFixed(1);
+        const completion = formatDateTime(pos.startMs + pos.durationMs);
+        statusBar.textContent =
+          `🔴 Live now — ${elapsed} elapsed of ${total} continuous recitation ` +
+          `(${percent}% complete, ${remaining} remaining). Completion by: ${completion}.`;
+      } else if (pos.phase === "completed") {
+        statusBar.textContent = "🙏 This Akhand Path has reached Sampurna (completion). Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh.";
+      }
+    }
+
+    /* ---------------- STATUS TICKER ----------------
+       Renders scheduled/live/completed purely from session data + wall clock.
+       Runs independently of the YouTube player — the status text (and its
+       "starts in Xh Ym" / "Xh Ym elapsed" countdown) must never be stuck on
+       "Loading..." just because the video is slow to load or blocked. */
+    let statusTickerInterval = null;
+
+    function tickStatus() {
+      if (!latestSession) return;
+      renderStatus(computePosition(latestSession, VIDEO_SEQUENCE));
+    }
+
+    function startStatusTicker() {
+      if (statusTickerInterval) return;
+      tickStatus();
+      statusTickerInterval = setInterval(tickStatus, 1000);
+    }
+
+    /* ---------------- YOUTUBE PLAYER ---------------- */
+    const videoFallback = document.getElementById("videoFallback");
+    const youtubePlayerEl = document.getElementById("youtube-player");
+
+    function showVideoFallback(message) {
+      if (message) videoFallback.textContent = message;
+      videoFallback.hidden = false;
+    }
+
+    // If the YT IFrame Player JS API script itself never loads/executes — commonly blocked
+    // by ad blockers/privacy extensions that specifically target that script even though they
+    // leave plain video embeds alone — onYouTubeIframeAPIReady never fires and ytPlayer stays
+    // null forever with no error of any kind. Rather than leaving viewers with a dead black
+    // box, fall back to a plain <iframe> embed of wherever playback should currently be. This
+    // loses live sync (no auto-advance to the next track, no drift correction — a viewer would
+    // need to refresh occasionally to catch up), but is watchable, which a blank box is not.
+    setTimeout(() => {
+      if (ytPlayerReady) return;
+
+      const pos = latestSession ? computePosition(latestSession, VIDEO_SEQUENCE) : null;
+      if (pos && pos.phase === "live" && pos.track) {
+        const src = `https://www.youtube.com/embed/${pos.track.youtubeId}` +
+          `?start=${Math.floor(pos.offsetSeconds)}&autoplay=1&rel=0&modestbranding=1`;
+        youtubePlayerEl.innerHTML = `<iframe src="${src}" width="100%" height="100%" style="width:100%;height:100%;border:0;display:block;" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        showVideoFallback(
+          "ℹ️ Playing in fallback mode (your browser or network is blocking YouTube's player script, " +
+          "likely an ad blocker). Playback here won't auto-advance between tracks or stay perfectly " +
+          "synced — refresh the page occasionally to catch up."
+        );
+        videoFallback.className = "video-fallback video-fallback-note";
+      } else {
+        showVideoFallback(
+          "⚠️ The video player could not load. This is usually caused by an ad blocker, browser " +
+          "extension, or network/firewall blocking YouTube — please check those, or try a different " +
+          "browser/network, then reload this page."
+        );
+      }
+    }, 10000);
+
+    // Same dynamic script-injection pattern already used by Sehaj Path
+    // (03-04-sehaj-path.html) — the official Google-recommended way to load
+    // the IFrame API — rather than a static <script src> tag.
+    const ytTag = document.createElement("script");
+    ytTag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(ytTag, firstScriptTag);
+
+    window.onYouTubeIframeAPIReady = function () {
+      ytPlayer = new YT.Player("youtube-player", {
+        height: "100%",
+        width: "100%",
+        videoId: "",
+        playerVars: {
+          autoplay: 1, controls: 1, rel: 0, modestbranding: 1,
+          enablejsapi: 1, origin: window.location.origin || "*"
+        },
+        events: {
+          onReady: () => {
+            ytPlayerReady = true;
+            videoFallback.hidden = true;
+            if (syncEngine) {
+              syncEngine.attachPlayer(ytPlayer);
+              syncEngine.start();
+            }
+          },
+          onError: (event) => {
+            // YT error codes: 2 invalid param, 5 HTML5 error, 100 not found/removed,
+            // 101 & 150 embedding disabled by the video's owner.
+            const code = event && event.data;
+            const reasons = {
+              2: "one of the video IDs is invalid.",
+              5: "the video can't be played in this browser.",
+              100: "one of the videos was not found or has been removed.",
+              101: "the video's owner has disabled embedding it on other sites.",
+              150: "the video's owner has disabled embedding it on other sites."
+            };
+            showVideoFallback(
+              `⚠️ The video could not play (${reasons[code] || "unknown playback error " + code}) ` +
+              `Please let the site admin know which program this happened on.`
+            );
+          }
+        }
+      });
+    };
+
+    /* ---------------- AUTH ---------------- */
+    function renderAuthUI(user) {
+      currentUser = user;
+      if (user) {
+        authStatus.textContent = `Logged in as ${user.email}. Your listening time is being recorded below.`;
+        authActions.innerHTML = `<button class="btn-back" id="logoutBtn" type="button">Logout</button>`;
+        document.getElementById("logoutBtn").addEventListener("click", async () => {
+          if (attendanceTracker) attendanceTracker.stop();
+          await signOut(auth);
+        });
+        myAttendanceCard.hidden = false;
+
+        if (sessionId) {
+          if (attendanceTracker) attendanceTracker.stop();
+          attendanceTracker = createAttendanceTracker({
+            sessionId,
+            uid: emailKey(user.email),
+            name: user.displayName || user.email,
+            email: user.email,
+            isActive: () => currentPhase === "live" && document.visibilityState === "visible"
+          });
+          attendanceTracker.start();
+        }
+      } else {
+        authStatus.innerHTML = `You're watching as a guest — the recitation plays for everyone regardless of login.`;
+        authActions.innerHTML = `<a class="btn-back" href="login.html${sessionId ? "?session=" + encodeURIComponent(sessionId) : ""}">Login to track your attendance</a>`;
+        myAttendanceCard.hidden = true;
+        if (attendanceTracker) { attendanceTracker.stop(); attendanceTracker = null; }
+      }
+    }
+
+    /* ---------------- ATTENDANCE TABLE ---------------- */
+    function startAttendanceWatch() {
+      if (unsubAttendance) unsubAttendance();
+      unsubAttendance = watchAttendance(sessionId, (rows) => {
+        const myKey = currentUser ? emailKey(currentUser.email) : null;
+        renderAttendanceTable(attendanceTableBody, rows, { highlightUid: myKey });
+        if (currentUser) {
+          const mine = rows.find((r) => r.uid === myKey);
+          myAttendanceTime.textContent = formatSeconds(mine ? mine.total_seconds_listened : 0);
+        }
+      });
+    }
+
+    /* ---------------- BOOT ---------------- */
+    (async function boot() {
+      await populateSessionPicker();
+
+      if (!sessionId) {
+        sessionId = await resolveSessionId();
+      }
+
+      if (!sessionId) {
+        statusBar.className = "status-bar scheduled";
+        statusBar.textContent = "No Akhand Path has been configured yet. Please check back soon.";
+        authStatus.textContent = "";
+        return;
+      }
+
+      onSnapshot(doc(db, SESSIONS_COLLECTION, sessionId), (snap) => {
+        if (!snap.exists()) {
+          statusBar.textContent = "This Akhand Path session could not be found.";
+          return;
+        }
+        latestSession = snap.data();
+        renderDedication(latestSession);
+        startStatusTicker();
+
+        if (!syncEngine) {
+          syncEngine = new AkhandPathSync({
+            sessionId,
+            videoSequence: VIDEO_SEQUENCE,
+            getSession: () => latestSession,
+            onPositionChange: renderStatus,
+            onTrackChange: () => {}
+          });
+          if (ytPlayer && ytPlayerReady) {
+            syncEngine.attachPlayer(ytPlayer);
+            syncEngine.start();
+          }
+        }
+      });
+
+      startAttendanceWatch();
+      onAuthStateChanged(auth, renderAuthUI);
+    })();
+
+    window.addEventListener("beforeunload", () => {
+      if (attendanceTracker) attendanceTracker.beatNow();
+    });
+  </script>
+
+</body>
+</html>
