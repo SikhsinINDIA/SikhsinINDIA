@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHNTFNW14H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <title>Sponsor an Akhand Path | SikhsInIndia.com</title>
+
+  <meta name="description"
+    content="Request an Online Akhand Path of Sri Guru Granth Sahib Ji dedicated to a loved one — submit your details and our team will review and schedule it.">
+  <meta name="robots" content="noindex, follow">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+  <style>
+    #inviteeTable input { padding: 8px 10px; font-size: 14px; }
+    #inviteeTable th:first-child, #inviteeTable td:first-child { width: 50px; text-align: center; }
+  </style>
+</head>
+
+<body>
+
+  <div class="poster">
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Sponsor an <span>Akhand Path</span></div>
+        <div class="hero-sub">Request a continuous Akhand Path Sahib dedicated to a loved one</div>
+      </div>
+    </div>
+
+    <div class="wrapper">
+
+      <!-- REQUEST FORM -->
+      <div id="requestFormPanel">
+        <p class="muted" style="margin-bottom:16px;">
+          Fill in the details below to request an Online Akhand Path. Your request will be reviewed by our team;
+          once approved, a room link and invitations will be prepared and sent to the email addresses you provide.
+        </p>
+
+        <h2>Sponsor Details</h2>
+        <div class="card">
+          <div class="form-grid">
+            <div class="form-row">
+              <label>Your Name *</label>
+              <input id="reqSponsorName" type="text" placeholder="e.g. Gurpreet Singh">
+            </div>
+            <div class="form-row">
+              <label>Your Email *</label>
+              <input id="reqSponsorEmail" type="email" placeholder="you@example.com">
+            </div>
+            <div class="form-row">
+              <label>Mobile / WhatsApp *</label>
+              <input id="reqMobile" type="tel" placeholder="With country code">
+            </div>
+            <div class="form-row">
+              <label>Country / City</label>
+              <input id="reqCountryCity" type="text" placeholder="e.g. Dubai, UAE">
+            </div>
+          </div>
+        </div>
+
+        <h2>Akhand Path Details</h2>
+        <div class="card">
+          <div class="form-grid">
+            <div class="form-row">
+              <label>Dedicated To / In Memory Of *</label>
+              <input id="reqHonoreeName" type="text" placeholder="e.g. Satbir Singh Arora">
+            </div>
+            <div class="form-row">
+              <label>Honoree Photo</label>
+              <input id="reqPhotoFile" type="file" accept="image/*">
+              <img id="reqPhotoPreview" alt="Photo preview" style="display:none;max-width:120px;max-height:120px;margin-top:8px;border-radius:8px;border:2px solid var(--gold);object-fit:cover;">
+            </div>
+            <div class="form-row">
+              <label>Occasion / Purpose *</label>
+              <input id="reqPurpose" type="text" list="purposeSuggestions" placeholder="e.g. Barsi, Birthday, Salana Yaad...">
+              <datalist id="purposeSuggestions"></datalist>
+            </div>
+            <div class="form-row">
+              <label>Preferred Start Date *</label>
+              <input id="reqStartDate" type="date">
+            </div>
+            <div class="form-row">
+              <label>Preferred Start Time *</label>
+              <input id="reqStartTime" type="time" value="06:00">
+            </div>
+            <div class="form-row">
+              <label>Duration (hours)</label>
+              <input id="reqDurationHours" type="number" value="54.33" min="1" step="0.1">
+              <p class="muted" style="margin-top:4px;">54.33h (≈54h 20m) covers one full continuous reading. This can be
+                adjusted by our team when your request is reviewed.</p>
+            </div>
+          </div>
+          <div class="form-row">
+            <label>Names of Family Members</label>
+            <textarea id="reqFamilyMembers" rows="2" placeholder="e.g. Wife: Jagjit Kaur, Sons: Gurpreet, Harpreet"></textarea>
+          </div>
+          <div class="form-row">
+            <label>Invitees</label>
+            <div class="table-container">
+              <table id="inviteeTable">
+                <thead>
+                  <tr><th>S No</th><th>Name</th><th>Greet Name</th><th>Email</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td><input id="inviteeName1" type="text" placeholder="Name"></td>
+                    <td><input id="inviteeGname1" type="text" placeholder="Greet Name"></td>
+                    <td><input id="inviteeEmail1" type="email" placeholder="Email"></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td><input id="inviteeName2" type="text" placeholder="Name"></td>
+                    <td><input id="inviteeGname2" type="text" placeholder="Greet Name"></td>
+                    <td><input id="inviteeEmail2" type="email" placeholder="Email"></td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td><input id="inviteeName3" type="text" placeholder="Name"></td>
+                    <td><input id="inviteeGname3" type="text" placeholder="Greet Name"></td>
+                    <td><input id="inviteeEmail3" type="email" placeholder="Email"></td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td><input id="inviteeName4" type="text" placeholder="Name"></td>
+                    <td><input id="inviteeGname4" type="text" placeholder="Greet Name"></td>
+                    <td><input id="inviteeEmail4" type="email" placeholder="Email"></td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td><input id="inviteeName5" type="text" placeholder="Name"></td>
+                    <td><input id="inviteeGname5" type="text" placeholder="Greet Name"></td>
+                    <td><input id="inviteeEmail5" type="email" placeholder="Email"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="muted" style="margin-top:4px;">Each will be sent an individual login once your request is approved.</p>
+          </div>
+          <div class="form-row">
+            <label>Optional Message</label>
+            <textarea id="reqMessage" rows="2" placeholder="Anything else you'd like our team to know"></textarea>
+          </div>
+        </div>
+
+        <div class="card">
+          <label style="display:flex;align-items:flex-start;gap:10px;text-transform:none;font-weight:400;letter-spacing:normal;">
+            <input id="reqConsent" type="checkbox" style="width:auto;margin-top:3px;">
+            <span>I confirm the details above are accurate and that I am authorized to request this Akhand Path on
+              behalf of those named. *</span>
+          </label>
+        </div>
+
+        <button class="btn-action" onclick="submitRequest()">Submit Request</button>
+        <p id="requestStatus" class="muted" style="margin-top:10px;min-height:18px;text-align:center;"></p>
+      </div>
+
+      <!-- CONFIRMATION -->
+      <div id="confirmationPanel" class="card" hidden>
+        <div class="card-title">🙏 Request Received</div>
+        <p>Thank you for your request to sponsor an Online Akhand Path. Your request has been received and is
+          awaiting approval.</p>
+        <p class="muted" style="margin-top:8px;">Reference: <span id="confirmationId"></span></p>
+        <p class="muted" style="margin-top:8px;">Our team will review your request and contact you at the email
+          address you provided once it has been approved and scheduled.</p>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-content">
+        <a href="../../03-nitnem/03-nitnem-path.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back to Akhand Path
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import {
+      doc, setDoc, serverTimestamp, Timestamp,
+      PURPOSE_SUGGESTIONS, SESSIONS_COLLECTION, nextAkhandPathId, db,
+      SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET, ADMIN_EMAIL, parseInviteeList
+    } from "./firebase.js";
+
+    // Best-effort notification to the admin that a request is waiting —
+    // failure here must never block the sponsor's own confirmation, since
+    // their request is already saved in Firestore regardless.
+    function formatFullDateTime(d) {
+      return d.toLocaleString(undefined, {
+        weekday: "short", year: "numeric", month: "short", day: "numeric",
+        hour: "2-digit", minute: "2-digit"
+      });
+    }
+
+    // Reads the 5-row invitee table into the same "Name; Greeting Name; Email"
+    // per-line raw text the rest of the app (parseInviteeList, admin.html)
+    // already expects — rows with no email are skipped.
+    function collectInviteeRows() {
+      const lines = [];
+      for (let i = 1; i <= 5; i++) {
+        const name = document.getElementById(`inviteeName${i}`).value.trim();
+        const gname = document.getElementById(`inviteeGname${i}`).value.trim();
+        const email = document.getElementById(`inviteeEmail${i}`).value.trim();
+        if (!email) continue;
+        lines.push(`${name}; ${gname || name}; ${email}`);
+      }
+      return lines.join("\n");
+    }
+
+    function buildInviteeLines(inviteeEmails) {
+      const invitees = parseInviteeList(inviteeEmails);
+      return invitees.length
+        ? invitees.map((inv, i) => `${i + 1}. ${inv.name}; ${inv.gname}; ${inv.mail}`).join("\n")
+        : "None provided.";
+    }
+
+    async function notifyAdminOfNewRequest(sessionId, data) {
+      if (!SEND_EMAIL_ENDPOINT) return;
+      const adminLink = `${window.location.origin}${window.location.pathname.replace(/request\.html$/, "admin.html")}`;
+      const samapti = new Date(data.startAt.getTime() + data.durationHours * 3600 * 1000);
+
+      const text = `Dear SikhsinIndia Team,
+
+Sat Sri Akaal!
+Waheguru ji ka Khalsa, Waheguru ji ki Fateh!
+
+You have received a request for Akhand Path approval. Please find below the details:
+
+Path in the name of: ${data.name} on occasion of ${data.purpose}, sponsored by: ${data.sponsor}
+Email: ${data.email} ; Mobile: ${data.mobie}
+Aaramb / Start Date and Time: ${formatFullDateTime(data.startAt)}
+Samapti / Planned Completion Date and Time: ${formatFullDateTime(samapti)}
+
+Invitees:
+${buildInviteeLines(data.inviteeEmails)}
+
+Review and approve here: ${adminLink}
+
+Best regards,
+${data.sponsor}`;
+
+      try {
+        await fetch(SEND_EMAIL_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-App-Secret": APP_SHARED_SECRET },
+          body: JSON.stringify({
+            to: ADMIN_EMAIL,
+            subject: `New Akhand Path request — ${data.name} (${data.purpose})`,
+            text
+          })
+        });
+      } catch (err) {
+        console.error("Could not notify admin of new request:", err);
+      }
+    }
+
+    const purposeList = document.getElementById("purposeSuggestions");
+    PURPOSE_SUGGESTIONS.forEach((p) => {
+      const opt = document.createElement("option");
+      opt.value = p;
+      purposeList.appendChild(opt);
+    });
+
+    /* ---------------- HONOREE PHOTO -> GOOGLE DRIVE ----------------
+       Same Apps Script Web App + upload pattern already used by
+       08-sikh-matrimonials/08-01-matrimonials-form.html: the file is base64
+       encoded client-side and POSTed to a Google Apps Script doPost endpoint,
+       which decodes it and drops it into a timestamped subfolder under a
+       shared parent Drive folder, returning the file's Drive URL. Akhand Path
+       photos use their own "AkhandPath_..." subfolder name so they stay
+       separated from matrimonial profile folders within that same Drive. */
+    const DRIVE_UPLOAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbzBuAZuk3tGCJoDUNhUUzly7-yeRX4dEV7h4jjUd_upMyE7_ZOV6f3Smk9m3xp25oc/exec";
+
+    function toBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+      });
+    }
+
+    async function uploadPhotoToDrive(file, folderName) {
+      const base64 = await toBase64(file);
+      const response = await fetch(DRIVE_UPLOAD_ENDPOINT, {
+        method: "POST",
+        body: new URLSearchParams({
+          file: base64.split(",")[1],
+          type: file.type,
+          name: file.name,
+          folder: folderName
+        })
+      });
+      const result = await response.json();
+      if (!result.success) throw new Error(result.error || "Upload failed");
+      return result.url;
+    }
+
+    function getTimestampFolder(prefix) {
+      const now = new Date();
+      return prefix + "_" +
+        now.getFullYear() + "-" +
+        String(now.getMonth() + 1).padStart(2, "0") + "-" +
+        String(now.getDate()).padStart(2, "0") + "_" +
+        String(now.getHours()).padStart(2, "0") + "-" +
+        String(now.getMinutes()).padStart(2, "0") + "-" +
+        String(now.getSeconds()).padStart(2, "0");
+    }
+
+    document.getElementById("reqPhotoFile").addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      const preview = document.getElementById("reqPhotoPreview");
+      if (!file) { preview.style.display = "none"; return; }
+      if (!file.type.startsWith("image/")) {
+        alert("Please upload an image only");
+        e.target.value = "";
+        preview.style.display = "none";
+        return;
+      }
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = "block";
+    });
+
+    window.submitRequest = async () => {
+      const status = document.getElementById("requestStatus");
+
+      const sponsorName = document.getElementById("reqSponsorName").value.trim();
+      const sponsorEmail = document.getElementById("reqSponsorEmail").value.trim();
+      const mobile = document.getElementById("reqMobile").value.trim();
+      const countryCity = document.getElementById("reqCountryCity").value.trim();
+      const honoreeName = document.getElementById("reqHonoreeName").value.trim();
+      const photoFile = document.getElementById("reqPhotoFile").files[0];
+      const purpose = document.getElementById("reqPurpose").value.trim();
+      const startDate = document.getElementById("reqStartDate").value;
+      const startTime = document.getElementById("reqStartTime").value;
+      const durationHours = parseFloat(document.getElementById("reqDurationHours").value) || 81.5;
+      const familyMembers = document.getElementById("reqFamilyMembers").value.trim();
+      const inviteeEmails = collectInviteeRows();
+      const message = document.getElementById("reqMessage").value.trim();
+      const consent = document.getElementById("reqConsent").checked;
+
+      if (!sponsorName || !sponsorEmail || !mobile || !honoreeName || !purpose || !startDate || !startTime) {
+        status.textContent = "Please fill in all required fields (marked *).";
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(sponsorEmail)) {
+        status.textContent = "Please enter a valid email address.";
+        return;
+      }
+      if (!consent) {
+        status.textContent = "Please confirm the declaration checkbox before submitting.";
+        return;
+      }
+
+      const startAt = new Date(`${startDate}T${startTime}`);
+      if (isNaN(startAt.getTime())) { status.textContent = "Invalid preferred start date/time."; return; }
+
+      status.textContent = "Submitting your request...";
+      try {
+        let photoUrl = "";
+        if (photoFile) {
+          status.textContent = "Uploading photo...";
+          photoUrl = await uploadPhotoToDrive(photoFile, getTimestampFolder("AkhandPath"));
+          status.textContent = "Submitting your request...";
+        }
+
+        const newId = await nextAkhandPathId();
+        const sessionId = String(newId);
+        await setDoc(doc(db, SESSIONS_COLLECTION, sessionId), {
+          akhand_path_id: newId,
+          name: honoreeName,
+          photo_url: photoUrl,
+          email: sponsorEmail,
+          mobie: mobile,
+          purpose,
+          sponsor: sponsorName,
+          country_city: countryCity,
+          family_members: familyMembers,
+          invitee_emails_raw: inviteeEmails,
+          message,
+          consent: true,
+          duration_hours: durationHours,
+          start_at: Timestamp.fromDate(startAt),
+          durations: {},
+          status: "pending_approval",
+          requested_at: serverTimestamp()
+        });
+
+        document.getElementById("requestFormPanel").hidden = true;
+        document.getElementById("confirmationPanel").hidden = false;
+        document.getElementById("confirmationId").textContent = `AP-${newId}`;
+        document.getElementById("confirmationPanel").scrollIntoView({ behavior: "smooth" });
+
+        notifyAdminOfNewRequest(sessionId, {
+          name: honoreeName, purpose, sponsor: sponsorName, email: sponsorEmail, mobie: mobile,
+          countryCity, startAt, durationHours, familyMembers, inviteeEmails, message
+        });
+      } catch (err) {
+        status.textContent = "Could not submit request: " + (err.message || err);
+      }
+    };
+  </script>
+
+</body>
+</html>

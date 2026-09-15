@@ -74,7 +74,7 @@ export {
   increment
 };
 
-export const ADMIN_EMAIL = "akhandpath.sikhsinindia@gmail.com";
+export const ADMIN_EMAIL = "sikhsinindia@gmail.com";
 export const INVITEE_PASSWORD = "123456";
 export const DEFAULT_TRACK_DURATION_SECONDS = 900; // 15 min fallback estimate until a track's real length is measured
 
@@ -86,6 +86,36 @@ export const DEFAULT_TRACK_DURATION_SECONDS = 900; // 15 min fallback estimate u
    their existing UID. Keying by email sidesteps that entirely. */
 export function emailKey(email) {
   return (email || "").trim().toLowerCase().replace(/[^a-z0-9@._-]/g, "_");
+}
+
+function deriveInviteeFromEmail(mail) {
+  const local = (mail || "").split("@")[0] || mail || "";
+  const derived = local.replace(/[._-]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  return { name: derived, gname: derived, mail: (mail || "").trim().toLowerCase() };
+}
+
+/* Parses the sponsor request form's free-text invitee field into
+   {name, gname, mail} objects, shared by request.html (building the admin
+   notification) and admin.html (building the sponsor email + creating
+   invitee accounts on approval) so both read the exact same data the same
+   way. Supports two formats, detected automatically:
+     - "Name; Greeting Name; Email" one per line (current form format)
+     - bare emails, one per line or comma-separated (older submissions, from
+       before the form collected names) — greeting name is derived from the
+       email's local part since there's no name to use. */
+export function parseInviteeList(rawText) {
+  const text = (rawText || "").trim();
+  if (!text) return [];
+  const lines = text.split(/\n+/).map((l) => l.trim()).filter(Boolean);
+  if (lines.some((l) => l.includes(";"))) {
+    return lines.map((line) => {
+      const parts = line.split(";").map((s) => s.trim()).filter(Boolean);
+      if (parts.length >= 3) return { name: parts[0], gname: parts[1], mail: (parts[2] || "").toLowerCase() };
+      if (parts.length === 2) return { name: parts[0], gname: parts[0], mail: (parts[1] || "").toLowerCase() };
+      return deriveInviteeFromEmail(parts[0]);
+    });
+  }
+  return text.split(/[\n,]+/).map((s) => s.trim()).filter(Boolean).map(deriveInviteeFromEmail);
 }
 
 /* The video sequence itself is hardcoded in index.html (not stored per-session
@@ -111,6 +141,20 @@ export const EMAILJS_PUBLIC_KEY = "K78OA7rLhPrvdRITV";
 export const EMAILJS_PRIVATE_KEY = "8aSZFwaDi1iveGhPwPE_Q";
 export const EMAILJS_SERVICE_ID = "service_02r0ak5";
 export const EMAILJS_TEMPLATE_ID = "template_gzwnh1j";
+
+/* Cloudflare Worker (cloudflare-worker/src/index.js in the repo root) — used
+   for the "sponsor request approved" notification (admin.html's
+   approveRequest). None of SnapitForms/FormSubmit/Formspree's free tiers
+   support a dynamic per-submission recipient, and EmailJS's free plan is
+   capped at 2 templates (both already used elsewhere). The Worker proxies to
+   the Resend API with the API key kept server-side, so it can send to any
+   recipient with no template or per-provider cap.
+   SEND_EMAIL_ENDPOINT is blank until the Worker is deployed — fill it in
+   with the `*.workers.dev` URL `wrangler deploy` prints. APP_SHARED_SECRET
+   must exactly match the value set via `wrangler secret put APP_SHARED_SECRET`
+   for that Worker, or it will reject every request as unauthorized. */
+export const SEND_EMAIL_ENDPOINT = "https://sikhsinindia-email.sikhsinindia.workers.dev";
+export const APP_SHARED_SECRET = "LuOoE-d92AyXMGsCBA0FcQGhKsYRLgs6";
 
 /* Firestore collection: one flat document per Akhand Path program, matching
    the "akhand_path" schema already seeded (name, email, mobie, purpose,

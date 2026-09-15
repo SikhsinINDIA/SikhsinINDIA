@@ -49,11 +49,11 @@
       <!-- LOGIN / BOOTSTRAP -->
       <div id="loginPanel">
         <h2>Admin Login</h2>
-        <p class="muted" style="margin-bottom:14px;">Restricted to akhandpath.sikhsinindia@gmail.com only.</p>
+        <p class="muted" id="restrictedToLabel" style="margin-bottom:14px;"></p>
 
         <div class="form-row">
           <label>Email</label>
-          <input id="loginEmail" type="email" value="akhandpath.sikhsinindia@gmail.com" readonly style="background:#eee;">
+          <input id="loginEmail" type="email" readonly style="background:#eee;">
         </div>
         <div class="form-row">
           <label>Password</label>
@@ -114,11 +114,12 @@
             </div>
             <div class="form-row">
               <label>Duration (hours)</label>
-              <input id="newDurationHours" type="number" value="81.5" min="1" step="0.1">
-              <p class="muted" style="margin-top:4px;">Defaults to 81.5h — the real, measured total of the 81-video sequence
-                is 81h 29m 36s (fetched directly from YouTube), rounded up slightly for a small safety margin. One full pass
-                = one complete reading. Lower this and the session ends mid-way through the sequence; raise it and the
-                sequence loops back to track 1 to fill the extra time.</p>
+              <input id="newDurationHours" type="number" value="54.33" min="1" step="0.1">
+              <p class="muted" style="margin-top:4px;">This is the REAL wall-clock length of the session (what viewers see
+                as the total/remaining time) — it is used exactly as entered, with no adjustment for playback speed.
+                Defaults to 54.33h (≈54h 20m), which is one full pass through the 81-video sequence (81h 29m 36s of real
+                content) at the current 1.5x playback speed. Lower this and the session ends mid-way through the
+                sequence; raise it and the sequence loops back to track 1 to fill the extra time.</p>
             </div>
             <div class="form-row">
               <label>Start Date *</label>
@@ -131,6 +132,11 @@
           </div>
           <button class="btn-action" onclick="createSession()">Create Program</button>
           <p id="createStatus" class="muted" style="margin-top:10px;min-height:18px;"></p>
+        </div>
+
+        <h2>Pending Sponsor Requests</h2>
+        <div id="pendingRequests">
+          <p class="loading-text">Loading requests...</p>
         </div>
 
         <h2>All Programs</h2>
@@ -223,11 +229,12 @@
     import {
       auth, db, provisioningAuth,
       signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut,
-      doc, setDoc, getDoc, updateDoc, collection, query, orderBy, limit, getDocs, onSnapshot,
+      doc, setDoc, getDoc, updateDoc, collection, query, where, orderBy, limit, getDocs, onSnapshot,
       serverTimestamp, Timestamp,
       ADMIN_EMAIL, INVITEE_PASSWORD, PURPOSE_SUGGESTIONS,
       EMAILJS_PUBLIC_KEY, EMAILJS_PRIVATE_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID,
-      emailKey, SESSIONS_COLLECTION, nextAkhandPathId
+      SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET,
+      emailKey, parseInviteeList, SESSIONS_COLLECTION, nextAkhandPathId
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
     import { watchAttendance, renderAttendanceTable, exportAttendanceCsv } from "./attendance.js";
@@ -247,6 +254,9 @@
     let latestAttendanceRows = [];
     let unsubAttendance = null;
     let unsubInvitees = null;
+
+    document.getElementById("loginEmail").value = ADMIN_EMAIL;
+    document.getElementById("restrictedToLabel").textContent = `Restricted to ${ADMIN_EMAIL} only.`;
 
     /* ---------------- PURPOSE SUGGESTIONS ---------------- */
     const purposeList = document.getElementById("purposeSuggestions");
@@ -298,6 +308,7 @@
         loginPanel.style.display = "none";
         adminPanel.style.display = "block";
         document.getElementById("adminEmailLabel").textContent = user.email;
+        loadPendingRequests();
         loadSessions();
       } else {
         adminPanel.style.display = "none";
@@ -312,6 +323,8 @@
     /* ---------------- SESSIONS ---------------- */
     function statusLabel(session) {
       const pos = computePosition(session);
+      if (pos.phase === "pending_approval") return "Pending Approval";
+      if (pos.phase === "rejected") return "Rejected" + (session.reject_reason ? ` — ${session.reject_reason}` : "");
       if (pos.phase === "live") return `Live (${formatDurationHM(pos.elapsedMs)} elapsed)`;
       if (pos.phase === "scheduled") return `Scheduled (starts in ${formatDurationHM(pos.startsInMs)})`;
       return "Completed";
@@ -321,12 +334,15 @@
       const tbody = document.getElementById("sessionsTableBody");
       const q = query(collection(db, SESSIONS_COLLECTION), orderBy("akhand_path_id", "desc"), limit(50));
       const snap = await getDocs(q);
-      if (snap.empty) {
+      // Sponsor requests still awaiting a decision live in the "Pending Sponsor
+      // Requests" section above, not mixed in with the program list here.
+      const docs = snap.docs.filter((d) => d.data().status !== "pending_approval");
+      if (!docs.length) {
         tbody.innerHTML = `<tr><td colspan="6" class="no-data">No programs created yet.</td></tr>`;
         return;
       }
       tbody.innerHTML = "";
-      snap.forEach((d) => {
+      docs.forEach((d) => {
         const s = d.data();
         const tr = document.createElement("tr");
         const startLabel = s.start_at && s.start_at.toDate ? s.start_at.toDate().toLocaleString() : "—";
@@ -346,6 +362,248 @@
     function escapeHtml(str) {
       return String(str).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     }
+
+    /* ---------------- PENDING SPONSOR REQUESTS ---------------- */
+    // No orderBy here on purpose — a where()+orderBy() on different fields
+    // needs a composite Firestore index; this list is small, so it's sorted
+    // client-side instead.
+    async function loadPendingRequests() {
+      const wrap = document.getElementById("pendingRequests");
+      const q = query(collection(db, SESSIONS_COLLECTION), where("status", "==", "pending_approval"));
+      const snap = await getDocs(q);
+      if (snap.empty) {
+        wrap.innerHTML = `<p class="muted">No pending sponsor requests.</p>`;
+        return;
+      }
+      const docs = snap.docs.slice().sort((a, b) => {
+        const at = a.data().requested_at && a.data().requested_at.toMillis ? a.data().requested_at.toMillis() : 0;
+        const bt = b.data().requested_at && b.data().requested_at.toMillis ? b.data().requested_at.toMillis() : 0;
+        return bt - at;
+      });
+      wrap.innerHTML = "";
+      docs.forEach((d) => {
+        const s = d.data();
+        const startLabel = s.start_at && s.start_at.toDate ? s.start_at.toDate().toLocaleString() : "—";
+        const invitees = (s.invitee_emails_raw || "").trim();
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="card-title">${escapeHtml(s.name || "Untitled")} — ${escapeHtml(s.purpose || "")}</div>
+          <p class="muted">Sponsor: ${escapeHtml(s.sponsor || "")} · ${escapeHtml(s.email || "")} · ${escapeHtml(s.mobie || "")}${s.country_city ? " · " + escapeHtml(s.country_city) : ""}</p>
+          <p class="muted">Preferred start: ${startLabel} · Duration: ${s.duration_hours || ""}h</p>
+          ${s.family_members ? `<p class="muted">Family members: ${escapeHtml(s.family_members)}</p>` : ""}
+          ${invitees ? `<p class="muted">Invitees to add once approved: ${escapeHtml(invitees)}</p>` : ""}
+          ${s.message ? `<p class="muted">Message: ${escapeHtml(s.message)}</p>` : ""}
+          <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn-action" type="button" style="width:auto;">Approve</button>
+            <button class="btn-danger btn-action" type="button" style="width:auto;">Reject</button>
+          </div>
+        `;
+        const [approveBtn, rejectBtn] = card.querySelectorAll("button");
+        approveBtn.addEventListener("click", () => approveRequest(d.id));
+        rejectBtn.addEventListener("click", () => rejectRequest(d.id));
+        wrap.appendChild(card);
+      });
+    }
+
+    window.approveRequest = async (sessionId) => {
+      if (!confirm("Approve this sponsor request? It will become visible on the public Akhand Path page and an approval email will be sent to the sponsor.")) return;
+      await updateDoc(doc(db, SESSIONS_COLLECTION, sessionId), {
+        status: "scheduled",
+        approved_at: serverTimestamp(),
+        approved_by: auth.currentUser.uid
+      });
+      await loadPendingRequests();
+      await loadSessions();
+      const snap = await getDoc(doc(db, SESSIONS_COLLECTION, sessionId));
+      const session = snap.data();
+      manageSession(sessionId, session);
+
+      try {
+        await sendApprovalEmail(sessionId, session);
+      } catch (err) {
+        alert("The program was approved, but the approval email to the sponsor could not be sent: " + (err.message || err));
+      }
+
+      const inviteeResults = await sendInviteeEmails(sessionId, session);
+      const failed = inviteeResults.filter((r) => !r.ok);
+      if (failed.length) {
+        alert("Some invitee emails could not be sent:\n" + failed.map((f) => `${f.mail}: ${f.error}`).join("\n"));
+      }
+    };
+
+    /* ---------------- EMAIL HELPERS (Cloudflare Worker -> Resend) ---------------- */
+    function formatFullDateTime(d) {
+      return d.toLocaleString(undefined, {
+        weekday: "short", year: "numeric", month: "short", day: "numeric",
+        hour: "2-digit", minute: "2-digit"
+      });
+    }
+
+    function sessionLinkFor(sessionId) {
+      return `${window.location.origin}${window.location.pathname.replace(/admin\.html$/, "index.html")}?session=${sessionId}`;
+    }
+
+    async function sendPlainEmail(to, subject, text) {
+      if (!SEND_EMAIL_ENDPOINT) {
+        throw new Error("SEND_EMAIL_ENDPOINT is not configured yet — deploy the Cloudflare Worker and set it in firebase.js.");
+      }
+      const res = await fetch(SEND_EMAIL_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-App-Secret": APP_SHARED_SECRET },
+        body: JSON.stringify({ to, subject, text })
+      });
+      if (!res.ok) {
+        const detail = await res.text().catch(() => "");
+        throw new Error(`Email send failed (HTTP ${res.status}) ${detail}`);
+      }
+    }
+
+    // Prefers the invitees typed into the sponsor's own request form; falls
+    // back to the legacy flat name_1../gname_1../mail_1.. fields on older
+    // seeded records.
+    function buildInviteeLines(session) {
+      const invitees = getInviteeCandidates(session);
+      return invitees.length
+        ? invitees.map((inv, i) => `${i + 1}. ${inv.name}; ${inv.gname}; ${inv.mail}`).join("\n")
+        : "To be added by admin.";
+    }
+
+    async function sendApprovalEmail(sessionId, session) {
+      const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : new Date();
+      const durationHours = session.duration_hours || 48;
+      const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
+
+      const message = `Dear ${session.sponsor || ""},
+
+Sat Sri Akaal!
+Waheguru ji ka Khalsa, Waheguru ji ki Fateh!
+
+Your request for Akhand Path has been approved. Please find below the details:
+
+Path in the name of: ${session.name || ""} on occasion of ${session.purpose || ""}, sponsored by: ${session.sponsor || ""}
+Email: ${session.email || ""} ; Mobile: ${session.mobie || ""}
+Aaramb / Start Date and Time: ${formatFullDateTime(start)}
+Samapti / Planned Completion Date and Time: ${formatFullDateTime(samapti)}
+
+Invitees:
+${buildInviteeLines(session)}
+
+Session Link: ${sessionLinkFor(sessionId)}
+
+Akhand Paath is a deeply meaningful practice in Sikhism, far surpassing a mere religious ritual; it represents a profound spiritual journey, demonstrating their spiritual dedication.
+
+Best regards,
+Team – SikhsinIndia.com
+Email: ${ADMIN_EMAIL}`;
+
+      if (!session.email) {
+        throw new Error("This program has no sponsor email on file.");
+      }
+      await sendPlainEmail(session.email, `Your Akhand Path request has been approved — ${session.name || ""}`, message);
+    }
+
+    /* ---------------- INVITEE EMAILS (sent alongside the approval email) ---------------- */
+    // Prefers the invitees typed into the sponsor's own request form (parsed
+    // via the shared parseInviteeList, which reads their Name; Greeting Name;
+    // Email format); falls back to the legacy flat name_1../gname_1../mail_1..
+    // fields on older seeded records.
+    function getInviteeCandidates(session) {
+      const parsed = parseInviteeList(session.invitee_emails_raw);
+      if (parsed.length) return parsed;
+
+      const list = [];
+      for (let i = 1; i <= 5; i++) {
+        const mail = session[`mail_${i}`];
+        if (!mail) continue;
+        const name = session[`name_${i}`] || session[`gname_${i}`] || mail;
+        const gname = session[`gname_${i}`] || name;
+        list.push({ name, gname, mail: mail.trim().toLowerCase() });
+      }
+      return list;
+    }
+
+    function buildInviteeEmailText(session, sessionId, invitee) {
+      const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : new Date();
+      const durationHours = session.duration_hours || 48;
+      const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
+
+      return `Dear ${invitee.gname || invitee.name || ""},
+
+Sat Sri Akaal!
+Waheguru ji ka Khalsa, Waheguru ji ki Fateh!
+
+You have been invited for Akhand Path. Please find below the details:
+
+Path in the name of: ${session.name || ""} on occasion of ${session.purpose || ""}, sponsored by: ${session.sponsor || ""}
+Aaramb / Start Date and Time: ${formatFullDateTime(start)}
+Samapti / Planned Completion Date and Time: ${formatFullDateTime(samapti)}
+Session Link: ${sessionLinkFor(sessionId)}
+Your login ID: ${invitee.mail} and password is "${INVITEE_PASSWORD}"
+
+Akhand Paath is a deeply meaningful practice in Sikhism, far surpassing a mere religious ritual; it represents a profound spiritual journey, demonstrating their spiritual dedication.
+
+Looking forward for your active participation in the Akhand Path.
+
+Best regards,
+${session.sponsor || ""}
+Team – SikhsinIndia.com
+Email: ${ADMIN_EMAIL}`;
+    }
+
+    // Creates each invitee's login (same secondary-app pattern as the manual
+    // "Add Invitee" form, so the admin's own session stays logged in), writes
+    // their invitee doc, and emails them — run automatically at approval time
+    // so the sponsor's submitted invitee list doesn't need re-typing by hand.
+    async function sendInviteeEmails(sessionId, session) {
+      const candidates = getInviteeCandidates(session);
+      const results = [];
+      for (const invitee of candidates) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(invitee.mail)) {
+          results.push({ mail: invitee.mail, ok: false, error: "invalid email address" });
+          continue;
+        }
+        const inviteeRef = doc(db, SESSIONS_COLLECTION, sessionId, "invitees", emailKey(invitee.mail));
+        try {
+          try {
+            await createUserWithEmailAndPassword(provisioningAuth, invitee.mail, INVITEE_PASSWORD);
+          } catch (authErr) {
+            if (authErr.code !== "auth/email-already-in-use") throw authErr;
+          }
+
+          await setDoc(inviteeRef, {
+            name: invitee.name, gname: invitee.gname, mail: invitee.mail,
+            invited_at: serverTimestamp(), email_sent: false
+          }, { merge: true });
+
+          await sendPlainEmail(
+            invitee.mail,
+            `You're invited — Akhand Path for ${session.name || ""}`,
+            buildInviteeEmailText(session, sessionId, invitee)
+          );
+
+          await updateDoc(inviteeRef, { email_sent: true });
+          results.push({ mail: invitee.mail, ok: true });
+        } catch (err) {
+          const message = errText(err);
+          results.push({ mail: invitee.mail, ok: false, error: message });
+          try { await setDoc(inviteeRef, { email_error: message }, { merge: true }); } catch (_) { /* best effort */ }
+        }
+      }
+      return results;
+    }
+
+    window.rejectRequest = async (sessionId) => {
+      const reason = prompt("Reason for rejecting this request (optional, shown to admins only):") || "";
+      if (!confirm("Reject this sponsor request?")) return;
+      await updateDoc(doc(db, SESSIONS_COLLECTION, sessionId), {
+        status: "rejected",
+        reject_reason: reason,
+        rejected_at: serverTimestamp()
+      });
+      await loadPendingRequests();
+      await loadSessions();
+    };
 
     window.createSession = async () => {
       const status = document.getElementById("createStatus");

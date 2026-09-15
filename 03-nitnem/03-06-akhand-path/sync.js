@@ -32,17 +32,45 @@ function toMillis(value) {
  * video sequence, returns where playback should be RIGHT NOW. Does not touch
  * the network or the player. `videoSequence` is optional — callers that only
  * need phase/elapsed info (e.g. admin.html's status labels) can omit it.
+ *
+ * `playbackSpeed` (default 1) is the rate the YouTube player is actually set
+ * to via setPlaybackRate(). This MUST be threaded through here, not just
+ * applied to the player and the status text — this function is what decides
+ * which track and what offset gets shown/seeked-to, so if it doesn't know
+ * the real video is playing faster than 1x, its "current position" silently
+ * drifts behind reality, and the periodic drift-correction in
+ * AkhandPathSync.tick() ends up fighting the sped-up player instead of
+ * tracking it.
+ *
+ * `session.duration_hours` is the REAL WALL-CLOCK length of the session,
+ * exactly as an admin (or a direct Firestore edit) set it — used as-is for
+ * `durationMs`, with no hidden division by playback speed. This used to be
+ * "normal-speed content length ÷ speed", but that was a silent, undocumented
+ * transformation: setting duration_hours to the real number you actually
+ * want displayed (e.g. 54.33 for ~54h20m) got divided by speed AGAIN,
+ * producing a much shorter session than intended. Treating duration_hours as
+ * the literal real-world total avoids that trap and matches how the field
+ * reads to a human. It has no effect on track/offset selection, which
+ * already derives purely from elapsed real time × speed against the actual
+ * measured video lengths, independent of this field.
  */
-export function computePosition(session, videoSequence) {
+export function computePosition(session, videoSequence, playbackSpeed) {
   if (!session) return { phase: "missing" };
 
   if (session.status === "ended") {
     return { phase: "completed" };
   }
+  if (session.status === "pending_approval") {
+    return { phase: "pending_approval" };
+  }
+  if (session.status === "rejected") {
+    return { phase: "rejected" };
+  }
 
   const startMs = toMillis(session.start_at);
   if (!startMs) return { phase: "scheduled" };
 
+  const speed = playbackSpeed && playbackSpeed > 0 ? playbackSpeed : 1;
   const durationHours = session.duration_hours || 48;
   const durationMs = durationHours * 3600 * 1000;
   const nowMs = Date.now();
@@ -73,8 +101,12 @@ export function computePosition(session, videoSequence) {
   });
   const loopTotalSeconds = trackSeconds.reduce((a, b) => a + b, 0);
 
-  let remaining = (elapsedMs / 1000) % loopTotalSeconds;
-  const loopNumber = Math.floor(elapsedMs / 1000 / loopTotalSeconds);
+  // Content-seconds actually consumed, given real elapsed time at this speed —
+  // this (not raw elapsedMs) is what determines the track/offset to show.
+  const contentSeconds = (elapsedMs / 1000) * speed;
+
+  let remaining = contentSeconds % loopTotalSeconds;
+  const loopNumber = Math.floor(contentSeconds / loopTotalSeconds);
 
   for (let i = 0; i < seq.length; i++) {
     if (remaining < trackSeconds[i]) {
@@ -86,7 +118,9 @@ export function computePosition(session, videoSequence) {
         loopNumber,
         startMs,
         durationMs,
-        elapsedMs
+        elapsedMs,
+        contentSeconds,
+        loopTotalSeconds
       };
     }
     remaining -= trackSeconds[i];
@@ -101,7 +135,9 @@ export function computePosition(session, videoSequence) {
     loopNumber,
     startMs,
     durationMs,
-    elapsedMs
+    elapsedMs,
+    contentSeconds,
+    loopTotalSeconds
   };
 }
 
@@ -124,9 +160,10 @@ export async function reportTrackDuration(sessionId, trackKey, seconds) {
  * caller); this class does not fetch data itself.
  */
 export class AkhandPathSync {
-  constructor({ sessionId, videoSequence, getSession, onPositionChange, onTrackChange }) {
+  constructor({ sessionId, videoSequence, playbackSpeed, getSession, onPositionChange, onTrackChange }) {
     this.sessionId = sessionId;
     this.videoSequence = videoSequence || [];
+    this.playbackSpeed = playbackSpeed && playbackSpeed > 0 ? playbackSpeed : 1;
     this.getSession = getSession;
     this.onPositionChange = onPositionChange || (() => {});
     this.onTrackChange = onTrackChange || (() => {});
@@ -138,6 +175,13 @@ export class AkhandPathSync {
 
   attachPlayer(ytPlayer) {
     this.player = ytPlayer;
+  }
+
+  /** Call this with whatever rate actually got applied to the player (YouTube only
+      supports a fixed set of rates, so it may differ from the value passed at
+      construction) — keeps position math honest instead of assuming a nominal speed. */
+  setPlaybackSpeed(speed) {
+    if (speed && speed > 0) this.playbackSpeed = speed;
   }
 
   start() {
@@ -163,7 +207,7 @@ export class AkhandPathSync {
 
   tick() {
     const session = this.getSession();
-    const pos = computePosition(session, this.videoSequence);
+    const pos = computePosition(session, this.videoSequence, this.playbackSpeed);
     this.onPositionChange(pos);
 
     if (pos.phase !== "live" || pos.trackIndex < 0) return;

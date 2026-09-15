@@ -117,6 +117,7 @@
           </svg>
           Back to Nitnem Path
         </a>
+        <a href="request.html" class="btn-back">Sponsor an Akhand Path</a>
         <div class="footer-left">© 2026 Sikhs in India</div>
         <div class="footer-right">Preserving Sikh Heritage & Unity</div>
       </div>
@@ -250,16 +251,23 @@
     let unsubAttendance = null;
 
     /* ---------------- SESSION PICKER (browse past / upcoming programs) ---------------- */
+    // Sponsor requests awaiting admin approval (or rejected) are never shown
+    // publicly — only status "scheduled" / "live" / "ended" programs belong here.
+    function isPubliclyVisible(data) {
+      return data.status !== "pending_approval" && data.status !== "rejected";
+    }
+
     async function populateSessionPicker() {
       try {
         const q = query(collection(db, SESSIONS_COLLECTION), orderBy("start_at", "desc"), limit(30));
         const snap = await getDocs(q);
         sessionPicker.innerHTML = "";
-        if (snap.empty) {
+        const visibleDocs = snap.docs.filter((d) => isPubliclyVisible(d.data()));
+        if (!visibleDocs.length) {
           sessionPicker.innerHTML = `<option>No Akhand Path programs configured yet</option>`;
           return;
         }
-        snap.forEach((d) => {
+        visibleDocs.forEach((d) => {
           const data = d.data();
           const opt = document.createElement("option");
           opt.value = d.id;
@@ -269,7 +277,7 @@
           sessionPicker.appendChild(opt);
         });
         if (!sessionId) {
-          sessionPicker.value = snap.docs[0].id;
+          sessionPicker.value = visibleDocs[0].id;
         }
       } catch (err) {
         console.error("Could not load session list:", err);
@@ -287,9 +295,10 @@
       // No ?session= given: find the most recently started program (prefer one that's currently live).
       const q = query(collection(db, SESSIONS_COLLECTION), orderBy("start_at", "desc"), limit(10));
       const snap = await getDocs(q);
-      if (snap.empty) return null;
-      let fallback = snap.docs[0].id;
-      for (const d of snap.docs) {
+      const visibleDocs = snap.docs.filter((d) => isPubliclyVisible(d.data()));
+      if (!visibleDocs.length) return null;
+      let fallback = visibleDocs[0].id;
+      for (const d of visibleDocs) {
         const pos = computePosition(d.data());
         if (pos.phase === "live") return d.id;
       }
@@ -297,20 +306,20 @@
     }
 
     /* ---------------- RENDER DEDICATION + MARQUEE ---------------- */
-    function renderDedication(session) {
-      const photo = session.photo_url || DEFAULT_PHOTO;
+    // function renderDedication(session) {
+    //   const photo = session.photo_url || DEFAULT_PHOTO;
 
-      dedicationPhoto.src = photo;
-      dedicationName.textContent = session.name || "—";
-      dedicationPurpose.textContent = session.purpose ? `On the occasion of: ${session.purpose}` : "";
-      dedicationBanner.hidden = false;
+    //   dedicationPhoto.src = photo;
+    //   dedicationName.textContent = session.name || "—";
+    //   dedicationPurpose.textContent = session.purpose ? `On the occasion of: ${session.purpose}` : "";
+    //   dedicationBanner.hidden = false;
 
-      marqueePhoto.src = photo;
-      marqueeText.textContent = `🙏 Akhand Path dedicated to ${session.name || ""} — ${session.purpose || ""} 🙏`;
-      marquee.hidden = false;
+    //   marqueePhoto.src = photo;
+    //   marqueeText.textContent = `🙏 Akhand Path dedicated to ${session.name || ""} — ${session.purpose || ""} 🙏`;
+    //   marquee.hidden = false;
 
-      document.title = `Akhand Path for ${session.name || ""} | SikhsInIndia.com`;
-    }
+    //   document.title = `Akhand Path for ${session.name || ""} | SikhsInIndia.com`;
+    // }
 
     /* ---------------- STATUS BAR ---------------- */
     function formatDateTime(ms) {
@@ -319,6 +328,18 @@
         hour: "2-digit", minute: "2-digit"
       });
     }
+
+    /*
+     * The player plays back at PLAYBACK_SPEED (see applyPlaybackRate below).
+     * This value is passed into computePosition()/AkhandPathSync purely for
+     * track/offset selection (sync.js) — session.duration_hours is the real
+     * wall-clock total for the session as configured, used as-is, with no
+     * division by speed. Everything below just reads pos.elapsedMs/durationMs
+     * directly, so elapsed/remaining/percent/completion are already correct
+     * in real-world terms without any further adjustment here — no need to
+     * mention the speed itself to viewers.
+     */
+    const PLAYBACK_SPEED = 1.5; // matches YouTube's actual available rate directly, no "requested vs applied" gap
 
     function renderStatus(pos) {
       currentPhase = pos.phase;
@@ -334,14 +355,21 @@
       } else if (pos.phase === "live") {
         const elapsed = formatDurationHM(pos.elapsedMs);
         const total = formatDurationHM(pos.durationMs);
-        const remaining = formatDurationHM(pos.durationMs - pos.elapsedMs);
+        const remainingMs = Math.max(0, pos.durationMs - pos.elapsedMs);
+        const remaining = formatDurationHM(remainingMs);
         const percent = Math.min(100, (pos.elapsedMs / pos.durationMs) * 100).toFixed(1);
-        const completion = formatDateTime(pos.startMs + pos.durationMs);
-        statusBar.textContent =
-          `🔴 Live now — ${elapsed} elapsed of ${total} continuous recitation ` +
-          `(${percent}% complete, ${remaining} remaining). Completion by: ${completion}.`;
+        const aarambh = formatDateTime(pos.startMs);
+        const samapti = formatDateTime(pos.startMs + pos.durationMs);
+
+        statusBar.innerHTML =
+          `<div>🔴 Live now — Path Aarambh: ${aarambh}; Planned Path Samapti: ${samapti}</div>` +
+          `<div style="margin-top:4px;">${elapsed} elapsed of ${total} continuous recitation (${percent}% complete, ${remaining} remaining)</div>`;
       } else if (pos.phase === "completed") {
         statusBar.textContent = "🙏 This Akhand Path has reached Sampurna (completion). Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh.";
+      } else if (pos.phase === "pending_approval") {
+        statusBar.textContent = "This Akhand Path request is awaiting admin approval and is not yet public.";
+      } else if (pos.phase === "rejected") {
+        statusBar.textContent = "This Akhand Path request was not approved.";
       }
     }
 
@@ -354,7 +382,7 @@
 
     function tickStatus() {
       if (!latestSession) return;
-      renderStatus(computePosition(latestSession, VIDEO_SEQUENCE));
+      renderStatus(computePosition(latestSession, VIDEO_SEQUENCE, PLAYBACK_SPEED));
     }
 
     function startStatusTicker() {
@@ -382,7 +410,12 @@
     setTimeout(() => {
       if (ytPlayerReady) return;
 
-      const pos = latestSession ? computePosition(latestSession, VIDEO_SEQUENCE) : null;
+      // Uses PLAYBACK_SPEED to start at the CURRENT correct content position
+      // (matching what everyone with working sync sees right now) — but a
+      // plain embed iframe has no rate control, so from this point on it
+      // plays at 1x and gradually falls behind the synced position. Best
+      // available compromise for a fallback that can't be rate-controlled.
+      const pos = latestSession ? computePosition(latestSession, VIDEO_SEQUENCE, PLAYBACK_SPEED) : null;
       if (pos && pos.phase === "live" && pos.track) {
         const src = `https://www.youtube.com/embed/${pos.track.youtubeId}` +
           `?start=${Math.floor(pos.offsetSeconds)}&autoplay=1&rel=0&modestbranding=1`;
@@ -410,6 +443,39 @@
     const firstScriptTag = document.getElementsByTagName("script")[0];
     firstScriptTag.parentNode.insertBefore(ytTag, firstScriptTag);
 
+    /*
+     * YouTube supports a fixed set of playback rates rather than arbitrary
+     * decimal values (typically 0.25/0.5/0.75/1/1.25/1.5/1.75/2) — PLAYBACK_SPEED
+     * (1.5) is one of those, so this finds an exact match in practice. The
+     * closest-rate fallback stays here as a safety net in case YouTube's
+     * available rates ever change. Whichever rate actually gets applied is fed
+     * back into the sync engine via setPlaybackSpeed(), so its track/offset
+     * math always matches the real player speed, not just the request.
+     */
+    function applyPlaybackRate() {
+      if (!ytPlayer || !ytPlayerReady) return;
+
+      try {
+        const availableRates = ytPlayer.getAvailablePlaybackRates();
+        const requested = PLAYBACK_SPEED;
+
+        let rate = requested;
+        if (!availableRates.includes(requested)) {
+          rate = availableRates.reduce((closest, candidate) =>
+            Math.abs(candidate - requested) < Math.abs(closest - requested)
+              ? candidate
+              : closest
+          , availableRates[0] || 1);
+        }
+
+        ytPlayer.setPlaybackRate(rate);
+        if (syncEngine) syncEngine.setPlaybackSpeed(rate);
+        console.log(`Akhand Path playback speed: requested ${requested}x, applied ${rate}x`);
+      } catch (err) {
+        console.warn("Could not set YouTube playback speed:", err);
+      }
+    }
+
     window.onYouTubeIframeAPIReady = function () {
       ytPlayer = new YT.Player("youtube-player", {
         height: "100%",
@@ -423,10 +489,24 @@
           onReady: () => {
             ytPlayerReady = true;
             videoFallback.hidden = true;
+
+            // Set the requested speed before starting synchronized playback.
+            applyPlaybackRate();
+
             if (syncEngine) {
               syncEngine.attachPlayer(ytPlayer);
               syncEngine.start();
+
+              // The sync engine may load a new video immediately after
+              // attaching the player, so re-apply the speed shortly after.
+              setTimeout(applyPlaybackRate, 500);
+              setTimeout(applyPlaybackRate, 1500);
             }
+          },
+          onStateChange: () => {
+            // Re-apply after track changes because YouTube can reset the
+            // playback rate when a new video is loaded.
+            setTimeout(applyPlaybackRate, 100);
           },
           onError: (event) => {
             // YT error codes: 2 invalid param, 5 HTML5 error, 100 not found/removed,
@@ -513,6 +593,17 @@
           return;
         }
         latestSession = snap.data();
+
+        // A direct link to a still-pending or rejected sponsor request (e.g.
+        // guessed/bookmarked before approval) shows a plain status message —
+        // no dedication banner, marquee, or video for a program that isn't public yet.
+        if (!isPubliclyVisible(latestSession)) {
+          dedicationBanner.hidden = true;
+          marquee.hidden = true;
+          startStatusTicker();
+          return;
+        }
+
         renderDedication(latestSession);
         startStatusTicker();
 
@@ -520,6 +611,7 @@
           syncEngine = new AkhandPathSync({
             sessionId,
             videoSequence: VIDEO_SEQUENCE,
+            playbackSpeed: PLAYBACK_SPEED,
             getSession: () => latestSession,
             onPositionChange: renderStatus,
             onTrackChange: () => {}

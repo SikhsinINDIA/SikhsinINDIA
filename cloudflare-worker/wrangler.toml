@@ -1,0 +1,12 @@
+name = "sikhsinindia-email"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+# Secrets — set these with `wrangler secret put <NAME>`, never commit them here:
+#   RESEND_API_KEY     the API key from your Resend dashboard
+#   APP_SHARED_SECRET  a random string the site must send back on every request
+
+[vars]
+# mail.sikhsinindia.com is verified in Resend (DKIM/SPF confirmed 2026-09-15),
+# so sending is no longer restricted to the account's own signup address.
+FROM_ADDRESS = "SikhsinIndia <noreply@mail.sikhsinindia.com>"

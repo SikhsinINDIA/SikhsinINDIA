@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "@emailjs/nodejs": "^5.0.2"
+  },
+  "devDependencies": {
+    "wrangler": "^4.131.2"
   }
 }

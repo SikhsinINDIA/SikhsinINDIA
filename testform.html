@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test Form | SnapitForms</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 480px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+    h1 { font-size: 20px; margin-bottom: 20px; }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    input, textarea {
+      padding: 10px 12px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: inherit;
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    button {
+      padding: 10px 16px;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      border-radius: 5px;
+      background: #F7941D;
+      color: #0d1b3e;
+      cursor: pointer;
+    }
+    button:hover { filter: brightness(1.08); }
+    #formStatus { margin-top: 10px; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+  <h1>Test Form — SnapitForms</h1>
+
+  <form id="testForm" action="https://api.snapitforms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="sf_43e9f1d8d2efd254e15ba49234293d8e">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <textarea name="message" placeholder="Message" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="formStatus"></p>
+
+  <script>
+    document.getElementById("testForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const status = document.getElementById("formStatus");
+      status.textContent = "Sending...";
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form)
+        });
+        if (res.ok) {
+          status.textContent = "Message sent successfully.";
+          form.reset();
+        } else {
+          status.textContent = "Submission failed (HTTP " + res.status + ").";
+        }
+      } catch (err) {
+        status.textContent = "Could not send message: " + err.message;
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formspree Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 480px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+    h1 { font-size: 20px; margin-bottom: 20px; }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    input, textarea {
+      padding: 10px 12px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: inherit;
+      font-weight: 400;
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    button {
+      padding: 10px 16px;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      border-radius: 5px;
+      background: #0d1b3e;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover { filter: brightness(1.2); }
+  </style>
+</head>
+<body>
+
+  <h1>Formspree Demo</h1>
+
+  <!-- modify this form HTML and place wherever you want your form -->
+  <form
+    action="https://formspree.io/f/xqpazknj"
+    method="POST"
+  >
+    <label>
+      Your email:
+      <input type="email" name="email">
+    </label>
+    <label>
+      Your message:
+      <textarea name="message"></textarea>
+    </label>
+    <!-- your other form fields go here -->
+    <button type="submit">Send</button>
+  </form>
+
+</body>
+</html>
