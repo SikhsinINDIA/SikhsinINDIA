@@ -213,7 +213,7 @@
 
     <div class="footer">
       <div class="footer-content">
-        <a href="index.html" class="btn-back">
+        <a href="./03-06-akhand-path.html" class="btn-back">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5M5 12l7-7M5 12l7 7" />
           </svg>
@@ -234,7 +234,7 @@
       ADMIN_EMAIL, INVITEE_PASSWORD, PURPOSE_SUGGESTIONS,
       EMAILJS_PUBLIC_KEY, EMAILJS_PRIVATE_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID,
       SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET,
-      emailKey, parseInviteeList, markEndedIfComplete, SESSIONS_COLLECTION, nextAkhandPathId
+      emailKey, parseInviteeList, markEndedIfComplete, siteFilePath, SESSIONS_COLLECTION, nextAkhandPathId
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
     import { watchAttendance, renderAttendanceTable, exportAttendanceCsv } from "./attendance.js";
@@ -442,7 +442,7 @@
     }
 
     function sessionLinkFor(sessionId) {
-      return `${window.location.origin}${window.location.pathname.replace(/admin\.html$/, "index.html")}?session=${sessionId}`;
+      return siteFilePath("index.html", `?session=${sessionId}`);
     }
 
     async function sendPlainEmail(to, subject, text) {
@@ -675,8 +675,7 @@ Email: ${ADMIN_EMAIL}`;
       activeSessionData = data;
       document.getElementById("managePanel").hidden = false;
       document.getElementById("manageTitle").textContent = `${data.name} — ${data.purpose}`;
-      const link = `${window.location.origin}${window.location.pathname.replace(/admin\.html$/, "index.html")}?session=${sessionId}`;
-      document.getElementById("manageLink").value = link;
+      document.getElementById("manageLink").value = sessionLinkFor(sessionId);
 
       watchInvitees(sessionId);
       watchSessionAttendance(sessionId);
@@ -759,7 +758,7 @@ Email: ${ADMIN_EMAIL}`;
       const s = activeSessionData;
       const start = s.start_at && s.start_at.toDate ? s.start_at.toDate() : new Date();
       const end = new Date(start.getTime() + (s.duration_hours || 48) * 3600 * 1000);
-      const loginLink = `${window.location.origin}${window.location.pathname.replace(/admin\.html$/, "login.html")}?session=${activeSessionId}`;
+      const loginLink = siteFilePath("login.html", `?session=${activeSessionId}`);
 
       const payload = {
         email: mail,

@@ -51,9 +51,17 @@
       <!-- LOGGED OUT -->
       <div id="loggedOutPanel" class="card" hidden>
         <div class="card-title">Please log in</div>
-        <p class="muted">This page shows only the Akhand Path program(s) tied to your account. Log in with the ID
-          and password from your invitation or approval email.</p>
-        <a class="btn-action" id="loginLink" href="login.html?redirect=my-akhand-path.html" style="display:inline-flex;margin-top:12px;">Login</a>
+        <p class="muted" style="margin-bottom:14px;">This page shows only the Akhand Path program(s) tied to your
+          account. Log in with the ID and password from your invitation or approval email.</p>
+
+        <div class="form-row">
+          <input id="loginEmail" type="email" placeholder="Your Login ID (email address)">
+        </div>
+        <div class="form-row">
+          <input id="loginPassword" type="password" placeholder="Password">
+        </div>
+        <button id="loginBtn" class="btn-action" type="button">Login</button>
+        <p id="loginStatus" class="muted" style="text-align:center;margin-top:10px;min-height:18px;"></p>
       </div>
 
       <!-- LOGGED IN -->
@@ -72,7 +80,7 @@
 
     <div class="footer">
       <div class="footer-content">
-        <a href="index.html" class="btn-back">
+        <a href="./03-06-akhand-path.html" class="btn-back">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5M5 12l7-7M5 12l7 7" />
           </svg>
@@ -86,7 +94,7 @@
 
   <script type="module">
     import {
-      auth, onAuthStateChanged, signOut,
+      auth, onAuthStateChanged, signOut, signInWithEmailAndPassword,
       findMyPrograms
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
@@ -154,6 +162,23 @@
     }
 
     document.getElementById("logoutBtn").addEventListener("click", async () => { await signOut(auth); });
+
+    document.getElementById("loginBtn").addEventListener("click", async () => {
+      const email = document.getElementById("loginEmail").value.trim();
+      const password = document.getElementById("loginPassword").value;
+      const status = document.getElementById("loginStatus");
+      if (!email || !password) {
+        status.textContent = "Please enter both your Login ID and password.";
+        return;
+      }
+      status.textContent = "Logging in...";
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        // onAuthStateChanged below swaps in the logged-in panel automatically.
+      } catch (err) {
+        status.textContent = "Login failed: " + err.message;
+      }
+    });
 
     onAuthStateChanged(auth, (user) => {
       const loggedOut = document.getElementById("loggedOutPanel");

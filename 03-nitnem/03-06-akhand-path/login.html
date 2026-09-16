@@ -78,8 +78,9 @@
     const sessionId = params.get("session");
     const guestTarget = "index.html" + (sessionId ? `?session=${encodeURIComponent(sessionId)}` : "");
     // "Continue as guest" always goes to the public watch page — the
-    // ?redirect= param (e.g. to my-akhand-path.html) only applies once
-    // actually logged in, since that page requires a login to mean anything.
+    // ?redirect= param (e.g. to 03-06-02-participate-in-akhand-path.html)
+    // only applies once actually logged in, since that page requires a
+    // login to mean anything.
     const redirectTarget = params.get("redirect") || guestTarget;
 
     document.getElementById("watchGuestLink").href = guestTarget;

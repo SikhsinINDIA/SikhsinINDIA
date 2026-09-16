@@ -97,10 +97,11 @@ function deriveInviteeFromEmail(mail) {
 }
 
 /* Parses the sponsor request form's free-text invitee field into
-   {name, gname, mail} objects, shared by request.html (building the admin
-   notification) and admin.html (building the sponsor email + creating
-   invitee accounts on approval) so both read the exact same data the same
-   way. Supports two formats, detected automatically:
+   {name, gname, mail} objects, shared by 03-06-01-request-akhand-path.html
+   (building the admin notification) and 03-06-03-admin-akhand-path.html
+   (building the sponsor email + creating invitee accounts on approval) so
+   both read the exact same data the same way. Supports two formats,
+   detected automatically:
      - "Name; Greeting Name; Email" one per line (current form format)
      - bare emails, one per line or comma-separated (older submissions, from
        before the form collected names) — greeting name is derived from the
@@ -145,8 +146,9 @@ export const EMAILJS_SERVICE_ID = "service_02r0ak5";
 export const EMAILJS_TEMPLATE_ID = "template_gzwnh1j";
 
 /* Cloudflare Worker (cloudflare-worker/src/index.js in the repo root) — used
-   for the "sponsor request approved" notification (admin.html's
-   approveRequest). None of SnapitForms/FormSubmit/Formspree's free tiers
+   for the "sponsor request approved" notification
+   (03-06-03-admin-akhand-path.html's approveRequest). None of
+   SnapitForms/FormSubmit/Formspree's free tiers
    support a dynamic per-submission recipient, and EmailJS's free plan is
    capped at 2 templates (both already used elsewhere). The Worker proxies to
    the Resend API with the API key kept server-side, so it can send to any
@@ -164,6 +166,22 @@ export const APP_SHARED_SECRET = "LuOoE-d92AyXMGsCBA0FcQGhKsYRLgs6";
    underneath each program doc so the invitee count is unbounded, rather
    than fixed name_1..5/mail_1..5 slots. */
 export const SESSIONS_COLLECTION = "akhand_path";
+
+/* Builds an absolute URL to another page in this same folder, from whatever
+   page is currently running — e.g. siteFilePath("index.html") or
+   siteFilePath("login.html", "?session=" + id). Several pages need to link
+   to index.html/login.html/admin.html regardless of their own filename
+   (approval emails, "session link" fields, invitee emails); the old pattern
+   of `location.pathname.replace(/admin\.html$/, "index.html")` silently
+   breaks the moment the CURRENT page's own filename changes (as happened
+   when the site moved to the numbered 03-06-01../03-06-02../03-06-03..
+   filenames) — it just returns the path unchanged instead of erroring, so
+   the bug is invisible until someone clicks a wrong link. Deriving the
+   folder path instead of assuming the current filename fixes that for good. */
+export function siteFilePath(filename, suffix) {
+  const dir = window.location.pathname.replace(/[^/]+$/, "");
+  return `${window.location.origin}${dir}${filename}${suffix || ""}`;
+}
 
 /** Returns the next sequential integer ID for a new program doc. */
 export async function nextAkhandPathId() {
