@@ -180,7 +180,23 @@
       }
     });
 
+    // Both panels start `hidden` in the markup and only get shown once this
+    // fires — if Firebase's own script never loads (an ad blocker/privacy
+    // extension blocking Google's auth domain, same class of issue already
+    // seen with YouTube's iframe API on the watch page), onAuthStateChanged
+    // never calls back and the page would stay blank forever. This timeout
+    // falls back to the logged-out panel so the page always shows something
+    // usable, regardless of the cause.
+    let authResolved = false;
+    setTimeout(() => {
+      if (authResolved) return;
+      document.getElementById("loggedOutPanel").hidden = false;
+      document.getElementById("loginStatus").textContent =
+        "Could not reach the login service — this is usually caused by an ad blocker or privacy extension blocking Google's servers. Please check those, or try a different browser/network, then reload.";
+    }, 6000);
+
     onAuthStateChanged(auth, (user) => {
+      authResolved = true;
       const loggedOut = document.getElementById("loggedOutPanel");
       const loggedIn = document.getElementById("loggedInPanel");
 
