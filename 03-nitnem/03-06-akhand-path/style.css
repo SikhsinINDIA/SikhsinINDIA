@@ -134,6 +134,83 @@ h2 {
   margin-top: 4px;
 }
 
+/* ── DEDICATION OCCASION CAPTION — small icon+label line, only shown when
+   the program's purpose matches one of the five themed occasions below.
+   Hidden (empty) by default so it doesn't appear for a plain/unthemed
+   dedication. ── */
+.dedication-occasion {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+/* ── OCCASION THEMES — auto-applied to .dedication-banner based on the
+   program's purpose text (see classifyOccasionTheme in index.html). Each
+   is an original, CSS-only treatment in the spirit of the reference mood
+   board (floral memorial frame / birthday balloons / anniversary bokeh /
+   newborn congratulations / Ik Onkar for Sukh Shanti) rather than a copy
+   of any specific stock template art. ── */
+
+/* 1. Salana Yaad / Barsi — memorial */
+.dedication-banner.theme-memorial {
+  background: linear-gradient(135deg, #fbf6ef 0%, #f3e6da 100%);
+  border-left-color: #b08d57;
+  box-shadow: 0 4px 14px rgba(176, 141, 87, 0.15);
+}
+.theme-memorial .dedication-occasion { color: #8a4a3c; font-style: italic; font-family: 'Playfair Display', serif; }
+.theme-memorial .dedication-photo { border-radius: 50%; border-color: #b08d57; box-shadow: 0 0 0 4px #f3e6da; }
+.theme-memorial .dedication-text .dedication-name { color: #6b3a2e; }
+
+/* 2. Birthday */
+.dedication-banner.theme-birthday {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(247,148,29,0.18) 0 7px, transparent 8px),
+    radial-gradient(circle at 92% 15%, rgba(214,40,40,0.15) 0 6px, transparent 7px),
+    radial-gradient(circle at 85% 85%, rgba(247,148,29,0.18) 0 8px, transparent 9px),
+    linear-gradient(135deg, #fff8ec 0%, #ffedcf 100%);
+  border-left-color: var(--gold);
+}
+.theme-birthday .dedication-occasion { color: #b3660a; }
+.theme-birthday .dedication-photo { border-radius: 50%; box-shadow: 0 0 0 4px #ffe6ad; }
+
+/* 3. New Born Baby */
+.dedication-banner.theme-newborn {
+  background: linear-gradient(135deg, #eef6fb 0%, #fdeef1 100%);
+  border-left-color: #e3a1b5;
+}
+.theme-newborn .dedication-occasion { color: #b5607e; }
+.theme-newborn .dedication-photo { border-radius: 20px; border-color: #e3a1b5; box-shadow: 0 0 0 4px #fdeef1; }
+
+/* 4. Marriage Anniversary */
+.dedication-banner.theme-anniversary {
+  background:
+    radial-gradient(circle at 15% 25%, rgba(255,215,150,0.35) 0 10px, transparent 11px),
+    radial-gradient(circle at 88% 20%, rgba(255,180,180,0.35) 0 8px, transparent 9px),
+    radial-gradient(circle at 75% 80%, rgba(255,215,150,0.35) 0 9px, transparent 10px),
+    linear-gradient(135deg, #fff3e6 0%, #ffe1e6 100%);
+  border-left-color: #c9866b;
+}
+.theme-anniversary .dedication-occasion { color: #9c4a34; }
+.theme-anniversary .dedication-photo { border-radius: 50%; box-shadow: 0 0 0 4px #ffd9c2; }
+
+/* 5. Sukh Shanti of Family — spiritual, dark navy with the site's own gold
+   Ik Onkar watermark rather than any downloaded template art. */
+.dedication-banner.theme-sukhshanti {
+  background:
+    linear-gradient(135deg, rgba(13,27,62,0.94) 0%, rgba(22,33,71,0.94) 100%),
+    url('../../pictures/00-index/01-ek-onkar.png');
+  background-size: cover, 160px;
+  background-position: center, center right -20px;
+  background-repeat: no-repeat, no-repeat;
+  border-left-color: var(--gold);
+}
+.theme-sukhshanti .dedication-occasion { color: var(--gold); }
+.theme-sukhshanti .dedication-text .dedication-name,
+.theme-sukhshanti .dedication-text .dedication-purpose { color: #fff; }
+.theme-sukhshanti .dedication-text .dedication-purpose { color: rgba(255,255,255,0.75); }
+.theme-sukhshanti .dedication-photo { border-radius: 50%; box-shadow: 0 0 0 4px rgba(247,148,29,0.35); }
+
 /* ── MARQUEE — fixed top-right ticker with photo + scrolling name/purpose ── */
 .akhand-marquee {
   position: fixed;

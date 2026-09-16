@@ -58,6 +58,7 @@
       <div class="dedication-banner" id="dedicationBanner" hidden>
         <img class="dedication-photo" id="dedicationPhoto" src="" alt="Honoree photo">
         <div class="dedication-text">
+          <div class="dedication-occasion" id="dedicationOccasion" hidden></div>
           <div class="dedication-label">This Akhand Path is dedicated to</div>
           <div class="dedication-name" id="dedicationName">—</div>
           <div class="dedication-purpose" id="dedicationPurpose">—</div>
@@ -66,7 +67,7 @@
 
       <div id="statusBar" class="status-bar scheduled">Loading Akhand Path session...</div>
 
-      <div class="video-container">
+      <div class="video-container" id="videoContainer">
         <div id="youtube-player"></div>
         <div id="videoFallback" class="video-fallback" hidden>
           ⚠️ The video player could not load. This is usually caused by an ad blocker, browser extension, or
@@ -118,6 +119,7 @@
           Back to Nitnem Path
         </a>
         <a href="request.html" class="btn-back">Sponsor an Akhand Path</a>
+        <a href="my-akhand-path.html" class="btn-back">My Akhand Path</a>
         <div class="footer-left">© 2026 Sikhs in India</div>
         <div class="footer-right">Preserving Sikh Heritage & Unity</div>
       </div>
@@ -128,7 +130,7 @@
     import {
       auth, db, onAuthStateChanged, signOut,
       doc, getDoc, onSnapshot, collection, query, orderBy, limit, getDocs,
-      emailKey, SESSIONS_COLLECTION
+      emailKey, markEndedIfComplete, SESSIONS_COLLECTION
     } from "./firebase.js";
     import { AkhandPathSync, computePosition, formatDurationHM } from "./sync.js";
     import { createAttendanceTracker, watchAttendance, renderAttendanceTable, formatSeconds } from "./attendance.js";
@@ -228,9 +230,7 @@
     const dedicationPhoto = document.getElementById("dedicationPhoto");
     const dedicationName = document.getElementById("dedicationName");
     const dedicationPurpose = document.getElementById("dedicationPurpose");
-    const marquee = document.getElementById("marquee");
-    const marqueePhoto = document.getElementById("marqueePhoto");
-    const marqueeText = document.getElementById("marqueeText");
+    const dedicationOccasion = document.getElementById("dedicationOccasion");
     const statusBar = document.getElementById("statusBar");
     const authStatus = document.getElementById("authStatus");
     const authActions = document.getElementById("authActions");
@@ -305,21 +305,48 @@
       return fallback;
     }
 
-    /* ---------------- RENDER DEDICATION + MARQUEE ---------------- */
-    // function renderDedication(session) {
-    //   const photo = session.photo_url || DEFAULT_PHOTO;
+    /* ---------------- RENDER DEDICATION ---------------- */
+    // The marquee ticker was removed from the markup (see the commented-out
+    // <div class="akhand-marquee"> above) — this only renders the dedication
+    // banner now, not a marquee.
 
-    //   dedicationPhoto.src = photo;
-    //   dedicationName.textContent = session.name || "—";
-    //   dedicationPurpose.textContent = session.purpose ? `On the occasion of: ${session.purpose}` : "";
-    //   dedicationBanner.hidden = false;
+    // Matches the program's free-text purpose against the five themed
+    // occasions (see the theme-* rules in style.css); anything that doesn't
+    // match keeps the plain default banner look.
+    const OCCASION_THEMES = [
+      { cls: "theme-memorial", caption: "🕊️ In Loving Memory", test: /barsi|salana\s*yaad|death\s*anniversary|shraadh|antim\s*ardas/i },
+      { cls: "theme-birthday", caption: "🎂 Happy Birthday", test: /birthday|janam\s*din/i },
+      { cls: "theme-newborn", caption: "👶 Congratulations on the New Arrival", test: /new\s*-?born|naamkaran|naming\s*ceremony/i },
+      { cls: "theme-anniversary", caption: "💍 Happy Marriage Anniversary", test: /marriage\s*anniversary|wedding\s*anniversary|\banniversary\b/i },
+      { cls: "theme-sukhshanti", caption: "🙏 Prayers for Sukh Shanti of the Family", test: /sukh\s*shanti|family'?s?\s*well-?being|family\s*welfare/i }
+    ];
 
-    //   marqueePhoto.src = photo;
-    //   marqueeText.textContent = `🙏 Akhand Path dedicated to ${session.name || ""} — ${session.purpose || ""} 🙏`;
-    //   marquee.hidden = false;
+    function classifyOccasionTheme(purpose) {
+      const text = (purpose || "").trim();
+      if (!text) return null;
+      return OCCASION_THEMES.find((t) => t.test.test(text)) || null;
+    }
 
-    //   document.title = `Akhand Path for ${session.name || ""} | SikhsInIndia.com`;
-    // }
+    function renderDedication(session) {
+      const photo = session.photo_url || DEFAULT_PHOTO;
+
+      dedicationPhoto.src = photo;
+      dedicationName.textContent = session.name || "—";
+      dedicationPurpose.textContent = session.purpose ? `On the occasion of: ${session.purpose}` : "";
+      dedicationBanner.hidden = false;
+
+      OCCASION_THEMES.forEach((t) => dedicationBanner.classList.remove(t.cls));
+      const theme = classifyOccasionTheme(session.purpose);
+      if (theme) {
+        dedicationBanner.classList.add(theme.cls);
+        dedicationOccasion.textContent = theme.caption;
+        dedicationOccasion.hidden = false;
+      } else {
+        dedicationOccasion.hidden = true;
+      }
+
+      document.title = `Akhand Path for ${session.name || ""} | SikhsInIndia.com`;
+    }
 
     /* ---------------- STATUS BAR ---------------- */
     function formatDateTime(ms) {
@@ -345,6 +372,14 @@
       currentPhase = pos.phase;
       statusBar.className = "status-bar " + (pos.phase === "live" ? "live" : pos.phase === "completed" ? "completed" : "scheduled");
 
+      // No video/play button once a program is over (or was never public) —
+      // previously the player just sat frozen on whatever last played.
+      const hideVideo = pos.phase === "completed" || pos.phase === "pending_approval" || pos.phase === "rejected";
+      if (videoContainerEl) videoContainerEl.hidden = hideVideo;
+      if (hideVideo && ytPlayer && ytPlayerReady && typeof ytPlayer.pauseVideo === "function") {
+        try { ytPlayer.pauseVideo(); } catch (err) { /* ignore */ }
+      }
+
       if (pos.phase === "missing") {
         statusBar.textContent = "No Akhand Path session found.";
       } else if (pos.phase === "scheduled") {
@@ -365,7 +400,12 @@
           `<div>🔴 Live now — Path Aarambh: ${aarambh}; Planned Path Samapti: ${samapti}</div>` +
           `<div style="margin-top:4px;">${elapsed} elapsed of ${total} continuous recitation (${percent}% complete, ${remaining} remaining)</div>`;
       } else if (pos.phase === "completed") {
-        statusBar.textContent = "🙏 This Akhand Path has reached Sampurna (completion). Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh.";
+        const completedOn = pos.startMs != null && pos.durationMs != null
+          ? formatDateTime(pos.startMs + pos.durationMs)
+          : null;
+        statusBar.textContent = completedOn
+          ? `🙏 This Akhand Path Sahib Ji is completed on ${completedOn}. Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh.`
+          : "🙏 This Akhand Path has reached Sampurna (completion). Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh.";
       } else if (pos.phase === "pending_approval") {
         statusBar.textContent = "This Akhand Path request is awaiting admin approval and is not yet public.";
       } else if (pos.phase === "rejected") {
@@ -382,7 +422,9 @@
 
     function tickStatus() {
       if (!latestSession) return;
-      renderStatus(computePosition(latestSession, VIDEO_SEQUENCE, PLAYBACK_SPEED));
+      const pos = computePosition(latestSession, VIDEO_SEQUENCE, PLAYBACK_SPEED);
+      renderStatus(pos);
+      markEndedIfComplete(sessionId, latestSession, pos.phase); // fire-and-forget self-heal, see firebase.js
     }
 
     function startStatusTicker() {
@@ -394,6 +436,7 @@
     /* ---------------- YOUTUBE PLAYER ---------------- */
     const videoFallback = document.getElementById("videoFallback");
     const youtubePlayerEl = document.getElementById("youtube-player");
+    const videoContainerEl = document.getElementById("videoContainer");
 
     function showVideoFallback(message) {
       if (message) videoFallback.textContent = message;
@@ -480,7 +523,11 @@
       ytPlayer = new YT.Player("youtube-player", {
         height: "100%",
         width: "100%",
-        videoId: "",
+        // No videoId here on purpose — passing "" made the player try to load
+        // an empty video ID immediately at construction time, before the sync
+        // engine ever attaches, firing a YT error 2 ("invalid parameter")
+        // completely unrelated to whatever track is actually due. Omitting it
+        // leaves the player blank until loadVideoById() is called for real.
         playerVars: {
           autoplay: 1, controls: 1, rel: 0, modestbranding: 1,
           enablejsapi: 1, origin: window.location.origin || "*"
@@ -596,10 +643,9 @@
 
         // A direct link to a still-pending or rejected sponsor request (e.g.
         // guessed/bookmarked before approval) shows a plain status message —
-        // no dedication banner, marquee, or video for a program that isn't public yet.
+        // no dedication banner or video for a program that isn't public yet.
         if (!isPubliclyVisible(latestSession)) {
           dedicationBanner.hidden = true;
-          marquee.hidden = true;
           startStatusTicker();
           return;
         }

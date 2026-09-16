@@ -17,6 +17,7 @@ import {
   deleteDoc,
   addDoc,
   collection,
+  collectionGroup,
   query,
   where,
   orderBy,
@@ -63,6 +64,7 @@ export {
   deleteDoc,
   addDoc,
   collection,
+  collectionGroup,
   query,
   where,
   orderBy,
@@ -170,4 +172,63 @@ export async function nextAkhandPathId() {
   if (snap.empty) return 1;
   const top = snap.docs[0].data();
   return (Number(top.akhand_path_id) || 0) + 1;
+}
+
+/* A program's phase (scheduled/live/completed) is always COMPUTED live from
+   start_at + duration_hours (see sync.js's computePosition) — the stored
+   `status` field is never touched automatically, only by the admin's
+   "End This Session Now" button. That leaves `status` reading "scheduled"
+   forever on a program that's long since finished, which looks broken if
+   you're looking at the raw Firestore data rather than a page that computes
+   the phase itself. This lets any page that's already looking at a session
+   opportunistically self-heal that field once it notices the program is
+   over — safe to call repeatedly or from multiple viewers at once, since
+   it's a no-op once status is already "ended". */
+export async function markEndedIfComplete(sessionId, session, phase) {
+  if (phase !== "completed" || !session) return;
+  if (session.status === "ended" || session.status === "pending_approval" || session.status === "rejected") return;
+  try {
+    await updateDoc(doc(db, SESSIONS_COLLECTION, sessionId), { status: "ended", ended_at: serverTimestamp() });
+  } catch (err) {
+    console.error("Could not auto-mark session as ended:", err);
+  }
+}
+
+/* Finds every program a given email is connected to — either as the sponsor
+   (session.email) or as an invitee (a doc in that session's invitees
+   subcollection, matched on its `mail` field since sponsor/invitee email
+   casing isn't consistently normalized before being stored). Used by the
+   "My Akhand Path" page so a logged-in sponsor/invitee only ever sees the
+   program(s) they actually belong to — never the full public list, and
+   never programs scheduled in parallel by someone else.
+   Fetches the whole sessions collection and the whole "invitees" collection
+   group and filters client-side, rather than a Firestore `where` query —
+   deliberately, since a collection-group query with a filter needs a
+   composite index Firestore won't create until you click a link in a
+   console error the first time it runs, and both collections are small. */
+export async function findMyPrograms(email) {
+  const normalized = (email || "").trim().toLowerCase();
+  if (!normalized) return [];
+
+  const results = new Map();
+
+  const sponsorSnap = await getDocs(collection(db, SESSIONS_COLLECTION));
+  sponsorSnap.forEach((d) => {
+    if ((d.data().email || "").trim().toLowerCase() === normalized) {
+      results.set(d.id, { id: d.id, data: d.data(), role: "sponsor" });
+    }
+  });
+
+  const inviteeSnap = await getDocs(collectionGroup(db, "invitees"));
+  for (const d of inviteeSnap.docs) {
+    if ((d.data().mail || "").trim().toLowerCase() !== normalized) continue;
+    const sessionId = d.ref.parent.parent.id;
+    if (results.has(sessionId)) continue; // already matched as sponsor
+    const sessionSnap = await getDoc(doc(db, SESSIONS_COLLECTION, sessionId));
+    if (sessionSnap.exists()) {
+      results.set(sessionId, { id: sessionId, data: sessionSnap.data(), role: "invitee" });
+    }
+  }
+
+  return Array.from(results.values());
 }

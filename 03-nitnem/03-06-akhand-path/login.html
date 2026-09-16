@@ -76,9 +76,13 @@
 
     const params = new URLSearchParams(window.location.search);
     const sessionId = params.get("session");
-    const redirectTarget = "index.html" + (sessionId ? `?session=${encodeURIComponent(sessionId)}` : "");
+    const guestTarget = "index.html" + (sessionId ? `?session=${encodeURIComponent(sessionId)}` : "");
+    // "Continue as guest" always goes to the public watch page — the
+    // ?redirect= param (e.g. to my-akhand-path.html) only applies once
+    // actually logged in, since that page requires a login to mean anything.
+    const redirectTarget = params.get("redirect") || guestTarget;
 
-    document.getElementById("watchGuestLink").href = redirectTarget;
+    document.getElementById("watchGuestLink").href = guestTarget;
 
     window.login = async () => {
       const email = document.getElementById("email").value.trim();

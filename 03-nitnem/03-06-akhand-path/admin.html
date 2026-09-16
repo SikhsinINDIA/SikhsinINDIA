@@ -234,7 +234,7 @@
       ADMIN_EMAIL, INVITEE_PASSWORD, PURPOSE_SUGGESTIONS,
       EMAILJS_PUBLIC_KEY, EMAILJS_PRIVATE_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID,
       SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET,
-      emailKey, parseInviteeList, SESSIONS_COLLECTION, nextAkhandPathId
+      emailKey, parseInviteeList, markEndedIfComplete, SESSIONS_COLLECTION, nextAkhandPathId
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
     import { watchAttendance, renderAttendanceTable, exportAttendanceCsv } from "./attendance.js";
@@ -321,13 +321,14 @@
     });
 
     /* ---------------- SESSIONS ---------------- */
-    function statusLabel(session) {
+    function statusLabel(sessionId, session) {
       const pos = computePosition(session);
+      markEndedIfComplete(sessionId, session, pos.phase); // fire-and-forget self-heal, see firebase.js
       if (pos.phase === "pending_approval") return "Pending Approval";
       if (pos.phase === "rejected") return "Rejected" + (session.reject_reason ? ` — ${session.reject_reason}` : "");
       if (pos.phase === "live") return `Live (${formatDurationHM(pos.elapsedMs)} elapsed)`;
       if (pos.phase === "scheduled") return `Scheduled (starts in ${formatDurationHM(pos.startsInMs)})`;
-      return "Completed";
+      return session.status === "ended" ? "Ended" : "Completed";
     }
 
     async function loadSessions() {
@@ -351,7 +352,7 @@
           <td>${escapeHtml(s.name || "")}</td>
           <td>${escapeHtml(s.purpose || "")}</td>
           <td>${startLabel}</td>
-          <td>${statusLabel(s)}</td>
+          <td>${statusLabel(d.id, s)}</td>
           <td><button class="btn-back" type="button">Manage</button></td>
         `;
         tr.querySelector("button").addEventListener("click", () => manageSession(d.id, s));

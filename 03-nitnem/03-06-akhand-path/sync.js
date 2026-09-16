@@ -57,9 +57,6 @@ function toMillis(value) {
 export function computePosition(session, videoSequence, playbackSpeed) {
   if (!session) return { phase: "missing" };
 
-  if (session.status === "ended") {
-    return { phase: "completed" };
-  }
   if (session.status === "pending_approval") {
     return { phase: "pending_approval" };
   }
@@ -74,6 +71,13 @@ export function computePosition(session, videoSequence, playbackSpeed) {
   const durationHours = session.duration_hours || 48;
   const durationMs = durationHours * 3600 * 1000;
   const nowMs = Date.now();
+
+  // Checked AFTER computing startMs/durationMs (not as an early return) so a
+  // manually- or auto-ended session still carries the real start/duration —
+  // needed to show "completed on <date>" rather than just a bare phase.
+  if (session.status === "ended") {
+    return { phase: "completed", startMs, durationMs };
+  }
 
   if (nowMs < startMs) {
     return { phase: "scheduled", startsInMs: startMs - nowMs, startMs, durationMs };
