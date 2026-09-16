@@ -1,60 +1,60 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-09-15",
-  "dateDisplay": "15 September 2026",
-  "ang": 731,
-  "raagGurmukhi": "ਰਾਗੁ ਸੂਹੀ",
-  "raagEnglish": "Raag Soohee",
-  "writerEnglish": "Guru Raam Daas Ji",
-  "titleGurmukhi": "ਸੂਹੀ ਮਹਲਾ ੪ ॥",
-  "titleEnglish": "Soohee, Fourth Mehla:",
-  "verseGurmukhi": "ਹਰਿ ਹਰਿ ਨਾਮੁ ਭਜਿਓ ਪੁਰਖੋਤਮੁ ਸਭਿ ਬਿਨਸੇ ਦਾਲਦ ਦਲਘਾ ॥",
-  "verseTranslation": "I chant and vibrate the Name of the Lord God, the Supreme Being, Har, Har; my poverty and problems have all been eradicated.",
+  "date": "2026-09-16",
+  "dateDisplay": "16 September 2026",
+  "ang": 497,
+  "raagGurmukhi": "ਰਾਗੁ ਗੂਜਰੀ",
+  "raagEnglish": "Raag Gujri",
+  "writerEnglish": "Guru Arjan Dev Ji",
+  "titleGurmukhi": "ਗੂਜਰੀ ਮਹਲਾ ੫ ॥",
+  "titleEnglish": "Goojaree, Fifth Mehla:",
+  "verseGurmukhi": "ਜਿਸੁ ਮਾਨੁਖ ਪਹਿ ਕਰਉ ਬੇਨਤੀ ਸੋ ਅਪਨੈ ਦੁਖਿ ਭਰਿਆ ॥",
+  "verseTranslation": "Whoever I approach to ask for help, I find him full of his own troubles.",
   "verses": [
     {
-      "gurmukhi": "ਸੂਹੀ ਮਹਲਾ ੪ ॥",
-      "translation": "Soohee, Fourth Mehla:"
+      "gurmukhi": "ਗੂਜਰੀ ਮਹਲਾ ੫ ॥",
+      "translation": "Goojaree, Fifth Mehla:"
     },
     {
-      "gurmukhi": "ਹਰਿ ਹਰਿ ਨਾਮੁ ਭਜਿਓ ਪੁਰਖੋਤਮੁ ਸਭਿ ਬਿਨਸੇ ਦਾਲਦ ਦਲਘਾ ॥",
-      "translation": "I chant and vibrate the Name of the Lord God, the Supreme Being, Har, Har; my poverty and problems have all been eradicated."
+      "gurmukhi": "ਜਿਸੁ ਮਾਨੁਖ ਪਹਿ ਕਰਉ ਬੇਨਤੀ ਸੋ ਅਪਨੈ ਦੁਖਿ ਭਰਿਆ ॥",
+      "translation": "Whoever I approach to ask for help, I find him full of his own troubles."
     },
     {
-      "gurmukhi": "ਭਉ ਜਨਮ ਮਰਣਾ ਮੇਟਿਓ ਗੁਰ ਸਬਦੀ ਹਰਿ ਅਸਥਿਰੁ ਸੇਵਿ ਸੁਖਿ ਸਮਘਾ ॥੧॥",
-      "translation": "The fear of birth and death has been erased, through the Word of the Guru's Shabad; serving the Unmoving, Unchanging Lord, I am absorbed in peace. ||1||"
+      "gurmukhi": "ਪਾਰਬ੍ਰਹਮੁ ਜਿਨਿ ਰਿਦੈ ਅਰਾਧਿਆ ਤਿਨਿ ਭਉ ਸਾਗਰੁ ਤਰਿਆ ॥੧॥",
+      "translation": "One who worships in his heart the Supreme Lord God, crosses over the terrifying world-ocean. ||1||"
     },
     {
-      "gurmukhi": "ਮੇਰੇ ਮਨ ਭਜੁ ਰਾਮ ਨਾਮ ਅਤਿ ਪਿਰਘਾ ॥",
-      "translation": "O my mind, vibrate the Name of the most Beloved, Darling Lord."
+      "gurmukhi": "ਗੁਰ ਹਰਿ ਬਿਨੁ ਕੋ ਨ ਬ੍ਰਿਥਾ ਦੁਖੁ ਕਾਟੈ ॥",
+      "translation": "No one, except the Guru-Lord, can dispel our pain and sorrow."
     },
     {
-      "gurmukhi": "ਮੈ ਮਨੁ ਤਨੁ ਅਰਪਿ ਧਰਿਓ ਗੁਰ ਆਗੈ ਸਿਰੁ ਵੇਚਿ ਲੀਓ ਮੁਲਿ ਮਹਘਾ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "I have dedicated my mind and body, and placed them in offering before the Guru; I have sold my head to the Guru, for a very dear price. ||1||Pause||"
+      "gurmukhi": "ਪ੍ਰਭੁ ਤਜਿ ਅਵਰ ਸੇਵਕੁ ਜੇ ਹੋਈ ਹੈ ਤਿਤੁ ਮਾਨੁ ਮਹਤੁ ਜਸੁ ਘਾਟੈ ॥੧॥ ਰਹਾਉ ॥",
+      "translation": "Forsaking God, and serving another, one's honor, dignity and reputation are decreased. ||1||Pause||"
     },
     {
-      "gurmukhi": "ਨਰਪਤਿ ਰਾਜੇ ਰੰਗ ਰਸ ਮਾਣਹਿ ਬਿਨੁ ਨਾਵੈ ਪਕੜਿ ਖੜੇ ਸਭਿ ਕਲਘਾ ॥",
-      "translation": "The kings and the rulers of men enjoy pleasures and delights, but without the Name of the Lord, death seizes and dispatches them all."
+      "gurmukhi": "ਮਾਇਆ ਕੇ ਸਨਬੰਧ ਸੈਨ ਸਾਕ ਕਿਤ ਹੀ ਕਾਮਿ ਨ ਆਇਆ ॥",
+      "translation": "Relatives, relations and family bound through Maya are of no avail."
     },
     {
-      "gurmukhi": "ਧਰਮ ਰਾਇ ਸਿਰਿ ਡੰਡੁ ਲਗਾਨਾ ਫਿਰਿ ਪਛੁਤਾਨੇ ਹਥ ਫਲਘਾ ॥੨॥",
-      "translation": "The Righteous Judge of Dharma strikes them over the heads with his staff, and when the fruits of their actions come into their hands, then they regret and repent. ||2||"
+      "gurmukhi": "ਹਰਿ ਕਾ ਦਾਸੁ ਨੀਚ ਕੁਲੁ ਊਚਾ ਤਿਸੁ ਸੰਗਿ ਮਨ ਬਾਂਛਤ ਫਲ ਪਾਇਆ ॥੨॥",
+      "translation": "The Lord's servant, although of lowly birth, is exalted. Associating with him, one obtains the fruits of his mind's desires. ||2||"
     },
     {
-      "gurmukhi": "ਹਰਿ ਰਾਖੁ ਰਾਖੁ ਜਨ ਕਿਰਮ ਤੁਮਾਰੇ ਸਰਣਾਗਤਿ ਪੁਰਖ ਪ੍ਰਤਿਪਲਘਾ ॥",
-      "translation": "Save me, save me, Lord; I am Your humble servant, a mere worm. I seek the Protection of Your Sanctuary, O Primal Lord, Cherisher and Nourisher."
+      "gurmukhi": "ਲਾਖ ਕੋਟਿ ਬਿਖਿਆ ਕੇ ਬਿੰਜਨ ਤਾ ਮਹਿ ਤ੍ਰਿਸਨ ਨ ਬੂਝੀ ॥",
+      "translation": "Through corruption, one may obtain thousands and millions of enjoyments, but even so, his desires are not satisfied through them."
     },
     {
-      "gurmukhi": "ਦਰਸਨੁ ਸੰਤ ਦੇਹੁ ਸੁਖੁ ਪਾਵੈ ਪ੍ਰਭ ਲੋਚ ਪੂਰਿ ਜਨੁ ਤੁਮਘਾ ॥੩॥",
-      "translation": "Please bless me with the Blessed Vision of the Saint's Darshan, that I may find peace. O God, please fulfill the desires of Your humble servant. ||3||"
+      "gurmukhi": "ਸਿਮਰਤ ਨਾਮੁ ਕੋਟਿ ਉਜੀਆਰਾ ਬਸਤੁ ਅਗੋਚਰ ਸੂਝੀ ॥੩॥",
+      "translation": "Remembering the Naam, the Name of the Lord, millions of lights appear, and the incomprehensible is understood. ||3||"
     },
     {
-      "gurmukhi": "ਤੁਮ ਸਮਰਥ ਪੁਰਖ ਵਡੇ ਪ੍ਰਭ ਸੁਆਮੀ ਮੋ ਕਉ ਕੀਜੈ ਦਾਨੁ ਹਰਿ ਨਿਮਘਾ ॥",
-      "translation": "You are the All-powerful, Great, Primal God, my Lord and Master. O Lord, please bless me with the gift of humility."
+      "gurmukhi": "ਫਿਰਤ ਫਿਰਤ ਤੁਮੑਰੈ ਦੁਆਰਿ ਆਇਆ ਭੈ ਭੰਜਨ ਹਰਿ ਰਾਇਆ ॥",
+      "translation": "Wandering and roaming around, I have come to Your Door, Destroyer of fear, O Lord King."
     },
     {
-      "gurmukhi": "ਜਨ ਨਾਨਕ ਨਾਮੁ ਮਿਲੈ ਸੁਖੁ ਪਾਵੈ ਹਮ ਨਾਮ ਵਿਟਹੁ ਸਦ ਘੁਮਘਾ ॥੪॥੨॥",
-      "translation": "Servant Nanak has found the Naam, the Name of the Lord, and is at peace; I am forever a sacrifice to the Naam. ||4||2||"
+      "gurmukhi": "ਸਾਧ ਕੇ ਚਰਨ ਧੂਰਿ ਜਨੁ ਬਾਛੈ ਸੁਖੁ ਨਾਨਕ ਇਹੁ ਪਾਇਆ ॥੪॥੬॥੭॥",
+      "translation": "Servant Nanak yearns for the dust of the feet of the Holy; in it, he finds peace. ||4||6||7||"
     }
   ],
-  "updated": "2026-09-15T06:19:36.053Z"
+  "updated": "2026-09-16T06:17:53.931Z"
 };
