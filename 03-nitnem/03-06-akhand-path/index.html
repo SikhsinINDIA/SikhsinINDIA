@@ -130,7 +130,7 @@
     import {
       auth, db, onAuthStateChanged, signOut,
       doc, getDoc, onSnapshot, collection, query, orderBy, limit, getDocs,
-      emailKey, markEndedIfComplete, SESSIONS_COLLECTION
+      emailKey, markEndedIfComplete, driveImageUrl, SESSIONS_COLLECTION
     } from "./firebase.js";
     import { AkhandPathSync, computePosition, formatDurationHM } from "./sync.js";
     import { createAttendanceTracker, watchAttendance, renderAttendanceTable, formatSeconds } from "./attendance.js";
@@ -344,7 +344,7 @@
     }
 
     function renderDedication(session) {
-      const photo = session.photo_url || DEFAULT_PHOTO;
+      const photo = driveImageUrl(session.photo_url) || DEFAULT_PHOTO;
 
       dedicationPhoto.src = photo;
       dedicationName.textContent = session.name || "—";

@@ -95,7 +95,7 @@
   <script type="module">
     import {
       auth, onAuthStateChanged, signOut, signInWithEmailAndPassword,
-      findMyPrograms
+      findMyPrograms, driveImageUrl
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
 
@@ -148,7 +148,7 @@
         const card = document.createElement("div");
         card.className = "card program-card";
         card.innerHTML = `
-          <img class="program-photo" src="${escapeHtml(s.photo_url || DEFAULT_PHOTO)}" alt="">
+          <img class="program-photo" src="${escapeHtml(driveImageUrl(s.photo_url) || DEFAULT_PHOTO)}" alt="">
           <div class="program-info">
             <div class="card-title">${escapeHtml(s.name || "Untitled")} — ${escapeHtml(s.purpose || "")}</div>
             <p class="muted">Start: ${startLabel}</p>

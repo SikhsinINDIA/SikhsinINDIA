@@ -201,7 +201,7 @@
     import {
       doc, setDoc, serverTimestamp, Timestamp,
       PURPOSE_SUGGESTIONS, SESSIONS_COLLECTION, nextAkhandPathId, db,
-      SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET, ADMIN_EMAIL, parseInviteeList, siteFilePath, textToEmailHtml
+      SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET, ADMIN_EMAIL, parseInviteeList, siteFilePath, textToEmailHtml, driveImageUrl
     } from "./firebase.js";
 
     // Best-effort notification to the admin that a request is waiting —
@@ -386,7 +386,7 @@ ${data.sponsor}`;
         let photoUrl = "";
         if (photoFile) {
           status.textContent = "Uploading photo...";
-          photoUrl = await uploadPhotoToDrive(photoFile, getTimestampFolder("AkhandPath"));
+          photoUrl = driveImageUrl(await uploadPhotoToDrive(photoFile, getTimestampFolder("AkhandPath")));
           status.textContent = "Submitting your request...";
         }
 

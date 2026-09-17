@@ -121,6 +121,23 @@ export function parseInviteeList(rawText) {
   return text.split(/[\n,]+/).map((s) => s.trim()).filter(Boolean).map(deriveInviteeFromEmail);
 }
 
+/* The Apps Script Drive upload (used for honoree photos) returns a file's
+   normal "view" URL — https://drive.google.com/file/d/ID/view?usp=drivesdk —
+   which works fine as a link a person clicks, but NOT as an <img src>: it's
+   an HTML viewer page, not the raw image bytes, so the browser just shows a
+   broken-image icon. Drive's /thumbnail endpoint serves the actual image
+   data and is what every photo_url needs to go through before being put in
+   an <img> tag. Non-Drive URLs (or already-thumbnail ones) pass through
+   unchanged, so this is safe to call on anything. Applied both when storing
+   a newly uploaded photo_url and again at every display site, so it also
+   self-heals any already-stored "view"-format URLs from before this fix. */
+export function driveImageUrl(url) {
+  if (!url) return url;
+  const match = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+  if (!match) return url;
+  return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`;
+}
+
 /* All emails from this app (approval, invite, admin notification) are built
    as plain text and sent to the Cloudflare Worker's `text` field. Several
    email clients — Outlook in particular — don't reliably render single line
