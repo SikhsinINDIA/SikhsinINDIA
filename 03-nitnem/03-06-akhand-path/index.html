@@ -257,7 +257,23 @@
       return data.status !== "pending_approval" && data.status !== "rejected";
     }
 
+    // Browsing/jumping between every public program is an admin-only
+    // capability (the hub's own "Watch the Live Akhand Path" link was
+    // removed for the same reason) — a sponsor/invitee following their own
+    // email link should land on their program with no way to wander into
+    // someone else's. This picker predates that decision and was never
+    // restricted, so it's now shown only when the admin password gate's own
+    // session flag is set (see 03-06-03-admin-akhand-path.html), not to any
+    // logged-in Firestore user.
+    function isAdminSession() {
+      try { return sessionStorage.getItem("akhandPathAdminAuthed") === "1"; } catch (err) { return false; }
+    }
+
     async function populateSessionPicker() {
+      if (!isAdminSession()) {
+        document.getElementById("sessionPicker-bar").hidden = true;
+        return;
+      }
       try {
         const q = query(collection(db, SESSIONS_COLLECTION), orderBy("start_at", "desc"), limit(30));
         const snap = await getDocs(q);
