@@ -421,6 +421,12 @@
       manageSession(sessionId, session);
 
       try {
+        await ensureSponsorAccount(session.email);
+      } catch (err) {
+        alert("The program was approved, but the sponsor's login account could not be created: " + errText(err));
+      }
+
+      try {
         await sendApprovalEmail(sessionId, session);
       } catch (err) {
         alert("The program was approved, but the approval email to the sponsor could not be sent: " + (err.message || err));
@@ -470,6 +476,22 @@
         : "To be added by admin.";
     }
 
+    // Only invitees ever got a login account auto-created on approval — the
+    // sponsor themselves did not, so unless their email happened to already
+    // have an account from being someone else's invitee too, they had no way
+    // to log in to "My Akhand Path" at all. This gives the sponsor the same
+    // shared-password account invitees get, via the same secondary-app
+    // pattern so it doesn't sign the admin out.
+    async function ensureSponsorAccount(email) {
+      if (!email) return;
+      try {
+        await createUserWithEmailAndPassword(provisioningAuth, email, INVITEE_PASSWORD);
+      } catch (err) {
+        if (err.code !== "auth/email-already-in-use") throw err;
+        // Already has a login (e.g. from being invited elsewhere) — fine, same shared password.
+      }
+    }
+
     async function sendApprovalEmail(sessionId, session) {
       const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : new Date();
       const durationHours = session.duration_hours || 48;
@@ -491,6 +513,8 @@ Invitees:
 ${buildInviteeLines(session)}
 
 Session Link: ${sessionLinkFor(sessionId)}
+Your login ID: ${session.email || ""} and password is "${INVITEE_PASSWORD}"
+Use these to log in at ${siteFilePath("03-06-02-participate-in-akhand-path.html")} to track attendance and manage your program.
 
 Akhand Paath is a deeply meaningful practice in Sikhism, far surpassing a mere religious ritual; it represents a profound spiritual journey, demonstrating their spiritual dedication.
 
