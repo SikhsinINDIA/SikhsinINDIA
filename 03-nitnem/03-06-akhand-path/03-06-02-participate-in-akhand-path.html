@@ -27,7 +27,10 @@
     .pill.pending_approval { background:#fff7e6; color:#8a5a00; }
     .pill.rejected { background:#fdeaea; color:#a11; }
     .program-card { display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
-    .program-photo { width:72px; height:72px; border-radius:10px; object-fit:cover; border:3px solid var(--gold); background:var(--cream); flex-shrink:0; }
+    /* Frame is separate from the <img> so a saved zoom/pan (set by admin)
+       scales the photo, not the frame around it. */
+    .program-photo-frame { width:72px; height:72px; border-radius:10px; border:3px solid var(--gold); background:var(--cream); flex-shrink:0; overflow:hidden; }
+    .program-photo { width:100%; height:100%; object-fit:cover; display:block; }
     .program-info { flex:1; min-width:200px; }
     .program-role { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#888; font-weight:700; margin-top:4px; }
   </style>
@@ -145,10 +148,17 @@
         const startLabel = s.start_at && s.start_at.toDate ? formatFullDateTime(s.start_at.toDate()) : "—";
         const canView = info.pill === "live" || info.pill === "scheduled" || info.pill === "completed";
 
+        const offsetX = s.photo_offset_x != null ? s.photo_offset_x : 50;
+        const offsetY = s.photo_offset_y != null ? s.photo_offset_y : 50;
+        const zoom = s.photo_zoom || 1;
+
         const card = document.createElement("div");
         card.className = "card program-card";
         card.innerHTML = `
-          <img class="program-photo" src="${escapeHtml(driveImageUrl(s.photo_url) || DEFAULT_PHOTO)}" alt="">
+          <div class="program-photo-frame">
+            <img class="program-photo" src="${escapeHtml(driveImageUrl(s.photo_url) || DEFAULT_PHOTO)}"
+              style="object-position:${offsetX}% ${offsetY}%;transform:scale(${zoom});" alt="">
+          </div>
           <div class="program-info">
             <div class="card-title">${escapeHtml(s.name || "Untitled")} — ${escapeHtml(s.purpose || "")}</div>
             <p class="muted">Start: ${startLabel}</p>

@@ -131,6 +131,37 @@
             <button class="btn-back" style="margin-top:8px;" onclick="endSessionEarly()">End This Session Now</button>
           </div>
 
+          <h2>Honoree Photo</h2>
+          <div class="card">
+            <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;">
+              <div id="photoAdjustFrame" style="width:140px;height:140px;border-radius:14px;border:3px solid var(--gold);overflow:hidden;background:var(--cream);flex-shrink:0;">
+                <img id="photoAdjustImg" style="width:100%;height:100%;object-fit:cover;display:block;" src="" alt="">
+              </div>
+              <div style="flex:1;min-width:220px;">
+                <p class="muted" style="margin-bottom:12px;">Shift or zoom so the full photo shows correctly wherever it's
+                  displayed on the site. Preview updates live; click Save to apply.</p>
+                <div style="display:grid;grid-template-columns:repeat(3,42px);gap:4px;margin-bottom:14px;">
+                  <span></span>
+                  <button type="button" class="btn-control" id="photoUp">▲</button>
+                  <span></span>
+                  <button type="button" class="btn-control" id="photoLeft">◀</button>
+                  <span></span>
+                  <button type="button" class="btn-control" id="photoRight">▶</button>
+                  <span></span>
+                  <button type="button" class="btn-control" id="photoDown">▼</button>
+                  <span></span>
+                </div>
+                <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+                  <button type="button" class="btn-control" id="photoZoomOut">Zoom −</button>
+                  <button type="button" class="btn-control" id="photoZoomIn">Zoom +</button>
+                  <button type="button" class="btn-control" id="photoReset">Reset</button>
+                </div>
+                <button class="btn-action" id="photoSaveBtn" type="button" style="width:auto;">Save Photo Position</button>
+                <p id="photoAdjustStatus" class="muted" style="margin-top:8px;min-height:18px;"></p>
+              </div>
+            </div>
+          </div>
+
           <h2>Invitees</h2>
           <div class="card">
             <div class="form-grid">
@@ -203,7 +234,7 @@
       ADMIN_EMAIL, INVITEE_PASSWORD, PURPOSE_SUGGESTIONS,
       EMAILJS_PUBLIC_KEY, EMAILJS_PRIVATE_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID,
       SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET,
-      emailKey, parseInviteeList, markEndedIfComplete, siteFilePath, textToEmailHtml, SESSIONS_COLLECTION, nextAkhandPathId
+      emailKey, parseInviteeList, markEndedIfComplete, siteFilePath, textToEmailHtml, driveImageUrl, SESSIONS_COLLECTION, nextAkhandPathId
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
     import { watchAttendance, renderAttendanceTable, exportAttendanceCsv } from "./attendance.js";
@@ -644,10 +675,57 @@ Email: ${ADMIN_EMAIL}`;
       document.getElementById("manageTitle").textContent = `${data.name} — ${data.purpose}`;
       document.getElementById("manageLink").value = sessionLinkFor(sessionId);
 
+      initPhotoAdjust(data);
       watchInvitees(sessionId);
       watchSessionAttendance(sessionId);
       document.getElementById("managePanel").scrollIntoView({ behavior: "smooth" });
     }
+
+    /* ---------------- HONOREE PHOTO POSITION ---------------- */
+    const DEFAULT_PHOTO = "../../pictures/00-index/sikhsinindia.png";
+    let photoAdjust = { x: 50, y: 50, zoom: 1 };
+
+    function applyPhotoAdjustPreview() {
+      const img = document.getElementById("photoAdjustImg");
+      img.style.objectPosition = `${photoAdjust.x}% ${photoAdjust.y}%`;
+      img.style.transform = `scale(${photoAdjust.zoom})`;
+    }
+
+    function initPhotoAdjust(data) {
+      document.getElementById("photoAdjustImg").src = driveImageUrl(data.photo_url) || DEFAULT_PHOTO;
+      photoAdjust = {
+        x: data.photo_offset_x != null ? data.photo_offset_x : 50,
+        y: data.photo_offset_y != null ? data.photo_offset_y : 50,
+        zoom: data.photo_zoom || 1
+      };
+      document.getElementById("photoAdjustStatus").textContent = "";
+      applyPhotoAdjustPreview();
+    }
+
+    const PHOTO_NUDGE = 8; // percent per click
+    document.getElementById("photoUp").addEventListener("click", () => { photoAdjust.y = Math.max(0, photoAdjust.y - PHOTO_NUDGE); applyPhotoAdjustPreview(); });
+    document.getElementById("photoDown").addEventListener("click", () => { photoAdjust.y = Math.min(100, photoAdjust.y + PHOTO_NUDGE); applyPhotoAdjustPreview(); });
+    document.getElementById("photoLeft").addEventListener("click", () => { photoAdjust.x = Math.max(0, photoAdjust.x - PHOTO_NUDGE); applyPhotoAdjustPreview(); });
+    document.getElementById("photoRight").addEventListener("click", () => { photoAdjust.x = Math.min(100, photoAdjust.x + PHOTO_NUDGE); applyPhotoAdjustPreview(); });
+    document.getElementById("photoZoomIn").addEventListener("click", () => { photoAdjust.zoom = Math.min(3, +(photoAdjust.zoom + 0.15).toFixed(2)); applyPhotoAdjustPreview(); });
+    document.getElementById("photoZoomOut").addEventListener("click", () => { photoAdjust.zoom = Math.max(1, +(photoAdjust.zoom - 0.15).toFixed(2)); applyPhotoAdjustPreview(); });
+    document.getElementById("photoReset").addEventListener("click", () => { photoAdjust = { x: 50, y: 50, zoom: 1 }; applyPhotoAdjustPreview(); });
+
+    document.getElementById("photoSaveBtn").addEventListener("click", async () => {
+      if (!activeSessionId) return;
+      const status = document.getElementById("photoAdjustStatus");
+      status.textContent = "Saving...";
+      try {
+        await updateDoc(doc(db, SESSIONS_COLLECTION, activeSessionId), {
+          photo_offset_x: photoAdjust.x,
+          photo_offset_y: photoAdjust.y,
+          photo_zoom: photoAdjust.zoom
+        });
+        status.textContent = "Saved.";
+      } catch (err) {
+        status.textContent = "Could not save: " + (err.message || err);
+      }
+    });
 
     /* ---------------- INVITEES ---------------- */
     function watchInvitees(sessionId) {

@@ -56,7 +56,9 @@
 
       <!-- DEDICATION BANNER — honoree name/photo/purpose, always visible -->
       <div class="dedication-banner" id="dedicationBanner" hidden>
-        <img class="dedication-photo" id="dedicationPhoto" src="" alt="Honoree photo">
+        <div class="dedication-photo-frame">
+          <img class="dedication-photo" id="dedicationPhoto" src="" alt="Honoree photo">
+        </div>
         <div class="dedication-text">
           <div class="dedication-occasion" id="dedicationOccasion" hidden></div>
           <div class="dedication-label">This Akhand Path is dedicated to</div>
@@ -347,6 +349,13 @@
       const photo = driveImageUrl(session.photo_url) || DEFAULT_PHOTO;
 
       dedicationPhoto.src = photo;
+      // Admin-adjustable framing (see 03-06-03-admin-akhand-path.html's
+      // "Honoree Photo" panel) — defaults to centered, no zoom, if unset.
+      const offsetX = session.photo_offset_x != null ? session.photo_offset_x : 50;
+      const offsetY = session.photo_offset_y != null ? session.photo_offset_y : 50;
+      const zoom = session.photo_zoom || 1;
+      dedicationPhoto.style.objectPosition = `${offsetX}% ${offsetY}%`;
+      dedicationPhoto.style.transform = `scale(${zoom})`;
       dedicationName.textContent = session.name || "—";
       dedicationPurpose.textContent = session.purpose ? `On the occasion of: ${session.purpose}` : "";
       dedicationBanner.hidden = false;

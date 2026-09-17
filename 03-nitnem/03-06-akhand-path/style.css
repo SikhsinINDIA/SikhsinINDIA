@@ -101,14 +101,25 @@ h2 {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
 }
 
-.dedication-photo {
+/* Frame (fixed size/border/shape) is a separate element from the <img>
+   itself so the photo can be zoomed/panned via object-position + transform
+   on the img without the frame's border/border-radius/box-shadow scaling
+   along with it — see the admin's photo-position controls. */
+.dedication-photo-frame {
   width: 84px;
   height: 84px;
   border-radius: 12px;
-  object-fit: cover;
   border: 3px solid var(--gold);
   flex-shrink: 0;
   background: var(--cream);
+  overflow: hidden;
+}
+
+.dedication-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .dedication-text .dedication-label {
@@ -159,7 +170,7 @@ h2 {
   box-shadow: 0 4px 14px rgba(176, 141, 87, 0.15);
 }
 .theme-memorial .dedication-occasion { color: #8a4a3c; font-style: italic; font-family: 'Playfair Display', serif; }
-.theme-memorial .dedication-photo { border-radius: 14px; border-color: #b08d57; box-shadow: 0 0 0 4px #f3e6da; }
+.theme-memorial .dedication-photo-frame { border-color: #b08d57; box-shadow: 0 0 0 4px #f3e6da; }
 .theme-memorial .dedication-text .dedication-name { color: #6b3a2e; }
 
 /* 2. Birthday */
@@ -172,7 +183,7 @@ h2 {
   border-left-color: var(--gold);
 }
 .theme-birthday .dedication-occasion { color: #b3660a; }
-.theme-birthday .dedication-photo { border-radius: 14px; box-shadow: 0 0 0 4px #ffe6ad; }
+.theme-birthday .dedication-photo-frame { box-shadow: 0 0 0 4px #ffe6ad; }
 
 /* 3. New Born Baby */
 .dedication-banner.theme-newborn {
@@ -180,7 +191,7 @@ h2 {
   border-left-color: #e3a1b5;
 }
 .theme-newborn .dedication-occasion { color: #b5607e; }
-.theme-newborn .dedication-photo { border-radius: 20px; border-color: #e3a1b5; box-shadow: 0 0 0 4px #fdeef1; }
+.theme-newborn .dedication-photo-frame { border-radius: 20px; border-color: #e3a1b5; box-shadow: 0 0 0 4px #fdeef1; }
 
 /* 4. Marriage Anniversary */
 .dedication-banner.theme-anniversary {
@@ -192,7 +203,7 @@ h2 {
   border-left-color: #c9866b;
 }
 .theme-anniversary .dedication-occasion { color: #9c4a34; }
-.theme-anniversary .dedication-photo { border-radius: 14px; box-shadow: 0 0 0 4px #ffd9c2; }
+.theme-anniversary .dedication-photo-frame { box-shadow: 0 0 0 4px #ffd9c2; }
 
 /* 5. Sukh Shanti of Family — spiritual, dark navy with the site's own gold
    Ik Onkar watermark rather than any downloaded template art. */
@@ -209,7 +220,7 @@ h2 {
 .theme-sukhshanti .dedication-text .dedication-name,
 .theme-sukhshanti .dedication-text .dedication-purpose { color: #fff; }
 .theme-sukhshanti .dedication-text .dedication-purpose { color: rgba(255,255,255,0.75); }
-.theme-sukhshanti .dedication-photo { border-radius: 14px; box-shadow: 0 0 0 4px rgba(247,148,29,0.35); }
+.theme-sukhshanti .dedication-photo-frame { box-shadow: 0 0 0 4px rgba(247,148,29,0.35); }
 
 /* ── MARQUEE — fixed top-right ticker with photo + scrolling name/purpose ── */
 .akhand-marquee {
