@@ -121,6 +121,30 @@ export function parseInviteeList(rawText) {
   return text.split(/[\n,]+/).map((s) => s.trim()).filter(Boolean).map(deriveInviteeFromEmail);
 }
 
+/* All emails from this app (approval, invite, admin notification) are built
+   as plain text and sent to the Cloudflare Worker's `text` field. Several
+   email clients — Outlook in particular — don't reliably render single line
+   breaks in plain text, so lines that were typed on separate lines in the
+   template arrive collapsed into one dense paragraph. Sending an `html`
+   version alongside `text` (most clients prefer html when both are present)
+   fixes that: blank-line-separated blocks become real paragraphs with
+   spacing, single newlines become <br>, and bare URLs stay clickable links
+   instead of being escaped into plain text. */
+export function textToEmailHtml(text) {
+  const escape = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const paragraphs = String(text)
+    .split(/\n{2,}/)
+    .map((para) => {
+      const withLinks = escape(para).replace(
+        /(https?:\/\/[^\s<]+)/g,
+        (url) => `<a href="${url}" style="color:#0d1b3e;">${url}</a>`
+      );
+      return `<p style="margin:0 0 16px;">${withLinks.replace(/\n/g, "<br>")}</p>`;
+    })
+    .join("");
+  return `<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.7;color:#222;">${paragraphs}</div>`;
+}
+
 /* The video sequence itself is hardcoded in index.html (not stored per-session
    in Firestore) — every program plays the same fixed playlist, so there's
    nothing session-specific to configure. See VIDEO_SEQUENCE in index.html. */

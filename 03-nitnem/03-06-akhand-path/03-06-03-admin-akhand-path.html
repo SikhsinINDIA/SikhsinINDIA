@@ -25,7 +25,6 @@
     .pill.sent { background:#e6f7ec; color:#146c3a; }
     .pill.pending { background:#fff7e6; color:#8a5a00; }
     .pill.error { background:#fdeaea; color:#a11; }
-    #adminPanel { display: none; }
   </style>
 
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -46,41 +45,11 @@
 
     <div class="wrapper">
 
-      <!-- LOGIN / BOOTSTRAP -->
-      <div id="loginPanel">
-        <h2>Admin Login</h2>
-        <p class="muted" id="restrictedToLabel" style="margin-bottom:14px;"></p>
-
-        <div class="form-row">
-          <label>Email</label>
-          <input id="loginEmail" type="email" readonly style="background:#eee;">
-        </div>
-        <div class="form-row">
-          <label>Password</label>
-          <input id="loginPassword" type="password" placeholder="Password">
-        </div>
-        <button class="btn-action" onclick="adminLogin()">Login</button>
-        <p id="loginStatus" class="muted" style="text-align:center;margin-top:10px;min-height:18px;"></p>
-
-        <div class="nav-link-wrap">
-          <a class="nav-link" href="#" id="showBootstrap">First time — create the admin account</a>
-        </div>
-
-        <div id="bootstrapForm" hidden style="margin-top:18px;border-top:1px dashed rgba(0,0,0,0.15);padding-top:18px;">
-          <h2>Create Admin Account (one time only)</h2>
-          <div class="form-row">
-            <label>Password</label>
-            <input id="bootstrapPassword" type="password" placeholder="Choose a password (min 6 characters)">
-          </div>
-          <button class="btn-action" onclick="adminBootstrap()">Create Admin Account</button>
-        </div>
-      </div>
-
       <!-- ADMIN PANEL -->
       <div id="adminPanel">
 
         <div class="card">
-          <div class="card-title">Logged in as <span id="adminEmailLabel"></span></div>
+          <div class="card-title">Admin</div>
           <button class="btn-back" onclick="adminLogout()">Logout</button>
         </div>
 
@@ -227,14 +196,14 @@
 
   <script type="module">
     import {
-      auth, db, provisioningAuth,
-      signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut,
+      db, provisioningAuth,
+      createUserWithEmailAndPassword,
       doc, setDoc, getDoc, updateDoc, collection, query, where, orderBy, limit, getDocs, onSnapshot,
       serverTimestamp, Timestamp,
       ADMIN_EMAIL, INVITEE_PASSWORD, PURPOSE_SUGGESTIONS,
       EMAILJS_PUBLIC_KEY, EMAILJS_PRIVATE_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID,
       SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET,
-      emailKey, parseInviteeList, markEndedIfComplete, siteFilePath, SESSIONS_COLLECTION, nextAkhandPathId
+      emailKey, parseInviteeList, markEndedIfComplete, siteFilePath, textToEmailHtml, SESSIONS_COLLECTION, nextAkhandPathId
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
     import { watchAttendance, renderAttendanceTable, exportAttendanceCsv } from "./attendance.js";
@@ -255,9 +224,6 @@
     let unsubAttendance = null;
     let unsubInvitees = null;
 
-    document.getElementById("loginEmail").value = ADMIN_EMAIL;
-    document.getElementById("restrictedToLabel").textContent = `Restricted to ${ADMIN_EMAIL} only.`;
-
     /* ---------------- PURPOSE SUGGESTIONS ---------------- */
     const purposeList = document.getElementById("purposeSuggestions");
     PURPOSE_SUGGESTIONS.forEach((p) => {
@@ -266,59 +232,30 @@
       purposeList.appendChild(opt);
     });
 
-    /* ---------------- AUTH ---------------- */
-    window.adminLogin = async () => {
-      const email = document.getElementById("loginEmail").value.trim();
-      const password = document.getElementById("loginPassword").value;
-      const status = document.getElementById("loginStatus");
-      if (!password) { status.textContent = "Enter the password."; return; }
-      status.textContent = "Logging in...";
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-      } catch (err) {
-        status.textContent = "Login failed: " + err.message;
-      }
+    /* ---------------- AUTH ----------------
+       The only gate on this page now is the simple password screen at
+       03-06a-password-akhand-path.html, which sets this sessionStorage flag
+       on success. Firebase Auth (a second, separate login) used to also
+       gate this page — removed at the user's request to keep a single
+       password. This check is what makes that gate actually mean something:
+       without it, navigating straight to this page's URL would skip the
+       password screen entirely, since 03-06a is only a UI-flow front door,
+       not something that can block direct access on its own.
+       NOTE: this is still just a client-side flag, not real authentication —
+       anyone who knows (or reads) this page's URL and code can set it
+       themselves via DevTools. It deters casual browsing, not a determined
+       visitor. */
+    if (sessionStorage.getItem("akhandPathAdminAuthed") !== "1") {
+      window.location.href = "./03-06a-password-akhand-path.html";
+    } else {
+      loadPendingRequests();
+      loadSessions();
+    }
+
+    window.adminLogout = () => {
+      sessionStorage.removeItem("akhandPathAdminAuthed");
+      window.location.href = "./03-06a-password-akhand-path.html";
     };
-
-    document.getElementById("showBootstrap").addEventListener("click", (e) => {
-      e.preventDefault();
-      document.getElementById("bootstrapForm").hidden = false;
-    });
-
-    window.adminBootstrap = async () => {
-      const password = document.getElementById("bootstrapPassword").value;
-      const status = document.getElementById("loginStatus");
-      if (!password || password.length < 6) { status.textContent = "Password must be at least 6 characters."; return; }
-      status.textContent = "Creating admin account...";
-      try {
-        await createUserWithEmailAndPassword(auth, ADMIN_EMAIL, password);
-        status.textContent = "Admin account created and logged in.";
-      } catch (err) {
-        status.textContent = "Could not create admin account: " + err.message;
-      }
-    };
-
-    window.adminLogout = async () => { await signOut(auth); };
-
-    onAuthStateChanged(auth, (user) => {
-      const loginPanel = document.getElementById("loginPanel");
-      const adminPanel = document.getElementById("adminPanel");
-
-      if (user && user.email === ADMIN_EMAIL) {
-        loginPanel.style.display = "none";
-        adminPanel.style.display = "block";
-        document.getElementById("adminEmailLabel").textContent = user.email;
-        loadPendingRequests();
-        loadSessions();
-      } else {
-        adminPanel.style.display = "none";
-        loginPanel.style.display = "block";
-        if (user && user.email !== ADMIN_EMAIL) {
-          document.getElementById("loginStatus").textContent =
-            `"${user.email}" is not authorized to administer Akhand Path. Please log out and use the admin account.`;
-        }
-      }
-    });
 
     /* ---------------- SESSIONS ---------------- */
     function statusLabel(sessionId, session) {
@@ -411,8 +348,7 @@
       if (!confirm("Approve this sponsor request? It will become visible on the public Akhand Path page and an approval email will be sent to the sponsor.")) return;
       await updateDoc(doc(db, SESSIONS_COLLECTION, sessionId), {
         status: "scheduled",
-        approved_at: serverTimestamp(),
-        approved_by: auth.currentUser.uid
+        approved_at: serverTimestamp()
       });
       await loadPendingRequests();
       await loadSessions();
@@ -458,7 +394,7 @@
       const res = await fetch(SEND_EMAIL_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", "X-App-Secret": APP_SHARED_SECRET },
-        body: JSON.stringify({ to, subject, text })
+        body: JSON.stringify({ to, subject, text, html: textToEmailHtml(text) })
       });
       if (!res.ok) {
         const detail = await res.text().catch(() => "");
@@ -505,14 +441,18 @@ Waheguru ji ka Khalsa, Waheguru ji ki Fateh!
 Your request for Akhand Path has been approved. Please find below the details:
 
 Path in the name of: ${session.name || ""} on occasion of ${session.purpose || ""}, sponsored by: ${session.sponsor || ""}
+
 Email: ${session.email || ""} ; Mobile: ${session.mobie || ""}
+
 Aaramb / Start Date and Time: ${formatFullDateTime(start)}
+
 Samapti / Planned Completion Date and Time: ${formatFullDateTime(samapti)}
 
 Invitees:
 ${buildInviteeLines(session)}
 
 Session Link: ${sessionLinkFor(sessionId)}
+
 Your login ID: ${session.email || ""} and password is "${INVITEE_PASSWORD}"
 Use these to log in at ${siteFilePath("03-06-02-participate-in-akhand-path.html")} to track attendance and manage your program.
 
@@ -561,9 +501,13 @@ Waheguru ji ka Khalsa, Waheguru ji ki Fateh!
 You have been invited for Akhand Path. Please find below the details:
 
 Path in the name of: ${session.name || ""} on occasion of ${session.purpose || ""}, sponsored by: ${session.sponsor || ""}
+
 Aaramb / Start Date and Time: ${formatFullDateTime(start)}
+
 Samapti / Planned Completion Date and Time: ${formatFullDateTime(samapti)}
+
 Session Link: ${sessionLinkFor(sessionId)}
+
 Your login ID: ${invitee.mail} and password is "${INVITEE_PASSWORD}"
 
 Akhand Paath is a deeply meaningful practice in Sikhism, far surpassing a mere religious ritual; it represents a profound spiritual journey, demonstrating their spiritual dedication.
@@ -666,7 +610,6 @@ Email: ${ADMIN_EMAIL}`;
           start_at: Timestamp.fromDate(startAt),
           durations: {},
           status: "scheduled",
-          created_by: auth.currentUser.uid,
           created_at: serverTimestamp()
         });
         status.textContent = "Program created.";

@@ -201,7 +201,7 @@
     import {
       doc, setDoc, serverTimestamp, Timestamp,
       PURPOSE_SUGGESTIONS, SESSIONS_COLLECTION, nextAkhandPathId, db,
-      SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET, ADMIN_EMAIL, parseInviteeList, siteFilePath
+      SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET, ADMIN_EMAIL, parseInviteeList, siteFilePath, textToEmailHtml
     } from "./firebase.js";
 
     // Best-effort notification to the admin that a request is waiting —
@@ -249,8 +249,11 @@ Waheguru ji ka Khalsa, Waheguru ji ki Fateh!
 You have received a request for Akhand Path approval. Please find below the details:
 
 Path in the name of: ${data.name} on occasion of ${data.purpose}, sponsored by: ${data.sponsor}
+
 Email: ${data.email} ; Mobile: ${data.mobie}
+
 Aaramb / Start Date and Time: ${formatFullDateTime(data.startAt)}
+
 Samapti / Planned Completion Date and Time: ${formatFullDateTime(samapti)}
 
 Invitees:
@@ -268,7 +271,8 @@ ${data.sponsor}`;
           body: JSON.stringify({
             to: ADMIN_EMAIL,
             subject: `New Akhand Path request — ${data.name} (${data.purpose})`,
-            text
+            text,
+            html: textToEmailHtml(text)
           })
         });
       } catch (err) {
