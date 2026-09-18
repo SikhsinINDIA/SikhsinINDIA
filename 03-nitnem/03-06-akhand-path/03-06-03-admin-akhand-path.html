@@ -103,6 +103,20 @@
           <p id="createStatus" class="muted" style="margin-top:10px;min-height:18px;"></p>
         </div>
 
+        <h2>Reset a Login Password</h2>
+        <div class="card">
+          <p class="muted" style="margin-bottom:10px;">Force-resets any Akhand Path sponsor/invitee login to the standard
+            shared password (123456) — use this when someone's email already had an account from elsewhere on the site
+            before it was ever used for Akhand Path (login then fails with "invalid-credential" even though we told them
+            the password is 123456).</p>
+          <div class="form-row">
+            <label>Email</label>
+            <input id="resetPwEmail" type="email" placeholder="person@example.com">
+          </div>
+          <button class="btn-action" id="resetPwBtn" type="button">Reset Password to 123456</button>
+          <p id="resetPwStatus" class="muted" style="margin-top:10px;min-height:18px;"></p>
+        </div>
+
         <h2>Pending Sponsor Requests</h2>
         <div id="pendingRequests">
           <p class="loading-text">Loading requests...</p>
@@ -500,7 +514,7 @@ Email: ${ADMIN_EMAIL}`;
       if (!session.email) {
         throw new Error("This program has no sponsor email on file.");
       }
-      await sendPlainEmail(session.email, `Your Akhand Path request has been approved — ${session.name || ""}`, message);
+      await sendPlainEmail(session.email, `Your Akhand Path request has been approved — ${session.sponsor || ""}`, message);
     }
 
     /* ---------------- INVITEE EMAILS (sent alongside the approval email) ---------------- */
@@ -728,6 +742,32 @@ Email: ${ADMIN_EMAIL}`;
         status.textContent = "Saved.";
       } catch (err) {
         status.textContent = "Could not save: " + (err.message || err);
+      }
+    });
+
+    /* ---------------- FORCE PASSWORD RESET ----------------
+       Routed through the same email-sending Cloudflare Worker (see
+       cloudflare-worker/src/index.js), just with a different `action` in
+       the request body — the Worker calls Google's Identity Toolkit Admin
+       API with a service-account credential, which is the only way to
+       overwrite a password without already knowing it. */
+    document.getElementById("resetPwBtn").addEventListener("click", async () => {
+      const email = document.getElementById("resetPwEmail").value.trim().toLowerCase();
+      const status = document.getElementById("resetPwStatus");
+      if (!email) { status.textContent = "Enter an email address."; return; }
+      status.textContent = "Resetting...";
+      try {
+        const res = await fetch(SEND_EMAIL_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-App-Secret": APP_SHARED_SECRET },
+          body: JSON.stringify({ action: "reset_password", email, newPassword: INVITEE_PASSWORD })
+        });
+        const result = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(result.error || `HTTP ${res.status}`);
+        status.textContent = `Password for ${email} reset to ${INVITEE_PASSWORD}.`;
+        document.getElementById("resetPwEmail").value = "";
+      } catch (err) {
+        status.textContent = "Could not reset password: " + (err.message || err);
       }
     });
 
