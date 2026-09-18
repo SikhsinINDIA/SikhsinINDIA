@@ -272,12 +272,26 @@
         .filter(v => v.includes("@"));
     }
 
-    function isUserInvited(sessionData, user) {
-      if (!user?.email) return false;
-      return getInviteeEmails(sessionData).includes(
-        user.email.trim().toLowerCase()
-      );
-    }
+function isUserInvited(sessionData, user) {
+  if (!user?.email) return false;
+  
+  const userEmail = user.email.trim().toLowerCase();
+  
+  // 1. Check if the user is the primary Sponsor
+  const sponsorEmail = String(sessionData?.email || "").trim().toLowerCase();
+  if (sponsorEmail && sponsorEmail === userEmail) {
+    return true;
+  }
+
+  // 2. Fallback check for alternate creation/sponsor email field if present
+  const createdByEmail = String(sessionData?.created_by || "").trim().toLowerCase();
+  if (createdByEmail && createdByEmail === userEmail) {
+    return true;
+  }
+
+  // 3. Check if the user is in the Invitee list
+  return getInviteeEmails(sessionData).includes(userEmail);
+}
 
     async function populateSessionPicker() {
       if (!sessionPicker) return;
