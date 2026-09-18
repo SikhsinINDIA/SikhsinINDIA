@@ -767,19 +767,29 @@ function isUserInvited(sessionData, user) {
 
         const admin = isAdminSession();
 
+        // if (admin) {
+        //   // Admin can use ?session= and browse the session picker.
+        //   await populateSessionPicker();
+
+        //   if (!sessionId) {
+        //     sessionId = await resolveSessionId(user);
+        //   }
+        // } else {
+        //   // Regular users never use ?session= and never see the picker.
+        //   if (sessionPickerBar) sessionPickerBar.hidden = true;
+        //   sessionId = await resolveSessionId(user);
+        // }
+
         if (admin) {
-          // Admin can use ?session= and browse the session picker.
-          await populateSessionPicker();
-
-          if (!sessionId) {
-            sessionId = await resolveSessionId(user);
-          }
-        } else {
-          // Regular users never use ?session= and never see the picker.
-          if (sessionPickerBar) sessionPickerBar.hidden = true;
-          sessionId = await resolveSessionId(user);
-        }
-
+    await populateSessionPicker();
+    if (!sessionId) {
+      sessionId = await resolveSessionId(user);
+    }
+  } else {
+    if (sessionPickerBar) sessionPickerBar.hidden = true;
+    sessionId = await resolveSessionId(user);
+  }
+  
         if (!sessionId) {
           statusBar.className = "status-bar scheduled";
 
