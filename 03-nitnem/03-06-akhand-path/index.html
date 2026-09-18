@@ -265,10 +265,12 @@
     // email link should land on their program with no way to wander into
     // someone else's. This picker predates that decision and was never
     // restricted, so it's now shown only when the admin password gate's own
-    // session flag is set (see 03-06-03-admin-akhand-path.html), not to any
-    // logged-in Firestore user.
+    // flag is set (see 03-06-03-admin-akhand-path.html), not to any
+    // logged-in Firestore user. localStorage (not sessionStorage) so it's
+    // recognized in every tab, not just the one that logged in — otherwise
+    // admin opening this page in a new tab wouldn't see the picker either.
     function isAdminSession() {
-      try { return sessionStorage.getItem("akhandPathAdminAuthed") === "1"; } catch (err) { return false; }
+      try { return localStorage.getItem("akhandPathAdminAuthed") === "1"; } catch (err) { return false; }
     }
 
     async function populateSessionPicker() {

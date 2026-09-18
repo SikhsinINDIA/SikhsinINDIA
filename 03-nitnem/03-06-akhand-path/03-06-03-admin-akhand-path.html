@@ -265,18 +265,22 @@
 
     /* ---------------- AUTH ----------------
        The only gate on this page now is the simple password screen at
-       03-06a-password-akhand-path.html, which sets this sessionStorage flag
-       on success. Firebase Auth (a second, separate login) used to also
-       gate this page — removed at the user's request to keep a single
-       password. This check is what makes that gate actually mean something:
-       without it, navigating straight to this page's URL would skip the
-       password screen entirely, since 03-06a is only a UI-flow front door,
-       not something that can block direct access on its own.
+       03-06a-password-akhand-path.html, which sets this localStorage flag
+       on success (localStorage, not sessionStorage, so it's recognized in
+       every tab on the site, not just the one that logged in — needed so
+       the watch page's session picker shows up for admin regardless of
+       which tab/link they arrive through). Firebase Auth (a second,
+       separate login) used to also gate this page — removed at the user's
+       request to keep a single password. This check is what makes that
+       gate actually mean something: without it, navigating straight to
+       this page's URL would skip the password screen entirely, since
+       03-06a is only a UI-flow front door, not something that can block
+       direct access on its own.
        NOTE: this is still just a client-side flag, not real authentication —
        anyone who knows (or reads) this page's URL and code can set it
        themselves via DevTools. It deters casual browsing, not a determined
        visitor. */
-    if (sessionStorage.getItem("akhandPathAdminAuthed") !== "1") {
+    if (localStorage.getItem("akhandPathAdminAuthed") !== "1") {
       window.location.href = "./03-06a-password-akhand-path.html";
     } else {
       loadPendingRequests();
@@ -284,7 +288,7 @@
     }
 
     window.adminLogout = () => {
-      sessionStorage.removeItem("akhandPathAdminAuthed");
+      localStorage.removeItem("akhandPathAdminAuthed");
       window.location.href = "./03-06a-password-akhand-path.html";
     };
 
