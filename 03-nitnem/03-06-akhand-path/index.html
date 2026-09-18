@@ -48,7 +48,7 @@
       </div>
     </div>
 
-    <div class="intro" id="sessionPicker-bar" hidden>
+    <div class="intro" id="sessionPicker-bar">
       <select id="sessionPicker" style="max-width:420px;margin:0 auto;display:block;"></select>
     </div>
 
@@ -131,7 +131,7 @@
   <script type="module">
     import {
       auth, db, onAuthStateChanged, signOut,
-      doc, getDoc, onSnapshot, collection, query, orderBy, limit, getDocs,
+      doc, getDoc, onSnapshot, collection, query, where, orderBy, limit, getDocs,
       emailKey, markEndedIfComplete, driveImageUrl, SESSIONS_COLLECTION
     } from "./firebase.js";
     import { AkhandPathSync, computePosition, formatDurationHM } from "./sync.js";
@@ -240,6 +240,7 @@
     const myAttendanceTime = document.getElementById("myAttendanceTime");
     const attendanceTableBody = document.getElementById("attendanceTableBody");
     const sessionPicker = document.getElementById("sessionPicker");
+    const sessionPickerBar = document.getElementById("sessionPicker-bar");
 
     const DEFAULT_PHOTO = "../../pictures/00-index/sikhsinindia.png";
 
@@ -254,25 +255,16 @@
 
     /* ---------------- SESSION ACCESS / PICKER ---------------- */
     function isPubliclyVisible(data) {
-      return data.status !== "pending_approval" && data.status !== "rejected";
+      const status = String(data?.status || "").toLowerCase();
+      return status !== "pending_approval" && status !== "rejected";
     }
 
-    /*
-     * ADMIN ACCESS
-     * The picker is available ONLY when the currently authenticated Firebase
-     * user has an email in ADMIN_EMAILS. It is never granted by a localStorage
-     * flag, so a normal user's login cannot inherit admin access from a
-     * previous admin login on the same browser.
-     */
-    const ADMIN_EMAILS = [
-      "tpsarora@gmail.com"
-    ];
-
-    function isAdminUser(user) {
-      const email = (user?.email || "").trim().toLowerCase();
-      return !!email && ADMIN_EMAILS.includes(email);
+    function isAdminSession() {
+      return localStorage.getItem("akhandPathAdminAuthed") === "1";
     }
 
+    // invitee_emails_raw may contain names and emails separated by semicolons.
+    // Only values containing "@" are treated as email addresses.
     function getInviteeEmails(sessionData) {
       return String(sessionData?.invitee_emails_raw || "")
         .split(";")
@@ -287,14 +279,11 @@
       );
     }
 
-    async function populateSessionPicker(user) {
-      if (!sessionPicker || !sessionPickerBar) return;
+    async function populateSessionPicker() {
+      if (!sessionPicker) return;
 
-      // Picker is hidden by default in the HTML and is only revealed after
-      // Firebase authentication confirms that the user is an administrator.
-      if (!isAdminUser(user)) {
+      if (!isAdminSession()) {
         sessionPickerBar.hidden = true;
-        sessionPicker.innerHTML = "";
         return;
       }
 
@@ -346,9 +335,7 @@
     }
 
     sessionPicker.addEventListener("change", () => {
-      // Double protection: the control is hidden for non-admins and the
-      // change handler also verifies the authenticated user.
-      if (!isAdminUser(currentUser)) return;
+      if (!isAdminSession()) return;
 
       const chosen = sessionPicker.value;
       if (chosen) {
@@ -358,11 +345,8 @@
     });
 
     /*
-     * INDIVIDUAL USER SESSION
-     *
-     * The URL ?session=XXXX is NEVER used for a normal user. The session is
-     * selected only by matching the Firebase login email against the actual
-     * email addresses stored in invitee_emails_raw.
+     * Regular users are resolved from their Firebase login email.
+     * The URL parameter ?session= is deliberately ignored for non-admins.
      */
     async function resolveSessionIdForUser(user) {
       if (!user?.email) return null;
@@ -382,13 +366,13 @@
 
         if (!matchingDocs.length) return null;
 
-        // If the user has more than one invitation, use the live one first.
+        // Prefer a currently live program.
         for (const d of matchingDocs) {
           const pos = computePosition(d.data());
           if (pos.phase === "live") return d.id;
         }
 
-        // Otherwise use the most recently started matching session.
+        // Otherwise use the most recently started matching program.
         return matchingDocs[0].id;
       } catch (err) {
         console.error("Could not resolve the user's Akhand Path session:", err);
@@ -397,12 +381,7 @@
     }
 
     async function resolveSessionId(user) {
-      if (isAdminUser(user)) {
-        // Only an authenticated admin may use ?session=.
-        return sessionId || null;
-      }
-
-      // For everyone else, ignore ?session= completely.
+      if (isAdminSession()) return sessionId || null;
       return await resolveSessionIdForUser(user);
     }
 
@@ -686,32 +665,49 @@
     /* ---------------- AUTH ---------------- */
     function renderAuthUI(user) {
       currentUser = user;
+
       if (user) {
-        authStatus.textContent = `Logged in as ${user.email}. Your listening time is being recorded below.`;
-        authActions.innerHTML = `<button class="btn-back" id="logoutBtn" type="button">Logout</button>`;
+        authStatus.textContent =
+          `Logged in as ${user.email}. Your listening time is being recorded below.`;
+
+        authActions.innerHTML =
+          `<button class="btn-back" id="logoutBtn" type="button">Logout</button>`;
+
         document.getElementById("logoutBtn").addEventListener("click", async () => {
           if (attendanceTracker) attendanceTracker.stop();
-          localStorage.removeItem("akhandPathAdminAuthed");
           await signOut(auth);
         });
+
         myAttendanceCard.hidden = false;
 
         if (sessionId) {
           if (attendanceTracker) attendanceTracker.stop();
+
           attendanceTracker = createAttendanceTracker({
             sessionId,
             uid: emailKey(user.email),
             name: user.displayName || user.email,
             email: user.email,
-            isActive: () => currentPhase === "live" && document.visibilityState === "visible"
+            isActive: () =>
+              currentPhase === "live" &&
+              document.visibilityState === "visible"
           });
+
           attendanceTracker.start();
         }
       } else {
-        authStatus.innerHTML = `Please log in with the email address that was included in your Akhand Path invitation.`;
-        authActions.innerHTML = `<a class="btn-back" href="login.html${sessionId ? "?session=" + encodeURIComponent(sessionId) : ""}">Login to track your attendance</a>`;
+        authStatus.innerHTML =
+          `Please log in with the email address that was included in your Akhand Path invitation.`;
+
+        authActions.innerHTML =
+          `<a class="btn-back" href="login.html">Login</a>`;
+
         myAttendanceCard.hidden = true;
-        if (attendanceTracker) { attendanceTracker.stop(); attendanceTracker = null; }
+
+        if (attendanceTracker) {
+          attendanceTracker.stop();
+          attendanceTracker = null;
+        }
       }
     }
 
@@ -731,123 +727,122 @@
     /* ---------------- BOOT ---------------- */
     (async function boot() {
       /*
-       * Wait for Firebase authentication BEFORE deciding which session to
-       * show. This is critical for access control.
+       * Wait for Firebase authentication before resolving the session.
+       * This is essential: otherwise a regular user could be assigned the
+       * latest public session before Firebase identifies them.
        */
-      await new Promise((resolve) => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-          currentUser = user;
-          unsubscribe();
-          resolve();
-        });
-      });
+      onAuthStateChanged(auth, async (user) => {
+        currentUser = user;
 
-      const admin = isAdminUser(currentUser);
+        const admin = isAdminSession();
 
-      if (admin) {
-        // Admin: picker is available and ?session= is allowed.
-        await populateSessionPicker(currentUser);
+        if (admin) {
+          // Admin can use ?session= and browse the session picker.
+          await populateSessionPicker();
+
+          if (!sessionId) {
+            sessionId = await resolveSessionId(user);
+          }
+        } else {
+          // Regular users never use ?session= and never see the picker.
+          if (sessionPickerBar) sessionPickerBar.hidden = true;
+          sessionId = await resolveSessionId(user);
+        }
 
         if (!sessionId) {
-          sessionId = await resolveSessionId(currentUser);
-        }
-      } else {
-        // Individual user: picker is forcibly hidden and any ?session=
-        // parameter is ignored.
-        sessionPickerBar.hidden = true;
-        sessionPicker.innerHTML = "";
-        sessionId = await resolveSessionId(currentUser);
-      }
+          statusBar.className = "status-bar scheduled";
 
-      if (!sessionId) {
-        statusBar.className = "status-bar scheduled";
-
-        if (currentUser) {
-          statusBar.textContent =
-            "No Akhand Path program is assigned to this login email. Please check your invitation.";
-        } else {
-          statusBar.textContent =
-            "Please log in with the email address included in your Akhand Path invitation.";
-        }
-
-        dedicationBanner.hidden = true;
-        if (videoContainerEl) videoContainerEl.hidden = true;
-        myAttendanceCard.hidden = true;
-        renderAuthUI(currentUser);
-        return;
-      }
-
-      onSnapshot(
-        doc(db, SESSIONS_COLLECTION, sessionId),
-        (snap) => {
-          if (!snap.exists()) {
+          if (user) {
             statusBar.textContent =
-              "This Akhand Path session could not be found.";
-            return;
+              "No Akhand Path program is currently assigned to this login email. " +
+              "Please check that you are using the email address included in your invitation.";
+          } else {
+            statusBar.textContent =
+              "Please log in with your invited email address to view your Akhand Path program.";
           }
 
-          latestSession = snap.data();
+          dedicationBanner.hidden = true;
+          videoContainerEl.hidden = true;
+          myAttendanceCard.hidden = true;
+          renderAuthUI(user);
+          return;
+        }
 
-          if (!isPubliclyVisible(latestSession)) {
-            dedicationBanner.hidden = true;
-            if (videoContainerEl) videoContainerEl.hidden = true;
+        onSnapshot(
+          doc(db, SESSIONS_COLLECTION, sessionId),
+          (snap) => {
+            if (!snap.exists()) {
+              statusBar.className = "status-bar scheduled";
+              statusBar.textContent =
+                "This Akhand Path session could not be found.";
+              dedicationBanner.hidden = true;
+              videoContainerEl.hidden = true;
+              return;
+            }
+
+            latestSession = snap.data();
+
+            if (!isPubliclyVisible(latestSession)) {
+              dedicationBanner.hidden = true;
+              videoContainerEl.hidden = true;
+              startStatusTicker();
+              return;
+            }
+
+            /*
+             * Second authorization check for regular users.
+             * Even if somebody manually changes the URL, the session is not
+             * rendered unless their login email is actually in the invitees.
+             */
+            if (!admin && !isUserInvited(latestSession, user)) {
+              console.warn(
+                "Session authorization failed for user:",
+                user?.email,
+                "session:",
+                sessionId
+              );
+
+              latestSession = null;
+              dedicationBanner.hidden = true;
+              videoContainerEl.hidden = true;
+              statusBar.className = "status-bar scheduled";
+              statusBar.textContent =
+                "You are not authorized to view this Akhand Path program.";
+              return;
+            }
+
+            renderDedication(latestSession);
             startStatusTicker();
-            return;
-          }
 
-          /*
-           * FINAL AUTHORIZATION CHECK. For non-admins, the loaded Firestore
-           * document must itself contain their login email in
-           * invitee_emails_raw. This makes manually changing ?session=
-           * ineffective.
-           */
-          if (!admin && !isUserInvited(latestSession, currentUser)) {
-            console.warn(
-              "Session authorization failed:",
-              currentUser?.email,
-              sessionId
-            );
+            if (!syncEngine) {
+              syncEngine = new AkhandPathSync({
+                sessionId,
+                videoSequence: VIDEO_SEQUENCE,
+                playbackSpeed: PLAYBACK_SPEED,
+                getSession: () => latestSession,
+                onPositionChange: renderStatus,
+                onTrackChange: () => {}
+              });
 
-            latestSession = null;
-            dedicationBanner.hidden = true;
-            if (videoContainerEl) videoContainerEl.hidden = true;
+              if (ytPlayer && ytPlayerReady) {
+                syncEngine.attachPlayer(ytPlayer);
+                syncEngine.start();
+              }
+            }
+          },
+          (err) => {
+            console.error("Could not read Akhand Path session:", err);
             statusBar.className = "status-bar scheduled";
             statusBar.textContent =
-              "You are not authorized to view this Akhand Path program.";
-            return;
+              "Unable to load this Akhand Path program. Please try again later.";
+            dedicationBanner.hidden = true;
+            videoContainerEl.hidden = true;
           }
+        );
 
-          renderDedication(latestSession);
-          startStatusTicker();
-
-          if (!syncEngine) {
-            syncEngine = new AkhandPathSync({
-              sessionId,
-              videoSequence: VIDEO_SEQUENCE,
-              playbackSpeed: PLAYBACK_SPEED,
-              getSession: () => latestSession,
-              onPositionChange: renderStatus,
-              onTrackChange: () => {}
-            });
-
-            if (ytPlayer && ytPlayerReady) {
-              syncEngine.attachPlayer(ytPlayer);
-              syncEngine.start();
-            }
-          }
-        },
-        (err) => {
-          console.error("Could not read Akhand Path session:", err);
-          statusBar.className = "status-bar scheduled";
-          statusBar.textContent =
-            "Unable to load this Akhand Path program. Please try again later.";
-          dedicationBanner.hidden = true;
-          if (videoContainerEl) videoContainerEl.hidden = true;
-        }
-      );
-
-      startAttendanceWatch();
-      renderAuthUI(currentUser);
+        startAttendanceWatch();
+        renderAuthUI(user);
+      });
     })();
 
     window.addEventListener("beforeunload", () => {
