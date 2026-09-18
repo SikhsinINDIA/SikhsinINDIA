@@ -266,18 +266,16 @@
     // Add all authorized admin emails to this list
 const ADMIN_EMAILS = [
   "tpsarora@gmail.com",
-  "sikhsinindia@gmail.com"
+  "sikhsinindia@gmail.com" // Add your new admin email here
 ];
 
 function isAdminSession(user = currentUser) {
   // Check 1: Check if admin flag is set in localStorage
   const hasLocalAdmin = localStorage.getItem("akhandPathAdminAuthed") === "1";
 
-  // Check 2: Check if current logged-in user email matches the ADMIN_EMAILS list
+  // Check 2: Check if current logged-in email matches the admin list
   const userEmail = user?.email ? user.email.trim().toLowerCase() : "";
-  const isEmailAdmin = ADMIN_EMAILS.some(
-    adminEmail => adminEmail.trim().toLowerCase() === userEmail
-  );
+  const isEmailAdmin = ADMIN_EMAILS.map(e => e.toLowerCase()).includes(userEmail);
 
   return hasLocalAdmin || isEmailAdmin;
 }
@@ -312,16 +310,15 @@ function isUserInvited(sessionData, user) {
   return getInviteeEmails(sessionData).includes(userEmail);
 }
 
-   async function populateSessionPicker() {
-  if (!sessionPicker) return;
+    async function populateSessionPicker() {
+      if (!sessionPicker) return;
 
-  // Pass currentUser to the check
-  if (!isAdminSession(currentUser)) {
-    sessionPickerBar.hidden = true;
-    return;
-  }
+      if (!isAdminSession()) {
+        sessionPickerBar.hidden = true;
+        return;
+      }
 
-  sessionPickerBar.hidden = false;
+      sessionPickerBar.hidden = false;
 
       try {
         const q = query(
@@ -765,7 +762,10 @@ function isUserInvited(sessionData, user) {
        * This is essential: otherwise a regular user could be assigned the
        * latest public session before Firebase identifies them.
        */
+      onAuthStateChanged(auth, async (user) => {
+        currentUser = user;
 
+        const admin = isAdminSession();
 
         // if (admin) {
         //   // Admin can use ?session= and browse the session picker.
@@ -780,24 +780,18 @@ function isUserInvited(sessionData, user) {
         //   sessionId = await resolveSessionId(user);
         // }
 
-       onAuthStateChanged(auth, async (user) => {
-  currentUser = user;
-
-  // Pass user explicitly here
-  const admin = isAdminSession(user);
-
-  if (admin) {
-    // Admin can use ?session= and browse the session picker
+        if (admin) {
     await populateSessionPicker();
-
     if (!sessionId) {
       sessionId = await resolveSessionId(user);
     }
   } else {
-    // Regular users never use ?session= and never see the picker
     if (sessionPickerBar) sessionPickerBar.hidden = true;
     sessionId = await resolveSessionId(user);
   }
+        if (!sessionId) {
+          statusBar.className = "status-bar scheduled";
+
           if (user) {
             statusBar.textContent =
               "No Akhand Path program is currently assigned to this login email. " +
