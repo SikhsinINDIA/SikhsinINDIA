@@ -1,59 +1,47 @@
 {
-  "date": "2026-09-19",
-  "dateDisplay": "19 September 2026",
-  "ang": 678,
+  "date": "2026-09-20",
+  "dateDisplay": "20 September 2026",
+  "ang": 694,
   "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
   "raagEnglish": "Raag Dhanaasree",
-  "writerEnglish": "Guru Arjan Dev Ji",
-  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
-  "titleEnglish": "Dhanaasaree, Fifth Mehla:",
-  "verseGurmukhi": "ਜਿਨਿ ਤੁਮ ਭੇਜੇ ਤਿਨਹਿ ਬੁਲਾਏ ਸੁਖ ਸਹਜ ਸੇਤੀ ਘਰਿ ਆਉ ॥",
-  "verseTranslation": "The One who sent you, has now recalled you; return to your home now in peace and pleasure.",
+  "writerEnglish": "Bhagat Ravi Daas Ji",
+  "titleGurmukhi": "ਧਨਾਸਰੀ ਭਗਤ ਰਵਿਦਾਸ ਜੀ ਕੀ",
+  "titleEnglish": "Dhanaasaree, Devotee Ravi Daas Jee:",
+  "verseGurmukhi": "ਹਮ ਸਰਿ ਦੀਨੁ ਦਇਆਲੁ ਨ ਤੁਮ ਸਰਿ ਅਬ ਪਤੀਆਰੁ ਕਿਆ ਕੀਜੈ ॥",
+  "verseTranslation": "There is none as forlorn as I am, and none as Compassionate as You; what need is there to test us now?",
   "verses": [
     {
-      "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
-      "translation": "Dhanaasaree, Fifth Mehla:"
+      "gurmukhi": "ਧਨਾਸਰੀ ਭਗਤ ਰਵਿਦਾਸ ਜੀ ਕੀ",
+      "translation": "Dhanaasaree, Devotee Ravi Daas Jee:"
     },
     {
-      "gurmukhi": "ਜਿਨਿ ਤੁਮ ਭੇਜੇ ਤਿਨਹਿ ਬੁਲਾਏ ਸੁਖ ਸਹਜ ਸੇਤੀ ਘਰਿ ਆਉ ॥",
-      "translation": "The One who sent you, has now recalled you; return to your home now in peace and pleasure."
+      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
     },
     {
-      "gurmukhi": "ਅਨਦ ਮੰਗਲ ਗੁਨ ਗਾਉ ਸਹਜ ਧੁਨਿ ਨਿਹਚਲ ਰਾਜੁ ਕਮਾਉ ॥੧॥",
-      "translation": "In bliss and ecstasy, sing His Glorious Praises; by this celestial tune, you shall acquire your everlasting kingdom. ||1||"
+      "gurmukhi": "ਹਮ ਸਰਿ ਦੀਨੁ ਦਇਆਲੁ ਨ ਤੁਮ ਸਰਿ ਅਬ ਪਤੀਆਰੁ ਕਿਆ ਕੀਜੈ ॥",
+      "translation": "There is none as forlorn as I am, and none as Compassionate as You; what need is there to test us now?"
     },
     {
-      "gurmukhi": "ਤੁਮ ਘਰਿ ਆਵਹੁ ਮੇਰੇ ਮੀਤ ॥",
-      "translation": "Come back to your home, O my friend."
+      "gurmukhi": "ਬਚਨੀ ਤੋਰ ਮੋਰ ਮਨੁ ਮਾਨੈ ਜਨ ਕਉ ਪੂਰਨੁ ਦੀਜੈ ॥੧॥",
+      "translation": "May my mind surrender to Your Word; please, bless Your humble servant with this perfection. ||1||"
     },
     {
-      "gurmukhi": "ਤੁਮਰੇ ਦੋਖੀ ਹਰਿ ਆਪਿ ਨਿਵਾਰੇ ਅਪਦਾ ਭਈ ਬਿਤੀਤ ॥ ਰਹਾਉ ॥",
-      "translation": "The Lord Himself has eliminated your enemies, and your misfortunes are past. ||Pause||"
+      "gurmukhi": "ਹਉ ਬਲਿ ਬਲਿ ਜਾਉ ਰਮਈਆ ਕਾਰਨੇ ॥",
+      "translation": "I am a sacrifice, a sacrifice to the Lord."
     },
     {
-      "gurmukhi": "ਪ੍ਰਗਟ ਕੀਨੇ ਪ੍ਰਭ ਕਰਨੇਹਾਰੇ ਨਾਸਨ ਭਾਜਨ ਥਾਕੇ ॥",
-      "translation": "God, the Creator Lord, has glorified you, and your running and rushing around has ended."
+      "gurmukhi": "ਕਾਰਨ ਕਵਨ ਅਬੋਲ ॥ ਰਹਾਉ ॥",
+      "translation": "O Lord, why are You silent? ||Pause||"
     },
     {
-      "gurmukhi": "ਘਰਿ ਮੰਗਲ ਵਾਜਹਿ ਨਿਤ ਵਾਜੇ ਅਪੁਨੈ ਖਸਮਿ ਨਿਵਾਜੇ ॥੨॥",
-      "translation": "In your home, there is rejoicing; the musical instruments continually play, and your Husband Lord has exalted you. ||2||"
+      "gurmukhi": "ਬਹੁਤ ਜਨਮ ਬਿਛੁਰੇ ਥੇ ਮਾਧਉ ਇਹੁ ਜਨਮੁ ਤੁਮੑਾਰੇ ਲੇਖੇ ॥",
+      "translation": "For so many incarnations, I have been separated from You, Lord; I dedicate this life to You."
     },
     {
-      "gurmukhi": "ਅਸਥਿਰ ਰਹਹੁ ਡੋਲਹੁ ਮਤ ਕਬਹੂ ਗੁਰ ਕੈ ਬਚਨਿ ਅਧਾਰਿ ॥",
-      "translation": "Remain firm and steady, and do not ever waver; take the Guru's Word as your Support."
-    },
-    {
-      "gurmukhi": "ਜੈ ਜੈ ਕਾਰੁ ਸਗਲ ਭੂ ਮੰਡਲ ਮੁਖ ਊਜਲ ਦਰਬਾਰ ॥੩॥",
-      "translation": "You shall be applauded and congratulated all over the world, and your face shall be radiant in the Court of the Lord. ||3||"
-    },
-    {
-      "gurmukhi": "ਜਿਨ ਕੇ ਜੀਅ ਤਿਨੈ ਹੀ ਫੇਰੇ ਆਪੇ ਭਇਆ ਸਹਾਈ ॥",
-      "translation": "All beings belong to Him; He Himself transforms them, and He Himself becomes their help and support."
-    },
-    {
-      "gurmukhi": "ਅਚਰਜੁ ਕੀਆ ਕਰਨੈਹਾਰੈ ਨਾਨਕ ਸਚੁ ਵਡਿਆਈ ॥੪॥੪॥੨੮॥",
-      "translation": "The Creator Lord has worked a wondrous miracle; O Nanak, His glorious greatness is true. ||4||4||28||"
+      "gurmukhi": "ਕਹਿ ਰਵਿਦਾਸ ਆਸ ਲਗਿ ਜੀਵਉ ਚਿਰ ਭਇਓ ਦਰਸਨੁ ਦੇਖੇ ॥੨॥੧॥",
+      "translation": "Says Ravi Daas: placing my hopes in You, I live; it is so long since I have gazed upon the Blessed Vision of Your Darshan. ||2||1||"
     }
   ],
-  "updated": "2026-09-19T06:08:40.603Z"
+  "updated": "2026-09-20T06:33:14.836Z"
 }
