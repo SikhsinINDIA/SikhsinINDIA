@@ -78,6 +78,16 @@
         <div id="myProgramsList"></div>
       </div>
 
+      <!-- Shown only to a logged-in non-admin user who has more than one
+           eligible program, so they can get back to the picker above
+           without going all the way out to the hub page and back in. -->
+      <a href="index.html" class="btn-back" id="backToMyProgramsLink" hidden style="margin-bottom:16px;display:inline-flex;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+        </svg>
+        Back to My Programs
+      </a>
+
       <!-- DEDICATION BANNER — honoree name/photo/purpose, always visible -->
       <div class="dedication-banner" id="dedicationBanner" hidden>
         <div class="dedication-photo-frame">
@@ -898,18 +908,24 @@ function isUserInvited(sessionData, user) {
 
         const admin = isAdminSession();
         const myProgramsPicker = document.getElementById("myProgramsPicker");
+        const backToMyProgramsLink = document.getElementById("backToMyProgramsLink");
 
         if (admin) {
           await populateSessionPicker();
           if (!sessionId) {
             sessionId = await resolveSessionId(user);
           }
+          backToMyProgramsLink.hidden = true;
         } else {
           if (sessionPickerBar) sessionPickerBar.hidden = true;
 
-          if (!sessionId && user) {
+          if (user) {
+            // Fetched even when sessionId already came from the URL (e.g. an
+            // invite email link, or a picker card clicked earlier) so the
+            // "Back to My Programs" link below knows whether there's
+            // actually more than one program to go back to.
             const matchingDocs = await findMyEligiblePrograms(user);
-            if (matchingDocs.length > 1) {
+            if (!sessionId && matchingDocs.length > 1) {
               // More than one program tied to this login — let them choose
               // instead of silently picking one for them.
               renderMyProgramsPicker(matchingDocs);
@@ -919,10 +935,16 @@ function isUserInvited(sessionData, user) {
               statusBar.hidden = true;
               document.getElementById("attendanceReportSection").hidden = true;
               myAttendanceCard.hidden = true;
+              backToMyProgramsLink.hidden = true;
               renderAuthUI(user);
               return;
             }
-            sessionId = resolveSessionIdFromMatches(matchingDocs);
+            if (!sessionId) {
+              sessionId = resolveSessionIdFromMatches(matchingDocs);
+            }
+            backToMyProgramsLink.hidden = matchingDocs.length <= 1;
+          } else {
+            backToMyProgramsLink.hidden = true;
           }
         }
 
