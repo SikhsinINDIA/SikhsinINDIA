@@ -162,7 +162,7 @@
           <div class="program-info">
             <div class="card-title">${escapeHtml(s.name || "Untitled")} — ${escapeHtml(s.purpose || "")}</div>
             <p class="muted">Start: ${startLabel}</p>
-            <div class="program-role">You are ${p.role === "sponsor" ? "the sponsor" : "an invitee"}</div>
+            <div class="program-role">${p.role === "sponsor" ? "You are the sponsor" : p.role === "admin" ? "Admin view" : "You are an invitee"}</div>
             <span class="pill ${info.pill}" style="margin-top:8px;">${info.text}</span>
           </div>
           ${canView ? `<a class="btn-action" style="width:auto;" href="index.html?session=${encodeURIComponent(p.id)}">View &amp; Attend</a>` : ""}

@@ -284,6 +284,17 @@ export async function findMyPrograms(email) {
   const results = new Map();
 
   const sponsorSnap = await getDocs(collection(db, SESSIONS_COLLECTION));
+
+  // Admins aren't necessarily a sponsor/invitee on every program, but should
+  // still see all of them here (matching the admin session picker on
+  // index.html), not just the ones they happen to be personally tied to.
+  if (isAdminEmail(normalized)) {
+    sponsorSnap.forEach((d) => {
+      results.set(d.id, { id: d.id, data: d.data(), role: "admin" });
+    });
+    return Array.from(results.values());
+  }
+
   sponsorSnap.forEach((d) => {
     if ((d.data().email || "").trim().toLowerCase() === normalized) {
       results.set(d.id, { id: d.id, data: d.data(), role: "sponsor" });
