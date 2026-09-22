@@ -25,6 +25,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
+
+  <style>
+    /* "Your Akhand Path Programs" picker — shown instead of the video/
+       dedication banner when a logged-in user has more than one eligible
+       program, so they can choose which one to view (was previously its
+       own page, 03-06-02-participate-in-akhand-path.html). */
+    .pill { display:inline-block; padding:3px 10px; border-radius:10px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; }
+    .pill.live { background:#e6f7ec; color:#146c3a; }
+    .pill.scheduled { background:#fff7e6; color:#8a5a00; }
+    .pill.completed { background:#eef0f5; color:var(--navy); }
+    .program-card { display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+    .program-photo-frame { width:72px; height:72px; border-radius:10px; border:3px solid var(--gold); background:var(--cream); flex-shrink:0; overflow:hidden; }
+    .program-photo { width:100%; height:100%; object-fit:cover; display:block; }
+    .program-info { flex:1; min-width:200px; }
+    .program-role { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#888; font-weight:700; margin-top:4px; }
+  </style>
 </head>
 
 <body>
@@ -53,6 +69,14 @@
     </div>
 
     <div class="wrapper">
+
+      <!-- MY PROGRAMS PICKER — shown to a logged-in non-admin user with more
+           than one eligible program, in place of the dedication/video/status
+           flow below, until they pick which one to view. -->
+      <div id="myProgramsPicker" hidden>
+        <h2 style="text-align:center;">Your Akhand Path Programs</h2>
+        <div id="myProgramsList"></div>
+      </div>
 
       <!-- DEDICATION BANNER — honoree name/photo/purpose, always visible -->
       <div class="dedication-banner" id="dedicationBanner" hidden>
@@ -93,21 +117,23 @@
       </div>
 
       <!-- FULL ATTENDANCE REPORT -->
-      <h2>Attendance Report</h2>
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Total Duration</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="attendanceTableBody">
-            <tr><td colspan="4" class="loading-text">Loading attendance...</td></tr>
-          </tbody>
-        </table>
+      <div id="attendanceReportSection">
+        <h2>Attendance Report</h2>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Total Duration</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="attendanceTableBody">
+              <tr><td colspan="4" class="loading-text">Loading attendance...</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
     </div>
@@ -383,11 +409,14 @@ function isUserInvited(sessionData, user) {
     });
 
     /*
-     * Regular users are resolved from their Firebase login email.
-     * The URL parameter ?session= is deliberately ignored for non-admins.
+     * Every program a regular user is either the sponsor of or an invitee on
+     * (per isUserInvited, matched against the URL parameter is deliberately
+     * ignored for non-admins). Shared by both the single-program auto-view
+     * path and the multi-program picker below, so both use exactly the same
+     * eligibility rule.
      */
-    async function resolveSessionIdForUser(user) {
-      if (!user?.email) return null;
+    async function findMyEligiblePrograms(user) {
+      if (!user?.email) return [];
 
       try {
         const q = query(
@@ -397,30 +426,87 @@ function isUserInvited(sessionData, user) {
         );
         const snap = await getDocs(q);
 
-        const matchingDocs = snap.docs.filter(d => {
+        return snap.docs.filter(d => {
           const data = d.data();
           return isPubliclyVisible(data) && isUserInvited(data, user);
         });
-
-        if (!matchingDocs.length) return null;
-
-        // Prefer a currently live program.
-        for (const d of matchingDocs) {
-          const pos = computePosition(d.data());
-          if (pos.phase === "live") return d.id;
-        }
-
-        // Otherwise use the most recently started matching program.
-        return matchingDocs[0].id;
       } catch (err) {
-        console.error("Could not resolve the user's Akhand Path session:", err);
-        return null;
+        console.error("Could not resolve the user's Akhand Path sessions:", err);
+        return [];
       }
+    }
+
+    function resolveSessionIdFromMatches(matchingDocs) {
+      if (!matchingDocs.length) return null;
+      // Prefer a currently live program.
+      for (const d of matchingDocs) {
+        const pos = computePosition(d.data());
+        if (pos.phase === "live") return d.id;
+      }
+      // Otherwise use the most recently started matching program.
+      return matchingDocs[0].id;
     }
 
     async function resolveSessionId(user) {
       if (isAdminSession()) return sessionId || null;
-      return await resolveSessionIdForUser(user);
+      const matchingDocs = await findMyEligiblePrograms(user);
+      return resolveSessionIdFromMatches(matchingDocs);
+    }
+
+    /* ---------------- MY PROGRAMS PICKER ----------------
+       Was previously its own page, 03-06-02-participate-in-akhand-path.html
+       (now a redirect here) — folded in directly since it and this page were
+       both just "which of my program(s) do I open", and this page's URL is
+       the one already baked into every invite/approval email sent so far. */
+    function escapeHtml(str) {
+      return String(str == null ? "" : str).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    }
+
+    function roleForUser(data, user) {
+      const email = (user?.email || "").trim().toLowerCase();
+      const sponsorEmail = String(data?.email || "").trim().toLowerCase();
+      const createdByEmail = String(data?.created_by || "").trim().toLowerCase();
+      if (email && (sponsorEmail === email || createdByEmail === email)) return "sponsor";
+      return "invitee";
+    }
+
+    function renderMyProgramsPicker(matchingDocs) {
+      const wrap = document.getElementById("myProgramsList");
+      wrap.innerHTML = "";
+
+      matchingDocs.forEach((d) => {
+        const s = d.data();
+        const pos = computePosition(s);
+        const pillClass = pos.phase === "live" ? "live" : pos.phase === "completed" ? "completed" : "scheduled";
+        const pillText = pos.phase === "live" ? `Live now — ${formatDurationHM(pos.elapsedMs)} elapsed`
+          : pos.phase === "completed" ? "Completed"
+          : `Starts in ${formatDurationHM(pos.startsInMs)}`;
+        const startLabel = s.start_at && s.start_at.toMillis ? formatDateTime(s.start_at.toMillis()) : "—";
+
+        const offsetX = s.photo_offset_x != null ? s.photo_offset_x : 50;
+        const offsetY = s.photo_offset_y != null ? s.photo_offset_y : 50;
+        const zoom = s.photo_zoom || 1;
+
+        const card = document.createElement("div");
+        card.className = "card program-card";
+        card.style.cursor = "pointer";
+        card.innerHTML = `
+          <div class="program-photo-frame">
+            <img class="program-photo" src="${escapeHtml(driveImageUrl(s.photo_url) || DEFAULT_PHOTO)}"
+              style="object-position:${offsetX}% ${offsetY}%;transform:scale(${zoom});" alt="">
+          </div>
+          <div class="program-info">
+            <div class="card-title">${escapeHtml(s.name || "Untitled")} — ${escapeHtml(s.purpose || "")}</div>
+            <p class="muted">Start: ${startLabel}</p>
+            <div class="program-role">${roleForUser(s, currentUser) === "sponsor" ? "You are the sponsor" : "You are an invitee"}</div>
+            <span class="pill ${pillClass}" style="margin-top:8px;">${pillText}</span>
+          </div>
+        `;
+        card.addEventListener("click", () => {
+          window.location.href = `index.html?session=${encodeURIComponent(d.id)}`;
+        });
+        wrap.appendChild(card);
+      });
     }
 
     /* ---------------- RENDER DEDICATION ---------------- */
@@ -773,29 +859,39 @@ function isUserInvited(sessionData, user) {
         currentUser = user;
 
         const admin = isAdminSession();
-
-        // if (admin) {
-        //   // Admin can use ?session= and browse the session picker.
-        //   await populateSessionPicker();
-
-        //   if (!sessionId) {
-        //     sessionId = await resolveSessionId(user);
-        //   }
-        // } else {
-        //   // Regular users never use ?session= and never see the picker.
-        //   if (sessionPickerBar) sessionPickerBar.hidden = true;
-        //   sessionId = await resolveSessionId(user);
-        // }
+        const myProgramsPicker = document.getElementById("myProgramsPicker");
 
         if (admin) {
-    await populateSessionPicker();
-    if (!sessionId) {
-      sessionId = await resolveSessionId(user);
-    }
-  } else {
-    if (sessionPickerBar) sessionPickerBar.hidden = true;
-    sessionId = await resolveSessionId(user);
-  }
+          await populateSessionPicker();
+          if (!sessionId) {
+            sessionId = await resolveSessionId(user);
+          }
+        } else {
+          if (sessionPickerBar) sessionPickerBar.hidden = true;
+
+          if (!sessionId && user) {
+            const matchingDocs = await findMyEligiblePrograms(user);
+            if (matchingDocs.length > 1) {
+              // More than one program tied to this login — let them choose
+              // instead of silently picking one for them.
+              renderMyProgramsPicker(matchingDocs);
+              myProgramsPicker.hidden = false;
+              dedicationBanner.hidden = true;
+              videoContainerEl.hidden = true;
+              statusBar.hidden = true;
+              document.getElementById("attendanceReportSection").hidden = true;
+              myAttendanceCard.hidden = true;
+              renderAuthUI(user);
+              return;
+            }
+            sessionId = resolveSessionIdFromMatches(matchingDocs);
+          }
+        }
+
+        myProgramsPicker.hidden = true;
+        statusBar.hidden = false;
+        document.getElementById("attendanceReportSection").hidden = false;
+
         if (!sessionId) {
           statusBar.className = "status-bar scheduled";
 
