@@ -379,7 +379,14 @@ function isUserInvited(sessionData, user) {
               ? formatShortDateTime(data.start_at.toDate())
               : "";
 
-          const idPrefix = data.akhand_path_id != null ? `${data.akhand_path_id} — ` : "";
+          const pos = computePosition(data);
+          const statusLabel = pos.phase === "live" ? "Live"
+            : pos.phase === "completed" ? "Completed"
+            : pos.phase === "pending_approval" ? "Pending Approval"
+            : pos.phase === "rejected" ? "Rejected"
+            : "Scheduled";
+
+          const idPrefix = data.akhand_path_id != null ? `${data.akhand_path_id} — ${statusLabel} — ` : `${statusLabel} — `;
           opt.textContent =
             `${idPrefix}${data.name || "Untitled"} — ${data.purpose || ""} (${startLabel})`;
 
