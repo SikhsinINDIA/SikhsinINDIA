@@ -59,28 +59,28 @@
           <div class="form-grid">
             <div class="form-row">
               <label>Honoree Name *</label>
-              <input id="newName" type="text" placeholder="e.g. Satbir Singh Arora">
+              <input id="newName" name="akp_new_name" type="text" autocomplete="off" placeholder="e.g. Satbir Singh Arora">
             </div>
             <div class="form-row">
               <label>Honoree Photo URL</label>
-              <input id="newPhotoUrl" type="url" placeholder="https://...">
+              <input id="newPhotoUrl" name="akp_new_photo_url" type="url" autocomplete="off" placeholder="https://...">
             </div>
             <div class="form-row">
               <label>Contact Email</label>
-              <input id="newEmail" type="email" placeholder="Family contact email">
+              <input id="newEmail" name="akp_new_email" type="email" autocomplete="off" placeholder="Family contact email">
             </div>
             <div class="form-row">
               <label>Contact Mobile</label>
-              <input id="newMobie" type="tel" placeholder="Family contact mobile number">
+              <input id="newMobie" name="akp_new_mobie" type="tel" autocomplete="off" placeholder="Family contact mobile number">
             </div>
             <div class="form-row">
               <label>Purpose *</label>
-              <input id="newPurpose" type="text" list="purposeSuggestions" placeholder="e.g. Salana Yaad, Birthday, Barsi...">
+              <input id="newPurpose" name="akp_new_purpose" type="text" list="purposeSuggestions" autocomplete="off" placeholder="e.g. Salana Yaad, Birthday, Barsi...">
               <datalist id="purposeSuggestions"></datalist>
             </div>
             <div class="form-row">
               <label>Sponsored / Initiated By *</label>
-              <input id="newSponsor" type="text" placeholder="e.g. His son Gurpreet Singh and family">
+              <input id="newSponsor" name="akp_new_sponsor" type="text" autocomplete="off" placeholder="e.g. His son Gurpreet Singh and family">
             </div>
             <div class="form-row">
               <label>Duration (hours)</label>
@@ -112,7 +112,7 @@
             the password is 123456).</p>
           <div class="form-row">
             <label>Email</label>
-            <input id="resetPwEmail" type="email" placeholder="person@example.com">
+            <input id="resetPwEmail" name="akp_reset_pw_email" type="email" autocomplete="off" placeholder="person@example.com">
           </div>
           <button class="btn-action" id="resetPwBtn" type="button">Reset Password to 123456</button>
           <p id="resetPwStatus" class="muted" style="margin-top:10px;min-height:18px;"></p>
@@ -182,15 +182,15 @@
             <div class="form-grid">
               <div class="form-row">
                 <label>Full Name *</label>
-                <input id="inviteeName" type="text" placeholder="e.g. Gurcharan Singh">
+                <input id="inviteeName" name="akp_invitee_name" type="text" autocomplete="off" placeholder="e.g. Gurcharan Singh">
               </div>
               <div class="form-row">
                 <label>Greeting Name *</label>
-                <input id="inviteeGname" type="text" placeholder="e.g. Gurcharan (used to address them)">
+                <input id="inviteeGname" name="akp_invitee_gname" type="text" autocomplete="off" placeholder="e.g. Gurcharan (used to address them)">
               </div>
               <div class="form-row">
                 <label>Email *</label>
-                <input id="inviteeMail" type="email" placeholder="invitee@example.com">
+                <input id="inviteeMail" name="akp_invitee_mail" type="email" autocomplete="off" placeholder="invitee@example.com">
               </div>
             </div>
             <button class="btn-action" onclick="addInvitee()">Add Invitee &amp; Send Invite</button>

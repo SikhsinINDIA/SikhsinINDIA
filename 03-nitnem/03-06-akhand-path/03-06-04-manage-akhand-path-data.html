@@ -242,15 +242,15 @@
             <div class="form-grid" style="margin-top:14px;">
               <div class="form-row">
                 <label>Name</label>
-                <input id="newInvName" type="text">
+                <input id="newInvName" name="akp_new_inv_name" type="text" autocomplete="off">
               </div>
               <div class="form-row">
                 <label>Greeting Name</label>
-                <input id="newInvGname" type="text">
+                <input id="newInvGname" name="akp_new_inv_gname" type="text" autocomplete="off">
               </div>
               <div class="form-row">
                 <label>Email *</label>
-                <input id="newInvMail" type="email">
+                <input id="newInvMail" name="akp_new_inv_mail" type="email" autocomplete="off">
               </div>
             </div>
             <button class="btn-action" style="width:auto;" onclick="addInviteeRow()">+ Add Invitee</button>
@@ -275,11 +275,11 @@
             <div class="form-grid" style="margin-top:14px;">
               <div class="form-row">
                 <label>Name</label>
-                <input id="newAttName" type="text">
+                <input id="newAttName" name="akp_new_att_name" type="text" autocomplete="off">
               </div>
               <div class="form-row">
                 <label>Email *</label>
-                <input id="newAttEmail" type="email">
+                <input id="newAttEmail" name="akp_new_att_email" type="email" autocomplete="off">
               </div>
               <div class="form-row">
                 <label>Total Seconds Listened</label>
@@ -406,12 +406,20 @@
     const MIN_REQUESTED_INVITEE_ROWS = 5;
 
     function requestedInviteeRowHtml(rowNum, name, gname, mail) {
+      // autocomplete="off" alone isn't reliable for plain name/email fields —
+      // browsers largely ignore it for their profile-autofill heuristics,
+      // which key off placeholder/label text rather than the name attribute.
+      // Giving each row its own varying name (never repeated verbatim across
+      // renders/edits) is what actually stops the admin's own saved contact
+      // info from getting silently autofilled into someone else's invitee
+      // row here — the exact bug already found and fixed on the sponsor
+      // request form's identical-looking table.
       return `
         <tr>
           <td>${rowNum}</td>
-          <td><input type="text" placeholder="Name" value="${escapeHtml(name || "")}"></td>
-          <td><input type="text" placeholder="Greet Name" value="${escapeHtml(gname || "")}"></td>
-          <td><input type="email" placeholder="Email" value="${escapeHtml(mail || "")}"></td>
+          <td><input type="text" name="req_inv_name_${rowNum}" placeholder="Name" autocomplete="off" value="${escapeHtml(name || "")}"></td>
+          <td><input type="text" name="req_inv_gname_${rowNum}" placeholder="Greet Name" autocomplete="off" value="${escapeHtml(gname || "")}"></td>
+          <td><input type="email" name="req_inv_email_${rowNum}" placeholder="Email" autocomplete="off" value="${escapeHtml(mail || "")}"></td>
           <td><button type="button" class="btn-control" title="Remove row">✕</button></td>
         </tr>`;
     }
@@ -729,8 +737,8 @@
           const inv = d.data();
           const tr = document.createElement("tr");
           tr.innerHTML = `
-            <td><input type="text" value="${escapeHtml(inv.name || "")}"></td>
-            <td><input type="text" value="${escapeHtml(inv.gname || "")}"></td>
+            <td><input type="text" name="inv_name_${d.id}" autocomplete="off" value="${escapeHtml(inv.name || "")}"></td>
+            <td><input type="text" name="inv_gname_${d.id}" autocomplete="off" value="${escapeHtml(inv.gname || "")}"></td>
             <td>${escapeHtml(inv.mail || d.id)}</td>
             <td><input type="checkbox" ${inv.email_sent ? "checked" : ""}></td>
             <td>${escapeHtml(inv.email_error || "")}</td>
@@ -798,7 +806,7 @@
           const lastBeat = a.last_heartbeat_at && a.last_heartbeat_at.toDate ? a.last_heartbeat_at.toDate().toLocaleString() : "—";
           const tr = document.createElement("tr");
           tr.innerHTML = `
-            <td><input type="text" value="${escapeHtml(a.name || "")}"></td>
+            <td><input type="text" name="att_name_${d.id}" autocomplete="off" value="${escapeHtml(a.name || "")}"></td>
             <td>${escapeHtml(a.email || d.id)}</td>
             <td><input type="number" min="0" value="${a.total_seconds_listened || 0}"></td>
             <td>${lastBeat}</td>
