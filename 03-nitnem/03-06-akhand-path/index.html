@@ -928,7 +928,10 @@ function isUserInvited(sessionData, user) {
 
         myProgramsPicker.hidden = true;
         statusBar.hidden = false;
-        document.getElementById("attendanceReportSection").hidden = false;
+        // The full Attendance Report (everyone's name/email/listening time)
+        // is admin-only — a regular sponsor/invitee only gets their own
+        // total via the "My Attendance" card above, not everyone else's.
+        document.getElementById("attendanceReportSection").hidden = !admin;
 
         if (!sessionId) {
           statusBar.className = "status-bar scheduled";
