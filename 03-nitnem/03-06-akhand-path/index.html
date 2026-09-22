@@ -158,7 +158,7 @@
     import {
       auth, db, onAuthStateChanged, signOut,
       doc, getDoc, onSnapshot, collection, query, where, orderBy, limit, getDocs,
-      emailKey, markEndedIfComplete, driveImageUrl, isAdminEmail, SESSIONS_COLLECTION
+      emailKey, markEndedIfComplete, driveImageUrl, isAdminEmail, parseInviteeList, SESSIONS_COLLECTION
     } from "./firebase.js";
     import { AkhandPathSync, computePosition, formatDurationHM } from "./sync.js";
     import { createAttendanceTracker, watchAttendance, renderAttendanceTable, formatSeconds } from "./attendance.js";
@@ -314,11 +314,17 @@
 
     // invitee_emails_raw may contain names and emails separated by semicolons.
     // Only values containing "@" are treated as email addresses.
+    // Was splitting the whole raw text on ";" alone, ignoring the newlines
+    // between invitee lines — so with 2+ invitees, every one except the last
+    // ended up with the next line's "Name; Greeting Name" text stuck onto
+    // the end of its email (e.g. "x@y.com\nNext Name"), which then never
+    // exact-matched the real address in isUserInvited() below. Using the
+    // same parseInviteeList() the rest of the app already relies on for this
+    // exact format (splits on newlines first, then ";" per line) fixes it.
     function getInviteeEmails(sessionData) {
-      return String(sessionData?.invitee_emails_raw || "")
-        .split(";")
-        .map(v => v.trim().toLowerCase())
-        .filter(v => v.includes("@"));
+      return parseInviteeList(sessionData?.invitee_emails_raw)
+        .map((inv) => (inv.mail || "").trim().toLowerCase())
+        .filter(Boolean);
     }
 
 function isUserInvited(sessionData, user) {
