@@ -244,6 +244,23 @@
 
     const DEFAULT_PHOTO = "../../pictures/00-index/sikhsinindia.png";
 
+    // "18-Sep-26, 07:00 PM" — used for the admin session picker's option
+    // labels, where toLocaleString()'s locale-dependent full format (with
+    // seconds) was both inconsistent across browsers and too long to read
+    // comfortably in a dropdown.
+    const MONTH_ABBR = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    function formatShortDateTime(d) {
+      const dd = String(d.getDate()).padStart(2, "0");
+      const mmm = MONTH_ABBR[d.getMonth()];
+      const yy = String(d.getFullYear()).slice(-2);
+      let h = d.getHours();
+      const ampm = h >= 12 ? "PM" : "AM";
+      h = h % 12 || 12;
+      const hh = String(h).padStart(2, "0");
+      const mm = String(d.getMinutes()).padStart(2, "0");
+      return `${dd}-${mmm}-${yy}, ${hh}:${mm} ${ampm}`;
+    }
+
     let latestSession = null;
     let ytPlayer = null;
     let ytPlayerReady = false; // true only once the player's OWN onReady event has fired — `ytPlayer` alone isn't enough, since it's assigned the instant `new YT.Player()` is called, before the player can actually accept commands like loadVideoById()
@@ -333,11 +350,12 @@ function isUserInvited(sessionData, user) {
 
           const startLabel =
             data.start_at && data.start_at.toDate
-              ? data.start_at.toDate().toLocaleString()
+              ? formatShortDateTime(data.start_at.toDate())
               : "";
 
+          const idPrefix = data.akhand_path_id != null ? `${data.akhand_path_id} — ` : "";
           opt.textContent =
-            `${data.name || "Untitled"} — ${data.purpose || ""} (${startLabel})`;
+            `${idPrefix}${data.name || "Untitled"} — ${data.purpose || ""} (${startLabel})`;
 
           if (d.id === sessionId) opt.selected = true;
           sessionPicker.appendChild(opt);
