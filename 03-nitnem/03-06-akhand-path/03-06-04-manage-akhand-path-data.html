@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHNTFNW14H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Manage Akhand Path Data | Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+  <style>
+    .poster { max-width: 1080px; }
+    .kv-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; }
+    .kv-row input { flex: 1; }
+    .kv-row .kv-key { max-width: 160px; }
+    .checkbox-row { display: flex; align-items: center; gap: 8px; }
+    .checkbox-row input[type="checkbox"] { width: auto; }
+    .section-note { font-size: 12px; color: #888; margin-bottom: 10px; }
+    select { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #ccc; font-family: inherit; font-size: 14px; }
+    td input[type="text"], td input[type="number"], td input[type="email"] { padding: 6px 8px; font-size: 13px; }
+  </style>
+</head>
+
+<body>
+
+  <div class="poster">
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Manage Akhand Path <span>Data</span></div>
+        <div class="hero-sub">Admin — Directly Add, Edit, or Delete Any Field on Any Program</div>
+      </div>
+    </div>
+
+    <div class="wrapper">
+
+      <div id="adminPanel">
+
+        <div class="card">
+          <div class="card-title">Admin</div>
+          <p class="muted" style="margin-bottom:10px;">This tool edits raw Firestore data directly — every field on a
+            program, its invitees, and its attendance records — including corrections that the normal setup page
+            doesn't expose (e.g. fixing a wrong duration, backdating an approval, or adjusting someone's recorded
+            attendance time). Changes here take effect immediately and are not reversible.</p>
+          <a class="btn-back" href="./03-06-03-admin-akhand-path.html">Back to Admin Setup</a>
+          <button class="btn-back" onclick="adminLogout()">Logout</button>
+        </div>
+
+        <h2>All Akhand Path Instances</h2>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Honoree</th><th>Purpose</th><th>Start</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="instancesTableBody">
+              <tr><td colspan="6" class="loading-text">Loading instances...</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <button class="btn-action" style="width:auto;" onclick="newInstance()">+ Add New Instance</button>
+
+        <!-- EDIT/CREATE INSTANCE -->
+        <div id="editPanel" hidden>
+          <h2 id="editTitle">Instance</h2>
+
+          <div class="card">
+            <div class="card-title">Core Details</div>
+            <div class="form-grid">
+              <div class="form-row">
+                <label>Doc / Akhand Path ID *</label>
+                <input id="fDocId" type="text" placeholder="e.g. 7">
+                <p class="section-note" id="docIdNote">This is the Firestore document ID. It cannot be changed once created.</p>
+              </div>
+              <div class="form-row">
+                <label>Status</label>
+                <select id="fStatus">
+                  <option value="pending_approval">pending_approval</option>
+                  <option value="scheduled">scheduled</option>
+                  <option value="ended">ended</option>
+                  <option value="rejected">rejected</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label>Honoree Name</label>
+                <input id="fName" type="text">
+              </div>
+              <div class="form-row">
+                <label>Purpose</label>
+                <input id="fPurpose" type="text">
+              </div>
+              <div class="form-row">
+                <label>Sponsor</label>
+                <input id="fSponsor" type="text">
+              </div>
+              <div class="form-row">
+                <label>Sponsor / Contact Email</label>
+                <input id="fEmail" type="email">
+              </div>
+              <div class="form-row">
+                <label>Mobile</label>
+                <input id="fMobie" type="text">
+              </div>
+              <div class="form-row">
+                <label>Country / City</label>
+                <input id="fCountryCity" type="text">
+              </div>
+              <div class="form-row">
+                <label>Family Members</label>
+                <input id="fFamilyMembers" type="text">
+              </div>
+              <div class="form-row">
+                <label>Photo URL</label>
+                <input id="fPhotoUrl" type="text">
+              </div>
+              <div class="form-row">
+                <label>Duration (hours)</label>
+                <input id="fDurationHours" type="number" step="0.01" min="0">
+              </div>
+              <div class="form-row">
+                <label>Start At</label>
+                <input id="fStartAt" type="datetime-local">
+              </div>
+              <div class="form-row">
+                <label>Approved At</label>
+                <input id="fApprovedAt" type="datetime-local">
+              </div>
+              <div class="form-row">
+                <label>Approved By (UID)</label>
+                <input id="fApprovedBy" type="text">
+              </div>
+              <div class="form-row">
+                <label>Requested At</label>
+                <input id="fRequestedAt" type="datetime-local">
+              </div>
+              <div class="form-row">
+                <label>Ended At</label>
+                <input id="fEndedAt" type="datetime-local">
+              </div>
+              <div class="form-row">
+                <label>Rejected At</label>
+                <input id="fRejectedAt" type="datetime-local">
+              </div>
+              <div class="form-row">
+                <label>Reject Reason</label>
+                <input id="fRejectReason" type="text">
+              </div>
+              <div class="form-row">
+                <label>Photo Offset X / Y (%)</label>
+                <div style="display:flex;gap:8px;">
+                  <input id="fPhotoOffsetX" type="number" min="0" max="100" placeholder="50">
+                  <input id="fPhotoOffsetY" type="number" min="0" max="100" placeholder="50">
+                </div>
+              </div>
+              <div class="form-row">
+                <label>Photo Zoom</label>
+                <input id="fPhotoZoom" type="number" step="0.05" min="1" max="3" placeholder="1">
+              </div>
+            </div>
+            <div class="form-row">
+              <label>Invitee Emails (raw, "Name; Greeting Name; Email" per line)</label>
+              <textarea id="fInviteeEmailsRaw" rows="3"></textarea>
+            </div>
+            <div class="form-row">
+              <label>Message</label>
+              <textarea id="fMessage" rows="2"></textarea>
+            </div>
+            <div class="form-row checkbox-row">
+              <input id="fConsent" type="checkbox">
+              <label style="margin:0;text-transform:none;font-weight:400;">Consent given</label>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Video Track Durations (seconds)</div>
+            <p class="section-note">Self-measured playback lengths for this program's video sequence — used to compute
+              where the continuous recitation should be at any given moment. Only edit these if a track's timing is
+              known to be wrong.</p>
+            <div id="durationsRows"></div>
+            <button type="button" class="btn-control" onclick="addDurationRow()">+ Add Track</button>
+          </div>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;">
+            <button class="btn-action" style="width:auto;" onclick="saveInstance()">Save Instance</button>
+            <button class="btn-danger btn-action" style="width:auto;" id="deleteInstanceBtn" onclick="deleteInstance()">Delete Entire Instance</button>
+          </div>
+          <p id="editStatus" class="muted" style="margin-bottom:20px;min-height:18px;"></p>
+
+          <!-- INVITEES -->
+          <div id="invSection" hidden>
+            <h2>Invitees</h2>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr><th>Name</th><th>Greeting Name</th><th>Email</th><th>Invited</th><th>Error</th><th></th></tr>
+                </thead>
+                <tbody id="inviteesEditBody">
+                  <tr><td colspan="6" class="loading-text">Loading invitees...</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="form-grid" style="margin-top:14px;">
+              <div class="form-row">
+                <label>Name</label>
+                <input id="newInvName" type="text">
+              </div>
+              <div class="form-row">
+                <label>Greeting Name</label>
+                <input id="newInvGname" type="text">
+              </div>
+              <div class="form-row">
+                <label>Email *</label>
+                <input id="newInvMail" type="email">
+              </div>
+            </div>
+            <button class="btn-action" style="width:auto;" onclick="addInviteeRow()">+ Add Invitee</button>
+            <p id="inviteesStatus" class="muted" style="margin-top:10px;min-height:18px;"></p>
+          </div>
+
+          <!-- ATTENDANCE -->
+          <div id="attSection" hidden>
+            <h2>Attendance / Time Spent</h2>
+            <p class="section-note">Total duration is stored in seconds. Edit it directly to correct a member's
+              recorded attendance time.</p>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr><th>Name</th><th>Email</th><th>Total Seconds Listened</th><th>Last Heartbeat</th><th></th></tr>
+                </thead>
+                <tbody id="attendanceEditBody">
+                  <tr><td colspan="5" class="loading-text">Loading attendance...</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="form-grid" style="margin-top:14px;">
+              <div class="form-row">
+                <label>Name</label>
+                <input id="newAttName" type="text">
+              </div>
+              <div class="form-row">
+                <label>Email *</label>
+                <input id="newAttEmail" type="email">
+              </div>
+              <div class="form-row">
+                <label>Total Seconds Listened</label>
+                <input id="newAttSeconds" type="number" min="0" value="0">
+              </div>
+            </div>
+            <button class="btn-action" style="width:auto;" onclick="addAttendanceRow()">+ Add Attendance Record</button>
+            <p id="attendanceStatus" class="muted" style="margin-top:10px;min-height:18px;"></p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-content">
+        <a href="./03-06-akhand-path.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back to Akhand Path
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import {
+      db, doc, setDoc, getDoc, updateDoc, deleteDoc, collection, query, orderBy, limit, getDocs, onSnapshot,
+      serverTimestamp, Timestamp, emailKey, driveImageUrl, SESSIONS_COLLECTION, nextAkhandPathId
+    } from "./firebase.js";
+    import { computePosition, formatDurationHM } from "./sync.js";
+
+    /* ---------------- AUTH GATE ----------------
+       Same client-side password flag as 03-06-03-admin-akhand-path.html —
+       this page is reachable only after that gate, and is even more
+       sensitive (raw data edit/delete), so it uses the exact same check. */
+    if (localStorage.getItem("akhandPathAdminAuthed") !== "1") {
+      window.location.href = "./03-06a-password-akhand-path.html";
+    } else {
+      loadInstances();
+    }
+
+    window.adminLogout = () => {
+      localStorage.removeItem("akhandPathAdminAuthed");
+      window.location.href = "./03-06a-password-akhand-path.html";
+    };
+
+    function escapeHtml(str) {
+      return String(str == null ? "" : str).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    }
+
+    // datetime-local <-> Firestore Timestamp helpers. datetime-local has no
+    // timezone info, so round-tripping through it is inherently local-time —
+    // fine here since every date in this app is already entered/displayed in
+    // the browser's local time (see formatFullDateTime elsewhere in this app).
+    function timestampToLocalInput(ts) {
+      if (!ts || typeof ts.toDate !== "function") return "";
+      const d = ts.toDate();
+      const pad = (n) => String(n).padStart(2, "0");
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
+
+    function localInputToTimestamp(value) {
+      if (!value) return null;
+      const d = new Date(value);
+      if (isNaN(d.getTime())) return null;
+      return Timestamp.fromDate(d);
+    }
+
+    let activeDocId = null;
+    let isNewInstance = false;
+    let unsubInvitees = null;
+    let unsubAttendance = null;
+
+    /* ---------------- LIST ALL INSTANCES ---------------- */
+    function statusLabel(session) {
+      const pos = computePosition(session);
+      if (pos.phase === "pending_approval") return "Pending Approval";
+      if (pos.phase === "rejected") return "Rejected";
+      if (pos.phase === "live") return `Live (${formatDurationHM(pos.elapsedMs)} elapsed)`;
+      if (pos.phase === "scheduled") return `Scheduled (starts in ${formatDurationHM(pos.startsInMs)})`;
+      return session.status === "ended" ? "Ended" : "Completed";
+    }
+
+    async function loadInstances() {
+      const tbody = document.getElementById("instancesTableBody");
+      const q = query(collection(db, SESSIONS_COLLECTION), orderBy("akhand_path_id", "desc"), limit(200));
+      const snap = await getDocs(q);
+      if (snap.empty) {
+        tbody.innerHTML = `<tr><td colspan="6" class="no-data">No instances yet.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = "";
+      snap.forEach((d) => {
+        const s = d.data();
+        const startLabel = s.start_at && s.start_at.toDate ? s.start_at.toDate().toLocaleString() : "—";
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${escapeHtml(s.akhand_path_id != null ? s.akhand_path_id : d.id)}</td>
+          <td>${escapeHtml(s.name || "")}</td>
+          <td>${escapeHtml(s.purpose || "")}</td>
+          <td>${startLabel}</td>
+          <td>${statusLabel(s)}</td>
+          <td style="display:flex;gap:6px;">
+            <button class="btn-back" type="button">Edit</button>
+          </td>
+        `;
+        tr.querySelector("button").addEventListener("click", () => editInstance(d.id, s));
+        tbody.appendChild(tr);
+      });
+    }
+
+    /* ---------------- DURATIONS MAP EDITOR ---------------- */
+    function renderDurationsRows(durations) {
+      const wrap = document.getElementById("durationsRows");
+      wrap.innerHTML = "";
+      const entries = Object.entries(durations || {});
+      if (!entries.length) {
+        addDurationRowEl("", "");
+        return;
+      }
+      entries.forEach(([k, v]) => addDurationRowEl(k, v));
+    }
+
+    function addDurationRowEl(key, value) {
+      const wrap = document.getElementById("durationsRows");
+      const row = document.createElement("div");
+      row.className = "kv-row";
+      row.innerHTML = `
+        <input class="kv-key" type="text" placeholder="video1" value="${escapeHtml(key)}">
+        <input type="number" min="0" placeholder="seconds" value="${escapeHtml(value)}">
+        <button type="button" class="btn-control" title="Remove">✕</button>
+      `;
+      row.querySelector("button").addEventListener("click", () => row.remove());
+      wrap.appendChild(row);
+    }
+
+    window.addDurationRow = () => addDurationRowEl("", "");
+
+    function collectDurations() {
+      const durations = {};
+      document.querySelectorAll("#durationsRows .kv-row").forEach((row) => {
+        const inputs = row.querySelectorAll("input");
+        const key = inputs[0].value.trim();
+        const value = inputs[1].value;
+        if (key && value !== "") durations[key] = Number(value);
+      });
+      return durations;
+    }
+
+    /* ---------------- CREATE / EDIT FORM ---------------- */
+    function clearForm() {
+      ["fName", "fPurpose", "fSponsor", "fEmail", "fMobie", "fCountryCity", "fFamilyMembers", "fPhotoUrl",
+        "fApprovedBy", "fRejectReason", "fInviteeEmailsRaw", "fMessage"].forEach((id) => document.getElementById(id).value = "");
+      ["fStartAt", "fApprovedAt", "fRequestedAt", "fEndedAt", "fRejectedAt"].forEach((id) => document.getElementById(id).value = "");
+      document.getElementById("fDurationHours").value = "";
+      document.getElementById("fPhotoOffsetX").value = "";
+      document.getElementById("fPhotoOffsetY").value = "";
+      document.getElementById("fPhotoZoom").value = "";
+      document.getElementById("fConsent").checked = false;
+      document.getElementById("fStatus").value = "scheduled";
+      renderDurationsRows({});
+    }
+
+    window.newInstance = async () => {
+      isNewInstance = true;
+      activeDocId = null;
+      clearForm();
+      document.getElementById("editTitle").textContent = "New Instance";
+      document.getElementById("docIdNote").textContent = "Suggested next ID — you may change this before saving, but not after.";
+      const suggested = await nextAkhandPathId();
+      document.getElementById("fDocId").value = String(suggested);
+      document.getElementById("fDocId").disabled = false;
+      document.getElementById("deleteInstanceBtn").hidden = true;
+      document.getElementById("invSection").hidden = true;
+      document.getElementById("attSection").hidden = true;
+      document.getElementById("editStatus").textContent = "";
+      document.getElementById("editPanel").hidden = false;
+      document.getElementById("editPanel").scrollIntoView({ behavior: "smooth" });
+    };
+
+    function editInstance(docId, s) {
+      isNewInstance = false;
+      activeDocId = docId;
+      clearForm();
+
+      document.getElementById("editTitle").textContent = `Editing: ${s.name || docId} — ${s.purpose || ""}`;
+      document.getElementById("fDocId").value = docId;
+      document.getElementById("fDocId").disabled = true;
+      document.getElementById("docIdNote").textContent = "This is the Firestore document ID. It cannot be changed once created.";
+
+      document.getElementById("fStatus").value = s.status || "scheduled";
+      document.getElementById("fName").value = s.name || "";
+      document.getElementById("fPurpose").value = s.purpose || "";
+      document.getElementById("fSponsor").value = s.sponsor || "";
+      document.getElementById("fEmail").value = s.email || "";
+      document.getElementById("fMobie").value = s.mobie || "";
+      document.getElementById("fCountryCity").value = s.country_city || "";
+      document.getElementById("fFamilyMembers").value = s.family_members || "";
+      document.getElementById("fPhotoUrl").value = s.photo_url || "";
+      document.getElementById("fDurationHours").value = s.duration_hours != null ? s.duration_hours : "";
+      document.getElementById("fStartAt").value = timestampToLocalInput(s.start_at);
+      document.getElementById("fApprovedAt").value = timestampToLocalInput(s.approved_at);
+      document.getElementById("fApprovedBy").value = s.approved_by || "";
+      document.getElementById("fRequestedAt").value = timestampToLocalInput(s.requested_at);
+      document.getElementById("fEndedAt").value = timestampToLocalInput(s.ended_at);
+      document.getElementById("fRejectedAt").value = timestampToLocalInput(s.rejected_at);
+      document.getElementById("fRejectReason").value = s.reject_reason || "";
+      document.getElementById("fPhotoOffsetX").value = s.photo_offset_x != null ? s.photo_offset_x : "";
+      document.getElementById("fPhotoOffsetY").value = s.photo_offset_y != null ? s.photo_offset_y : "";
+      document.getElementById("fPhotoZoom").value = s.photo_zoom != null ? s.photo_zoom : "";
+      document.getElementById("fInviteeEmailsRaw").value = s.invitee_emails_raw || "";
+      document.getElementById("fMessage").value = s.message || "";
+      document.getElementById("fConsent").checked = !!s.consent;
+      renderDurationsRows(s.durations);
+
+      document.getElementById("deleteInstanceBtn").hidden = false;
+      document.getElementById("invSection").hidden = false;
+      document.getElementById("attSection").hidden = false;
+      document.getElementById("editStatus").textContent = "";
+      watchInviteesEdit(docId);
+      watchAttendanceEdit(docId);
+
+      document.getElementById("editPanel").hidden = false;
+      document.getElementById("editPanel").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function fieldOrNull(value) {
+      return value === "" ? null : value;
+    }
+
+    window.saveInstance = async () => {
+      const status = document.getElementById("editStatus");
+      const docId = document.getElementById("fDocId").value.trim();
+      if (!docId) { status.textContent = "Doc / Akhand Path ID is required."; return; }
+
+      const akhandPathIdNum = Number(docId);
+
+      const data = {
+        akhand_path_id: isNaN(akhandPathIdNum) ? docId : akhandPathIdNum,
+        status: document.getElementById("fStatus").value,
+        name: document.getElementById("fName").value.trim(),
+        purpose: document.getElementById("fPurpose").value.trim(),
+        sponsor: document.getElementById("fSponsor").value.trim(),
+        email: document.getElementById("fEmail").value.trim(),
+        mobie: document.getElementById("fMobie").value.trim(),
+        country_city: document.getElementById("fCountryCity").value.trim(),
+        family_members: document.getElementById("fFamilyMembers").value.trim(),
+        photo_url: document.getElementById("fPhotoUrl").value.trim(),
+        invitee_emails_raw: document.getElementById("fInviteeEmailsRaw").value.trim(),
+        message: document.getElementById("fMessage").value.trim(),
+        consent: document.getElementById("fConsent").checked,
+        reject_reason: document.getElementById("fRejectReason").value.trim(),
+        approved_by: document.getElementById("fApprovedBy").value.trim(),
+        durations: collectDurations()
+      };
+
+      const durationHours = document.getElementById("fDurationHours").value;
+      if (durationHours !== "") data.duration_hours = Number(durationHours);
+
+      const photoX = document.getElementById("fPhotoOffsetX").value;
+      const photoY = document.getElementById("fPhotoOffsetY").value;
+      const photoZoom = document.getElementById("fPhotoZoom").value;
+      if (photoX !== "") data.photo_offset_x = Number(photoX);
+      if (photoY !== "") data.photo_offset_y = Number(photoY);
+      if (photoZoom !== "") data.photo_zoom = Number(photoZoom);
+
+      const startAtTs = localInputToTimestamp(document.getElementById("fStartAt").value);
+      if (startAtTs) data.start_at = startAtTs;
+      const approvedAtTs = localInputToTimestamp(document.getElementById("fApprovedAt").value);
+      if (approvedAtTs) data.approved_at = approvedAtTs;
+      const requestedAtTs = localInputToTimestamp(document.getElementById("fRequestedAt").value);
+      if (requestedAtTs) data.requested_at = requestedAtTs;
+      const endedAtTs = localInputToTimestamp(document.getElementById("fEndedAt").value);
+      if (endedAtTs) data.ended_at = endedAtTs;
+      const rejectedAtTs = localInputToTimestamp(document.getElementById("fRejectedAt").value);
+      if (rejectedAtTs) data.rejected_at = rejectedAtTs;
+
+      status.textContent = "Saving...";
+      try {
+        if (isNewInstance) {
+          const existing = await getDoc(doc(db, SESSIONS_COLLECTION, docId));
+          if (existing.exists()) {
+            status.textContent = `An instance with ID "${docId}" already exists. Choose a different ID.`;
+            return;
+          }
+          if (!requestedAtTs) data.requested_at = serverTimestamp();
+          await setDoc(doc(db, SESSIONS_COLLECTION, docId), data);
+          status.textContent = "New instance created.";
+          isNewInstance = false;
+          activeDocId = docId;
+          document.getElementById("fDocId").disabled = true;
+          document.getElementById("docIdNote").textContent = "This is the Firestore document ID. It cannot be changed once created.";
+          document.getElementById("deleteInstanceBtn").hidden = false;
+          document.getElementById("invSection").hidden = false;
+          document.getElementById("attSection").hidden = false;
+          watchInviteesEdit(docId);
+          watchAttendanceEdit(docId);
+        } else {
+          await updateDoc(doc(db, SESSIONS_COLLECTION, docId), data);
+          status.textContent = "Saved.";
+        }
+        await loadInstances();
+      } catch (err) {
+        status.textContent = "Could not save: " + (err.message || err);
+      }
+    };
+
+    window.deleteInstance = async () => {
+      if (!activeDocId) return;
+      if (!confirm(`Permanently delete instance "${activeDocId}" and ALL of its invitees and attendance records? This cannot be undone.`)) return;
+      const status = document.getElementById("editStatus");
+      status.textContent = "Deleting...";
+      try {
+        // Firestore doesn't cascade-delete subcollections, so each invitee/
+        // attendance doc under this instance has to be removed individually
+        // or they'd be left as unreachable orphans still counted elsewhere.
+        const inviteesSnap = await getDocs(collection(db, SESSIONS_COLLECTION, activeDocId, "invitees"));
+        for (const d of inviteesSnap.docs) await deleteDoc(d.ref);
+        const attendanceSnap = await getDocs(collection(db, SESSIONS_COLLECTION, activeDocId, "attendance"));
+        for (const d of attendanceSnap.docs) await deleteDoc(d.ref);
+        await deleteDoc(doc(db, SESSIONS_COLLECTION, activeDocId));
+
+        if (unsubInvitees) unsubInvitees();
+        if (unsubAttendance) unsubAttendance();
+        document.getElementById("editPanel").hidden = true;
+        activeDocId = null;
+        await loadInstances();
+      } catch (err) {
+        status.textContent = "Could not delete: " + (err.message || err);
+      }
+    };
+
+    /* ---------------- INVITEES CRUD ---------------- */
+    function watchInviteesEdit(docId) {
+      if (unsubInvitees) unsubInvitees();
+      const ref = collection(db, SESSIONS_COLLECTION, docId, "invitees");
+      unsubInvitees = onSnapshot(ref, (snap) => {
+        const tbody = document.getElementById("inviteesEditBody");
+        if (snap.empty) {
+          tbody.innerHTML = `<tr><td colspan="6" class="no-data">No invitees yet.</td></tr>`;
+          return;
+        }
+        tbody.innerHTML = "";
+        snap.forEach((d) => {
+          const inv = d.data();
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td><input type="text" value="${escapeHtml(inv.name || "")}"></td>
+            <td><input type="text" value="${escapeHtml(inv.gname || "")}"></td>
+            <td>${escapeHtml(inv.mail || d.id)}</td>
+            <td><input type="checkbox" ${inv.email_sent ? "checked" : ""}></td>
+            <td>${escapeHtml(inv.email_error || "")}</td>
+            <td style="display:flex;gap:4px;">
+              <button type="button" class="btn-control">Save</button>
+              <button type="button" class="btn-control">✕</button>
+            </td>
+          `;
+          const [nameInput, gnameInput, sentCheckbox] = tr.querySelectorAll("input");
+          const [saveBtn, delBtn] = tr.querySelectorAll("button");
+          saveBtn.addEventListener("click", async () => {
+            try {
+              await updateDoc(d.ref, { name: nameInput.value.trim(), gname: gnameInput.value.trim(), email_sent: sentCheckbox.checked });
+              document.getElementById("inviteesStatus").textContent = "Saved.";
+            } catch (err) {
+              document.getElementById("inviteesStatus").textContent = "Could not save: " + (err.message || err);
+            }
+          });
+          delBtn.addEventListener("click", async () => {
+            if (!confirm(`Remove invitee ${inv.mail || d.id}?`)) return;
+            await deleteDoc(d.ref);
+          });
+          tbody.appendChild(tr);
+        });
+      });
+    }
+
+    window.addInviteeRow = async () => {
+      const status = document.getElementById("inviteesStatus");
+      const name = document.getElementById("newInvName").value.trim();
+      const gname = document.getElementById("newInvGname").value.trim();
+      const mail = document.getElementById("newInvMail").value.trim().toLowerCase();
+      if (!mail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) {
+        status.textContent = "Please enter a valid email address.";
+        return;
+      }
+      if (!activeDocId) { status.textContent = "Save the instance first."; return; }
+      try {
+        await setDoc(doc(db, SESSIONS_COLLECTION, activeDocId, "invitees", emailKey(mail)), {
+          name: name || mail, gname: gname || name || mail, mail,
+          invited_at: serverTimestamp(), email_sent: false
+        }, { merge: true });
+        document.getElementById("newInvName").value = "";
+        document.getElementById("newInvGname").value = "";
+        document.getElementById("newInvMail").value = "";
+        status.textContent = "Invitee record added. (No email is sent from this tool — use Admin Setup to invite and email someone new.)";
+      } catch (err) {
+        status.textContent = "Could not add invitee: " + (err.message || err);
+      }
+    };
+
+    /* ---------------- ATTENDANCE CRUD ---------------- */
+    function watchAttendanceEdit(docId) {
+      if (unsubAttendance) unsubAttendance();
+      const ref = collection(db, SESSIONS_COLLECTION, docId, "attendance");
+      unsubAttendance = onSnapshot(ref, (snap) => {
+        const tbody = document.getElementById("attendanceEditBody");
+        if (snap.empty) {
+          tbody.innerHTML = `<tr><td colspan="5" class="no-data">No attendance recorded yet.</td></tr>`;
+          return;
+        }
+        tbody.innerHTML = "";
+        snap.forEach((d) => {
+          const a = d.data();
+          const lastBeat = a.last_heartbeat_at && a.last_heartbeat_at.toDate ? a.last_heartbeat_at.toDate().toLocaleString() : "—";
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td><input type="text" value="${escapeHtml(a.name || "")}"></td>
+            <td>${escapeHtml(a.email || d.id)}</td>
+            <td><input type="number" min="0" value="${a.total_seconds_listened || 0}"></td>
+            <td>${lastBeat}</td>
+            <td style="display:flex;gap:4px;">
+              <button type="button" class="btn-control">Save</button>
+              <button type="button" class="btn-control">✕</button>
+            </td>
+          `;
+          const [nameInput, secondsInput] = tr.querySelectorAll("input");
+          const [saveBtn, delBtn] = tr.querySelectorAll("button");
+          saveBtn.addEventListener("click", async () => {
+            try {
+              await updateDoc(d.ref, { name: nameInput.value.trim(), total_seconds_listened: Number(secondsInput.value) || 0 });
+              document.getElementById("attendanceStatus").textContent = "Saved.";
+            } catch (err) {
+              document.getElementById("attendanceStatus").textContent = "Could not save: " + (err.message || err);
+            }
+          });
+          delBtn.addEventListener("click", async () => {
+            if (!confirm(`Remove attendance record for ${a.email || d.id}?`)) return;
+            await deleteDoc(d.ref);
+          });
+          tbody.appendChild(tr);
+        });
+      });
+    }
+
+    window.addAttendanceRow = async () => {
+      const status = document.getElementById("attendanceStatus");
+      const name = document.getElementById("newAttName").value.trim();
+      const email = document.getElementById("newAttEmail").value.trim().toLowerCase();
+      const seconds = Number(document.getElementById("newAttSeconds").value) || 0;
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        status.textContent = "Please enter a valid email address.";
+        return;
+      }
+      if (!activeDocId) { status.textContent = "Save the instance first."; return; }
+      try {
+        await setDoc(doc(db, SESSIONS_COLLECTION, activeDocId, "attendance", emailKey(email)), {
+          name: name || email, email,
+          total_seconds_listened: seconds,
+          first_joined_at: serverTimestamp(),
+          last_heartbeat_at: serverTimestamp()
+        }, { merge: true });
+        document.getElementById("newAttName").value = "";
+        document.getElementById("newAttEmail").value = "";
+        document.getElementById("newAttSeconds").value = "0";
+        status.textContent = "Attendance record added.";
+      } catch (err) {
+        status.textContent = "Could not add attendance record: " + (err.message || err);
+      }
+    };
+  </script>
+
+</body>
+</html>
