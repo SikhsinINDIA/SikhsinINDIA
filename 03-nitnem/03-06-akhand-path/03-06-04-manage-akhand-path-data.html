@@ -155,8 +155,19 @@
               <input id="fPhotoZoom" type="hidden">
             </div>
             <div class="form-row">
-              <label>Invitee Emails (raw, "Name; Greeting Name; Email" per line)</label>
-              <textarea id="fInviteeEmailsRaw" rows="3"></textarea>
+              <label>Requested Invitees</label>
+              <p class="section-note">The sponsor's originally submitted invitee list — same table format as the
+                "Sponsor an Akhand Path" request form. Used to auto-create invitee logins and send invites when this
+                request is approved.</p>
+              <div class="table-container">
+                <table id="requestedInviteeTable">
+                  <thead>
+                    <tr><th>S No</th><th>Name</th><th>Greet Name</th><th>Email</th><th></th></tr>
+                  </thead>
+                  <tbody id="requestedInviteeBody"></tbody>
+                </table>
+              </div>
+              <button type="button" class="btn-control" onclick="addRequestedInviteeRow()">+ Add Row</button>
             </div>
             <div class="form-row">
               <label>Message</label>
@@ -295,7 +306,7 @@
   <script type="module">
     import {
       db, doc, setDoc, getDoc, updateDoc, deleteDoc, collection, query, orderBy, limit, getDocs, onSnapshot,
-      serverTimestamp, Timestamp, emailKey, driveImageUrl, SESSIONS_COLLECTION, nextAkhandPathId
+      serverTimestamp, Timestamp, emailKey, driveImageUrl, parseInviteeList, SESSIONS_COLLECTION, nextAkhandPathId
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
 
@@ -379,6 +390,72 @@
       });
     }
 
+    /* ---------------- REQUESTED INVITEES TABLE ----------------
+       Same Name / Greet Name / Email table format as
+       03-06-01-request-akhand-path.html's own invitee table, editing the
+       same underlying invitee_emails_raw "Name; Greeting Name; Email" per
+       line text that field has always stored — just via a structured table
+       instead of hand-typing that format into a textarea. */
+    const MIN_REQUESTED_INVITEE_ROWS = 5;
+
+    function requestedInviteeRowHtml(rowNum, name, gname, mail) {
+      return `
+        <tr>
+          <td>${rowNum}</td>
+          <td><input type="text" placeholder="Name" value="${escapeHtml(name || "")}"></td>
+          <td><input type="text" placeholder="Greet Name" value="${escapeHtml(gname || "")}"></td>
+          <td><input type="email" placeholder="Email" value="${escapeHtml(mail || "")}"></td>
+          <td><button type="button" class="btn-control" title="Remove row">✕</button></td>
+        </tr>`;
+    }
+
+    function renumberRequestedInviteeRows() {
+      document.querySelectorAll("#requestedInviteeBody tr").forEach((tr, i) => {
+        tr.querySelector("td").textContent = i + 1;
+      });
+    }
+
+    function attachRequestedInviteeRowHandlers(tr) {
+      tr.querySelector("button").addEventListener("click", () => {
+        tr.remove();
+        renumberRequestedInviteeRows();
+      });
+    }
+
+    function renderRequestedInvitees(rawText) {
+      const tbody = document.getElementById("requestedInviteeBody");
+      tbody.innerHTML = "";
+      const invitees = parseInviteeList(rawText);
+      const rowCount = Math.max(invitees.length, MIN_REQUESTED_INVITEE_ROWS);
+      for (let i = 0; i < rowCount; i++) {
+        const inv = invitees[i];
+        tbody.insertAdjacentHTML("beforeend", requestedInviteeRowHtml(i + 1, inv && inv.name, inv && inv.gname, inv && inv.mail));
+      }
+      [...tbody.querySelectorAll("tr")].forEach(attachRequestedInviteeRowHandlers);
+    }
+
+    window.addRequestedInviteeRow = () => {
+      const tbody = document.getElementById("requestedInviteeBody");
+      const rowNum = tbody.querySelectorAll("tr").length + 1;
+      tbody.insertAdjacentHTML("beforeend", requestedInviteeRowHtml(rowNum, "", "", ""));
+      attachRequestedInviteeRowHandlers(tbody.lastElementChild);
+    };
+
+    // Rebuilds the same "Name; Greeting Name; Email" per-line raw text
+    // parseInviteeList() expects, skipping rows with no email entered.
+    function collectRequestedInviteesRaw() {
+      const lines = [];
+      document.querySelectorAll("#requestedInviteeBody tr").forEach((tr) => {
+        const [nameInput, gnameInput, mailInput] = tr.querySelectorAll("input");
+        const email = mailInput.value.trim();
+        if (!email) return;
+        const name = nameInput.value.trim();
+        const gname = gnameInput.value.trim() || name;
+        lines.push(`${name}; ${gname}; ${email}`);
+      });
+      return lines.join("\n");
+    }
+
     /* ---------------- HONOREE PHOTO ADJUST ----------------
        Same nudge/zoom/reset pattern as 03-06-03-admin-akhand-path.html's
        photo adjuster — kept as a self-contained live preview here, writing
@@ -424,12 +501,13 @@
     /* ---------------- CREATE / EDIT FORM ---------------- */
     function clearForm() {
       ["fName", "fPurpose", "fSponsor", "fEmail", "fMobie", "fCountryCity", "fFamilyMembers", "fPhotoUrl",
-        "fApprovedBy", "fRejectReason", "fInviteeEmailsRaw", "fMessage"].forEach((id) => document.getElementById(id).value = "");
+        "fApprovedBy", "fRejectReason", "fMessage"].forEach((id) => document.getElementById(id).value = "");
       ["fStartAt", "fApprovedAt", "fRequestedAt", "fEndedAt", "fRejectedAt"].forEach((id) => document.getElementById(id).value = "");
       document.getElementById("fDurationHours").value = "";
       document.getElementById("fConsent").checked = false;
       document.getElementById("fStatus").value = "scheduled";
       initPhotoAdjust({});
+      renderRequestedInvitees("");
     }
 
     window.newInstance = async () => {
@@ -477,7 +555,7 @@
       document.getElementById("fEndedAt").value = timestampToLocalInput(s.ended_at);
       document.getElementById("fRejectedAt").value = timestampToLocalInput(s.rejected_at);
       document.getElementById("fRejectReason").value = s.reject_reason || "";
-      document.getElementById("fInviteeEmailsRaw").value = s.invitee_emails_raw || "";
+      renderRequestedInvitees(s.invitee_emails_raw || "");
       document.getElementById("fMessage").value = s.message || "";
       document.getElementById("fConsent").checked = !!s.consent;
 
@@ -514,7 +592,7 @@
         country_city: document.getElementById("fCountryCity").value.trim(),
         family_members: document.getElementById("fFamilyMembers").value.trim(),
         photo_url: document.getElementById("fPhotoUrl").value.trim(),
-        invitee_emails_raw: document.getElementById("fInviteeEmailsRaw").value.trim(),
+        invitee_emails_raw: collectRequestedInviteesRaw(),
         message: document.getElementById("fMessage").value.trim(),
         consent: document.getElementById("fConsent").checked,
         reject_reason: document.getElementById("fRejectReason").value.trim(),
