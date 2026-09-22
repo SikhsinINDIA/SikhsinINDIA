@@ -812,6 +812,15 @@ function isUserInvited(sessionData, user) {
 
         document.getElementById("logoutBtn").addEventListener("click", async () => {
           if (attendanceTracker) attendanceTracker.stop();
+          // The admin password gate's flag (localStorage, so it's shared by
+          // every tab/login on this device) never gets cleared by a normal
+          // sign-out — so on a device that was ever used to enter the admin
+          // password, EVERY subsequent login here, even as a completely
+          // different, non-admin account, kept showing the full admin
+          // session picker with every program. Logging out here now exits
+          // that too, so a fresh login on this device starts from a clean
+          // slate; re-entering the admin password (03-06a) restores it.
+          localStorage.removeItem("akhandPathAdminAuthed");
           await signOut(auth);
         });
 
