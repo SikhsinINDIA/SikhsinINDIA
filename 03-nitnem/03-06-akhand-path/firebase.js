@@ -236,6 +236,103 @@ export function siteFilePath(filename, suffix) {
   return `${window.location.origin}${dir}${filename}${suffix || ""}`;
 }
 
+function formatFullDateTimeForEmail(d) {
+  return d.toLocaleString(undefined, {
+    weekday: "short", year: "numeric", month: "short", day: "numeric",
+    hour: "2-digit", minute: "2-digit"
+  });
+}
+
+/* Creates (or ensures) an invitee's Firebase Auth login, writes/updates their
+   invitees/{emailKey} doc, and emails them the program details + login link.
+   This is the ONE place that logic lives: both the "Approve" button on
+   03-06-03-admin-akhand-path.html (auto-provisioning a sponsor's requested
+   invitees) and the raw data editor's "Send Invites" action (re-running it
+   later — e.g. for a program whose status/approved_at were set directly
+   through the raw editor rather than by clicking Approve, which silently
+   skips this step entirely and leaves it with zero real invitee accounts)
+   call this same function, so there's exactly one invite email template and
+   one account-creation path instead of two copies that can drift apart.
+   Returns one {mail, ok, error?} result per invitee. */
+export async function provisionInvitees(sessionId, session, invitees) {
+  const results = [];
+  for (const invitee of invitees) {
+    const mail = (invitee.mail || "").trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) {
+      results.push({ mail, ok: false, error: "invalid email address" });
+      continue;
+    }
+    const inviteeRef = doc(db, SESSIONS_COLLECTION, sessionId, "invitees", emailKey(mail));
+    try {
+      try {
+        await createUserWithEmailAndPassword(provisioningAuth, mail, INVITEE_PASSWORD);
+      } catch (authErr) {
+        if (authErr.code !== "auth/email-already-in-use") throw authErr;
+      }
+
+      const gname = invitee.gname || invitee.name || mail;
+      await setDoc(inviteeRef, {
+        name: invitee.name || gname, gname, mail,
+        invited_at: serverTimestamp(), email_sent: false
+      }, { merge: true });
+
+      const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : new Date();
+      const durationHours = session.duration_hours || 48;
+      const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
+
+      const text = `Dear ${gname},
+
+Sat Sri Akaal!
+Waheguru ji ka Khalsa, Waheguru ji ki Fateh!
+
+You have been invited for Akhand Path. Please find below the details:
+
+Path in the name of: ${session.name || ""} on occasion of ${session.purpose || ""}, sponsored by: ${session.sponsor || ""}
+
+Aaramb / Start Date and Time: ${formatFullDateTimeForEmail(start)}
+
+Samapti / Planned Completion Date and Time: ${formatFullDateTimeForEmail(samapti)}
+
+Session Link: ${siteFilePath("index.html", `?session=${sessionId}`)}
+
+Your login ID: ${mail} and password is "${INVITEE_PASSWORD}"
+
+Akhand Paath is a deeply meaningful practice in Sikhism, far surpassing a mere religious ritual; it represents a profound spiritual journey, demonstrating their spiritual dedication.
+
+Looking forward for your active participation in the Akhand Path.
+
+Best regards,
+${session.sponsor || ""}
+Team – SikhsinIndia.com
+Email: ${ADMIN_EMAIL}`;
+
+      if (!SEND_EMAIL_ENDPOINT) throw new Error("SEND_EMAIL_ENDPOINT is not configured.");
+      const res = await fetch(SEND_EMAIL_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-App-Secret": APP_SHARED_SECRET },
+        body: JSON.stringify({
+          to: mail,
+          subject: `You're invited — Akhand Path for ${session.name || ""}`,
+          text,
+          html: textToEmailHtml(text)
+        })
+      });
+      if (!res.ok) {
+        const detail = await res.text().catch(() => "");
+        throw new Error(`Email send failed (HTTP ${res.status}) ${detail}`);
+      }
+
+      await updateDoc(inviteeRef, { email_sent: true });
+      results.push({ mail, ok: true });
+    } catch (err) {
+      const message = err && err.message ? err.message : String(err);
+      results.push({ mail, ok: false, error: message });
+      try { await setDoc(inviteeRef, { email_error: message }, { merge: true }); } catch (_) { /* best effort */ }
+    }
+  }
+  return results;
+}
+
 /** Returns the next sequential integer ID for a new program doc. */
 export async function nextAkhandPathId() {
   const q = query(collection(db, SESSIONS_COLLECTION), orderBy("akhand_path_id", "desc"), limit(1));

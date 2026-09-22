@@ -249,7 +249,8 @@
       ADMIN_EMAIL, INVITEE_PASSWORD, PURPOSE_SUGGESTIONS,
       EMAILJS_PUBLIC_KEY, EMAILJS_PRIVATE_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID,
       SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET,
-      emailKey, parseInviteeList, markEndedIfComplete, siteFilePath, textToEmailHtml, driveImageUrl, SESSIONS_COLLECTION, nextAkhandPathId
+      emailKey, parseInviteeList, markEndedIfComplete, siteFilePath, textToEmailHtml, driveImageUrl,
+      provisionInvitees, SESSIONS_COLLECTION, nextAkhandPathId
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
     import { watchAttendance, renderAttendanceTable, exportAttendanceCsv } from "./attendance.js";
@@ -538,78 +539,15 @@ Email: ${ADMIN_EMAIL}`;
       return list;
     }
 
-    function buildInviteeEmailText(session, sessionId, invitee) {
-      const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : new Date();
-      const durationHours = session.duration_hours || 48;
-      const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
-
-      return `Dear ${invitee.gname || invitee.name || ""},
-
-Sat Sri Akaal!
-Waheguru ji ka Khalsa, Waheguru ji ki Fateh!
-
-You have been invited for Akhand Path. Please find below the details:
-
-Path in the name of: ${session.name || ""} on occasion of ${session.purpose || ""}, sponsored by: ${session.sponsor || ""}
-
-Aaramb / Start Date and Time: ${formatFullDateTime(start)}
-
-Samapti / Planned Completion Date and Time: ${formatFullDateTime(samapti)}
-
-Session Link: ${sessionLinkFor(sessionId)}
-
-Your login ID: ${invitee.mail} and password is "${INVITEE_PASSWORD}"
-
-Akhand Paath is a deeply meaningful practice in Sikhism, far surpassing a mere religious ritual; it represents a profound spiritual journey, demonstrating their spiritual dedication.
-
-Looking forward for your active participation in the Akhand Path.
-
-Best regards,
-${session.sponsor || ""}
-Team – SikhsinIndia.com
-Email: ${ADMIN_EMAIL}`;
-    }
-
-    // Creates each invitee's login (same secondary-app pattern as the manual
-    // "Add Invitee" form, so the admin's own session stays logged in), writes
-    // their invitee doc, and emails them — run automatically at approval time
-    // so the sponsor's submitted invitee list doesn't need re-typing by hand.
+    // Creates each invitee's login, writes their invitee doc, and emails
+    // them — run automatically at approval time so the sponsor's submitted
+    // invitee list doesn't need re-typing by hand. The actual account
+    // creation + email template live in firebase.js's provisionInvitees(),
+    // shared with the raw data editor's "Send Invites" action so both stay
+    // in sync instead of drifting into two separate implementations.
     async function sendInviteeEmails(sessionId, session) {
       const candidates = getInviteeCandidates(session);
-      const results = [];
-      for (const invitee of candidates) {
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(invitee.mail)) {
-          results.push({ mail: invitee.mail, ok: false, error: "invalid email address" });
-          continue;
-        }
-        const inviteeRef = doc(db, SESSIONS_COLLECTION, sessionId, "invitees", emailKey(invitee.mail));
-        try {
-          try {
-            await createUserWithEmailAndPassword(provisioningAuth, invitee.mail, INVITEE_PASSWORD);
-          } catch (authErr) {
-            if (authErr.code !== "auth/email-already-in-use") throw authErr;
-          }
-
-          await setDoc(inviteeRef, {
-            name: invitee.name, gname: invitee.gname, mail: invitee.mail,
-            invited_at: serverTimestamp(), email_sent: false
-          }, { merge: true });
-
-          await sendPlainEmail(
-            invitee.mail,
-            `You're invited — Akhand Path for ${session.name || ""}`,
-            buildInviteeEmailText(session, sessionId, invitee)
-          );
-
-          await updateDoc(inviteeRef, { email_sent: true });
-          results.push({ mail: invitee.mail, ok: true });
-        } catch (err) {
-          const message = errText(err);
-          results.push({ mail: invitee.mail, ok: false, error: message });
-          try { await setDoc(inviteeRef, { email_error: message }, { merge: true }); } catch (_) { /* best effort */ }
-        }
-      }
-      return results;
+      return provisionInvitees(sessionId, session, candidates);
     }
 
     window.rejectRequest = async (sessionId) => {

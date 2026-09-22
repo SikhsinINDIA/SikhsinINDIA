@@ -168,6 +168,12 @@
                 </table>
               </div>
               <button type="button" class="btn-control" onclick="addRequestedInviteeRow()">+ Add Row</button>
+              <button type="button" class="btn-action" style="width:auto;margin-left:8px;" onclick="sendRequestedInvites()">Create Accounts &amp; Send Invites</button>
+              <p class="section-note" style="margin-top:8px;">Use this if a program's status was set directly (e.g. via
+                this editor) rather than through the real "Approve" button — that skips creating invitee accounts and
+                sending invite emails entirely, leaving the Invitees table below empty even though invitees were
+                requested. This creates any missing login accounts and (re-)sends their invite email.</p>
+              <p id="requestedInviteesStatus" class="muted" style="min-height:18px;"></p>
             </div>
             <div class="form-row">
               <label>Message</label>
@@ -306,7 +312,8 @@
   <script type="module">
     import {
       db, doc, setDoc, getDoc, updateDoc, deleteDoc, collection, query, orderBy, limit, getDocs, onSnapshot,
-      serverTimestamp, Timestamp, emailKey, driveImageUrl, parseInviteeList, SESSIONS_COLLECTION, nextAkhandPathId
+      serverTimestamp, Timestamp, emailKey, driveImageUrl, parseInviteeList, provisionInvitees,
+      SESSIONS_COLLECTION, nextAkhandPathId
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
 
@@ -443,18 +450,50 @@
 
     // Rebuilds the same "Name; Greeting Name; Email" per-line raw text
     // parseInviteeList() expects, skipping rows with no email entered.
-    function collectRequestedInviteesRaw() {
-      const lines = [];
+    function collectRequestedInviteesList() {
+      const invitees = [];
       document.querySelectorAll("#requestedInviteeBody tr").forEach((tr) => {
         const [nameInput, gnameInput, mailInput] = tr.querySelectorAll("input");
-        const email = mailInput.value.trim();
-        if (!email) return;
+        const mail = mailInput.value.trim();
+        if (!mail) return;
         const name = nameInput.value.trim();
         const gname = gnameInput.value.trim() || name;
-        lines.push(`${name}; ${gname}; ${email}`);
+        invitees.push({ name, gname, mail });
       });
-      return lines.join("\n");
+      return invitees;
     }
+
+    function collectRequestedInviteesRaw() {
+      return collectRequestedInviteesList().map((inv) => `${inv.name}; ${inv.gname}; ${inv.mail}`).join("\n");
+    }
+
+    // Fixes the exact gap that motivated this button: changing a program's
+    // status/approved_at directly through this editor (instead of clicking
+    // the real "Approve" button on 03-06-03-admin-akhand-path.html) never
+    // creates the requested invitees' login accounts or emails them, since
+    // that provisioning only ever ran as a side effect of Approve. This
+    // re-runs the exact same provisioning on demand for whichever invitees
+    // are currently in the table above.
+    window.sendRequestedInvites = async () => {
+      const status = document.getElementById("requestedInviteesStatus");
+      if (!activeDocId) { status.textContent = "Save the instance first."; return; }
+      const invitees = collectRequestedInviteesList();
+      if (!invitees.length) { status.textContent = "No requested invitees with an email to send to."; return; }
+      if (!confirm(`Create login accounts and send invite emails to ${invitees.length} invitee(s)? This sends real emails.`)) return;
+
+      status.textContent = "Sending...";
+      try {
+        const snap = await getDoc(doc(db, SESSIONS_COLLECTION, activeDocId));
+        if (!snap.exists()) { status.textContent = "Instance not found."; return; }
+        const results = await provisionInvitees(activeDocId, snap.data(), invitees);
+        const failed = results.filter((r) => !r.ok);
+        status.textContent = failed.length
+          ? `Sent ${results.length - failed.length}/${results.length}. Failed: ${failed.map((f) => `${f.mail} (${f.error})`).join("; ")}`
+          : `Invite emails sent to all ${results.length} invitee(s).`;
+      } catch (err) {
+        status.textContent = "Could not send invites: " + (err.message || err);
+      }
+    };
 
     /* ---------------- HONOREE PHOTO ADJUST ----------------
        Same nudge/zoom/reset pattern as 03-06-03-admin-akhand-path.html's
