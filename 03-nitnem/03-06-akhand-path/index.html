@@ -132,7 +132,7 @@
     import {
       auth, db, onAuthStateChanged, signOut,
       doc, getDoc, onSnapshot, collection, query, where, orderBy, limit, getDocs,
-      emailKey, markEndedIfComplete, driveImageUrl, SESSIONS_COLLECTION
+      emailKey, markEndedIfComplete, driveImageUrl, isAdminEmail, SESSIONS_COLLECTION
     } from "./firebase.js";
     import { AkhandPathSync, computePosition, formatDurationHM } from "./sync.js";
     import { createAttendanceTracker, watchAttendance, renderAttendanceTable, formatSeconds } from "./attendance.js";
@@ -259,26 +259,15 @@
       return status !== "pending_approval" && status !== "rejected";
     }
 
-    // function isAdminSession() {
-    //   return localStorage.getItem("akhandPathAdminAuthed") === "1";
-    // }
-
-    // Add all authorized admin emails to this list
-const ADMIN_EMAILS = [
-  "tpsarora@gmail.com",
-  "sikhsinindia@gmail.com" // Add your new admin email here
-];
-
-function isAdminSession(user = currentUser) {
-  // Check 1: Check if admin flag is set in localStorage
-  const hasLocalAdmin = localStorage.getItem("akhandPathAdminAuthed") === "1";
-
-  // Check 2: Check if current logged-in email matches the admin list
-  const userEmail = user?.email ? user.email.trim().toLowerCase() : "";
-  const isEmailAdmin = ADMIN_EMAILS.map(e => e.toLowerCase()).includes(userEmail);
-
-  return hasLocalAdmin || isEmailAdmin;
-}
+    // Admin emails are maintained in one place — firebase.js's ADMIN_EMAILS —
+    // so adding/removing an admin doesn't require editing every page.
+    function isAdminSession(user = currentUser) {
+      // Check 1: the shared password gate (03-06a-password-akhand-path.html)
+      const hasLocalAdmin = localStorage.getItem("akhandPathAdminAuthed") === "1";
+      // Check 2: signed in as one of the recognized admin emails
+      const isEmailAdmin = isAdminEmail(user?.email);
+      return hasLocalAdmin || isEmailAdmin;
+    }
 
     // invitee_emails_raw may contain names and emails separated by semicolons.
     // Only values containing "@" are treated as email addresses.

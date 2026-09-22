@@ -78,6 +78,18 @@ export {
 
 export const ADMIN_EMAIL = "sikhsinindia@gmail.com";
 export const INVITEE_PASSWORD = "123456";
+
+/* Emails that get admin-level treatment when signed in via the normal
+   Firebase login (e.g. index.html's session picker, restricted to admin —
+   see isAdminSession in index.html). Separate from the shared password
+   gate on 03-06a-password-akhand-path.html, which protects the admin
+   *dashboard* itself; this instead recognizes admins by who they're
+   actually logged in as, so it works from any device/browser without
+   needing to re-enter that password there too. */
+export const ADMIN_EMAILS = ["tpsarora@gmail.com", "sikhsinindia@gmail.com"];
+export function isAdminEmail(email) {
+  return ADMIN_EMAILS.includes((email || "").trim().toLowerCase());
+}
 export const DEFAULT_TRACK_DURATION_SECONDS = 900; // 15 min fallback estimate until a track's real length is measured
 
 /* Firestore doc IDs for invitees/attendance are keyed by a sanitized email
