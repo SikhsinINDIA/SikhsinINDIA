@@ -21,9 +21,6 @@
 
   <style>
     .poster { max-width: 1080px; }
-    .kv-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; }
-    .kv-row input { flex: 1; }
-    .kv-row .kv-key { max-width: 160px; }
     .checkbox-row { display: flex; align-items: center; gap: 8px; }
     .checkbox-row input[type="checkbox"] { width: auto; }
     .section-note { font-size: 12px; color: #888; margin-bottom: 10px; }
@@ -206,15 +203,6 @@
             </div>
           </div>
 
-          <div class="card">
-            <div class="card-title">Video Track Durations (seconds)</div>
-            <p class="section-note">Self-measured playback lengths for this program's video sequence — used to compute
-              where the continuous recitation should be at any given moment. Only edit these if a track's timing is
-              known to be wrong.</p>
-            <div id="durationsRows"></div>
-            <button type="button" class="btn-control" onclick="addDurationRow()">+ Add Track</button>
-          </div>
-
           <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;">
             <button class="btn-action" style="width:auto;" onclick="saveInstance()">Save Instance</button>
             <button class="btn-danger btn-action" style="width:auto;" id="deleteInstanceBtn" onclick="deleteInstance()">Delete Entire Instance</button>
@@ -391,44 +379,6 @@
       });
     }
 
-    /* ---------------- DURATIONS MAP EDITOR ---------------- */
-    function renderDurationsRows(durations) {
-      const wrap = document.getElementById("durationsRows");
-      wrap.innerHTML = "";
-      const entries = Object.entries(durations || {});
-      if (!entries.length) {
-        addDurationRowEl("", "");
-        return;
-      }
-      entries.forEach(([k, v]) => addDurationRowEl(k, v));
-    }
-
-    function addDurationRowEl(key, value) {
-      const wrap = document.getElementById("durationsRows");
-      const row = document.createElement("div");
-      row.className = "kv-row";
-      row.innerHTML = `
-        <input class="kv-key" type="text" placeholder="video1" value="${escapeHtml(key)}">
-        <input type="number" min="0" placeholder="seconds" value="${escapeHtml(value)}">
-        <button type="button" class="btn-control" title="Remove">✕</button>
-      `;
-      row.querySelector("button").addEventListener("click", () => row.remove());
-      wrap.appendChild(row);
-    }
-
-    window.addDurationRow = () => addDurationRowEl("", "");
-
-    function collectDurations() {
-      const durations = {};
-      document.querySelectorAll("#durationsRows .kv-row").forEach((row) => {
-        const inputs = row.querySelectorAll("input");
-        const key = inputs[0].value.trim();
-        const value = inputs[1].value;
-        if (key && value !== "") durations[key] = Number(value);
-      });
-      return durations;
-    }
-
     /* ---------------- HONOREE PHOTO ADJUST ----------------
        Same nudge/zoom/reset pattern as 03-06-03-admin-akhand-path.html's
        photo adjuster — kept as a self-contained live preview here, writing
@@ -479,7 +429,6 @@
       document.getElementById("fDurationHours").value = "";
       document.getElementById("fConsent").checked = false;
       document.getElementById("fStatus").value = "scheduled";
-      renderDurationsRows({});
       initPhotoAdjust({});
     }
 
@@ -531,7 +480,6 @@
       document.getElementById("fInviteeEmailsRaw").value = s.invitee_emails_raw || "";
       document.getElementById("fMessage").value = s.message || "";
       document.getElementById("fConsent").checked = !!s.consent;
-      renderDurationsRows(s.durations);
 
       document.getElementById("deleteInstanceBtn").hidden = false;
       document.getElementById("invSection").hidden = false;
@@ -570,8 +518,7 @@
         message: document.getElementById("fMessage").value.trim(),
         consent: document.getElementById("fConsent").checked,
         reject_reason: document.getElementById("fRejectReason").value.trim(),
-        approved_by: document.getElementById("fApprovedBy").value.trim(),
-        durations: collectDurations()
+        approved_by: document.getElementById("fApprovedBy").value.trim()
       };
 
       const durationHours = document.getElementById("fDurationHours").value;
