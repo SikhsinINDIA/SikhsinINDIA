@@ -158,10 +158,10 @@
     import {
       auth, db, onAuthStateChanged, signOut,
       doc, getDoc, onSnapshot, collection, query, where, orderBy, limit, getDocs,
-      emailKey, markEndedIfComplete, driveImageUrl, isAdminEmail, parseInviteeList, SESSIONS_COLLECTION
+      emailKey, markEndedIfComplete, driveImageUrl, isAdminEmail, parseInviteeList, buildExpectedRoster, SESSIONS_COLLECTION
     } from "./firebase.js";
     import { AkhandPathSync, computePosition, formatDurationHM } from "./sync.js";
-    import { createAttendanceTracker, watchAttendance, renderAttendanceTable, formatSeconds } from "./attendance.js";
+    import { createAttendanceTracker, watchAttendance, renderAttendanceTable, mergeAttendanceRoster, formatSeconds } from "./attendance.js";
 
     /* Hardcoded here rather than stored per-program in Firestore — every
        Akhand Path plays this same fixed playlist on a continuous loop, so
@@ -858,15 +858,31 @@ function isUserInvited(sessionData, user) {
     }
 
     /* ---------------- ATTENDANCE TABLE ---------------- */
+    // The attendance snapshot and the session snapshot are two independent
+    // Firestore listeners with no guaranteed ordering, but the attendance
+    // report needs BOTH (the roster comes from the session doc) — so each
+    // listener re-renders from whichever data it has, using the other's
+    // latest known value, instead of the roster only ever reflecting
+    // whatever latestSession happened to be at the moment attendance last
+    // changed.
+    let latestAttendanceRows = [];
+
+    function renderMergedAttendance() {
+      const roster = latestSession ? buildExpectedRoster(latestSession) : [];
+      const merged = mergeAttendanceRoster(latestAttendanceRows, roster);
+      const myKey = currentUser ? emailKey(currentUser.email) : null;
+      renderAttendanceTable(attendanceTableBody, merged, { highlightUid: myKey });
+      if (currentUser) {
+        const mine = merged.find((r) => r.uid === myKey);
+        myAttendanceTime.textContent = formatSeconds(mine ? mine.total_seconds_listened : 0);
+      }
+    }
+
     function startAttendanceWatch() {
       if (unsubAttendance) unsubAttendance();
       unsubAttendance = watchAttendance(sessionId, (rows) => {
-        const myKey = currentUser ? emailKey(currentUser.email) : null;
-        renderAttendanceTable(attendanceTableBody, rows, { highlightUid: myKey });
-        if (currentUser) {
-          const mine = rows.find((r) => r.uid === myKey);
-          myAttendanceTime.textContent = formatSeconds(mine ? mine.total_seconds_listened : 0);
-        }
+        latestAttendanceRows = rows;
+        renderMergedAttendance();
       });
     }
 
@@ -978,6 +994,7 @@ function isUserInvited(sessionData, user) {
 
             renderDedication(latestSession);
             startStatusTicker();
+            renderMergedAttendance();
 
             if (!syncEngine) {
               syncEngine = new AkhandPathSync({

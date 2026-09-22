@@ -90,6 +90,35 @@ function escapeHtml(str) {
   }[c]));
 }
 
+/* Fills the report out with everyone actually expected (the sponsor and
+   every requested invitee, from firebase.js's buildExpectedRoster) even if
+   they have no real attendance doc yet, instead of the report silently
+   only ever showing whoever happened to already log in and start
+   listening. A real attendance row always wins over a placeholder for the
+   same person; anyone with real attendance but not on the roster (e.g. an
+   admin who briefly viewed the page) still shows up, just after everyone
+   on the roster. */
+export function mergeAttendanceRoster(rows, roster) {
+  const byUid = new Map();
+  (rows || []).forEach((r) => { if (r.uid) byUid.set(r.uid, r); });
+
+  const merged = [];
+  const seen = new Set();
+  (roster || []).forEach((person) => {
+    if (!person.uid || seen.has(person.uid)) return;
+    seen.add(person.uid);
+    merged.push(byUid.get(person.uid) || {
+      uid: person.uid, name: person.name, email: person.email,
+      total_seconds_listened: 0, last_heartbeat_at: null, not_joined: true
+    });
+  });
+  (rows || []).forEach((r) => {
+    if (r.uid && !seen.has(r.uid)) { seen.add(r.uid); merged.push(r); }
+  });
+
+  return merged.sort((a, b) => (b.total_seconds_listened || 0) - (a.total_seconds_listened || 0));
+}
+
 export function renderAttendanceTable(tbodyEl, rows, { highlightUid } = {}) {
   if (!rows || !rows.length) {
     tbodyEl.innerHTML = `<tr><td colspan="4" class="no-data">No attendance recorded yet.</td></tr>`;
@@ -102,12 +131,15 @@ export function renderAttendanceTable(tbodyEl, rows, { highlightUid } = {}) {
       : null;
     const isRecent = lastBeatMs && (nowMs - lastBeatMs) < 60000;
     const isMe = highlightUid && r.uid === highlightUid;
+    const statusCell = r.not_joined
+      ? '<span class="muted">Not joined yet</span>'
+      : (isRecent ? '<span class="badge">Listening now</span>' : formatDate(r.last_heartbeat_at));
     return `
       <tr${isMe ? ' style="background:#fff3e0;"' : ""}>
         <td>${escapeHtml(r.name || r.email || r.uid)}${isMe ? " (you)" : ""}</td>
         <td>${escapeHtml(r.email || "")}</td>
         <td>${formatSeconds(r.total_seconds_listened)}</td>
-        <td>${isRecent ? '<span class="badge">Listening now</span>' : formatDate(r.last_heartbeat_at)}</td>
+        <td>${statusCell}</td>
       </tr>`;
   }).join("");
 }

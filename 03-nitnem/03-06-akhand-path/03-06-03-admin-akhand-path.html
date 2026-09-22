@@ -250,10 +250,10 @@
       EMAILJS_PUBLIC_KEY, EMAILJS_PRIVATE_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID,
       SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET,
       emailKey, parseInviteeList, markEndedIfComplete, siteFilePath, textToEmailHtml, driveImageUrl,
-      provisionInvitees, SESSIONS_COLLECTION, nextAkhandPathId
+      provisionInvitees, buildExpectedRoster, SESSIONS_COLLECTION, nextAkhandPathId
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
-    import { watchAttendance, renderAttendanceTable, exportAttendanceCsv } from "./attendance.js";
+    import { watchAttendance, renderAttendanceTable, mergeAttendanceRoster, exportAttendanceCsv } from "./attendance.js";
 
     emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY, privateKey: EMAILJS_PRIVATE_KEY });
 
@@ -810,8 +810,9 @@ Email: ${ADMIN_EMAIL}`;
     function watchSessionAttendance(sessionId) {
       if (unsubAttendance) unsubAttendance();
       unsubAttendance = watchAttendance(sessionId, (rows) => {
-        latestAttendanceRows = rows;
-        renderAttendanceTable(document.getElementById("attendanceTableBody"), rows);
+        const roster = activeSessionData ? buildExpectedRoster(activeSessionData) : [];
+        latestAttendanceRows = mergeAttendanceRoster(rows, roster);
+        renderAttendanceTable(document.getElementById("attendanceTableBody"), latestAttendanceRows);
       });
     }
 

@@ -133,6 +133,27 @@ export function parseInviteeList(rawText) {
   return text.split(/[\n,]+/).map((s) => s.trim()).filter(Boolean).map(deriveInviteeFromEmail);
 }
 
+/* Builds the full list of people who are SUPPOSED to be part of a program —
+   the sponsor plus every requested invitee — each keyed by the same
+   emailKey() used for their real attendance/invitee doc IDs. Used to fill
+   out the Attendance Report with everyone expected, not just whoever has
+   actually logged in and started listening so far (see
+   mergeAttendanceRoster in attendance.js), since otherwise someone who
+   simply hasn't joined yet was silently missing from the report entirely
+   rather than showing as not having joined. */
+export function buildExpectedRoster(session) {
+  const roster = [];
+  const sponsorEmail = (session?.email || "").trim();
+  if (sponsorEmail) {
+    roster.push({ uid: emailKey(sponsorEmail), name: session.sponsor || sponsorEmail, email: sponsorEmail });
+  }
+  parseInviteeList(session?.invitee_emails_raw).forEach((inv) => {
+    if (!inv.mail) return;
+    roster.push({ uid: emailKey(inv.mail), name: inv.name || inv.gname || inv.mail, email: inv.mail });
+  });
+  return roster;
+}
+
 /* The Apps Script Drive upload (used for honoree photos) returns a file's
    normal "view" URL — https://drive.google.com/file/d/ID/view?usp=drivesdk —
    which works fine as a link a person clicks, but NOT as an <img src>: it's
