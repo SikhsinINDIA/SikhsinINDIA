@@ -120,33 +120,33 @@
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td><input id="inviteeName1" type="text" placeholder="Name"></td>
-                    <td><input id="inviteeGname1" type="text" placeholder="Greet Name"></td>
-                    <td><input id="inviteeEmail1" type="email" placeholder="Email"></td>
+                    <td><input id="inviteeName1" type="text" placeholder="Name" autocomplete="off"></td>
+                    <td><input id="inviteeGname1" type="text" placeholder="Greet Name" autocomplete="off"></td>
+                    <td><input id="inviteeEmail1" type="email" placeholder="Email" autocomplete="off"></td>
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td><input id="inviteeName2" type="text" placeholder="Name"></td>
-                    <td><input id="inviteeGname2" type="text" placeholder="Greet Name"></td>
-                    <td><input id="inviteeEmail2" type="email" placeholder="Email"></td>
+                    <td><input id="inviteeName2" type="text" placeholder="Name" autocomplete="off"></td>
+                    <td><input id="inviteeGname2" type="text" placeholder="Greet Name" autocomplete="off"></td>
+                    <td><input id="inviteeEmail2" type="email" placeholder="Email" autocomplete="off"></td>
                   </tr>
                   <tr>
                     <td>3</td>
-                    <td><input id="inviteeName3" type="text" placeholder="Name"></td>
-                    <td><input id="inviteeGname3" type="text" placeholder="Greet Name"></td>
-                    <td><input id="inviteeEmail3" type="email" placeholder="Email"></td>
+                    <td><input id="inviteeName3" type="text" placeholder="Name" autocomplete="off"></td>
+                    <td><input id="inviteeGname3" type="text" placeholder="Greet Name" autocomplete="off"></td>
+                    <td><input id="inviteeEmail3" type="email" placeholder="Email" autocomplete="off"></td>
                   </tr>
                   <tr>
                     <td>4</td>
-                    <td><input id="inviteeName4" type="text" placeholder="Name"></td>
-                    <td><input id="inviteeGname4" type="text" placeholder="Greet Name"></td>
-                    <td><input id="inviteeEmail4" type="email" placeholder="Email"></td>
+                    <td><input id="inviteeName4" type="text" placeholder="Name" autocomplete="off"></td>
+                    <td><input id="inviteeGname4" type="text" placeholder="Greet Name" autocomplete="off"></td>
+                    <td><input id="inviteeEmail4" type="email" placeholder="Email" autocomplete="off"></td>
                   </tr>
                   <tr>
                     <td>5</td>
-                    <td><input id="inviteeName5" type="text" placeholder="Name"></td>
-                    <td><input id="inviteeGname5" type="text" placeholder="Greet Name"></td>
-                    <td><input id="inviteeEmail5" type="email" placeholder="Email"></td>
+                    <td><input id="inviteeName5" type="text" placeholder="Name" autocomplete="off"></td>
+                    <td><input id="inviteeGname5" type="text" placeholder="Greet Name" autocomplete="off"></td>
+                    <td><input id="inviteeEmail5" type="email" placeholder="Email" autocomplete="off"></td>
                   </tr>
                 </tbody>
               </table>
@@ -360,7 +360,12 @@ ${data.sponsor}`;
       const startDate = document.getElementById("reqStartDate").value;
       const startTime = document.getElementById("reqStartTime").value;
       const durationHours = parseFloat(document.getElementById("reqDurationHours").value) || 81.5;
-      const familyMembers = document.getElementById("reqFamilyMembers").value.trim();
+      // The "Names of Family Members" field is currently commented out of the
+      // markup (see the form-row above), so this element doesn't exist —
+      // guard against that instead of letting .value throw on null, which
+      // silently killed the whole submitRequest() call before it ever got to
+      // validation or the try/catch, making the Submit button look dead.
+      const familyMembers = (document.getElementById("reqFamilyMembers")?.value || "").trim();
       const inviteeEmails = collectInviteeRows();
       const message = document.getElementById("reqMessage").value.trim();
       const consent = document.getElementById("reqConsent").checked;
