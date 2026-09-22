@@ -1,116 +1,36 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-09-21",
-  "dateDisplay": "21 September 2026",
-  "ang": 584,
-  "raagGurmukhi": "ਰਾਗੁ ਵਡਹੰਸੁ",
-  "raagEnglish": "Raag Vadhans",
-  "writerEnglish": "Guru Amar Daas Ji",
-  "titleGurmukhi": "ਵਡਹੰਸੁ ਮਹਲਾ ੩ ॥",
-  "titleEnglish": "Wadahans, Third Mehla:",
-  "verseGurmukhi": "ਇਹੁ ਸਰੀਰੁ ਜਜਰੀ ਹੈ ਇਸ ਨੋ ਜਰੁ ਪਹੁਚੈ ਆਏ ॥",
-  "verseTranslation": "This body is frail; old age is overtaking it.",
+  "date": "2026-09-22",
+  "dateDisplay": "22 September 2026",
+  "ang": 957,
+  "raagGurmukhi": "ਰਾਗੁ ਰਾਮਕਲੀ",
+  "raagEnglish": "Raag Raamkalee",
+  "writerEnglish": "Guru Arjan Dev Ji",
+  "titleGurmukhi": "ਸਲੋਕ ਮਃ ੫ ॥",
+  "titleEnglish": "Shalok, Fifth Mehla:",
+  "verseGurmukhi": "ਭੀੜਹੁ ਮੋਕਲਾਈ ਕੀਤੀਅਨੁ ਸਭ ਰਖੇ ਕੁਟੰਬੈ ਨਾਲਿ ॥",
+  "verseTranslation": "He has widened the narrow path for me, and preserved my integrity, along with that of my family.",
   "verses": [
     {
-      "gurmukhi": "ਵਡਹੰਸੁ ਮਹਲਾ ੩ ॥",
-      "translation": "Wadahans, Third Mehla:"
+      "gurmukhi": "ਸਲੋਕ ਮਃ ੫ ॥",
+      "translation": "Shalok, Fifth Mehla:"
     },
     {
-      "gurmukhi": "ਇਹੁ ਸਰੀਰੁ ਜਜਰੀ ਹੈ ਇਸ ਨੋ ਜਰੁ ਪਹੁਚੈ ਆਏ ॥",
-      "translation": "This body is frail; old age is overtaking it."
+      "gurmukhi": "ਭੀੜਹੁ ਮੋਕਲਾਈ ਕੀਤੀਅਨੁ ਸਭ ਰਖੇ ਕੁਟੰਬੈ ਨਾਲਿ ॥",
+      "translation": "He has widened the narrow path for me, and preserved my integrity, along with that of my family."
     },
     {
-      "gurmukhi": "ਗੁਰਿ ਰਾਖੇ ਸੇ ਉਬਰੇ ਹੋਰੁ ਮਰਿ ਜੰਮੈ ਆਵੈ ਜਾਏ ॥",
-      "translation": "Those who are protected by the Guru are saved, while others die, to be reincarnated; they continue coming and going."
+      "gurmukhi": "ਕਾਰਜ ਆਪਿ ਸਵਾਰਿਅਨੁ ਸੋ ਪ੍ਰਭ ਸਦਾ ਸਭਾਲਿ ॥",
+      "translation": "He Himself has arranged and resolved my affairs. I dwell upon that God forever."
     },
     {
-      "gurmukhi": "ਹੋਰਿ ਮਰਿ ਜੰਮਹਿ ਆਵਹਿ ਜਾਵਹਿ ਅੰਤਿ ਗਏ ਪਛੁਤਾਵਹਿ ਬਿਨੁ ਨਾਵੈ ਸੁਖੁ ਨ ਹੋਈ ॥",
-      "translation": "Others die, to be reincarnated; they continue coming and going, and in the end, they depart regretfully. Without the Name, there is no peace."
+      "gurmukhi": "ਪ੍ਰਭੁ ਮਾਤ ਪਿਤਾ ਕੰਠਿ ਲਾਇਦਾ ਲਹੁੜੇ ਬਾਲਕ ਪਾਲਿ ॥",
+      "translation": "God is my mother and father; He hugs me close in His embrace, and cherishes me, like His tiny baby."
     },
     {
-      "gurmukhi": "ਐਥੈ ਕਮਾਵੈ ਸੋ ਫਲੁ ਪਾਵੈ ਮਨਮੁਖਿ ਹੈ ਪਤਿ ਖੋਈ ॥",
-      "translation": "As one acts here, so does he obtain his rewards; the self-willed manmukh loses his honor."
-    },
-    {
-      "gurmukhi": "ਜਮ ਪੁਰਿ ਘੋਰ ਅੰਧਾਰੁ ਮਹਾ ਗੁਬਾਰੁ ਨਾ ਤਿਥੈ ਭੈਣ ਨ ਭਾਈ ॥",
-      "translation": "In the City of Death, there is pitch darkness, and huge clouds of dust; neither sister nor brother is there."
-    },
-    {
-      "gurmukhi": "ਇਹੁ ਸਰੀਰੁ ਜਜਰੀ ਹੈ ਇਸ ਨੋ ਜਰੁ ਪਹੁਚੈ ਆਈ ॥੧॥",
-      "translation": "This body is frail; old age is overtaking it. ||1||"
-    },
-    {
-      "gurmukhi": "ਕਾਇਆ ਕੰਚਨੁ ਤਾਂ ਥੀਐ ਜਾਂ ਸਤਿਗੁਰੁ ਲਏ ਮਿਲਾਏ ॥",
-      "translation": "The body becomes like gold, when the True Guru unites one with Himself."
-    },
-    {
-      "gurmukhi": "ਭ੍ਰਮੁ ਮਾਇਆ ਵਿਚਹੁ ਕਟੀਐ ਸਚੜੈ ਨਾਮਿ ਸਮਾਏ ॥",
-      "translation": "Doubt and Maya have been removed from within me, and I am merged in the Naam, the True Name of the Lord."
-    },
-    {
-      "gurmukhi": "ਸਚੈ ਨਾਮਿ ਸਮਾਏ ਹਰਿ ਗੁਣ ਗਾਏ ਮਿਲਿ ਪ੍ਰੀਤਮ ਸੁਖੁ ਪਾਏ ॥",
-      "translation": "Merged in the True Name of the Lord, I sing the Glorious Praises of the Lord; meeting my Beloved, I have found peace."
-    },
-    {
-      "gurmukhi": "ਸਦਾ ਅਨੰਦਿ ਰਹੈ ਦਿਨੁ ਰਾਤੀ ਵਿਚਹੁ ਹੰਉਮੈ ਜਾਏ ॥",
-      "translation": "I am in constant bliss, day and night; egotism has been dispelled from within me."
-    },
-    {
-      "gurmukhi": "ਜਿਨੀ ਪੁਰਖੀ ਹਰਿ ਨਾਮਿ ਚਿਤੁ ਲਾਇਆ ਤਿਨ ਕੈ ਹੰਉ ਲਾਗਉ ਪਾਏ ॥",
-      "translation": "I fall at the feet of those who enshrine the Naam within their consciousness."
-    },
-    {
-      "gurmukhi": "ਕਾਂਇਆ ਕੰਚਨੁ ਤਾਂ ਥੀਐ ਜਾ ਸਤਿਗੁਰੁ ਲਏ ਮਿਲਾਏ ॥੨॥",
-      "translation": "The body becomes like gold, when the True Guru unites one with Himself. ||2||"
-    },
-    {
-      "gurmukhi": "ਸੋ ਸਚਾ ਸਚੁ ਸਲਾਹੀਐ ਜੇ ਸਤਿਗੁਰੁ ਦੇਇ ਬੁਝਾਏ ॥",
-      "translation": "We truly praise the True Lord, when the True Guru imparts understanding."
-    },
-    {
-      "gurmukhi": "ਬਿਨੁ ਸਤਿਗੁਰ ਭਰਮਿ ਭੁਲਾਣੀਆ ਕਿਆ ਮੁਹੁ ਦੇਸਨਿ ਆਗੈ ਜਾਏ ॥",
-      "translation": "Without the True Guru, they are deluded by doubt; going to the world hereafter, what face will they display?"
-    },
-    {
-      "gurmukhi": "ਕਿਆ ਦੇਨਿ ਮੁਹੁ ਜਾਏ ਅਵਗੁਣਿ ਪਛੁਤਾਏ ਦੁਖੋ ਦੁਖੁ ਕਮਾਏ ॥",
-      "translation": "What face will they show, when they go there? They will regret and repent for their sins; their actions will bring them only pain and suffering."
-    },
-    {
-      "gurmukhi": "ਨਾਮਿ ਰਤੀਆ ਸੇ ਰੰਗਿ ਚਲੂਲਾ ਪਿਰ ਕੈ ਅੰਕਿ ਸਮਾਏ ॥",
-      "translation": "Those who are imbued with the Naam are dyed in the deep crimson color of the Lord's Love; they merge into the Being of their Husband Lord."
-    },
-    {
-      "gurmukhi": "ਤਿਸੁ ਜੇਵਡੁ ਅਵਰੁ ਨ ਸੂਝਈ ਕਿਸੁ ਆਗੈ ਕਹੀਐ ਜਾਏ ॥",
-      "translation": "I can conceive of no other as great as the Lord; unto whom should I go and speak?"
-    },
-    {
-      "gurmukhi": "ਸੋ ਸਚਾ ਸਚੁ ਸਲਾਹੀਐ ਜੇ ਸਤਿਗੁਰੁ ਦੇਇ ਬੁਝਾਏ ॥੩॥",
-      "translation": "We truly praise the True Lord, when the True Guru imparts understanding. ||3||"
-    },
-    {
-      "gurmukhi": "ਜਿਨੀ ਸਚੜਾ ਸਚੁ ਸਲਾਹਿਆ ਹੰਉ ਤਿਨ ਲਾਗਉ ਪਾਏ ॥",
-      "translation": "I fall at the feet of those who praise the Truest of the True."
-    },
-    {
-      "gurmukhi": "ਸੇ ਜਨ ਸਚੇ ਨਿਰਮਲੇ ਤਿਨ ਮਿਲਿਆ ਮਲੁ ਸਭ ਜਾਏ ॥",
-      "translation": "Those humble beings are true, and immaculately pure; meeting them, all filth is washed off."
-    },
-    {
-      "gurmukhi": "ਤਿਨ ਮਿਲਿਆ ਮਲੁ ਸਭ ਜਾਏ ਸਚੈ ਸਰਿ ਨਾਏ ਸਚੈ ਸਹਜਿ ਸੁਭਾਏ ॥",
-      "translation": "Meeting them, all filth is washed off; bathing in the Pool of Truth, one becomes truthful, with intuitive ease."
-    },
-    {
-      "gurmukhi": "ਨਾਮੁ ਨਿਰੰਜਨੁ ਅਗਮੁ ਅਗੋਚਰੁ ਸਤਿਗੁਰਿ ਦੀਆ ਬੁਝਾਏ ॥",
-      "translation": "The True Guru has given me the realization of the Naam, the Immaculate Name of the Lord, the unfathomable, the imperceptible."
-    },
-    {
-      "gurmukhi": "ਅਨਦਿਨੁ ਭਗਤਿ ਕਰਹਿ ਰੰਗਿ ਰਾਤੇ ਨਾਨਕ ਸਚਿ ਸਮਾਏ ॥",
-      "translation": "Those who perform devotional worship to the Lord night and day, are imbued with His Love; O Nanak, they are absorbed in the True Lord."
-    },
-    {
-      "gurmukhi": "ਜਿਨੀ ਸਚੜਾ ਸਚੁ ਧਿਆਇਆ ਹੰਉ ਤਿਨ ਕੈ ਲਾਗਉ ਪਾਏ ॥੪॥੪॥",
-      "translation": "I fall at the feet of those who meditate on the Truest of the True. ||4||4||"
+      "gurmukhi": "ਦਇਆਲ ਹੋਏ ਸਭ ਜੀਅ ਜੰਤ੍ਰ ਹਰਿ ਨਾਨਕ ਨਦਰਿ ਨਿਹਾਲ ॥੧॥",
+      "translation": "All beings and creatures have become kind and compassionate to me. O Nanak, the Lord has blessed me with His Glance of Grace. ||1||"
     }
   ],
-  "updated": "2026-09-21T06:40:10.083Z"
+  "updated": "2026-09-22T06:28:01.514Z"
 };
