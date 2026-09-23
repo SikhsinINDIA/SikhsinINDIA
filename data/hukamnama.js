@@ -1,36 +1,56 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-09-22",
-  "dateDisplay": "22 September 2026",
-  "ang": 957,
-  "raagGurmukhi": "ਰਾਗੁ ਰਾਮਕਲੀ",
-  "raagEnglish": "Raag Raamkalee",
-  "writerEnglish": "Guru Arjan Dev Ji",
-  "titleGurmukhi": "ਸਲੋਕ ਮਃ ੫ ॥",
-  "titleEnglish": "Shalok, Fifth Mehla:",
-  "verseGurmukhi": "ਭੀੜਹੁ ਮੋਕਲਾਈ ਕੀਤੀਅਨੁ ਸਭ ਰਖੇ ਕੁਟੰਬੈ ਨਾਲਿ ॥",
-  "verseTranslation": "He has widened the narrow path for me, and preserved my integrity, along with that of my family.",
+  "date": "2026-09-23",
+  "dateDisplay": "23 September 2026",
+  "ang": 692,
+  "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
+  "raagEnglish": "Raag Dhanaasree",
+  "writerEnglish": "Bhagat Kabeer Ji",
+  "titleGurmukhi": "ਰਾਮ ਸਿਮਰਿ ਰਾਮ ਸਿਮਰਿ ਰਾਮ ਸਿਮਰਿ ਭਾਈ ॥",
+  "titleEnglish": "Remember the Lord, remember the Lord, remember the Lord in meditation, O Siblings of Destiny.",
+  "verseGurmukhi": "ਰਾਮ ਨਾਮ ਸਿਮਰਨ ਬਿਨੁ ਬੂਡਤੇ ਅਧਿਕਾਈ ॥੧॥ ਰਹਾਉ ॥",
+  "verseTranslation": "Without remembering the Lord's Name in meditation, a great many are drowned. ||1||Pause||",
   "verses": [
     {
-      "gurmukhi": "ਸਲੋਕ ਮਃ ੫ ॥",
-      "translation": "Shalok, Fifth Mehla:"
+      "gurmukhi": "ਰਾਮ ਸਿਮਰਿ ਰਾਮ ਸਿਮਰਿ ਰਾਮ ਸਿਮਰਿ ਭਾਈ ॥",
+      "translation": "Remember the Lord, remember the Lord, remember the Lord in meditation, O Siblings of Destiny."
     },
     {
-      "gurmukhi": "ਭੀੜਹੁ ਮੋਕਲਾਈ ਕੀਤੀਅਨੁ ਸਭ ਰਖੇ ਕੁਟੰਬੈ ਨਾਲਿ ॥",
-      "translation": "He has widened the narrow path for me, and preserved my integrity, along with that of my family."
+      "gurmukhi": "ਰਾਮ ਨਾਮ ਸਿਮਰਨ ਬਿਨੁ ਬੂਡਤੇ ਅਧਿਕਾਈ ॥੧॥ ਰਹਾਉ ॥",
+      "translation": "Without remembering the Lord's Name in meditation, a great many are drowned. ||1||Pause||"
     },
     {
-      "gurmukhi": "ਕਾਰਜ ਆਪਿ ਸਵਾਰਿਅਨੁ ਸੋ ਪ੍ਰਭ ਸਦਾ ਸਭਾਲਿ ॥",
-      "translation": "He Himself has arranged and resolved my affairs. I dwell upon that God forever."
+      "gurmukhi": "ਬਨਿਤਾ ਸੁਤ ਦੇਹ ਗ੍ਰੇਹ ਸੰਪਤਿ ਸੁਖਦਾਈ ॥",
+      "translation": "Your spouse, children, body, house and possessions - you think these will give you peace."
     },
     {
-      "gurmukhi": "ਪ੍ਰਭੁ ਮਾਤ ਪਿਤਾ ਕੰਠਿ ਲਾਇਦਾ ਲਹੁੜੇ ਬਾਲਕ ਪਾਲਿ ॥",
-      "translation": "God is my mother and father; He hugs me close in His embrace, and cherishes me, like His tiny baby."
+      "gurmukhi": "ਇਨੑ ਮੈ ਕਛੁ ਨਾਹਿ ਤੇਰੋ ਕਾਲ ਅਵਧ ਆਈ ॥੧॥",
+      "translation": "But none of these shall be yours, when the time of death comes. ||1||"
     },
     {
-      "gurmukhi": "ਦਇਆਲ ਹੋਏ ਸਭ ਜੀਅ ਜੰਤ੍ਰ ਹਰਿ ਨਾਨਕ ਨਦਰਿ ਨਿਹਾਲ ॥੧॥",
-      "translation": "All beings and creatures have become kind and compassionate to me. O Nanak, the Lord has blessed me with His Glance of Grace. ||1||"
+      "gurmukhi": "ਅਜਾਮਲ ਗਜ ਗਨਿਕਾ ਪਤਿਤ ਕਰਮ ਕੀਨੇ ॥",
+      "translation": "Ajaamal, the elephant, and the prostitute committed many sins,"
+    },
+    {
+      "gurmukhi": "ਤੇਊ ਉਤਰਿ ਪਾਰਿ ਪਰੇ ਰਾਮ ਨਾਮ ਲੀਨੇ ॥੨॥",
+      "translation": "but still, they crossed over the world-ocean, by chanting the Lord's Name. ||2||"
+    },
+    {
+      "gurmukhi": "ਸੂਕਰ ਕੂਕਰ ਜੋਨਿ ਭ੍ਰਮੇ ਤਊ ਲਾਜ ਨ ਆਈ ॥",
+      "translation": "You have wandered in reincarnation, as pigs and dogs - did you feel no shame?"
+    },
+    {
+      "gurmukhi": "ਰਾਮ ਨਾਮ ਛਾਡਿ ਅੰਮ੍ਰਿਤ ਕਾਹੇ ਬਿਖੁ ਖਾਈ ॥੩॥",
+      "translation": "Forsaking the Ambrosial Name of the Lord, why do you eat poison? ||3||"
+    },
+    {
+      "gurmukhi": "ਤਜਿ ਭਰਮ ਕਰਮ ਬਿਧਿ ਨਿਖੇਧ ਰਾਮ ਨਾਮੁ ਲੇਹੀ ॥",
+      "translation": "Abandon your doubts about do's and dont's, and take to the Lord's Name."
+    },
+    {
+      "gurmukhi": "ਗੁਰ ਪ੍ਰਸਾਦਿ ਜਨ ਕਬੀਰ ਰਾਮੁ ਕਰਿ ਸਨੇਹੀ ॥੪॥੫॥",
+      "translation": "By Guru's Grace, O servant Kabeer, love the Lord. ||4||5||"
     }
   ],
-  "updated": "2026-09-22T06:28:01.514Z"
+  "updated": "2026-09-23T06:13:10.705Z"
 };
