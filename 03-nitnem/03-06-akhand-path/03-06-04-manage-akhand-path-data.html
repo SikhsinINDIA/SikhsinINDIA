@@ -162,7 +162,7 @@
               <div class="table-container">
                 <table id="requestedInviteeTable">
                   <thead>
-                    <tr><th>S No</th><th>Name</th><th>Greet Name</th><th>Email</th><th></th></tr>
+                    <tr><th>S No</th><th>Name</th><th>Greet Name</th><th>Email</th><th>WhatsApp Number</th><th></th></tr>
                   </thead>
                   <tbody id="requestedInviteeBody"></tbody>
                 </table>
@@ -232,10 +232,10 @@
             <div class="table-container">
               <table>
                 <thead>
-                  <tr><th>Name</th><th>Greeting Name</th><th>Email</th><th>Invited</th><th>Error</th><th></th></tr>
+                  <tr><th>Name</th><th>Greeting Name</th><th>Email</th><th>Phone</th><th>Invited</th><th>Error</th><th></th><th></th></tr>
                 </thead>
                 <tbody id="inviteesEditBody">
-                  <tr><td colspan="6" class="loading-text">Loading invitees...</td></tr>
+                  <tr><td colspan="8" class="loading-text">Loading invitees...</td></tr>
                 </tbody>
               </table>
             </div>
@@ -251,6 +251,10 @@
               <div class="form-row">
                 <label>Email *</label>
                 <input id="newInvMail" name="akp_new_inv_mail" type="email" autocomplete="off">
+              </div>
+              <div class="form-row">
+                <label>WhatsApp Number</label>
+                <input id="newInvPhone" name="akp_new_inv_phone" type="tel" autocomplete="off">
               </div>
             </div>
             <button class="btn-action" style="width:auto;" onclick="addInviteeRow()">+ Add Invitee</button>
@@ -313,6 +317,7 @@
     import {
       db, doc, setDoc, getDoc, updateDoc, deleteDoc, collection, query, orderBy, limit, getDocs, onSnapshot,
       serverTimestamp, Timestamp, emailKey, driveImageUrl, parseInviteeList, provisionInvitees,
+      sendWhatsAppTemplate, WHATSAPP_INVITE_TEMPLATE, WHATSAPP_APPROVAL_TEMPLATE, INVITEE_PASSWORD, siteFilePath,
       SESSIONS_COLLECTION, nextAkhandPathId
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
@@ -405,7 +410,7 @@
        instead of hand-typing that format into a textarea. */
     const MIN_REQUESTED_INVITEE_ROWS = 5;
 
-    function requestedInviteeRowHtml(rowNum, name, gname, mail) {
+    function requestedInviteeRowHtml(rowNum, name, gname, mail, phone) {
       // autocomplete="off" alone isn't reliable for plain name/email fields —
       // browsers largely ignore it for their profile-autofill heuristics,
       // which key off placeholder/label text rather than the name attribute.
@@ -420,6 +425,7 @@
           <td><input type="text" name="req_inv_name_${rowNum}" placeholder="Name" autocomplete="off" value="${escapeHtml(name || "")}"></td>
           <td><input type="text" name="req_inv_gname_${rowNum}" placeholder="Greet Name" autocomplete="off" value="${escapeHtml(gname || "")}"></td>
           <td><input type="email" name="req_inv_email_${rowNum}" placeholder="Email" autocomplete="off" value="${escapeHtml(mail || "")}"></td>
+          <td><input type="tel" name="req_inv_phone_${rowNum}" placeholder="With country code" autocomplete="off" value="${escapeHtml(phone || "")}"></td>
           <td><button type="button" class="btn-control" title="Remove row">✕</button></td>
         </tr>`;
     }
@@ -444,7 +450,7 @@
       const rowCount = Math.max(invitees.length, MIN_REQUESTED_INVITEE_ROWS);
       for (let i = 0; i < rowCount; i++) {
         const inv = invitees[i];
-        tbody.insertAdjacentHTML("beforeend", requestedInviteeRowHtml(i + 1, inv && inv.name, inv && inv.gname, inv && inv.mail));
+        tbody.insertAdjacentHTML("beforeend", requestedInviteeRowHtml(i + 1, inv && inv.name, inv && inv.gname, inv && inv.mail, inv && inv.phone));
       }
       [...tbody.querySelectorAll("tr")].forEach(attachRequestedInviteeRowHandlers);
     }
@@ -452,27 +458,28 @@
     window.addRequestedInviteeRow = () => {
       const tbody = document.getElementById("requestedInviteeBody");
       const rowNum = tbody.querySelectorAll("tr").length + 1;
-      tbody.insertAdjacentHTML("beforeend", requestedInviteeRowHtml(rowNum, "", "", ""));
+      tbody.insertAdjacentHTML("beforeend", requestedInviteeRowHtml(rowNum, "", "", "", ""));
       attachRequestedInviteeRowHandlers(tbody.lastElementChild);
     };
 
-    // Rebuilds the same "Name; Greeting Name; Email" per-line raw text
-    // parseInviteeList() expects, skipping rows with no email entered.
+    // Rebuilds the same "Name; Greeting Name; Email; Phone" per-line raw
+    // text parseInviteeList() expects, skipping rows with no email entered.
     function collectRequestedInviteesList() {
       const invitees = [];
       document.querySelectorAll("#requestedInviteeBody tr").forEach((tr) => {
-        const [nameInput, gnameInput, mailInput] = tr.querySelectorAll("input");
+        const [nameInput, gnameInput, mailInput, phoneInput] = tr.querySelectorAll("input");
         const mail = mailInput.value.trim();
         if (!mail) return;
         const name = nameInput.value.trim();
         const gname = gnameInput.value.trim() || name;
-        invitees.push({ name, gname, mail });
+        const phone = phoneInput.value.trim();
+        invitees.push({ name, gname, mail, phone });
       });
       return invitees;
     }
 
     function collectRequestedInviteesRaw() {
-      return collectRequestedInviteesList().map((inv) => `${inv.name}; ${inv.gname}; ${inv.mail}`).join("\n");
+      return collectRequestedInviteesList().map((inv) => `${inv.name}; ${inv.gname}; ${inv.mail}; ${inv.phone}`).join("\n");
     }
 
     // Fixes the exact gap that motivated this button: changing a program's
@@ -723,13 +730,36 @@
     };
 
     /* ---------------- INVITEES CRUD ---------------- */
+    // Builds WhatsApp template params from whatever's currently in the Core
+    // Details form fields (not a separately-fetched session object, since
+    // this editor is already form-driven — same values saveInstance() would
+    // write). Must stay in the same order as the approved
+    // "akhand_path_invite" template (see firebase.js's WHATSAPP_INVITE_TEMPLATE).
+    async function sendInviteeWhatsAppFromEditor(invitee) {
+      const startVal = document.getElementById("fStartAt").value;
+      const start = startVal ? new Date(startVal) : new Date();
+      const durationHours = Number(document.getElementById("fDurationHours").value) || 48;
+      const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
+      const params = [
+        invitee.gname || invitee.name || "",
+        document.getElementById("fName").value.trim(),
+        document.getElementById("fPurpose").value.trim(),
+        start.toLocaleString(),
+        samapti.toLocaleString(),
+        invitee.mail || "",
+        INVITEE_PASSWORD,
+        siteFilePath("index.html", `?session=${activeDocId}`)
+      ];
+      await sendWhatsAppTemplate(invitee.phone, WHATSAPP_INVITE_TEMPLATE, params);
+    }
+
     function watchInviteesEdit(docId) {
       if (unsubInvitees) unsubInvitees();
       const ref = collection(db, SESSIONS_COLLECTION, docId, "invitees");
       unsubInvitees = onSnapshot(ref, (snap) => {
         const tbody = document.getElementById("inviteesEditBody");
         if (snap.empty) {
-          tbody.innerHTML = `<tr><td colspan="6" class="no-data">No invitees yet.</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="8" class="no-data">No invitees yet.</td></tr>`;
           return;
         }
         tbody.innerHTML = "";
@@ -740,18 +770,27 @@
             <td><input type="text" name="inv_name_${d.id}" autocomplete="off" value="${escapeHtml(inv.name || "")}"></td>
             <td><input type="text" name="inv_gname_${d.id}" autocomplete="off" value="${escapeHtml(inv.gname || "")}"></td>
             <td>${escapeHtml(inv.mail || d.id)}</td>
+            <td><input type="tel" name="inv_phone_${d.id}" autocomplete="off" value="${escapeHtml(inv.phone || "")}"></td>
             <td><input type="checkbox" ${inv.email_sent ? "checked" : ""}></td>
             <td>${escapeHtml(inv.email_error || "")}</td>
             <td style="display:flex;gap:4px;">
               <button type="button" class="btn-control">Save</button>
               <button type="button" class="btn-control">✕</button>
             </td>
+            <td>
+              <button type="button" class="btn-control" ${inv.phone ? "" : "disabled title=\"No WhatsApp number on file\""}>WhatsApp</button>
+              <span class="muted" style="display:block;font-size:11px;margin-top:4px;"></span>
+            </td>
           `;
-          const [nameInput, gnameInput, sentCheckbox] = tr.querySelectorAll("input");
-          const [saveBtn, delBtn] = tr.querySelectorAll("button");
+          const [nameInput, gnameInput, phoneInput, sentCheckbox] = tr.querySelectorAll("input");
+          const [saveBtn, delBtn, waBtn] = tr.querySelectorAll("button");
+          const waStatus = tr.querySelector("td:last-child .muted");
           saveBtn.addEventListener("click", async () => {
             try {
-              await updateDoc(d.ref, { name: nameInput.value.trim(), gname: gnameInput.value.trim(), email_sent: sentCheckbox.checked });
+              await updateDoc(d.ref, {
+                name: nameInput.value.trim(), gname: gnameInput.value.trim(),
+                phone: phoneInput.value.trim(), email_sent: sentCheckbox.checked
+              });
               document.getElementById("inviteesStatus").textContent = "Saved.";
             } catch (err) {
               document.getElementById("inviteesStatus").textContent = "Could not save: " + (err.message || err);
@@ -761,6 +800,20 @@
             if (!confirm(`Remove invitee ${inv.mail || d.id}?`)) return;
             await deleteDoc(d.ref);
           });
+          if (inv.phone) {
+            waBtn.addEventListener("click", async () => {
+              waBtn.disabled = true;
+              waStatus.textContent = "Sending...";
+              try {
+                await sendInviteeWhatsAppFromEditor(inv);
+                waStatus.textContent = "Sent.";
+              } catch (err) {
+                waStatus.textContent = "Failed: " + (err.message || err);
+              } finally {
+                waBtn.disabled = false;
+              }
+            });
+          }
           tbody.appendChild(tr);
         });
       });
@@ -771,6 +824,7 @@
       const name = document.getElementById("newInvName").value.trim();
       const gname = document.getElementById("newInvGname").value.trim();
       const mail = document.getElementById("newInvMail").value.trim().toLowerCase();
+      const phone = document.getElementById("newInvPhone").value.trim();
       if (!mail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) {
         status.textContent = "Please enter a valid email address.";
         return;
@@ -778,12 +832,13 @@
       if (!activeDocId) { status.textContent = "Save the instance first."; return; }
       try {
         await setDoc(doc(db, SESSIONS_COLLECTION, activeDocId, "invitees", emailKey(mail)), {
-          name: name || mail, gname: gname || name || mail, mail,
+          name: name || mail, gname: gname || name || mail, mail, phone,
           invited_at: serverTimestamp(), email_sent: false
         }, { merge: true });
         document.getElementById("newInvName").value = "";
         document.getElementById("newInvGname").value = "";
         document.getElementById("newInvMail").value = "";
+        document.getElementById("newInvPhone").value = "";
         status.textContent = "Invitee record added. (No email is sent from this tool — use Admin Setup to invite and email someone new.)";
       } catch (err) {
         status.textContent = "Could not add invitee: " + (err.message || err);

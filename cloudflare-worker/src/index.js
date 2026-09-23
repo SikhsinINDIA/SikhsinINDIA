@@ -1,5 +1,5 @@
 /*
- * Cloudflare Worker for the SikhsinIndia static site. Two jobs:
+ * Cloudflare Worker for the SikhsinIndia static site. Three jobs:
  *
  * 1. Send email via the Resend API. Exists because none of the client-side
  *    form backends tried (EmailJS free tier, SnapitForms, FormSubmit,
@@ -17,6 +17,15 @@
  *    from before Akhand Path touched it, so the shared "123456" password
  *    the invite/approval emails promise doesn't actually apply to them.
  *
+ * 3. Send a WhatsApp template message via the Meta WhatsApp Business
+ *    Cloud API (action: "send_whatsapp"). Business-initiated WhatsApp
+ *    messages (as opposed to a reply within 24h of the user messaging
+ *    first) can only ever be a pre-approved message *template* — never
+ *    free-form text — so the caller sends a template name + an ordered
+ *    list of body variables, not a message string. See
+ *    03-nitnem/03-06-akhand-path/firebase.js's WHATSAPP_* constants for
+ *    the exact template names/wording this site currently has approved.
+ *
  * Deploy: see cloudflare-worker's own docs / wrangler.toml comments.
  * Requires these secrets, set via `wrangler secret put <NAME>`:
  *   RESEND_API_KEY        — from the Resend dashboard
@@ -29,6 +38,12 @@
  *   GOOGLE_SA_PRIVATE_KEY  — the service account's private_key (same JSON
  *                            key; keep the literal "\n" sequences as-is,
  *                            wrangler secret put handles it as one string)
+ *   WHATSAPP_ACCESS_TOKEN  — a permanent (System User) access token from
+ *                            Meta for Developers, for the WhatsApp Business
+ *                            app that owns the sending phone number
+ *   WHATSAPP_PHONE_NUMBER_ID — that WhatsApp Business phone number's
+ *                            numeric Phone Number ID (not the phone number
+ *                            itself), from the same app's API Setup page
  * The service account needs the "Firebase Authentication Admin" IAM role
  * on the sikhsinindia-67a6b Google Cloud project — nothing broader. This
  * key can reset ANY user's password in the whole Firebase project, not
@@ -124,6 +139,50 @@ async function resetFirebasePassword(env, email, newPassword) {
   return { email, localId: user.localId };
 }
 
+// Meta requires E.164 (leading "+", country code, no spaces/dashes/parens).
+// Sponsors/invitees have typed numbers in all sorts of local formats, so
+// this is a best-effort cleanup, not real validation — a malformed number
+// just gets rejected by the WhatsApp API itself with a clear error.
+function normalizePhone(raw) {
+  const digits = String(raw || "").replace(/[^0-9+]/g, "");
+  if (!digits) return digits;
+  return digits.startsWith("+") ? digits : "+" + digits;
+}
+
+async function sendWhatsAppTemplate(env, { to, templateName, languageCode, params }) {
+  if (!env.WHATSAPP_ACCESS_TOKEN || !env.WHATSAPP_PHONE_NUMBER_ID) {
+    throw new Error("WhatsApp is not configured yet (missing WHATSAPP_ACCESS_TOKEN / WHATSAPP_PHONE_NUMBER_ID secrets).");
+  }
+
+  const template = {
+    name: templateName,
+    language: { code: languageCode || "en_US" }
+  };
+  if (Array.isArray(params) && params.length) {
+    template.components = [{
+      type: "body",
+      parameters: params.map((p) => ({ type: "text", text: String(p == null ? "" : p) }))
+    }];
+  }
+
+  const res = await fetch(`https://graph.facebook.com/v21.0/${env.WHATSAPP_PHONE_NUMBER_ID}/messages`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${env.WHATSAPP_ACCESS_TOKEN}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      messaging_product: "whatsapp",
+      to: normalizePhone(to),
+      type: "template",
+      template
+    })
+  });
+  const resBody = await res.text();
+  if (!res.ok) throw new Error("WhatsApp API error: " + resBody);
+  return resBody;
+}
+
 async function sendEmail(env, { to, subject, text, html }) {
   const resendRes = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -165,6 +224,18 @@ export default {
       payload = await request.json();
     } catch (err) {
       return json({ error: "Invalid JSON body" }, 400);
+    }
+
+    if (payload.action === "send_whatsapp") {
+      if (!payload.to || !payload.templateName) {
+        return json({ error: "Missing required fields: to, templateName" }, 400);
+      }
+      try {
+        const result = await sendWhatsAppTemplate(env, payload);
+        return new Response(result, { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      } catch (err) {
+        return json({ error: String(err.message || err) }, 502);
+      }
     }
 
     if (payload.action === "reset_password") {

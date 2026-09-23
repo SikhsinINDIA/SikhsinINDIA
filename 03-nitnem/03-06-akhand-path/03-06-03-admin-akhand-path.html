@@ -144,6 +144,8 @@
             <p class="muted">Share or use this link for the public viewing page:</p>
             <input id="manageLink" type="text" readonly onclick="this.select()">
             <button class="btn-back" style="margin-top:8px;" onclick="endSessionEarly()">End This Session Now</button>
+            <button class="btn-back" style="margin-top:8px;" id="sponsorWhatsAppBtn" type="button">Send Approval via WhatsApp</button>
+            <p id="sponsorWhatsAppStatus" class="muted" style="margin-top:8px;min-height:18px;"></p>
           </div>
 
           <h2>Honoree Photo</h2>
@@ -192,6 +194,10 @@
                 <label>Email *</label>
                 <input id="inviteeMail" name="akp_invitee_mail" type="email" autocomplete="off" placeholder="invitee@example.com">
               </div>
+              <div class="form-row">
+                <label>WhatsApp Number</label>
+                <input id="inviteePhone" name="akp_invitee_phone" type="tel" autocomplete="off" placeholder="With country code">
+              </div>
             </div>
             <button class="btn-action" onclick="addInvitee()">Add Invitee &amp; Send Invite</button>
             <p id="inviteeStatus" class="muted" style="margin-top:10px;min-height:18px;"></p>
@@ -200,10 +206,10 @@
           <div class="table-container">
             <table>
               <thead>
-                <tr><th>Name</th><th>Greeting Name</th><th>Login ID (Email)</th><th>Password</th><th>Invite Status</th></tr>
+                <tr><th>Name</th><th>Greeting Name</th><th>Login ID (Email)</th><th>Password</th><th>Invite Status</th><th>WhatsApp</th></tr>
               </thead>
               <tbody id="inviteesTableBody">
-                <tr><td colspan="5" class="loading-text">No invitees yet.</td></tr>
+                <tr><td colspan="6" class="loading-text">No invitees yet.</td></tr>
               </tbody>
             </table>
           </div>
@@ -250,7 +256,8 @@
       EMAILJS_PUBLIC_KEY, EMAILJS_PRIVATE_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID,
       SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET,
       emailKey, parseInviteeList, markEndedIfComplete, siteFilePath, textToEmailHtml, driveImageUrl,
-      provisionInvitees, buildExpectedRoster, SESSIONS_COLLECTION, nextAkhandPathId
+      provisionInvitees, buildExpectedRoster, sendWhatsAppTemplate, WHATSAPP_INVITE_TEMPLATE, WHATSAPP_APPROVAL_TEMPLATE,
+      SESSIONS_COLLECTION, nextAkhandPathId
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
     import { watchAttendance, renderAttendanceTable, mergeAttendanceRoster, exportAttendanceCsv } from "./attendance.js";
@@ -684,6 +691,35 @@ Email: ${ADMIN_EMAIL}`;
       }
     });
 
+    // Same body-variable order as the approved "akhand_path_approved"
+    // WhatsApp template (see firebase.js's WHATSAPP_APPROVAL_TEMPLATE) —
+    // must stay in sync with whatever Meta actually approved.
+    document.getElementById("sponsorWhatsAppBtn").addEventListener("click", async () => {
+      const status = document.getElementById("sponsorWhatsAppStatus");
+      if (!activeSessionId || !activeSessionData) { status.textContent = "No program selected."; return; }
+      const s = activeSessionData;
+      if (!s.mobie) { status.textContent = "This program has no sponsor mobile number on file."; return; }
+
+      status.textContent = "Sending...";
+      try {
+        const start = s.start_at && s.start_at.toDate ? s.start_at.toDate() : new Date();
+        const durationHours = s.duration_hours || 48;
+        const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
+        const params = [
+          s.sponsor || "",
+          s.name || "",
+          s.purpose || "",
+          formatFullDateTime(start),
+          formatFullDateTime(samapti),
+          sessionLinkFor(activeSessionId)
+        ];
+        await sendWhatsAppTemplate(s.mobie, WHATSAPP_APPROVAL_TEMPLATE, params);
+        status.textContent = "Sent.";
+      } catch (err) {
+        status.textContent = "Could not send: " + errText(err);
+      }
+    });
+
     /* ---------------- FORCE PASSWORD RESET ----------------
        Routed through the same email-sending Cloudflare Worker (see
        cloudflare-worker/src/index.js), just with a different `action` in
@@ -717,7 +753,7 @@ Email: ${ADMIN_EMAIL}`;
       unsubInvitees = onSnapshot(ref, (snap) => {
         const tbody = document.getElementById("inviteesTableBody");
         if (snap.empty) {
-          tbody.innerHTML = `<tr><td colspan="5" class="no-data">No invitees yet.</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="6" class="no-data">No invitees yet.</td></tr>`;
           return;
         }
         tbody.innerHTML = "";
@@ -732,10 +768,51 @@ Email: ${ADMIN_EMAIL}`;
             <td>${escapeHtml(inv.mail || "")}</td>
             <td>${INVITEE_PASSWORD}</td>
             <td><span class="pill ${pillClass}">${pillText}</span></td>
+            <td>
+              <button type="button" class="btn-control" ${inv.phone ? "" : "disabled title=\"No WhatsApp number on file for this invitee\""}>Send</button>
+              <span class="muted" style="display:block;font-size:11px;margin-top:4px;"></span>
+            </td>
           `;
+          const waBtn = tr.querySelector("button");
+          const waStatus = tr.querySelector("td:last-child .muted");
+          if (inv.phone) {
+            waBtn.addEventListener("click", async () => {
+              waBtn.disabled = true;
+              waStatus.textContent = "Sending...";
+              try {
+                await sendInviteeWhatsApp(inv);
+                waStatus.textContent = "Sent.";
+              } catch (err) {
+                waStatus.textContent = "Failed: " + errText(err);
+              } finally {
+                waBtn.disabled = false;
+              }
+            });
+          }
           tbody.appendChild(tr);
         });
       });
+    }
+
+    // Same body-variable order as the approved "akhand_path_invite" WhatsApp
+    // template (see firebase.js's WHATSAPP_INVITE_TEMPLATE) — must stay in
+    // sync with whatever Meta actually approved, not just this comment.
+    async function sendInviteeWhatsApp(invitee) {
+      const s = activeSessionData;
+      const start = s.start_at && s.start_at.toDate ? s.start_at.toDate() : new Date();
+      const durationHours = s.duration_hours || 48;
+      const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
+      const params = [
+        invitee.gname || invitee.name || "",
+        s.name || "",
+        s.purpose || "",
+        formatFullDateTime(start),
+        formatFullDateTime(samapti),
+        invitee.mail || "",
+        INVITEE_PASSWORD,
+        sessionLinkFor(activeSessionId)
+      ];
+      await sendWhatsAppTemplate(invitee.phone, WHATSAPP_INVITE_TEMPLATE, params);
     }
 
     window.addInvitee = async () => {
@@ -743,6 +820,7 @@ Email: ${ADMIN_EMAIL}`;
       const name = document.getElementById("inviteeName").value.trim();
       const gname = document.getElementById("inviteeGname").value.trim();
       const mail = document.getElementById("inviteeMail").value.trim().toLowerCase();
+      const phone = document.getElementById("inviteePhone").value.trim();
 
       if (!name || !gname || !mail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) {
         status.textContent = "Please enter a valid full name, greeting name, and email address.";
@@ -762,7 +840,7 @@ Email: ${ADMIN_EMAIL}`;
         }
 
         await setDoc(inviteeRef, {
-          name, gname, mail,
+          name, gname, mail, phone,
           invited_at: serverTimestamp(),
           email_sent: false
         });
@@ -774,6 +852,7 @@ Email: ${ADMIN_EMAIL}`;
         document.getElementById("inviteeName").value = "";
         document.getElementById("inviteeGname").value = "";
         document.getElementById("inviteeMail").value = "";
+        document.getElementById("inviteePhone").value = "";
       } catch (err) {
         status.textContent = "Could not add invitee: " + errText(err);
         try {

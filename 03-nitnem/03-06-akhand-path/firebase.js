@@ -105,16 +105,19 @@ export function emailKey(email) {
 function deriveInviteeFromEmail(mail) {
   const local = (mail || "").split("@")[0] || mail || "";
   const derived = local.replace(/[._-]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-  return { name: derived, gname: derived, mail: (mail || "").trim().toLowerCase() };
+  return { name: derived, gname: derived, mail: (mail || "").trim().toLowerCase(), phone: "" };
 }
 
 /* Parses the sponsor request form's free-text invitee field into
-   {name, gname, mail} objects, shared by 03-06-01-request-akhand-path.html
+   {name, gname, mail, phone} objects, shared by 03-06-01-request-akhand-path.html
    (building the admin notification) and 03-06-03-admin-akhand-path.html
    (building the sponsor email + creating invitee accounts on approval) so
-   both read the exact same data the same way. Supports two formats,
+   both read the exact same data the same way. Supports three formats,
    detected automatically:
-     - "Name; Greeting Name; Email" one per line (current form format)
+     - "Name; Greeting Name; Email; Phone" one per line (current form format,
+       phone optional — added later for WhatsApp sending, so older records
+       and the 3-part form below still parse fine with phone: "")
+     - "Name; Greeting Name; Email" one per line (format before phone existed)
      - bare emails, one per line or comma-separated (older submissions, from
        before the form collected names) — greeting name is derived from the
        email's local part since there's no name to use. */
@@ -125,8 +128,9 @@ export function parseInviteeList(rawText) {
   if (lines.some((l) => l.includes(";"))) {
     return lines.map((line) => {
       const parts = line.split(";").map((s) => s.trim()).filter(Boolean);
-      if (parts.length >= 3) return { name: parts[0], gname: parts[1], mail: (parts[2] || "").toLowerCase() };
-      if (parts.length === 2) return { name: parts[0], gname: parts[0], mail: (parts[1] || "").toLowerCase() };
+      if (parts.length >= 4) return { name: parts[0], gname: parts[1], mail: (parts[2] || "").toLowerCase(), phone: parts[3] || "" };
+      if (parts.length === 3) return { name: parts[0], gname: parts[1], mail: (parts[2] || "").toLowerCase(), phone: "" };
+      if (parts.length === 2) return { name: parts[0], gname: parts[0], mail: (parts[1] || "").toLowerCase(), phone: "" };
       return deriveInviteeFromEmail(parts[0]);
     });
   }
@@ -234,6 +238,43 @@ export const EMAILJS_TEMPLATE_ID = "template_gzwnh1j";
 export const SEND_EMAIL_ENDPOINT = "https://sikhsinindia-email.sikhsinindia.workers.dev";
 export const APP_SHARED_SECRET = "LuOoE-d92AyXMGsCBA0FcQGhKsYRLgs6";
 
+/* WhatsApp Business Cloud API, sent through the same Worker as email (see
+   cloudflare-worker/src/index.js's "send_whatsapp" action). Business-
+   initiated WhatsApp messages can ONLY ever be a pre-approved message
+   *template* — never free-form text — so these are template NAMES, and
+   sendWhatsAppTemplate() below takes an ordered list of {{1}}, {{2}}, ...
+   body variables, not a message string. The name/param order here must
+   exactly match what's actually approved in Meta's WhatsApp Manager; if
+   Meta's review changes the wording, that approved version is the source
+   of truth, not this file — update these to match it, not the other way
+   around. Both currently point at templates that do not exist yet; see
+   the matching request in this conversation for the exact text submitted
+   for approval. */
+export const WHATSAPP_LANGUAGE_CODE = "en_US";
+export const WHATSAPP_INVITE_TEMPLATE = "akhand_path_invite";
+export const WHATSAPP_APPROVAL_TEMPLATE = "akhand_path_approved";
+
+/* Sends one WhatsApp template message through the Cloudflare Worker proxy
+   (which holds the real Meta access token server-side). `params` must be
+   in the exact order the approved template's body variables expect.
+   Throws on failure so callers can show their own status message, same
+   pattern as the email-sending calls elsewhere in this file. */
+export async function sendWhatsAppTemplate(to, templateName, params) {
+  if (!SEND_EMAIL_ENDPOINT) throw new Error("SEND_EMAIL_ENDPOINT is not configured.");
+  const res = await fetch(SEND_EMAIL_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "X-App-Secret": APP_SHARED_SECRET },
+    body: JSON.stringify({ action: "send_whatsapp", to, templateName, languageCode: WHATSAPP_LANGUAGE_CODE, params })
+  });
+  const bodyText = await res.text();
+  if (!res.ok) {
+    let detail = bodyText;
+    try { detail = JSON.parse(bodyText).error || bodyText; } catch (_) { /* keep raw text */ }
+    throw new Error(`WhatsApp send failed (HTTP ${res.status}): ${detail}`);
+  }
+  return bodyText;
+}
+
 /* Firestore collection: one flat document per Akhand Path program, matching
    the "akhand_path" schema already seeded (name, email, mobie, purpose,
    sponsor, akhand_path_id). Invitees/attendance live in subcollections
@@ -293,7 +334,7 @@ export async function provisionInvitees(sessionId, session, invitees) {
 
       const gname = invitee.gname || invitee.name || mail;
       await setDoc(inviteeRef, {
-        name: invitee.name || gname, gname, mail,
+        name: invitee.name || gname, gname, mail, phone: invitee.phone || "",
         invited_at: serverTimestamp(), email_sent: false
       }, { merge: true });
 
