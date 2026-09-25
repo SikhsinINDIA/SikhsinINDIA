@@ -1,64 +1,64 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-09-24",
-  "dateDisplay": "24 September 2026",
-  "ang": 666,
-  "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
-  "raagEnglish": "Raag Dhanaasree",
+  "date": "2026-09-25",
+  "dateDisplay": "25 September 2026",
+  "ang": 696,
+  "raagGurmukhi": "ਰਾਗੁ ਜੈਤਸਰੀ",
+  "raagEnglish": "Raag Jaithsree",
   "writerEnglish": "Guru Raam Daas Ji",
-  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੪ ਘਰੁ ੧ ਚਉਪਦੇ",
-  "titleEnglish": "Dhanaasaree, Fourth Mehla, First House, Chau-Padhay:",
-  "verseGurmukhi": "ਜੋ ਹਰਿ ਸੇਵਹਿ ਸੰਤ ਭਗਤ ਤਿਨ ਕੇ ਸਭਿ ਪਾਪ ਨਿਵਾਰੀ ॥",
-  "verseTranslation": "Those Saints and devotees who serve the Lord have all their sins washed away.",
+  "titleGurmukhi": "ਜੈਤਸਰੀ ਮਹਲਾ ੪ ਘਰੁ ੧ ਚਉਪਦੇ",
+  "titleEnglish": "Jaitsree, Fourth Mehla, First House, Chau-Padhay:",
+  "verseGurmukhi": "ਮੇਰੈ ਹੀਅਰੈ ਰਤਨੁ ਨਾਮੁ ਹਰਿ ਬਸਿਆ ਗੁਰਿ ਹਾਥੁ ਧਰਿਓ ਮੇਰੈ ਮਾਥਾ ॥",
+  "verseTranslation": "The Jewel of the Lord's Name abides within my heart; the Guru has placed His hand on my forehead.",
   "verses": [
     {
-      "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੪ ਘਰੁ ੧ ਚਉਪਦੇ",
-      "translation": "Dhanaasaree, Fourth Mehla, First House, Chau-Padhay:"
+      "gurmukhi": "ਜੈਤਸਰੀ ਮਹਲਾ ੪ ਘਰੁ ੧ ਚਉਪਦੇ",
+      "translation": "Jaitsree, Fourth Mehla, First House, Chau-Padhay:"
     },
     {
       "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
       "translation": "One Universal Creator God. By The Grace Of The True Guru:"
     },
     {
-      "gurmukhi": "ਜੋ ਹਰਿ ਸੇਵਹਿ ਸੰਤ ਭਗਤ ਤਿਨ ਕੇ ਸਭਿ ਪਾਪ ਨਿਵਾਰੀ ॥",
-      "translation": "Those Saints and devotees who serve the Lord have all their sins washed away."
+      "gurmukhi": "ਮੇਰੈ ਹੀਅਰੈ ਰਤਨੁ ਨਾਮੁ ਹਰਿ ਬਸਿਆ ਗੁਰਿ ਹਾਥੁ ਧਰਿਓ ਮੇਰੈ ਮਾਥਾ ॥",
+      "translation": "The Jewel of the Lord's Name abides within my heart; the Guru has placed His hand on my forehead."
     },
     {
-      "gurmukhi": "ਹਮ ਊਪਰਿ ਕਿਰਪਾ ਕਰਿ ਸੁਆਮੀ ਰਖੁ ਸੰਗਤਿ ਤੁਮ ਜੁ ਪਿਆਰੀ ॥੧॥",
-      "translation": "Have Mercy on me, O Lord and Master, and keep me in the Sangat, the Congregation that You love. ||1||"
+      "gurmukhi": "ਜਨਮ ਜਨਮ ਕੇ ਕਿਲਬਿਖ ਦੁਖ ਉਤਰੇ ਗੁਰਿ ਨਾਮੁ ਦੀਓ ਰਿਨੁ ਲਾਥਾ ॥੧॥",
+      "translation": "The sins and pains of countless incarnations have been cast out. The Guru has blessed me with the Naam, the Name of the Lord, and my debt has been paid off. ||1||"
     },
     {
-      "gurmukhi": "ਹਰਿ ਗੁਣ ਕਹਿ ਨ ਸਕਉ ਬਨਵਾਰੀ ॥",
-      "translation": "I cannot even speak the Praises of the Lord, the Gardener of the world."
+      "gurmukhi": "ਮੇਰੇ ਮਨ ਭਜੁ ਰਾਮ ਨਾਮੁ ਸਭਿ ਅਰਥਾ ॥",
+      "translation": "O my mind, vibrate the Lord's Name, and all your affairs shall be resolved."
     },
     {
-      "gurmukhi": "ਹਮ ਪਾਪੀ ਪਾਥਰ ਨੀਰਿ ਡੁਬਤ ਕਰਿ ਕਿਰਪਾ ਪਾਖਣ ਹਮ ਤਾਰੀ ॥ ਰਹਾਉ ॥",
-      "translation": "We are sinners, sinking like stones in water; grant Your Grace, and carry us stones across. ||Pause||"
+      "gurmukhi": "ਗੁਰਿ ਪੂਰੈ ਹਰਿ ਨਾਮੁ ਦ੍ਰਿੜਾਇਆ ਬਿਨੁ ਨਾਵੈ ਜੀਵਨੁ ਬਿਰਥਾ ॥ ਰਹਾਉ ॥",
+      "translation": "The Perfect Guru has implanted the Lord's Name within me; without the Name, life is useless. ||Pause||"
     },
     {
-      "gurmukhi": "ਜਨਮ ਜਨਮ ਕੇ ਲਾਗੇ ਬਿਖੁ ਮੋਰਚਾ ਲਗਿ ਸੰਗਤਿ ਸਾਧ ਸਵਾਰੀ ॥",
-      "translation": "The rust of poison and corruption from countless incarnations sticks to us; joining the Saadh Sangat, the Company of the Holy, it is cleaned away."
+      "gurmukhi": "ਬਿਨੁ ਗੁਰ ਮੂੜ ਭਏ ਹੈ ਮਨਮੁਖ ਤੇ ਮੋਹ ਮਾਇਆ ਨਿਤ ਫਾਥਾ ॥",
+      "translation": "Without the Guru, the self-willed manmukhs are foolish and ignorant; they are forever entangled in emotional attachment to Maya."
     },
     {
-      "gurmukhi": "ਜਿਉ ਕੰਚਨੁ ਬੈਸੰਤਰਿ ਤਾਇਓ ਮਲੁ ਕਾਟੀ ਕਟਿਤ ਉਤਾਰੀ ॥੨॥",
-      "translation": "It is just like gold, which is heated in the fire, to remove the impurities from it. ||2||"
+      "gurmukhi": "ਤਿਨ ਸਾਧੂ ਚਰਣ ਨ ਸੇਵੇ ਕਬਹੂ ਤਿਨ ਸਭੁ ਜਨਮੁ ਅਕਾਥਾ ॥੨॥",
+      "translation": "They never serve the feet of the Holy; their lives are totally useless. ||2||"
     },
     {
-      "gurmukhi": "ਹਰਿ ਹਰਿ ਜਪਨੁ ਜਪਉ ਦਿਨੁ ਰਾਤੀ ਜਪਿ ਹਰਿ ਹਰਿ ਹਰਿ ਉਰਿ ਧਾਰੀ ॥",
-      "translation": "I chant the chant of the Name of the Lord, day and night; I chant the Name of the Lord, Har, Har, Har, and enshrine it within my heart."
+      "gurmukhi": "ਜਿਨ ਸਾਧੂ ਚਰਣ ਸਾਧ ਪਗ ਸੇਵੇ ਤਿਨ ਸਫਲਿਓ ਜਨਮੁ ਸਨਾਥਾ ॥",
+      "translation": "Those who serve at the feet of the Holy, the feet of the Holy, their lives are made fruitful, and they belong to the Lord."
     },
     {
-      "gurmukhi": "ਹਰਿ ਹਰਿ ਹਰਿ ਅਉਖਧੁ ਜਗਿ ਪੂਰਾ ਜਪਿ ਹਰਿ ਹਰਿ ਹਉਮੈ ਮਾਰੀ ॥੩॥",
-      "translation": "The Name of the Lord, Har, Har, Har, is the most perfect medicine in this world; chanting the Name of the Lord, Har, Har, I have conquered my ego. ||3||"
+      "gurmukhi": "ਮੋ ਕਉ ਕੀਜੈ ਦਾਸੁ ਦਾਸ ਦਾਸਨ ਕੋ ਹਰਿ ਦਇਆ ਧਾਰਿ ਜਗੰਨਾਥਾ ॥੩॥",
+      "translation": "Make me the slave of the slave of the slaves of the Lord; bless me with Your Mercy, O Lord of the Universe. ||3||"
     },
     {
-      "gurmukhi": "ਹਰਿ ਹਰਿ ਅਗਮ ਅਗਾਧਿ ਬੋਧਿ ਅਪਰੰਪਰ ਪੁਰਖ ਅਪਾਰੀ ॥",
-      "translation": "The Lord, Har, Har, is unapproachable, of unfathomable wisdom, unlimited, all-powerful and infinite."
+      "gurmukhi": "ਹਮ ਅੰਧੁਲੇ ਗਿਆਨਹੀਨ ਅਗਿਆਨੀ ਕਿਉ ਚਾਲਹ ਮਾਰਗਿ ਪੰਥਾ ॥",
+      "translation": "I am blind, ignorant and totally without wisdom; how can I walk on the Path?"
     },
     {
-      "gurmukhi": "ਜਨ ਕਉ ਕ੍ਰਿਪਾ ਕਰਹੁ ਜਗਜੀਵਨ ਜਨ ਨਾਨਕ ਪੈਜ ਸਵਾਰੀ ॥੪॥੧॥",
-      "translation": "Show Mercy to Your humble servant, O Life of the world, and save the honor of servant Nanak. ||4||1||"
+      "gurmukhi": "ਹਮ ਅੰਧੁਲੇ ਕਉ ਗੁਰ ਅੰਚਲੁ ਦੀਜੈ ਜਨ ਨਾਨਕ ਚਲਹ ਮਿਲੰਥਾ ॥੪॥੧॥",
+      "translation": "I am blind - O Guru, please let me grasp the hem of Your robe, so that servant Nanak may walk in harmony with You. ||4||1||"
     }
   ],
-  "updated": "2026-09-24T06:22:14.381Z"
+  "updated": "2026-09-25T06:17:32.517Z"
 };
