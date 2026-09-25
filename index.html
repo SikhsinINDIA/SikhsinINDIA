@@ -1063,6 +1063,11 @@
           if (snapshot.empty) {
               eventsHTML += `<span class="marquee-item">No scheduled festivals found for ${monthName}.</span>`;
           } else {
+              // Display order: today's event, or else the nearest upcoming one,
+              // first; then the rest of the month in ascending date order.
+              // Events already past this month follow at the end (still
+              // ascending), so the looping marquee never drops them.
+              const events = [];
               snapshot.docs.forEach((doc) => {
                   const data = doc.data();
                   let eventDateObj = null;
@@ -1074,7 +1079,17 @@
                   }
 
                   if (eventDateObj) {
-                      const eventParts = getIndiaDateParts(eventDateObj);
+                      events.push({ data, eventDateObj, eventParts: getIndiaDateParts(eventDateObj) });
+                  }
+              });
+              events.sort((a, b) => a.eventDateObj - b.eventDateObj);
+              const firstUpcoming = events.findIndex(e => e.eventParts.day >= currentDate);
+              const ordered = firstUpcoming > 0
+                  ? events.slice(firstUpcoming).concat(events.slice(0, firstUpcoming))
+                  : events;
+
+              ordered.forEach(({ data, eventParts }) => {
+                  {
                       const isToday = (
                           eventParts.year === currentYear &&
                           eventParts.month === currentMonth &&
