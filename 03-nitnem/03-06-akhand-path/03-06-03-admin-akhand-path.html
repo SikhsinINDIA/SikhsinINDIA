@@ -808,8 +808,6 @@ Email: ${ADMIN_EMAIL}`;
         s.purpose || "",
         formatFullDateTime(start),
         formatFullDateTime(samapti),
-        invitee.mail || "",
-        INVITEE_PASSWORD,
         sessionLinkFor(activeSessionId)
       ];
       await sendWhatsAppTemplate(invitee.phone, WHATSAPP_INVITE_TEMPLATE, params);

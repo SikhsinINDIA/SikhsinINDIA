@@ -746,8 +746,6 @@
         document.getElementById("fPurpose").value.trim(),
         start.toLocaleString(),
         samapti.toLocaleString(),
-        invitee.mail || "",
-        INVITEE_PASSWORD,
         siteFilePath("index.html", `?session=${activeDocId}`)
       ];
       await sendWhatsAppTemplate(invitee.phone, WHATSAPP_INVITE_TEMPLATE, params);
