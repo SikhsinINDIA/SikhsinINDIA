@@ -52,7 +52,7 @@
     btn.innerHTML = EYE;
     // Many pages style the field with input[type="password"] selectors, which stop matching once the
     // type becomes "text". Freeze the computed look as inline styles while the password is visible.
-    var FREEZE = ["width", "height", "boxSizing", "paddingTop", "paddingRight", "paddingBottom", "paddingLeft",
+    var FREEZE = ["boxSizing", "paddingTop", "paddingRight", "paddingBottom", "paddingLeft",
       "marginTop", "marginRight", "marginBottom", "marginLeft", "borderRadius", "backgroundColor", "color",
       "fontSize", "fontFamily", "fontWeight", "letterSpacing", "lineHeight", "boxShadow"];
     ["Top", "Right", "Bottom", "Left"].forEach(function (side) {
@@ -66,6 +66,8 @@
         savedStyle = input.getAttribute("style");
         var frozen = {};
         FREEZE.forEach(function (p) { frozen[p] = live[p]; });
+        // Keep the width proportional to its container (not a snapshot in px) so it stays responsive.
+        if (wrap.clientWidth > 0) frozen.width = (input.offsetWidth / wrap.clientWidth * 100).toFixed(2) + "%";
         input.type = "text";
         for (var p in frozen) input.style[p] = frozen[p];
       } else {
