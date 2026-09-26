@@ -17,7 +17,7 @@
   var style = document.createElement("style");
   style.textContent =
     ".pw-toggle-wrap{position:relative;}" +
-    ".pw-toggle-btn{position:absolute;top:50%;right:8px;transform:translateY(-50%);width:32px;height:32px;padding:0;margin:0;" +
+    ".pw-toggle-btn{position:absolute;top:0;right:8px;width:32px;height:32px;padding:0;margin:0;" +
     "display:flex;align-items:center;justify-content:center;background:transparent !important;border:0 !important;border-radius:6px;" +
     "cursor:pointer;opacity:.75;line-height:0;box-shadow:none !important;min-width:0;}" +
     ".pw-toggle-btn:hover,.pw-toggle-btn:focus-visible{opacity:1;outline:2px solid currentColor;outline-offset:-2px;}";
@@ -29,26 +29,19 @@
     var parent = input.parentNode;
     if (!parent) return;
 
-    // Full-width inputs get a block wrapper; fixed-width ones a shrink-wrapped inline-block.
+    // Always a block wrapper: it never shrinks the input (percentage widths keep working);
+    // the eye button is positioned against the input's own box in place().
     var cs = getComputedStyle(input);
-    var pcs = getComputedStyle(parent);
-    var pw = parent.clientWidth - (parseFloat(pcs.paddingLeft) || 0) - (parseFloat(pcs.paddingRight) || 0);
-    // offsetWidth ignores CSS transforms (e.g. entrance animations that scale the card)
-    var fullWidth = pw > 0 && input.offsetWidth >= pw * 0.9;
     var wrap = document.createElement("span");
     wrap.className = "pw-toggle-wrap";
-    wrap.style.display = fullWidth ? "block" : (cs.display === "block" ? "block" : "inline-block");
-    if (!fullWidth && cs.display === "block") wrap.style.width = cs.width;
-    if (cs.flexGrow !== "0") wrap.style.flex = cs.flex;
-    var w0 = input.offsetWidth;
+    wrap.style.display = "block";
+    if (cs.flexGrow !== "0" || cs.flexShrink !== "1") wrap.style.flex = cs.flex;
     parent.insertBefore(wrap, input);
     wrap.appendChild(input);
-    // Safety net: if wrapping shrank the input (percentage width inside a shrink-wrapped box), use a block wrapper.
-    if (wrap.style.display !== "block" && input.offsetWidth < w0 - 4) wrap.style.display = "block";
-
-    if (fullWidth || cs.boxSizing === "border-box") input.style.boxSizing = "border-box";
-    var pr = parseFloat(cs.paddingRight) || 0;
-    if (pr < 44) input.style.paddingRight = "44px";
+    if (cs.boxSizing === "border-box") {
+      var pr = parseFloat(cs.paddingRight) || 0;
+      if (pr < 44) input.style.paddingRight = "44px";
+    }
 
     var btn = document.createElement("button");
     btn.type = "button";
@@ -71,6 +64,18 @@
       if (input.type !== "password") { input.type = "password"; btn.innerHTML = EYE; btn.setAttribute("aria-pressed", "false"); btn.setAttribute("aria-label", labels[0]); }
     });
     wrap.appendChild(btn);
+
+    function place() {
+      var h = input.offsetHeight;
+      if (!h) return; // hidden (e.g. inside a collapsed form) - retried when it becomes visible
+      btn.style.top = (input.offsetTop + (h - 32) / 2) + "px";
+      btn.style.right = (wrap.clientWidth - input.offsetLeft - input.offsetWidth + 6) + "px";
+    }
+    place();
+    window.addEventListener("resize", place);
+    window.addEventListener("load", place);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
+    if (window.ResizeObserver) { var ro = new ResizeObserver(place); ro.observe(input); ro.observe(wrap); }
   }
 
   function scan(root) {
