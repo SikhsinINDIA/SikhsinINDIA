@@ -50,9 +50,28 @@
     btn.setAttribute("aria-label", labels[0]);
     btn.setAttribute("aria-pressed", "false");
     btn.innerHTML = EYE;
+    // Many pages style the field with input[type="password"] selectors, which stop matching once the
+    // type becomes "text". Freeze the computed look as inline styles while the password is visible.
+    var FREEZE = ["width", "height", "boxSizing", "paddingTop", "paddingRight", "paddingBottom", "paddingLeft",
+      "marginTop", "marginRight", "marginBottom", "marginLeft", "borderRadius", "backgroundColor", "color",
+      "fontSize", "fontFamily", "fontWeight", "letterSpacing", "lineHeight", "boxShadow"];
+    ["Top", "Right", "Bottom", "Left"].forEach(function (side) {
+      FREEZE.push("border" + side + "Width", "border" + side + "Style", "border" + side + "Color");
+    });
+    var savedStyle = null;
     btn.addEventListener("click", function () {
       var show = input.type === "password";
-      input.type = show ? "text" : "password";
+      if (show) {
+        var live = getComputedStyle(input);
+        savedStyle = input.getAttribute("style");
+        var frozen = {};
+        FREEZE.forEach(function (p) { frozen[p] = live[p]; });
+        input.type = "text";
+        for (var p in frozen) input.style[p] = frozen[p];
+      } else {
+        input.type = "password";
+        if (savedStyle === null) input.removeAttribute("style"); else input.setAttribute("style", savedStyle);
+      }
       btn.innerHTML = show ? EYE_OFF : EYE;
       btn.setAttribute("aria-label", show ? labels[1] : labels[0]);
       btn.setAttribute("aria-pressed", show ? "true" : "false");
@@ -61,7 +80,7 @@
     // Never leave the password visible after the form is submitted / page hidden.
     var form = input.form;
     if (form) form.addEventListener("submit", function () {
-      if (input.type !== "password") { input.type = "password"; btn.innerHTML = EYE; btn.setAttribute("aria-pressed", "false"); btn.setAttribute("aria-label", labels[0]); }
+      if (input.type !== "password") { input.type = "password"; if (savedStyle === null) input.removeAttribute("style"); else input.setAttribute("style", savedStyle); btn.innerHTML = EYE; btn.setAttribute("aria-pressed", "false"); btn.setAttribute("aria-label", labels[0]); }
     });
     wrap.appendChild(btn);
 
