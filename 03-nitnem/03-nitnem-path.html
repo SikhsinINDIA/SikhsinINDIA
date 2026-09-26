@@ -430,6 +430,36 @@
     @media (max-width:600px) {
       .gsb-lang-switcher { top: 4px; right: 4px; padding: 4px 8px; font-size: 10px; gap: 5px; }
     }
+
+    /* PAATH REMINDER POSTERS */
+    .reminder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 34px;
+      align-items: start;
+    }
+
+    .reminder-grid a {
+      display: block;
+      border: 2px solid var(--gold);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--navy);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .reminder-grid a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 26px rgba(247, 148, 29, 0.3);
+    }
+
+    .reminder-grid img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
   </style>
 </head>
 
@@ -456,6 +486,16 @@
 
     <!-- MAIN CONTENT WRAPPER -->
     <div class="wrapper">
+
+      <!-- PAATH REMINDER POSTERS -->
+      <div class="reminder-grid">
+        <a href="../pictures/03-nitnem/paath-reminders-en.jpg" target="_blank" rel="noopener">
+          <img src="../pictures/03-nitnem/paath-reminders-en.jpg" width="1122" height="1402" alt="Paath Reminders for Every Moment - which Bani to read when you need direction, courage, comfort or forgiveness (English)">
+        </a>
+        <a href="../pictures/03-nitnem/paath-reminders-hi.jpg" target="_blank" rel="noopener">
+          <img src="../pictures/03-nitnem/paath-reminders-hi.jpg" width="843" height="1264" alt="Paath Reminders in Hindi - which Bani to read at every moment of life">
+        </a>
+      </div>
 
       <h1>Select Nitnem Section</h1>
 
