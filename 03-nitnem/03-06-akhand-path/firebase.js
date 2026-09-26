@@ -250,9 +250,16 @@ export const APP_SHARED_SECRET = "LuOoE-d92AyXMGsCBA0FcQGhKsYRLgs6";
    around. Both currently point at templates that do not exist yet; see
    the matching request in this conversation for the exact text submitted
    for approval. */
-export const WHATSAPP_LANGUAGE_CODE = "en_US";
-export const WHATSAPP_INVITE_TEMPLATE = "akhand_path_invite";
+/* Both templates are approved in WhatsApp Manager (Sep 2026). The language code must
+   match what each was created with: the invite is "English (US)" = en_US, the
+   approval is plain "English" = en. A mismatch makes Meta reply "template not found". */
+export const WHATSAPP_INVITE_TEMPLATE = "akhand_path_invite_v4";
 export const WHATSAPP_APPROVAL_TEMPLATE = "akhand_path_approved";
+export const WHATSAPP_TEMPLATE_LANGUAGES = {
+  akhand_path_invite_v4: "en_US",
+  akhand_path_approved: "en"
+};
+export const WHATSAPP_LANGUAGE_CODE = "en_US"; // fallback for any template not listed above
 
 /* Sends one WhatsApp template message through the Cloudflare Worker proxy
    (which holds the real Meta access token server-side). `params` must be
@@ -264,7 +271,7 @@ export async function sendWhatsAppTemplate(to, templateName, params) {
   const res = await fetch(SEND_EMAIL_ENDPOINT, {
     method: "POST",
     headers: { "Content-Type": "application/json", "X-App-Secret": APP_SHARED_SECRET },
-    body: JSON.stringify({ action: "send_whatsapp", to, templateName, languageCode: WHATSAPP_LANGUAGE_CODE, params })
+    body: JSON.stringify({ action: "send_whatsapp", to, templateName, languageCode: WHATSAPP_TEMPLATE_LANGUAGES[templateName] || WHATSAPP_LANGUAGE_CODE, params })
   });
   const bodyText = await res.text();
   if (!res.ok) {
