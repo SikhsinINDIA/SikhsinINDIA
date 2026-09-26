@@ -199,6 +199,11 @@
                 <input id="inviteePhone" name="akp_invitee_phone" type="tel" autocomplete="off" placeholder="With country code">
               </div>
             </div>
+            <label style="display:flex;gap:8px;align-items:flex-start;margin:4px 0 12px;font-size:13px;cursor:pointer;">
+              <input id="inviteeWaConsent" type="checkbox" style="width:auto;margin-top:3px;">
+              <span id="inviteeWaConsentLabel"></span>
+            </label>
+            <p class="muted" style="margin:-4px 0 12px;font-size:12px;">Everyone gets the email invite. The WhatsApp message can only be sent to people you have confirmed above &mdash; WhatsApp does not allow messaging people who haven't opted in.</p>
             <button class="btn-action" onclick="addInvitee()">Add Invitee &amp; Send Invite</button>
             <p id="inviteeStatus" class="muted" style="margin-top:10px;min-height:18px;"></p>
           </div>
@@ -257,6 +262,7 @@
       SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET,
       emailKey, parseInviteeList, markEndedIfComplete, siteFilePath, textToEmailHtml, driveImageUrl,
       provisionInvitees, buildExpectedRoster, sendWhatsAppTemplate, WHATSAPP_INVITE_TEMPLATE, WHATSAPP_APPROVAL_TEMPLATE,
+      WA_CONSENT_LABEL, waConsentFields, assertWhatsAppConsent,
       SESSIONS_COLLECTION, nextAkhandPathId
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
@@ -271,6 +277,8 @@
       if (err.message) return err.message; // Firebase / native Error
       try { return JSON.stringify(err); } catch (_) { return String(err); }
     }
+
+    document.getElementById("inviteeWaConsentLabel").textContent = WA_CONSENT_LABEL;
 
     let activeSessionId = null;
     let activeSessionData = null;
@@ -769,13 +777,13 @@ Email: ${ADMIN_EMAIL}`;
             <td>${INVITEE_PASSWORD}</td>
             <td><span class="pill ${pillClass}">${pillText}</span></td>
             <td>
-              <button type="button" class="btn-control" ${inv.phone ? "" : "disabled title=\"No WhatsApp number on file for this invitee\""}>Send</button>
-              <span class="muted" style="display:block;font-size:11px;margin-top:4px;"></span>
+              <button type="button" class="btn-control" ${inv.phone && inv.wa_consent ? "" : `disabled title="${inv.phone ? "No WhatsApp consent recorded - email only" : "No WhatsApp number on file for this invitee"}"`}>Send</button>
+              <span class="muted" style="display:block;font-size:11px;margin-top:4px;">${inv.phone && !inv.wa_consent ? "No consent - email only" : ""}</span>
             </td>
           `;
           const waBtn = tr.querySelector("button");
           const waStatus = tr.querySelector("td:last-child .muted");
-          if (inv.phone) {
+          if (inv.phone && inv.wa_consent) {
             waBtn.addEventListener("click", async () => {
               waBtn.disabled = true;
               waStatus.textContent = "Sending...";
@@ -798,6 +806,7 @@ Email: ${ADMIN_EMAIL}`;
     // template (see firebase.js's WHATSAPP_INVITE_TEMPLATE) — must stay in
     // sync with whatever Meta actually approved, not just this comment.
     async function sendInviteeWhatsApp(invitee) {
+      assertWhatsAppConsent(invitee);
       const s = activeSessionData;
       const start = s.start_at && s.start_at.toDate ? s.start_at.toDate() : new Date();
       const durationHours = s.duration_hours || 48;
@@ -819,6 +828,7 @@ Email: ${ADMIN_EMAIL}`;
       const gname = document.getElementById("inviteeGname").value.trim();
       const mail = document.getElementById("inviteeMail").value.trim().toLowerCase();
       const phone = document.getElementById("inviteePhone").value.trim();
+      const waConsent = document.getElementById("inviteeWaConsent").checked;
 
       if (!name || !gname || !mail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) {
         status.textContent = "Please enter a valid full name, greeting name, and email address.";
@@ -839,6 +849,7 @@ Email: ${ADMIN_EMAIL}`;
 
         await setDoc(inviteeRef, {
           name, gname, mail, phone,
+          ...waConsentFields(!!phone && waConsent),
           invited_at: serverTimestamp(),
           email_sent: false
         });
@@ -846,7 +857,8 @@ Email: ${ADMIN_EMAIL}`;
         status.textContent = "Account ready. Sending invite email...";
         await sendInviteEmail({ name, gname, mail });
         await updateDoc(inviteeRef, { email_sent: true });
-        status.textContent = `Invitee "${name}" added and emailed.`;
+        status.textContent = `Invitee "${name}" added and emailed.` + (phone && !waConsent ? " WhatsApp is off for them (no consent recorded)." : "");
+        document.getElementById("inviteeWaConsent").checked = false;
         document.getElementById("inviteeName").value = "";
         document.getElementById("inviteeGname").value = "";
         document.getElementById("inviteeMail").value = "";

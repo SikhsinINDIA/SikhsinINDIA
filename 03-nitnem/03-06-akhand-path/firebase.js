@@ -261,6 +261,25 @@ export const WHATSAPP_TEMPLATE_LANGUAGES = {
 };
 export const WHATSAPP_LANGUAGE_CODE = "en_US"; // fallback for any template not listed above
 
+/* WhatsApp only allows business-initiated messages to people who have opted in.
+   Every invitee doc therefore carries wa_consent (+ who confirmed it and when),
+   and the WhatsApp send buttons refuse to send unless it is true. Invitees
+   without consent are still invited by email, which needs no such opt-in. */
+export const WA_CONSENT_LABEL = "This person has agreed to receive WhatsApp messages about this Akhand Path (I confirm)";
+export function waConsentFields(hasConsent) {
+  if (!hasConsent) return { wa_consent: false, wa_consent_by: "", wa_consent_at: null };
+  return {
+    wa_consent: true,
+    wa_consent_by: (auth.currentUser && auth.currentUser.email) || "admin",
+    wa_consent_at: serverTimestamp()
+  };
+}
+export function assertWhatsAppConsent(invitee) {
+  if (!invitee || !invitee.wa_consent) {
+    throw new Error("No WhatsApp consent recorded for this invitee, so no WhatsApp message was sent (they are reached by email only). Tick the consent box once they have agreed to receive WhatsApp messages.");
+  }
+}
+
 /* Sends one WhatsApp template message through the Cloudflare Worker proxy
    (which holds the real Meta access token server-side). `params` must be
    in the exact order the approved template's body variables expect.

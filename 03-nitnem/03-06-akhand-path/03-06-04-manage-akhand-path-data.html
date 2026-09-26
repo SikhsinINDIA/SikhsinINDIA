@@ -232,10 +232,10 @@
             <div class="table-container">
               <table>
                 <thead>
-                  <tr><th>Name</th><th>Greeting Name</th><th>Email</th><th>Phone</th><th>Invited</th><th>Error</th><th></th><th></th></tr>
+                  <tr><th>Name</th><th>Greeting Name</th><th>Email</th><th>Phone</th><th title="Agreed to receive WhatsApp messages">WA Consent</th><th>Invited</th><th>Error</th><th></th><th></th></tr>
                 </thead>
                 <tbody id="inviteesEditBody">
-                  <tr><td colspan="8" class="loading-text">Loading invitees...</td></tr>
+                  <tr><td colspan="9" class="loading-text">Loading invitees...</td></tr>
                 </tbody>
               </table>
             </div>
@@ -257,6 +257,10 @@
                 <input id="newInvPhone" name="akp_new_inv_phone" type="tel" autocomplete="off">
               </div>
             </div>
+            <label style="display:flex;gap:8px;align-items:flex-start;margin:4px 0 12px;font-size:13px;cursor:pointer;">
+              <input id="newInvWaConsent" type="checkbox" style="width:auto;margin-top:3px;">
+              <span id="newInvWaConsentLabel"></span>
+            </label>
             <button class="btn-action" style="width:auto;" onclick="addInviteeRow()">+ Add Invitee</button>
             <p id="inviteesStatus" class="muted" style="margin-top:10px;min-height:18px;"></p>
           </div>
@@ -317,7 +321,7 @@
     import {
       db, doc, setDoc, getDoc, updateDoc, deleteDoc, collection, query, orderBy, limit, getDocs, onSnapshot,
       serverTimestamp, Timestamp, emailKey, driveImageUrl, parseInviteeList, provisionInvitees,
-      sendWhatsAppTemplate, WHATSAPP_INVITE_TEMPLATE, WHATSAPP_APPROVAL_TEMPLATE, INVITEE_PASSWORD, siteFilePath,
+      sendWhatsAppTemplate, WHATSAPP_INVITE_TEMPLATE, WHATSAPP_APPROVAL_TEMPLATE, WA_CONSENT_LABEL, waConsentFields, assertWhatsAppConsent, INVITEE_PASSWORD, siteFilePath,
       SESSIONS_COLLECTION, nextAkhandPathId
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
@@ -736,6 +740,7 @@
     // write). Must stay in the same order as the approved
     // "akhand_path_invite" template (see firebase.js's WHATSAPP_INVITE_TEMPLATE).
     async function sendInviteeWhatsAppFromEditor(invitee) {
+      assertWhatsAppConsent(invitee);
       const startVal = document.getElementById("fStartAt").value;
       const start = startVal ? new Date(startVal) : new Date();
       const durationHours = Number(document.getElementById("fDurationHours").value) || 48;
@@ -757,7 +762,7 @@
       unsubInvitees = onSnapshot(ref, (snap) => {
         const tbody = document.getElementById("inviteesEditBody");
         if (snap.empty) {
-          tbody.innerHTML = `<tr><td colspan="8" class="no-data">No invitees yet.</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="9" class="no-data">No invitees yet.</td></tr>`;
           return;
         }
         tbody.innerHTML = "";
@@ -769,6 +774,7 @@
             <td><input type="text" name="inv_gname_${d.id}" autocomplete="off" value="${escapeHtml(inv.gname || "")}"></td>
             <td>${escapeHtml(inv.mail || d.id)}</td>
             <td><input type="tel" name="inv_phone_${d.id}" autocomplete="off" value="${escapeHtml(inv.phone || "")}"></td>
+            <td title="${inv.wa_consent ? escapeHtml("Confirmed by " + (inv.wa_consent_by || "admin")) : "No WhatsApp consent recorded"}"><input type="checkbox" ${inv.wa_consent ? "checked" : ""}></td>
             <td><input type="checkbox" ${inv.email_sent ? "checked" : ""}></td>
             <td>${escapeHtml(inv.email_error || "")}</td>
             <td style="display:flex;gap:4px;">
@@ -776,19 +782,25 @@
               <button type="button" class="btn-control">✕</button>
             </td>
             <td>
-              <button type="button" class="btn-control" ${inv.phone ? "" : "disabled title=\"No WhatsApp number on file\""}>WhatsApp</button>
+              <button type="button" class="btn-control" ${inv.phone && inv.wa_consent ? "" : `disabled title="${inv.phone ? "No WhatsApp consent recorded - tick consent and Save" : "No WhatsApp number on file"}"`}>WhatsApp</button>
               <span class="muted" style="display:block;font-size:11px;margin-top:4px;"></span>
             </td>
           `;
-          const [nameInput, gnameInput, phoneInput, sentCheckbox] = tr.querySelectorAll("input");
+          const [nameInput, gnameInput, phoneInput, consentCheckbox, sentCheckbox] = tr.querySelectorAll("input");
           const [saveBtn, delBtn, waBtn] = tr.querySelectorAll("button");
           const waStatus = tr.querySelector("td:last-child .muted");
           saveBtn.addEventListener("click", async () => {
             try {
-              await updateDoc(d.ref, {
+              const phoneVal = phoneInput.value.trim();
+              const update = {
                 name: nameInput.value.trim(), gname: gnameInput.value.trim(),
-                phone: phoneInput.value.trim(), email_sent: sentCheckbox.checked
-              });
+                phone: phoneVal, email_sent: sentCheckbox.checked
+              };
+              // Only touch the consent record when it actually changes, so the original
+              // "confirmed by / when" isn't overwritten on every save.
+              const wantConsent = !!phoneVal && consentCheckbox.checked;
+              if (wantConsent !== !!inv.wa_consent) Object.assign(update, waConsentFields(wantConsent));
+              await updateDoc(d.ref, update);
               document.getElementById("inviteesStatus").textContent = "Saved.";
             } catch (err) {
               document.getElementById("inviteesStatus").textContent = "Could not save: " + (err.message || err);
@@ -798,7 +810,7 @@
             if (!confirm(`Remove invitee ${inv.mail || d.id}?`)) return;
             await deleteDoc(d.ref);
           });
-          if (inv.phone) {
+          if (inv.phone && inv.wa_consent) {
             waBtn.addEventListener("click", async () => {
               waBtn.disabled = true;
               waStatus.textContent = "Sending...";
@@ -817,12 +829,15 @@
       });
     }
 
+    document.getElementById("newInvWaConsentLabel").textContent = WA_CONSENT_LABEL;
+
     window.addInviteeRow = async () => {
       const status = document.getElementById("inviteesStatus");
       const name = document.getElementById("newInvName").value.trim();
       const gname = document.getElementById("newInvGname").value.trim();
       const mail = document.getElementById("newInvMail").value.trim().toLowerCase();
       const phone = document.getElementById("newInvPhone").value.trim();
+      const waConsent = document.getElementById("newInvWaConsent").checked;
       if (!mail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) {
         status.textContent = "Please enter a valid email address.";
         return;
@@ -831,12 +846,14 @@
       try {
         await setDoc(doc(db, SESSIONS_COLLECTION, activeDocId, "invitees", emailKey(mail)), {
           name: name || mail, gname: gname || name || mail, mail, phone,
+          ...waConsentFields(!!phone && waConsent),
           invited_at: serverTimestamp(), email_sent: false
         }, { merge: true });
         document.getElementById("newInvName").value = "";
         document.getElementById("newInvGname").value = "";
         document.getElementById("newInvMail").value = "";
         document.getElementById("newInvPhone").value = "";
+        document.getElementById("newInvWaConsent").checked = false;
         status.textContent = "Invitee record added. (No email is sent from this tool — use Admin Setup to invite and email someone new.)";
       } catch (err) {
         status.textContent = "Could not add invitee: " + (err.message || err);
