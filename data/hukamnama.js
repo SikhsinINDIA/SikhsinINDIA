@@ -1,7 +1,7 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-09-25",
-  "dateDisplay": "25 September 2026",
+  "date": "2026-09-26",
+  "dateDisplay": "26 September 2026",
   "ang": 696,
   "raagGurmukhi": "ਰਾਗੁ ਜੈਤਸਰੀ",
   "raagEnglish": "Raag Jaithsree",
@@ -60,5 +60,5 @@ window.HUKAMNAMA = {
       "translation": "I am blind - O Guru, please let me grasp the hem of Your robe, so that servant Nanak may walk in harmony with You. ||4||1||"
     }
   ],
-  "updated": "2026-09-25T06:17:32.517Z"
+  "updated": "2026-09-26T06:17:06.380Z"
 };
