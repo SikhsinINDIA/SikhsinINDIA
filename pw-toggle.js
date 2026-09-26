@@ -31,15 +31,20 @@
 
     // Full-width inputs get a block wrapper; fixed-width ones a shrink-wrapped inline-block.
     var cs = getComputedStyle(input);
-    var pw = parent.clientWidth;
-    var fullWidth = pw > 0 && input.getBoundingClientRect().width >= pw * 0.9;
+    var pcs = getComputedStyle(parent);
+    var pw = parent.clientWidth - (parseFloat(pcs.paddingLeft) || 0) - (parseFloat(pcs.paddingRight) || 0);
+    // offsetWidth ignores CSS transforms (e.g. entrance animations that scale the card)
+    var fullWidth = pw > 0 && input.offsetWidth >= pw * 0.9;
     var wrap = document.createElement("span");
     wrap.className = "pw-toggle-wrap";
     wrap.style.display = fullWidth ? "block" : (cs.display === "block" ? "block" : "inline-block");
     if (!fullWidth && cs.display === "block") wrap.style.width = cs.width;
     if (cs.flexGrow !== "0") wrap.style.flex = cs.flex;
+    var w0 = input.offsetWidth;
     parent.insertBefore(wrap, input);
     wrap.appendChild(input);
+    // Safety net: if wrapping shrank the input (percentage width inside a shrink-wrapped box), use a block wrapper.
+    if (wrap.style.display !== "block" && input.offsetWidth < w0 - 4) wrap.style.display = "block";
 
     if (fullWidth || cs.boxSizing === "border-box") input.style.boxSizing = "border-box";
     var pr = parseFloat(cs.paddingRight) || 0;
