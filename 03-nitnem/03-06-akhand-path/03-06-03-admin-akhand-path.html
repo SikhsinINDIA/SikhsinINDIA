@@ -434,6 +434,12 @@
         alert("The program was approved, but the approval email to the sponsor could not be sent: " + (err.message || err));
       }
 
+      try {
+        await sendSponsorApprovalWhatsApp(sessionId, session);
+      } catch (err) {
+        alert("The program was approved, but the approval WhatsApp message to the sponsor could not be sent: " + errText(err));
+      }
+
       const inviteeResults = await sendInviteeEmails(sessionId, session);
       const failed = inviteeResults.filter((r) => !r.ok);
       if (failed.length) {
@@ -699,29 +705,35 @@ Email: ${ADMIN_EMAIL}`;
       }
     });
 
-    // Same body-variable order as the approved "akhand_path_approved"
-    // WhatsApp template (see firebase.js's WHATSAPP_APPROVAL_TEMPLATE) —
-    // must stay in sync with whatever Meta actually approved.
+    // Same body-variable order as the approved "akhand_path_approved" WhatsApp
+    // template (see firebase.js's WHATSAPP_APPROVAL_TEMPLATE) — must stay in
+    // sync with whatever Meta actually approved. Called automatically from
+    // approveRequest() the moment a request is approved, and also exposed via
+    // the "Send Approval via WhatsApp" button below for a manual re-send
+    // (e.g. after fixing a wrong mobile number). Throws on failure so both
+    // callers can report it their own way, matching sendApprovalEmail().
+    async function sendSponsorApprovalWhatsApp(sessionId, session) {
+      if (!session.mobie) throw new Error("This program has no sponsor mobile number on file.");
+      const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : new Date();
+      const durationHours = session.duration_hours || 48;
+      const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
+      const params = [
+        session.sponsor || "",
+        session.name || "",
+        session.purpose || "",
+        formatFullDateTime(start),
+        formatFullDateTime(samapti),
+        sessionLinkFor(sessionId)
+      ];
+      await sendWhatsAppTemplate(session.mobie, WHATSAPP_APPROVAL_TEMPLATE, params);
+    }
+
     document.getElementById("sponsorWhatsAppBtn").addEventListener("click", async () => {
       const status = document.getElementById("sponsorWhatsAppStatus");
       if (!activeSessionId || !activeSessionData) { status.textContent = "No program selected."; return; }
-      const s = activeSessionData;
-      if (!s.mobie) { status.textContent = "This program has no sponsor mobile number on file."; return; }
-
       status.textContent = "Sending...";
       try {
-        const start = s.start_at && s.start_at.toDate ? s.start_at.toDate() : new Date();
-        const durationHours = s.duration_hours || 48;
-        const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
-        const params = [
-          s.sponsor || "",
-          s.name || "",
-          s.purpose || "",
-          formatFullDateTime(start),
-          formatFullDateTime(samapti),
-          sessionLinkFor(activeSessionId)
-        ];
-        await sendWhatsAppTemplate(s.mobie, WHATSAPP_APPROVAL_TEMPLATE, params);
+        await sendSponsorApprovalWhatsApp(activeSessionId, activeSessionData);
         status.textContent = "Sent.";
       } catch (err) {
         status.textContent = "Could not send: " + errText(err);
