@@ -250,16 +250,17 @@ export const APP_SHARED_SECRET = "LuOoE-d92AyXMGsCBA0FcQGhKsYRLgs6";
    around. Both currently point at templates that do not exist yet; see
    the matching request in this conversation for the exact text submitted
    for approval. */
-/* Both templates are approved in WhatsApp Manager (Sep 2026). The language code must
-   match what each was created with: the invite is "English (US)" = en_US, the
-   approval is plain "English" = en. A mismatch makes Meta reply "template not found". */
-export const WHATSAPP_INVITE_TEMPLATE = "akhand_path_invite_v4";
+/* Both templates are approved in WhatsApp Manager (Sep 2026), both as Utility and
+   both plain "English" = en. The language code must match what a template was
+   actually created with — a mismatch makes Meta reply "template not found" — so
+   check WhatsApp Manager's Language column again before changing either name. */
+export const WHATSAPP_INVITE_TEMPLATE = "akhand_path_invite_v5";
 export const WHATSAPP_APPROVAL_TEMPLATE = "akhand_path_approved";
 export const WHATSAPP_TEMPLATE_LANGUAGES = {
-  akhand_path_invite_v4: "en_US",
+  akhand_path_invite_v5: "en",
   akhand_path_approved: "en"
 };
-export const WHATSAPP_LANGUAGE_CODE = "en_US"; // fallback for any template not listed above
+export const WHATSAPP_LANGUAGE_CODE = "en"; // fallback for any template not listed above
 
 /* WhatsApp only allows business-initiated messages to people who have opted in.
    Every invitee doc therefore carries wa_consent (+ who confirmed it and when),
