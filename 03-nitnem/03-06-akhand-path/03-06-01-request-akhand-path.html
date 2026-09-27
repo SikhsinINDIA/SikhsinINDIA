@@ -206,7 +206,8 @@
     import {
       doc, setDoc, serverTimestamp, Timestamp,
       PURPOSE_SUGGESTIONS, SESSIONS_COLLECTION, nextAkhandPathId, db,
-      SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET, ADMIN_EMAIL, parseInviteeList, siteFilePath, textToEmailHtml, driveImageUrl
+      SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET, ADMIN_EMAIL, parseInviteeList, siteFilePath, textToEmailHtml, driveImageUrl,
+      sendWhatsAppTemplate, WHATSAPP_NEW_REQUEST_TEMPLATE, ADMIN_WHATSAPP_NUMBER
     } from "./firebase.js";
 
     // Best-effort notification to the admin that a request is waiting —
@@ -285,6 +286,42 @@ ${data.sponsor}`;
         });
       } catch (err) {
         console.error("Could not notify admin of new request:", err);
+      }
+    }
+
+    // Single-line "3 invited: Amrit Kaur, Jasbir Singh, Manpreet Kaur" summary — the
+    // full per-invitee detail (email, phone) is already in the admin email above;
+    // WhatsApp templates need a compact, single-value-per-placeholder body.
+    function buildInviteeSummary(inviteeEmails) {
+      const invitees = parseInviteeList(inviteeEmails);
+      if (!invitees.length) return "None provided.";
+      return `${invitees.length} invited: ` + invitees.map((inv) => inv.gname || inv.name).join(", ");
+    }
+
+    // Best-effort WhatsApp heads-up to the admin's own phone, alongside the full-detail
+    // admin email above. Requires WHATSAPP_NEW_REQUEST_TEMPLATE to exist and be approved
+    // in WhatsApp Manager (see firebase.js) — until then this fails silently and the
+    // email remains the only notification, exactly like a missing SEND_EMAIL_ENDPOINT
+    // above does for the email itself.
+    async function notifyAdminOfNewRequestWhatsApp(data) {
+      const samapti = new Date(data.startAt.getTime() + data.durationHours * 3600 * 1000);
+      const adminLink = siteFilePath("03-06-03-admin-akhand-path.html");
+      const params = [
+        data.sponsor,
+        `${data.email}, ${data.mobie}`,
+        data.name,
+        data.purpose,
+        data.countryCity || "Not specified",
+        formatFullDateTime(data.startAt),
+        formatFullDateTime(samapti),
+        buildInviteeSummary(data.inviteeEmails),
+        data.message || "None",
+        adminLink
+      ];
+      try {
+        await sendWhatsAppTemplate(ADMIN_WHATSAPP_NUMBER, WHATSAPP_NEW_REQUEST_TEMPLATE, params);
+      } catch (err) {
+        console.error("Could not WhatsApp-notify admin of new request:", err);
       }
     }
 
@@ -430,10 +467,12 @@ ${data.sponsor}`;
         document.getElementById("confirmationId").textContent = `AP-${newId}`;
         document.getElementById("confirmationPanel").scrollIntoView({ behavior: "smooth" });
 
-        notifyAdminOfNewRequest(sessionId, {
+        const requestData = {
           name: honoreeName, purpose, sponsor: sponsorName, email: sponsorEmail, mobie: mobile,
           countryCity, startAt, durationHours, familyMembers, inviteeEmails, message
-        });
+        };
+        notifyAdminOfNewRequest(sessionId, requestData);
+        notifyAdminOfNewRequestWhatsApp(requestData);
       } catch (err) {
         status.textContent = "Could not submit request: " + (err.message || err);
       }

@@ -247,20 +247,55 @@ export const APP_SHARED_SECRET = "LuOoE-d92AyXMGsCBA0FcQGhKsYRLgs6";
    exactly match what's actually approved in Meta's WhatsApp Manager; if
    Meta's review changes the wording, that approved version is the source
    of truth, not this file — update these to match it, not the other way
-   around. Both currently point at templates that do not exist yet; see
-   the matching request in this conversation for the exact text submitted
-   for approval. */
-/* Both templates are approved in WhatsApp Manager (Sep 2026), both as Utility and
-   both plain "English" = en. The language code must match what a template was
-   actually created with — a mismatch makes Meta reply "template not found" — so
-   check WhatsApp Manager's Language column again before changing either name. */
+   around.
+
+   akhand_path_invite_v5 and akhand_path_approved are approved (Sep 2026),
+   both Utility, both plain "English" = en. akhand_path_new_request does NOT
+   exist yet in WhatsApp Manager — it must be created there with the body
+   below (Utility, English) and approved before notifyAdminOfNewRequestWhatsApp()
+   in 03-06-01-request-akhand-path.html will actually deliver anything; until
+   then that call fails silently (it's wrapped the same best-effort way the
+   admin email notification already is), and the admin email keeps working
+   regardless as the full-detail record of every request.
+
+     Body (10 variables — the same facts the admin email already carries,
+     condensed to fit WhatsApp's per-message length):
+     "New Akhand Path request.
+Sponsor: {{1}} ({{2}})
+Dedicated to: {{3}}
+Occasion: {{4}}
+Location: {{5}}
+Start: {{6}}
+Samapti: {{7}}
+Invitees: {{8}}
+Note: {{9}}
+Review and approve here: {{10}}"
+
+     Sample values, in order:
+     Gurpreet Singh / gurpreet@example.com, +919876543210 /
+     Sardar Harbhajan Singh / Birthday / Delhi, India /
+     12 Oct 2026, 6:00 AM / 14 Oct 2026, 6:00 AM /
+     3 invited: Amrit Kaur, Jasbir Singh, Manpreet Kaur /
+     Please confirm timing with the family. /
+     https://sikhsinindia.com/03-nitnem/03-06-akhand-path/03-06-03-admin-akhand-path.html
+
+   A mismatched language code makes Meta reply "template not found" — check
+   WhatsApp Manager's Language column again before changing any of these. */
 export const WHATSAPP_INVITE_TEMPLATE = "akhand_path_invite_v5";
 export const WHATSAPP_APPROVAL_TEMPLATE = "akhand_path_approved";
+export const WHATSAPP_NEW_REQUEST_TEMPLATE = "akhand_path_new_request";
 export const WHATSAPP_TEMPLATE_LANGUAGES = {
   akhand_path_invite_v5: "en",
-  akhand_path_approved: "en"
+  akhand_path_approved: "en",
+  akhand_path_new_request: "en"
 };
 export const WHATSAPP_LANGUAGE_CODE = "en"; // fallback for any template not listed above
+
+/* Admin's own WhatsApp number, notified whenever a sponsor submits a new
+   Akhand Path request (see notifyAdminOfNewRequest() in
+   03-06-01-request-akhand-path.html). Kept alongside ADMIN_EMAIL below so
+   there is one place to update if it ever changes. */
+export const ADMIN_WHATSAPP_NUMBER = "+919810607799";
 
 /* WhatsApp only allows business-initiated messages to people who have opted in.
    Every invitee doc therefore carries wa_consent (+ who confirmed it and when),
