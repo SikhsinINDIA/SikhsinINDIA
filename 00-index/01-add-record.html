@@ -278,6 +278,18 @@
       border-color: #ccc;
     }
 
+    /* EMAIL AVAILABILITY FEEDBACK (shown right under the email field) */
+    .email-status {
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      min-height: 14px;
+    }
+
+    .email-status.checking { color: #888; }
+    .email-status.taken { color: #d93838; }
+    .email-status.available { color: #2e7d32; }
+
     /* RESPONSE STATUS TEXT */
     #status {
       margin-top: 20px;
@@ -425,6 +437,7 @@
             <div class="form-group full-width">
               <label for="email">Email Address <span class="required">*</span></label>
               <input type="email" id="email" placeholder="Used as your unique membership ID" required />
+              <small id="emailStatus" class="email-status"></small>
             </div>
 
             <div class="form-group">
@@ -538,7 +551,11 @@
     const db = firebase.firestore();
 
     function clearForm(keepEmail = true) {
-      if (!keepEmail) document.getElementById("email").value = "";
+      if (!keepEmail) {
+        document.getElementById("email").value = "";
+        emailTaken = false;
+        setEmailStatus("", "");
+      }
       document.getElementById("name").value = "";
             document.getElementById("gname").value = "";
       document.getElementById("password").value = "";
@@ -564,6 +581,61 @@
       return /^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(pwd);
     }
 
+    // ── LIVE EMAIL-DUPLICATE CHECK ──
+    // Checks Firestore as soon as the admin finishes typing the email
+    // (debounced) or tabs out of the field, instead of waiting for Submit.
+    let emailTaken = false;
+    let emailCheckSeq = 0;
+    let emailCheckTimer = null;
+
+    function setEmailStatus(text, cls) {
+      const el = document.getElementById("emailStatus");
+      el.textContent = text;
+      el.className = "email-status" + (cls ? " " + cls : "");
+    }
+
+    function checkEmailAvailability() {
+      const email = document.getElementById("email").value.trim();
+
+      if (!email || !validateEmail(email)) {
+        emailTaken = false;
+        setEmailStatus("", "");
+        return;
+      }
+
+      const seq = ++emailCheckSeq;
+      setEmailStatus("Checking email...", "checking");
+
+      db.collection("sikhdatabaseindia").doc(email).get()
+        .then(existingDoc => {
+          if (seq !== emailCheckSeq) return; // a newer check has since superseded this one
+          if (existingDoc.exists) {
+            emailTaken = true;
+            setEmailStatus("⚠️ This email is already registered.", "taken");
+          } else {
+            emailTaken = false;
+            setEmailStatus("✓ Email is available.", "available");
+          }
+        })
+        .catch(error => {
+          if (seq !== emailCheckSeq) return;
+          console.error("Error checking email: ", error);
+          setEmailStatus("", "");
+        });
+    }
+
+    document.getElementById("email").addEventListener("input", function() {
+      emailTaken = false; // stale result until the debounced re-check finishes
+      setEmailStatus("", "");
+      clearTimeout(emailCheckTimer);
+      emailCheckTimer = setTimeout(checkEmailAvailability, 500);
+    });
+
+    document.getElementById("email").addEventListener("blur", function() {
+      clearTimeout(emailCheckTimer);
+      checkEmailAvailability();
+    });
+
     document.getElementById("editForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
@@ -580,6 +652,7 @@
 
       if (!email) { alert("Email is required."); return; }
       if (!validateEmail(email)) { alert("Email address is incorrect."); return; }
+      if (emailTaken) { alert("This email already exists. Please use a different email address."); return; }
       if (!name) { alert("Name is required."); return; }
       if (!gname) { alert("Greeting Name is required."); return; }
       if (!password) { alert("Password is required."); return; }
