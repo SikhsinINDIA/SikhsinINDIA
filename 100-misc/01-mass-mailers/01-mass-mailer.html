@@ -150,14 +150,28 @@
             <div class="card-title">Send</div>
             <div class="send-panel">
               <div>
-                <div class="send-count" id="recipientCount">—</div>
-                <div class="muted">registered members</div>
+                <div class="send-count"><span id="selectedCount">—</span> / <span id="recipientCount">—</span></div>
+                <div class="muted">selected of registered members</div>
               </div>
-              <button type="button" class="btn-control" onclick="refreshRecipientCount()">Refresh Count</button>
+              <button type="button" class="btn-control" onclick="refreshRecipientCount()">Refresh List</button>
               <button type="button" class="btn-control" onclick="sendTestToMyself()">Send Test to Myself</button>
-              <button type="button" class="btn-action btn-danger" style="width: auto;" onclick="openSendConfirm()">Send Mass Mailer to All Registered Members</button>
+              <button type="button" class="btn-action btn-danger" style="width: auto;" onclick="openSendConfirm()">Send Mass Mailer to Selected Members</button>
             </div>
             <p id="testSendStatus" class="muted" style="margin-top: 8px; min-height: 18px;"></p>
+
+            <div class="form-row" style="margin-top: 14px;">
+              <label>Recipients — untick anyone you don't want to email this time</label>
+              <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap;">
+                <input type="text" id="recipientFilter" placeholder="Filter by name or email..." style="flex: 1; min-width: 180px;" oninput="renderRecipientList()">
+                <button type="button" class="btn-control" onclick="selectAllRecipients(true)">Select All</button>
+                <button type="button" class="btn-control" onclick="selectAllRecipients(false)">Deselect All</button>
+              </div>
+              <div class="table-container" style="margin-bottom: 0;">
+                <div id="recipientList" style="max-height: 320px; overflow-y: auto;">
+                  <div class="loading-text">Loading members...</div>
+                </div>
+              </div>
+            </div>
 
             <div id="sendProgressArea" hidden style="margin-top: 16px;">
               <div class="muted" id="sendProgressLabel">Sending 0 / 0...</div>
@@ -191,9 +205,9 @@
   <!-- ═══════════ SEND CONFIRMATION MODAL ═══════════ -->
   <div class="modal-overlay" id="sendConfirmModal" hidden>
     <div class="modal-box">
-      <h3>Send to All Registered Members?</h3>
+      <h3>Send to Selected Members?</h3>
       <p>
-        You are about to email <b id="confirmCount">0</b> registered members with the subject:<br>
+        You are about to email <b id="confirmCount">0</b> selected members with the subject:<br>
         <b id="confirmSubject" style="color: var(--navy);"></b>
         <br><br>
         This sends real email to real people right now and cannot be undone. Make sure you've sent yourself a test
@@ -566,6 +580,11 @@
 
     /* ---------------- RECIPIENTS ---------------- */
     let cachedRecipients = null;
+    // Emails the admin has unticked for THIS send — kept across a Refresh
+    // List so re-fetching the directory doesn't silently re-include someone
+    // they deliberately excluded. Reset only by Select All / a full page
+    // reload.
+    const deselectedEmails = new Set();
 
     async function fetchRecipients() {
       const snap = await db.collection(MEMBERS_COLLECTION).get();
@@ -576,18 +595,75 @@
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return; // skip malformed/missing
         recipients.push({ email, name: d.GreetingName || d.Name || "" });
       });
+      recipients.sort((a, b) => (a.name || a.email).localeCompare(b.name || b.email));
       return recipients;
     }
 
+    function getSelectedRecipients() {
+      return (cachedRecipients || []).filter((r) => !deselectedEmails.has(r.email));
+    }
+
+    function updateSelectedCount() {
+      document.getElementById("selectedCount").textContent = getSelectedRecipients().length;
+    }
+
+    function renderRecipientList() {
+      const wrap = document.getElementById("recipientList");
+      const filterText = document.getElementById("recipientFilter").value.trim().toLowerCase();
+      if (!cachedRecipients) return;
+
+      const filtered = filterText
+        ? cachedRecipients.filter((r) => r.email.toLowerCase().includes(filterText) || (r.name || "").toLowerCase().includes(filterText))
+        : cachedRecipients;
+
+      if (!filtered.length) {
+        wrap.innerHTML = `<div class="no-data">${cachedRecipients.length ? "No members match that filter." : "No registered members found."}</div>`;
+        return;
+      }
+
+      wrap.innerHTML = "";
+      filtered.forEach((r) => {
+        const row = document.createElement("label");
+        row.className = "recipient-row" + (deselectedEmails.has(r.email) ? " r-unchecked" : "");
+        row.innerHTML = `
+          <input type="checkbox" ${deselectedEmails.has(r.email) ? "" : "checked"}>
+          <span>
+            <div class="r-name">${escapeHtml(r.name || r.email)}</div>
+            ${r.name ? `<div class="r-email">${escapeHtml(r.email)}</div>` : ""}
+          </span>`;
+        const checkbox = row.querySelector("input");
+        checkbox.addEventListener("change", () => {
+          if (checkbox.checked) deselectedEmails.delete(r.email);
+          else deselectedEmails.add(r.email);
+          row.classList.toggle("r-unchecked", !checkbox.checked);
+          updateSelectedCount();
+        });
+        wrap.appendChild(row);
+      });
+    }
+    window.renderRecipientList = renderRecipientList;
+
+    function selectAllRecipients(select) {
+      if (select) deselectedEmails.clear();
+      else (cachedRecipients || []).forEach((r) => deselectedEmails.add(r.email));
+      renderRecipientList();
+      updateSelectedCount();
+    }
+    window.selectAllRecipients = selectAllRecipients;
+
     async function refreshRecipientCount() {
-      const el = document.getElementById("recipientCount");
-      el.textContent = "…";
+      const countEl = document.getElementById("recipientCount");
+      const listEl = document.getElementById("recipientList");
+      countEl.textContent = "…";
+      listEl.innerHTML = `<div class="loading-text">Loading members...</div>`;
       try {
         cachedRecipients = await fetchRecipients();
-        el.textContent = cachedRecipients.length;
+        countEl.textContent = cachedRecipients.length;
+        renderRecipientList();
+        updateSelectedCount();
       } catch (err) {
-        el.textContent = "?";
-        alert("Could not load the member directory: " + (err.message || err));
+        countEl.textContent = "?";
+        listEl.innerHTML = `<div class="no-data">Could not load the member directory: ${escapeHtml(err.message || err)}</div>`;
       }
     }
     window.refreshRecipientCount = refreshRecipientCount;
@@ -640,8 +716,10 @@
       const subject = document.getElementById("fSubject").value.trim();
       const bodyHtml = bodyEditor.innerHTML.trim();
       if (!subject || !bodyHtml) { alert("Write a subject and message body first."); return; }
-      if (!cachedRecipients || !cachedRecipients.length) { alert("No registered members loaded yet — click Refresh Count first."); return; }
-      document.getElementById("confirmCount").textContent = cachedRecipients.length;
+      if (!cachedRecipients || !cachedRecipients.length) { alert("No registered members loaded yet — click Refresh List first."); return; }
+      const selected = getSelectedRecipients();
+      if (!selected.length) { alert("No recipients are selected — tick at least one member (or click Select All) first."); return; }
+      document.getElementById("confirmCount").textContent = selected.length;
       document.getElementById("confirmSubject").textContent = subject;
       document.getElementById("sendConfirmModal").hidden = false;
     }
@@ -664,7 +742,7 @@
       const subject = document.getElementById("fSubject").value.trim();
       const bodyHtml = bodyEditor.innerHTML.trim();
       const attachmentPayload = buildAttachmentPayload();
-      const recipients = cachedRecipients;
+      const recipients = getSelectedRecipients();
 
       const sendBtn = document.querySelector('button[onclick="openSendConfirm()"]');
       sendBtn.disabled = true;
