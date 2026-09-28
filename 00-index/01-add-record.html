@@ -617,15 +617,30 @@
         Date_created: firebase.firestore.FieldValue.serverTimestamp()
       };
 
-      db.collection("sikhdatabaseindia").doc(email).set(data)
-        .then(() => {
-          document.getElementById("status").innerText = "🎉 Congratulations! You are now a member of Sikhs in INDIA.";
-          sendEmail(email, name, gname, mobile, ageVal, address, city, state, gender);
-          clearForm(false);
+      const submitBtn = document.querySelector("#editForm .btn-submit");
+      submitBtn.disabled = true;
+      document.getElementById("status").innerText = "Checking email address...";
+
+      db.collection("sikhdatabaseindia").doc(email).get()
+        .then(existingDoc => {
+          if (existingDoc.exists) {
+            document.getElementById("status").innerText = "⚠️ This email already exists. Please use a different email address.";
+            submitBtn.disabled = false;
+            return null;
+          }
+
+          return db.collection("sikhdatabaseindia").doc(email).set(data)
+            .then(() => {
+              document.getElementById("status").innerText = "🎉 Congratulations! You are now a member of Sikhs in INDIA.";
+              sendEmail(email, name, gname, mobile, ageVal, address, city, state, gender);
+              clearForm(false);
+              submitBtn.disabled = false;
+            });
         })
         .catch(error => {
           console.error("Error adding/updating data: ", error);
           document.getElementById("status").innerText = "Error adding/updating data: " + error.message;
+          submitBtn.disabled = false;
         });
     });
 
