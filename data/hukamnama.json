@@ -1,55 +1,59 @@
 {
-  "date": "2026-09-27",
-  "dateDisplay": "27 September 2026",
-  "ang": 678,
+  "date": "2026-09-28",
+  "dateDisplay": "28 September 2026",
+  "ang": 671,
   "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
   "raagEnglish": "Raag Dhanaasree",
   "writerEnglish": "Guru Arjan Dev Ji",
-  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ਘਰੁ ੬",
-  "titleEnglish": "Dhanaasaree, Fifth Mehla, Sixth House:",
-  "verseGurmukhi": "ਸੁਨਹੁ ਸੰਤ ਪਿਆਰੇ ਬਿਨਉ ਹਮਾਰੇ ਜੀਉ ॥",
-  "verseTranslation": "Listen, O Dear Beloved Saints, to my prayer.",
+  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
+  "titleEnglish": "Dhanaasaree, Fifth Mehla:",
+  "verseGurmukhi": "ਜਿਸ ਕਾ ਤਨੁ ਮਨੁ ਧਨੁ ਸਭੁ ਤਿਸ ਕਾ ਸੋਈ ਸੁਘੜੁ ਸੁਜਾਨੀ ॥",
+  "verseTranslation": "Body, mind, wealth and everything belong to Him; He alone is all-wise and all-knowing.",
   "verses": [
     {
-      "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ਘਰੁ ੬",
-      "translation": "Dhanaasaree, Fifth Mehla, Sixth House:"
+      "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
+      "translation": "Dhanaasaree, Fifth Mehla:"
     },
     {
-      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
-      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
+      "gurmukhi": "ਜਿਸ ਕਾ ਤਨੁ ਮਨੁ ਧਨੁ ਸਭੁ ਤਿਸ ਕਾ ਸੋਈ ਸੁਘੜੁ ਸੁਜਾਨੀ ॥",
+      "translation": "Body, mind, wealth and everything belong to Him; He alone is all-wise and all-knowing."
     },
     {
-      "gurmukhi": "ਸੁਨਹੁ ਸੰਤ ਪਿਆਰੇ ਬਿਨਉ ਹਮਾਰੇ ਜੀਉ ॥",
-      "translation": "Listen, O Dear Beloved Saints, to my prayer."
+      "gurmukhi": "ਤਿਨ ਹੀ ਸੁਣਿਆ ਦੁਖੁ ਸੁਖੁ ਮੇਰਾ ਤਉ ਬਿਧਿ ਨੀਕੀ ਖਟਾਨੀ ॥੧॥",
+      "translation": "He listens to my pains and pleasures, and then my condition improves. ||1||"
     },
     {
-      "gurmukhi": "ਹਰਿ ਬਿਨੁ ਮੁਕਤਿ ਨ ਕਾਹੂ ਜੀਉ ॥ ਰਹਾਉ ॥",
-      "translation": "Without the Lord, no one is liberated. ||Pause||"
+      "gurmukhi": "ਜੀਅ ਕੀ ਏਕੈ ਹੀ ਪਹਿ ਮਾਨੀ ॥",
+      "translation": "My soul is satisfied with the One Lord alone."
     },
     {
-      "gurmukhi": "ਮਨ ਨਿਰਮਲ ਕਰਮ ਕਰਿ ਤਾਰਨ ਤਰਨ ਹਰਿ ਅਵਰਿ ਜੰਜਾਲ ਤੇਰੈ ਕਾਹੂ ਨ ਕਾਮ ਜੀਉ ॥",
-      "translation": "O mind, do only deeds of purity; the Lord is the only boat to carry you across. Other entanglements shall be of no use to you."
+      "gurmukhi": "ਅਵਰਿ ਜਤਨ ਕਰਿ ਰਹੇ ਬਹੁਤੇਰੇ ਤਿਨ ਤਿਲੁ ਨਹੀ ਕੀਮਤਿ ਜਾਨੀ ॥ ਰਹਾਉ ॥",
+      "translation": "People make all sorts of other efforts, but they have no value at all. ||Pause||"
     },
     {
-      "gurmukhi": "ਜੀਵਨ ਦੇਵਾ ਪਾਰਬ੍ਰਹਮ ਸੇਵਾ ਇਹੁ ਉਪਦੇਸੁ ਮੋ ਕਉ ਗੁਰਿ ਦੀਨਾ ਜੀਉ ॥੧॥",
-      "translation": "True living is serving the Divine, Supreme Lord God; the Guru has imparted this teaching to me. ||1||"
+      "gurmukhi": "ਅੰਮ੍ਰਿਤ ਨਾਮੁ ਨਿਰਮੋਲਕੁ ਹੀਰਾ ਗੁਰਿ ਦੀਨੋ ਮੰਤਾਨੀ ॥",
+      "translation": "The Ambrosial Naam, the Name of the Lord, is a priceless jewel. The Guru has given me this advice."
     },
     {
-      "gurmukhi": "ਤਿਸੁ ਸਿਉ ਨ ਲਾਈਐ ਹੀਤੁ ਜਾ ਕੋ ਕਿਛੁ ਨਾਹੀ ਬੀਤੁ ਅੰਤ ਕੀ ਬਾਰ ਓਹੁ ਸੰਗਿ ਨ ਚਾਲੈ ॥",
-      "translation": "Do not fall in love with trivial things; in the end, they shall not go along with you."
+      "gurmukhi": "ਡਿਗੈ ਨ ਡੋਲੈ ਦ੍ਰਿੜੁ ਕਰਿ ਰਹਿਓ ਪੂਰਨ ਹੋਇ ਤ੍ਰਿਪਤਾਨੀ ॥੨॥",
+      "translation": "It cannot be lost, and it cannot be shaken off; it remains steady, and I am perfectly satisfied with it. ||2||"
     },
     {
-      "gurmukhi": "ਮਨਿ ਤਨਿ ਤੂ ਆਰਾਧ ਹਰਿ ਕੇ ਪ੍ਰੀਤਮ ਸਾਧ ਜਾ ਕੈ ਸੰਗਿ ਤੇਰੇ ਬੰਧਨ ਛੂਟੈ ॥੨॥",
-      "translation": "Worship and adore the Lord with your mind and body, O Beloved Saint of the Lord; in the Saadh Sangat, the Company of the Holy, you shall be released from bondage. ||2||"
+      "gurmukhi": "ਓਇ ਜੁ ਬੀਚ ਹਮ ਤੁਮ ਕਛੁ ਹੋਤੇ ਤਿਨ ਕੀ ਬਾਤ ਬਿਲਾਨੀ ॥",
+      "translation": "Those things which tore me away from You, Lord, are now gone."
     },
     {
-      "gurmukhi": "ਗਹੁ ਪਾਰਬ੍ਰਹਮ ਸਰਨ ਹਿਰਦੈ ਕਮਲ ਚਰਨ ਅਵਰ ਆਸ ਕਛੁ ਪਟਲੁ ਨ ਕੀਜੈ ॥",
-      "translation": "In your heart, hold fast to the Sanctuary of the lotus feet of the Supreme Lord God; do not place your hopes in any other support."
+      "gurmukhi": "ਅਲੰਕਾਰ ਮਿਲਿ ਥੈਲੀ ਹੋਈ ਹੈ ਤਾ ਤੇ ਕਨਿਕ ਵਖਾਨੀ ॥੩॥",
+      "translation": "When golden ornaments are melted down into a lump, they are still said to be gold. ||3||"
     },
     {
-      "gurmukhi": "ਸੋਈ ਭਗਤੁ ਗਿਆਨੀ ਧਿਆਨੀ ਤਪਾ ਸੋਈ ਨਾਨਕ ਜਾ ਕਉ ਕਿਰਪਾ ਕੀਜੈ ॥੩॥੧॥੨੯॥",
-      "translation": "He alone is a devotee, spiritually wise, a meditator, and a penitent, O Nanak, who is blessed by the Lord's Mercy. ||3||1||29||"
+      "gurmukhi": "ਪ੍ਰਗਟਿਓ ਜੋਤਿ ਸਹਜ ਸੁਖ ਸੋਭਾ ਬਾਜੇ ਅਨਹਤ ਬਾਨੀ ॥",
+      "translation": "The Divine Light has illuminated me, and I am filled with celestial peace and glory; the unstruck melody of the Lord's Bani resounds within me."
+    },
+    {
+      "gurmukhi": "ਕਹੁ ਨਾਨਕ ਨਿਹਚਲ ਘਰੁ ਬਾਧਿਓ ਗੁਰਿ ਕੀਓ ਬੰਧਾਨੀ ॥੪॥੫॥",
+      "translation": "Says Nanak, I have built my eternal home; the Guru has constructed it for me. ||4||5||"
     }
   ],
-  "updated": "2026-09-27T06:45:22.372Z"
+  "updated": "2026-09-28T07:10:37.348Z"
 }
