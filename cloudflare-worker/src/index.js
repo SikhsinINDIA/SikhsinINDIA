@@ -7,6 +7,11 @@
  *    free — this Worker is a thin authenticated proxy that can, since the
  *    Resend API key lives here server-side and is never exposed to the
  *    browser. Default action (no `action` field in the request body).
+ *    Optional `attachments: [{filename, content}]` (content pre-encoded as
+ *    base64 by the caller) or `[{filename, url}]` (fetched and base64-encoded
+ *    here instead — used by 100-misc/01-mass-mailers, whose attachments live
+ *    in Drive; a browser can't fetch() a Drive URL's bytes itself due to
+ *    CORS, but a Worker isn't subject to CORS and can).
  *
  * 2. Force-reset an Akhand Path participant's Firebase Auth password
  *    (action: "reset_password"). Needed because Firebase's client SDK has
@@ -183,20 +188,55 @@ async function sendWhatsAppTemplate(env, { to, templateName, languageCode, param
   return resBody;
 }
 
-async function sendEmail(env, { to, subject, text, html }) {
+// Turns a Uint8Array into a base64 string without blowing the call stack on
+// large files (String.fromCharCode(...bytes) spreads the whole array as
+// arguments, which throws for anything more than ~100KB in most engines).
+function bytesToBase64(bytes) {
+  let binary = "";
+  const chunkSize = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunkSize));
+  }
+  return btoa(binary);
+}
+
+// Resend's `attachments` field wants { filename, content: <base64, no data-URI
+// prefix> } per file. The mass mailer (and anything else attaching a file
+// already sitting in Drive rather than freshly picked in the browser) sends
+// { filename, url } instead — fetched and base64-encoded here, server-side,
+// specifically because a browser's own fetch() would be blocked by Drive's
+// CORS policy for reading the response body (an <img src="drive .../thumbnail">
+// tag or a plain top-level download link both work from a browser; the same
+// URL read via fetch() typically doesn't, since that requires the server to
+// send permissive CORS headers, which Drive doesn't). A Worker isn't a
+// browser and isn't subject to CORS, so it can just fetch it directly.
+async function resolveAttachment(att) {
+  if (att.content) return { filename: att.filename, content: att.content };
+  if (!att.url) throw new Error(`Attachment "${att.filename || "(unnamed)"}" has neither content nor url`);
+  const res = await fetch(att.url);
+  if (!res.ok) throw new Error(`Could not fetch attachment "${att.filename}" from ${att.url}: HTTP ${res.status}`);
+  const bytes = new Uint8Array(await res.arrayBuffer());
+  return { filename: att.filename, content: bytesToBase64(bytes) };
+}
+
+async function sendEmail(env, { to, subject, text, html, attachments }) {
+  const body = {
+    from: env.FROM_ADDRESS || "SikhsinIndia <onboarding@resend.dev>",
+    to: [to],
+    subject,
+    text,
+    html
+  };
+  if (Array.isArray(attachments) && attachments.length) {
+    body.attachments = await Promise.all(attachments.map(resolveAttachment));
+  }
   const resendRes = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${env.RESEND_API_KEY}`,
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      from: env.FROM_ADDRESS || "SikhsinIndia <onboarding@resend.dev>",
-      to: [to],
-      subject,
-      text,
-      html
-    })
+    body: JSON.stringify(body)
   });
   const resendBody = await resendRes.text();
   if (!resendRes.ok) throw new Error("Resend API error: " + resendBody);
@@ -250,12 +290,12 @@ export default {
       }
     }
 
-    const { to, subject, text, html } = payload;
+    const { to, subject, text, html, attachments } = payload;
     if (!to || !subject || (!text && !html)) {
       return json({ error: "Missing required fields: to, subject, and text or html" }, 400);
     }
     try {
-      const resendBody = await sendEmail(env, { to, subject, text, html });
+      const resendBody = await sendEmail(env, { to, subject, text, html, attachments });
       return new Response(resendBody, { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     } catch (err) {
       return json({ error: String(err.message || err) }, 502);

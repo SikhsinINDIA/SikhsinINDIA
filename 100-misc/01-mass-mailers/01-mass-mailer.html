@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Mass Mailer | Admin | SikhsInIndia.com</title>
+
+  <meta name="description" content="Compose, save, and send bulk emails with photos and attachments to every registered member of SikhsInIndia.com.">
+  <meta name="keywords" content="Mass Mailer admin, Sikhs in India">
+  <meta name="author" content="Sikhs in India">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="canonical" href="https://sikhsinindia.com/100-misc/01-mass-mailers/01-mass-mailer.html">
+
+  <meta property="og:title" content="Mass Mailer | Admin | SikhsInIndia.com">
+  <meta property="og:description" content="Compose, save, and send bulk emails with photos and attachments to every registered member of SikhsInIndia.com.">
+  <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+  <meta property="og:url" content="https://sikhsinindia.com/100-misc/01-mass-mailers/01-mass-mailer.html">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mass Mailer | Admin | SikhsInIndia.com">
+  <meta name="twitter:description" content="Compose, save, and send bulk emails with photos and attachments to every registered member of SikhsInIndia.com.">
+  <meta name="twitter:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Firebase (compat SDK — same project/pattern used by every other admin tool on the site) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    .poster { max-width: 1100px; }
+    .two-col { display: grid; grid-template-columns: 340px 1fr; gap: 20px; align-items: start; }
+    @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+    .send-panel { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .file-input-hidden { display: none; }
+  </style>
+</head>
+
+<body>
+
+  <div class="poster">
+
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Mass <span>Mailer</span></div>
+        <div class="hero-sub">Compose &amp; Send Bulk Emails to Registered Members</div>
+      </div>
+    </div>
+
+    <div class="wrapper">
+
+      <div class="card">
+        <div class="card-title">Admin</div>
+        <p class="muted" style="margin-bottom: 10px;">Draft an email, save it as a reusable format, and send it to
+          every member registered in the Sikhs In India directory. Saved formats live in Firestore (collection
+          <code>mass_mailer_templates</code>) so they can be edited, copied, or deleted here at any time — this page
+          is the "folder" for them, since a static site has nowhere else to durably store an editable draft.</p>
+        <button class="btn-back" onclick="adminLogout()">Logout</button>
+      </div>
+
+      <div class="two-col">
+
+        <!-- ═══════════ SAVED FORMATS ═══════════ -->
+        <div>
+          <h2>Saved Formats</h2>
+          <div class="table-container" style="margin-bottom: 12px;">
+            <div id="templateList">
+              <div class="loading-text">Loading saved formats...</div>
+            </div>
+          </div>
+          <button type="button" class="btn-action" onclick="newTemplate()">+ New Blank Format</button>
+        </div>
+
+        <!-- ═══════════ COMPOSER ═══════════ -->
+        <div>
+          <h2>Compose</h2>
+
+          <div class="card">
+            <div class="form-grid">
+              <div class="form-row">
+                <label>Format Name (for saving)</label>
+                <input id="fName" type="text" placeholder="e.g. Monthly Newsletter">
+              </div>
+              <div class="form-row">
+                <label>Subject</label>
+                <input id="fSubject" type="text" placeholder="e.g. News from Sikhs In India — {{name}}, don't miss this!">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label>Message Body</label>
+              <p class="muted" style="margin-bottom: 8px;">Use <code>{{name}}</code> anywhere (subject or body) to
+                greet each member by name automatically when sending.</p>
+              <div class="rte-toolbar">
+                <button type="button" onclick="rteCmd('bold')"><b>B</b></button>
+                <button type="button" onclick="rteCmd('italic')"><i>I</i></button>
+                <button type="button" onclick="rteCmd('underline')"><u>U</u></button>
+                <span class="rte-sep"></span>
+                <button type="button" onclick="rteCmd('insertUnorderedList')">• List</button>
+                <button type="button" onclick="rteCmd('insertOrderedList')">1. List</button>
+                <span class="rte-sep"></span>
+                <button type="button" onclick="rteInsertLink()">🔗 Link</button>
+                <button type="button" onclick="rteInsertName()">{{name}}</button>
+                <span class="rte-sep"></span>
+                <button type="button" onclick="document.getElementById('inlineImageInput').click()">🖼️ Insert Image</button>
+                <button type="button" onclick="rteCmd('removeFormat')">Clear Formatting</button>
+              </div>
+              <div id="bodyEditor" class="rte-body" contenteditable="true" data-placeholder="Write your message here..."></div>
+              <input type="file" id="inlineImageInput" class="file-input-hidden" accept="image/*" onchange="handleInlineImage(event)">
+              <p id="imageUploadStatus" class="muted" style="margin-top: 6px; min-height: 16px;"></p>
+            </div>
+
+            <div class="form-row">
+              <label>Attachments</label>
+              <p class="muted" style="margin-bottom: 8px;">Files attached to the email (not shown inline) — photos,
+                PDFs, flyers, anything. Kept with the saved format for reuse.</p>
+              <button type="button" class="btn-control" onclick="document.getElementById('attachmentInput').click()">+ Attach File</button>
+              <input type="file" id="attachmentInput" class="file-input-hidden" multiple onchange="handleAttachmentFiles(event)">
+              <div class="chip-list" id="attachmentChips"></div>
+              <p id="attachmentUploadStatus" class="muted" style="margin-top: 6px; min-height: 16px;"></p>
+            </div>
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+              <button type="button" class="btn-action" style="width: auto;" onclick="saveTemplate(false)">Save Format</button>
+              <button type="button" class="btn-action btn-secondary" style="width: auto;" onclick="saveTemplate(true)">Save As New Format</button>
+            </div>
+            <p id="saveStatus" class="muted" style="margin-top: 8px; min-height: 18px;"></p>
+          </div>
+
+          <!-- ═══════════ SEND ═══════════ -->
+          <div class="card">
+            <div class="card-title">Send</div>
+            <div class="send-panel">
+              <div>
+                <div class="send-count" id="recipientCount">—</div>
+                <div class="muted">registered members</div>
+              </div>
+              <button type="button" class="btn-control" onclick="refreshRecipientCount()">Refresh Count</button>
+              <button type="button" class="btn-control" onclick="sendTestToMyself()">Send Test to Myself</button>
+              <button type="button" class="btn-action btn-danger" style="width: auto;" onclick="openSendConfirm()">Send Mass Mailer to All Registered Members</button>
+            </div>
+            <p id="testSendStatus" class="muted" style="margin-top: 8px; min-height: 18px;"></p>
+
+            <div id="sendProgressArea" hidden style="margin-top: 16px;">
+              <div class="muted" id="sendProgressLabel">Sending 0 / 0...</div>
+              <div class="progress-track"><div class="progress-fill" id="sendProgressFill"></div></div>
+              <div class="send-log" id="sendLog"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="../../index.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage &amp; Unity</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════ SEND CONFIRMATION MODAL ═══════════ -->
+  <div class="modal-overlay" id="sendConfirmModal" hidden>
+    <div class="modal-box">
+      <h3>Send to All Registered Members?</h3>
+      <p>
+        You are about to email <b id="confirmCount">0</b> registered members with the subject:<br>
+        <b id="confirmSubject" style="color: var(--navy);"></b>
+        <br><br>
+        This sends real email to real people right now and cannot be undone. Make sure you've sent yourself a test
+        first.
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn-control" onclick="closeSendConfirm()">Cancel</button>
+        <button type="button" class="btn-action btn-danger" style="width: auto;" onclick="confirmSendMassMailer()">Yes, Send Now</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ---------------- ADMIN GATE ----------------
+       Same client-side-flag pattern as 03-nitnem/03-06-akhand-path's admin
+       pages: a login page sets this localStorage flag on success, and every
+       admin page in this section checks for it on load. Still just a
+       client-side flag, not real authentication — anyone who reads this
+       page's code can set it themselves via DevTools. It deters casual
+       browsing, not a determined visitor; the real defense is that this
+       page is unlinked from the site and marked noindex. */
+    if (localStorage.getItem("massMailerAdminAuthed") !== "1") {
+      window.location.href = "./01a-password-mass-mailer.html";
+    }
+    window.adminLogout = () => {
+      localStorage.removeItem("massMailerAdminAuthed");
+      window.location.href = "./01a-password-mass-mailer.html";
+    };
+
+    /* ---------------- FIREBASE ---------------- */
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b",
+      measurementId: "G-LHNTFNW14H"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const TEMPLATES_COLLECTION = "mass_mailer_templates";
+    const MEMBERS_COLLECTION = "sikhdatabaseindia";
+
+    /* ---------------- EMAIL SENDING (same Worker as Akhand Path) ---------------- */
+    const SEND_EMAIL_ENDPOINT = "https://sikhsinindia-email.sikhsinindia.workers.dev";
+    const APP_SHARED_SECRET = "LuOoE-d92AyXMGsCBA0FcQGhKsYRLgs6";
+
+    /* ---------------- GOOGLE DRIVE UPLOAD (same Apps Script used by
+       Matrimonials and Akhand Path's honoree photo) ---------------- */
+    const DRIVE_UPLOAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbzBuAZuk3tGCJoDUNhUUzly7-yeRX4dEV7h4jjUd_upMyE7_ZOV6f3Smk9m3xp25oc/exec";
+
+    function toBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+      });
+    }
+
+    async function uploadToDrive(file, folderName) {
+      const base64 = await toBase64(file);
+      const response = await fetch(DRIVE_UPLOAD_ENDPOINT, {
+        method: "POST",
+        body: new URLSearchParams({
+          file: base64.split(",")[1],
+          type: file.type,
+          name: file.name,
+          folder: folderName
+        })
+      });
+      const result = await response.json();
+      if (!result.success) throw new Error(result.error || "Upload failed");
+      return result.url; // Drive "view" URL: https://drive.google.com/file/d/ID/view?usp=drivesdk
+    }
+
+    function getTimestampFolder(prefix) {
+      const now = new Date();
+      return prefix + "_" +
+        now.getFullYear() + "-" +
+        String(now.getMonth() + 1).padStart(2, "0") + "-" +
+        String(now.getDate()).padStart(2, "0") + "_" +
+        String(now.getHours()).padStart(2, "0") + "-" +
+        String(now.getMinutes()).padStart(2, "0") + "-" +
+        String(now.getSeconds()).padStart(2, "0");
+    }
+
+    // Drive's /thumbnail endpoint serves actual image bytes (works in <img
+    // src>); the plain "view" URL a fresh upload returns is an HTML viewer
+    // page and shows a broken-image icon if used the same way. Used for
+    // images inserted INLINE into the body.
+    function driveImageUrl(url) {
+      if (!url) return url;
+      const match = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+      if (!match) return url;
+      return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`;
+    }
+
+    // Drive's /uc?export=download endpoint serves the raw original file for
+    // ANY file type (not just images) — what the Worker fetches server-side
+    // to build a real Resend attachment for files ATTACHED to the email.
+    function driveDownloadUrl(url) {
+      if (!url) return url;
+      const match = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+      if (!match) return url;
+      return `https://drive.google.com/uc?export=download&id=${match[1]}`;
+    }
+
+    async function callMailWorker(payload) {
+      const res = await fetch(SEND_EMAIL_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-App-Secret": APP_SHARED_SECRET },
+        body: JSON.stringify(payload)
+      });
+      const bodyText = await res.text();
+      if (!res.ok) {
+        let detail = bodyText;
+        try { detail = JSON.parse(bodyText).error || bodyText; } catch (_) { /* keep raw text */ }
+        throw new Error(`HTTP ${res.status}: ${detail}`);
+      }
+      return bodyText;
+    }
+
+    /* ---------------- RICH TEXT EDITOR ---------------- */
+    const bodyEditor = document.getElementById("bodyEditor");
+    let savedRange = null;
+
+    function saveSelection() {
+      const sel = window.getSelection();
+      if (sel && sel.rangeCount && bodyEditor.contains(sel.anchorNode)) {
+        savedRange = sel.getRangeAt(0);
+      }
+    }
+    bodyEditor.addEventListener("mouseup", saveSelection);
+    bodyEditor.addEventListener("keyup", saveSelection);
+    bodyEditor.addEventListener("focus", saveSelection);
+
+    function restoreSelection() {
+      bodyEditor.focus();
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      if (savedRange) {
+        sel.addRange(savedRange);
+      } else {
+        // No prior selection (editor never focused yet) — place cursor at the end.
+        const range = document.createRange();
+        range.selectNodeContents(bodyEditor);
+        range.collapse(false);
+        sel.addRange(range);
+      }
+    }
+
+    function rteCmd(command, value) {
+      bodyEditor.focus();
+      document.execCommand(command, false, value || null);
+    }
+
+    function rteInsertLink() {
+      const url = prompt("Link URL (e.g. https://sikhsinindia.com):");
+      if (!url) return;
+      bodyEditor.focus();
+      document.execCommand("createLink", false, url);
+    }
+
+    function rteInsertName() {
+      bodyEditor.focus();
+      document.execCommand("insertText", false, "{{name}}");
+    }
+
+    async function handleInlineImage(event) {
+      const file = event.target.files[0];
+      event.target.value = ""; // allow picking the same file again later
+      if (!file) return;
+      saveSelection(); // capture cursor position before the file dialog's focus shift
+      const status = document.getElementById("imageUploadStatus");
+      status.textContent = "Uploading image...";
+      try {
+        const driveUrl = await uploadToDrive(file, getTimestampFolder("MassMailer"));
+        restoreSelection();
+        document.execCommand("insertHTML", false, `<img src="${driveImageUrl(driveUrl)}" alt="">`);
+        status.textContent = "Image inserted.";
+      } catch (err) {
+        status.textContent = "Could not upload image: " + (err.message || err);
+      }
+    }
+
+    /* ---------------- ATTACHMENTS ---------------- */
+    // { filename, driveUrl } — driveUrl is Drive's "view" URL; converted to a
+    // download URL only at send time (see driveDownloadUrl above).
+    let attachments = [];
+
+    function renderAttachmentChips() {
+      const wrap = document.getElementById("attachmentChips");
+      wrap.innerHTML = "";
+      attachments.forEach((att, i) => {
+        const chip = document.createElement("div");
+        chip.className = "chip";
+        const isImage = /\.(png|jpe?g|gif|webp)$/i.test(att.filename);
+        chip.innerHTML = isImage
+          ? `<img src="${driveImageUrl(att.driveUrl)}" alt="">`
+          : `<span class="chip-icon">📎</span>`;
+        const label = document.createElement("span");
+        label.textContent = att.filename;
+        const removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.textContent = "✕";
+        removeBtn.title = "Remove";
+        removeBtn.addEventListener("click", () => {
+          attachments.splice(i, 1);
+          renderAttachmentChips();
+        });
+        chip.appendChild(label);
+        chip.appendChild(removeBtn);
+        wrap.appendChild(chip);
+      });
+    }
+
+    async function handleAttachmentFiles(event) {
+      const files = [...event.target.files];
+      event.target.value = "";
+      if (!files.length) return;
+      const status = document.getElementById("attachmentUploadStatus");
+      const folder = getTimestampFolder("MassMailer");
+      for (const file of files) {
+        status.textContent = `Uploading ${file.name}...`;
+        try {
+          const driveUrl = await uploadToDrive(file, folder);
+          attachments.push({ filename: file.name, driveUrl });
+          renderAttachmentChips();
+        } catch (err) {
+          status.textContent = `Could not upload ${file.name}: ` + (err.message || err);
+          return;
+        }
+      }
+      status.textContent = `${files.length} file(s) attached.`;
+    }
+
+    /* ---------------- TEMPLATE (SAVED FORMAT) CRUD ---------------- */
+    let currentTemplateId = null; // null = unsaved/new draft
+
+    function clearComposer() {
+      currentTemplateId = null;
+      document.getElementById("fName").value = "";
+      document.getElementById("fSubject").value = "";
+      bodyEditor.innerHTML = "";
+      attachments = [];
+      renderAttachmentChips();
+      document.getElementById("saveStatus").textContent = "";
+    }
+    window.newTemplate = clearComposer;
+
+    function loadTemplateIntoComposer(id, data) {
+      currentTemplateId = id;
+      document.getElementById("fName").value = data.name || "";
+      document.getElementById("fSubject").value = data.subject || "";
+      bodyEditor.innerHTML = data.bodyHtml || "";
+      attachments = Array.isArray(data.attachments) ? data.attachments.map((a) => ({ ...a })) : [];
+      renderAttachmentChips();
+      document.getElementById("saveStatus").textContent = `Loaded "${data.name}".`;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    window.loadTemplate = async (id) => {
+      const doc = await db.collection(TEMPLATES_COLLECTION).doc(id).get();
+      if (!doc.exists) return;
+      loadTemplateIntoComposer(id, doc.data());
+    };
+
+    window.copyTemplate = async (id) => {
+      const doc = await db.collection(TEMPLATES_COLLECTION).doc(id).get();
+      if (!doc.exists) return;
+      const data = doc.data();
+      loadTemplateIntoComposer(null, { ...data, name: (data.name || "Untitled") + " (Copy)" });
+      currentTemplateId = null; // Save Format below now creates a brand new doc
+      document.getElementById("saveStatus").textContent = "Copied — edit and click Save Format to store it as a new format.";
+    };
+
+    window.deleteTemplate = async (id, name) => {
+      if (!confirm(`Delete the saved format "${name}"? This cannot be undone.`)) return;
+      await db.collection(TEMPLATES_COLLECTION).doc(id).delete();
+      if (currentTemplateId === id) clearComposer();
+    };
+
+    async function saveTemplate(forceNew) {
+      const status = document.getElementById("saveStatus");
+      const name = document.getElementById("fName").value.trim();
+      const subject = document.getElementById("fSubject").value.trim();
+      const bodyHtml = bodyEditor.innerHTML.trim();
+
+      if (!name) { status.textContent = "Enter a Format Name before saving."; return; }
+      if (!subject) { status.textContent = "Enter a Subject before saving."; return; }
+
+      const data = {
+        name,
+        subject,
+        bodyHtml,
+        attachments,
+        updated_at: firebase.firestore.FieldValue.serverTimestamp()
+      };
+
+      try {
+        if (currentTemplateId && !forceNew) {
+          await db.collection(TEMPLATES_COLLECTION).doc(currentTemplateId).set(data, { merge: true });
+          status.textContent = `Saved "${name}".`;
+        } else {
+          data.created_at = firebase.firestore.FieldValue.serverTimestamp();
+          const ref = await db.collection(TEMPLATES_COLLECTION).add(data);
+          currentTemplateId = ref.id;
+          status.textContent = `Saved as new format "${name}".`;
+        }
+      } catch (err) {
+        status.textContent = "Could not save: " + (err.message || err);
+      }
+    }
+    window.saveTemplate = saveTemplate;
+
+    function formatDate(ts) {
+      if (!ts || !ts.toDate) return "";
+      return ts.toDate().toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
+    }
+
+    function renderTemplateList(snap) {
+      const list = document.getElementById("templateList");
+      if (snap.empty) {
+        list.innerHTML = `<div class="no-data">No saved formats yet — compose one and click Save Format.</div>`;
+        return;
+      }
+      list.innerHTML = "";
+      snap.forEach((doc) => {
+        const d = doc.data();
+        const row = document.createElement("div");
+        row.className = "tpl-row";
+        row.innerHTML = `
+          <div style="flex:1;">
+            <div class="tpl-name">${escapeHtml(d.name || "Untitled")}</div>
+            <div class="tpl-meta">${escapeHtml(d.subject || "")} · Updated ${formatDate(d.updated_at)}</div>
+          </div>
+          <div class="tpl-actions">
+            <button type="button" class="btn-control">Edit</button>
+            <button type="button" class="btn-control">Copy</button>
+            <button type="button" class="btn-control btn-danger">Delete</button>
+          </div>`;
+        const [editBtn, copyBtn, delBtn] = row.querySelectorAll("button");
+        editBtn.addEventListener("click", () => loadTemplate(doc.id));
+        copyBtn.addEventListener("click", () => copyTemplate(doc.id));
+        delBtn.addEventListener("click", () => deleteTemplate(doc.id, d.name || "Untitled"));
+        list.appendChild(row);
+      });
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    db.collection(TEMPLATES_COLLECTION).orderBy("updated_at", "desc").onSnapshot(
+      renderTemplateList,
+      (err) => { document.getElementById("templateList").innerHTML = `<div class="no-data">Could not load saved formats: ${escapeHtml(err.message || err)}</div>`; }
+    );
+
+    /* ---------------- RECIPIENTS ---------------- */
+    let cachedRecipients = null;
+
+    async function fetchRecipients() {
+      const snap = await db.collection(MEMBERS_COLLECTION).get();
+      const recipients = [];
+      snap.forEach((doc) => {
+        const d = doc.data();
+        const email = (d.Email || doc.id || "").trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return; // skip malformed/missing
+        recipients.push({ email, name: d.GreetingName || d.Name || "" });
+      });
+      return recipients;
+    }
+
+    async function refreshRecipientCount() {
+      const el = document.getElementById("recipientCount");
+      el.textContent = "…";
+      try {
+        cachedRecipients = await fetchRecipients();
+        el.textContent = cachedRecipients.length;
+      } catch (err) {
+        el.textContent = "?";
+        alert("Could not load the member directory: " + (err.message || err));
+      }
+    }
+    window.refreshRecipientCount = refreshRecipientCount;
+    refreshRecipientCount();
+
+    /* ---------------- SEND ---------------- */
+    function personalize(str, recipient) {
+      const name = recipient.name || "Sangat Ji";
+      return String(str || "")
+        .replace(/\{\{\s*name\s*\}\}/gi, name)
+        .replace(/\{\{\s*email\s*\}\}/gi, recipient.email);
+    }
+
+    function htmlToPlainText(html) {
+      const tmp = document.createElement("div");
+      tmp.innerHTML = html;
+      return tmp.innerText || tmp.textContent || "";
+    }
+
+    function buildAttachmentPayload() {
+      return attachments.map((a) => ({ filename: a.filename, url: driveDownloadUrl(a.driveUrl) }));
+    }
+
+    async function sendTestToMyself() {
+      const status = document.getElementById("testSendStatus");
+      const testEmail = prompt("Send a test copy of this email to which address?");
+      if (!testEmail) return;
+      const subject = document.getElementById("fSubject").value.trim();
+      const bodyHtml = bodyEditor.innerHTML.trim();
+      if (!subject || !bodyHtml) { status.textContent = "Write a subject and message body first."; return; }
+
+      const recipient = { email: testEmail.trim(), name: "" };
+      status.textContent = "Sending test...";
+      try {
+        await callMailWorker({
+          to: recipient.email,
+          subject: "[TEST] " + personalize(subject, recipient),
+          html: personalize(bodyHtml, recipient),
+          text: personalize(htmlToPlainText(bodyHtml), recipient),
+          attachments: buildAttachmentPayload()
+        });
+        status.textContent = `Test sent to ${recipient.email}.`;
+      } catch (err) {
+        status.textContent = "Test send failed: " + (err.message || err);
+      }
+    }
+    window.sendTestToMyself = sendTestToMyself;
+
+    function openSendConfirm() {
+      const subject = document.getElementById("fSubject").value.trim();
+      const bodyHtml = bodyEditor.innerHTML.trim();
+      if (!subject || !bodyHtml) { alert("Write a subject and message body first."); return; }
+      if (!cachedRecipients || !cachedRecipients.length) { alert("No registered members loaded yet — click Refresh Count first."); return; }
+      document.getElementById("confirmCount").textContent = cachedRecipients.length;
+      document.getElementById("confirmSubject").textContent = subject;
+      document.getElementById("sendConfirmModal").hidden = false;
+    }
+    window.openSendConfirm = openSendConfirm;
+
+    function closeSendConfirm() {
+      document.getElementById("sendConfirmModal").hidden = true;
+    }
+    window.closeSendConfirm = closeSendConfirm;
+
+    // Small gap between sends so a large member list doesn't hammer Resend's
+    // rate limit all at once — this is a background admin action, not
+    // something anyone is watching a spinner for, so being conservative here
+    // costs nothing.
+    const SEND_DELAY_MS = 350;
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    async function confirmSendMassMailer() {
+      closeSendConfirm();
+      const subject = document.getElementById("fSubject").value.trim();
+      const bodyHtml = bodyEditor.innerHTML.trim();
+      const attachmentPayload = buildAttachmentPayload();
+      const recipients = cachedRecipients;
+
+      const sendBtn = document.querySelector('button[onclick="openSendConfirm()"]');
+      sendBtn.disabled = true;
+
+      const progressArea = document.getElementById("sendProgressArea");
+      const progressLabel = document.getElementById("sendProgressLabel");
+      const progressFill = document.getElementById("sendProgressFill");
+      const log = document.getElementById("sendLog");
+      progressArea.hidden = false;
+      log.innerHTML = "";
+
+      let ok = 0, failed = [];
+      for (let i = 0; i < recipients.length; i++) {
+        const recipient = recipients[i];
+        progressLabel.textContent = `Sending ${i + 1} / ${recipients.length}...`;
+        progressFill.style.width = Math.round(((i + 1) / recipients.length) * 100) + "%";
+        try {
+          await callMailWorker({
+            to: recipient.email,
+            subject: personalize(subject, recipient),
+            html: personalize(bodyHtml, recipient),
+            text: personalize(htmlToPlainText(bodyHtml), recipient),
+            attachments: attachmentPayload
+          });
+          ok++;
+          log.insertAdjacentHTML("beforeend", `<div class="log-ok">✅ ${escapeHtml(recipient.email)}</div>`);
+        } catch (err) {
+          failed.push({ email: recipient.email, error: String(err.message || err) });
+          log.insertAdjacentHTML("beforeend", `<div class="log-err">❌ ${escapeHtml(recipient.email)} — ${escapeHtml(err.message || err)}</div>`);
+        }
+        log.scrollTop = log.scrollHeight;
+        if (i < recipients.length - 1) await sleep(SEND_DELAY_MS);
+      }
+
+      progressLabel.textContent = `Done: ${ok} sent, ${failed.length} failed, out of ${recipients.length}.`;
+      sendBtn.disabled = false;
+      if (failed.length) {
+        alert(`${failed.length} email(s) failed to send. See the log on the page for details.\n\n` +
+          failed.slice(0, 10).map((f) => `${f.email}: ${f.error}`).join("\n") +
+          (failed.length > 10 ? `\n...and ${failed.length - 10} more.` : ""));
+      }
+    }
+    window.confirmSendMassMailer = confirmSendMassMailer;
+  </script>
+
+</body>
+
+</html>
