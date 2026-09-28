@@ -94,6 +94,7 @@
           <h2>Compose</h2>
 
           <div class="card">
+            <p id="composerState" class="muted" style="margin-bottom: 12px;"></p>
             <div class="form-grid">
               <div class="form-row">
                 <label>Format Name (for saving)</label>
@@ -139,7 +140,7 @@
             </div>
 
             <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
-              <button type="button" class="btn-action" style="width: auto;" onclick="saveTemplate(false)">Save Format</button>
+              <button type="button" id="saveFormatBtn" class="btn-action" style="width: auto;" onclick="saveTemplate(false)">Save New Format</button>
               <button type="button" class="btn-action btn-secondary" style="width: auto;" onclick="saveTemplate(true)">Save As New Format</button>
             </div>
             <p id="saveStatus" class="muted" style="margin-top: 8px; min-height: 18px;"></p>
@@ -449,6 +450,24 @@
 
     /* ---------------- TEMPLATE (SAVED FORMAT) CRUD ---------------- */
     let currentTemplateId = null; // null = unsaved/new draft
+    // The Name this composer's currentTemplateId was actually loaded/saved
+    // under. Used so that renaming the Format Name field is treated as
+    // "this is a different format now" — protects against the composer
+    // silently overwriting a previous saved format when the admin starts
+    // typing a new draft without first clicking "+ New Blank Format".
+    let loadedTemplateName = null;
+
+    function updateComposerState() {
+      const banner = document.getElementById("composerState");
+      const saveBtn = document.getElementById("saveFormatBtn");
+      if (currentTemplateId) {
+        banner.textContent = `✏️ Editing saved format "${loadedTemplateName}". Save Format updates it in place — click "+ New Blank Format" first if you want to start a different one.`;
+        saveBtn.textContent = `Update "${loadedTemplateName}"`;
+      } else {
+        banner.textContent = "🆕 New, unsaved format.";
+        saveBtn.textContent = "Save New Format";
+      }
+    }
 
     // Absolute URL (not the site-relative "../../pictures/..." this page's own
     // header uses) because this HTML is read by recipients' email clients,
@@ -460,24 +479,28 @@
 
     function clearComposer() {
       currentTemplateId = null;
+      loadedTemplateName = null;
       document.getElementById("fName").value = "";
       document.getElementById("fSubject").value = "";
       bodyEditor.innerHTML = DEFAULT_BODY_HTML;
       attachments = [];
       renderAttachmentChips();
       document.getElementById("saveStatus").textContent = "";
+      updateComposerState();
     }
     window.newTemplate = clearComposer;
     clearComposer(); // start every fresh visit with the logo header already in place
 
     function loadTemplateIntoComposer(id, data) {
       currentTemplateId = id;
+      loadedTemplateName = data.name || "";
       document.getElementById("fName").value = data.name || "";
       document.getElementById("fSubject").value = data.subject || "";
       bodyEditor.innerHTML = data.bodyHtml || "";
       attachments = Array.isArray(data.attachments) ? data.attachments.map((a) => ({ ...a })) : [];
       renderAttachmentChips();
       document.getElementById("saveStatus").textContent = `Loaded "${data.name}".`;
+      updateComposerState();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -492,8 +515,10 @@
       if (!doc.exists) return;
       const data = doc.data();
       loadTemplateIntoComposer(null, { ...data, name: (data.name || "Untitled") + " (Copy)" });
-      currentTemplateId = null; // Save Format below now creates a brand new doc
+      currentTemplateId = null; // Save Format below creates a brand new doc, never overwrites the original
+      loadedTemplateName = null;
       document.getElementById("saveStatus").textContent = "Copied — edit and click Save Format to store it as a new format.";
+      updateComposerState();
     };
 
     window.deleteTemplate = async (id, name) => {
@@ -519,19 +544,32 @@
         updated_at: firebase.firestore.FieldValue.serverTimestamp()
       };
 
+      // Renaming the Format Name away from what's currently loaded means
+      // this is really a different format now — save it as a new document
+      // instead of silently overwriting the one that was loaded. This is
+      // what stops "compose format 2 by editing format 1's open draft" from
+      // clobbering format 1: the mismatched name forces a new doc.
+      const wasLoadedButRenamed = currentTemplateId && !forceNew && name !== loadedTemplateName;
+      const isUpdatingLoaded = currentTemplateId && !forceNew && name === loadedTemplateName;
+
       try {
-        if (currentTemplateId && !forceNew) {
+        if (isUpdatingLoaded) {
           await db.collection(TEMPLATES_COLLECTION).doc(currentTemplateId).set(data, { merge: true });
           status.textContent = `Saved "${name}".`;
         } else {
           data.created_at = firebase.firestore.FieldValue.serverTimestamp();
           const ref = await db.collection(TEMPLATES_COLLECTION).add(data);
           currentTemplateId = ref.id;
-          status.textContent = `Saved as new format "${name}".`;
+          loadedTemplateName = name;
+          status.textContent = wasLoadedButRenamed
+            ? `"${name}" has a different name than the format that was loaded, so it was saved as a new format (the original is untouched).`
+            : `Saved as new format "${name}".`;
         }
       } catch (err) {
         status.textContent = "Could not save: " + (err.message || err);
+        return;
       }
+      updateComposerState();
     }
     window.saveTemplate = saveTemplate;
 
