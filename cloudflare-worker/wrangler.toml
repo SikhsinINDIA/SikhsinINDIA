@@ -7,6 +7,7 @@ compatibility_date = "2026-09-01"
 #   APP_SHARED_SECRET  a random string the site must send back on every request
 
 [vars]
-# mail.sikhsinindia.com is verified in Resend (DKIM/SPF confirmed 2026-09-15),
-# so sending is no longer restricted to the account's own signup address.
-FROM_ADDRESS = "SikhsinIndia <noreply@mail.sikhsinindia.com>"
+# sikhsinindia.com (root domain) is verified in Resend (DKIM/SPF confirmed
+# 2026-09-28), so sending is no longer restricted to the account's own
+# signup address, and no longer needs the mail. subdomain either.
+FROM_ADDRESS = "SikhsinIndia <noreply@sikhsinindia.com>"
