@@ -105,7 +105,7 @@
     /* ── HERO ── */
     .hero {
       flex: 1;
-      background: linear-gradient(160deg, var(--navy) 0%, #1a2a5e 55%, #0d1b3e 100%);
+      background: linear-gradient(160deg, var(--navy) 0%, #1a2a5e 55%, var(--navy) 100%);
       padding: 32px 40px 28px;
       text-align: center;
       position: relative;
@@ -626,14 +626,14 @@
       background: #fff;
       border-radius: 6px;
       border: 1px solid rgba(0, 0, 0, 0.08);
-      border-left: 5px solid #F7941D;
+      border-left: 5px solid var(--gold);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
     }
     .gsb-share-title {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: 16px;
       font-weight: 700;
-      color: #0d1b3e;
+      color: var(--navy);
       margin-bottom: 12px;
     }
     .gsb-share-buttons {
@@ -671,7 +671,7 @@
       right: 10px;
       z-index: 9999;
       background: rgba(13,27,62,0.92);
-      border: 1px solid #F7941D;
+      border: 1px solid var(--gold);
       border-radius: 20px;
       padding: 6px 14px;
       font-family: Arial, sans-serif;
@@ -683,8 +683,8 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
     .gsb-lang-switcher a { color: rgba(255,255,255,0.75); text-decoration: none; }
-    .gsb-lang-switcher a:hover { color: #F7941D; }
-    .gsb-lang-switcher .gsb-lang-current { color: #F7941D; }
+    .gsb-lang-switcher a:hover { color: var(--gold); }
+    .gsb-lang-switcher .gsb-lang-current { color: var(--gold); }
     .gsb-lang-switcher .gsb-lang-sep { color: rgba(255,255,255,0.35); }
     @media (max-width:600px) {
       .gsb-lang-switcher { top: 4px; right: 4px; padding: 4px 8px; font-size: 10px; gap: 5px; }
@@ -806,10 +806,10 @@
     <div class="value-item">
       <div class="value-icon">
         <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 6 L22 32" stroke="#F7941D" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M10 14 Q22 6 34 14" stroke="#F7941D" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <path d="M10 14 L10 32 Q22 38 22 32 L22 14" stroke="#F7941D" stroke-width="2.5" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
-          <path d="M34 14 L34 32 Q22 38 22 32" stroke="#F7941D" stroke-width="2.5" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
+          <path d="M22 6 L22 32" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M10 14 Q22 6 34 14" stroke="var(--gold)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M10 14 L10 32 Q22 38 22 32 L22 14" stroke="var(--gold)" stroke-width="2.5" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
+          <path d="M34 14 L34 32 Q22 38 22 32" stroke="var(--gold)" stroke-width="2.5" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
         </svg>
       </div>
       <div class="value-name">Wisdom</div>
@@ -818,8 +818,8 @@
     <div class="value-item">
       <div class="value-icon">
         <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 36 C22 36 6 26 6 16 C6 10 11 6 16 8 C18.5 9 20.5 11 22 13 C23.5 11 25.5 9 28 8 C33 6 38 10 38 16 C38 26 22 36 22 36Z" stroke="#F7941D" stroke-width="2.5" fill="rgba(247,148,29,0.15)"/>
-          <path d="M16 22 L20 26 L28 18" stroke="#F7941D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 36 C22 36 6 26 6 16 C6 10 11 6 16 8 C18.5 9 20.5 11 22 13 C23.5 11 25.5 9 28 8 C33 6 38 10 38 16 C38 26 22 36 22 36Z" stroke="var(--gold)" stroke-width="2.5" fill="rgba(247,148,29,0.15)"/>
+          <path d="M16 22 L20 26 L28 18" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <div class="value-name">Grace</div>
@@ -828,8 +828,8 @@
     <div class="value-item">
       <div class="value-icon">
         <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="22" cy="22" r="16" stroke="#F7941D" stroke-width="2.5" fill="rgba(247,148,29,0.1)"/>
-          <path d="M22 14 L22 22 L28 26" stroke="#F7941D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="22" cy="22" r="16" stroke="var(--gold)" stroke-width="2.5" fill="rgba(247,148,29,0.1)"/>
+          <path d="M22 14 L22 22 L28 26" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <div class="value-name">Eternity</div>
