@@ -101,7 +101,7 @@
     /* ── HERO ── */
     .hero {
       flex: 1;
-      background: linear-gradient(160deg, var(--navy) 0%, #1a2a5e 55%, #0d1b3e 100%);
+      background: linear-gradient(160deg, var(--navy) 0%, #1a2a5e 55%, var(--navy) 100%);
       padding: 32px 40px 28px;
       text-align: center;
       position: relative;
@@ -681,14 +681,14 @@
       background: #fff;
       border-radius: 6px;
       border: 1px solid rgba(0, 0, 0, 0.08);
-      border-left: 5px solid #F7941D;
+      border-left: 5px solid var(--gold);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
     }
     .gsb-share-title {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: 16px;
       font-weight: 700;
-      color: #0d1b3e;
+      color: var(--navy);
       margin-bottom: 12px;
     }
     .gsb-share-buttons {
@@ -722,13 +722,13 @@
     /* ── LANGUAGE SWITCHER (added by i18n pilot batch) ── */
     .gsb-lang-switcher {
       position: fixed; top: 10px; right: 10px; z-index: 9999;
-      background: rgba(13,27,62,0.92); border: 1px solid #F7941D; border-radius: 20px;
+      background: rgba(13,27,62,0.92); border: 1px solid var(--gold); border-radius: 20px;
       padding: 6px 14px; font-family: Arial, sans-serif; font-size: 12px; font-weight: 700;
       display: flex; gap: 8px; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
     .gsb-lang-switcher a { color: rgba(255,255,255,0.75); text-decoration: none; }
-    .gsb-lang-switcher a:hover { color: #F7941D; }
-    .gsb-lang-switcher .gsb-lang-current { color: #F7941D; }
+    .gsb-lang-switcher a:hover { color: var(--gold); }
+    .gsb-lang-switcher .gsb-lang-current { color: var(--gold); }
     .gsb-lang-switcher .gsb-lang-sep { color: rgba(255,255,255,0.35); }
     @media (max-width:600px) { .gsb-lang-switcher { top: 4px; right: 4px; padding: 4px 8px; font-size: 10px; gap: 5px; } }
   </style>
@@ -770,10 +770,10 @@
       <a class="city-card" href="../../04-gurudwaras/32-tamil-nadu/01-c/04-32-01-gurudwaras-in-chennai.html">
         <div class="city-icon">
           <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 3 L16 8" stroke="#F7941D" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="16" cy="10.5" r="2.5" fill="#F7941D"/>
-            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="#F7941D" stroke-width="2" fill="rgba(247,148,29,0.25)" stroke-linejoin="round"/>
-            <rect x="5" y="27" width="22" height="3" rx="1" fill="#F7941D"/>
+            <path d="M16 3 L16 8" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="10.5" r="2.5" fill="var(--gold)"/>
+            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="var(--gold)" stroke-width="2" fill="rgba(247,148,29,0.25)" stroke-linejoin="round"/>
+            <rect x="5" y="27" width="22" height="3" rx="1" fill="var(--gold)"/>
           </svg>
         </div>
         <div class="city-body">
@@ -792,10 +792,10 @@
       <div class="city-card soon">
         <div class="city-icon">
           <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 3 L16 8" stroke="#F7941D" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="16" cy="10.5" r="2.5" fill="#F7941D"/>
-            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="#F7941D" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
-            <rect x="5" y="27" width="22" height="3" rx="1" fill="#F7941D"/>
+            <path d="M16 3 L16 8" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="10.5" r="2.5" fill="var(--gold)"/>
+            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="var(--gold)" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
+            <rect x="5" y="27" width="22" height="3" rx="1" fill="var(--gold)"/>
           </svg>
         </div>
         <div class="city-body">
@@ -808,10 +808,10 @@
       <div class="city-card soon">
         <div class="city-icon">
           <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 3 L16 8" stroke="#F7941D" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="16" cy="10.5" r="2.5" fill="#F7941D"/>
-            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="#F7941D" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
-            <rect x="5" y="27" width="22" height="3" rx="1" fill="#F7941D"/>
+            <path d="M16 3 L16 8" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="10.5" r="2.5" fill="var(--gold)"/>
+            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="var(--gold)" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
+            <rect x="5" y="27" width="22" height="3" rx="1" fill="var(--gold)"/>
           </svg>
         </div>
         <div class="city-body">
@@ -824,10 +824,10 @@
       <div class="city-card soon">
         <div class="city-icon">
           <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 3 L16 8" stroke="#F7941D" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="16" cy="10.5" r="2.5" fill="#F7941D"/>
-            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="#F7941D" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
-            <rect x="5" y="27" width="22" height="3" rx="1" fill="#F7941D"/>
+            <path d="M16 3 L16 8" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="10.5" r="2.5" fill="var(--gold)"/>
+            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="var(--gold)" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
+            <rect x="5" y="27" width="22" height="3" rx="1" fill="var(--gold)"/>
           </svg>
         </div>
         <div class="city-body">
@@ -840,10 +840,10 @@
       <div class="city-card soon">
         <div class="city-icon">
           <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 3 L16 8" stroke="#F7941D" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="16" cy="10.5" r="2.5" fill="#F7941D"/>
-            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="#F7941D" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
-            <rect x="5" y="27" width="22" height="3" rx="1" fill="#F7941D"/>
+            <path d="M16 3 L16 8" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="10.5" r="2.5" fill="var(--gold)"/>
+            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="var(--gold)" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
+            <rect x="5" y="27" width="22" height="3" rx="1" fill="var(--gold)"/>
           </svg>
         </div>
         <div class="city-body">
@@ -856,10 +856,10 @@
       <div class="city-card soon">
         <div class="city-icon">
           <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 3 L16 8" stroke="#F7941D" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="16" cy="10.5" r="2.5" fill="#F7941D"/>
-            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="#F7941D" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
-            <rect x="5" y="27" width="22" height="3" rx="1" fill="#F7941D"/>
+            <path d="M16 3 L16 8" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="10.5" r="2.5" fill="var(--gold)"/>
+            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="var(--gold)" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
+            <rect x="5" y="27" width="22" height="3" rx="1" fill="var(--gold)"/>
           </svg>
         </div>
         <div class="city-body">
@@ -872,10 +872,10 @@
       <div class="city-card soon">
         <div class="city-icon">
           <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 3 L16 8" stroke="#F7941D" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="16" cy="10.5" r="2.5" fill="#F7941D"/>
-            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="#F7941D" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
-            <rect x="5" y="27" width="22" height="3" rx="1" fill="#F7941D"/>
+            <path d="M16 3 L16 8" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="10.5" r="2.5" fill="var(--gold)"/>
+            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="var(--gold)" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
+            <rect x="5" y="27" width="22" height="3" rx="1" fill="var(--gold)"/>
           </svg>
         </div>
         <div class="city-body">
@@ -888,10 +888,10 @@
       <div class="city-card soon">
         <div class="city-icon">
           <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 3 L16 8" stroke="#F7941D" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="16" cy="10.5" r="2.5" fill="#F7941D"/>
-            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="#F7941D" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
-            <rect x="5" y="27" width="22" height="3" rx="1" fill="#F7941D"/>
+            <path d="M16 3 L16 8" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="10.5" r="2.5" fill="var(--gold)"/>
+            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="var(--gold)" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
+            <rect x="5" y="27" width="22" height="3" rx="1" fill="var(--gold)"/>
           </svg>
         </div>
         <div class="city-body">
@@ -904,10 +904,10 @@
       <div class="city-card soon">
         <div class="city-icon">
           <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 3 L16 8" stroke="#F7941D" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="16" cy="10.5" r="2.5" fill="#F7941D"/>
-            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="#F7941D" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
-            <rect x="5" y="27" width="22" height="3" rx="1" fill="#F7941D"/>
+            <path d="M16 3 L16 8" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="10.5" r="2.5" fill="var(--gold)"/>
+            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="var(--gold)" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
+            <rect x="5" y="27" width="22" height="3" rx="1" fill="var(--gold)"/>
           </svg>
         </div>
         <div class="city-body">
@@ -920,10 +920,10 @@
       <div class="city-card soon">
         <div class="city-icon">
           <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 3 L16 8" stroke="#F7941D" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="16" cy="10.5" r="2.5" fill="#F7941D"/>
-            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="#F7941D" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
-            <rect x="5" y="27" width="22" height="3" rx="1" fill="#F7941D"/>
+            <path d="M16 3 L16 8" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="10.5" r="2.5" fill="var(--gold)"/>
+            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="var(--gold)" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
+            <rect x="5" y="27" width="22" height="3" rx="1" fill="var(--gold)"/>
           </svg>
         </div>
         <div class="city-body">
@@ -936,10 +936,10 @@
       <div class="city-card soon">
         <div class="city-icon">
           <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 3 L16 8" stroke="#F7941D" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="16" cy="10.5" r="2.5" fill="#F7941D"/>
-            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="#F7941D" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
-            <rect x="5" y="27" width="22" height="3" rx="1" fill="#F7941D"/>
+            <path d="M16 3 L16 8" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="10.5" r="2.5" fill="var(--gold)"/>
+            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="var(--gold)" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
+            <rect x="5" y="27" width="22" height="3" rx="1" fill="var(--gold)"/>
           </svg>
         </div>
         <div class="city-body">
@@ -952,10 +952,10 @@
       <div class="city-card soon">
         <div class="city-icon">
           <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 3 L16 8" stroke="#F7941D" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="16" cy="10.5" r="2.5" fill="#F7941D"/>
-            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="#F7941D" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
-            <rect x="5" y="27" width="22" height="3" rx="1" fill="#F7941D"/>
+            <path d="M16 3 L16 8" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="10.5" r="2.5" fill="var(--gold)"/>
+            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="var(--gold)" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
+            <rect x="5" y="27" width="22" height="3" rx="1" fill="var(--gold)"/>
           </svg>
         </div>
         <div class="city-body">
@@ -968,10 +968,10 @@
       <div class="city-card soon">
         <div class="city-icon">
           <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 3 L16 8" stroke="#F7941D" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="16" cy="10.5" r="2.5" fill="#F7941D"/>
-            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="#F7941D" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
-            <rect x="5" y="27" width="22" height="3" rx="1" fill="#F7941D"/>
+            <path d="M16 3 L16 8" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="10.5" r="2.5" fill="var(--gold)"/>
+            <path d="M7 27 L7 19 C7 14 11 12 16 12 C21 12 25 14 25 19 L25 27 Z" stroke="var(--gold)" stroke-width="2" fill="rgba(247,148,29,0.12)" stroke-linejoin="round"/>
+            <rect x="5" y="27" width="22" height="3" rx="1" fill="var(--gold)"/>
           </svg>
         </div>
         <div class="city-body">
