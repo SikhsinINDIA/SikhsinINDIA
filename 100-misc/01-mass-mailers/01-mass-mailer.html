@@ -436,16 +436,25 @@
     /* ---------------- TEMPLATE (SAVED FORMAT) CRUD ---------------- */
     let currentTemplateId = null; // null = unsaved/new draft
 
+    // Absolute URL (not the site-relative "../../pictures/..." this page's own
+    // header uses) because this HTML is read by recipients' email clients,
+    // which have no notion of "relative to this page".
+    const DEFAULT_BODY_HTML =
+      '<div style="text-align:center;margin-bottom:20px;">' +
+      '<img src="https://sikhsinindia.com/pictures/00-index/sikhsinindia.png" alt="Sikhs In India" style="height:80px;">' +
+      '</div><p><br></p>';
+
     function clearComposer() {
       currentTemplateId = null;
       document.getElementById("fName").value = "";
       document.getElementById("fSubject").value = "";
-      bodyEditor.innerHTML = "";
+      bodyEditor.innerHTML = DEFAULT_BODY_HTML;
       attachments = [];
       renderAttachmentChips();
       document.getElementById("saveStatus").textContent = "";
     }
     window.newTemplate = clearComposer;
+    clearComposer(); // start every fresh visit with the logo header already in place
 
     function loadTemplateIntoComposer(id, data) {
       currentTemplateId = id;
