@@ -122,8 +122,7 @@
       }
 
       body =
-        chip +
-        '<div class="tsh-lead">' + lead + '</div>' +
+        '<div class="tsh-lead-row">' + chip + '<span class="tsh-lead">' + lead + '</span></div>' +
         '<h3 class="tsh-title">' + esc(rec.title) + '</h3>' +
         (rec.detail ? '<p class="tsh-detail">' + esc(truncate(rec.detail, MAX_DETAIL_CHARS)) + '</p>' : '') +
         (rec.anchored ? '' :
@@ -135,7 +134,7 @@
     mount.innerHTML =
       '<div class="tsh-card">' +
         '<div class="tsh-head">' +
-          '<div class="tsh-kicker">Today in Sikh History</div>' +
+          '<div class="tsh-kicker">&#128220; Today in Sikh History</div>' +
           '<div class="tsh-date">' + esc(longDate(d)) +
             (rec && rec.nanakshahi ? ' <span class="tsh-dot">&middot;</span> ' +
               esc(rec.nanakshahi) + ' <span class="tsh-nk">Nanakshahi</span>' : '') +
@@ -198,7 +197,7 @@
         console.error('Today in Sikh History: could not load ' + DATA_URL, err);
         mount.innerHTML =
           '<div class="tsh-card"><div class="tsh-head">' +
-          '<div class="tsh-kicker">Today in Sikh History</div></div>' +
+          '<div class="tsh-kicker">&#128220; Today in Sikh History</div></div>' +
           '<div class="tsh-body"><p class="tsh-none">This feature is briefly unavailable.</p>' +
           '</div></div>';
       });
