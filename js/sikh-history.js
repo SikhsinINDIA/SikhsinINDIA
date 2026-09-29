@@ -15,8 +15,14 @@
   var MOUNT_ID = 'todaySikhHistory';
   var DATA_URL = 'data/sikh-history.json';
 
-  /* how many of the day's other events the homepage card lists */
-  var MAX_ON_CARD = 4;
+  /* how many of the day's other events the homepage card lists.
+     Kept small (rather than the full-page's list) so this card's
+     height stays close to the Hukamnama card next to it. */
+  var MAX_ON_CARD = 2;
+
+  /* the main event description is capped too, for the same reason -
+     some days' "detail" text runs much longer than others. */
+  var MAX_DETAIL_CHARS = 150;
 
   var MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'];
@@ -32,6 +38,17 @@
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');
+  }
+
+  /* Cuts at the last full word before the limit, so the card never
+     mid-word-truncates a long "detail" entry. */
+  function truncate(s, max) {
+    s = String(s == null ? '' : s);
+    if (s.length <= max) return s;
+    var cut = s.slice(0, max);
+    var lastSpace = cut.lastIndexOf(' ');
+    if (lastSpace > 0) cut = cut.slice(0, lastSpace);
+    return cut.replace(/[.,;:\s]+$/, '') + '…';
   }
 
   /* The sheet has no 29 February, so on a leap day we show 28 February. */
@@ -108,7 +125,7 @@
         chip +
         '<div class="tsh-lead">' + lead + '</div>' +
         '<h3 class="tsh-title">' + esc(rec.title) + '</h3>' +
-        (rec.detail ? '<p class="tsh-detail">' + esc(rec.detail) + '</p>' : '') +
+        (rec.detail ? '<p class="tsh-detail">' + esc(truncate(rec.detail, MAX_DETAIL_CHARS)) + '</p>' : '') +
         (rec.anchored ? '' :
           '<p class="tsh-caveat">This day has no single recorded event in our records; ' +
           'the theme above is offered for reflection.</p>') +

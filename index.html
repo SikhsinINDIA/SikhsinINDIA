@@ -441,7 +441,7 @@
   .tsh-dot { color: var(--orange); }
   .tsh-nk  { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; opacity: 0.65; }
 
-  .tsh-body { padding: 18px 22px 14px; text-align: center; }
+  .tsh-body { padding: 16px 20px 12px; text-align: center; }
   .tsh-chip {
     display: inline-block;
     font-size: 9.5px;
@@ -461,37 +461,37 @@
     text-transform: uppercase;
     color: var(--orange);
     font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
   .tsh-title {
-    font-size: 22px;
+    font-size: 19px;
     font-weight: 800;
     color: var(--navy);
     line-height: 1.25;
-    margin: 0 0 8px;
+    margin: 0 0 6px;
   }
   .tsh-detail {
-    font-size: 14px;
+    font-size: 13px;
     color: #333;
-    line-height: 1.65;
+    line-height: 1.55;
     margin: 0 auto;
     max-width: 640px;
   }
   .tsh-caveat {
-    font-size: 11.5px;
+    font-size: 11px;
     color: #777;
     font-style: italic;
-    margin: 10px auto 0;
+    margin: 6px auto 0;
     max-width: 600px;
-    line-height: 1.5;
+    line-height: 1.45;
   }
   .tsh-none { font-size: 14px; color: #666; margin: 6px 0; }
 
   /* the day's remaining recorded events, listed under the headline */
   .tsh-more {
-    margin: 16px auto 0;
+    margin: 10px auto 0;
     max-width: 640px;
-    padding-top: 12px;
+    padding-top: 8px;
     border-top: 1px solid rgba(0, 43, 109, .12);
     text-align: left;
   }
@@ -501,39 +501,39 @@
     text-transform: uppercase;
     color: var(--orange);
     font-weight: 800;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
   }
   .tsh-more-list { list-style: none; margin: 0; padding: 0; }
   .tsh-more-list li {
-    font-size: 13px;
+    font-size: 12px;
     color: #333;
-    line-height: 1.55;
-    padding: 5px 0 5px 62px;
+    line-height: 1.45;
+    padding: 3px 0 3px 56px;
     position: relative;
   }
   .tsh-more-year {
     position: absolute;
     left: 0;
-    top: 5px;
-    width: 52px;
+    top: 3px;
+    width: 48px;
     font-weight: 800;
-    font-size: 12px;
+    font-size: 11.5px;
     color: var(--navy);
     font-variant-numeric: tabular-nums;
   }
   .tsh-more-note {
     display: block;
-    font-size: 11px;
+    font-size: 10.5px;
     font-style: italic;
     color: #777;
-    margin-top: 2px;
+    margin-top: 1px;
   }
   .tsh-more-rest {
-    font-size: 11.5px;
+    font-size: 11px;
     color: #777;
     font-style: italic;
-    margin-top: 8px;
-    padding-left: 62px;
+    margin-top: 5px;
+    padding-left: 56px;
   }
 
   .tsh-nav {
@@ -612,12 +612,22 @@
   .today-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: start;
+    align-items: stretch;
     gap: 20px;
     max-width: 1180px;
     margin: 0 auto;
   }
-  .today-grid .tsh-card { max-width: none; }
+  /* Match the Hukamnama card's height: whichever card is naturally
+     shorter stretches to fill it, with its body flexing (like
+     .hnm-body) so the nav/explore footer still sits at the bottom
+     instead of leaving a gap in the middle. */
+  .today-grid .tsh-card {
+    max-width: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .today-grid .tsh-body { flex: 1; }
   @media (max-width: 900px) {
     .today-grid { grid-template-columns: 1fr; gap: 14px; }
   }
