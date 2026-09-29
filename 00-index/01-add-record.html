@@ -203,6 +203,35 @@
       font-weight: 900;
     }
 
+    /* WHATSAPP OPT-IN CHECKBOX (plain text, not a shouty field label) */
+    .checkbox-group {
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      padding: 12px 14px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: normal;
+      color: #444;
+      margin-bottom: 0;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      width: auto;
+      flex-shrink: 0;
+      margin-top: 3px;
+      cursor: pointer;
+    }
+
     input[type="text"],
     input[type="email"],
     input[type="password"],
@@ -460,6 +489,13 @@
               <input type="tel" id="mobile" placeholder="9 digits or more" required />
             </div>
 
+            <div class="form-group full-width checkbox-group">
+              <label class="checkbox-label" for="waConsent">
+                <input type="checkbox" id="waConsent">
+                <span>I agree to receive WhatsApp messages (event reminders, greetings, announcements) from Sikhs In India on the mobile number above. Optional — you can still register without this, and can change your mind later.</span>
+              </label>
+            </div>
+
             <div class="form-group">
               <label for="age">Age</label>
               <input type="number" id="age" placeholder="Your age" />
@@ -560,6 +596,7 @@
             document.getElementById("gname").value = "";
       document.getElementById("password").value = "";
       document.getElementById("mobile").value = "";
+      document.getElementById("waConsent").checked = false;
       document.getElementById("age").value = "";
       document.getElementById("address").value = "";
       document.getElementById("city").value = "";
@@ -644,6 +681,7 @@
       const gname = document.getElementById("gname").value.trim();
       const password = document.getElementById("password").value;
       const mobile = document.getElementById("mobile").value.trim();
+      const waConsent = document.getElementById("waConsent").checked;
       const ageVal = document.getElementById("age").value.trim();
       const address = document.getElementById("address").value.trim();
       const city = document.getElementById("city").value.trim();
@@ -682,6 +720,8 @@
         GreetingName: gname,
         Password: password,
         Mobile: Number(mobile),
+        wa_consent: waConsent,
+        wa_consent_at: waConsent ? firebase.firestore.FieldValue.serverTimestamp() : null,
         Age: ageVal ? Number(ageVal) : null,
         Address: address,
         City: city,
