@@ -1,60 +1,92 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-09-28",
-  "dateDisplay": "28 September 2026",
-  "ang": 671,
+  "date": "2026-09-29",
+  "dateDisplay": "29 September 2026",
+  "ang": 664,
   "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
   "raagEnglish": "Raag Dhanaasree",
-  "writerEnglish": "Guru Arjan Dev Ji",
-  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
-  "titleEnglish": "Dhanaasaree, Fifth Mehla:",
-  "verseGurmukhi": "ਜਿਸ ਕਾ ਤਨੁ ਮਨੁ ਧਨੁ ਸਭੁ ਤਿਸ ਕਾ ਸੋਈ ਸੁਘੜੁ ਸੁਜਾਨੀ ॥",
-  "verseTranslation": "Body, mind, wealth and everything belong to Him; He alone is all-wise and all-knowing.",
+  "writerEnglish": "Guru Amar Daas Ji",
+  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੩ ॥",
+  "titleEnglish": "Dhanaasaree, Third Mehla:",
+  "verseGurmukhi": "ਸਦਾ ਧਨੁ ਅੰਤਰਿ ਨਾਮੁ ਸਮਾਲੇ ॥",
+  "verseTranslation": "Gather in and cherish forever the wealth of the Lord's Name, deep within;",
   "verses": [
     {
-      "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
-      "translation": "Dhanaasaree, Fifth Mehla:"
+      "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੩ ॥",
+      "translation": "Dhanaasaree, Third Mehla:"
     },
     {
-      "gurmukhi": "ਜਿਸ ਕਾ ਤਨੁ ਮਨੁ ਧਨੁ ਸਭੁ ਤਿਸ ਕਾ ਸੋਈ ਸੁਘੜੁ ਸੁਜਾਨੀ ॥",
-      "translation": "Body, mind, wealth and everything belong to Him; He alone is all-wise and all-knowing."
+      "gurmukhi": "ਸਦਾ ਧਨੁ ਅੰਤਰਿ ਨਾਮੁ ਸਮਾਲੇ ॥",
+      "translation": "Gather in and cherish forever the wealth of the Lord's Name, deep within;"
     },
     {
-      "gurmukhi": "ਤਿਨ ਹੀ ਸੁਣਿਆ ਦੁਖੁ ਸੁਖੁ ਮੇਰਾ ਤਉ ਬਿਧਿ ਨੀਕੀ ਖਟਾਨੀ ॥੧॥",
-      "translation": "He listens to my pains and pleasures, and then my condition improves. ||1||"
+      "gurmukhi": "ਜੀਅ ਜੰਤ ਜਿਨਹਿ ਪ੍ਰਤਿਪਾਲੇ ॥",
+      "translation": "He cherishes and nurtures all beings and creatures."
     },
     {
-      "gurmukhi": "ਜੀਅ ਕੀ ਏਕੈ ਹੀ ਪਹਿ ਮਾਨੀ ॥",
-      "translation": "My soul is satisfied with the One Lord alone."
+      "gurmukhi": "ਮੁਕਤਿ ਪਦਾਰਥੁ ਤਿਨ ਕਉ ਪਾਏ ॥",
+      "translation": "They alone obtain the treasure of Liberation,"
     },
     {
-      "gurmukhi": "ਅਵਰਿ ਜਤਨ ਕਰਿ ਰਹੇ ਬਹੁਤੇਰੇ ਤਿਨ ਤਿਲੁ ਨਹੀ ਕੀਮਤਿ ਜਾਨੀ ॥ ਰਹਾਉ ॥",
-      "translation": "People make all sorts of other efforts, but they have no value at all. ||Pause||"
+      "gurmukhi": "ਹਰਿ ਕੈ ਨਾਮਿ ਰਤੇ ਲਿਵ ਲਾਏ ॥੧॥",
+      "translation": "who are lovingly imbued with, and focused on the Lord's Name. ||1||"
     },
     {
-      "gurmukhi": "ਅੰਮ੍ਰਿਤ ਨਾਮੁ ਨਿਰਮੋਲਕੁ ਹੀਰਾ ਗੁਰਿ ਦੀਨੋ ਮੰਤਾਨੀ ॥",
-      "translation": "The Ambrosial Naam, the Name of the Lord, is a priceless jewel. The Guru has given me this advice."
+      "gurmukhi": "ਗੁਰ ਸੇਵਾ ਤੇ ਹਰਿ ਨਾਮੁ ਧਨੁ ਪਾਵੈ ॥",
+      "translation": "Serving the Guru, one obtains the wealth of the Lord's Name."
     },
     {
-      "gurmukhi": "ਡਿਗੈ ਨ ਡੋਲੈ ਦ੍ਰਿੜੁ ਕਰਿ ਰਹਿਓ ਪੂਰਨ ਹੋਇ ਤ੍ਰਿਪਤਾਨੀ ॥੨॥",
-      "translation": "It cannot be lost, and it cannot be shaken off; it remains steady, and I am perfectly satisfied with it. ||2||"
+      "gurmukhi": "ਅੰਤਰਿ ਪਰਗਾਸੁ ਹਰਿ ਨਾਮੁ ਧਿਆਵੈ ॥ ਰਹਾਉ ॥",
+      "translation": "He is illumined and enlightened within, and he meditates on the Lord's Name. ||Pause||"
     },
     {
-      "gurmukhi": "ਓਇ ਜੁ ਬੀਚ ਹਮ ਤੁਮ ਕਛੁ ਹੋਤੇ ਤਿਨ ਕੀ ਬਾਤ ਬਿਲਾਨੀ ॥",
-      "translation": "Those things which tore me away from You, Lord, are now gone."
+      "gurmukhi": "ਇਹੁ ਹਰਿ ਰੰਗੁ ਗੂੜਾ ਧਨ ਪਿਰ ਹੋਇ ॥",
+      "translation": "This love for the Lord is like the love of the bride for her husband."
     },
     {
-      "gurmukhi": "ਅਲੰਕਾਰ ਮਿਲਿ ਥੈਲੀ ਹੋਈ ਹੈ ਤਾ ਤੇ ਕਨਿਕ ਵਖਾਨੀ ॥੩॥",
-      "translation": "When golden ornaments are melted down into a lump, they are still said to be gold. ||3||"
+      "gurmukhi": "ਸਾਂਤਿ ਸੀਗਾਰੁ ਰਾਵੇ ਪ੍ਰਭੁ ਸੋਇ ॥",
+      "translation": "God ravishes and enjoys the soul-bride who is adorned with peace and tranquility."
     },
     {
-      "gurmukhi": "ਪ੍ਰਗਟਿਓ ਜੋਤਿ ਸਹਜ ਸੁਖ ਸੋਭਾ ਬਾਜੇ ਅਨਹਤ ਬਾਨੀ ॥",
-      "translation": "The Divine Light has illuminated me, and I am filled with celestial peace and glory; the unstruck melody of the Lord's Bani resounds within me."
+      "gurmukhi": "ਹਉਮੈ ਵਿਚਿ ਪ੍ਰਭੁ ਕੋਇ ਨ ਪਾਏ ॥",
+      "translation": "No one finds God through egotism."
     },
     {
-      "gurmukhi": "ਕਹੁ ਨਾਨਕ ਨਿਹਚਲ ਘਰੁ ਬਾਧਿਓ ਗੁਰਿ ਕੀਓ ਬੰਧਾਨੀ ॥੪॥੫॥",
-      "translation": "Says Nanak, I have built my eternal home; the Guru has constructed it for me. ||4||5||"
+      "gurmukhi": "ਮੂਲਹੁ ਭੁਲਾ ਜਨਮੁ ਗਵਾਏ ॥੨॥",
+      "translation": "Wandering away from the Primal Lord, the root of all, one wastes his life in vain. ||2||"
+    },
+    {
+      "gurmukhi": "ਗੁਰ ਤੇ ਸਾਤਿ ਸਹਜ ਸੁਖੁ ਬਾਣੀ ॥",
+      "translation": "Tranquility, celestial peace, pleasure and the Word of His Bani come from the Guru."
+    },
+    {
+      "gurmukhi": "ਸੇਵਾ ਸਾਚੀ ਨਾਮਿ ਸਮਾਣੀ ॥",
+      "translation": "True is that service, which leads one to merge in the Naam."
+    },
+    {
+      "gurmukhi": "ਸਬਦਿ ਮਿਲੈ ਪ੍ਰੀਤਮੁ ਸਦਾ ਧਿਆਏ ॥",
+      "translation": "Blessed with the Word of the Shabad, he meditates forever on the Lord, the Beloved."
+    },
+    {
+      "gurmukhi": "ਸਾਚ ਨਾਮਿ ਵਡਿਆਈ ਪਾਏ ॥੩॥",
+      "translation": "Through the True Name, glorious greatness is obtained. ||3||"
+    },
+    {
+      "gurmukhi": "ਆਪੇ ਕਰਤਾ ਜੁਗਿ ਜੁਗਿ ਸੋਇ ॥",
+      "translation": "The Creator Himself abides throughout the ages."
+    },
+    {
+      "gurmukhi": "ਨਦਰਿ ਕਰੇ ਮੇਲਾਵਾ ਹੋਇ ॥",
+      "translation": "If He casts His Glance of Grace, then we meet Him."
+    },
+    {
+      "gurmukhi": "ਗੁਰਬਾਣੀ ਤੇ ਹਰਿ ਮੰਨਿ ਵਸਾਏ ॥",
+      "translation": "Through the Word of Gurbani, the Lord comes to dwell in the mind."
+    },
+    {
+      "gurmukhi": "ਨਾਨਕ ਸਾਚਿ ਰਤੇ ਪ੍ਰਭਿ ਆਪਿ ਮਿਲਾਏ ॥੪॥੩॥",
+      "translation": "O Nanak, God unites with Himself those who are imbued with Truth. ||4||3||"
     }
   ],
-  "updated": "2026-09-28T07:10:37.348Z"
+  "updated": "2026-09-29T07:07:51.756Z"
 };
