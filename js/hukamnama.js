@@ -16,8 +16,8 @@
      by count AND a rough character budget, since some Hukamnamas run
      much longer per verse than others; "Read Full Hukamnama" covers
      the rest either way. */
-  var MAX_VERSES_ON_CARD = 3;
-  var CHAR_BUDGET = 340;
+  var MAX_VERSES_ON_CARD = 2;
+  var CHAR_BUDGET = 230;
 
   function esc(s) {
     return String(s == null ? '' : s)
