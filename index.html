@@ -620,10 +620,15 @@
   /* Match the Hukamnama card's height: whichever card is naturally
      shorter stretches to fill it, with its body flexing (like
      .hnm-body) so the nav/explore footer still sits at the bottom
-     instead of leaving a gap in the middle. */
-  .today-grid .tsh-card {
+     instead of leaving a gap in the middle.
+     The mount divs are made flex containers so the card inside can
+     use flex:1 to fill them - relying on height:100% through a
+     grid-stretched block box doesn't reliably resolve here. */
+  .today-grid > div { display: flex; }
+  .today-grid .tsh-card,
+  .today-grid .hnm-card {
     max-width: none;
-    height: 100%;
+    flex: 1;
     display: flex;
     flex-direction: column;
   }
