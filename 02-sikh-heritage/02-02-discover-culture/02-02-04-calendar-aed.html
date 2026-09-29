@@ -553,9 +553,18 @@
               <input type="datetime-local" id="eventDate" required>
             </div>
 
+            <div class="form-group">
+              <label for="templateNumber">Template Number (optional):</label>
+              <input type="number" id="templateNumber" min="1" step="1" placeholder="e.g. 1">
+            </div>
+
             <div class="form-group form-group-full">
               <label for="description">Description (String):</label>
               <textarea id="description" rows="3" placeholder="e.g. 1st Prakash - Sri Guru Granth Sahib Ji" required></textarea>
+              <p style="font-size:12px;color:#666;margin-top:6px;">Set a Template Number to match a saved format in
+                the Mass Mailer (100-misc/01-mass-mailers) — every registered member is then emailed that format
+                automatically at 8:00 AM IST on this event's date, with no manual sending. Leave blank for events
+                that are just informational and shouldn't trigger a mail.</p>
             </div>
           </div>
 
@@ -574,12 +583,13 @@
               <th>Category</th>
               <th>Date & Time</th>
               <th>Description</th>
+              <th>Template #</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody id="calendarList">
             <tr>
-              <td colspan="4" style="text-align:center;">Loading records...</td>
+              <td colspan="5" style="text-align:center;">Loading records...</td>
             </tr>
           </tbody>
         </table>
@@ -632,7 +642,7 @@
         const snapshot = await db.collection("Calendar").orderBy("Date", "asc").get();
 
         if (snapshot.empty) {
-          calendarList.innerHTML = "<tr><td colspan='4' style='text-align:center;'>No events found.</td></tr>";
+          calendarList.innerHTML = "<tr><td colspan='5' style='text-align:center;'>No events found.</td></tr>";
           eventsCache = [];
           return;
         }
@@ -668,7 +678,7 @@
 
           renderTable();
         } catch (err) {
-          calendarList.innerHTML = "<tr><td colspan='4' style='text-align:center;'>Error loading data.</td></tr>";
+          calendarList.innerHTML = "<tr><td colspan='5' style='text-align:center;'>Error loading data.</td></tr>";
         }
       }
     }
@@ -692,6 +702,7 @@
           <td data-label="Category">${item.Category || ""}</td>
           <td data-label="Date & Time">${formattedDate}</td>
           <td data-label="Description">${item.Description || ""}</td>
+          <td data-label="Template #">${item.TemplateNumber != null ? item.TemplateNumber : "—"}</td>
           <td>
             <button class="btn-table-edit" onclick="editRecord('${item.id}')">Edit</button>
             <button class="btn-table-delete" onclick="deleteRecord('${item.id}')">Delete</button>
@@ -709,6 +720,13 @@
       const category = document.getElementById("category").value;
       const dateInput = document.getElementById("eventDate").value;
       const description = document.getElementById("description").value.trim();
+      const templateNumberRaw = document.getElementById("templateNumber").value.trim();
+      const templateNumber = templateNumberRaw ? parseInt(templateNumberRaw, 10) : null;
+
+      if (templateNumberRaw && (!Number.isInteger(templateNumber) || templateNumber < 1)) {
+        alert("Template Number must be a whole number of 1 or more (or left blank).");
+        return;
+      }
 
       const jsDate = new Date(dateInput);
       const firestoreTimestamp = firebase.firestore.Timestamp.fromDate(jsDate);
@@ -716,7 +734,8 @@
       const recordData = {
         Category: category,
         Date: firestoreTimestamp,
-        Description: description
+        Description: description,
+        TemplateNumber: templateNumber
       };
 
       try {
@@ -744,6 +763,7 @@
       document.getElementById("docId").value = item.id;
       document.getElementById("category").value = item.Category || "";
       document.getElementById("description").value = item.Description || "";
+      document.getElementById("templateNumber").value = item.TemplateNumber != null ? item.TemplateNumber : "";
 
       if (item.Date && item.Date.toDate) {
         const dateObj = item.Date.toDate();

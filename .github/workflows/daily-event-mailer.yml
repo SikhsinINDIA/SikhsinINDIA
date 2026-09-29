@@ -1,0 +1,30 @@
+name: Daily Calendar-Event Mailer
+
+# Uses the SAME FIREBASE_SERVICE_ACCOUNT_JSON secret already set up for
+# .github/workflows/akhand-path-reminders.yml - nothing new to configure.
+# If that secret isn't set yet, this fails at the "Send today's event
+# mail" step with a clear error; nothing else in the site is affected.
+
+on:
+  schedule:
+    # 02:30 UTC = 08:00 IST year-round (India has no daylight saving).
+    - cron: '30 2 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --omit=dev firebase-admin
+
+      - name: Send today's event mail
+        env:
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+        run: node scripts/send-daily-event-mailer.js

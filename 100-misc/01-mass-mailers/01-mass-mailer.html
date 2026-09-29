@@ -104,6 +104,14 @@
                 <label>Subject</label>
                 <input id="fSubject" type="text" placeholder="e.g. News from Sikhs In India — {{name}}, don't miss this!">
               </div>
+              <div class="form-row">
+                <label>Template Number</label>
+                <input id="fTemplateNumber" type="number" min="1" step="1" placeholder="e.g. 1">
+                <p class="muted" style="margin-top: 6px;">Optional. Set this to match a Calendar event's own
+                  "Template Number" field — the daily auto-mailer sends this exact format to every member on that
+                  event's date, at 8:00 AM IST, with no one needing to click Send. Leave blank for formats you'll
+                  only ever send manually.</p>
+              </div>
             </div>
 
             <div class="form-row">
@@ -482,6 +490,7 @@
       loadedTemplateName = null;
       document.getElementById("fName").value = "";
       document.getElementById("fSubject").value = "";
+      document.getElementById("fTemplateNumber").value = "";
       bodyEditor.innerHTML = DEFAULT_BODY_HTML;
       attachments = [];
       renderAttachmentChips();
@@ -496,6 +505,7 @@
       loadedTemplateName = data.name || "";
       document.getElementById("fName").value = data.name || "";
       document.getElementById("fSubject").value = data.subject || "";
+      document.getElementById("fTemplateNumber").value = data.template_number != null ? data.template_number : "";
       bodyEditor.innerHTML = data.bodyHtml || "";
       attachments = Array.isArray(data.attachments) ? data.attachments.map((a) => ({ ...a })) : [];
       renderAttachmentChips();
@@ -532,15 +542,35 @@
       const name = document.getElementById("fName").value.trim();
       const subject = document.getElementById("fSubject").value.trim();
       const bodyHtml = bodyEditor.innerHTML.trim();
+      const templateNumberRaw = document.getElementById("fTemplateNumber").value.trim();
+      const templateNumber = templateNumberRaw ? parseInt(templateNumberRaw, 10) : null;
 
       if (!name) { status.textContent = "Enter a Format Name before saving."; return; }
       if (!subject) { status.textContent = "Enter a Subject before saving."; return; }
+      if (templateNumberRaw && (!Number.isInteger(templateNumber) || templateNumber < 1)) {
+        status.textContent = "Template Number must be a whole number of 1 or more (or left blank).";
+        return;
+      }
+
+      // The daily auto-mailer looks a Calendar event's Template Number up
+      // against this field, so two formats sharing the same number would
+      // make that lookup ambiguous — block it here rather than silently
+      // picking whichever one Firestore happens to return first.
+      if (templateNumber != null) {
+        const clash = await db.collection(TEMPLATES_COLLECTION).where("template_number", "==", templateNumber).get();
+        const clashesWithAnother = clash.docs.some((d) => d.id !== currentTemplateId);
+        if (clashesWithAnother) {
+          status.textContent = `Template Number ${templateNumber} is already used by "${clash.docs.find((d) => d.id !== currentTemplateId).data().name}" — pick a different number.`;
+          return;
+        }
+      }
 
       const data = {
         name,
         subject,
         bodyHtml,
         attachments,
+        template_number: templateNumber,
         updated_at: firebase.firestore.FieldValue.serverTimestamp()
       };
 
@@ -591,7 +621,7 @@
         row.className = "tpl-row";
         row.innerHTML = `
           <div style="flex:1;">
-            <div class="tpl-name">${escapeHtml(d.name || "Untitled")}</div>
+            <div class="tpl-name">${escapeHtml(d.name || "Untitled")}${d.template_number != null ? ` <span class="muted" style="font-weight:400;">— Template #${d.template_number}</span>` : ""}</div>
             <div class="tpl-meta">${escapeHtml(d.subject || "")} · Updated ${formatDate(d.updated_at)}</div>
           </div>
           <div class="tpl-actions">
