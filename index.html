@@ -103,6 +103,19 @@
     border-radius: 6px;
     display: block;
   }
+  .join-community-img {
+    height: 110px;
+    width: auto;
+    background: #fff;
+    padding: 4px;
+    border-radius: 6px;
+    display: block;
+    transition: transform 0.2s, filter 0.2s;
+  }
+  .join-community-img:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+  }
 
   /* ── NAV LINKS ROW ── */
   .nav-links-bar {
@@ -359,8 +372,11 @@
     .hero p { 
       font-size: 0.75rem; 
     }
-    .logo-img { 
-      height: 65px; 
+    .logo-img {
+      height: 65px;
+    }
+    .join-community-img {
+      height: 65px;
     }
     .nav-links-bar ul { 
       justify-content: center; 
@@ -800,6 +816,9 @@
         <h1><span>Discovering &amp; Living the Spirit of Sikhism</span></h1>
         <p>Your trusted source for Sikh History, Heritage, Culture &amp; Community</p>
       </div>
+      <a href="./00-index/01-add-record.html" title="Become a Member">
+        <img class="join-community-img" src="./pictures/00-index/Join Community.jpg" alt="Join Community">
+      </a>
     </div>
   </div>
 </nav>
