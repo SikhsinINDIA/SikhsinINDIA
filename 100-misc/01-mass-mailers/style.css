@@ -261,12 +261,17 @@ tr:hover { background-color: #f9f6f0; }
   border-radius: 0 0 6px 6px;
   background: #fff;
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.35;
   color: #222;
 }
 .rte-body:focus { outline: none; border-color: var(--gold); }
 .rte-body img { max-width: 100%; border-radius: 4px; }
 .rte-body:empty::before { content: attr(data-placeholder); color: #999; }
+/* Each Enter press wraps a new line in its own <p> or <div> — without this,
+   the browser's default paragraph margin stacks on top of the line-height
+   above and the body looks double-spaced. */
+.rte-body p, .rte-body div { margin: 0 0 6px; }
+.rte-body p:last-child, .rte-body div:last-child { margin-bottom: 0; }
 
 /* Attachment / image chips */
 .chip-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
