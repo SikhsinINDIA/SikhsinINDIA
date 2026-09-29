@@ -14,24 +14,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <title>Sikh Database Schema Manager - Directory | SikhsInIndia.com</title>
-  <meta name="keywords" content="Sikh Database Schema Manager, Index, Sikh heritage, Sikh history, Sikhs in India">
+  <title>Calendar Schema Manager - Directory | SikhsInIndia.com</title>
+  <meta name="keywords" content="Calendar Schema Manager, Index, Sikh heritage, Sikh history, Sikhs in India">
 
   <link rel="canonical" href="https://sikhsinindia.com/00-index/sikhdatabseindia-aed-fields.html">
 
-  <meta property="og:title" content="Sikh Database Schema Manager - Directory | SikhsInIndia.com"
-  <meta property="og:description" content="Sikh Database Schema Manager - Manage schema fields for sikhdatabaseindia records across SikhsInIndia platform.">>
+  <meta property="og:title" content="Calendar Schema Manager - Directory | SikhsInIndia.com"
+  <meta property="og:description" content="Calendar Schema Manager - Manage schema fields for Calendar records across SikhsInIndia platform.">>
   <meta property="og:url" content="https://sikhsinindia.com/00-index/sikhdatabseindia-aed-fields.html">
   <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
   <meta property="og:type" content="website">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Sikh Database Schema Manager - Directory | SikhsInIndia.com">
-  <meta name="twitter:description" content="Sikh Database Schema Manager - Manage schema fields for sikhdatabaseindia records across SikhsInIndia platform.">
+  <meta name="twitter:title" content="Calendar Schema Manager - Directory | SikhsInIndia.com">
+  <meta name="twitter:description" content="Calendar Schema Manager - Manage schema fields for Calendar records across SikhsInIndia platform.">
   <meta name="twitter:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
 
   <!-- Meta description -->
-  <meta name="description" content="Sikh Database Schema Manager - Manage schema fields for sikhdatabaseindia records across SikhsInIndia platform.">
+  <meta name="description" content="Calendar Schema Manager - Manage schema fields for Calendar records across SikhsInIndia platform.">
   <meta name="author" content="Sikhs in India">
   <meta name="robots" content="noindex, nofollow">
 
@@ -368,13 +368,13 @@
         <img class="logo-img" src="../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
       </div>
       <div class="hero">
-        <div class="hero-title">Sikh Database <span>Schema Manager</span></div>
+        <div class="hero-title">Calendar <span>Schema Manager</span></div>
       </div>
     </div>
 
     <!-- INTRO -->
     <div class="intro">
-      Manage Field Structures and Types for `sikhdatabaseindia` Registry
+      Manage Field Structures and Types for `Calendar` Registry
     </div>
 
     <div class="wrapper">
@@ -386,7 +386,7 @@
         <div class="form-grid">
           <div class="form-group">
             <label for="fieldName">Target Field Name</label>
-            <input type="text" id="fieldName" placeholder="e.g. Address, Age, Mobile" />
+            <input type="text" id="fieldName" placeholder="e.g. Category, Date, TemplateNumber" />
           </div>
 
           <div class="form-group">
@@ -415,7 +415,7 @@
       </div>
 
       <!-- FIELDS TABLE -->
-      <h3>Registered Fields (`sikhdatabaseindia`)</h3>
+      <h3>Registered Fields (`Calendar`)</h3>
       <div class="table-responsive">
         <table>
           <thead>
@@ -441,14 +441,14 @@
     <!-- FOOTER -->
     <div class="footer">
       <div class="footer-content">
-        <a href="./01-add-record.html" class="btn-back">
+        <a href="../02-sikh-heritage/02-02-discover-culture/02-02-04-calendar-aed.html" class="btn-back">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5M5 12l7-7M5 12l7 7" />
           </svg>
           Back
         </a>
         <div style="font-size: 11px; color: rgba(255,255,255,0.6);">
-          © 2026 SikhsInIndia.com | Database Schema Management Engine
+          © 2026 SikhsInIndia.com | Calendar Schema Management Engine
         </div>
       </div>
     </div>
@@ -470,18 +470,15 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // Default Fields configured for `sikhdatabaseindia`
+    // Default fields configured for `Calendar` — matches the actual doc
+    // shape used by 02-02-04-calendar-aed.html (Category/Date/Description)
+    // plus TemplateNumber, added so the daily auto-mailer can map an event
+    // to a saved Mass Mailer format.
     let fields = [
-      { name: "Address", type: "string" },
-      { name: "Age", type: "int64" },
-      { name: "City", type: "string" },
-      { name: "Date_created", type: "timestamp" },
-      { name: "Email", type: "string" },
-      { name: "Gender", type: "string" },
-      { name: "Mobile", type: "int64" },
-      { name: "Name", type: "string" },
-      { name: "Password", type: "string" },
-      { name: "State", type: "string" }
+      { name: "Category", type: "string" },
+      { name: "Date", type: "timestamp" },
+      { name: "Description", type: "string" },
+      { name: "TemplateNumber", type: "int64" }
     ];
 
     /* RENDER FIELDS TABLE */
@@ -511,7 +508,7 @@
     /* LOAD SCHEMA FROM FIRESTORE */
     async function loadFields() {
       try {
-        const doc = await db.collection("Config").doc("SikhDatabaseIndiaFields").get();
+        const doc = await db.collection("Config").doc("CalendarFields").get();
 
         if (doc.exists && doc.data().fields?.length) {
           fields = doc.data().fields.map(f => {
@@ -520,7 +517,7 @@
           });
         }
       } catch (err) {
-        console.log("Using default sikhdatabaseindia fields");
+        console.log("Using default Calendar fields");
       }
       render();
     }
@@ -528,7 +525,7 @@
     /* SAVE SCHEMA TO FIRESTORE */
     async function save() {
       try {
-        await db.collection("Config").doc("SikhDatabaseIndiaFields").set({ fields });
+        await db.collection("Config").doc("CalendarFields").set({ fields });
         render();
         alert("Schema updated and saved successfully!");
       } catch (err) {
