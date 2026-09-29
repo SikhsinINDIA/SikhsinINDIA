@@ -278,6 +278,7 @@
       SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET,
       emailKey, parseInviteeList, markEndedIfComplete, siteFilePath, textToEmailHtml, driveImageUrl,
       provisionInvitees, buildExpectedRoster, sendWhatsAppTemplate, WHATSAPP_INVITE_TEMPLATE, WHATSAPP_APPROVAL_TEMPLATE,
+      WHATSAPP_REJECTED_TEMPLATE,
       WA_CONSENT_LABEL, waConsentFields, assertWhatsAppConsent,
       SESSIONS_COLLECTION, nextAkhandPathId
     } from "./firebase.js";
@@ -461,6 +462,16 @@
       if (failed.length) {
         alert("Some invitee emails could not be sent:\n" + failed.map((f) => `${f.mail}: ${f.error}`).join("\n"));
       }
+
+      try {
+        const waResult = await notifyAllInviteesApprovalWhatsApp(sessionId, session);
+        if (waResult.failed.length) {
+          alert("The program was approved, but the WhatsApp invite failed for some invitees:\n" +
+            waResult.failed.map((f) => `${f.mail}: ${f.error}`).join("\n"));
+        }
+      } catch (err) {
+        alert("The program was approved, but WhatsApp invites to invitees could not be sent: " + errText(err));
+      }
     };
 
     /* ---------------- EMAIL HELPERS (Cloudflare Worker -> Resend) ---------------- */
@@ -556,6 +567,47 @@ Email: ${ADMIN_EMAIL}`;
       await sendPlainEmail(session.email, `Your Akhand Path request has been approved — ${session.sponsor || ""}`, message);
     }
 
+    /* Needs no template approval (free-form text via Resend), so this works
+       right away — unlike sendRejectionWhatsApp() below, which is wired but
+       waiting on WHATSAPP_REJECTED_TEMPLATE to be approved in Meta. */
+    async function sendRejectionEmail(session, reason) {
+      const message = `Dear ${session.sponsor || ""},
+
+Sat Sri Akaal!
+Waheguru ji ka Khalsa, Waheguru ji ki Fateh!
+
+Thank you for your request for Akhand Path Sahib Ji, dedicated to ${session.name || ""}${session.purpose ? " on occasion of " + session.purpose : ""}.
+
+We regret to inform you that we are unable to approve this request at this time.${reason ? `
+
+Reason: ${reason}` : ""}
+
+Please feel free to submit a new request, or contact us if you have any questions.
+
+Best regards,
+Team – SikhsinIndia.com
+Email: ${ADMIN_EMAIL}`;
+
+      if (!session.email) {
+        throw new Error("This program has no sponsor email on file.");
+      }
+      await sendPlainEmail(session.email, `Update on your Akhand Path request — ${session.sponsor || ""}`, message);
+    }
+
+    // See firebase.js's WHATSAPP_REJECTED_TEMPLATE comment for the exact
+    // body this param order was drafted against; NOT approved in Meta yet,
+    // so callers must catch and ignore failure here the same way every
+    // not-yet-approved template is handled elsewhere in this file.
+    async function sendRejectionWhatsApp(session, reason) {
+      if (!session.mobie) throw new Error("This program has no sponsor mobile number on file.");
+      const params = [
+        session.name || "",
+        reason ? ` Reason: ${reason}` : "",
+        ADMIN_EMAIL
+      ];
+      await sendWhatsAppTemplate(session.mobie, WHATSAPP_REJECTED_TEMPLATE, params);
+    }
+
     /* ---------------- INVITEE EMAILS (sent alongside the approval email) ---------------- */
     // Prefers the invitees typed into the sponsor's own request form (parsed
     // via the shared parseInviteeList, which reads their Name; Greeting Name;
@@ -588,8 +640,13 @@ Email: ${ADMIN_EMAIL}`;
     }
 
     window.rejectRequest = async (sessionId) => {
-      const reason = prompt("Reason for rejecting this request (optional, shown to admins only):") || "";
-      if (!confirm("Reject this sponsor request?")) return;
+      const reason = prompt("Reason for rejecting this request (shown to the sponsor in their rejection notice - leave blank to omit):") || "";
+      if (!confirm("Reject this sponsor request? The sponsor will be notified by email" +
+        (reason ? " with the reason you entered" : "") + ".")) return;
+
+      const snapBefore = await getDoc(doc(db, SESSIONS_COLLECTION, sessionId));
+      const session = snapBefore.data();
+
       await updateDoc(doc(db, SESSIONS_COLLECTION, sessionId), {
         status: "rejected",
         reject_reason: reason,
@@ -597,6 +654,22 @@ Email: ${ADMIN_EMAIL}`;
       });
       await loadPendingRequests();
       await loadSessions();
+
+      try {
+        await sendRejectionEmail(session, reason);
+      } catch (err) {
+        alert("The request was rejected, but the rejection email to the sponsor could not be sent: " + (err.message || err));
+      }
+
+      try {
+        await sendRejectionWhatsApp(session, reason);
+      } catch (err) {
+        // Best-effort, same as every not-yet-approved WhatsApp template in
+        // this file — silent in the console rather than an alert, since
+        // this one is EXPECTED to fail until akhand_path_rejected is
+        // approved in Meta, and the sponsor already got the rejection email.
+        console.warn("Rejection WhatsApp not sent (template likely not yet approved): " + errText(err));
+      }
     };
 
     window.createSession = async () => {
@@ -848,6 +921,45 @@ Email: ${ADMIN_EMAIL}`;
         sessionLinkFor(activeSessionId)
       ];
       await sendWhatsAppTemplate(invitee.phone, WHATSAPP_INVITE_TEMPLATE, params);
+    }
+
+    // Run automatically at approval time (see approveRequest()) so every
+    // consenting invitee gets the WhatsApp invite the moment the program is
+    // approved, instead of the admin having to click "Send" on each row by
+    // hand. Reuses the exact same akhand_path_invite_v5 template/param order
+    // as the manual per-row button above — that button stays as-is for
+    // resending to one person later (e.g. after fixing a wrong number).
+    // Invitees without a phone number or without recorded WhatsApp consent
+    // are silently skipped here (they still got the invite email from
+    // sendInviteeEmails); returns {sent, skipped, failed: [{mail, error}]}.
+    async function notifyAllInviteesApprovalWhatsApp(sessionId, session) {
+      const snap = await getDocs(collection(db, SESSIONS_COLLECTION, sessionId, "invitees"));
+      const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : new Date();
+      const durationHours = session.duration_hours || 48;
+      const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
+      const link = sessionLinkFor(sessionId);
+
+      let sent = 0, skipped = 0;
+      const failed = [];
+      for (const d of snap.docs) {
+        const inv = d.data();
+        if (!inv.phone || !inv.wa_consent) { skipped++; continue; }
+        const params = [
+          inv.gname || inv.name || "",
+          session.name || "",
+          session.purpose || "",
+          formatFullDateTime(start),
+          formatFullDateTime(samapti),
+          link
+        ];
+        try {
+          await sendWhatsAppTemplate(inv.phone, WHATSAPP_INVITE_TEMPLATE, params);
+          sent++;
+        } catch (err) {
+          failed.push({ mail: inv.mail || d.id, error: errText(err) });
+        }
+      }
+      return { sent, skipped, failed };
     }
 
     window.addInvitee = async () => {

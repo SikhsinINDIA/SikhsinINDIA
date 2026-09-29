@@ -1,0 +1,41 @@
+name: Akhand Path Reminders
+
+# One-time setup this workflow needs before it can actually run:
+#   1. Firebase Console > Project Settings > Service Accounts (for the
+#      sikhsinindia-67a6b project) > Generate new private key. This
+#      downloads a JSON file - keep it private, it grants full
+#      Firestore read/write on the whole project.
+#   2. This repo's Settings > Secrets and variables > Actions > New
+#      repository secret. Name: FIREBASE_SERVICE_ACCOUNT_JSON. Value:
+#      paste the ENTIRE contents of that downloaded JSON file as-is.
+# Until that secret exists, every run of this workflow fails at the
+# "Send due reminders" step with a clear "FIREBASE_SERVICE_ACCOUNT_JSON
+# is not set" error - nothing else in the site is affected either way.
+
+on:
+  schedule:
+    # Every 15 minutes. scripts/send-akhand-path-reminders.js itself
+    # decides what's actually due (a ±10 min window around the 60-min
+    # mark before each session's start/Samapti) and is safe to run
+    # more often than that - it never double-sends a reminder it's
+    # already marked sent on the session's own Firestore doc.
+    - cron: '*/15 * * * *'
+  workflow_dispatch: {}
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --omit=dev firebase-admin
+
+      - name: Send due reminders
+        env:
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+        run: node scripts/send-akhand-path-reminders.js
