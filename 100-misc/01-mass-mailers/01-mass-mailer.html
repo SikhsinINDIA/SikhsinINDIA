@@ -617,7 +617,19 @@
         return;
       }
       list.innerHTML = "";
-      snap.forEach((doc) => {
+
+      // Ascending by Template Number; formats with no number set (not every
+      // format needs one — only ones the daily auto-mailer sends) sort
+      // after all numbered ones, alphabetically by name among themselves.
+      const docs = snap.docs.slice().sort((a, b) => {
+        const an = a.data().template_number, bn = b.data().template_number;
+        if (an == null && bn == null) return (a.data().name || "").localeCompare(b.data().name || "");
+        if (an == null) return 1;
+        if (bn == null) return -1;
+        return an - bn;
+      });
+
+      docs.forEach((doc) => {
         const d = doc.data();
         const row = document.createElement("div");
         row.className = "tpl-row";
@@ -643,7 +655,9 @@
       return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
     }
 
-    db.collection(TEMPLATES_COLLECTION).orderBy("updated_at", "desc").onSnapshot(
+    // No server-side orderBy here — the Template Number sort (with
+    // no-number formats last) happens client-side in renderTemplateList().
+    db.collection(TEMPLATES_COLLECTION).onSnapshot(
       renderTemplateList,
       (err) => { document.getElementById("templateList").innerHTML = `<div class="no-data">Could not load saved formats: ${escapeHtml(err.message || err)}</div>`; }
     );
