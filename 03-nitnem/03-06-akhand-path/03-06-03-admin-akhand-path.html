@@ -567,9 +567,8 @@ Email: ${ADMIN_EMAIL}`;
       await sendPlainEmail(session.email, `Your Akhand Path request has been approved — ${session.sponsor || ""}`, message);
     }
 
-    /* Needs no template approval (free-form text via Resend), so this works
-       right away — unlike sendRejectionWhatsApp() below, which is wired but
-       waiting on WHATSAPP_REJECTED_TEMPLATE to be approved in Meta. */
+    /* Needs no template approval (free-form text via Resend). sendRejectionWhatsApp()
+       below also delivers live now that WHATSAPP_REJECTED_TEMPLATE is approved. */
     async function sendRejectionEmail(session, reason) {
       const message = `Dear ${session.sponsor || ""},
 

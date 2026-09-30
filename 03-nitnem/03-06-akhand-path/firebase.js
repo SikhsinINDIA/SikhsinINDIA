@@ -249,8 +249,10 @@ export const APP_SHARED_SECRET = "LuOoE-d92AyXMGsCBA0FcQGhKsYRLgs6";
    of truth, not this file — update these to match it, not the other way
    around.
 
-   akhand_path_invite_v5, akhand_path_approved and akhand_path_invite_v6 are
-   approved (Sep 2026), all Utility, all plain "English" = en.
+   All six templates below (invite_v5, approved, invite_v6, rejected,
+   reminder_start, reminder_end) are approved (Sep-Oct 2026), all Utility,
+   all plain "English" = en — every WhatsApp send described in this file is
+   fully live, no template approval pending.
 
    akhand_path_invite_v6's preview text in WhatsApp Manager ("New Akhand
    Path request. Sp...") matches the 10-variable admin-notification body
@@ -289,21 +291,18 @@ Review and approve here: {{10}}"
    A mismatched language code makes Meta reply "template not found" — check
    WhatsApp Manager's Language column again before changing any of these.
 
-   The four constants below (rejected/reminder-start/reminder-end) are NOT
-   approved in Meta yet — every call using them is wrapped best-effort
-   (try/catch, doesn't block the surrounding action) exactly like
-   WHATSAPP_NEW_REQUEST_TEMPLATE was before v6, so nothing breaks while
-   they're pending. Submit each for approval with the body drafted in its
-   own comment below, then these are already fully wired — no other code
-   changes needed once Meta approves them. */
+   The three constants below (rejected/reminder-start/reminder-end) are now
+   approved too (Oct 2026) — every call using them is still wrapped
+   best-effort (try/catch, doesn't block the surrounding action), which is
+   harmless now that they're live; it just means a future template edit
+   that gets rejected by Meta again would fail silently rather than
+   breaking the surrounding flow. */
 export const WHATSAPP_INVITE_TEMPLATE = "akhand_path_invite_v5";
 export const WHATSAPP_APPROVAL_TEMPLATE = "akhand_path_approved";
 export const WHATSAPP_NEW_REQUEST_TEMPLATE = "akhand_path_invite_v6";
 
-/* NOT YET APPROVED — submit this body to Meta (Utility, English) before
-   sendRejectionWhatsApp() in 03-06-03-admin-akhand-path.html will deliver
-   anything; until then it fails best-effort and the rejection email (which
-   needs no template) is what the sponsor actually sees.
+/* Approved (Oct 2026, Utility, English) — sendRejectionWhatsApp() in
+   03-06-03-admin-akhand-path.html delivers this live.
    Body (3 variables):
    "Update on your Akhand Path Sahib Ji request.
 Dedicated to: {{1}}
@@ -314,8 +313,8 @@ For questions, please contact us: {{3}}"
    sikhsinindia@gmail.com */
 export const WHATSAPP_REJECTED_TEMPLATE = "akhand_path_rejected";
 
-/* NOT YET APPROVED — see akhand-path-reminders.yml (GitHub Actions) for
-   where this is actually sent from. Body (5 variables):
+/* Approved (Oct 2026, Utility, English) — see akhand-path-reminders.yml
+   (GitHub Actions) for where this is actually sent from. Body (5 variables):
    "Reminder: Akhand Path Sahib Ji begins in about 1 hour.
 Dedicated to: {{1}}
 Occasion: {{2}}
@@ -327,8 +326,8 @@ Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh — {{5}}"
    Sikhs In India */
 export const WHATSAPP_REMINDER_START_TEMPLATE = "akhand_path_reminder_start";
 
-/* NOT YET APPROVED — see akhand-path-reminders.yml (GitHub Actions) for
-   where this is actually sent from. Body (5 variables):
+/* Approved (Oct 2026, Utility, English) — see akhand-path-reminders.yml
+   (GitHub Actions) for where this is actually sent from. Body (5 variables):
    "Reminder: Akhand Path Sahib Ji concludes (Samapti) in about 1 hour.
 Dedicated to: {{1}}
 Occasion: {{2}}
