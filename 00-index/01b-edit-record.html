@@ -507,6 +507,8 @@
                 <th>Name</th>
                 <th>GName</th>
                 <th>Mobile</th>
+                <th>Mobile_Correct</th>
+                <th>Country_Code</th>
                 <th>Age</th>
                 <th>Gender</th>
                 <th>Address</th>
@@ -517,7 +519,7 @@
             </thead>
             <tbody id="recordsTableBody">
               <tr>
-                <td colspan="12" style="text-align: center; padding: 20px; color: var(--gold); font-weight: bold;">
+                <td colspan="14" style="text-align: center; padding: 20px; color: var(--gold); font-weight: bold;">
                   Syncing structural runtime records...
                 </td>
               </tr>
@@ -555,6 +557,20 @@
             <div class="form-group">
               <label for="mobile">Primary Mobile Connection <span class="required">*</span></label>
               <input type="tel" id="mobile" pattern="[0-9]{9,}" placeholder="9 digits minimum length validation" required />
+            </div>
+
+            <div class="form-group">
+              <label for="mobile_correct">Mobile Verified Correct</label>
+              <select id="mobile_correct">
+                <option value="">-- Not Set --</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="country_code">Mobile Country Code</label>
+              <input type="text" id="country_code" placeholder="e.g. +91" maxlength="6" />
             </div>
 
             <div class="form-group">
@@ -653,12 +669,12 @@
 
     function loadAllRecords() {
       const tbody = document.getElementById("recordsTableBody");
-      tbody.innerHTML = '<tr><td colspan="12" style="text-align: center; padding: 20px; color: var(--gold); font-weight: bold;">Syncing structural runtime records...</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="14" style="text-align: center; padding: 20px; color: var(--gold); font-weight: bold;">Syncing structural runtime records...</td></tr>';
 
       db.collection("sikhdatabaseindia").orderBy("Date_created", "desc").get()
         .then(querySnapshot => {
           if (querySnapshot.empty) {
-            tbody.innerHTML = '<tr><td colspan="12" style="text-align: center; padding: 20px; color: #d93838;">No operational dataset found in cloud context.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="14" style="text-align: center; padding: 20px; color: #d93838;">No operational dataset found in cloud context.</td></tr>';
             return;
           }
 
@@ -678,6 +694,8 @@
                 <td>${data.Name || ''}</td>
                 <td>${data.GName || ''}</td>
                 <td>${data.Mobile || ''}</td>
+                <td>${data.Mobile_Correct === true ? 'Yes' : data.Mobile_Correct === false ? 'No' : ''}</td>
+                <td>${data.Country_Code || ''}</td>
                 <td>${data.Age || ''}</td>
                 <td>${data.Gender || ''}</td>
                 <td>${data.Address || ''}</td>
@@ -692,7 +710,7 @@
         })
         .catch(error => {
           console.error("Error fetching records:", error);
-          tbody.innerHTML = `<tr><td colspan="12" style="text-align: center; color: #d93838; font-weight:bold;">Error syncing database context framework: ${error.message}</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="14" style="text-align: center; color: #d93838; font-weight:bold;">Error syncing database context framework: ${error.message}</td></tr>`;
         });
     }
 
@@ -713,6 +731,8 @@
           document.getElementById("gname").value = data.GName || "";
           document.getElementById("password").value = data.Password || "";
           document.getElementById("mobile").value = data.Mobile || "";
+          document.getElementById("mobile_correct").value = data.Mobile_Correct === true ? "Yes" : data.Mobile_Correct === false ? "No" : "";
+          document.getElementById("country_code").value = data.Country_Code || "";
           document.getElementById("age").value = data.Age || "";
           document.getElementById("address").value = data.Address || "";
           document.getElementById("city").value = data.City || "";
@@ -749,6 +769,8 @@
       document.getElementById("gname").value = "";
       document.getElementById("password").value = "";
       document.getElementById("mobile").value = "";
+      document.getElementById("mobile_correct").value = "";
+      document.getElementById("country_code").value = "";
       document.getElementById("age").value = "";
       document.getElementById("address").value = "";
       document.getElementById("city").value = "";
@@ -770,6 +792,9 @@
       const gname = document.getElementById("gname").value.trim();
       const password = document.getElementById("password").value.trim();
       const mobile = document.getElementById("mobile").value.trim();
+      const mobileCorrectSel = document.getElementById("mobile_correct").value.trim();
+      const mobileCorrect = mobileCorrectSel === "Yes" ? true : mobileCorrectSel === "No" ? false : null;
+      const countryCode = document.getElementById("country_code").value.trim();
       const age = document.getElementById("age").value.trim();
       const address = document.getElementById("address").value.trim();
       const city = document.getElementById("city").value.trim();
@@ -793,14 +818,16 @@
         Name: name,
         GName: gname,
         Password: password,
-        Mobile: mobile,
-        Age: age,
+        Mobile: Number(mobile),
+        Mobile_Correct: mobileCorrect,
+        Country_Code: countryCode,
+        Age: age ? Number(age) : null,
         Address: address,
         City: city,
         State: state,
         Date_created: DateCreated,
         Gender: gender
-      })
+      }, { merge: true })
         .then(() => {
           document.getElementById("status").innerText = "Data profile operational update committed successfully to the cloud.";
           loadAllRecords();
@@ -824,6 +851,8 @@
           document.getElementById("gname").value = data.GName || '';
           document.getElementById("password").value = data.Password || '';
           document.getElementById("mobile").value = data.Mobile || '';
+          document.getElementById("mobile_correct").value = data.Mobile_Correct === true ? "Yes" : data.Mobile_Correct === false ? "No" : "";
+          document.getElementById("country_code").value = data.Country_Code || '';
           document.getElementById("age").value = data.Age || '';
           document.getElementById("address").value = data.Address || '';
           document.getElementById("city").value = data.City || '';
