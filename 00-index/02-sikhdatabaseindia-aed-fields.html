@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sikh Database India - Schema Manager | SikhsInIndia.com</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="keywords" content="sikhdatabaseindia schema manager, Sikhs in India">
+  <meta name="description" content="Internal schema manager for the sikhdatabaseindia member data fields on SikhsInIndia.com.">
+
+  <link rel="canonical" href="https://sikhsinindia.com/00-index/02-sikhdatabaseindia-aed-fields.html">
+
+  <meta property="og:title" content="Sikh Database India - Schema Manager | SikhsInIndia.com">
+  <meta property="og:description" content="Internal schema manager for the sikhdatabaseindia member data fields on SikhsInIndia.com.">
+  <meta property="og:url" content="https://sikhsinindia.com/00-index/02-sikhdatabaseindia-aed-fields.html">
+  <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sikh Database India - Schema Manager | SikhsInIndia.com">
+  <meta name="twitter:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<style>
+body{margin:0;font-family:Arial;background:black;color:#FF9933;}
+header{background:#FF9933;color:black;text-align:center;padding:15px;font-weight:bold;}
+.container{max-width:900px;margin:auto;padding:15px;}
+
+input,select{
+width:100%;padding:10px;margin:5px 0;
+background:black;color:#FF9933;border:1px solid #FF9933;
+}
+
+button{
+background:#FF9933;color:black;padding:10px;margin:5px;
+border:none;font-weight:bold;cursor:pointer;
+}
+
+table{width:100%;border-collapse:collapse;margin-top:15px;}
+th,td{border:1px solid #FF9933;padding:8px;}
+th{background:#111;}
+</style>
+</head>
+
+<body>
+
+<header>📊 Sikh Database India - Field Structure Manager</header>
+
+<div class="container">
+
+<input id="fieldName" placeholder="Field Name">
+<input id="newFieldName" placeholder="New Name (rename)">
+
+<select id="fieldType">
+<option value="string">String</option>
+<option value="number">Number</option>
+<option value="boolean">Boolean</option>
+<option value="date">Date</option>
+</select>
+
+<button onclick="addField()">Add</button>
+<button onclick="renameField()">Rename</button>
+<button onclick="deleteField()">Delete</button>
+<button onclick="changeType()">Change Type</button>
+
+<h3>Current Fields</h3>
+
+<table>
+<thead>
+<tr><th>#</th><th>Field Name</th><th>Type</th></tr>
+</thead>
+<tbody id="fieldTable"></tbody>
+</table>
+
+</div>
+
+<script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+  authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+  projectId: "sikhsinindia-67a6b",
+  storageBucket: "sikhsinindia-67a6b.appspot.com",
+  messagingSenderId: "622603668882",
+  appId: "1:622603668882:web:953c6a07864b235fdd054b"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db=firebase.firestore();
+
+/* ✅ DEFAULT FIELDS WITH TYPES - matches the live sikhdatabaseindia schema
+   written by 00-index/01-add-record.html */
+let fields = [
+{name:"Email", type:"string"},
+{name:"Name", type:"string"},
+{name:"GreetingName", type:"string"},
+{name:"Password", type:"string"},
+{name:"Mobile", type:"number"},
+{name:"wa_consent", type:"boolean"},
+{name:"wa_consent_at", type:"date"},
+{name:"Age", type:"number"},
+{name:"Address", type:"string"},
+{name:"City", type:"string"},
+{name:"State", type:"string"},
+{name:"Gender", type:"string"},
+{name:"Date_created", type:"date"}
+];
+
+/* ✅ RENDER */
+function render(){
+let html="";
+fields.forEach((f,i)=>{
+html+=`
+<tr>
+<td>${i+1}</td>
+<td>${f.name}</td>
+<td>${f.type}</td>
+</tr>`;
+});
+document.getElementById("fieldTable").innerHTML=html;
+}
+
+/* ✅ LOAD FROM FIRESTORE */
+async function loadFields(){
+try{
+const doc=await db.collection("Config").doc("SikhDatabaseIndiaFields").get();
+
+if(doc.exists && doc.data().fields?.length){
+
+fields = doc.data().fields.map(f=>{
+if(typeof f==="string"){
+return {name:f,type:"string"};
+}
+return f;
+});
+
+}
+
+}catch(err){
+console.log("Using default fields");
+}
+
+render();
+}
+
+/* ✅ SAVE */
+async function save(){
+try{
+await db.collection("Config").doc("SikhDatabaseIndiaFields").set({fields});
+render();
+alert("Saved successfully");
+}catch(err){
+console.error(err);
+alert("Error saving data: " + err.message);
+}
+}
+
+/* ADD */
+function addField(){
+const name=document.getElementById("fieldName").value.trim();
+const type=document.getElementById("fieldType").value;
+
+if(!name) return alert("Enter field");
+
+if(fields.find(f=>f.name===name)) return alert("Already exists");
+console.log("Adding:", name, type);
+fields.push({name,type});
+render();   // show instantly
+save();
+}
+
+/* DELETE */
+function deleteField(){
+const name=document.getElementById("fieldName").value.trim();
+fields=fields.filter(f=>f.name!==name);
+save();
+}
+
+/* RENAME */
+function renameField(){
+const oldName=document.getElementById("fieldName").value.trim();
+const newName=document.getElementById("newFieldName").value.trim();
+
+const field=fields.find(f=>f.name===oldName);
+if(!field) return alert("Field not found");
+
+field.name=newName;
+save();
+}
+
+/* CHANGE TYPE */
+function changeType(){
+const name=document.getElementById("fieldName").value.trim();
+const newType=document.getElementById("fieldType").value;
+
+const field=fields.find(f=>f.name===name);
+if(!field) return alert("Field not found");
+
+field.type=newType;
+save();
+}
+
+/* INIT */
+loadFields();
+
+</script>
+
+</body>
+</html>
