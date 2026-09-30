@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>WhatsApp Broadcast | Admin | SikhsInIndia.com</title>
+
+  <meta name="description" content="Send a WhatsApp template message to registered members with a verified mobile number.">
+  <meta name="keywords" content="WhatsApp broadcast admin, Sikhs in India">
+  <meta name="author" content="Sikhs in India">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="canonical" href="https://sikhsinindia.com/100-misc/01-mass-mailers/02-whatsapp-broadcast.html">
+
+  <meta property="og:title" content="WhatsApp Broadcast | Admin | SikhsInIndia.com">
+  <meta property="og:description" content="Send a WhatsApp template message to registered members with a verified mobile number.">
+  <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+  <meta property="og:url" content="https://sikhsinindia.com/100-misc/01-mass-mailers/02-whatsapp-broadcast.html">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WhatsApp Broadcast | Admin | SikhsInIndia.com">
+  <meta name="twitter:description" content="Send a WhatsApp template message to registered members with a verified mobile number.">
+  <meta name="twitter:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Firebase (compat SDK — same project/pattern used by every other admin tool on the site) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    .poster { max-width: 1100px; }
+    .r-warn { color: #b32020; font-size: 11px; font-weight: 700; }
+  </style>
+</head>
+
+<body>
+
+  <div class="poster">
+
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">WhatsApp <span>Broadcast</span></div>
+        <div class="hero-sub">Send an Approved Template to Verified Members</div>
+      </div>
+    </div>
+
+    <div class="wrapper">
+
+      <div class="card">
+        <div class="card-title">Admin</div>
+        <p class="muted" style="margin-bottom: 10px;">Sends a pre-approved WhatsApp template (business-initiated
+          messages can only ever be a template, never free text) to every member whose <code>Mobile_Correct</code>
+          field is <code>Yes</code> in the <code>sikhdatabaseindia</code> directory. Duplicate phone numbers (the
+          same person registered twice) are sent to only once.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Template</div>
+        <div class="form-row">
+          <label>Template Name (must exactly match an Approved template in WhatsApp Manager)</label>
+          <input type="text" id="fTemplateName" value="gurgaddi_diwas_of_sri_guru_angad_dev_ji">
+        </div>
+        <div class="form-row">
+          <label>Language Code</label>
+          <input type="text" id="fLanguageCode" value="en" style="max-width: 160px;">
+        </div>
+        <div class="form-row">
+          <label>Body Variables — one per line, in the exact order the approved template expects (leave empty if
+            the template has no {{1}}, {{2}}, ... variables)</label>
+          <textarea id="fParams" rows="3" placeholder="(no variables for this template)"></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Send</div>
+        <div class="send-panel">
+          <div>
+            <div class="send-count"><span id="selectedCount">—</span> / <span id="recipientCount">—</span></div>
+            <div class="muted">selected of members with Mobile_Correct = Yes</div>
+          </div>
+          <button type="button" class="btn-control" onclick="refreshRecipientCount()">Refresh List</button>
+          <button type="button" class="btn-control" onclick="sendTestToMyself()">Send Test to a Number</button>
+          <button type="button" class="btn-action btn-danger" style="width: auto;" onclick="openSendConfirm()">Send to Selected Members</button>
+        </div>
+        <p id="testSendStatus" class="muted" style="margin-top: 8px; min-height: 18px;"></p>
+
+        <div class="form-row" style="margin-top: 14px;">
+          <label>Recipients — untick anyone you don't want to message this time</label>
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap;">
+            <input type="text" id="recipientFilter" placeholder="Filter by name, email or phone..." style="flex: 1; min-width: 180px;" oninput="renderRecipientList()">
+            <button type="button" class="btn-control" onclick="selectAllRecipients(true)">Select All</button>
+            <button type="button" class="btn-control" onclick="selectAllRecipients(false)">Deselect All</button>
+          </div>
+          <div class="table-container" style="margin-bottom: 0;">
+            <div id="recipientList" style="max-height: 320px; overflow-y: auto;">
+              <div class="loading-text">Loading members...</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="sendProgressArea" hidden style="margin-top: 16px;">
+          <div class="muted" id="sendProgressLabel">Sending 0 / 0...</div>
+          <div class="progress-track"><div class="progress-fill" id="sendProgressFill"></div></div>
+          <div class="send-log" id="sendLog"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="../../index.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage &amp; Unity</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════ SEND CONFIRMATION MODAL ═══════════ -->
+  <div class="modal-overlay" id="sendConfirmModal" hidden>
+    <div class="modal-box">
+      <h3>Send to Selected Members?</h3>
+      <p>
+        You are about to WhatsApp <b id="confirmCount">0</b> selected members using template:<br>
+        <b id="confirmTemplate" style="color: var(--navy);"></b>
+        <br><br>
+        This sends a real WhatsApp message to real people right now and cannot be undone. Make sure you've sent a
+        test message to your own number first and it looked right.
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn-control" onclick="closeSendConfirm()">Cancel</button>
+        <button type="button" class="btn-action btn-danger" onclick="confirmSendBroadcast()">Yes, Send Now</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b",
+      measurementId: "G-LHNTFNW14H"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const MEMBERS_COLLECTION = "sikhdatabaseindia";
+
+    /* ---------------- WHATSAPP SENDING (same Worker as Akhand Path — see
+       03-nitnem/03-06-akhand-path/firebase.js's sendWhatsAppTemplate for the
+       identical pattern) ---------------- */
+    const SEND_ENDPOINT = "https://sikhsinindia-email.sikhsinindia.workers.dev";
+    const APP_SHARED_SECRET = "LuOoE-d92AyXMGsCBA0FcQGhKsYRLgs6";
+
+    async function sendWhatsAppTemplate(to, templateName, languageCode, params) {
+      const res = await fetch(SEND_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-App-Secret": APP_SHARED_SECRET },
+        body: JSON.stringify({ action: "send_whatsapp", to, templateName, languageCode, params })
+      });
+      const bodyText = await res.text();
+      if (!res.ok) {
+        let detail = bodyText;
+        try { detail = JSON.parse(bodyText).error || bodyText; } catch (_) { /* keep raw text */ }
+        throw new Error(`WhatsApp send failed (HTTP ${res.status}): ${detail}`);
+      }
+      return bodyText;
+    }
+
+    function getParams() {
+      return document.getElementById("fParams").value
+        .split("\n")
+        .map((s) => s.trim())
+        .filter(Boolean);
+    }
+
+    function escapeHtml(s) {
+      return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+
+    /* A phone is built as Country_Code + Mobile (both required — see
+       00-index/02-sikhdatabaseindia-aed-fields.html for the schema and
+       00-index/01b-edit-record.html for where admins set these two fields
+       per member). Flags anything that isn't close to a normal length
+       rather than silently sending to a likely-wrong number — a member
+       whose Mobile was mistyped shows up here instead of failing invisibly
+       partway through the real send. */
+    function buildPhone(countryCode, mobile) {
+      const cc = String(countryCode || "").replace(/[^0-9+]/g, "");
+      const digits = String(mobile == null ? "" : mobile).replace(/[^0-9]/g, "");
+      return (cc.startsWith("+") ? cc : "+" + cc) + digits;
+    }
+
+    function looksSuspicious(countryCode, mobile) {
+      const digits = String(mobile == null ? "" : mobile).replace(/[^0-9]/g, "");
+      if (!digits) return "no mobile number on file";
+      if (countryCode === "+91" && digits.length !== 10) return `${digits.length}-digit number, expected 10 for +91`;
+      return null;
+    }
+
+    /* Fetches everyone with Mobile_Correct === true, then de-duplicates by
+       phone number — two member records for the same person (e.g. a second
+       account made with a different email) share one phone number and
+       should only ever receive the message once. */
+    async function fetchRecipients() {
+      const snap = await db.collection(MEMBERS_COLLECTION).where("Mobile_Correct", "==", true).get();
+      const seenPhones = new Map();
+      snap.forEach((doc) => {
+        const d = doc.data();
+        const phone = buildPhone(d.Country_Code, d.Mobile);
+        const warning = looksSuspicious(d.Country_Code, d.Mobile);
+        const entry = { email: doc.id, name: d.GreetingName || d.Name || "", phone, warning };
+        if (seenPhones.has(phone)) return; // duplicate person, skip
+        seenPhones.set(phone, entry);
+      });
+      const recipients = Array.from(seenPhones.values());
+      recipients.sort((a, b) => (a.name || a.email).localeCompare(b.name || b.email));
+      return recipients;
+    }
+
+    let cachedRecipients = null;
+    const deselectedPhones = new Set();
+
+    function getSelectedRecipients() {
+      return (cachedRecipients || []).filter((r) => !deselectedPhones.has(r.phone));
+    }
+
+    function updateSelectedCount() {
+      document.getElementById("selectedCount").textContent = getSelectedRecipients().length;
+    }
+
+    function renderRecipientList() {
+      const wrap = document.getElementById("recipientList");
+      const filterText = document.getElementById("recipientFilter").value.trim().toLowerCase();
+      if (!cachedRecipients) return;
+
+      const filtered = filterText
+        ? cachedRecipients.filter((r) =>
+            r.phone.toLowerCase().includes(filterText) ||
+            (r.name || "").toLowerCase().includes(filterText) ||
+            r.email.toLowerCase().includes(filterText))
+        : cachedRecipients;
+
+      if (!filtered.length) {
+        wrap.innerHTML = `<div class="no-data">${cachedRecipients.length ? "No members match that filter." : "No members with Mobile_Correct = Yes found."}</div>`;
+        return;
+      }
+
+      wrap.innerHTML = "";
+      filtered.forEach((r) => {
+        const row = document.createElement("label");
+        row.className = "recipient-row" + (deselectedPhones.has(r.phone) ? " r-unchecked" : "");
+        row.innerHTML = `
+          <input type="checkbox" ${deselectedPhones.has(r.phone) ? "" : "checked"}>
+          <span>
+            <div class="r-name">${escapeHtml(r.name || r.email)} — ${escapeHtml(r.phone)}</div>
+            <div class="r-email">${escapeHtml(r.email)}</div>
+            ${r.warning ? `<div class="r-warn">⚠ ${escapeHtml(r.warning)}</div>` : ""}
+          </span>`;
+        const checkbox = row.querySelector("input");
+        checkbox.addEventListener("change", () => {
+          if (checkbox.checked) deselectedPhones.delete(r.phone);
+          else deselectedPhones.add(r.phone);
+          row.classList.toggle("r-unchecked", !checkbox.checked);
+          updateSelectedCount();
+        });
+        wrap.appendChild(row);
+      });
+    }
+    window.renderRecipientList = renderRecipientList;
+
+    function selectAllRecipients(select) {
+      if (select) deselectedPhones.clear();
+      else (cachedRecipients || []).forEach((r) => deselectedPhones.add(r.phone));
+      renderRecipientList();
+      updateSelectedCount();
+    }
+    window.selectAllRecipients = selectAllRecipients;
+
+    async function refreshRecipientCount() {
+      const countEl = document.getElementById("recipientCount");
+      const listEl = document.getElementById("recipientList");
+      countEl.textContent = "…";
+      listEl.innerHTML = `<div class="loading-text">Loading members...</div>`;
+      try {
+        cachedRecipients = await fetchRecipients();
+        // Pre-deselect anything flagged suspicious so a bad number is never
+        // included in the bulk send by default — admin can still tick it
+        // back on after checking.
+        deselectedPhones.clear();
+        cachedRecipients.forEach((r) => { if (r.warning) deselectedPhones.add(r.phone); });
+        countEl.textContent = cachedRecipients.length;
+        renderRecipientList();
+        updateSelectedCount();
+      } catch (err) {
+        countEl.textContent = "?";
+        listEl.innerHTML = `<div class="no-data">Could not load the member directory: ${escapeHtml(err.message || err)}</div>`;
+      }
+    }
+    window.refreshRecipientCount = refreshRecipientCount;
+    refreshRecipientCount();
+
+    /* ---------------- SEND ---------------- */
+    async function sendTestToMyself() {
+      const status = document.getElementById("testSendStatus");
+      const testNumber = prompt("Send a test message to which WhatsApp number? (include country code, e.g. +919876543210)");
+      if (!testNumber) return;
+      const templateName = document.getElementById("fTemplateName").value.trim();
+      const languageCode = document.getElementById("fLanguageCode").value.trim() || "en";
+      if (!templateName) { status.textContent = "Enter a template name first."; return; }
+
+      status.textContent = "Sending test...";
+      try {
+        await sendWhatsAppTemplate(testNumber.trim(), templateName, languageCode, getParams());
+        status.textContent = `Test sent to ${testNumber}.`;
+      } catch (err) {
+        status.textContent = "Test send failed: " + (err.message || err);
+      }
+    }
+    window.sendTestToMyself = sendTestToMyself;
+
+    function openSendConfirm() {
+      const templateName = document.getElementById("fTemplateName").value.trim();
+      if (!templateName) { alert("Enter a template name first."); return; }
+      if (!cachedRecipients || !cachedRecipients.length) { alert("No members loaded yet — click Refresh List first."); return; }
+      const selected = getSelectedRecipients();
+      if (!selected.length) { alert("No recipients are selected — tick at least one member (or click Select All) first."); return; }
+      document.getElementById("confirmCount").textContent = selected.length;
+      document.getElementById("confirmTemplate").textContent = templateName;
+      document.getElementById("sendConfirmModal").hidden = false;
+    }
+    window.openSendConfirm = openSendConfirm;
+
+    function closeSendConfirm() {
+      document.getElementById("sendConfirmModal").hidden = true;
+    }
+    window.closeSendConfirm = closeSendConfirm;
+
+    // Small gap between sends so a large member list doesn't hammer the
+    // WhatsApp Cloud API's rate limit all at once.
+    const SEND_DELAY_MS = 500;
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    async function confirmSendBroadcast() {
+      closeSendConfirm();
+      const templateName = document.getElementById("fTemplateName").value.trim();
+      const languageCode = document.getElementById("fLanguageCode").value.trim() || "en";
+      const params = getParams();
+      const recipients = getSelectedRecipients();
+
+      const sendBtn = document.querySelector('button[onclick="openSendConfirm()"]');
+      sendBtn.disabled = true;
+
+      const progressArea = document.getElementById("sendProgressArea");
+      const progressLabel = document.getElementById("sendProgressLabel");
+      const progressFill = document.getElementById("sendProgressFill");
+      const log = document.getElementById("sendLog");
+      progressArea.hidden = false;
+      log.innerHTML = "";
+
+      let ok = 0, failed = [];
+      for (let i = 0; i < recipients.length; i++) {
+        const recipient = recipients[i];
+        progressLabel.textContent = `Sending ${i + 1} / ${recipients.length}...`;
+        progressFill.style.width = Math.round(((i + 1) / recipients.length) * 100) + "%";
+        try {
+          await sendWhatsAppTemplate(recipient.phone, templateName, languageCode, params);
+          ok++;
+          log.insertAdjacentHTML("beforeend", `<div class="log-ok">✅ ${escapeHtml(recipient.name || recipient.email)} — ${escapeHtml(recipient.phone)}</div>`);
+        } catch (err) {
+          failed.push({ label: recipient.name || recipient.email, error: String(err.message || err) });
+          log.insertAdjacentHTML("beforeend", `<div class="log-err">❌ ${escapeHtml(recipient.name || recipient.email)} — ${escapeHtml(recipient.phone)} — ${escapeHtml(err.message || err)}</div>`);
+        }
+        log.scrollTop = log.scrollHeight;
+        if (i < recipients.length - 1) await sleep(SEND_DELAY_MS);
+      }
+
+      progressLabel.textContent = `Done: ${ok} sent, ${failed.length} failed, out of ${recipients.length}.`;
+      sendBtn.disabled = false;
+      if (failed.length) {
+        alert(`${failed.length} message(s) failed to send. See the log on the page for details.\n\n` +
+          failed.slice(0, 10).map((f) => `${f.label}: ${f.error}`).join("\n") +
+          (failed.length > 10 ? `\n...and ${failed.length - 10} more.` : ""));
+      }
+    }
+    window.confirmSendBroadcast = confirmSendBroadcast;
+  </script>
+
+</body>
+
+</html>
