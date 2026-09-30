@@ -50,6 +50,8 @@ border:none;font-weight:bold;cursor:pointer;
 table{width:100%;border-collapse:collapse;margin-top:15px;}
 th,td{border:1px solid #FF9933;padding:8px;}
 th{background:#111;}
+td button{margin:2px 3px 2px 0;padding:6px 10px;font-size:12px;}
+.btn-delete{background:#c0392b;color:#fff;}
 </style>
 </head>
 
@@ -59,8 +61,8 @@ th{background:#111;}
 
 <div class="container">
 
+<h3>Add New Field</h3>
 <input id="fieldName" placeholder="Field Name">
-<input id="newFieldName" placeholder="New Name (rename)">
 
 <select id="fieldType">
 <option value="string">String</option>
@@ -70,15 +72,12 @@ th{background:#111;}
 </select>
 
 <button onclick="addField()">Add</button>
-<button onclick="renameField()">Rename</button>
-<button onclick="deleteField()">Delete</button>
-<button onclick="changeType()">Change Type</button>
 
 <h3>Current Fields</h3>
 
 <table>
 <thead>
-<tr><th>#</th><th>Field Name</th><th>Type</th></tr>
+<tr><th>#</th><th>Field Name</th><th>Type</th><th>Actions</th></tr>
 </thead>
 <tbody id="fieldTable"></tbody>
 </table>
@@ -124,8 +123,13 @@ fields.forEach((f,i)=>{
 html+=`
 <tr>
 <td>${i+1}</td>
-<td>${f.name}</td>
+<td>${f.name || "(blank)"}</td>
 <td>${f.type}</td>
+<td>
+<button onclick="renameField(${i})">Rename</button>
+<button onclick="changeType(${i})">Type</button>
+<button class="btn-delete" onclick="deleteField(${i})">Delete</button>
+</td>
 </tr>`;
 });
 document.getElementById("fieldTable").innerHTML=html;
@@ -174,40 +178,44 @@ const type=document.getElementById("fieldType").value;
 if(!name) return alert("Enter field");
 
 if(fields.find(f=>f.name===name)) return alert("Already exists");
-console.log("Adding:", name, type);
 fields.push({name,type});
+document.getElementById("fieldName").value="";
 render();   // show instantly
 save();
 }
 
-/* DELETE */
-function deleteField(){
-const name=document.getElementById("fieldName").value.trim();
-fields=fields.filter(f=>f.name!==name);
+/* DELETE - operates on the row's own index, never a typed name */
+function deleteField(i){
+const field=fields[i];
+if(!field) return;
+if(!confirm(`Delete field "${field.name || "(blank)"}"?`)) return;
+fields.splice(i,1);
+render();
 save();
 }
 
-/* RENAME */
-function renameField(){
-const oldName=document.getElementById("fieldName").value.trim();
-const newName=document.getElementById("newFieldName").value.trim();
-
-const field=fields.find(f=>f.name===oldName);
-if(!field) return alert("Field not found");
-
+/* RENAME - operates on the row's own index, never a typed name */
+function renameField(i){
+const field=fields[i];
+if(!field) return;
+const newName=prompt("New field name:", field.name)?.trim();
+if(!newName) return;
+if(fields.some((f,idx)=>idx!==i && f.name===newName)) return alert("Another field already has that name");
 field.name=newName;
+render();
 save();
 }
 
-/* CHANGE TYPE */
-function changeType(){
-const name=document.getElementById("fieldName").value.trim();
-const newType=document.getElementById("fieldType").value;
-
-const field=fields.find(f=>f.name===name);
-if(!field) return alert("Field not found");
-
+/* CHANGE TYPE - operates on the row's own index, never a typed name */
+function changeType(i){
+const field=fields[i];
+if(!field) return;
+const valid=["string","number","boolean","date"];
+const newType=prompt(`New type for "${field.name}" (string / number / boolean / date):`, field.type)?.trim().toLowerCase();
+if(!newType) return;
+if(!valid.includes(newType)) return alert("Type must be one of: string, number, boolean, date");
 field.type=newType;
+render();
 save();
 }
 
