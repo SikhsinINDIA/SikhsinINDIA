@@ -365,23 +365,34 @@
 
   /* ── MOBILE OPTIMIZATIONS ── */
   @media (max-width: 768px) {
+    .navbar .container {
+      padding-left: 6px;
+      padding-right: 6px;
+    }
     .hero {
-      padding: 8px 12px;
+      padding: 8px 6px;
+      min-width: 0;
+      /* Keep orange to a thin strip at the far right so the text stays readable */
+      background: linear-gradient(90deg, var(--navy) 0%, #004494 80%, var(--orange) 100%);
     }
     .hero h1 {
-      font-size: 0.95rem;
+      /* Size to the space left between the two logos (~150px) so each
+         headline fits on one line; capped at the previous size */
+      font-size: min(0.95rem, calc((100vw - 150px) / 23.5));
+      white-space: nowrap;
+      letter-spacing: 0;
     }
     .hero h1 span {
-      font-size: 0.78rem;
+      font-size: inherit;
     }
     .hero p {
       font-size: 0.75rem;
     }
     .logo-img {
-      height: 65px;
+      height: 56px;
     }
     .join-community-img {
-      height: 65px;
+      height: 56px;
     }
     .nav-links-bar ul { 
       justify-content: center; 
