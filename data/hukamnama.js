@@ -1,80 +1,28 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-10-06",
-  "dateDisplay": "6 October 2026",
-  "ang": 608,
-  "raagGurmukhi": "ਰਾਗੁ ਸੋਰਠਿ",
-  "raagEnglish": "Raag Sorath",
-  "writerEnglish": "Guru Arjan Dev Ji",
-  "titleGurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੫ ਘਰੁ ੧ ਤਿਤੁਕੇ",
-  "titleEnglish": "Sorat'h, Fifth Mehla, First House, Thi-Thukay:",
-  "verseGurmukhi": "ਕਿਸ ਹਉ ਜਾਚੀ ਕਿਸ ਆਰਾਧੀ ਜਾ ਸਭੁ ਕੋ ਕੀਤਾ ਹੋਸੀ ॥",
-  "verseTranslation": "Who should I ask? Who should I worship? All were created by Him.",
+  "date": "2026-10-07",
+  "dateDisplay": "7 October 2026",
+  "ang": 956,
+  "raagGurmukhi": "ਰਾਗੁ ਰਾਮਕਲੀ",
+  "raagEnglish": "Raag Raamkalee",
+  "writerEnglish": "Guru Amar Daas Ji",
+  "titleGurmukhi": "ਸਲੋਕ ਮਃ ੩ ॥",
+  "titleEnglish": "Shalok, Third Mehla:",
+  "verseGurmukhi": "ਆਸਾ ਅੰਦਰਿ ਸਭੁ ਕੋ ਕੋਇ ਨਿਰਾਸਾ ਹੋਇ ॥",
+  "verseTranslation": "Everyone is filled with hope; hardly anyone is free of hope.",
   "verses": [
     {
-      "gurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੫ ਘਰੁ ੧ ਤਿਤੁਕੇ",
-      "translation": "Sorat'h, Fifth Mehla, First House, Thi-Thukay:"
+      "gurmukhi": "ਸਲੋਕ ਮਃ ੩ ॥",
+      "translation": "Shalok, Third Mehla:"
     },
     {
-      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
-      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
+      "gurmukhi": "ਆਸਾ ਅੰਦਰਿ ਸਭੁ ਕੋ ਕੋਇ ਨਿਰਾਸਾ ਹੋਇ ॥",
+      "translation": "Everyone is filled with hope; hardly anyone is free of hope."
     },
     {
-      "gurmukhi": "ਕਿਸ ਹਉ ਜਾਚੀ ਕਿਸ ਆਰਾਧੀ ਜਾ ਸਭੁ ਕੋ ਕੀਤਾ ਹੋਸੀ ॥",
-      "translation": "Who should I ask? Who should I worship? All were created by Him."
-    },
-    {
-      "gurmukhi": "ਜੋ ਜੋ ਦੀਸੈ ਵਡਾ ਵਡੇਰਾ ਸੋ ਸੋ ਖਾਕੂ ਰਲਸੀ ॥",
-      "translation": "Whoever appears to be the greatest of the great, shall ultimately be mixed with the dust."
-    },
-    {
-      "gurmukhi": "ਨਿਰਭਉ ਨਿਰੰਕਾਰੁ ਭਵ ਖੰਡਨੁ ਸਭਿ ਸੁਖ ਨਵ ਨਿਧਿ ਦੇਸੀ ॥੧॥",
-      "translation": "The Fearless, Formless Lord, the Destroyer of Fear bestows all comforts, and the nine treasures. ||1||"
-    },
-    {
-      "gurmukhi": "ਹਰਿ ਜੀਉ ਤੇਰੀ ਦਾਤੀ ਰਾਜਾ ॥",
-      "translation": "O Dear Lord, Your gifts alone satisfy me."
-    },
-    {
-      "gurmukhi": "ਮਾਣਸੁ ਬਪੁੜਾ ਕਿਆ ਸਾਲਾਹੀ ਕਿਆ ਤਿਸ ਕਾ ਮੁਹਤਾਜਾ ॥ ਰਹਾਉ ॥",
-      "translation": "Why should I praise the poor helpless man? Why should I feel subservient to him? ||Pause||"
-    },
-    {
-      "gurmukhi": "ਜਿਨਿ ਹਰਿ ਧਿਆਇਆ ਸਭੁ ਕਿਛੁ ਤਿਸ ਕਾ ਤਿਸ ਕੀ ਭੂਖ ਗਵਾਈ ॥",
-      "translation": "All things come to one who meditates on the Lord; the Lord satisfies his hunger."
-    },
-    {
-      "gurmukhi": "ਐਸਾ ਧਨੁ ਦੀਆ ਸੁਖਦਾਤੈ ਨਿਖੁਟਿ ਨ ਕਬ ਹੀ ਜਾਈ ॥",
-      "translation": "The Lord, the Giver of peace, bestows such wealth, that it can never be exhausted."
-    },
-    {
-      "gurmukhi": "ਅਨਦੁ ਭਇਆ ਸੁਖ ਸਹਜਿ ਸਮਾਣੇ ਸਤਿਗੁਰਿ ਮੇਲਿ ਮਿਲਾਈ ॥੨॥",
-      "translation": "I am in ecstasy, absorbed in celestial peace; the True Guru has united me in His Union. ||2||"
-    },
-    {
-      "gurmukhi": "ਮਨ ਨਾਮੁ ਜਪਿ ਨਾਮੁ ਆਰਾਧਿ ਅਨਦਿਨੁ ਨਾਮੁ ਵਖਾਣੀ ॥",
-      "translation": "O mind, chant the Naam, the Name of the Lord; worship the Naam, night and day, and recite the Naam."
-    },
-    {
-      "gurmukhi": "ਉਪਦੇਸੁ ਸੁਣਿ ਸਾਧ ਸੰਤਨ ਕਾ ਸਭ ਚੂਕੀ ਕਾਣਿ ਜਮਾਣੀ ॥",
-      "translation": "Listen to the Teachings of the Holy Saints, and all fear of death will be dispelled."
-    },
-    {
-      "gurmukhi": "ਜਿਨ ਕਉ ਕ੍ਰਿਪਾਲੁ ਹੋਆ ਪ੍ਰਭੁ ਮੇਰਾ ਸੇ ਲਾਗੇ ਗੁਰ ਕੀ ਬਾਣੀ ॥੩॥",
-      "translation": "Those blessed by God's Grace are attached to the Word of the Guru's Bani. ||3||"
-    },
-    {
-      "gurmukhi": "ਕੀਮਤਿ ਕਉਣੁ ਕਰੈ ਪ੍ਰਭ ਤੇਰੀ ਤੂ ਸਰਬ ਜੀਆ ਦਇਆਲਾ ॥",
-      "translation": "Who can estimate Your worth, God? You are kind and compassionate to all beings."
-    },
-    {
-      "gurmukhi": "ਸਭੁ ਕਿਛੁ ਕੀਤਾ ਤੇਰਾ ਵਰਤੈ ਕਿਆ ਹਮ ਬਾਲ ਗੁਪਾਲਾ ॥",
-      "translation": "Everything which You do, prevails; I am just a poor child - what can I do?"
-    },
-    {
-      "gurmukhi": "ਰਾਖਿ ਲੇਹੁ ਨਾਨਕੁ ਜਨੁ ਤੁਮਰਾ ਜਿਉ ਪਿਤਾ ਪੂਤ ਕਿਰਪਾਲਾ ॥੪॥੧॥",
-      "translation": "Protect and preserve Your servant Nanak; be kind to him, like a father to his son. ||4||1||"
+      "gurmukhi": "ਨਾਨਕ ਜੋ ਮਰਿ ਜੀਵਿਆ ਸਹਿਲਾ ਆਇਆ ਸੋਇ ॥੧॥",
+      "translation": "O Nanak, blessed is the birth of one, who remains dead while yet alive. ||1||"
     }
   ],
-  "updated": "2026-10-06T07:45:12.233Z"
+  "updated": "2026-10-07T07:25:35.815Z"
 };
