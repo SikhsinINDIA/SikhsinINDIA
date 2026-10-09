@@ -1,119 +1,59 @@
 {
-  "date": "2026-10-08",
-  "dateDisplay": "8 October 2026",
-  "ang": 773,
-  "raagGurmukhi": "ਰਾਗੁ ਸੂਹੀ",
-  "raagEnglish": "Raag Soohee",
-  "writerEnglish": "Guru Raam Daas Ji",
-  "titleGurmukhi": "ਰਾਗੁ ਸੂਹੀ ਮਹਲਾ ੪ ਛੰਤ ਘਰੁ ੧",
-  "titleEnglish": "Raag Soohee, Fourth Mehla, Chhant, First House:",
-  "verseGurmukhi": "ਸਤਿਗੁਰੁ ਪੁਰਖੁ ਮਿਲਾਇ ਅਵਗਣ ਵਿਕਣਾ ਗੁਣ ਰਵਾ ਬਲਿ ਰਾਮ ਜੀਉ ॥",
-  "verseTranslation": "If only I could meet the True Guru, the Primal Being. Discarding my faults and sins, I would chant the Lord's Glorious Praises.",
+  "date": "2026-10-09",
+  "dateDisplay": "9 October 2026",
+  "ang": 611,
+  "raagGurmukhi": "ਰਾਗੁ ਸੋਰਠਿ",
+  "raagEnglish": "Raag Sorath",
+  "writerEnglish": "Guru Arjan Dev Ji",
+  "titleGurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੫ ॥",
+  "titleEnglish": "Sorat'h, Fifth Mehla:",
+  "verseGurmukhi": "ਖੋਜਤ ਖੋਜਤ ਖੋਜਿ ਬੀਚਾਰਿਓ ਰਾਮ ਨਾਮੁ ਤਤੁ ਸਾਰਾ ॥",
+  "verseTranslation": "I have searched and searched and searched, and found that the Lord's Name is the most sublime reality.",
   "verses": [
     {
-      "gurmukhi": "ਰਾਗੁ ਸੂਹੀ ਮਹਲਾ ੪ ਛੰਤ ਘਰੁ ੧",
-      "translation": "Raag Soohee, Fourth Mehla, Chhant, First House:"
+      "gurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੫ ॥",
+      "translation": "Sorat'h, Fifth Mehla:"
     },
     {
-      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
-      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
+      "gurmukhi": "ਖੋਜਤ ਖੋਜਤ ਖੋਜਿ ਬੀਚਾਰਿਓ ਰਾਮ ਨਾਮੁ ਤਤੁ ਸਾਰਾ ॥",
+      "translation": "I have searched and searched and searched, and found that the Lord's Name is the most sublime reality."
     },
     {
-      "gurmukhi": "ਸਤਿਗੁਰੁ ਪੁਰਖੁ ਮਿਲਾਇ ਅਵਗਣ ਵਿਕਣਾ ਗੁਣ ਰਵਾ ਬਲਿ ਰਾਮ ਜੀਉ ॥",
-      "translation": "If only I could meet the True Guru, the Primal Being. Discarding my faults and sins, I would chant the Lord's Glorious Praises."
+      "gurmukhi": "ਕਿਲਬਿਖ ਕਾਟੇ ਨਿਮਖ ਅਰਾਧਿਆ ਗੁਰਮੁਖਿ ਪਾਰਿ ਉਤਾਰਾ ॥੧॥",
+      "translation": "Contemplating it for even an instant, sins are erased; the Gurmukh is carried across and saved. ||1||"
     },
     {
-      "gurmukhi": "ਹਰਿ ਹਰਿ ਨਾਮੁ ਧਿਆਇ ਗੁਰਬਾਣੀ ਨਿਤ ਨਿਤ ਚਵਾ ਬਲਿ ਰਾਮ ਜੀਉ ॥",
-      "translation": "I meditate on the Naam, the Name of the Lord, Har, Har. Continuously, continually, I chant the Word of the Guru's Bani."
+      "gurmukhi": "ਹਰਿ ਰਸੁ ਪੀਵਹੁ ਪੁਰਖ ਗਿਆਨੀ ॥",
+      "translation": "Drink in the sublime essence of the Lord's Name, O man of spiritual wisdom."
     },
     {
-      "gurmukhi": "ਗੁਰਬਾਣੀ ਸਦ ਮੀਠੀ ਲਾਗੀ ਪਾਪ ਵਿਕਾਰ ਗਵਾਇਆ ॥",
-      "translation": "Gurbani always seems so sweet; I have eradicated the sins from within."
+      "gurmukhi": "ਸੁਣਿ ਸੁਣਿ ਮਹਾ ਤ੍ਰਿਪਤਿ ਮਨੁ ਪਾਵੈ ਸਾਧੂ ਅੰਮ੍ਰਿਤ ਬਾਨੀ ॥ ਰਹਾਉ ॥",
+      "translation": "Listening to the Ambrosial Words of the Holy Saints, the mind finds absolute fulfillment and satisfaction. ||Pause||"
     },
     {
-      "gurmukhi": "ਹਉਮੈ ਰੋਗੁ ਗਇਆ ਭਉ ਭਾਗਾ ਸਹਜੇ ਸਹਜਿ ਮਿਲਾਇਆ ॥",
-      "translation": "The disease of egotism is gone, fear has left, and I am absorbed in celestial peace."
+      "gurmukhi": "ਮੁਕਤਿ ਭੁਗਤਿ ਜੁਗਤਿ ਸਚੁ ਪਾਈਐ ਸਰਬ ਸੁਖਾ ਕਾ ਦਾਤਾ ॥",
+      "translation": "Liberation, pleasures, and the true way of life are obtained from the Lord, the Giver of all peace."
     },
     {
-      "gurmukhi": "ਕਾਇਆ ਸੇਜ ਗੁਰ ਸਬਦਿ ਸੁਖਾਲੀ ਗਿਆਨ ਤਤਿ ਕਰਿ ਭੋਗੋ ॥",
-      "translation": "Through the Word of the Guru's Shabad, the bed of my body has become cozy and beautiful, and I enjoy the essence of spiritual wisdom."
+      "gurmukhi": "ਅਪੁਨੇ ਦਾਸ ਕਉ ਭਗਤਿ ਦਾਨੁ ਦੇਵੈ ਪੂਰਨ ਪੁਰਖੁ ਬਿਧਾਤਾ ॥੨॥",
+      "translation": "The Perfect Lord, the Architect of Destiny, blesses His slave with the gift of devotional worship. ||2||"
     },
     {
-      "gurmukhi": "ਅਨਦਿਨੁ ਸੁਖਿ ਮਾਣੇ ਨਿਤ ਰਲੀਆ ਨਾਨਕ ਧੁਰਿ ਸੰਜੋਗੋ ॥੧॥",
-      "translation": "Night and day, I continually enjoy peace and pleasure. O Nanak, this is my pre-ordained destiny. ||1||"
+      "gurmukhi": "ਸ੍ਰਵਣੀ ਸੁਣੀਐ ਰਸਨਾ ਗਾਈਐ ਹਿਰਦੈ ਧਿਆਈਐ ਸੋਈ ॥",
+      "translation": "Hear with your ears, and sing with your tongue, and meditate within your heart on Him."
     },
     {
-      "gurmukhi": "ਸਤੁ ਸੰਤੋਖੁ ਕਰਿ ਭਾਉ ਕੁੜਮੁ ਕੁੜਮਾਈ ਆਇਆ ਬਲਿ ਰਾਮ ਜੀਉ ॥",
-      "translation": "The soul-bride is lovingly embellished with truth and contentment; her Father, the Guru, has come to engage her in marriage to her Husband Lord."
+      "gurmukhi": "ਕਰਣ ਕਾਰਣ ਸਮਰਥ ਸੁਆਮੀ ਜਾ ਤੇ ਬ੍ਰਿਥਾ ਨ ਕੋਈ ॥੩॥",
+      "translation": "The Lord and Master is all-powerful, the Cause of causes; without Him, there is nothing at all. ||3||"
     },
     {
-      "gurmukhi": "ਸੰਤ ਜਨਾ ਕਰਿ ਮੇਲੁ ਗੁਰਬਾਣੀ ਗਾਵਾਈਆ ਬਲਿ ਰਾਮ ਜੀਉ ॥",
-      "translation": "Joining with the humble Saints, I sing Gurbani."
+      "gurmukhi": "ਵਡੈ ਭਾਗਿ ਰਤਨ ਜਨਮੁ ਪਾਇਆ ਕਰਹੁ ਕ੍ਰਿਪਾ ਕਿਰਪਾਲਾ ॥",
+      "translation": "By great good fortune, I have obtained the jewel of human life; have mercy on me, O Merciful Lord."
     },
     {
-      "gurmukhi": "ਬਾਣੀ ਗੁਰ ਗਾਈ ਪਰਮ ਗਤਿ ਪਾਈ ਪੰਚ ਮਿਲੇ ਸੋਹਾਇਆ ॥",
-      "translation": "Singing the Guru's Bani, I have obtained the supreme status; meeting with the Saints, the self-elect, I am blessed and adorned."
-    },
-    {
-      "gurmukhi": "ਗਇਆ ਕਰੋਧੁ ਮਮਤਾ ਤਨਿ ਨਾਠੀ ਪਾਖੰਡੁ ਭਰਮੁ ਗਵਾਇਆ ॥",
-      "translation": "Anger and attachment have left my body and run away; I have eradicated hypocrisy and doubt."
-    },
-    {
-      "gurmukhi": "ਹਉਮੈ ਪੀਰ ਗਈ ਸੁਖੁ ਪਾਇਆ ਆਰੋਗਤ ਭਏ ਸਰੀਰਾ ॥",
-      "translation": "The pain of egotism is gone, and I have found peace; my body has become healthy and free of disease."
-    },
-    {
-      "gurmukhi": "ਗੁਰ ਪਰਸਾਦੀ ਬ੍ਰਹਮੁ ਪਛਾਤਾ ਨਾਨਕ ਗੁਣੀ ਗਹੀਰਾ ॥੨॥",
-      "translation": "By Guru's Grace, O Nanak, I have realized God, the ocean of virtue. ||2||"
-    },
-    {
-      "gurmukhi": "ਮਨਮੁਖਿ ਵਿਛੁੜੀ ਦੂਰਿ ਮਹਲੁ ਨ ਪਾਏ ਬਲਿ ਗਈ ਬਲਿ ਰਾਮ ਜੀਉ ॥",
-      "translation": "The self-willed manmukh is separated, far away from God; she does not obtain the Mansion of His Presence, and she burns."
-    },
-    {
-      "gurmukhi": "ਅੰਤਰਿ ਮਮਤਾ ਕੂਰਿ ਕੂੜੁ ਵਿਹਾਝੇ ਕੂੜਿ ਲਈ ਬਲਿ ਰਾਮ ਜੀਉ ॥",
-      "translation": "Egotism and falsehood are deep within her; deluded by falsehood, she deals only in falsehood."
-    },
-    {
-      "gurmukhi": "ਕੂੜੁ ਕਪਟੁ ਕਮਾਵੈ ਮਹਾ ਦੁਖੁ ਪਾਵੈ ਵਿਣੁ ਸਤਿਗੁਰ ਮਗੁ ਨ ਪਾਇਆ ॥",
-      "translation": "Practicing fraud and falsehood, she suffers terrible pain; without the True Guru, she does not find the way."
-    },
-    {
-      "gurmukhi": "ਉਝੜ ਪੰਥਿ ਭ੍ਰਮੈ ਗਾਵਾਰੀ ਖਿਨੁ ਖਿਨੁ ਧਕੇ ਖਾਇਆ ॥",
-      "translation": "The foolish soul-bride wanders along dismal pathways; each and every moment, she is bumped and pushed."
-    },
-    {
-      "gurmukhi": "ਆਪੇ ਦਇਆ ਕਰੇ ਪ੍ਰਭੁ ਦਾਤਾ ਸਤਿਗੁਰੁ ਪੁਰਖੁ ਮਿਲਾਏ ॥",
-      "translation": "God, the Great Giver, shows His Mercy, and leads her to meet the True Guru, the Primal Being."
-    },
-    {
-      "gurmukhi": "ਜਨਮ ਜਨਮ ਕੇ ਵਿਛੁੜੇ ਜਨ ਮੇਲੇ ਨਾਨਕ ਸਹਜਿ ਸੁਭਾਏ ॥੩॥",
-      "translation": "Those beings who have been separated for countless incarnations, O Nanak, are reunited with the Lord, with intuitive ease. ||3||"
-    },
-    {
-      "gurmukhi": "ਆਇਆ ਲਗਨੁ ਗਣਾਇ ਹਿਰਦੈ ਧਨ ਓਮਾਹੀਆ ਬਲਿ ਰਾਮ ਜੀਉ ॥",
-      "translation": "Calculating the most auspicious moment, the Lord comes into the bride's home; her heart is filled with ecstasy."
-    },
-    {
-      "gurmukhi": "ਪੰਡਿਤ ਪਾਧੇ ਆਣਿ ਪਤੀ ਬਹਿ ਵਾਚਾਈਆ ਬਲਿ ਰਾਮ ਜੀਉ ॥",
-      "translation": "The Pandits and astrologers have come, to sit and consult the almanacs."
-    },
-    {
-      "gurmukhi": "ਪਤੀ ਵਾਚਾਈ ਮਨਿ ਵਜੀ ਵਧਾਈ ਜਬ ਸਾਜਨ ਸੁਣੇ ਘਰਿ ਆਏ ॥",
-      "translation": "They have consulted the almanacs, and the bride's mind vibrates with bliss, when she hears that her Friend is coming into the home of her heart."
-    },
-    {
-      "gurmukhi": "ਗੁਣੀ ਗਿਆਨੀ ਬਹਿ ਮਤਾ ਪਕਾਇਆ ਫੇਰੇ ਤਤੁ ਦਿਵਾਏ ॥",
-      "translation": "The virtuous and wise men sat down and decided to perform the marriage immediately."
-    },
-    {
-      "gurmukhi": "ਵਰੁ ਪਾਇਆ ਪੁਰਖੁ ਅਗੰਮੁ ਅਗੋਚਰੁ ਸਦ ਨਵਤਨੁ ਬਾਲ ਸਖਾਈ ॥",
-      "translation": "She has found her Husband, the Inaccessible, Unfathomable Primal Lord, who is forever young; He is her Best Friend from her earliest childhood."
-    },
-    {
-      "gurmukhi": "ਨਾਨਕ ਕਿਰਪਾ ਕਰਿ ਕੈ ਮੇਲੇ ਵਿਛੁੜਿ ਕਦੇ ਨ ਜਾਈ ॥੪॥੧॥",
-      "translation": "O Nanak, he has mercifully united the bride with Himself. She shall never be separated again. ||4||1||"
+      "gurmukhi": "ਸਾਧਸੰਗਿ ਨਾਨਕੁ ਗੁਣ ਗਾਵੈ ਸਿਮਰੈ ਸਦਾ ਗੋੁਪਾਲਾ ॥੪॥੧੦॥",
+      "translation": "In the Saadh Sangat, the Company of the Holy, Nanak sings the Glorious Praises of the Lord, and contemplates Him forever in meditation. ||4||10||"
     }
   ],
-  "updated": "2026-10-08T07:41:04.561Z"
+  "updated": "2026-10-09T07:37:18.583Z"
 }
