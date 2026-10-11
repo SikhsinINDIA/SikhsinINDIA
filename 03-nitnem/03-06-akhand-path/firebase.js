@@ -250,35 +250,58 @@ export const APP_SHARED_SECRET = "LuOoE-d92AyXMGsCBA0FcQGhKsYRLgs6";
    around.
 
    All six templates below (invite_v5, approved, invite_v6, rejected,
-   reminder_start, reminder_end) are approved (Sep-Oct 2026), all Utility,
-   all plain "English" = en — every WhatsApp send described in this file is
-   fully live, no template approval pending.
+   reminder_start, reminder_end) were submitted for review on 11 Oct 2026,
+   all Utility, all plain "English" = en. They were created directly in
+   WhatsApp Manager (none existed before that date, despite this file
+   having referenced their names for a while — the account genuinely had
+   no akhand_path_* templates until this submission). Each is "In review"
+   as of submission; swap the status note below once Meta actually
+   approves or rejects each one.
 
-   akhand_path_invite_v6's preview text in WhatsApp Manager ("New Akhand
-   Path request. Sp...") matches the 10-variable admin-notification body
-   drafted below, so it's wired here as WHATSAPP_NEW_REQUEST_TEMPLATE even
-   though its name suggests an "invite" template — Meta approves whatever
-   name you submit, and this is almost certainly the same template that was
-   originally meant to be called "akhand_path_new_request", just approved
-   under a different name. If the admin's WhatsApp notification on a new
-   request comes through garbled or Meta rejects the param count, the
-   approved body isn't an exact match — check WhatsApp Manager's Message
-   templates > akhand_path_invite_v6 for the exact wording/variable count
-   and update the body/params in notifyAdminOfNewRequestWhatsApp()
-   (03-06-01-request-akhand-path.html) to match it.
+   Two submission quirks worth knowing if you ever recreate these:
+   - Meta rejects a body where the LAST variable is also the literal last
+     character(s) of the template ("Variables can't be at the start or end
+     of the template") — every body below ends in static text after its
+     final {{n}} for exactly this reason, even where that reads a little
+     redundantly (e.g. reminder_start/end's "With blessings from {{5}} —
+     Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh!" instead of ending on the
+     sender-name variable).
+   - Meta also rejects a body with too many variables relative to its
+     length ("too many variables for its length") — invite_v6's original
+     10-variable draft (187 chars) failed this; it was expanded with
+     fuller field labels and a closing line until it passed at 341 chars.
+   - invite_v5's "You're invited..." wording tripped Meta's category
+     classifier (it suggested Marketing instead of Utility) — submitted as
+     Utility anyway, matching every sibling template here and the
+     account's own stated approach; if Meta's human review disagrees, it
+     will come back rejected rather than silently miscategorized.
 
-     Body this was drafted against (10 variables — the same facts the admin
-     email already carries, condensed to fit WhatsApp's per-message length):
-     "New Akhand Path request.
-Sponsor: {{1}} ({{2}})
+   akhand_path_invite_v6 carries the admin new-request notification (wired
+   as WHATSAPP_NEW_REQUEST_TEMPLATE despite the "invite" name — Meta
+   approves whatever name you submit, and this one was deliberately named
+   to match a pre-existing reference to it elsewhere in this file's
+   history). If Meta's review changes the wording, that approved version is
+   the source of truth, not this file — update these to match it, not the
+   other way around. If the admin's WhatsApp notification on a new request
+   comes through garbled or Meta rejects the param count, check WhatsApp
+   Manager's Message templates > akhand_path_invite_v6 for the actual
+   approved wording and update the body/params in
+   notifyAdminOfNewRequestWhatsApp() (03-06-01-request-akhand-path.html) to
+   match it.
+
+     Body submitted (10 variables — the same facts the admin email already
+     carries, condensed to fit WhatsApp's per-message length):
+     "New Akhand Path Sahib Ji request submitted on SikhsinIndia.com.
+Sponsor name: {{1}} ({{2}})
 Dedicated to: {{3}}
 Occasion: {{4}}
 Location: {{5}}
-Start: {{6}}
-Samapti: {{7}}
-Invitees: {{8}}
-Note: {{9}}
-Review and approve here: {{10}}"
+Requested start time: {{6}}
+Requested Samapti time: {{7}}
+Invitees listed: {{8}}
+Sponsor note: {{9}}
+Please review and approve this request here: {{10}}
+Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh."
 
      Sample values, in order:
      Gurpreet Singh / gurpreet@example.com, +919876543210 /
@@ -291,50 +314,78 @@ Review and approve here: {{10}}"
    A mismatched language code makes Meta reply "template not found" — check
    WhatsApp Manager's Language column again before changing any of these.
 
-   The three constants below (rejected/reminder-start/reminder-end) are now
-   approved too (Oct 2026) — every call using them is still wrapped
-   best-effort (try/catch, doesn't block the surrounding action), which is
-   harmless now that they're live; it just means a future template edit
-   that gets rejected by Meta again would fail silently rather than
-   breaking the surrounding flow. */
+   akhand_path_invite_v5 — sendInviteeWhatsApp() / sendInviteeWhatsAppFromEditor()
+   deliver this. Param order: invitee's GName (falls back to Name), honoree
+   name, purpose, start, samapti, session link — matches those two
+   functions' params arrays exactly; keep all three in sync if any changes.
+   Body (6 variables):
+   "You're invited to an Akhand Path Sahib Ji.
+Dear {{1}},
+Dedicated to: {{2}}
+Occasion: {{3}}
+Start: {{4}}
+Samapti: {{5}}
+Join here: {{6}}
+Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh!"
+   Sample values: Amrit Kaur / Sardar Harbhajan Singh / Birthday /
+   12 Oct 2026, 6:00 AM / 14 Oct 2026, 6:00 AM /
+   https://sikhsinindia.com/03-nitnem/03-06-akhand-path/index.html?session=7
+
+   akhand_path_approved — sendSponsorApprovalWhatsApp() in
+   03-06-03-admin-akhand-path.html delivers this. Param order: sponsor
+   name, honoree name, purpose, start, samapti, session link.
+   Body (6 variables):
+   "Your Akhand Path Sahib Ji request has been approved.
+Dear {{1}},
+Dedicated to: {{2}}
+Occasion: {{3}}
+Start: {{4}}
+Samapti: {{5}}
+View details here: {{6}}
+Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh!"
+   Sample values: Gurpreet Singh / Sardar Harbhajan Singh / Birthday /
+   12 Oct 2026, 6:00 AM / 14 Oct 2026, 6:00 AM /
+   https://sikhsinindia.com/03-nitnem/03-06-akhand-path/index.html?session=7 */
 export const WHATSAPP_INVITE_TEMPLATE = "akhand_path_invite_v5";
 export const WHATSAPP_APPROVAL_TEMPLATE = "akhand_path_approved";
 export const WHATSAPP_NEW_REQUEST_TEMPLATE = "akhand_path_invite_v6";
 
-/* Approved (Oct 2026, Utility, English) — sendRejectionWhatsApp() in
-   03-06-03-admin-akhand-path.html delivers this live.
+/* Submitted 11 Oct 2026 (Utility, English) — sendRejectionWhatsApp() in
+   03-06-03-admin-akhand-path.html delivers this.
    Body (3 variables):
    "Update on your Akhand Path Sahib Ji request.
 Dedicated to: {{1}}
 Unfortunately, this request could not be approved at this time.{{2}}
-For questions, please contact us: {{3}}"
+For questions, please contact us: {{3}}
+Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh."
    Sample values: Sardar Harbhajan Singh / " Reason: Requested dates are
    already booked for another program." (empty string if no reason given) /
    sikhsinindia@gmail.com */
 export const WHATSAPP_REJECTED_TEMPLATE = "akhand_path_rejected";
 
-/* Approved (Oct 2026, Utility, English) — see akhand-path-reminders.yml
+/* Submitted 11 Oct 2026 (Utility, English) — see akhand-path-reminders.yml
    (GitHub Actions) for where this is actually sent from. Body (5 variables):
    "Reminder: Akhand Path Sahib Ji begins in about 1 hour.
 Dedicated to: {{1}}
 Occasion: {{2}}
 Start: {{3}}
 Venue/Session link: {{4}}
-Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh — {{5}}"
+With blessings from {{5}} — Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh!"
    Sample values: Sardar Harbhajan Singh / Birthday / 12 Oct 2026, 6:00 AM /
    https://sikhsinindia.com/03-nitnem/03-06-akhand-path/index.html?session=7 /
    Sikhs In India */
 export const WHATSAPP_REMINDER_START_TEMPLATE = "akhand_path_reminder_start";
 
-/* Approved (Oct 2026, Utility, English) — see akhand-path-reminders.yml
+/* Submitted 11 Oct 2026 (Utility, English) — see akhand-path-reminders.yml
    (GitHub Actions) for where this is actually sent from. Body (5 variables):
    "Reminder: Akhand Path Sahib Ji concludes (Samapti) in about 1 hour.
 Dedicated to: {{1}}
 Occasion: {{2}}
 Samapti: {{3}}
 Venue/Session link: {{4}}
-Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh — {{5}}"
-   Sample values: same shape as the start-reminder template above. */
+With blessings from {{5}} — Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh!"
+   Sample values: same shape as the start-reminder template above (14 Oct
+   2026, 6:00 AM for the Samapti sample instead). */
 export const WHATSAPP_REMINDER_END_TEMPLATE = "akhand_path_reminder_end";
 
 export const WHATSAPP_TEMPLATE_LANGUAGES = {
