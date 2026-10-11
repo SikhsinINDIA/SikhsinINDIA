@@ -1,0 +1,38 @@
+name: Daily Calendar-Event WhatsApp Mailer
+
+# Uses the SAME FIREBASE_SERVICE_ACCOUNT_JSON secret already set up for
+# .github/workflows/daily-event-mailer.yml and akhand-path-reminders.yml -
+# nothing new to configure. If that secret isn't set yet, this fails at the
+# "Send today's event WhatsApp messages" step with a clear error; nothing
+# else in the site is affected.
+#
+# WhatsApp sending itself (action: "send_whatsapp" on the Cloudflare Worker)
+# requires the Worker's own WHATSAPP_ACCESS_TOKEN / WHATSAPP_PHONE_NUMBER_ID
+# secrets to already be configured there (see cloudflare-worker/src/index.js) -
+# this workflow doesn't need those values itself, only the Worker does.
+
+on:
+  schedule:
+    # 23:45 UTC = 05:15 IST year-round (India has no daylight saving) -
+    # staggered 15 minutes after the email event mailer so the two jobs
+    # don't hit Firestore/the Worker at the same moment.
+    - cron: '45 23 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --omit=dev firebase-admin
+
+      - name: Send today's event WhatsApp messages
+        env:
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+        run: node scripts/send-daily-event-whatsapp.js
