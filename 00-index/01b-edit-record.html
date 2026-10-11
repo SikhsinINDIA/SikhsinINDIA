@@ -508,9 +508,10 @@
                 <th>GName</th>
                 <th>Mobile</th>
                 <th>Mobile_Correct</th>
+                <th>Email_Correct</th>
                 <th>Country_Code</th>
                 <th>Age</th>
-                <th>Gender</th>
+                <th>Gender</th>f
                 <th>Address</th>
                 <th>City</th>
                 <th>State</th>
@@ -562,6 +563,15 @@
             <div class="form-group">
               <label for="mobile_correct">Mobile Verified Correct</label>
               <select id="mobile_correct">
+                <option value="">-- Not Set --</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+                        <div class="form-group">
+              <label for="email_correct">Email Verified Correct</label>
+              <select id="email_correct">
                 <option value="">-- Not Set --</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
@@ -695,6 +705,7 @@
                 <td>${data.GName || ''}</td>
                 <td>${data.Mobile || ''}</td>
                 <td>${data.Mobile_Correct === true ? 'Yes' : data.Mobile_Correct === false ? 'No' : ''}</td>
+                <td>${data.Email_Correct === true ? 'Yes' : data.Email_Correct === false ? 'No' : ''}</td>
                 <td>${data.Country_Code || ''}</td>
                 <td>${data.Age || ''}</td>
                 <td>${data.Gender || ''}</td>
@@ -732,6 +743,7 @@
           document.getElementById("password").value = data.Password || "";
           document.getElementById("mobile").value = data.Mobile || "";
           document.getElementById("mobile_correct").value = data.Mobile_Correct === true ? "Yes" : data.Mobile_Correct === false ? "No" : "";
+          document.getElementById("email_correct").value = data.Email_Correct === true ? "Yes" : data.Email_Correct === false ? "No" : "";
           document.getElementById("country_code").value = data.Country_Code || "";
           document.getElementById("age").value = data.Age || "";
           document.getElementById("address").value = data.Address || "";
@@ -770,6 +782,7 @@
       document.getElementById("password").value = "";
       document.getElementById("mobile").value = "";
       document.getElementById("mobile_correct").value = "";
+      document.getElementById("email_correct").value = "";
       document.getElementById("country_code").value = "";
       document.getElementById("age").value = "";
       document.getElementById("address").value = "";
@@ -793,7 +806,9 @@
       const password = document.getElementById("password").value.trim();
       const mobile = document.getElementById("mobile").value.trim();
       const mobileCorrectSel = document.getElementById("mobile_correct").value.trim();
-      const mobileCorrect = mobileCorrectSel === "Yes" ? true : mobileCorrectSel === "No" ? false : null;
+            const mobileCorrect = mobileCorrectSel === "Yes" ? true : mobileCorrectSel === "No" ? false : null;
+      const emailCorrectSel = document.getElementById("email_correct").value.trim();
+      const emailcorrect = emailCorrectSel === "Yes" ? true : emailCorrectSel === "No" ? false : null;
       const countryCode = document.getElementById("country_code").value.trim();
       const age = document.getElementById("age").value.trim();
       const address = document.getElementById("address").value.trim();
@@ -815,11 +830,13 @@
 
       db.collection("sikhdatabaseindia").doc(email).set({
         Email: email,
+        Email_Correct: emailcorrect,
         Name: name,
         GName: gname,
         Password: password,
         Mobile: Number(mobile),
         Mobile_Correct: mobileCorrect,
+        Email_Correct: emailcorrect,
         Country_Code: countryCode,
         Age: age ? Number(age) : null,
         Address: address,
@@ -852,6 +869,7 @@
           document.getElementById("password").value = data.Password || '';
           document.getElementById("mobile").value = data.Mobile || '';
           document.getElementById("mobile_correct").value = data.Mobile_Correct === true ? "Yes" : data.Mobile_Correct === false ? "No" : "";
+          document.getElementById("email_correct").value = data.Email_Correct === true ? "Yes" : data.Email_Correct === false ? "No" : "";
           document.getElementById("country_code").value = data.Country_Code || '';
           document.getElementById("age").value = data.Age || '';
           document.getElementById("address").value = data.Address || '';
