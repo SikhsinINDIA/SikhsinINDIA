@@ -1,60 +1,88 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-10-11",
-  "dateDisplay": "11 October 2026",
-  "ang": 560,
-  "raagGurmukhi": "ਰਾਗੁ ਵਡਹੰਸੁ",
-  "raagEnglish": "Raag Vadhans",
-  "writerEnglish": "Guru Amar Daas Ji",
-  "titleGurmukhi": "ਵਡਹੰਸੁ ਮਹਲਾ ੩ ॥",
-  "titleEnglish": "Wadahans, Third Mehla:",
-  "verseGurmukhi": "ਰਸਨਾ ਹਰਿ ਸਾਦਿ ਲਗੀ ਸਹਜਿ ਸੁਭਾਇ ॥",
-  "verseTranslation": "My tongue is intuitively attracted to the taste of the Lord.",
+  "date": "2026-10-12",
+  "dateDisplay": "12 October 2026",
+  "ang": 800,
+  "raagGurmukhi": "ਰਾਗੁ ਬਿਲਾਵਲ",
+  "raagEnglish": "Raag Bilaaval",
+  "writerEnglish": "Guru Raam Daas Ji",
+  "titleGurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+  "titleEnglish": "One Universal Creator God. By The Grace Of The True Guru:",
+  "verseGurmukhi": "ਰਾਗੁ ਬਿਲਾਵਲੁ ਮਹਲਾ ੪ ਪੜਤਾਲ ਘਰੁ ੧੩ ॥",
+  "verseTranslation": "Raag Bilaaval, Fourth Mehla, Partaal, Thirteenth House:",
   "verses": [
     {
-      "gurmukhi": "ਵਡਹੰਸੁ ਮਹਲਾ ੩ ॥",
-      "translation": "Wadahans, Third Mehla:"
+      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
     },
     {
-      "gurmukhi": "ਰਸਨਾ ਹਰਿ ਸਾਦਿ ਲਗੀ ਸਹਜਿ ਸੁਭਾਇ ॥",
-      "translation": "My tongue is intuitively attracted to the taste of the Lord."
+      "gurmukhi": "ਰਾਗੁ ਬਿਲਾਵਲੁ ਮਹਲਾ ੪ ਪੜਤਾਲ ਘਰੁ ੧੩ ॥",
+      "translation": "Raag Bilaaval, Fourth Mehla, Partaal, Thirteenth House:"
     },
     {
-      "gurmukhi": "ਮਨੁ ਤ੍ਰਿਪਤਿਆ ਹਰਿ ਨਾਮੁ ਧਿਆਇ ॥੧॥",
-      "translation": "My mind is satisfied, meditating on the Name of the Lord. ||1||"
+      "gurmukhi": "ਬੋਲਹੁ ਭਈਆ ਰਾਮ ਨਾਮੁ ਪਤਿਤ ਪਾਵਨੋ ॥",
+      "translation": "O Siblings of Destiny, chant the Name of the Lord, the Purifier of sinners."
     },
     {
-      "gurmukhi": "ਸਦਾ ਸੁਖੁ ਸਾਚੈ ਸਬਦਿ ਵੀਚਾਰੀ ॥",
-      "translation": "Lasting peace is obtained, contemplating the Shabad, the True Word of God."
+      "gurmukhi": "ਹਰਿ ਸੰਤ ਭਗਤ ਤਾਰਨੋ ॥",
+      "translation": "The Lord emancipates his Saints and devotees."
     },
     {
-      "gurmukhi": "ਆਪਣੇ ਸਤਗੁਰ ਵਿਟਹੁ ਸਦਾ ਬਲਿਹਾਰੀ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "I am forever a sacrifice to my True Guru. ||1||Pause||"
+      "gurmukhi": "ਹਰਿ ਭਰਿਪੁਰੇ ਰਹਿਆ ॥",
+      "translation": "The Lord is totally permeating and pervading everywhere;"
     },
     {
-      "gurmukhi": "ਅਖੀ ਸੰਤੋਖੀਆ ਏਕ ਲਿਵ ਲਾਇ ॥",
-      "translation": "My eyes are content, lovingly focused on the One Lord."
+      "gurmukhi": "ਜਲਿ ਥਲੇ ਰਾਮ ਨਾਮੁ ॥",
+      "translation": "the Name of the Lord is pervading the water and the land."
     },
     {
-      "gurmukhi": "ਮਨੁ ਸੰਤੋਖਿਆ ਦੂਜਾ ਭਾਉ ਗਵਾਇ ॥੨॥",
-      "translation": "My mind is content, having forsaken the love of duality. ||2||"
+      "gurmukhi": "ਨਿਤ ਗਾਈਐ ਹਰਿ ਦੂਖ ਬਿਸਾਰਨੋ ॥੧॥ ਰਹਾਉ ॥",
+      "translation": "So sing continuously of the Lord, the Dispeller of pain. ||1||Pause||"
     },
     {
-      "gurmukhi": "ਦੇਹ ਸਰੀਰਿ ਸੁਖੁ ਹੋਵੈ ਸਬਦਿ ਹਰਿ ਨਾਇ ॥",
-      "translation": "The frame of my body is at peace, through the Shabad, and the Name of the Lord."
+      "gurmukhi": "ਹਰਿ ਕੀਆ ਹੈ ਸਫਲ ਜਨਮੁ ਹਮਾਰਾ ॥",
+      "translation": "The Lord has made my life fruitful and rewarding."
     },
     {
-      "gurmukhi": "ਨਾਮੁ ਪਰਮਲੁ ਹਿਰਦੈ ਰਹਿਆ ਸਮਾਇ ॥੩॥",
-      "translation": "The fragrance of the Naam permeates my heart. ||3||"
+      "gurmukhi": "ਹਰਿ ਜਪਿਆ ਹਰਿ ਦੂਖ ਬਿਸਾਰਨਹਾਰਾ ॥",
+      "translation": "I meditate on the Lord, the Dispeller of pain."
     },
     {
-      "gurmukhi": "ਨਾਨਕ ਮਸਤਕਿ ਜਿਸੁ ਵਡਭਾਗੁ ॥",
-      "translation": "O Nanak, one who has such great destiny written upon his forehead,"
+      "gurmukhi": "ਗੁਰੁ ਭੇਟਿਆ ਹੈ ਮੁਕਤਿ ਦਾਤਾ ॥",
+      "translation": "I have met the Guru, the Giver of liberation."
     },
     {
-      "gurmukhi": "ਗੁਰ ਕੀ ਬਾਣੀ ਸਹਜ ਬੈਰਾਗੁ ॥੪॥੭॥",
-      "translation": "through the Bani of the Guru's Word, easily and intuitively becomes free of desire. ||4||7||"
+      "gurmukhi": "ਹਰਿ ਕੀਈ ਹਮਾਰੀ ਸਫਲ ਜਾਤਾ ॥",
+      "translation": "The Lord has made my life's journey fruitful and rewarding."
+    },
+    {
+      "gurmukhi": "ਮਿਲਿ ਸੰਗਤੀ ਗੁਨ ਗਾਵਨੋ ॥੧॥",
+      "translation": "Joining the Sangat, the Holy Congregation, I sing the Glorious Praises of the Lord. ||1||"
+    },
+    {
+      "gurmukhi": "ਮਨ ਰਾਮ ਨਾਮ ਕਰਿ ਆਸਾ ॥",
+      "translation": "O mortal, place your hopes in the Name of the Lord,"
+    },
+    {
+      "gurmukhi": "ਭਾਉ ਦੂਜਾ ਬਿਨਸਿ ਬਿਨਾਸਾ ॥",
+      "translation": "and your love of duality shall simply vanish."
+    },
+    {
+      "gurmukhi": "ਵਿਚਿ ਆਸਾ ਹੋਇ ਨਿਰਾਸੀ ॥",
+      "translation": "One who, in hope, remains unattached to hope,"
+    },
+    {
+      "gurmukhi": "ਸੋ ਜਨੁ ਮਿਲਿਆ ਹਰਿ ਪਾਸੀ ॥",
+      "translation": "such a humble being meets with his Lord."
+    },
+    {
+      "gurmukhi": "ਕੋਈ ਰਾਮ ਨਾਮ ਗੁਨ ਗਾਵਨੋ ॥",
+      "translation": "And one who sings the Glorious Praises of the Lord's Name"
+    },
+    {
+      "gurmukhi": "ਜਨੁ ਨਾਨਕੁ ਤਿਸੁ ਪਗਿ ਲਾਵਨੋ ॥੨॥੧॥੭॥੪॥੬॥੭॥੧੭॥",
+      "translation": "- servant Nanak falls at his feet. ||2||1||7||4||6||7||17||"
     }
   ],
-  "updated": "2026-10-11T07:28:47.225Z"
+  "updated": "2026-10-12T07:36:46.843Z"
 };
