@@ -1,88 +1,60 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-10-12",
-  "dateDisplay": "12 October 2026",
-  "ang": 800,
-  "raagGurmukhi": "ਰਾਗੁ ਬਿਲਾਵਲ",
-  "raagEnglish": "Raag Bilaaval",
+  "date": "2026-10-13",
+  "dateDisplay": "13 October 2026",
+  "ang": 731,
+  "raagGurmukhi": "ਰਾਗੁ ਸੂਹੀ",
+  "raagEnglish": "Raag Soohee",
   "writerEnglish": "Guru Raam Daas Ji",
-  "titleGurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
-  "titleEnglish": "One Universal Creator God. By The Grace Of The True Guru:",
-  "verseGurmukhi": "ਰਾਗੁ ਬਿਲਾਵਲੁ ਮਹਲਾ ੪ ਪੜਤਾਲ ਘਰੁ ੧੩ ॥",
-  "verseTranslation": "Raag Bilaaval, Fourth Mehla, Partaal, Thirteenth House:",
+  "titleGurmukhi": "ਸੂਹੀ ਮਹਲਾ ੪ ॥",
+  "titleEnglish": "Soohee, Fourth Mehla:",
+  "verseGurmukhi": "ਹਰਿ ਹਰਿ ਨਾਮੁ ਭਜਿਓ ਪੁਰਖੋਤਮੁ ਸਭਿ ਬਿਨਸੇ ਦਾਲਦ ਦਲਘਾ ॥",
+  "verseTranslation": "I chant and vibrate the Name of the Lord God, the Supreme Being, Har, Har; my poverty and problems have all been eradicated.",
   "verses": [
     {
-      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
-      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
+      "gurmukhi": "ਸੂਹੀ ਮਹਲਾ ੪ ॥",
+      "translation": "Soohee, Fourth Mehla:"
     },
     {
-      "gurmukhi": "ਰਾਗੁ ਬਿਲਾਵਲੁ ਮਹਲਾ ੪ ਪੜਤਾਲ ਘਰੁ ੧੩ ॥",
-      "translation": "Raag Bilaaval, Fourth Mehla, Partaal, Thirteenth House:"
+      "gurmukhi": "ਹਰਿ ਹਰਿ ਨਾਮੁ ਭਜਿਓ ਪੁਰਖੋਤਮੁ ਸਭਿ ਬਿਨਸੇ ਦਾਲਦ ਦਲਘਾ ॥",
+      "translation": "I chant and vibrate the Name of the Lord God, the Supreme Being, Har, Har; my poverty and problems have all been eradicated."
     },
     {
-      "gurmukhi": "ਬੋਲਹੁ ਭਈਆ ਰਾਮ ਨਾਮੁ ਪਤਿਤ ਪਾਵਨੋ ॥",
-      "translation": "O Siblings of Destiny, chant the Name of the Lord, the Purifier of sinners."
+      "gurmukhi": "ਭਉ ਜਨਮ ਮਰਣਾ ਮੇਟਿਓ ਗੁਰ ਸਬਦੀ ਹਰਿ ਅਸਥਿਰੁ ਸੇਵਿ ਸੁਖਿ ਸਮਘਾ ॥੧॥",
+      "translation": "The fear of birth and death has been erased, through the Word of the Guru's Shabad; serving the Unmoving, Unchanging Lord, I am absorbed in peace. ||1||"
     },
     {
-      "gurmukhi": "ਹਰਿ ਸੰਤ ਭਗਤ ਤਾਰਨੋ ॥",
-      "translation": "The Lord emancipates his Saints and devotees."
+      "gurmukhi": "ਮੇਰੇ ਮਨ ਭਜੁ ਰਾਮ ਨਾਮ ਅਤਿ ਪਿਰਘਾ ॥",
+      "translation": "O my mind, vibrate the Name of the most Beloved, Darling Lord."
     },
     {
-      "gurmukhi": "ਹਰਿ ਭਰਿਪੁਰੇ ਰਹਿਆ ॥",
-      "translation": "The Lord is totally permeating and pervading everywhere;"
+      "gurmukhi": "ਮੈ ਮਨੁ ਤਨੁ ਅਰਪਿ ਧਰਿਓ ਗੁਰ ਆਗੈ ਸਿਰੁ ਵੇਚਿ ਲੀਓ ਮੁਲਿ ਮਹਘਾ ॥੧॥ ਰਹਾਉ ॥",
+      "translation": "I have dedicated my mind and body, and placed them in offering before the Guru; I have sold my head to the Guru, for a very dear price. ||1||Pause||"
     },
     {
-      "gurmukhi": "ਜਲਿ ਥਲੇ ਰਾਮ ਨਾਮੁ ॥",
-      "translation": "the Name of the Lord is pervading the water and the land."
+      "gurmukhi": "ਨਰਪਤਿ ਰਾਜੇ ਰੰਗ ਰਸ ਮਾਣਹਿ ਬਿਨੁ ਨਾਵੈ ਪਕੜਿ ਖੜੇ ਸਭਿ ਕਲਘਾ ॥",
+      "translation": "The kings and the rulers of men enjoy pleasures and delights, but without the Name of the Lord, death seizes and dispatches them all."
     },
     {
-      "gurmukhi": "ਨਿਤ ਗਾਈਐ ਹਰਿ ਦੂਖ ਬਿਸਾਰਨੋ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "So sing continuously of the Lord, the Dispeller of pain. ||1||Pause||"
+      "gurmukhi": "ਧਰਮ ਰਾਇ ਸਿਰਿ ਡੰਡੁ ਲਗਾਨਾ ਫਿਰਿ ਪਛੁਤਾਨੇ ਹਥ ਫਲਘਾ ॥੨॥",
+      "translation": "The Righteous Judge of Dharma strikes them over the heads with his staff, and when the fruits of their actions come into their hands, then they regret and repent. ||2||"
     },
     {
-      "gurmukhi": "ਹਰਿ ਕੀਆ ਹੈ ਸਫਲ ਜਨਮੁ ਹਮਾਰਾ ॥",
-      "translation": "The Lord has made my life fruitful and rewarding."
+      "gurmukhi": "ਹਰਿ ਰਾਖੁ ਰਾਖੁ ਜਨ ਕਿਰਮ ਤੁਮਾਰੇ ਸਰਣਾਗਤਿ ਪੁਰਖ ਪ੍ਰਤਿਪਲਘਾ ॥",
+      "translation": "Save me, save me, Lord; I am Your humble servant, a mere worm. I seek the Protection of Your Sanctuary, O Primal Lord, Cherisher and Nourisher."
     },
     {
-      "gurmukhi": "ਹਰਿ ਜਪਿਆ ਹਰਿ ਦੂਖ ਬਿਸਾਰਨਹਾਰਾ ॥",
-      "translation": "I meditate on the Lord, the Dispeller of pain."
+      "gurmukhi": "ਦਰਸਨੁ ਸੰਤ ਦੇਹੁ ਸੁਖੁ ਪਾਵੈ ਪ੍ਰਭ ਲੋਚ ਪੂਰਿ ਜਨੁ ਤੁਮਘਾ ॥੩॥",
+      "translation": "Please bless me with the Blessed Vision of the Saint's Darshan, that I may find peace. O God, please fulfill the desires of Your humble servant. ||3||"
     },
     {
-      "gurmukhi": "ਗੁਰੁ ਭੇਟਿਆ ਹੈ ਮੁਕਤਿ ਦਾਤਾ ॥",
-      "translation": "I have met the Guru, the Giver of liberation."
+      "gurmukhi": "ਤੁਮ ਸਮਰਥ ਪੁਰਖ ਵਡੇ ਪ੍ਰਭ ਸੁਆਮੀ ਮੋ ਕਉ ਕੀਜੈ ਦਾਨੁ ਹਰਿ ਨਿਮਘਾ ॥",
+      "translation": "You are the All-powerful, Great, Primal God, my Lord and Master. O Lord, please bless me with the gift of humility."
     },
     {
-      "gurmukhi": "ਹਰਿ ਕੀਈ ਹਮਾਰੀ ਸਫਲ ਜਾਤਾ ॥",
-      "translation": "The Lord has made my life's journey fruitful and rewarding."
-    },
-    {
-      "gurmukhi": "ਮਿਲਿ ਸੰਗਤੀ ਗੁਨ ਗਾਵਨੋ ॥੧॥",
-      "translation": "Joining the Sangat, the Holy Congregation, I sing the Glorious Praises of the Lord. ||1||"
-    },
-    {
-      "gurmukhi": "ਮਨ ਰਾਮ ਨਾਮ ਕਰਿ ਆਸਾ ॥",
-      "translation": "O mortal, place your hopes in the Name of the Lord,"
-    },
-    {
-      "gurmukhi": "ਭਾਉ ਦੂਜਾ ਬਿਨਸਿ ਬਿਨਾਸਾ ॥",
-      "translation": "and your love of duality shall simply vanish."
-    },
-    {
-      "gurmukhi": "ਵਿਚਿ ਆਸਾ ਹੋਇ ਨਿਰਾਸੀ ॥",
-      "translation": "One who, in hope, remains unattached to hope,"
-    },
-    {
-      "gurmukhi": "ਸੋ ਜਨੁ ਮਿਲਿਆ ਹਰਿ ਪਾਸੀ ॥",
-      "translation": "such a humble being meets with his Lord."
-    },
-    {
-      "gurmukhi": "ਕੋਈ ਰਾਮ ਨਾਮ ਗੁਨ ਗਾਵਨੋ ॥",
-      "translation": "And one who sings the Glorious Praises of the Lord's Name"
-    },
-    {
-      "gurmukhi": "ਜਨੁ ਨਾਨਕੁ ਤਿਸੁ ਪਗਿ ਲਾਵਨੋ ॥੨॥੧॥੭॥੪॥੬॥੭॥੧੭॥",
-      "translation": "- servant Nanak falls at his feet. ||2||1||7||4||6||7||17||"
+      "gurmukhi": "ਜਨ ਨਾਨਕ ਨਾਮੁ ਮਿਲੈ ਸੁਖੁ ਪਾਵੈ ਹਮ ਨਾਮ ਵਿਟਹੁ ਸਦ ਘੁਮਘਾ ॥੪॥੨॥",
+      "translation": "Servant Nanak has found the Naam, the Name of the Lord, and is at peace; I am forever a sacrifice to the Naam. ||4||2||"
     }
   ],
-  "updated": "2026-10-12T07:36:46.843Z"
+  "updated": "2026-10-13T07:56:26.750Z"
 };
