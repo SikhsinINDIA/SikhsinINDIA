@@ -1,59 +1,143 @@
 {
-  "date": "2026-10-14",
-  "dateDisplay": "14 October 2026",
-  "ang": 598,
-  "raagGurmukhi": "ਰਾਗੁ ਸੋਰਠਿ",
-  "raagEnglish": "Raag Sorath",
-  "writerEnglish": "Guru Nanak Dev Ji",
-  "titleGurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੧ ॥",
-  "titleEnglish": "Sorat'h, First Mehla:",
-  "verseGurmukhi": "ਜਿਸੁ ਜਲ ਨਿਧਿ ਕਾਰਣਿ ਤੁਮ ਜਗਿ ਆਏ ਸੋ ਅੰਮ੍ਰਿਤੁ ਗੁਰ ਪਾਹੀ ਜੀਉ ॥",
-  "verseTranslation": "The treasure of the Name, for which you have come into the world - that Ambrosial Nectar is with the Guru.",
+  "date": "2026-10-15",
+  "dateDisplay": "15 October 2026",
+  "ang": 690,
+  "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
+  "raagEnglish": "Raag Dhanaasree",
+  "writerEnglish": "Guru Raam Daas Ji",
+  "titleGurmukhi": "ਧਨਾਸਰੀ ਛੰਤ ਮਹਲਾ ੪ ਘਰੁ ੧",
+  "titleEnglish": "Dhanaasaree, Chhant, Fourth Mehla, First House:",
+  "verseGurmukhi": "ਹਰਿ ਜੀਉ ਕ੍ਰਿਪਾ ਕਰੇ ਤਾ ਨਾਮੁ ਧਿਆਈਐ ਜੀਉ ॥",
+  "verseTranslation": "When the Dear Lord grants His Grace, one meditates on the Naam, the Name of the Lord.",
   "verses": [
     {
-      "gurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੧ ॥",
-      "translation": "Sorat'h, First Mehla:"
+      "gurmukhi": "ਧਨਾਸਰੀ ਛੰਤ ਮਹਲਾ ੪ ਘਰੁ ੧",
+      "translation": "Dhanaasaree, Chhant, Fourth Mehla, First House:"
     },
     {
-      "gurmukhi": "ਜਿਸੁ ਜਲ ਨਿਧਿ ਕਾਰਣਿ ਤੁਮ ਜਗਿ ਆਏ ਸੋ ਅੰਮ੍ਰਿਤੁ ਗੁਰ ਪਾਹੀ ਜੀਉ ॥",
-      "translation": "The treasure of the Name, for which you have come into the world - that Ambrosial Nectar is with the Guru."
+      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
     },
     {
-      "gurmukhi": "ਛੋਡਹੁ ਵੇਸੁ ਭੇਖ ਚਤੁਰਾਈ ਦੁਬਿਧਾ ਇਹੁ ਫਲੁ ਨਾਹੀ ਜੀਉ ॥੧॥",
-      "translation": "Renounce costumes, disguises and clever tricks; this fruit is not obtained by duplicity. ||1||"
+      "gurmukhi": "ਹਰਿ ਜੀਉ ਕ੍ਰਿਪਾ ਕਰੇ ਤਾ ਨਾਮੁ ਧਿਆਈਐ ਜੀਉ ॥",
+      "translation": "When the Dear Lord grants His Grace, one meditates on the Naam, the Name of the Lord."
     },
     {
-      "gurmukhi": "ਮਨ ਰੇ ਥਿਰੁ ਰਹੁ ਮਤੁ ਕਤ ਜਾਹੀ ਜੀਉ ॥",
-      "translation": "O my mind, remain steady, and do not wander away."
+      "gurmukhi": "ਸਤਿਗੁਰੁ ਮਿਲੈ ਸੁਭਾਇ ਸਹਜਿ ਗੁਣ ਗਾਈਐ ਜੀਉ ॥",
+      "translation": "Meeting the True Guru, through loving faith and devotion, one intuitively sings the Glorious Praises of the Lord."
     },
     {
-      "gurmukhi": "ਬਾਹਰਿ ਢੂਢਤ ਬਹੁਤੁ ਦੁਖੁ ਪਾਵਹਿ ਘਰਿ ਅੰਮ੍ਰਿਤੁ ਘਟ ਮਾਹੀ ਜੀਉ ॥ ਰਹਾਉ ॥",
-      "translation": "By searching around on the outside, you shall only suffer great pain; the Ambrosial Nectar is found within the home of your own being. ||Pause||"
+      "gurmukhi": "ਗੁਣ ਗਾਇ ਵਿਗਸੈ ਸਦਾ ਅਨਦਿਨੁ ਜਾ ਆਪਿ ਸਾਚੇ ਭਾਵਏ ॥",
+      "translation": "Singing His Glorious Praises continually, night and day, one blossoms forth, when it is pleasing to the True Lord."
     },
     {
-      "gurmukhi": "ਅਵਗੁਣ ਛੋਡਿ ਗੁਣਾ ਕਉ ਧਾਵਹੁ ਕਰਿ ਅਵਗੁਣ ਪਛੁਤਾਹੀ ਜੀਉ ॥",
-      "translation": "Renounce corruption, and seek virtue; committing sins, you shall only come to regret and repent."
+      "gurmukhi": "ਅਹੰਕਾਰੁ ਹਉਮੈ ਤਜੈ ਮਾਇਆ ਸਹਜਿ ਨਾਮਿ ਸਮਾਵਏ ॥",
+      "translation": "Egotism, self-conceit and Maya are forsaken, and he is intuitively absorbed into the Naam."
     },
     {
-      "gurmukhi": "ਸਰ ਅਪਸਰ ਕੀ ਸਾਰ ਨ ਜਾਣਹਿ ਫਿਰਿ ਫਿਰਿ ਕੀਚ ਬੁਡਾਹੀ ਜੀਉ ॥੨॥",
-      "translation": "You do not know the difference between good and evil; again and again, you sink into the mud. ||2||"
+      "gurmukhi": "ਆਪਿ ਕਰਤਾ ਕਰੇ ਸੋਈ ਆਪਿ ਦੇਇ ਤ ਪਾਈਐ ॥",
+      "translation": "The Creator Himself acts; when He gives, then we receive."
     },
     {
-      "gurmukhi": "ਅੰਤਰਿ ਮੈਲੁ ਲੋਭ ਬਹੁ ਝੂਠੇ ਬਾਹਰਿ ਨਾਵਹੁ ਕਾਹੀ ਜੀਉ ॥",
-      "translation": "Within you is the great filth of greed and falsehood; why do you bother to wash your body on the outside?"
+      "gurmukhi": "ਹਰਿ ਜੀਉ ਕ੍ਰਿਪਾ ਕਰੇ ਤਾ ਨਾਮੁ ਧਿਆਈਐ ਜੀਉ ॥੧॥",
+      "translation": "When the Dear Lord grants His Grace, we meditate on the Naam. ||1||"
     },
     {
-      "gurmukhi": "ਨਿਰਮਲ ਨਾਮੁ ਜਪਹੁ ਸਦ ਗੁਰਮੁਖਿ ਅੰਤਰ ਕੀ ਗਤਿ ਤਾਹੀ ਜੀਉ ॥੩॥",
-      "translation": "Chant the Immaculate Naam, the Name of the Lord always, under Guru's Instruction; only then will your innermost being be emancipated. ||3||"
+      "gurmukhi": "ਅੰਦਰਿ ਸਾਚਾ ਨੇਹੁ ਪੂਰੇ ਸਤਿਗੁਰੈ ਜੀਉ ॥",
+      "translation": "Deep within, I feel true love for the Perfect True Guru."
     },
     {
-      "gurmukhi": "ਪਰਹਰਿ ਲੋਭੁ ਨਿੰਦਾ ਕੂੜੁ ਤਿਆਗਹੁ ਸਚੁ ਗੁਰ ਬਚਨੀ ਫਲੁ ਪਾਹੀ ਜੀਉ ॥",
-      "translation": "Let greed and slander be far away from you, and renounce falsehood; through the True Word of the Guru's Shabad, you shall obtain the true fruit."
+      "gurmukhi": "ਹਉ ਤਿਸੁ ਸੇਵੀ ਦਿਨੁ ਰਾਤਿ ਮੈ ਕਦੇ ਨ ਵੀਸਰੈ ਜੀਉ ॥",
+      "translation": "I serve Him day and night; I never forget Him."
     },
     {
-      "gurmukhi": "ਜਿਉ ਭਾਵੈ ਤਿਉ ਰਾਖਹੁ ਹਰਿ ਜੀਉ ਜਨ ਨਾਨਕ ਸਬਦਿ ਸਲਾਹੀ ਜੀਉ ॥੪॥੯॥",
-      "translation": "As it pleases You, You preserve me, Dear Lord; servant Nanak sings the Praises of Your Shabad. ||4||9||"
+      "gurmukhi": "ਕਦੇ ਨ ਵਿਸਾਰੀ ਅਨਦਿਨੁ ਸਮੑਾਰੀ ਜਾ ਨਾਮੁ ਲਈ ਤਾ ਜੀਵਾ ॥",
+      "translation": "I never forget Him; I remember Him night and day. When I chant the Naam, then I live."
+    },
+    {
+      "gurmukhi": "ਸ੍ਰਵਣੀ ਸੁਣੀ ਤ ਇਹੁ ਮਨੁ ਤ੍ਰਿਪਤੈ ਗੁਰਮੁਖਿ ਅੰਮ੍ਰਿਤੁ ਪੀਵਾ ॥",
+      "translation": "With my ears, I hear about Him, and my mind is satisfied. As Gurmukh, I drink in the Ambrosial Nectar."
+    },
+    {
+      "gurmukhi": "ਨਦਰਿ ਕਰੇ ਤਾ ਸਤਿਗੁਰੁ ਮੇਲੇ ਅਨਦਿਨੁ ਬਿਬੇਕ ਬੁਧਿ ਬਿਚਰੈ ॥",
+      "translation": "If He bestows His Glance of Grace, then I shall meet the True Guru; my discriminating intellect would contemplate Him, night and day."
+    },
+    {
+      "gurmukhi": "ਅੰਦਰਿ ਸਾਚਾ ਨੇਹੁ ਪੂਰੇ ਸਤਿਗੁਰੈ ॥੨॥",
+      "translation": "Deep within, I feel true love for the Perfect True Guru. ||2||"
+    },
+    {
+      "gurmukhi": "ਸਤਸੰਗਤਿ ਮਿਲੈ ਵਡਭਾਗਿ ਤਾ ਹਰਿ ਰਸੁ ਆਵਏ ਜੀਉ ॥",
+      "translation": "By great good fortune, one joins the Sat Sangat, the True Congregation; then, one comes to savor the subtle essence of the Lord."
+    },
+    {
+      "gurmukhi": "ਅਨਦਿਨੁ ਰਹੈ ਲਿਵ ਲਾਇ ਤ ਸਹਜਿ ਸਮਾਵਏ ਜੀਉ ॥",
+      "translation": "Night and day, he remains lovingly focused on the Lord; he merges in celestial peace."
+    },
+    {
+      "gurmukhi": "ਸਹਜਿ ਸਮਾਵੈ ਤਾ ਹਰਿ ਮਨਿ ਭਾਵੈ ਸਦਾ ਅਤੀਤੁ ਬੈਰਾਗੀ ॥",
+      "translation": "Merging in celestial peace, he becomes pleasing to the Lord's Mind; he remains forever unattached and untouched."
+    },
+    {
+      "gurmukhi": "ਹਲਤਿ ਪਲਤਿ ਸੋਭਾ ਜਗ ਅੰਤਰਿ ਰਾਮ ਨਾਮਿ ਲਿਵ ਲਾਗੀ ॥",
+      "translation": "He receives honor in this world and the next, lovingly focused on the Lord's Name."
+    },
+    {
+      "gurmukhi": "ਹਰਖ ਸੋਗ ਦੁਹਾ ਤੇ ਮੁਕਤਾ ਜੋ ਪ੍ਰਭੁ ਕਰੇ ਸੁ ਭਾਵਏ ॥",
+      "translation": "He is liberated from both pleasure and pain; he is pleased by whatever God does."
+    },
+    {
+      "gurmukhi": "ਸਤਸੰਗਤਿ ਮਿਲੈ ਵਡਭਾਗਿ ਤਾ ਹਰਿ ਰਸੁ ਆਵਏ ਜੀਉ ॥੩॥",
+      "translation": "By great good fortune, one joins the Sat Sangat, the True Congregation, and then, one comes to savor the subtle essence of the Lord. ||3||"
+    },
+    {
+      "gurmukhi": "ਦੂਜੈ ਭਾਇ ਦੁਖੁ ਹੋਇ ਮਨਮੁਖ ਜਮਿ ਜੋਹਿਆ ਜੀਉ ॥",
+      "translation": "In the love of duality, there is pain and suffering; the Messenger of Death eyes the self-willed manmukhs."
+    },
+    {
+      "gurmukhi": "ਹਾਇ ਹਾਇ ਕਰੇ ਦਿਨੁ ਰਾਤਿ ਮਾਇਆ ਦੁਖਿ ਮੋਹਿਆ ਜੀਉ ॥",
+      "translation": "They cry and howl, day and night, caught by the pain of Maya."
+    },
+    {
+      "gurmukhi": "ਮਾਇਆ ਦੁਖਿ ਮੋਹਿਆ ਹਉਮੈ ਰੋਹਿਆ ਮੇਰੀ ਮੇਰੀ ਕਰਤ ਵਿਹਾਵਏ ॥",
+      "translation": "Caught by the pain of Maya, provoked by his ego, he passes his life crying out, \"\"Mine, mine!\"\"."
+    },
+    {
+      "gurmukhi": "ਜੋ ਪ੍ਰਭੁ ਦੇਇ ਤਿਸੁ ਚੇਤੈ ਨਾਹੀ ਅੰਤਿ ਗਇਆ ਪਛੁਤਾਵਏ ॥",
+      "translation": "He does not remember God, the Giver, and in the end, he departs regretting and repenting."
+    },
+    {
+      "gurmukhi": "ਬਿਨੁ ਨਾਵੈ ਕੋ ਸਾਥਿ ਨ ਚਾਲੈ ਪੁਤ੍ਰ ਕਲਤ੍ਰ ਮਾਇਆ ਧੋਹਿਆ ॥",
+      "translation": "Without the Name, nothing shall go along with him; not his children, spouse or the enticements of Maya."
+    },
+    {
+      "gurmukhi": "ਦੂਜੈ ਭਾਇ ਦੁਖੁ ਹੋਇ ਮਨਮੁਖਿ ਜਮਿ ਜੋਹਿਆ ਜੀਉ ॥੪॥",
+      "translation": "In the love of duality, there is pain and suffering; the Messenger of Death eyes the self-willed manmukhs. ||4||"
+    },
+    {
+      "gurmukhi": "ਕਰਿ ਕਿਰਪਾ ਲੇਹੁ ਮਿਲਾਇ ਮਹਲੁ ਹਰਿ ਪਾਇਆ ਜੀਉ ॥",
+      "translation": "Granting His Grace, the Lord has merged me with Himself; I have found the Mansion of the Lord's Presence."
+    },
+    {
+      "gurmukhi": "ਸਦਾ ਰਹੈ ਕਰ ਜੋੜਿ ਪ੍ਰਭੁ ਮਨਿ ਭਾਇਆ ਜੀਉ ॥",
+      "translation": "I remain standing with my palms pressed together; I have become pleasing to God's Mind."
+    },
+    {
+      "gurmukhi": "ਪ੍ਰਭੁ ਮਨਿ ਭਾਵੈ ਤਾ ਹੁਕਮਿ ਸਮਾਵੈ ਹੁਕਮੁ ਮੰਨਿ ਸੁਖੁ ਪਾਇਆ ॥",
+      "translation": "When one is pleasing to God's Mind, then he merges in the Hukam of the Lord's Command; surrendering to His Hukam, he finds peace."
+    },
+    {
+      "gurmukhi": "ਅਨਦਿਨੁ ਜਪਤ ਰਹੈ ਦਿਨੁ ਰਾਤੀ ਸਹਜੇ ਨਾਮੁ ਧਿਆਇਆ ॥",
+      "translation": "Night and day, he chants the Lord's Name, day and night; intuitively, naturally, he meditates on the Naam, the Name of the Lord."
+    },
+    {
+      "gurmukhi": "ਨਾਮੋ ਨਾਮੁ ਮਿਲੀ ਵਡਿਆਈ ਨਾਨਕ ਨਾਮੁ ਮਨਿ ਭਾਵਏ ॥",
+      "translation": "Through the Naam, the glorious greatness of the Naam is obtained; the Naam is pleasing to Nanak's mind."
+    },
+    {
+      "gurmukhi": "ਕਰਿ ਕਿਰਪਾ ਲੇਹੁ ਮਿਲਾਇ ਮਹਲੁ ਹਰਿ ਪਾਵਏ ਜੀਉ ॥੫॥੧॥",
+      "translation": "Granting His Grace, the Lord has merged me with Himself; I have found the Mansion of the Lord's Presence. ||5||1||"
     }
   ],
-  "updated": "2026-10-14T06:22:39.338Z"
+  "updated": "2026-10-15T06:04:49.452Z"
 }
