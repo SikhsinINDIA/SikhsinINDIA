@@ -188,6 +188,45 @@ async function sendWhatsAppTemplate(env, { to, templateName, languageCode, param
   return resBody;
 }
 
+// One-time step Meta requires before a newly-added WhatsApp number can send
+// anything via the Cloud API at all: it must be "registered" with a 6-digit
+// two-step-verification PIN, separate from adding the number to the WABA and
+// getting its display name approved. Until this runs, sends return error
+// #133010 "Account not registered" even though the number looks fine
+// everywhere else in WhatsApp Manager.
+async function registerWhatsAppNumber(env, pin) {
+  if (!env.WHATSAPP_ACCESS_TOKEN || !env.WHATSAPP_PHONE_NUMBER_ID) {
+    throw new Error("WhatsApp is not configured yet (missing WHATSAPP_ACCESS_TOKEN / WHATSAPP_PHONE_NUMBER_ID secrets).");
+  }
+  const res = await fetch(`https://graph.facebook.com/v21.0/${env.WHATSAPP_PHONE_NUMBER_ID}/register`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${env.WHATSAPP_ACCESS_TOKEN}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ messaging_product: "whatsapp", pin: String(pin) })
+  });
+  const resBody = await res.text();
+  if (!res.ok) throw new Error("WhatsApp API error: " + resBody);
+  return resBody;
+}
+
+// Read-only diagnostic: asks Meta directly for this number's current state
+// (status, quality, name review, PIN/registration state), bypassing whatever
+// caching WhatsApp Manager's own dashboard might be showing.
+async function getWhatsAppNumberStatus(env) {
+  if (!env.WHATSAPP_ACCESS_TOKEN || !env.WHATSAPP_PHONE_NUMBER_ID) {
+    throw new Error("WhatsApp is not configured yet (missing WHATSAPP_ACCESS_TOKEN / WHATSAPP_PHONE_NUMBER_ID secrets).");
+  }
+  const fields = "status,quality_rating,name_status,code_verification_status,platform_type,display_phone_number,verified_name,messaging_limit_tier";
+  const res = await fetch(`https://graph.facebook.com/v21.0/${env.WHATSAPP_PHONE_NUMBER_ID}?fields=${fields}`, {
+    headers: { Authorization: `Bearer ${env.WHATSAPP_ACCESS_TOKEN}` }
+  });
+  const resBody = await res.text();
+  if (!res.ok) throw new Error("WhatsApp API error: " + resBody);
+  return resBody;
+}
+
 // Turns a Uint8Array into a base64 string without blowing the call stack on
 // large files (String.fromCharCode(...bytes) spreads the whole array as
 // arguments, which throws for anything more than ~100KB in most engines).
@@ -245,6 +284,33 @@ async function sendEmail(env, { to, subject, text, html, attachments }) {
 
 export default {
   async fetch(request, env) {
+    const url = new URL(request.url);
+
+    // Temporary diagnostic: Meta's WhatsApp delivery-status callbacks, so we
+    // can see the real reason a message isn't reaching a device instead of
+    // guessing from the send call's "accepted" response alone (that only
+    // confirms Meta queued it, not that it was delivered). Lives outside the
+    // normal X-App-Secret auth below because Meta's own requests don't carry
+    // that header - it isn't meant to stay wired up long-term; unsubscribe
+    // the webhook in Meta's App Dashboard and remove this block once the
+    // delivery issue is diagnosed.
+    if (url.pathname === "/webhook") {
+      if (request.method === "GET") {
+        const mode = url.searchParams.get("hub.mode");
+        const token = url.searchParams.get("hub.verify_token");
+        const challenge = url.searchParams.get("hub.challenge");
+        if (mode === "subscribe" && token === env.WHATSAPP_WEBHOOK_VERIFY_TOKEN) {
+          return new Response(challenge, { status: 200 });
+        }
+        return new Response("Forbidden", { status: 403 });
+      }
+      if (request.method === "POST") {
+        const body = await request.text();
+        console.log("WHATSAPP_WEBHOOK_EVENT", body);
+        return new Response("EVENT_RECEIVED", { status: 200 });
+      }
+    }
+
     const corsHeaders = {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -272,6 +338,27 @@ export default {
       }
       try {
         const result = await sendWhatsAppTemplate(env, payload);
+        return new Response(result, { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      } catch (err) {
+        return json({ error: String(err.message || err) }, 502);
+      }
+    }
+
+    if (payload.action === "whatsapp_number_status") {
+      try {
+        const result = await getWhatsAppNumberStatus(env);
+        return new Response(result, { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      } catch (err) {
+        return json({ error: String(err.message || err) }, 502);
+      }
+    }
+
+    if (payload.action === "register_whatsapp_number") {
+      if (!payload.pin) {
+        return json({ error: "Missing required field: pin" }, 400);
+      }
+      try {
+        const result = await registerWhatsAppNumber(env, payload.pin);
         return new Response(result, { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } });
       } catch (err) {
         return json({ error: String(err.message || err) }, 502);
