@@ -411,6 +411,162 @@
     @media (max-width:600px) {
       .gsb-lang-switcher { top: 4px; right: 4px; padding: 4px 8px; font-size: 10px; gap: 5px; }
     }
+
+    /* ── ADMIN PASSWORD GATE ── */
+    .btn-admin {
+      display: inline-flex;
+      align-items: center;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+    }
+
+    .btn-admin:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-admin:active {
+      transform: scale(0.97);
+    }
+
+    .admin-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(13, 27, 62, 0.75);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .admin-modal-overlay.open {
+      display: flex;
+    }
+
+    .admin-modal {
+      width: 100%;
+      max-width: 340px;
+      background: var(--cream);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .admin-modal-header {
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+      padding: 18px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .admin-modal-header h3 {
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .admin-modal-header span {
+      color: var(--gold);
+    }
+
+    .admin-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 18px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .admin-modal-close:hover {
+      color: #fff;
+    }
+
+    .admin-modal-body {
+      padding: 20px;
+    }
+
+    .admin-modal-body label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--navy);
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .admin-modal-body input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #fafafa;
+      color: #333;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .admin-modal-body input[type="password"]:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(247, 148, 29, 0.15);
+      background-color: #fff;
+    }
+
+    .admin-modal-submit {
+      width: 100%;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--navy);
+      border: 2px solid var(--navy);
+      padding: 12px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+      margin-top: 14px;
+    }
+
+    .admin-modal-submit:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--navy);
+    }
+
+    .admin-modal-error {
+      color: #d93838;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 10px;
+      min-height: 18px;
+    }
   </style>
 </head>
 
@@ -589,10 +745,30 @@
             Back to Sikh Culture
           </a>
           <div class="footer-left">© 2025 Sikhs in India</div>
+          <a href="./02-02-01b-view-calendar.html" class="btn-admin">View Calendar</a>
+          <button type="button" class="btn-admin" onclick="openAdminModal()">Admin</button>
           <div class="footer-right">Preserving Sikh Heritage & Unity</div>
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- ADMIN PASSWORD GATE MODAL -->
+  <div class="admin-modal-overlay" id="adminModalOverlay">
+    <div class="admin-modal">
+      <div class="admin-modal-header">
+        <button type="button" class="admin-modal-close" onclick="closeAdminModal()" aria-label="Close">&times;</button>
+        <h3>Admin <span>Authentication</span></h3>
+      </div>
+      <div class="admin-modal-body">
+        <form onsubmit="return validateAdminPassword(event)">
+          <label for="adminPassword">Security Password</label>
+          <input type="password" id="adminPassword" placeholder="Enter administrative password" autocomplete="off" required>
+          <button type="submit" class="admin-modal-submit">Verify Authorization</button>
+          <div class="admin-modal-error" id="adminModalError"></div>
+        </form>
+      </div>
     </div>
   </div>
 
@@ -633,5 +809,33 @@
       }
     });
   })();
+
+  var ADMIN_PASSWORD = 'arora12345';
+
+  function openAdminModal() {
+    document.getElementById('adminModalError').textContent = '';
+    document.getElementById('adminPassword').value = '';
+    document.getElementById('adminModalOverlay').classList.add('open');
+    document.getElementById('adminPassword').focus();
+  }
+
+  function closeAdminModal() {
+    document.getElementById('adminModalOverlay').classList.remove('open');
+  }
+
+  function validateAdminPassword(event) {
+    event.preventDefault();
+    var entered = document.getElementById('adminPassword').value;
+    if (entered === ADMIN_PASSWORD) {
+      window.location.href = './02-02-01a-edit-calendar.html';
+    } else {
+      document.getElementById('adminModalError').textContent = 'Invalid password.';
+    }
+    return false;
+  }
+
+  document.getElementById('adminModalOverlay').addEventListener('click', function (e) {
+    if (e.target === this) closeAdminModal();
+  });
 </script>
 </html>
