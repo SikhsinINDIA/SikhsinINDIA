@@ -42,325 +42,56 @@
     <meta charset="UTF-8">
     <title>Sikh Matrimonials | SikhsInIndia.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            background-color: black;
-            color: #FF9933; /* Kesari (orange/yellow) */
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #FF9933; /* Brighter kesari */
-            margin-bottom: 40px;
-            font-size: 54px;
-        }
-        /* Container for image + button pairs */
-        .btn-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-        /* Images styling */
-        .btn-row img {
-            width: auto;       /* fixed width */
-            height: 98px;      /* fixed height */
-            object-fit: cover;  /* maintain aspect ratio, crop if needed */
-            margin-right: 10px; /* space between image and button */
-            border-radius: 10px;
-            border: 2px solid #FF9933;
-        }
-        /* Buttons styling */
-        .button {
-            background-color: #FF9933;
-            height: 100px; 
-            width: 150px; 
-            color: black;
-            border: none;
-            padding: 15px 30px;
-            font-size: 24px;
-            cursor: pointer;
-            border-radius: 8px;
-            min-width: 220px;
-            text-align: center;
-        }
-        .button:hover {
-            background-color: #FF9933; /* Darker orange */
-        }
-        /* Back button styling */
-        .back-button {
-            width: 150px;
-            height: 40px;
-            font-size: 24px;
-            background-color: #FF9933;
-            color: black;
-            margin: 40px auto 0 auto;
-            display: block;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .back-button:hover {
-            background-color: #FF9933;
-        }
-
-        .image-button {
-    all: unset;
-    cursor: pointer;
-}
-
-    #termsContainer {
-      width: 100%;
-      text-align: center;
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./matrimonials.css">
+  <style>
+    /* Terms & conditions popup shown on first visit */
+    #termsPopup {
+      position: fixed; inset: 0; background: rgba(13, 27, 62, 0.88);
+      display: none; justify-content: center; align-items: center; z-index: 9999; padding: 12px;
     }
-
-    #termsImage {
-      width: 95%;
-      max-width: 1000px;
-      border: 3px solid #FF9933;
-      border-radius: 12px;
-      margin-top: 20px;
+    #popupContent {
+      background: var(--cream); padding: 14px; border-radius: 10px; text-align: center;
+      border: 3px solid var(--gold); max-width: 95%; max-height: 95%; overflow: auto;
     }
-
-
-.btn-row button {
-    all: unset; /* removes all default button styles */
-    cursor: pointer; /* keeps the pointer style */
-    padding: 0;
-    margin: 0;
-    border: none;
-    background: none;
-}
- /* DARK BACKGROUND */
-#termsPopup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.85);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-  /* POPUP BOX */
-
-  #popupContent {
-    background: black;
-    padding: 10px;
-    border-radius: 12px;
-    text-align: center;
-    border: 3px solid #FF9933;
-    max-width: 95%;
-    max-height: 95%;
-    overflow: auto;
-  }
-
-  /* IMAGE */
-
-  #termsImage {
-    width: 900px;
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-
-  /* BUTTON */
-
-  .popup-btn {
-    margin-top: 20px;
-     width: 200px;
-  height: 40px;
-    padding: 15px 40px;
-    font-size: 12px;
-    background-color: #FF9933;
-    color: black;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-    
-    /* ── SOCIAL SHARE BAR (added by batch script; self-contained colours) ── */
-    .gsb-share-container {
-      text-align: center;
-      margin: 24px 0 10px;
-      padding: 16px;
-      background: #fff;
-      border-radius: 6px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      border-left: 5px solid #F7941D;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    }
-    .gsb-share-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 16px;
-      font-weight: 700;
-      color: #0d1b3e;
-      margin-bottom: 12px;
-    }
-    .gsb-share-buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .gsb-share-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      border-radius: 4px;
-      color: #fff;
-      font-family: 'Lato', Arial, sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: transform 0.2s, filter 0.2s;
-    }
-    .gsb-share-btn:hover { transform: translateY(-2px); filter: brightness(1.1); color: #fff; }
-    .gsb-btn-whatsapp { background-color: #25D366; }
-    .gsb-btn-facebook { background-color: #1877F2; }
-    .gsb-btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
-    .gsb-share-btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
-  
-    /* ── LANGUAGE SWITCHER (added by i18n pilot batch) ── */
-    .gsb-lang-switcher {
-      position: fixed; top: 10px; right: 10px; z-index: 9999;
-      background: rgba(13,27,62,0.92); border: 1px solid #F7941D; border-radius: 20px;
-      padding: 6px 14px; font-family: Arial, sans-serif; font-size: 12px; font-weight: 700;
-      display: flex; gap: 8px; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    }
-    .gsb-lang-switcher a { color: rgba(255,255,255,0.75); text-decoration: none; }
-    .gsb-lang-switcher a:hover { color: #F7941D; }
-    .gsb-lang-switcher .gsb-lang-current { color: #F7941D; }
-    .gsb-lang-switcher .gsb-lang-sep { color: rgba(255,255,255,0.35); }
-    @media (max-width:600px) { .gsb-lang-switcher { top: 4px; right: 4px; padding: 4px 8px; font-size: 10px; gap: 5px; } }
+    #popupContent img { width: 800px; max-width: 100%; height: auto; max-height: 70vh; object-fit: contain; border-radius: 6px; }
   </style>
 </head>
 <body>
 <div class="gsb-lang-switcher"><span class="gsb-lang-current">EN</span><span class="gsb-lang-sep">|</span><a href="https://sikhsinindia.com/hi/08-sikh-matrimonials/08-sikh-matrimonials.html">हिन्दी</a><span class="gsb-lang-sep">|</span><a href="https://sikhsinindia.com/pa/08-sikh-matrimonials/08-sikh-matrimonials.html">ਪੰਜਾਬੀ</a></div>
 
 <div id="termsPopup">
-
   <div id="popupContent">
-
-    <img 
-  
-src="../08-sikh-matrimonials/SikhsinIndia-Matrimonials.jpg"
-      alt="Terms and Conditions"
-      style="width:800px; height: 500px; object-fit: contain;"
-    >
-
+    <img src="../08-sikh-matrimonials/SikhsinIndia-Matrimonials.jpg" alt="Terms and Conditions">
     <br>
+    <button class="popup-btn" onclick="closePopup()">I Agree &amp; Continue</button>
+  </div>
+</div>
 
-    <button class="popup-btn" onclick="closePopup()">
-      I Agree & Continue
-    </button>
-
+<div class="poster">
+  <div class="header">
+    <div class="logo-wrap">
+      <img class="logo-img" src="../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+    </div>
+    <div class="hero">
+      <div class="hero-title">Sikh <span>Matrimonials</span></div>
+      <div class="hero-sub">A community service helping Sikh families find suitable matches within the Panth</div>
+    </div>
   </div>
 
-</div>
+  <div class="intro">Anand Karaj &middot; Register a profile or browse uploaded profiles</div>
 
-<!-- <div id="termsContainer">
-
-  <img 
-    id="termsImage"
-    src="https://drive.google.com/uc?export=view&id=1v25Ej5-AkWlbnjEcYyQooTOenUswVRrq"
-    alt="Terms and Conditions"
-    style="width: 900px; height: 1200px; object-fit: contain;"
->  
-</div> -->
-
-
-    <!-- <button class="accept-btn" onclick="showMainContent()">
-      I Agree & Continue
-    </button> -->
-
-
-
-    <h1>Sikh Matrimonials</h1>
-
-
-        <div class="btn-row">
-                <a href="../08-sikh-matrimonials/08-01-matrimonials-form.html">
-                    <img src="../pictures/08-sikh-matrimonials/Upload Profiles.jpg" alt="Sikh in India" style="cursor:pointer;">
-                </a>
+  <div class="wrapper">
+    <div class="link-list">
+      <a href="../08-sikh-matrimonials/08-01-matrimonials-form.html" class="link-card">
+        <span class="link-card-title">Upload Profile<span class="link-card-sub">Register a matrimonial profile with photos and bio-data</span></span>
+        <span class="link-card-arrow">&rarr;</span>
+      </a>
+      <a href="../08-sikh-matrimonials/08-02-matrimonials-partial-report.html" class="link-card">
+        <span class="link-card-title">View Uploaded Profiles<span class="link-card-sub">Browse the profiles registered so far</span></span>
+        <span class="link-card-arrow">&rarr;</span>
+      </a>
     </div>
-
-            <div class="btn-row">
-                <a href="../08-sikh-matrimonials/08-02-matrimonials-partial-report.html">
-                    <img src="../pictures/08-sikh-matrimonials/View Uploaded Profiles.jpg" alt="Nishan Sahib" style="cursor:pointer;">
-                </a>
-    </div>
-
-  <script>
-//         function admin() {
-//       window.location.href = "../08-sikh-matrimonials/08-02a-password-sikh-matrimonials.html";
-//     }
-//      function closePopup() {
-
-//     document.getElementById("termsPopup").style.display = "none";
-
-//   }
-  </script>
-   <a href="./../index.html" class="back-button" 
-   style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
-          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
-          line-height: 35px; border-radius: 8px; text-decoration: none; 
-          border: 2px solid black;">
-    <b>Back</b>
-  </a>
-<div style="text-align: right;">
-  <button type="button" onclick="admin()" 
-    style="width: 80px; height: 40px; font-size: 18px; background-color: #FF9933; color: black;">
-    Admin
-  </button>
-
-</div>
- <script>
-
-  // Show popup only first time from Main Menu
-  window.onload = function () {
-
-    // TEMPORARY FOR TESTING
-
-
-    // Show popup
-    if (sessionStorage.getItem("matrimonialTermsAccepted") === "true") {
-
-      document.getElementById("termsPopup").style.display = "none";
-
-    } else {
-
-      document.getElementById("termsPopup").style.display = "flex";
-
-    }
-
-  };
-
-  function closePopup() {
-
-    sessionStorage.setItem("matrimonialTermsAccepted", "true");
-
-    document.getElementById("termsPopup").style.display = "none";
-  }
-
-  function admin() {
-
-    window.location.href =
-    "../08-sikh-matrimonials/08-02a-password-sikh-matrimonials.html";
-  }
-
-
-</script>
 
     <!-- ── SOCIAL SHARE BAR ── -->
     <div class="gsb-share-container">
@@ -380,6 +111,39 @@ src="../08-sikh-matrimonials/SikhsinIndia-Matrimonials.jpg"
         </button>
       </div>
     </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-content">
+      <a href="./../index.html" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7" /></svg>
+        Back to Home
+      </a>
+      <div class="footer-left">&copy; Sikhs in India &middot; sikhsinindia.com</div>
+      <div class="footer-right">Waheguru Ji Ka Khalsa &middot; Waheguru Ji Ki Fateh</div>
+    </div>
+  </div>
+  <div class="extra-buttons">
+    <button type="button" class="btn-admin" onclick="admin()">Admin</button>
+  </div>
+</div>
+
+<script>
+  // Show the terms popup once per browser session
+  window.onload = function () {
+    document.getElementById("termsPopup").style.display =
+      sessionStorage.getItem("matrimonialTermsAccepted") === "true" ? "none" : "flex";
+  };
+
+  function closePopup() {
+    sessionStorage.setItem("matrimonialTermsAccepted", "true");
+    document.getElementById("termsPopup").style.display = "none";
+  }
+
+  function admin() {
+    window.location.href = "../08-sikh-matrimonials/08-02a-password-sikh-matrimonials.html";
+  }
+</script>
 </body>
 
 <script>

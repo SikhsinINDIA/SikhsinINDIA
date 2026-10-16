@@ -51,175 +51,22 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./matrimonials.css">
   <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: black;
-      color: #FF9933;
+    form { display: grid; gap: 12px; }
+    .grid-3 { display: flex; gap: 12px; flex-wrap: wrap; }
+    .grid-3 > * { flex: 1; min-width: 0; }
+    #Name { flex: 2; }
+    #Gender { min-width: 130px; }
+    select { min-height: 44px; }
+    .preview-frame { width: 100%; border: 2px solid var(--gold); border-radius: 6px; background: #fff; display: none; }
+    #loaderOverlay {
+      display: none; position: fixed; inset: 0; background: rgba(13, 27, 62, 0.92); color: #fff;
+      z-index: 9999; justify-content: center; align-items: center; flex-direction: column;
+      font-family: 'Playfair Display', serif; font-size: 22px; border-top: 4px solid var(--gold);
     }
-
-    header {
-      background: #FF9933;
-      color: black;
-      text-align: center;
-      padding: 15px;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 15px;
-    }
-
-    h2 {
-      border-bottom: 2px solid #FF9933;
-      padding-bottom: 5px;
-    }
-
-    form {
-      display: grid;
-      gap: 12px;
-    }
-
-    /* GLOBAL INPUT STYLE */
-    input,
-    textarea,
-    select {
-      width: 100%;
-      padding: 10px;
-      background: black;
-      color: #FF9933 !important;
-      border: 1px solid #FF9933;
-      border-radius: 6px;
-      font-weight: bold;
-    }
-
-    /* PLACEHOLDER */
-    input::placeholder,
-    textarea::placeholder {
-      color: #FF9933;
-      opacity: 1;
-      font-weight: bold;
-    }
-
-    /* GRID */
-.grid-3 {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-    .grid-3>* {
-      flex: 1;
-    }
-#Gender {
-  min-width: 130px;
-}
-select {
-  min-height: 44px;
-}
-    /* Make Name wider */
-    #Name {
-      flex: 2;
-    }
-
-    /* BUTTON */
-    button {
-      background: #FF9933;
-      color: black;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: black;
-      color: #FF9933;
-      border: 1px solid #FF9933;
-    }
-
-    /* MOBILE */
-    @media(max-width:600px) {
-      .grid-3 {
-        flex-direction: column;
-      }
-    }
-
-    /* Better spacing for PDF layout */
-.section {
-  page-break-inside: avoid;
-  margin-bottom: 80px;
-}
-
-.section-title {
-  margin-bottom: 30px;
-  padding-bottom: 10px;
-}
-  
-  
-    /* ── SOCIAL SHARE BAR (added by batch script; self-contained colours) ── */
-    .gsb-share-container {
-      text-align: center;
-      margin: 24px 0 10px;
-      padding: 16px;
-      background: #fff;
-      border-radius: 6px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      border-left: 5px solid #F7941D;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    }
-    .gsb-share-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 16px;
-      font-weight: 700;
-      color: #0d1b3e;
-      margin-bottom: 12px;
-    }
-    .gsb-share-buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .gsb-share-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      border-radius: 4px;
-      color: #fff;
-      font-family: 'Lato', Arial, sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: transform 0.2s, filter 0.2s;
-    }
-    .gsb-share-btn:hover { transform: translateY(-2px); filter: brightness(1.1); color: #fff; }
-    .gsb-btn-whatsapp { background-color: #25D366; }
-    .gsb-btn-facebook { background-color: #1877F2; }
-    .gsb-btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
-    .gsb-share-btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
-  
-    /* ── LANGUAGE SWITCHER (added by i18n pilot batch) ── */
-    .gsb-lang-switcher {
-      position: fixed; top: 10px; right: 10px; z-index: 9999;
-      background: rgba(13,27,62,0.92); border: 1px solid #F7941D; border-radius: 20px;
-      padding: 6px 14px; font-family: Arial, sans-serif; font-size: 12px; font-weight: 700;
-      display: flex; gap: 8px; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    }
-    .gsb-lang-switcher a { color: rgba(255,255,255,0.75); text-decoration: none; }
-    .gsb-lang-switcher a:hover { color: #F7941D; }
-    .gsb-lang-switcher .gsb-lang-current { color: #F7941D; }
-    .gsb-lang-switcher .gsb-lang-sep { color: rgba(255,255,255,0.35); }
-    @media (max-width:600px) { .gsb-lang-switcher { top: 4px; right: 4px; padding: 4px 8px; font-size: 10px; gap: 5px; } }
+    @media (max-width: 600px) { .grid-3 { flex-direction: column; } }
   </style>
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
 </head>
@@ -227,9 +74,20 @@ select {
 <body>
 <div class="gsb-lang-switcher"><span class="gsb-lang-current">EN</span><span class="gsb-lang-sep">|</span><a href="https://sikhsinindia.com/hi/08-sikh-matrimonials/08-01-matrimonials-form.html">हिन्दी</a><span class="gsb-lang-sep">|</span><a href="https://sikhsinindia.com/pa/08-sikh-matrimonials/08-01-matrimonials-form.html">ਪੰਜਾਬੀ</a></div>
 
-  <header>Matrimonials by SikhsinIndia.com</header>
+<div class="poster">
+  <div class="header">
+    <div class="logo-wrap">
+      <img class="logo-img" src="../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+    </div>
+    <div class="hero">
+      <div class="hero-title">Sikh <span>Matrimonials</span></div>
+      <div class="hero-sub">Profile Registration Form</div>
+    </div>
+  </div>
 
-  <div class="container">
+  <div class="intro">Please fill in the proposer's details &mdash; Name, Mobile, Email and Date of Birth are required</div>
+
+  <div class="wrapper">
     <form id="form">
 
       <h2>Details of Proposer</h2>
@@ -464,34 +322,52 @@ select {
         <h2>Photos - Max 2 Nos.</h2>
 
         <input type="file" id="photo1" accept="image/*">
-        <iframe id="preview1" style="width:100%; height:200px; border:1px solid #FF9933; display:none;"></iframe>
+        <iframe id="preview1" class="preview-frame" style="height:200px;"></iframe>
 
-        <br><br>
 
         <input type="file" id="photo2" accept="image/*">
-        <iframe id="preview2" style="width:100%; height:200px; border:1px solid #FF9933; display:none;"></iframe>
+        <iframe id="preview2" class="preview-frame" style="height:200px;"></iframe>
 
         <h2>Bio-Data</h2>
         <input type="file" id="resume">
         <h3>Bio-Data Preview</h3>
-        <iframe id="pdfPreview" style="width:100%; height:400px; border:1px solid #FF9933; display:none;"></iframe>
-        <button type="submit">Submit</button>
+        <iframe id="pdfPreview" class="preview-frame" style="height:400px;"></iframe>
+        <button type="submit" class="btn-action">Submit Profile</button>
 
     </form>
+
+    <!-- ── SOCIAL SHARE BAR ── -->
+    <div class="gsb-share-container">
+      <div class="gsb-share-title">Share This Page</div>
+      <div class="gsb-share-buttons">
+        <button id="gsbWhatsappShare" class="gsb-share-btn gsb-btn-whatsapp" type="button">
+          <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          WhatsApp
+        </button>
+        <button id="gsbFacebookShare" class="gsb-share-btn gsb-btn-facebook" type="button">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </button>
+        <button id="gsbInstagramShare" class="gsb-share-btn gsb-btn-instagram" type="button">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram
+        </button>
+      </div>
+    </div>
   </div>
-  <div id="loaderOverlay" style="
-  display:none;
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:rgba(0,0,0,0.9);
-  color:#FF9933;
-  z-index:9999;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  font-size:20px;
-">
+
+  <div class="footer">
+    <div class="footer-content">
+      <a href="../08-sikh-matrimonials/08-sikh-matrimonials.html" class="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7" /></svg>
+        Back to Matrimonials
+      </a>
+      <div class="footer-left">&copy; Sikhs in India &middot; sikhsinindia.com</div>
+      <div class="footer-right">Waheguru Ji Ka Khalsa &middot; Waheguru Ji Ki Fateh</div>
+    </div>
+  </div>
+</div>
+  <div id="loaderOverlay">
     ⏳ Please wait... Uploading files
   </div>
 
@@ -1375,33 +1251,6 @@ sendEmail(formData);
 
 
   </script>
-  <a href="../08-sikh-matrimonials/08-sikh-matrimonials.html" class="back-button" style="width: 150px; height: 36px; font-size: 24px; background-color: #FF9933; 
-          color: black; display: block; margin: 20px auto 0 auto; text-align: center; 
-          line-height: 30px; border-radius: 8px; text-decoration: none; 
-          border: 2px solid black;">
-    <b>Back</b>
-  </a>
-  <!-- Admin Button at Bottom Right of Page -->
-
-
-    <!-- ── SOCIAL SHARE BAR ── -->
-    <div class="gsb-share-container">
-      <div class="gsb-share-title">Share This Page</div>
-      <div class="gsb-share-buttons">
-        <button id="gsbWhatsappShare" class="gsb-share-btn gsb-btn-whatsapp" type="button">
-          <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-          WhatsApp
-        </button>
-        <button id="gsbFacebookShare" class="gsb-share-btn gsb-btn-facebook" type="button">
-          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          Facebook
-        </button>
-        <button id="gsbInstagramShare" class="gsb-share-btn gsb-btn-instagram" type="button">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          Instagram
-        </button>
-      </div>
-    </div>
 </body>
 
 <script>
