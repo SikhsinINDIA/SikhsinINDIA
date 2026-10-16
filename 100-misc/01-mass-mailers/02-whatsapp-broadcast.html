@@ -41,6 +41,7 @@
   <!-- Firebase (compat SDK — same project/pattern used by every other admin tool on the site) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
   <style>
     .poster { max-width: 1100px; }
@@ -179,12 +180,23 @@
        03-nitnem/03-06-akhand-path/firebase.js's sendWhatsAppTemplate for the
        identical pattern) ---------------- */
     const SEND_ENDPOINT = "https://sikhsinindia-email.sikhsinindia.workers.dev";
-    const APP_SHARED_SECRET = "LuOoE-d92AyXMGsCBA0FcQGhKsYRLgs6";
+
+    /* Admin-only: the Worker sends WhatsApp templates only for a signed-in
+       ADMIN_EMAILS account's Firebase ID token (log in on
+       01a-password-mass-mailer.html), so this redirect is just UX. */
+    const ADMIN_EMAILS = ["tpsarora@gmail.com", "sikhsinindia@gmail.com"];
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user || !ADMIN_EMAILS.includes((user.email || "").toLowerCase())) {
+        window.location.href = "./01a-password-mass-mailer.html?next=02-whatsapp-broadcast.html";
+      }
+    });
 
     async function sendWhatsAppTemplate(to, templateName, languageCode, params) {
+      const user = firebase.auth().currentUser;
+      if (!user) throw new Error("Not signed in — log in again.");
       const res = await fetch(SEND_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json", "X-App-Secret": APP_SHARED_SECRET },
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${await user.getIdToken()}` },
         body: JSON.stringify({ action: "send_whatsapp", to, templateName, languageCode, params })
       });
       const bodyText = await res.text();

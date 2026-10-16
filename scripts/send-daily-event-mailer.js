@@ -38,7 +38,10 @@ const TEMPLATES_COLLECTION = 'mass_mailer_templates';
 const MEMBERS_COLLECTION = 'sikhdatabaseindia';
 
 const SEND_ENDPOINT = 'https://sikhsinindia-email.sikhsinindia.workers.dev';
-const APP_SHARED_SECRET = 'LuOoE-d92AyXMGsCBA0FcQGhKsYRLgs6'; // same value as the client pages - already exposed there, not a real secret
+// Server-only secret (GitHub Actions secret APP_SHARED_SECRET, must match
+// the Worker's `wrangler secret put APP_SHARED_SECRET`). Never ship it to a browser.
+const APP_SHARED_SECRET = process.env.APP_SHARED_SECRET;
+if (!APP_SHARED_SECRET) throw new Error('APP_SHARED_SECRET env var is not set (add it as a GitHub Actions secret).');
 
 // Same pacing as the Mass Mailer's own manual send (01-mass-mailer.html's
 // SEND_DELAY_MS) - keeps this well under Resend's per-second rate limit.

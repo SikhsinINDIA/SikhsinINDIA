@@ -38,4 +38,5 @@ jobs:
       - name: Send due reminders
         env:
           FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+          APP_SHARED_SECRET: ${{ secrets.APP_SHARED_SECRET }}
         run: node scripts/send-akhand-path-reminders.js

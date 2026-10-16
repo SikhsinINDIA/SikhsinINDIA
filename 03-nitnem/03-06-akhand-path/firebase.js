@@ -232,11 +232,19 @@ export const EMAILJS_TEMPLATE_ID = "template_gzwnh1j";
    the Resend API with the API key kept server-side, so it can send to any
    recipient with no template or per-provider cap.
    SEND_EMAIL_ENDPOINT is blank until the Worker is deployed — fill it in
-   with the `*.workers.dev` URL `wrangler deploy` prints. APP_SHARED_SECRET
-   must exactly match the value set via `wrangler secret put APP_SHARED_SECRET`
-   for that Worker, or it will reject every request as unauthorized. */
+   with the `*.workers.dev` URL `wrangler deploy` prints.
+   No secret ships to the browser: workerFetch() sends the signed-in user's
+   Firebase ID token, and the Worker only allows invites/approvals/WhatsApp/
+   password resets for a verified ADMIN_EMAILS account. Anyone else
+   (including a signed-out visitor) can only notify the admin. */
 export const SEND_EMAIL_ENDPOINT = "https://sikhsinindia-email.sikhsinindia.workers.dev";
-export const APP_SHARED_SECRET = "LuOoE-d92AyXMGsCBA0FcQGhKsYRLgs6";
+
+export async function workerFetch(body) {
+  if (!SEND_EMAIL_ENDPOINT) throw new Error("SEND_EMAIL_ENDPOINT is not configured.");
+  const headers = { "Content-Type": "application/json" };
+  if (auth.currentUser) headers.Authorization = `Bearer ${await auth.currentUser.getIdToken()}`;
+  return fetch(SEND_EMAIL_ENDPOINT, { method: "POST", headers, body: JSON.stringify(body) });
+}
 
 /* WhatsApp Business Cloud API, sent through the same Worker as email (see
    cloudflare-worker/src/index.js's "send_whatsapp" action). Business-
@@ -436,12 +444,7 @@ export function assertWhatsAppConsent(invitee) {
    Throws on failure so callers can show their own status message, same
    pattern as the email-sending calls elsewhere in this file. */
 export async function sendWhatsAppTemplate(to, templateName, params) {
-  if (!SEND_EMAIL_ENDPOINT) throw new Error("SEND_EMAIL_ENDPOINT is not configured.");
-  const res = await fetch(SEND_EMAIL_ENDPOINT, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "X-App-Secret": APP_SHARED_SECRET },
-    body: JSON.stringify({ action: "send_whatsapp", to, templateName, languageCode: WHATSAPP_TEMPLATE_LANGUAGES[templateName] || WHATSAPP_LANGUAGE_CODE, params })
-  });
+  const res = await workerFetch({ action: "send_whatsapp", to, templateName, languageCode: WHATSAPP_TEMPLATE_LANGUAGES[templateName] || WHATSAPP_LANGUAGE_CODE, params });
   const bodyText = await res.text();
   if (!res.ok) {
     let detail = bodyText;
@@ -544,16 +547,11 @@ ${session.sponsor || ""}
 Team – SikhsinIndia.com
 Email: ${ADMIN_EMAIL}`;
 
-      if (!SEND_EMAIL_ENDPOINT) throw new Error("SEND_EMAIL_ENDPOINT is not configured.");
-      const res = await fetch(SEND_EMAIL_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-App-Secret": APP_SHARED_SECRET },
-        body: JSON.stringify({
-          to: mail,
-          subject: `You're invited — Akhand Path for ${session.name || ""}`,
-          text,
-          html: textToEmailHtml(text)
-        })
+      const res = await workerFetch({
+        to: mail,
+        subject: `You're invited — Akhand Path for ${session.name || ""}`,
+        text,
+        html: textToEmailHtml(text)
       });
       if (!res.ok) {
         const detail = await res.text().catch(() => "");

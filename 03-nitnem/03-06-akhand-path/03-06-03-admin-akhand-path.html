@@ -269,13 +269,13 @@
 
   <script type="module">
     import {
-      db, provisioningAuth,
+      db, auth, provisioningAuth, onAuthStateChanged, signOut, isAdminEmail,
       createUserWithEmailAndPassword,
       doc, setDoc, getDoc, updateDoc, collection, query, where, orderBy, limit, getDocs, onSnapshot,
       serverTimestamp, Timestamp,
       ADMIN_EMAIL, INVITEE_PASSWORD, PURPOSE_SUGGESTIONS,
       EMAILJS_PUBLIC_KEY, EMAILJS_PRIVATE_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID,
-      SEND_EMAIL_ENDPOINT, APP_SHARED_SECRET,
+      SEND_EMAIL_ENDPOINT, workerFetch,
       emailKey, parseInviteeList, markEndedIfComplete, siteFilePath, textToEmailHtml, driveImageUrl,
       provisionInvitees, buildExpectedRoster, sendWhatsAppTemplate, WHATSAPP_INVITE_TEMPLATE, WHATSAPP_APPROVAL_TEMPLATE,
       WHATSAPP_REJECTED_TEMPLATE,
@@ -312,31 +312,28 @@
     });
 
     /* ---------------- AUTH ----------------
-       The only gate on this page now is the simple password screen at
-       03-06a-password-akhand-path.html, which sets this localStorage flag
-       on success (localStorage, not sessionStorage, so it's recognized in
-       every tab on the site, not just the one that logged in — needed so
-       the watch page's session picker shows up for admin regardless of
-       which tab/link they arrive through). Firebase Auth (a second,
-       separate login) used to also gate this page — removed at the user's
-       request to keep a single password. This check is what makes that
-       gate actually mean something: without it, navigating straight to
-       this page's URL would skip the password screen entirely, since
-       03-06a is only a UI-flow front door, not something that can block
-       direct access on its own.
-       NOTE: this is still just a client-side flag, not real authentication —
-       anyone who knows (or reads) this page's URL and code can set it
-       themselves via DevTools. It deters casual browsing, not a determined
-       visitor. */
-    if (localStorage.getItem("akhandPathAdminAuthed") !== "1") {
-      window.location.href = "./03-06a-password-akhand-path.html";
-    } else {
+       The single login is 03-06a-password-akhand-path.html, which signs in
+       with a Firebase admin account (firebase.js's ADMIN_EMAILS). That real
+       sign-in is required, not just a UI nicety: the Cloudflare Worker only
+       sends invites/approvals/WhatsApp and resets passwords for a request
+       carrying a verified admin's Firebase ID token (see workerFetch in
+       firebase.js). The akhandPathAdminAuthed localStorage flag 03-06a also
+       sets is only kept for index.html's session picker. */
+    let adminDataLoaded = false;
+    onAuthStateChanged(auth, (user) => {
+      if (!user || !isAdminEmail(user.email)) {
+        window.location.href = "./03-06a-password-akhand-path.html";
+        return;
+      }
+      if (adminDataLoaded) return;
+      adminDataLoaded = true;
       loadPendingRequests();
       loadSessions();
-    }
+    });
 
-    window.adminLogout = () => {
+    window.adminLogout = async () => {
       localStorage.removeItem("akhandPathAdminAuthed");
+      await signOut(auth);
       window.location.href = "./03-06a-password-akhand-path.html";
     };
 
@@ -490,11 +487,7 @@
       if (!SEND_EMAIL_ENDPOINT) {
         throw new Error("SEND_EMAIL_ENDPOINT is not configured yet — deploy the Cloudflare Worker and set it in firebase.js.");
       }
-      const res = await fetch(SEND_EMAIL_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-App-Secret": APP_SHARED_SECRET },
-        body: JSON.stringify({ to, subject, text, html: textToEmailHtml(text) })
-      });
+      const res = await workerFetch({ to, subject, text, html: textToEmailHtml(text) });
       if (!res.ok) {
         const detail = await res.text().catch(() => "");
         throw new Error(`Email send failed (HTTP ${res.status}) ${detail}`);
@@ -840,11 +833,7 @@ Email: ${ADMIN_EMAIL}`;
       if (!email) { status.textContent = "Enter an email address."; return; }
       status.textContent = "Resetting...";
       try {
-        const res = await fetch(SEND_EMAIL_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "X-App-Secret": APP_SHARED_SECRET },
-          body: JSON.stringify({ action: "reset_password", email, newPassword: INVITEE_PASSWORD })
-        });
+        const res = await workerFetch({ action: "reset_password", email, newPassword: INVITEE_PASSWORD });
         const result = await res.json().catch(() => ({}));
         if (!res.ok) throw new Error(result.error || `HTTP ${res.status}`);
         status.textContent = `Password for ${email} reset to ${INVITEE_PASSWORD}.`;
