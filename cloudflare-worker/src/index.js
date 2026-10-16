@@ -1,5 +1,5 @@
 /*
- * Cloudflare Worker for the SikhsinIndia static site. Three jobs:
+ * Cloudflare Worker for the SikhsinIndia static site. Four jobs:
  *
  * 1. Send email via the Resend API. Exists because none of the client-side
  *    form backends tried (EmailJS free tier, SnapitForms, FormSubmit,
@@ -31,6 +31,11 @@
  *    03-nitnem/03-06-akhand-path/firebase.js's WHATSAPP_* constants for
  *    the exact template names/wording this site currently has approved.
  *
+ * 4. Search YouTube for shabad kirtan (action: "youtube_search", fields
+ *    q, mode: "lyrics" | "kirtaniya", optional pageToken) for
+ *    03-nitnem/03-07-shabad-search.html, so the YouTube Data API key stays
+ *    here instead of in the page. Public — no sign-in needed.
+ *
  * Deploy: see cloudflare-worker's own docs / wrangler.toml comments.
  * Requires these secrets, set via `wrangler secret put <NAME>`:
  *   RESEND_API_KEY        — from the Resend dashboard
@@ -50,6 +55,8 @@
  *   WHATSAPP_PHONE_NUMBER_ID — that WhatsApp Business phone number's
  *                            numeric Phone Number ID (not the phone number
  *                            itself), from the same app's API Setup page
+ *   YOUTUBE_API_KEY        — a Google Cloud API key with the YouTube Data
+ *                            API v3 enabled, used only for shabad search
  *
  * AUTH. Every request is one of three callers:
  *   - "server": a scripts/ job presenting X-App-Secret. Full access.
@@ -340,6 +347,57 @@ async function sendEmail(env, { to, subject, text, html, attachments }) {
   return resendBody;
 }
 
+// YouTube's search.list costs 100 of the default 10,000 daily quota units,
+// i.e. ~100 uncached searches a day, so identical searches are served from
+// Cloudflare's edge cache for a few hours instead of hitting the API again.
+const YT_SEARCH_CACHE_SECONDS = 6 * 3600;
+const YT_SEARCH_SUFFIX = { lyrics: "shabad kirtan", kirtaniya: "kirtan" };
+
+async function searchYouTube(env, { q, mode, pageToken }) {
+  const query = String(q || "").trim().slice(0, 120);
+  if (!query) throw Object.assign(new Error("Missing search text"), { status: 400 });
+  if (!env.YOUTUBE_API_KEY) throw new Error("Shabad search is not configured yet (missing YOUTUBE_API_KEY secret).");
+
+  const params = new URLSearchParams({
+    part: "snippet",
+    type: "video",
+    // Only videos that are allowed to play embedded on another site, since
+    // the shabad search page never sends visitors to youtube.com.
+    videoEmbeddable: "true",
+    videoSyndicated: "true",
+    safeSearch: "strict",
+    maxResults: "12",
+    q: `${query} ${YT_SEARCH_SUFFIX[mode] || YT_SEARCH_SUFFIX.lyrics}`
+  });
+  if (pageToken) params.set("pageToken", String(pageToken).slice(0, 100));
+
+  // The cache key must not contain the API key.
+  const cacheKey = new Request(`https://yt-search.cache/?${params}`);
+  const cache = caches.default;
+  const cached = await cache.match(cacheKey);
+  if (cached) return cached.json();
+
+  params.set("key", env.YOUTUBE_API_KEY);
+  const res = await fetch(`https://www.googleapis.com/youtube/v3/search?${params}`);
+  const body = await res.json();
+  if (!res.ok) throw new Error("YouTube API error: " + ((body.error && body.error.message) || res.status));
+
+  const result = {
+    nextPageToken: body.nextPageToken || null,
+    items: (body.items || []).filter((it) => it.id && it.id.videoId).map((it) => ({
+      videoId: it.id.videoId,
+      title: it.snippet.title,
+      channel: it.snippet.channelTitle,
+      publishedAt: it.snippet.publishedAt,
+      thumbnail: ((it.snippet.thumbnails || {}).medium || (it.snippet.thumbnails || {}).default || {}).url || ""
+    }))
+  };
+  await cache.put(cacheKey, new Response(JSON.stringify(result), {
+    headers: { "Content-Type": "application/json", "Cache-Control": `max-age=${YT_SEARCH_CACHE_SECONDS}` }
+  }));
+  return result;
+}
+
 export default {
   async fetch(request, env) {
     const corsHeaders = {
@@ -357,6 +415,15 @@ export default {
       payload = await request.json();
     } catch (err) {
       return json({ error: "Invalid JSON body" }, 400);
+    }
+
+    // Public and read-only, so it skips the caller check below entirely.
+    if (payload.action === "youtube_search") {
+      try {
+        return json(await searchYouTube(env, payload), 200);
+      } catch (err) {
+        return json({ error: String(err.message || err) }, err.status || 502);
+      }
     }
 
     const caller = await identifyCaller(request, env);
