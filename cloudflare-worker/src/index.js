@@ -34,10 +34,11 @@
  * Deploy: see cloudflare-worker's own docs / wrangler.toml comments.
  * Requires these secrets, set via `wrangler secret put <NAME>`:
  *   RESEND_API_KEY        — from the Resend dashboard
- *   APP_SHARED_SECRET     — random string; the site sends it back as the
- *                            X-App-Secret header so randos on the internet
- *                            can't use this Worker to burn quota or reset
- *                            arbitrary passwords
+ *   APP_SHARED_SECRET     — random string used ONLY by the server-side
+ *                            GitHub Actions scripts in scripts/ (stored there
+ *                            as the APP_SHARED_SECRET Actions secret), sent
+ *                            as the X-App-Secret header. Never put it in
+ *                            browser code — see AUTH below.
  *   GOOGLE_SA_EMAIL        — the service account's client_email (from its
  *                            downloaded JSON key)
  *   GOOGLE_SA_PRIVATE_KEY  — the service account's private_key (same JSON
@@ -49,6 +50,22 @@
  *   WHATSAPP_PHONE_NUMBER_ID — that WhatsApp Business phone number's
  *                            numeric Phone Number ID (not the phone number
  *                            itself), from the same app's API Setup page
+ *
+ * AUTH. Every request is one of three callers:
+ *   - "server": a scripts/ job presenting X-App-Secret. Full access.
+ *   - "admin": a browser sending `Authorization: Bearer <Firebase ID token>`
+ *     (auth.currentUser.getIdToken()) for a VERIFIED email listed in the
+ *     ADMIN_EMAILS var (wrangler.toml). Full access.
+ *   - anyone else (no/invalid token, or a non-admin account — anyone can
+ *     create a Firebase account on this site, so "signed in" alone proves
+ *     nothing): may only notify the site admin — email to ADMIN_NOTIFY_EMAIL
+ *     or WhatsApp to ADMIN_NOTIFY_WHATSAPP — which is what the public
+ *     03-06-01-request-akhand-path.html form does. Everything else
+ *     (send_whatsapp to anyone else, reset_password, email to anyone else,
+ *     i.e. invites/approvals/mass mail) is rejected with 403.
+ * email_verified is required because Firebase lets anyone register an
+ * address nobody has claimed yet without proving they own it.
+ *
  * The service account needs the "Firebase Authentication Admin" IAM role
  * on the sikhsinindia-67a6b Google Cloud project — nothing broader. This
  * key can reset ANY user's password in the whole Firebase project, not
@@ -57,6 +74,86 @@
  */
 
 const IDENTITY_TOOLKIT_BASE = "https://identitytoolkit.googleapis.com/v1";
+const FIREBASE_PROJECT_ID = "sikhsinindia-67a6b";
+const FIREBASE_JWKS_URL = "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com";
+
+function base64urlDecode(str) {
+  const b64 = str.replace(/-/g, "+").replace(/_/g, "/").padEnd(Math.ceil(str.length / 4) * 4, "=");
+  return Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+}
+
+// Google rotates these signing keys every few hours; cache them per isolate
+// for as long as Google's Cache-Control says they're valid.
+let jwksCache = { keys: null, expiresAt: 0 };
+async function getFirebaseSigningKeys() {
+  if (jwksCache.keys && Date.now() < jwksCache.expiresAt) return jwksCache.keys;
+  const res = await fetch(FIREBASE_JWKS_URL);
+  if (!res.ok) throw new Error(`Could not fetch Firebase signing keys: HTTP ${res.status}`);
+  const { keys } = await res.json();
+  const maxAge = Number((/max-age=(\d+)/.exec(res.headers.get("Cache-Control") || "") || [])[1]) || 3600;
+  jwksCache = { keys, expiresAt: Date.now() + maxAge * 1000 };
+  return keys;
+}
+
+// Verifies a Firebase Auth ID token per
+// https://firebase.google.com/docs/auth/admin/verify-id-tokens#verify_id_tokens_using_a_third-party_jwt_library
+// and returns its claims, or throws.
+async function verifyFirebaseIdToken(token) {
+  const parts = token.split(".");
+  if (parts.length !== 3) throw new Error("Malformed token");
+  const header = JSON.parse(new TextDecoder().decode(base64urlDecode(parts[0])));
+  const claims = JSON.parse(new TextDecoder().decode(base64urlDecode(parts[1])));
+  if (header.alg !== "RS256") throw new Error("Unexpected token algorithm");
+
+  const jwk = (await getFirebaseSigningKeys()).find((k) => k.kid === header.kid);
+  if (!jwk) throw new Error("Unknown token signing key");
+  const key = await crypto.subtle.importKey("jwk", jwk, { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" }, false, ["verify"]);
+  const valid = await crypto.subtle.verify(
+    "RSASSA-PKCS1-v1_5", key, base64urlDecode(parts[2]),
+    new TextEncoder().encode(`${parts[0]}.${parts[1]}`)
+  );
+  if (!valid) throw new Error("Bad token signature");
+
+  const now = Math.floor(Date.now() / 1000);
+  const skew = 60;
+  if (claims.aud !== FIREBASE_PROJECT_ID) throw new Error("Token audience mismatch");
+  if (claims.iss !== `https://securetoken.google.com/${FIREBASE_PROJECT_ID}`) throw new Error("Token issuer mismatch");
+  if (!claims.sub) throw new Error("Token has no subject");
+  if (!(claims.exp > now - skew)) throw new Error("Token expired");
+  if (!(claims.iat <= now + skew) || !(claims.auth_time <= now + skew)) throw new Error("Token issued in the future");
+  return claims;
+}
+
+function listVar(value) {
+  return String(value || "").split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
+}
+
+// Length-independent-timing compare so the shared secret can't be guessed
+// byte-by-byte from response times.
+function safeEqual(a, b) {
+  if (typeof a !== "string" || typeof b !== "string" || a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return diff === 0;
+}
+
+// Returns { role: "server" | "admin" | "public", ... } — see AUTH above.
+async function identifyCaller(request, env) {
+  const secret = request.headers.get("X-App-Secret");
+  if (secret && env.APP_SHARED_SECRET && safeEqual(secret, env.APP_SHARED_SECRET)) return { role: "server" };
+
+  const match = /^Bearer\s+(.+)$/i.exec(request.headers.get("Authorization") || "");
+  if (!match) return { role: "public", reason: "not signed in" };
+  try {
+    const claims = await verifyFirebaseIdToken(match[1].trim());
+    const email = String(claims.email || "").toLowerCase();
+    if (!listVar(env.ADMIN_EMAILS).includes(email)) return { role: "public", reason: `${email || "this account"} is not an admin` };
+    if (claims.email_verified !== true) return { role: "public", reason: `${email} has not verified its email address` };
+    return { role: "admin", email };
+  } catch (err) {
+    return { role: "public", reason: "invalid sign-in token: " + (err.message || err) };
+  }
+}
 
 function base64url(bytes) {
   let binary = "";
@@ -248,22 +345,31 @@ export default {
     const corsHeaders = {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, X-App-Secret"
+      "Access-Control-Allow-Headers": "Content-Type, Authorization, X-App-Secret"
     };
     const json = (body, status) => new Response(JSON.stringify(body), { status, headers: { ...corsHeaders, "Content-Type": "application/json" } });
 
     if (request.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
     if (request.method !== "POST") return json({ error: "Method not allowed" }, 405);
 
-    if (!env.APP_SHARED_SECRET || request.headers.get("X-App-Secret") !== env.APP_SHARED_SECRET) {
-      return json({ error: "Unauthorized" }, 401);
-    }
-
     let payload;
     try {
       payload = await request.json();
     } catch (err) {
       return json({ error: "Invalid JSON body" }, 400);
+    }
+
+    const caller = await identifyCaller(request, env);
+    if (caller.role === "public") {
+      // The only thing an unprivileged caller may do is notify the admin.
+      const toAdminEmail = !payload.action
+        && listVar(env.ADMIN_NOTIFY_EMAIL).includes(String(payload.to || "").trim().toLowerCase())
+        && !(Array.isArray(payload.attachments) && payload.attachments.length);
+      const toAdminWhatsApp = payload.action === "send_whatsapp" && !!env.ADMIN_NOTIFY_WHATSAPP
+        && normalizePhone(payload.to) === normalizePhone(env.ADMIN_NOTIFY_WHATSAPP);
+      if (!toAdminEmail && !toAdminWhatsApp) {
+        return json({ error: `Forbidden: this needs a signed-in admin account (${caller.reason}).` }, 403);
+      }
     }
 
     if (payload.action === "send_whatsapp") {

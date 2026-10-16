@@ -335,7 +335,7 @@
 
   <script type="module">
     import {
-      db, doc, setDoc, getDoc, updateDoc, deleteDoc, collection, query, orderBy, limit, getDocs, onSnapshot,
+      db, auth, onAuthStateChanged, signOut, isAdminEmail, doc, setDoc, getDoc, updateDoc, deleteDoc, collection, query, orderBy, limit, getDocs, onSnapshot,
       serverTimestamp, Timestamp, emailKey, driveImageUrl, parseInviteeList, provisionInvitees,
       sendWhatsAppTemplate, WHATSAPP_INVITE_TEMPLATE, WHATSAPP_APPROVAL_TEMPLATE, WA_CONSENT_LABEL, waConsentFields, assertWhatsAppConsent, INVITEE_PASSWORD, siteFilePath,
       SESSIONS_COLLECTION, nextAkhandPathId
@@ -343,17 +343,23 @@
     import { computePosition, formatDurationHM } from "./sync.js";
 
     /* ---------------- AUTH GATE ----------------
-       Same client-side password flag as 03-06-03-admin-akhand-path.html —
-       this page is reachable only after that gate, and is even more
-       sensitive (raw data edit/delete), so it uses the exact same check. */
-    if (localStorage.getItem("akhandPathAdminAuthed") !== "1") {
-      window.location.href = "./03-06a-password-akhand-path.html";
-    } else {
+       Same Firebase admin sign-in check as 03-06-03-admin-akhand-path.html —
+       this page is even more sensitive (raw data edit/delete), and its
+       "Send Invites"/WhatsApp actions need the admin's ID token anyway. */
+    let instancesLoaded = false;
+    onAuthStateChanged(auth, (user) => {
+      if (!user || !isAdminEmail(user.email)) {
+        window.location.href = "./03-06a-password-akhand-path.html";
+        return;
+      }
+      if (instancesLoaded) return;
+      instancesLoaded = true;
       loadInstances();
-    }
+    });
 
-    window.adminLogout = () => {
+    window.adminLogout = async () => {
       localStorage.removeItem("akhandPathAdminAuthed");
+      await signOut(auth);
       window.location.href = "./03-06a-password-akhand-path.html";
     };
 

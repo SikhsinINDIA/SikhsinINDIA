@@ -41,6 +41,7 @@
   <!-- Firebase (compat SDK — same project/pattern used by every other admin tool on the site) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
   <style>
     .poster { max-width: 1100px; }
@@ -232,21 +233,6 @@
   </div>
 
   <script>
-    /* ---------------- ADMIN GATE ----------------
-       Same client-side-flag pattern as 03-nitnem/03-06-akhand-path's admin
-       pages: a login page sets this localStorage flag on success, and every
-       admin page in this section checks for it on load. Still just a
-       client-side flag, not real authentication — anyone who reads this
-       page's code can set it themselves via DevTools. It deters casual
-       browsing, not a determined visitor; the real defense is that this
-       page is unlinked from the site and marked noindex. */
-    if (localStorage.getItem("massMailerAdminAuthed") !== "1") {
-      window.location.href = "./01a-password-mass-mailer.html";
-    }
-    window.adminLogout = () => {
-      localStorage.removeItem("massMailerAdminAuthed");
-      window.location.href = "./01a-password-mass-mailer.html";
-    };
 
     /* ---------------- FIREBASE ---------------- */
     const firebaseConfig = {
@@ -261,12 +247,27 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
+    /* ---------------- ADMIN GATE ----------------
+       Requires a real Firebase sign-in as one of ADMIN_EMAILS (same list as
+       03-nitnem/03-06-akhand-path/firebase.js and the Worker's ADMIN_EMAILS
+       var), done on 01a-password-mass-mailer.html. The Worker refuses to send
+       mail without that admin's ID token, so this redirect is just UX. */
+    const ADMIN_EMAILS = ["tpsarora@gmail.com", "sikhsinindia@gmail.com"];
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user || !ADMIN_EMAILS.includes((user.email || "").toLowerCase())) {
+        window.location.href = "./01a-password-mass-mailer.html";
+      }
+    });
+    window.adminLogout = async () => {
+      await firebase.auth().signOut();
+      window.location.href = "./01a-password-mass-mailer.html";
+    };
+
     const TEMPLATES_COLLECTION = "mass_mailer_templates";
     const MEMBERS_COLLECTION = "sikhdatabaseindia";
 
     /* ---------------- EMAIL SENDING (same Worker as Akhand Path) ---------------- */
     const SEND_EMAIL_ENDPOINT = "https://sikhsinindia-email.sikhsinindia.workers.dev";
-    const APP_SHARED_SECRET = "LuOoE-d92AyXMGsCBA0FcQGhKsYRLgs6";
 
     /* ---------------- GOOGLE DRIVE UPLOAD (same Apps Script used by
        Matrimonials and Akhand Path's honoree photo) ---------------- */
@@ -330,9 +331,11 @@
     }
 
     async function callMailWorker(payload) {
+      const user = firebase.auth().currentUser;
+      if (!user) throw new Error("Not signed in — log in again.");
       const res = await fetch(SEND_EMAIL_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json", "X-App-Secret": APP_SHARED_SECRET },
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${await user.getIdToken()}` },
         body: JSON.stringify(payload)
       });
       const bodyText = await res.text();

@@ -4,10 +4,23 @@ compatibility_date = "2026-09-01"
 
 # Secrets — set these with `wrangler secret put <NAME>`, never commit them here:
 #   RESEND_API_KEY     the API key from your Resend dashboard
-#   APP_SHARED_SECRET  a random string the site must send back on every request
+#   APP_SHARED_SECRET  a random string ONLY the server-side scripts/ jobs send
+#                      (X-App-Secret header); also stored as the
+#                      APP_SHARED_SECRET GitHub Actions secret. Must never
+#                      appear in site code — browsers send a Firebase ID token.
 
 [vars]
 # sikhsinindia.com (root domain) is verified in Resend (DKIM/SPF confirmed
 # 2026-09-28), so sending is no longer restricted to the account's own
 # signup address, and no longer needs the mail. subdomain either.
 FROM_ADDRESS = "SikhsinIndia <noreply@sikhsinindia.com>"
+
+# Firebase accounts allowed to use the privileged actions (email to any
+# recipient, send_whatsapp to anyone, reset_password). Comma-separated; the
+# account's email must also be verified. Keep in sync with
+# 03-nitnem/03-06-akhand-path/firebase.js's ADMIN_EMAILS.
+ADMIN_EMAILS = "tpsarora@gmail.com,sikhsinindia@gmail.com"
+# The only recipients a non-admin caller (the public Akhand Path request
+# form) may reach.
+ADMIN_NOTIFY_EMAIL = "sikhsinindia@gmail.com"
+ADMIN_NOTIFY_WHATSAPP = "+919810607799"
