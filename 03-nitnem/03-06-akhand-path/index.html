@@ -870,7 +870,7 @@ function isUserInvited(sessionData, user) {
         }
       } else {
         authStatus.innerHTML =
-          `Please log in with the email address that was included in your Akhand Path invitation.`;
+          `No login needed to attend. Sponsors and invitees may optionally log in to record their listening time.`;
 
         authActions.innerHTML =
           `<a class="btn-back" href="login.html">Login</a>`;
@@ -1013,26 +1013,11 @@ function isUserInvited(sessionData, user) {
             }
 
             /*
-             * Second authorization check for regular users.
-             * Even if somebody manually changes the URL, the session is not
-             * rendered unless their login email is actually in the invitees.
+             * No invitee check: anyone with the session link can attend,
+             * logged in or not, because many sangat members (especially
+             * seniors) have no email to receive login details. Logging in
+             * is optional and only adds personal listening-time tracking.
              */
-            if (!admin && !isUserInvited(latestSession, user)) {
-              console.warn(
-                "Session authorization failed for user:",
-                user?.email,
-                "session:",
-                sessionId
-              );
-
-              latestSession = null;
-              dedicationBanner.hidden = true;
-              videoContainerEl.hidden = true;
-              statusBar.className = "status-bar scheduled";
-              statusBar.textContent =
-                "You are not authorized to view this Akhand Path program.";
-              return;
-            }
 
             renderDedication(latestSession);
             startStatusTicker();
