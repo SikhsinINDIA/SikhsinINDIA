@@ -1,4 +1,4 @@
-import { db, doc, updateDoc, SESSIONS_COLLECTION, DEFAULT_TRACK_DURATION_SECONDS } from "./firebase.js";
+import { db, doc, updateDoc, SESSIONS_COLLECTION, DEFAULT_TRACK_DURATION_SECONDS, DEFAULT_DURATION_HOURS } from "./firebase.js";
 
 /* ---------------------------------------------------------------------
    Continuous, backend-free synchronized playback.
@@ -68,7 +68,7 @@ export function computePosition(session, videoSequence, playbackSpeed) {
   if (!startMs) return { phase: "scheduled" };
 
   const speed = playbackSpeed && playbackSpeed > 0 ? playbackSpeed : 1;
-  const durationHours = session.duration_hours || 48;
+  const durationHours = session.duration_hours || DEFAULT_DURATION_HOURS;
   const durationMs = durationHours * 3600 * 1000;
   const nowMs = Date.now();
 

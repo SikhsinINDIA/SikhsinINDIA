@@ -91,6 +91,12 @@ export function isAdminEmail(email) {
   return ADMIN_EMAILS.includes((email || "").trim().toLowerCase());
 }
 export const DEFAULT_TRACK_DURATION_SECONDS = 900; // 15 min fallback estimate until a track's real length is measured
+/* One full pass of the index.html VIDEO_SEQUENCE (81 Path videos + shabad
+   + Ardas 1-3 = 294102s of content) at PLAYBACK_SPEED 1.5 is 54.46h; every
+   new program defaults to this, and any program saved without a duration
+   is treated as this, so the closing kirtan and Ardas always play. Update
+   it whenever tracks are added or removed. */
+export const DEFAULT_DURATION_HOURS = 54.47;
 
 /* Firestore doc IDs for invitees/attendance are keyed by a sanitized email
    rather than the Firebase Auth UID. Reason: the admin has no Admin SDK
@@ -518,7 +524,7 @@ export async function provisionInvitees(sessionId, session, invitees) {
       }, { merge: true });
 
       const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : new Date();
-      const durationHours = session.duration_hours || 48;
+      const durationHours = session.duration_hours || DEFAULT_DURATION_HOURS;
       const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
 
       const text = `Dear ${gname},

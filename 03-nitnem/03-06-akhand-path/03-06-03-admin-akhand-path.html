@@ -283,7 +283,7 @@
       provisionInvitees, buildExpectedRoster, sendWhatsAppTemplate, WHATSAPP_INVITE_TEMPLATE, WHATSAPP_APPROVAL_TEMPLATE,
       WHATSAPP_REJECTED_TEMPLATE,
       WA_CONSENT_LABEL, waConsentFields, assertWhatsAppConsent,
-      SESSIONS_COLLECTION, nextAkhandPathId
+      SESSIONS_COLLECTION, nextAkhandPathId, DEFAULT_DURATION_HOURS
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
     import { watchAttendance, renderAttendanceTable, mergeAttendanceRoster, exportAttendanceCsv } from "./attendance.js";
@@ -525,7 +525,7 @@
 
     async function sendApprovalEmail(sessionId, session) {
       const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : new Date();
-      const durationHours = session.duration_hours || 48;
+      const durationHours = session.duration_hours || DEFAULT_DURATION_HOURS;
       const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
 
       const message = `Dear ${session.sponsor || ""},
@@ -675,7 +675,7 @@ Email: ${ADMIN_EMAIL}`;
       const mobie = document.getElementById("newMobie").value.trim();
       const purpose = document.getElementById("newPurpose").value.trim();
       const sponsor = document.getElementById("newSponsor").value.trim();
-      const durationHours = parseFloat(document.getElementById("newDurationHours").value) || 81.5;
+      const durationHours = parseFloat(document.getElementById("newDurationHours").value) || DEFAULT_DURATION_HOURS;
       const startDate = document.getElementById("newStartDate").value;
       const startTime = document.getElementById("newStartTime").value;
 
@@ -799,7 +799,7 @@ Email: ${ADMIN_EMAIL}`;
     async function sendSponsorApprovalWhatsApp(sessionId, session) {
       if (!session.mobie) throw new Error("This program has no sponsor mobile number on file.");
       const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : new Date();
-      const durationHours = session.duration_hours || 48;
+      const durationHours = session.duration_hours || DEFAULT_DURATION_HOURS;
       const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
       const params = [
         session.sponsor || "",
@@ -934,7 +934,7 @@ Email: ${ADMIN_EMAIL}`;
       assertWhatsAppConsent(invitee);
       const s = activeSessionData;
       const start = s.start_at && s.start_at.toDate ? s.start_at.toDate() : new Date();
-      const durationHours = s.duration_hours || 48;
+      const durationHours = s.duration_hours || DEFAULT_DURATION_HOURS;
       const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
       const params = [
         invitee.gname || invitee.name || "",
@@ -959,7 +959,7 @@ Email: ${ADMIN_EMAIL}`;
     async function notifyAllInviteesApprovalWhatsApp(sessionId, session) {
       const snap = await getDocs(collection(db, SESSIONS_COLLECTION, sessionId, "invitees"));
       const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : new Date();
-      const durationHours = session.duration_hours || 48;
+      const durationHours = session.duration_hours || DEFAULT_DURATION_HOURS;
       const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
       const link = sessionLinkFor(sessionId);
 
@@ -1038,7 +1038,7 @@ Email: ${ADMIN_EMAIL}`;
     async function sendInviteEmail({ name, gname, mail }) {
       const s = activeSessionData;
       const start = s.start_at && s.start_at.toDate ? s.start_at.toDate() : new Date();
-      const end = new Date(start.getTime() + (s.duration_hours || 48) * 3600 * 1000);
+      const end = new Date(start.getTime() + (s.duration_hours || DEFAULT_DURATION_HOURS) * 3600 * 1000);
       const loginLink = siteFilePath("login.html", `?session=${activeSessionId}`);
 
       const payload = {

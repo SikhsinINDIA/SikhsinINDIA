@@ -37,6 +37,7 @@ if (!APP_SHARED_SECRET) throw new Error('APP_SHARED_SECRET env var is not set (a
 
 const ADMIN_EMAIL = 'sikhsinindia@gmail.com';
 const ADMIN_WHATSAPP_NUMBER = '+971521821108';
+// Same as firebase.js's DEFAULT_DURATION_HOURS (full Path + shabad + Ardas).const DEFAULT_DURATION_HOURS = 54.47;
 
 const WHATSAPP_REMINDER_START_TEMPLATE = 'akhand_path_reminder_start';
 const WHATSAPP_REMINDER_END_TEMPLATE = 'akhand_path_reminder_end';
@@ -104,7 +105,7 @@ async function sendReminderForSession(db, doc, kind) {
   const sessionId = doc.id;
   const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : null;
   if (!start) return;
-  const durationHours = session.duration_hours || 48;
+  const durationHours = session.duration_hours || DEFAULT_DURATION_HOURS;
   const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
   const eventTime = kind === 'start' ? start : samapti;
   const link = sessionLinkFor(sessionId);
@@ -177,7 +178,7 @@ async function main() {
     const session = doc.data();
     const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : null;
     if (!start) continue;
-    const durationHours = session.duration_hours || 48;
+    const durationHours = session.duration_hours || DEFAULT_DURATION_HOURS;
     const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
 
     if (!session.start_reminder_sent && withinReminderWindow(start, now)) {

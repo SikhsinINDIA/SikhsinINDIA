@@ -255,7 +255,7 @@
   <script type="module">
     import {
       doc, setDoc, serverTimestamp, Timestamp,
-      PURPOSE_SUGGESTIONS, SESSIONS_COLLECTION, nextAkhandPathId, db,
+      PURPOSE_SUGGESTIONS, SESSIONS_COLLECTION, nextAkhandPathId, db, DEFAULT_DURATION_HOURS,
       SEND_EMAIL_ENDPOINT, workerFetch, ADMIN_EMAIL, parseInviteeList, siteFilePath, textToEmailHtml, driveImageUrl,
       sendWhatsAppTemplate, WHATSAPP_NEW_REQUEST_TEMPLATE, ADMIN_WHATSAPP_NUMBER
     } from "./firebase.js";
@@ -451,7 +451,7 @@ ${data.sponsor}`;
       const purpose = document.getElementById("reqPurpose").value.trim();
       const startDate = document.getElementById("reqStartDate").value;
       const startTime = document.getElementById("reqStartTime").value;
-      const durationHours = parseFloat(document.getElementById("reqDurationHours").value) || 81.5;
+      const durationHours = parseFloat(document.getElementById("reqDurationHours").value) || DEFAULT_DURATION_HOURS;
       // The "Names of Family Members" field is currently commented out of the
       // markup (see the form-row above), so this element doesn't exist —
       // guard against that instead of letting .value throw on null, which

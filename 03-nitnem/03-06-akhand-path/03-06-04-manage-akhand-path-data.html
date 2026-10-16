@@ -338,7 +338,7 @@
       db, auth, onAuthStateChanged, signOut, isAdminEmail, doc, setDoc, getDoc, updateDoc, deleteDoc, collection, query, orderBy, limit, getDocs, onSnapshot,
       serverTimestamp, Timestamp, emailKey, driveImageUrl, parseInviteeList, provisionInvitees,
       sendWhatsAppTemplate, WHATSAPP_INVITE_TEMPLATE, WHATSAPP_APPROVAL_TEMPLATE, WA_CONSENT_LABEL, waConsentFields, assertWhatsAppConsent, INVITEE_PASSWORD, siteFilePath,
-      SESSIONS_COLLECTION, nextAkhandPathId
+      SESSIONS_COLLECTION, nextAkhandPathId, DEFAULT_DURATION_HOURS
     } from "./firebase.js";
     import { computePosition, formatDurationHM } from "./sync.js";
 
@@ -599,6 +599,7 @@
       document.getElementById("docIdNote").textContent = "Suggested next ID — you may change this before saving, but not after.";
       const suggested = await nextAkhandPathId();
       document.getElementById("fDocId").value = String(suggested);
+      document.getElementById("fDurationHours").value = DEFAULT_DURATION_HOURS;
       document.getElementById("fDocId").disabled = false;
       document.getElementById("deleteInstanceBtn").hidden = true;
       document.getElementById("invSection").hidden = true;
@@ -766,7 +767,7 @@
       assertWhatsAppConsent(invitee);
       const startVal = document.getElementById("fStartAt").value;
       const start = startVal ? new Date(startVal) : new Date();
-      const durationHours = Number(document.getElementById("fDurationHours").value) || 48;
+      const durationHours = Number(document.getElementById("fDurationHours").value) || DEFAULT_DURATION_HOURS;
       const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
       const params = [
         invitee.gname || invitee.name || "",
