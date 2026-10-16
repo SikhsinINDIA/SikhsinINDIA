@@ -23,4 +23,4 @@ ADMIN_EMAILS = "tpsarora@gmail.com,sikhsinindia@gmail.com"
 # The only recipients a non-admin caller (the public Akhand Path request
 # form) may reach.
 ADMIN_NOTIFY_EMAIL = "sikhsinindia@gmail.com"
-ADMIN_NOTIFY_WHATSAPP = "+919810607799"
+ADMIN_NOTIFY_WHATSAPP = "+971521821108"

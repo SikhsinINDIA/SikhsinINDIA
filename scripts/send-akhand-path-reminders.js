@@ -36,7 +36,7 @@ const APP_SHARED_SECRET = process.env.APP_SHARED_SECRET;
 if (!APP_SHARED_SECRET) throw new Error('APP_SHARED_SECRET env var is not set (add it as a GitHub Actions secret).');
 
 const ADMIN_EMAIL = 'sikhsinindia@gmail.com';
-const ADMIN_WHATSAPP_NUMBER = '+919810607799';
+const ADMIN_WHATSAPP_NUMBER = '+971521821108';
 
 const WHATSAPP_REMINDER_START_TEMPLATE = 'akhand_path_reminder_start';
 const WHATSAPP_REMINDER_END_TEMPLATE = 'akhand_path_reminder_end';

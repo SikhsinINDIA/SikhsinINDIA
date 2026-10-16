@@ -417,7 +417,7 @@ export const WHATSAPP_LANGUAGE_CODE = "en"; // fallback for any template not lis
    Akhand Path request (see notifyAdminOfNewRequest() in
    03-06-01-request-akhand-path.html). Kept alongside ADMIN_EMAIL below so
    there is one place to update if it ever changes. */
-export const ADMIN_WHATSAPP_NUMBER = "+919810607799";
+export const ADMIN_WHATSAPP_NUMBER = "+971521821108";
 
 /* WhatsApp only allows business-initiated messages to people who have opted in.
    Every invitee doc therefore carries wa_consent (+ who confirmed it and when),
