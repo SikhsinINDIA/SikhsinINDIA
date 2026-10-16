@@ -8,6 +8,8 @@ compatibility_date = "2026-09-01"
 #                      (X-App-Secret header); also stored as the
 #                      APP_SHARED_SECRET GitHub Actions secret. Must never
 #                      appear in site code — browsers send a Firebase ID token.
+#   YOUTUBE_API_KEY    Google Cloud API key with YouTube Data API v3 enabled,
+#                      used by the shabad search page (action: youtube_search).
 
 [vars]
 # sikhsinindia.com (root domain) is verified in Resend (DKIM/SPF confirmed

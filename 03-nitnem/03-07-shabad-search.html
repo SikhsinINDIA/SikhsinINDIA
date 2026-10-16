@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Shabad Kirtan Search | SikhsInIndia.com</title>
+
+  <meta name="description"
+    content="Search Gurbani shabad kirtan by the words of the shabad or by the kirtaniya (ragi jatha) and listen right here on SikhsInIndia.com.">
+  <meta name="keywords" content="Shabad search, Gurbani kirtan, Shabad kirtan, Ragi jatha, Kirtaniya, Gurbani, Sikhs in India">
+  <meta name="author" content="Sikhs in India">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://sikhsinindia.com/03-nitnem/03-07-shabad-search.html">
+
+  <meta property="og:title" content="Shabad Kirtan Search | SikhsInIndia.com">
+  <meta property="og:description" content="Search Gurbani shabad kirtan by the words of the shabad or by the kirtaniya (ragi jatha) and listen right here on SikhsInIndia.com.">
+  <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+  <meta property="og:url" content="https://sikhsinindia.com/03-nitnem/03-07-shabad-search.html">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shabad Kirtan Search | SikhsInIndia.com">
+  <meta name="twitter:description" content="Search Gurbani shabad kirtan by the words of the shabad or by the kirtaniya (ragi jatha) and listen right here on SikhsInIndia.com.">
+  <meta name="twitter:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #162147;
+      --gold: #F7941D;
+      --cream: #f5f0e8;
+      --gold-light: #F7941D;
+      --white: #ffffff;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* PAGE */
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      padding: 20px 8px;
+    }
+
+    /* MAIN CONTAINER */
+    .poster {
+      width: 100%;
+      max-width: 860px;
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .logo-wrap {
+      padding: 16px 20px;
+    }
+
+    .logo-img {
+      height: 90px;
+      width: auto;
+      background: #fff;
+      padding: 4px;
+      border-radius: 6px;
+      object-fit: contain;
+    }
+
+    .hero {
+      flex: 1;
+      text-align: center;
+      padding: 28px;
+      background: linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 6vw, 54px);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      color: rgba(255, 255, 255, .75);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* GOLD INTRO BAR */
+    .intro {
+      background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold));
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 15px;
+      text-align: center;
+    }
+
+    /* CONTENT AREA */
+    .wrapper {
+      padding: 32px 36px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 28px;
+    }
+
+    /* SEARCH FORM */
+    .search-box {
+      background: #fff;
+      border: 2px solid rgba(0, 0, 0, 0.08);
+      border-left: 5px solid var(--gold);
+      border-radius: 10px;
+      padding: 18px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    }
+
+    .search-modes {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .search-modes label {
+      flex: 1;
+      min-width: 180px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .search-modes input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .search-modes span {
+      display: block;
+      text-align: center;
+      padding: 10px 12px;
+      border: 2px solid rgba(13, 27, 62, 0.15);
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--navy);
+      transition: all 0.2s;
+    }
+
+    .search-modes input:checked + span {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--gold);
+    }
+
+    .search-modes input:focus-visible + span {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .search-row input {
+      flex: 1;
+      min-width: 0;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      padding: 11px 14px;
+      border: 2px solid rgba(13, 27, 62, 0.2);
+      border-radius: 6px;
+      color: var(--navy);
+    }
+
+    .search-row input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .btn-search {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 6px;
+      padding: 0 20px;
+      cursor: pointer;
+    }
+
+    .btn-search:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+
+    .search-hint {
+      font-size: 12px;
+      color: #666;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    .search-status {
+      text-align: center;
+      color: #555;
+      font-size: 14px;
+      margin: 18px 0 0;
+    }
+
+    .search-status.error {
+      color: #b00020;
+    }
+
+    /* PLAYER */
+    .player-section {
+      margin-top: 24px;
+      scroll-margin-top: 12px;
+    }
+
+    .player-section[hidden] {
+      display: none;
+    }
+
+    .player-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border: 3px solid var(--gold);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .player-frame #shabadPlayer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Covers YouTube's end screen, whose suggested videos would open youtube.com */
+    .player-ended {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      background: rgba(13, 27, 62, 0.96);
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .player-ended[hidden] {
+      display: none;
+    }
+
+    .player-ended .btn-search {
+      padding: 10px 20px;
+    }
+
+    .now-playing {
+      margin-top: 10px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .now-playing-channel {
+      font-size: 13px;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    /* RESULTS */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .result-card {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      background: #fff;
+      border: 2px solid rgba(0, 0, 0, 0.08);
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 0;
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+      transition: all 0.25s ease;
+    }
+
+    .result-card:hover,
+    .result-card:focus-visible {
+      border-color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(247, 148, 29, 0.25);
+      outline: none;
+    }
+
+    .result-card.playing {
+      border-color: var(--gold);
+      background: #fff8ec;
+    }
+
+    .result-thumb {
+      position: relative;
+    }
+
+    .result-card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: var(--navy);
+    }
+
+    .result-duration {
+      position: absolute;
+      right: 6px;
+      bottom: 6px;
+      background: rgba(13, 27, 62, 0.88);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .result-info {
+      padding: 10px 12px 12px;
+    }
+
+    .result-title {
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 14px;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .result-channel {
+      font-size: 12px;
+      color: #777;
+      margin-top: 4px;
+    }
+
+    .load-more-wrap {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .load-more-wrap[hidden] {
+      display: none;
+    }
+
+    .load-more-wrap .btn-search {
+      padding: 10px 24px;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--navy-mid);
+      padding: 16px 36px;
+      border-top: 2px solid var(--gold);
+      margin-top: 36px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* BACK BUTTON — 3D GOLD */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 18px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 120, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+        0 0 0 2px #9a5800,
+        0 0 0 3.5px var(--gold);
+      transition: filter 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+      filter: brightness(0.93);
+    }
+
+    .btn-back svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* MOBILE RESPONSIVE ADJUSTMENTS */
+    @media(max-width:768px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        padding: 16px 20px 4px 20px;
+      }
+
+      .hero {
+        padding: 18px;
+        width: 100%;
+      }
+
+      .wrapper {
+        padding: 20px 14px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .search-row {
+        flex-direction: column;
+      }
+
+      .btn-search {
+        padding: 12px 20px;
+      }
+
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .now-playing {
+        font-size: 16px;
+      }
+
+      .footer {
+        padding: 14px 12px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+
+      .btn-back {
+        font-size: 9px;
+        padding: 8px 14px;
+      }
+
+      .footer-left,
+      .footer-right {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+    }
+
+    /* ── SOCIAL SHARE BAR ── */
+    .gsb-share-container {
+      text-align: center;
+      margin: 24px 0 10px;
+      padding: 16px;
+      background: #fff;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-left: 5px solid #F7941D;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+    .gsb-share-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #0d1b3e;
+      margin-bottom: 12px;
+    }
+    .gsb-share-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .gsb-share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      color: #fff;
+      font-family: 'Lato', Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s, filter 0.2s;
+    }
+    .gsb-share-btn:hover { transform: translateY(-2px); filter: brightness(1.1); color: #fff; }
+    .gsb-btn-whatsapp { background-color: #25D366; }
+    .gsb-btn-facebook { background-color: #1877F2; }
+    .gsb-btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+    .gsb-share-btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+  </style>
+</head>
+
+<body>
+
+  <div class="poster">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Shabad <span>Kirtan</span></div>
+        <div class="hero-sub">Search &amp; Listen to Gurbani Kirtan</div>
+      </div>
+    </div>
+
+    <!-- INTRO BAR -->
+    <div class="intro">
+      Find a Shabad by Its Words or by the Kirtaniya, and Listen Right Here
+    </div>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="wrapper">
+
+      <h1>Search Shabad Kirtan</h1>
+
+      <form class="search-box" id="searchForm" autocomplete="off">
+        <div class="search-modes" role="radiogroup" aria-label="Search by">
+          <label>
+            <input type="radio" name="mode" value="lyrics" checked>
+            <span>By Shabad Words</span>
+          </label>
+          <label>
+            <input type="radio" name="mode" value="kirtaniya">
+            <span>By Kirtaniya / Ragi Jatha</span>
+          </label>
+        </div>
+        <div class="search-row">
+          <input type="search" id="searchInput" maxlength="120" required
+            placeholder="e.g. Tu Thakur Tum Peh Ardaas" aria-label="Search text">
+          <button type="submit" class="btn-search" id="searchBtn">Search</button>
+        </div>
+        <div class="search-hint" id="searchHint">
+          Type a line of the shabad in English letters, Gurmukhi or Hindi.
+        </div>
+      </form>
+
+      <div class="search-status" id="searchStatus" role="status"></div>
+
+      <!-- PLAYER -->
+      <div class="player-section" id="playerSection" hidden>
+        <div class="player-frame">
+          <div id="shabadPlayer"></div>
+          <div class="player-ended" id="playerEnded" hidden>
+            <div>Shabad finished. Choose another below, or listen again.</div>
+            <button type="button" class="btn-search" id="replayBtn">Play Again</button>
+          </div>
+        </div>
+        <div class="now-playing" id="nowPlaying"></div>
+        <div class="now-playing-channel" id="nowPlayingChannel"></div>
+      </div>
+
+      <div class="results-grid" id="results"></div>
+
+      <div class="load-more-wrap" id="loadMoreWrap" hidden>
+        <button type="button" class="btn-search" id="loadMoreBtn">Show More</button>
+      </div>
+
+    </div>
+
+    <!-- ── SOCIAL SHARE BAR ── -->
+    <div class="gsb-share-container">
+      <div class="gsb-share-title">Share This Page</div>
+      <div class="gsb-share-buttons">
+        <button id="gsbWhatsappShare" class="gsb-share-btn gsb-btn-whatsapp" type="button">
+          <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          WhatsApp
+        </button>
+        <button id="gsbFacebookShare" class="gsb-share-btn gsb-btn-facebook" type="button">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </button>
+        <button id="gsbInstagramShare" class="gsb-share-btn gsb-btn-instagram" type="button">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram
+        </button>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="03-nitnem-path.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back to Nitnem Path
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage & Unity</div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+<script>
+  (function () {
+    var canonicalElem = document.querySelector('link[rel="canonical"]');
+    var liveUrl = (window.location.protocol.indexOf('http') === 0)
+      ? window.location.href
+      : (canonicalElem ? canonicalElem.href : 'https://sikhsinindia.com');
+
+    var rawTitle = document.title;
+    var pageUrlEnc = encodeURIComponent(liveUrl);
+    var pageTitleEnc = encodeURIComponent(rawTitle);
+
+    var gsbWa = document.getElementById('gsbWhatsappShare');
+    if (gsbWa) gsbWa.addEventListener('click', function () {
+      window.open('https://api.whatsapp.com/send?text=' + pageTitleEnc + '%20' + pageUrlEnc, '_blank', 'noopener,noreferrer');
+    });
+
+    var gsbFb = document.getElementById('gsbFacebookShare');
+    if (gsbFb) gsbFb.addEventListener('click', function () {
+      window.open('https://www.facebook.com/sharer/sharer.php?u=' + pageUrlEnc, '_blank', 'noopener,noreferrer,width=600,height=400');
+    });
+
+    var gsbIg = document.getElementById('gsbInstagramShare');
+    if (gsbIg) gsbIg.addEventListener('click', function () {
+      if (navigator.share) {
+        navigator.share({ title: rawTitle, url: liveUrl }).catch(function () {});
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(liveUrl).then(function () {
+          alert('Link copied to clipboard!\n\nYou can now paste it into Instagram or any app.');
+        }).catch(function () { alert('Share URL: ' + liveUrl); });
+      } else {
+        alert('Share URL: ' + liveUrl);
+      }
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    // Same Cloudflare Worker the Akhand Path pages use (see
+    // 03-06-akhand-path/firebase.js). It holds the YouTube API key, so the
+    // key never appears in this page. When the site is served locally, a
+    // local `wrangler dev` copy of the Worker on port 8787 is used instead.
+    var WORKER_URL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
+      ? 'http://localhost:8787'
+      : 'https://sikhsinindia-email.sikhsinindia.workers.dev';
+
+    var HINTS = {
+      lyrics: { text: 'Type a line of the shabad in English letters, Gurmukhi or Hindi.', placeholder: 'e.g. Tu Thakur Tum Peh Ardaas' },
+      kirtaniya: { text: 'Type the name of the ragi, kirtaniya or jatha.', placeholder: 'e.g. Bhai Harjinder Singh Srinagar Wale' }
+    };
+
+    var form = document.getElementById('searchForm');
+    var input = document.getElementById('searchInput');
+    var searchBtn = document.getElementById('searchBtn');
+    var hint = document.getElementById('searchHint');
+    var statusEl = document.getElementById('searchStatus');
+    var resultsEl = document.getElementById('results');
+    var loadMoreWrap = document.getElementById('loadMoreWrap');
+    var loadMoreBtn = document.getElementById('loadMoreBtn');
+    var playerSection = document.getElementById('playerSection');
+    var playerEnded = document.getElementById('playerEnded');
+    var nowPlaying = document.getElementById('nowPlaying');
+    var nowPlayingChannel = document.getElementById('nowPlayingChannel');
+
+    var lastQuery = null; // { q, mode } the shown results belong to
+    var nextPageToken = null;
+    var currentVideoId = null;
+
+    function currentMode() {
+      return form.querySelector('input[name="mode"]:checked').value;
+    }
+
+    function setStatus(text, isError) {
+      statusEl.textContent = text;
+      statusEl.className = 'search-status' + (isError ? ' error' : '');
+    }
+
+    // The API returns titles HTML-escaped (e.g. &#39;); decode to plain text.
+    function decodeEntities(s) {
+      return new DOMParser().parseFromString(s || '', 'text/html').documentElement.textContent;
+    }
+
+    form.addEventListener('change', function (e) {
+      if (e.target.name !== 'mode') return;
+      var h = HINTS[currentMode()];
+      hint.textContent = h.text;
+      input.placeholder = h.placeholder;
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var q = input.value.trim();
+      if (q) runSearch({ q: q, mode: currentMode() }, null);
+    });
+
+    loadMoreBtn.addEventListener('click', function () {
+      if (lastQuery && nextPageToken) runSearch(lastQuery, nextPageToken);
+    });
+
+    function runSearch(query, pageToken) {
+      searchBtn.disabled = loadMoreBtn.disabled = true;
+      setStatus(pageToken ? 'Loading more…' : 'Searching…');
+      if (!pageToken) {
+        resultsEl.innerHTML = '';
+        loadMoreWrap.hidden = true;
+      }
+
+      fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'youtube_search', q: query.q, mode: query.mode, pageToken: pageToken || undefined })
+      })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (body) {
+            if (!res.ok) throw new Error(body.error || ('HTTP ' + res.status));
+            return body;
+          });
+        })
+        .then(function (data) {
+          lastQuery = query;
+          nextPageToken = data.nextPageToken;
+          (data.items || []).forEach(renderResult);
+          loadMoreWrap.hidden = !nextPageToken;
+          setStatus(resultsEl.children.length ? '' : 'No shabads found. Try different words, or switch the search type above.');
+        })
+        .catch(function (err) {
+          console.error('Shabad search failed:', err);
+          setStatus('Sorry, the search could not be completed right now. Please try again in a little while.', true);
+        })
+        .then(function () {
+          searchBtn.disabled = loadMoreBtn.disabled = false;
+        });
+    }
+
+    function renderResult(item) {
+      var title = decodeEntities(item.title);
+      var channel = decodeEntities(item.channel);
+
+      // A <button>, not a link: choosing a result only ever plays it here.
+      var card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'result-card' + (item.videoId === currentVideoId ? ' playing' : '');
+      card.dataset.videoId = item.videoId;
+
+      var img = document.createElement('img');
+      img.src = item.thumbnail;
+      img.alt = '';
+      img.loading = 'lazy';
+      var thumb = document.createElement('div');
+      thumb.className = 'result-thumb';
+      thumb.appendChild(img);
+      if (item.duration) {
+        var d = document.createElement('span');
+        d.className = 'result-duration';
+        d.textContent = item.duration;
+        d.setAttribute('aria-label', 'Duration ' + item.duration);
+        thumb.appendChild(d);
+      }
+
+      var info = document.createElement('div');
+      info.className = 'result-info';
+      var t = document.createElement('div');
+      t.className = 'result-title';
+      t.textContent = title;
+      var c = document.createElement('div');
+      c.className = 'result-channel';
+      c.textContent = channel;
+      info.appendChild(t);
+      info.appendChild(c);
+
+      card.appendChild(thumb);
+      card.appendChild(info);
+      card.addEventListener('click', function () { playVideo(item.videoId, title, channel); });
+      resultsEl.appendChild(card);
+    }
+
+    /* ---------------- PLAYER ---------------- */
+    // Same YouTube IFrame API approach as the Akhand Path page
+    // (03-06-akhand-path/index.html), but on the privacy-enhanced
+    // youtube-nocookie.com host, with related videos limited to the same
+    // channel (rel: 0) and an overlay over YouTube's end screen.
+    var ytPlayer = null;
+    var ytPlayerReady = false;
+    var plainIframe = false; // true once we've fallen back to a plain embed
+    var pendingVideoId = null;
+
+    var ytTag = document.createElement('script');
+    ytTag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(ytTag);
+
+    window.onYouTubeIframeAPIReady = function () {
+      if (plainIframe) return;
+      ytPlayer = new YT.Player('shabadPlayer', {
+        host: 'https://www.youtube-nocookie.com',
+        height: '100%',
+        width: '100%',
+        playerVars: {
+          autoplay: 1, controls: 1, rel: 0, modestbranding: 1, playsinline: 1,
+          iv_load_policy: 3, enablejsapi: 1, origin: window.location.origin
+        },
+        events: {
+          onReady: function () {
+            ytPlayerReady = true;
+            if (pendingVideoId) ytPlayer.loadVideoById(pendingVideoId);
+          },
+          onStateChange: function (e) {
+            playerEnded.hidden = e.data !== YT.PlayerState.ENDED;
+          },
+          onError: function (e) {
+            var code = e && e.data;
+            var reason = (code === 101 || code === 150)
+              ? 'Its owner does not allow it to be played on other websites.'
+              : 'It may have been removed or is unavailable.';
+            setStatus('This video could not be played. ' + reason + ' Please choose another one.', true);
+          }
+        }
+      });
+    };
+
+    // If YouTube's player script is blocked (usually an ad blocker), fall
+    // back to a plain privacy-enhanced embed, like the Akhand Path page does.
+    function playInPlainIframe(videoId) {
+      plainIframe = true;
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(videoId) +
+        '?autoplay=1&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3';
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.title = 'Shabad kirtan video';
+      iframe.id = 'shabadPlayer';
+      var current = document.getElementById('shabadPlayer');
+      current.parentNode.replaceChild(iframe, current);
+    }
+
+    function playVideo(videoId, title, channel) {
+      currentVideoId = videoId;
+      playerSection.hidden = false;
+      playerEnded.hidden = true;
+      nowPlaying.textContent = title;
+      nowPlayingChannel.textContent = channel;
+      setStatus('');
+      Array.prototype.forEach.call(resultsEl.children, function (card) {
+        card.classList.toggle('playing', card.dataset.videoId === videoId);
+      });
+
+      if (ytPlayerReady) {
+        ytPlayer.loadVideoById(videoId);
+      } else if (plainIframe) {
+        playInPlainIframe(videoId);
+      } else {
+        // Player still loading: it picks this up in onReady, or, if it
+        // never gets ready, the plain embed takes over.
+        pendingVideoId = videoId;
+        setTimeout(function () {
+          if (!ytPlayerReady && pendingVideoId === videoId) playInPlainIframe(videoId);
+        }, 5000);
+      }
+      playerSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    document.getElementById('replayBtn').addEventListener('click', function () {
+      playerEnded.hidden = true;
+      if (ytPlayerReady) {
+        ytPlayer.seekTo(0, true);
+        ytPlayer.playVideo();
+      } else if (currentVideoId) {
+        playInPlainIframe(currentVideoId);
+      }
+    });
+  })();
+</script>
+
+</html>
