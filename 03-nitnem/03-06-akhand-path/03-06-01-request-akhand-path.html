@@ -168,6 +168,41 @@
                     <td><input id="apInv5f3" type="text" inputmode="email" placeholder="Email" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
                     <td><input id="apInv5f4" type="text" inputmode="tel" placeholder="With country code" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
                   </tr>
+                  <tr>
+                    <td>6</td>
+                    <td><input id="apInv6f1" type="text" placeholder="Name" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                    <td><input id="apInv6f2" type="text" placeholder="Greet Name" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                    <td><input id="apInv6f3" type="text" inputmode="email" placeholder="Email" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                    <td><input id="apInv6f4" type="text" inputmode="tel" placeholder="With country code" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td><input id="apInv7f1" type="text" placeholder="Name" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                    <td><input id="apInv7f2" type="text" placeholder="Greet Name" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                    <td><input id="apInv7f3" type="text" inputmode="email" placeholder="Email" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                    <td><input id="apInv7f4" type="text" inputmode="tel" placeholder="With country code" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td><input id="apInv8f1" type="text" placeholder="Name" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                    <td><input id="apInv8f2" type="text" placeholder="Greet Name" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                    <td><input id="apInv8f3" type="text" inputmode="email" placeholder="Email" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                    <td><input id="apInv8f4" type="text" inputmode="tel" placeholder="With country code" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                  </tr>
+                  <tr>
+                    <td>9</td>
+                    <td><input id="apInv9f1" type="text" placeholder="Name" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                    <td><input id="apInv9f2" type="text" placeholder="Greet Name" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                    <td><input id="apInv9f3" type="text" inputmode="email" placeholder="Email" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                    <td><input id="apInv9f4" type="text" inputmode="tel" placeholder="With country code" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td><input id="apInv10f1" type="text" placeholder="Name" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                    <td><input id="apInv10f2" type="text" placeholder="Greet Name" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                    <td><input id="apInv10f3" type="text" inputmode="email" placeholder="Email" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                    <td><input id="apInv10f4" type="text" inputmode="tel" placeholder="With country code" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onmousedown="this.removeAttribute('readonly')" ontouchstart="this.removeAttribute('readonly')"></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -235,14 +270,14 @@
       });
     }
 
-    // Reads the 5-row invitee table into the same "Name; Greeting Name;
+    // Reads the 10-row invitee table into the same "Name; Greeting Name;
     // Email; Phone" per-line raw text the rest of the app (parseInviteeList,
     // admin.html) already expects — rows with no email are skipped. Phone
     // is optional (WhatsApp sending just isn't available for that invitee
     // until it's added), so an empty phone still yields a valid 4-part line.
     function collectInviteeRows() {
       const lines = [];
-      for (let i = 1; i <= 5; i++) {
+      for (let i = 1; i <= 10; i++) {
         const name = document.getElementById(`apInv${i}f1`).value.trim();
         const gname = document.getElementById(`apInv${i}f2`).value.trim();
         const email = document.getElementById(`apInv${i}f3`).value.trim();
