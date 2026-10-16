@@ -353,6 +353,18 @@ async function sendEmail(env, { to, subject, text, html, attachments }) {
 const YT_SEARCH_CACHE_SECONDS = 6 * 3600;
 const YT_SEARCH_SUFFIX = { lyrics: "shabad kirtan", kirtaniya: "kirtan" };
 
+// "PT7M32S" → "7:32", "PT1H2M15S" → "1:02:15", "P1DT2H" → "26:00:00".
+// Live streams report "P0D", which gives "" (no badge).
+function formatIsoDuration(iso) {
+  const m = /^P(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?)?$/.exec(String(iso || ""));
+  if (!m) return "";
+  const total = (+m[1] || 0) * 86400 + (+m[2] || 0) * 3600 + (+m[3] || 0) * 60 + (+m[4] || 0);
+  if (!total) return "";
+  const h = Math.floor(total / 3600), min = Math.floor((total % 3600) / 60), s = total % 60;
+  const pad = (n) => String(n).padStart(2, "0");
+  return h ? `${h}:${pad(min)}:${pad(s)}` : `${min}:${pad(s)}`;
+}
+
 async function searchYouTube(env, { q, mode, pageToken }) {
   const query = String(q || "").trim().slice(0, 120);
   if (!query) throw Object.assign(new Error("Missing search text"), { status: 400 });
@@ -382,13 +394,27 @@ async function searchYouTube(env, { q, mode, pageToken }) {
   const body = await res.json();
   if (!res.ok) throw new Error("YouTube API error: " + ((body.error && body.error.message) || res.status));
 
+  const items = (body.items || []).filter((it) => it.id && it.id.videoId);
+
+  // search.list has no durations; one videos.list call (1 quota unit, up to
+  // 50 IDs) fills them in. A failure here just leaves durations blank.
+  const durations = {};
+  if (items.length) {
+    const vParams = new URLSearchParams({ part: "contentDetails", id: items.map((it) => it.id.videoId).join(","), key: env.YOUTUBE_API_KEY });
+    const vRes = await fetch(`https://www.googleapis.com/youtube/v3/videos?${vParams}`);
+    if (vRes.ok) {
+      for (const v of (await vRes.json()).items || []) durations[v.id] = formatIsoDuration(v.contentDetails && v.contentDetails.duration);
+    }
+  }
+
   const result = {
     nextPageToken: body.nextPageToken || null,
-    items: (body.items || []).filter((it) => it.id && it.id.videoId).map((it) => ({
+    items: items.map((it) => ({
       videoId: it.id.videoId,
       title: it.snippet.title,
       channel: it.snippet.channelTitle,
       publishedAt: it.snippet.publishedAt,
+      duration: durations[it.id.videoId] || "",
       thumbnail: ((it.snippet.thumbnails || {}).medium || (it.snippet.thumbnails || {}).default || {}).url || ""
     }))
   };

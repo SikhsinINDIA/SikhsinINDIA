@@ -363,11 +363,28 @@
       background: #fff8ec;
     }
 
+    .result-thumb {
+      position: relative;
+    }
+
     .result-card img {
       width: 100%;
       aspect-ratio: 16 / 9;
       object-fit: cover;
       background: var(--navy);
+    }
+
+    .result-duration {
+      position: absolute;
+      right: 6px;
+      bottom: 6px;
+      background: rgba(13, 27, 62, 0.88);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
     }
 
     .result-info {
@@ -842,6 +859,16 @@
       img.src = item.thumbnail;
       img.alt = '';
       img.loading = 'lazy';
+      var thumb = document.createElement('div');
+      thumb.className = 'result-thumb';
+      thumb.appendChild(img);
+      if (item.duration) {
+        var d = document.createElement('span');
+        d.className = 'result-duration';
+        d.textContent = item.duration;
+        d.setAttribute('aria-label', 'Duration ' + item.duration);
+        thumb.appendChild(d);
+      }
 
       var info = document.createElement('div');
       info.className = 'result-info';
@@ -854,7 +881,7 @@
       info.appendChild(t);
       info.appendChild(c);
 
-      card.appendChild(img);
+      card.appendChild(thumb);
       card.appendChild(info);
       card.addEventListener('click', function () { playVideo(item.videoId, title, channel); });
       resultsEl.appendChild(card);
