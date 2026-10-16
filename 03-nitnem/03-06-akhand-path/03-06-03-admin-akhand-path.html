@@ -162,6 +162,9 @@
             <button class="btn-back" style="margin-top:8px;" onclick="endSessionEarly()">End This Session Now</button>
             <button class="btn-back" style="margin-top:8px;" id="sponsorWhatsAppBtn" type="button">Send Approval via WhatsApp</button>
             <p id="sponsorWhatsAppStatus" class="muted" style="margin-top:8px;min-height:18px;"></p>
+            <button class="btn-back" style="margin-top:8px;" id="resendApprovalEmailBtn" type="button">Resend Approval Email to Sponsor</button>
+            <button class="btn-back" style="margin-top:8px;" id="resendInviteeEmailsBtn" type="button">Resend Invitee Emails</button>
+            <p id="resendEmailStatus" class="muted" style="margin-top:8px;min-height:18px;"></p>
           </div>
 
           <h2>Honoree Photo</h2>
@@ -818,6 +821,39 @@ Email: ${ADMIN_EMAIL}`;
         status.textContent = "Sent.";
       } catch (err) {
         status.textContent = "Could not send: " + errText(err);
+      }
+    });
+
+    // Manual re-sends for when the emails sent at approval time failed or
+    // never arrived. Both are safe to repeat: sendApprovalEmail only emails,
+    // and provisionInvitees tolerates existing accounts/invitee docs.
+    document.getElementById("resendApprovalEmailBtn").addEventListener("click", async () => {
+      const status = document.getElementById("resendEmailStatus");
+      if (!activeSessionId || !activeSessionData) { status.textContent = "No program selected."; return; }
+      if (!confirm(`Resend the approval email to ${activeSessionData.email || "the sponsor"}?`)) return;
+      status.textContent = "Sending approval email...";
+      try {
+        await sendApprovalEmail(activeSessionId, activeSessionData);
+        status.textContent = `Approval email sent to ${activeSessionData.email}.`;
+      } catch (err) {
+        status.textContent = "Could not send approval email: " + errText(err);
+      }
+    });
+
+    document.getElementById("resendInviteeEmailsBtn").addEventListener("click", async () => {
+      const status = document.getElementById("resendEmailStatus");
+      if (!activeSessionId || !activeSessionData) { status.textContent = "No program selected."; return; }
+      const count = getInviteeCandidates(activeSessionData).length;
+      if (!count) { status.textContent = "This program has no invitees with an email address."; return; }
+      if (!confirm(`Resend the invitation email to ${count} invitee(s)?`)) return;
+      status.textContent = "Sending invitee emails...";
+      try {
+        const results = await sendInviteeEmails(activeSessionId, activeSessionData);
+        const failed = results.filter((r) => !r.ok);
+        status.textContent = `Sent ${results.length - failed.length} of ${results.length} invitee emails.` +
+          (failed.length ? " Failed: " + failed.map((f) => `${f.mail} (${f.error})`).join("; ") : "");
+      } catch (err) {
+        status.textContent = "Could not send invitee emails: " + errText(err);
       }
     });
 
