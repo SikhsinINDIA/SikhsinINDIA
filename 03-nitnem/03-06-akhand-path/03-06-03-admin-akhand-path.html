@@ -165,6 +165,8 @@
             <button class="btn-back" style="margin-top:8px;" id="resendApprovalEmailBtn" type="button">Resend Approval Email to Sponsor</button>
             <button class="btn-back" style="margin-top:8px;" id="resendInviteeEmailsBtn" type="button">Resend Invitee Emails</button>
             <p id="resendEmailStatus" class="muted" style="margin-top:8px;min-height:18px;"></p>
+            <button class="btn-back" style="margin-top:8px;" id="resendInviteeWhatsAppBtn" type="button">Resend WhatsApp Messages</button>
+            <p id="resendWhatsAppStatus" class="muted" style="margin-top:8px;min-height:18px;"></p>
           </div>
 
           <h2>Honoree Photo</h2>
@@ -857,6 +859,24 @@ Email: ${ADMIN_EMAIL}`;
       }
     });
 
+    // Manual re-send of the WhatsApp invite to every invitee at once — same
+    // send as approval time (notifyAllInviteesApprovalWhatsApp), so invitees
+    // without a number or without recorded WhatsApp consent are skipped.
+    document.getElementById("resendInviteeWhatsAppBtn").addEventListener("click", async () => {
+      const status = document.getElementById("resendWhatsAppStatus");
+      if (!activeSessionId || !activeSessionData) { status.textContent = "No program selected."; return; }
+      if (!confirm("Resend the WhatsApp invite to all invitees with a WhatsApp number and recorded consent?")) return;
+      status.textContent = "Sending WhatsApp messages...";
+      try {
+        const { sent, skipped, failed } = await notifyAllInviteesApprovalWhatsApp(activeSessionId, activeSessionData);
+        status.textContent = `Sent ${sent} WhatsApp message(s).` +
+          (skipped ? ` Skipped ${skipped} (no number or no WhatsApp consent - email only).` : "") +
+          (failed.length ? " Failed: " + failed.map((f) => `${f.mail} (${f.error})`).join("; ") : "");
+      } catch (err) {
+        status.textContent = "Could not send WhatsApp messages: " + errText(err);
+      }
+    });
+
     /* ---------------- FORCE PASSWORD RESET ----------------
        Routed through the same email-sending Cloudflare Worker (see
        cloudflare-worker/src/index.js), just with a different `action` in
@@ -903,11 +923,28 @@ Email: ${ADMIN_EMAIL}`;
             <td><span class="pill ${pillClass}">${pillText}</span></td>
             <td>
               <button type="button" class="btn-control" ${inv.phone && inv.wa_consent ? "" : `disabled title="${inv.phone ? "No WhatsApp consent recorded - email only" : "No WhatsApp number on file for this invitee"}"`}>Send</button>
+              ${inv.phone && !inv.wa_consent ? `<button type="button" class="btn-control wa-consent-btn" style="margin-left:4px;">Mark Consent</button>` : ""}
               <span class="muted" style="display:block;font-size:11px;margin-top:4px;">${inv.phone && !inv.wa_consent ? "No consent - email only" : ""}</span>
             </td>
           `;
           const waBtn = tr.querySelector("button");
           const waStatus = tr.querySelector("td:last-child .muted");
+          const consentBtn = tr.querySelector(".wa-consent-btn");
+          // Records consent for an invitee added without it (same fields as the
+          // Add Invitee checkbox); onSnapshot re-renders the row with Send enabled.
+          if (consentBtn) {
+            consentBtn.addEventListener("click", async () => {
+              if (!confirm(`${WA_CONSENT_LABEL}\n\n${inv.name || inv.mail} (${inv.phone})`)) return;
+              consentBtn.disabled = true;
+              waStatus.textContent = "Saving consent...";
+              try {
+                await updateDoc(d.ref, waConsentFields(true));
+              } catch (err) {
+                waStatus.textContent = "Could not save consent: " + errText(err);
+                consentBtn.disabled = false;
+              }
+            });
+          }
           if (inv.phone && inv.wa_consent) {
             waBtn.addEventListener("click", async () => {
               waBtn.disabled = true;
