@@ -275,6 +275,9 @@ export const APP_SHARED_SECRET = "LuOoE-d92AyXMGsCBA0FcQGhKsYRLgs6";
      Utility anyway, matching every sibling template here and the
      account's own stated approach; if Meta's human review disagrees, it
      will come back rejected rather than silently miscategorized.
+     Superseded by akhand_path_invite_v7 (below), reworded as a factual
+     booking notice so it qualifies as Utility; v5 is kept in
+     WHATSAPP_TEMPLATE_LANGUAGES only so old references still resolve.
 
    akhand_path_invite_v6 carries the admin new-request notification (wired
    as WHATSAPP_NEW_REQUEST_TEMPLATE despite the "invite" name — Meta
@@ -314,18 +317,21 @@ Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh."
    A mismatched language code makes Meta reply "template not found" — check
    WhatsApp Manager's Language column again before changing any of these.
 
-   akhand_path_invite_v5 — sendInviteeWhatsApp() / sendInviteeWhatsAppFromEditor()
-   deliver this. Param order: invitee's GName (falls back to Name), honoree
-   name, purpose, start, samapti, session link — matches those two
-   functions' params arrays exactly; keep all three in sync if any changes.
+   akhand_path_invite_v7 (Utility, English — must be submitted and APPROVED
+   in WhatsApp Manager before this code is deployed, or invitee sends fail
+   with "template not found") — sendInviteeWhatsApp() /
+   sendInviteeWhatsAppFromEditor() deliver this. Same 6 variables in the
+   same order as v5, so no caller changes. Param order: invitee's GName
+   (falls back to Name), honoree name, purpose, start, samapti, session
+   link — matches those two functions' params arrays exactly; keep all
+   three in sync if any changes.
    Body (6 variables):
-   "You're invited to an Akhand Path Sahib Ji.
-Dear {{1}},
+   "Akhand Path Sahib Ji booking details for {{1}}.
 Dedicated to: {{2}}
 Occasion: {{3}}
 Start: {{4}}
 Samapti: {{5}}
-Join here: {{6}}
+Session link: {{6}}
 Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh!"
    Sample values: Amrit Kaur / Sardar Harbhajan Singh / Birthday /
    12 Oct 2026, 6:00 AM / 14 Oct 2026, 6:00 AM /
@@ -346,7 +352,7 @@ Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh!"
    Sample values: Gurpreet Singh / Sardar Harbhajan Singh / Birthday /
    12 Oct 2026, 6:00 AM / 14 Oct 2026, 6:00 AM /
    https://sikhsinindia.com/03-nitnem/03-06-akhand-path/index.html?session=7 */
-export const WHATSAPP_INVITE_TEMPLATE = "akhand_path_invite_v5";
+export const WHATSAPP_INVITE_TEMPLATE = "akhand_path_invite_v7";
 export const WHATSAPP_APPROVAL_TEMPLATE = "akhand_path_approved";
 export const WHATSAPP_NEW_REQUEST_TEMPLATE = "akhand_path_invite_v6";
 
@@ -390,6 +396,7 @@ export const WHATSAPP_REMINDER_END_TEMPLATE = "akhand_path_reminder_end";
 
 export const WHATSAPP_TEMPLATE_LANGUAGES = {
   akhand_path_invite_v5: "en",
+  akhand_path_invite_v7: "en",
   akhand_path_approved: "en",
   akhand_path_invite_v6: "en",
   akhand_path_rejected: "en",
