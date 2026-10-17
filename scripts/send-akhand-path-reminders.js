@@ -37,7 +37,8 @@ if (!APP_SHARED_SECRET) throw new Error('APP_SHARED_SECRET env var is not set (a
 
 const ADMIN_EMAIL = 'sikhsinindia@gmail.com';
 const ADMIN_WHATSAPP_NUMBER = '+971521821108';
-// Same as firebase.js's DEFAULT_DURATION_HOURS (full Path + shabad + Ardas).const DEFAULT_DURATION_HOURS = 54.47;
+// Same as firebase.js's DEFAULT_DURATION_HOURS (full Path + shabad + Ardas).
+const DEFAULT_DURATION_HOURS = 54.47;
 
 const WHATSAPP_REMINDER_START_TEMPLATE = 'akhand_path_reminder_start';
 const WHATSAPP_REMINDER_END_TEMPLATE = 'akhand_path_reminder_end';
