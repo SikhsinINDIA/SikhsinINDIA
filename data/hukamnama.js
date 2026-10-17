@@ -1,104 +1,196 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-10-16",
-  "dateDisplay": "16 October 2026",
-  "ang": 641,
-  "raagGurmukhi": "ਰਾਗੁ ਸੋਰਠਿ",
-  "raagEnglish": "Raag Sorath",
-  "writerEnglish": "Guru Arjan Dev Ji",
-  "titleGurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੫ ਘਰੁ ੨ ਅਸਟਪਦੀਆ",
-  "titleEnglish": "Sorat'h, Fifth Mehla, Second House, Ashtpadheeyaa:",
-  "verseGurmukhi": "ਪਾਠੁ ਪੜਿਓ ਅਰੁ ਬੇਦੁ ਬੀਚਾਰਿਓ ਨਿਵਲਿ ਭੁਅੰਗਮ ਸਾਧੇ ॥",
-  "verseTranslation": "They read scriptures, and contemplate the Vedas; they practice the inner cleansing techniques of Yoga, and control of the breath.",
+  "date": "2026-10-17",
+  "dateDisplay": "17 October 2026",
+  "ang": 725,
+  "raagGurmukhi": "ਰਾਗੁ ਤਿਲੰਗ",
+  "raagEnglish": "Raag Tilang",
+  "writerEnglish": "Guru Raam Daas Ji",
+  "titleGurmukhi": "ਤਿਲੰਗ ਮਹਲਾ ੪ ॥",
+  "titleEnglish": "Tilang, Fourth Mehla:",
+  "verseGurmukhi": "ਹਰਿ ਕੀਆ ਕਥਾ ਕਹਾਣੀਆ ਗੁਰਿ ਮੀਤਿ ਸੁਣਾਈਆ ॥",
+  "verseTranslation": "The Guru, my friend, has told me the stories and the sermon of the Lord.",
   "verses": [
     {
-      "gurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੫ ਘਰੁ ੨ ਅਸਟਪਦੀਆ",
-      "translation": "Sorat'h, Fifth Mehla, Second House, Ashtpadheeyaa:"
+      "gurmukhi": "ਤਿਲੰਗ ਮਹਲਾ ੪ ॥",
+      "translation": "Tilang, Fourth Mehla:"
     },
     {
-      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
-      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
+      "gurmukhi": "ਹਰਿ ਕੀਆ ਕਥਾ ਕਹਾਣੀਆ ਗੁਰਿ ਮੀਤਿ ਸੁਣਾਈਆ ॥",
+      "translation": "The Guru, my friend, has told me the stories and the sermon of the Lord."
     },
     {
-      "gurmukhi": "ਪਾਠੁ ਪੜਿਓ ਅਰੁ ਬੇਦੁ ਬੀਚਾਰਿਓ ਨਿਵਲਿ ਭੁਅੰਗਮ ਸਾਧੇ ॥",
-      "translation": "They read scriptures, and contemplate the Vedas; they practice the inner cleansing techniques of Yoga, and control of the breath."
+      "gurmukhi": "ਬਲਿਹਾਰੀ ਗੁਰ ਆਪਣੇ ਗੁਰ ਕਉ ਬਲਿ ਜਾਈਆ ॥੧॥",
+      "translation": "I am a sacrifice to my Guru; to the Guru, I am a sacrifice. ||1||"
     },
     {
-      "gurmukhi": "ਪੰਚ ਜਨਾ ਸਿਉ ਸੰਗੁ ਨ ਛੁਟਕਿਓ ਅਧਿਕ ਅਹੰਬੁਧਿ ਬਾਧੇ ॥੧॥",
-      "translation": "But they cannot escape from the company of the five passions; they are increasingly bound to egotism. ||1||"
+      "gurmukhi": "ਆਇ ਮਿਲੁ ਗੁਰਸਿਖ ਆਇ ਮਿਲੁ ਤੂ ਮੇਰੇ ਗੁਰੂ ਕੇ ਪਿਆਰੇ ॥ ਰਹਾਉ ॥",
+      "translation": "Come, join with me, O Sikh of the Guru, come and join with me. You are my Guru's Beloved. ||Pause||"
     },
     {
-      "gurmukhi": "ਪਿਆਰੇ ਇਨ ਬਿਧਿ ਮਿਲਣੁ ਨ ਜਾਈ ਮੈ ਕੀਏ ਕਰਮ ਅਨੇਕਾ ॥",
-      "translation": "O Beloved, this is not the way to meet the Lord; I have performed these rituals so many times."
+      "gurmukhi": "ਹਰਿ ਕੇ ਗੁਣ ਹਰਿ ਭਾਵਦੇ ਸੇ ਗੁਰੂ ਤੇ ਪਾਏ ॥",
+      "translation": "The Glorious Praises of the Lord are pleasing to the Lord; I have obtained them from the Guru."
     },
     {
-      "gurmukhi": "ਹਾਰਿ ਪਰਿਓ ਸੁਆਮੀ ਕੈ ਦੁਆਰੈ ਦੀਜੈ ਬੁਧਿ ਬਿਬੇਕਾ ॥ ਰਹਾਉ ॥",
-      "translation": "I have collapsed, exhausted, at the Door of my Lord Master; I pray that He may grant me a discerning intellect. ||Pause||"
+      "gurmukhi": "ਜਿਨ ਗੁਰ ਕਾ ਭਾਣਾ ਮੰਨਿਆ ਤਿਨ ਘੁਮਿ ਘੁਮਿ ਜਾਏ ॥੨॥",
+      "translation": "I am a sacrifice, a sacrifice to those who surrender to, and obey the Guru's Will. ||2||"
     },
     {
-      "gurmukhi": "ਮੋਨਿ ਭਇਓ ਕਰਪਾਤੀ ਰਹਿਓ ਨਗਨ ਫਿਰਿਓ ਬਨ ਮਾਹੀ ॥",
-      "translation": "One may remain silent and use his hands as begging bowls, and wander naked in the forest."
+      "gurmukhi": "ਜਿਨ ਸਤਿਗੁਰੁ ਪਿਆਰਾ ਦੇਖਿਆ ਤਿਨ ਕਉ ਹਉ ਵਾਰੀ ॥",
+      "translation": "I am dedicated and devoted to those who gaze upon the Beloved True Guru."
     },
     {
-      "gurmukhi": "ਤਟ ਤੀਰਥ ਸਭ ਧਰਤੀ ਭ੍ਰਮਿਓ ਦੁਬਿਧਾ ਛੁਟਕੈ ਨਾਹੀ ॥੨॥",
-      "translation": "He may make pilgrimages to river banks and sacred shrines all over the world, but his sense of duality will not leave him. ||2||"
+      "gurmukhi": "ਜਿਨ ਗੁਰ ਕੀ ਕੀਤੀ ਚਾਕਰੀ ਤਿਨ ਸਦ ਬਲਿਹਾਰੀ ॥੩॥",
+      "translation": "I am forever a sacrifice to those who perform service for the Guru. ||3||"
     },
     {
-      "gurmukhi": "ਮਨ ਕਾਮਨਾ ਤੀਰਥ ਜਾਇ ਬਸਿਓ ਸਿਰਿ ਕਰਵਤ ਧਰਾਏ ॥",
-      "translation": "His mind's desires may lead him to go and dwell at sacred places of pilgrimage, and offer his head to be sawn off;"
+      "gurmukhi": "ਹਰਿ ਹਰਿ ਤੇਰਾ ਨਾਮੁ ਹੈ ਦੁਖ ਮੇਟਣਹਾਰਾ ॥",
+      "translation": "Your Name, O Lord, Har, Har, is the Destroyer of sorrow."
     },
     {
-      "gurmukhi": "ਮਨ ਕੀ ਮੈਲੁ ਨ ਉਤਰੈ ਇਹ ਬਿਧਿ ਜੇ ਲਖ ਜਤਨ ਕਰਾਏ ॥੩॥",
-      "translation": "but this will not cause the filth of his mind to depart, even though he may make thousands of efforts. ||3||"
+      "gurmukhi": "ਗੁਰ ਸੇਵਾ ਤੇ ਪਾਈਐ ਗੁਰਮੁਖਿ ਨਿਸਤਾਰਾ ॥੪॥",
+      "translation": "Serving the Guru, it is obtained, and as Gurmukh, one is emancipated. ||4||"
     },
     {
-      "gurmukhi": "ਕਨਿਕ ਕਾਮਿਨੀ ਹੈਵਰ ਗੈਵਰ ਬਹੁ ਬਿਧਿ ਦਾਨੁ ਦਾਤਾਰਾ ॥",
-      "translation": "He may give gifts of all sorts - gold, women, horses and elephants."
+      "gurmukhi": "ਜੋ ਹਰਿ ਨਾਮੁ ਧਿਆਇਦੇ ਤੇ ਜਨ ਪਰਵਾਨਾ ॥",
+      "translation": "Those humble beings who meditate on the Lord's Name, are celebrated and acclaimed."
     },
     {
-      "gurmukhi": "ਅੰਨ ਬਸਤ੍ਰ ਭੂਮਿ ਬਹੁ ਅਰਪੇ ਨਹ ਮਿਲੀਐ ਹਰਿ ਦੁਆਰਾ ॥੪॥",
-      "translation": "He may make offerings of corn, clothes and land in abundance, but this will not lead him to the Lord's Door. ||4||"
+      "gurmukhi": "ਤਿਨ ਵਿਟਹੁ ਨਾਨਕੁ ਵਾਰਿਆ ਸਦਾ ਸਦਾ ਕੁਰਬਾਨਾ ॥੫॥",
+      "translation": "Nanak is a sacrifice to them, forever and ever a devoted sacrifice. ||5||"
     },
     {
-      "gurmukhi": "ਪੂਜਾ ਅਰਚਾ ਬੰਦਨ ਡੰਡਉਤ ਖਟੁ ਕਰਮਾ ਰਤੁ ਰਹਤਾ ॥",
-      "translation": "He may remain devoted to worship and adoration, bowing his forehead to the floor, practicing the six religious rituals."
+      "gurmukhi": "ਸਾ ਹਰਿ ਤੇਰੀ ਉਸਤਤਿ ਹੈ ਜੋ ਹਰਿ ਪ੍ਰਭ ਭਾਵੈ ॥",
+      "translation": "O Lord, that alone is Praise to You, which is pleasing to Your Will, O Lord God."
     },
     {
-      "gurmukhi": "ਹਉ ਹਉ ਕਰਤ ਬੰਧਨ ਮਹਿ ਪਰਿਆ ਨਹ ਮਿਲੀਐ ਇਹ ਜੁਗਤਾ ॥੫॥",
-      "translation": "He indulges in egotism and pride, and falls into entanglements, but he does not meet the Lord by these devices. ||5||"
+      "gurmukhi": "ਜੋ ਗੁਰਮੁਖਿ ਪਿਆਰਾ ਸੇਵਦੇ ਤਿਨ ਹਰਿ ਫਲੁ ਪਾਵੈ ॥੬॥",
+      "translation": "Those Gurmukhs, who serve their Beloved Lord, obtain Him as their reward. ||6||"
     },
     {
-      "gurmukhi": "ਜੋਗ ਸਿਧ ਆਸਣ ਚਉਰਾਸੀਹ ਏ ਭੀ ਕਰਿ ਕਰਿ ਰਹਿਆ ॥",
-      "translation": "He practices the eighty-four postures of Yoga, and acquires the supernatural powers of the Siddhas, but he gets tired of practicing these."
+      "gurmukhi": "ਜਿਨਾ ਹਰਿ ਸੇਤੀ ਪਿਰਹੜੀ ਤਿਨਾ ਜੀਅ ਪ੍ਰਭ ਨਾਲੇ ॥",
+      "translation": "Those who cherish love for the Lord, their souls are always with God."
     },
     {
-      "gurmukhi": "ਵਡੀ ਆਰਜਾ ਫਿਰਿ ਫਿਰਿ ਜਨਮੈ ਹਰਿ ਸਿਉ ਸੰਗੁ ਨ ਗਹਿਆ ॥੬॥",
-      "translation": "He lives a long life, but is reincarnated again and again; he has not met with the Lord. ||6||"
+      "gurmukhi": "ਓਇ ਜਪਿ ਜਪਿ ਪਿਆਰਾ ਜੀਵਦੇ ਹਰਿ ਨਾਮੁ ਸਮਾਲੇ ॥੭॥",
+      "translation": "Chanting and meditating on their Beloved, they live in, and gather in, the Lord's Name. ||7||"
     },
     {
-      "gurmukhi": "ਰਾਜ ਲੀਲਾ ਰਾਜਨ ਕੀ ਰਚਨਾ ਕਰਿਆ ਹੁਕਮੁ ਅਫਾਰਾ ॥",
-      "translation": "He may enjoy princely pleasures, and regal pomp and ceremony, and issue unchallenged commands."
+      "gurmukhi": "ਜਿਨ ਗੁਰਮੁਖਿ ਪਿਆਰਾ ਸੇਵਿਆ ਤਿਨ ਕਉ ਘੁਮਿ ਜਾਇਆ ॥",
+      "translation": "I am a sacrifice to those Gurmukhs who serve their Beloved Lord."
     },
     {
-      "gurmukhi": "ਸੇਜ ਸੋਹਨੀ ਚੰਦਨੁ ਚੋਆ ਨਰਕ ਘੋਰ ਕਾ ਦੁਆਰਾ ॥੭॥",
-      "translation": "He may lie on beautiful beds, perfumed with sandalwood oil, but this will led him only to the gates of the most horrible hell. ||7||"
+      "gurmukhi": "ਓਇ ਆਪਿ ਛੁਟੇ ਪਰਵਾਰ ਸਿਉ ਸਭੁ ਜਗਤੁ ਛਡਾਇਆ ॥੮॥",
+      "translation": "They themselves are saved, along with their families, and through them, all the world is saved. ||8||"
     },
     {
-      "gurmukhi": "ਹਰਿ ਕੀਰਤਿ ਸਾਧਸੰਗਤਿ ਹੈ ਸਿਰਿ ਕਰਮਨ ਕੈ ਕਰਮਾ ॥",
-      "translation": "Singing the Kirtan of the Lord's Praises in the Saadh Sangat, the Company of the Holy, is the highest of all actions."
+      "gurmukhi": "ਗੁਰਿ ਪਿਆਰੈ ਹਰਿ ਸੇਵਿਆ ਗੁਰੁ ਧੰਨੁ ਗੁਰੁ ਧੰਨੋ ॥",
+      "translation": "My Beloved Guru serves the Lord. Blessed is the Guru, Blessed is the Guru."
     },
     {
-      "gurmukhi": "ਕਹੁ ਨਾਨਕ ਤਿਸੁ ਭਇਓ ਪਰਾਪਤਿ ਜਿਸੁ ਪੁਰਬ ਲਿਖੇ ਕਾ ਲਹਨਾ ॥੮॥",
-      "translation": "Says Nanak, he alone obtains it, who is pre-destined to receive it. ||8||"
+      "gurmukhi": "ਗੁਰਿ ਹਰਿ ਮਾਰਗੁ ਦਸਿਆ ਗੁਰ ਪੁੰਨੁ ਵਡ ਪੁੰਨੋ ॥੯॥",
+      "translation": "The Guru has shown me the Lord's Path; the Guru has done the greatest good deed. ||9||"
     },
     {
-      "gurmukhi": "ਤੇਰੋ ਸੇਵਕੁ ਇਹ ਰੰਗਿ ਮਾਤਾ ॥",
-      "translation": "Your slave is intoxicated with this Love of Yours."
+      "gurmukhi": "ਜੋ ਗੁਰਸਿਖ ਗੁਰੁ ਸੇਵਦੇ ਸੇ ਪੁੰਨ ਪਰਾਣੀ ॥",
+      "translation": "Those Sikhs of the Guru, who serve the Guru, are the most blessed beings."
     },
     {
-      "gurmukhi": "ਭਇਓ ਕ੍ਰਿਪਾਲੁ ਦੀਨ ਦੁਖ ਭੰਜਨੁ ਹਰਿ ਹਰਿ ਕੀਰਤਨਿ ਇਹੁ ਮਨੁ ਰਾਤਾ ॥ ਰਹਾਉ ਦੂਜਾ ॥੧॥੩॥",
-      "translation": "The Destroyer of the pains of the poor has become merciful to me, and this mind is imbued with the Praises of the Lord, Har, Har. ||Second Pause||1||3||"
+      "gurmukhi": "ਜਨੁ ਨਾਨਕੁ ਤਿਨ ਕਉ ਵਾਰਿਆ ਸਦਾ ਸਦਾ ਕੁਰਬਾਣੀ ॥੧੦॥",
+      "translation": "Servant Nanak is a sacrifice to them; He is forever and ever a sacrifice. ||10||"
+    },
+    {
+      "gurmukhi": "ਗੁਰਮੁਖਿ ਸਖੀ ਸਹੇਲੀਆ ਸੇ ਆਪਿ ਹਰਿ ਭਾਈਆ ॥",
+      "translation": "The Lord Himself is pleased with the Gurmukhs, the fellowship of the companions."
+    },
+    {
+      "gurmukhi": "ਹਰਿ ਦਰਗਹ ਪੈਨਾਈਆ ਹਰਿ ਆਪਿ ਗਲਿ ਲਾਈਆ ॥੧੧॥",
+      "translation": "In the Lord's Court, they are given robes of honor, and the Lord Himself hugs them close in His embrace. ||11||"
+    },
+    {
+      "gurmukhi": "ਜੋ ਗੁਰਮੁਖਿ ਨਾਮੁ ਧਿਆਇਦੇ ਤਿਨ ਦਰਸਨੁ ਦੀਜੈ ॥",
+      "translation": "Please bless me with the Blessed Vision of the Darshan of those Gurmukhs, who meditate on the Naam, the Name of the Lord."
+    },
+    {
+      "gurmukhi": "ਹਮ ਤਿਨ ਕੇ ਚਰਣ ਪਖਾਲਦੇ ਧੂੜਿ ਘੋਲਿ ਘੋਲਿ ਪੀਜੈ ॥੧੨॥",
+      "translation": "I wash their feet, and drink in the dust of their feet, dissolved in the wash water. ||12||"
+    },
+    {
+      "gurmukhi": "ਪਾਨ ਸੁਪਾਰੀ ਖਾਤੀਆ ਮੁਖਿ ਬੀੜੀਆ ਲਾਈਆ ॥",
+      "translation": "Those who eat betel nuts and betel leaf and smoke intoxicants,"
+    },
+    {
+      "gurmukhi": "ਹਰਿ ਹਰਿ ਕਦੇ ਨ ਚੇਤਿਓ ਜਮਿ ਪਕੜਿ ਚਲਾਈਆ ॥੧੩॥",
+      "translation": "but do not contemplate the Lord, Har, Har - the Messenger of Death will seize them and take them away. ||13||"
+    },
+    {
+      "gurmukhi": "ਜਿਨ ਹਰਿ ਨਾਮਾ ਹਰਿ ਚੇਤਿਆ ਹਿਰਦੈ ਉਰਿ ਧਾਰੇ ॥ ਤਿਨ ਜਮੁ ਨੇੜਿ ਨ ਆਵਈ ਗੁਰਸਿਖ ਗੁਰ ਪਿਆਰੇ ॥੧੪॥",
+      "translation": "The Messenger of Death does not even approach those who contemplate the Name of the Lord, Har, Har, and keep Him enshrined in their hearts. The Guru's Sikhs are the Guru's Beloveds. ||14||"
+    },
+    {
+      "gurmukhi": "ਹਰਿ ਕਾ ਨਾਮੁ ਨਿਧਾਨੁ ਹੈ ਕੋਈ ਗੁਰਮੁਖਿ ਜਾਣੈ ॥",
+      "translation": "The Name of the Lord is a treasure, known only to the few Gurmukhs."
+    },
+    {
+      "gurmukhi": "ਨਾਨਕ ਜਿਨ ਸਤਿਗੁਰੁ ਭੇਟਿਆ ਰੰਗਿ ਰਲੀਆ ਮਾਣੈ ॥੧੫॥",
+      "translation": "O Nanak, those who meet with the True Guru, enjoy peace and pleasure. ||15||"
+    },
+    {
+      "gurmukhi": "ਸਤਿਗੁਰੁ ਦਾਤਾ ਆਖੀਐ ਤੁਸਿ ਕਰੇ ਪਸਾਓ ॥",
+      "translation": "The True Guru is called the Giver; in His Mercy, He grants His Grace."
+    },
+    {
+      "gurmukhi": "ਹਉ ਗੁਰ ਵਿਟਹੁ ਸਦ ਵਾਰਿਆ ਜਿਨਿ ਦਿਤੜਾ ਨਾਓ ॥੧੬॥",
+      "translation": "I am forever a sacrifice to the Guru, who has blessed me with the Lord's Name. ||16||"
+    },
+    {
+      "gurmukhi": "ਸੋ ਧੰਨੁ ਗੁਰੂ ਸਾਬਾਸਿ ਹੈ ਹਰਿ ਦੇਇ ਸਨੇਹਾ ॥",
+      "translation": "Blessed, very blessed is the Guru, who brings the Lord's message."
+    },
+    {
+      "gurmukhi": "ਹਉ ਵੇਖਿ ਵੇਖਿ ਗੁਰੂ ਵਿਗਸਿਆ ਗੁਰ ਸਤਿਗੁਰ ਦੇਹਾ ॥੧੭॥",
+      "translation": "I gaze upon the Guru, the Guru, the True Guru embodied, and I blossom forth in bliss. ||17||"
+    },
+    {
+      "gurmukhi": "ਗੁਰ ਰਸਨਾ ਅੰਮ੍ਰਿਤੁ ਬੋਲਦੀ ਹਰਿ ਨਾਮਿ ਸੁਹਾਵੀ ॥",
+      "translation": "The Guru's tongue recites Words of Ambrosial Nectar; He is adorned with the Lord's Name."
+    },
+    {
+      "gurmukhi": "ਜਿਨ ਸੁਣਿ ਸਿਖਾ ਗੁਰੁ ਮੰਨਿਆ ਤਿਨਾ ਭੁਖ ਸਭ ਜਾਵੀ ॥੧੮॥",
+      "translation": "Those Sikhs who hear and obey the Guru - all their desires depart. ||18||"
+    },
+    {
+      "gurmukhi": "ਹਰਿ ਕਾ ਮਾਰਗੁ ਆਖੀਐ ਕਹੁ ਕਿਤੁ ਬਿਧਿ ਜਾਈਐ ॥",
+      "translation": "Some speak of the Lord's Path; tell me, how can I walk on it?"
+    },
+    {
+      "gurmukhi": "ਹਰਿ ਹਰਿ ਤੇਰਾ ਨਾਮੁ ਹੈ ਹਰਿ ਖਰਚੁ ਲੈ ਜਾਈਐ ॥੧੯॥",
+      "translation": "O Lord, Har, Har, Your Name is my supplies; I will take it with me and set out. ||19||"
+    },
+    {
+      "gurmukhi": "ਜਿਨ ਗੁਰਮੁਖਿ ਹਰਿ ਆਰਾਧਿਆ ਸੇ ਸਾਹ ਵਡ ਦਾਣੇ ॥",
+      "translation": "Those Gurmukhs who worship and adore the Lord, are wealthy and very wise."
+    },
+    {
+      "gurmukhi": "ਹਉ ਸਤਿਗੁਰ ਕਉ ਸਦ ਵਾਰਿਆ ਗੁਰ ਬਚਨਿ ਸਮਾਣੇ ॥੨੦॥",
+      "translation": "I am forever a sacrifice to the True Guru; I am absorbed in the Words of the Guru's Teachings. ||20||"
+    },
+    {
+      "gurmukhi": "ਤੂ ਠਾਕੁਰੁ ਤੂ ਸਾਹਿਬੋ ਤੂਹੈ ਮੇਰਾ ਮੀਰਾ ॥",
+      "translation": "You are the Master, my Lord and Master; You are my Ruler and King."
+    },
+    {
+      "gurmukhi": "ਤੁਧੁ ਭਾਵੈ ਤੇਰੀ ਬੰਦਗੀ ਤੂ ਗੁਣੀ ਗਹੀਰਾ ॥੨੧॥",
+      "translation": "If it is pleasing to Your Will, then I worship and serve You; You are the treasure of virtue. ||21||"
+    },
+    {
+      "gurmukhi": "ਆਪੇ ਹਰਿ ਇਕ ਰੰਗੁ ਹੈ ਆਪੇ ਬਹੁ ਰੰਗੀ ॥",
+      "translation": "The Lord Himself is absolute; He is The One and Only; but He Himself is also manifested in many forms."
+    },
+    {
+      "gurmukhi": "ਜੋ ਤਿਸੁ ਭਾਵੈ ਨਾਨਕਾ ਸਾਈ ਗਲ ਚੰਗੀ ॥੨੨॥੨॥",
+      "translation": "Whatever pleases Him, O Nanak, that alone is good. ||22||2||"
     }
   ],
-  "updated": "2026-10-16T06:01:57.887Z"
+  "updated": "2026-10-17T05:48:36.040Z"
 };
