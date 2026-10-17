@@ -77,7 +77,12 @@
         <div class="card-title">Template</div>
         <div class="form-row">
           <label>Template Name (must exactly match an Approved template in WhatsApp Manager)</label>
-          <input type="text" id="fTemplateName" value="gurgaddi_diwas_of_sri_guru_angad_dev_ji">
+          <input type="text" id="fTemplateName" value="sikhsinindia_introduction">
+        </div>
+        <div class="form-row">
+          <label>Header Image URL — only for templates created with an Image header (public https JPEG/PNG, max 5 MB); leave empty otherwise</label>
+          <input type="url" id="fHeaderImage" value="https://sikhsinindia.com/pictures/whatsapp/sikhsinindia-gurus-poster.jpg" oninput="updateHeaderPreview()">
+          <img id="headerPreview" alt="Header image preview" style="display: none; max-width: 180px; margin-top: 8px; border-radius: 6px; border: 2px solid var(--gold);">
         </div>
         <div class="form-row">
           <label>Language Code</label>
@@ -150,6 +155,7 @@
       <p>
         You are about to WhatsApp <b id="confirmCount">0</b> selected members using template:<br>
         <b id="confirmTemplate" style="color: var(--navy);"></b>
+        <span id="confirmImageNote"></span>
         <br><br>
         This sends a real WhatsApp message to real people right now and cannot be undone. Make sure you've sent a
         test message to your own number first and it looked right.
@@ -191,13 +197,13 @@
       }
     });
 
-    async function sendWhatsAppTemplate(to, templateName, languageCode, params) {
+    async function sendWhatsAppTemplate(to, templateName, languageCode, params, headerImageUrl) {
       const user = firebase.auth().currentUser;
       if (!user) throw new Error("Not signed in — log in again.");
       const res = await fetch(SEND_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${await user.getIdToken()}` },
-        body: JSON.stringify({ action: "send_whatsapp", to, templateName, languageCode, params })
+        body: JSON.stringify({ action: "send_whatsapp", to, templateName, languageCode, params, headerImageUrl: headerImageUrl || undefined })
       });
       const bodyText = await res.text();
       if (!res.ok) {
@@ -207,6 +213,19 @@
       }
       return bodyText;
     }
+
+    function getHeaderImage() {
+      return document.getElementById("fHeaderImage").value.trim();
+    }
+
+    function updateHeaderPreview() {
+      const url = getHeaderImage();
+      const img = document.getElementById("headerPreview");
+      img.style.display = url ? "block" : "none";
+      if (url) img.src = url;
+    }
+    window.updateHeaderPreview = updateHeaderPreview;
+    updateHeaderPreview();
 
     function getParams() {
       return document.getElementById("fParams").value
@@ -354,7 +373,7 @@
 
       status.textContent = "Sending test...";
       try {
-        await sendWhatsAppTemplate(testNumber.trim(), templateName, languageCode, getParams());
+        await sendWhatsAppTemplate(testNumber.trim(), templateName, languageCode, getParams(), getHeaderImage());
         status.textContent = `Test sent to ${testNumber}.`;
       } catch (err) {
         status.textContent = "Test send failed: " + (err.message || err);
@@ -370,6 +389,7 @@
       if (!selected.length) { alert("No recipients are selected — tick at least one member (or click Select All) first."); return; }
       document.getElementById("confirmCount").textContent = selected.length;
       document.getElementById("confirmTemplate").textContent = templateName;
+      document.getElementById("confirmImageNote").textContent = getHeaderImage() ? " (with header image)" : "";
       document.getElementById("sendConfirmModal").hidden = false;
     }
     window.openSendConfirm = openSendConfirm;
@@ -389,6 +409,7 @@
       const templateName = document.getElementById("fTemplateName").value.trim();
       const languageCode = document.getElementById("fLanguageCode").value.trim() || "en";
       const params = getParams();
+      const headerImageUrl = getHeaderImage();
       const recipients = getSelectedRecipients();
 
       const sendBtn = document.querySelector('button[onclick="openSendConfirm()"]');
@@ -407,7 +428,7 @@
         progressLabel.textContent = `Sending ${i + 1} / ${recipients.length}...`;
         progressFill.style.width = Math.round(((i + 1) / recipients.length) * 100) + "%";
         try {
-          await sendWhatsAppTemplate(recipient.phone, templateName, languageCode, params);
+          await sendWhatsAppTemplate(recipient.phone, templateName, languageCode, params, headerImageUrl);
           ok++;
           log.insertAdjacentHTML("beforeend", `<div class="log-ok">✅ ${escapeHtml(recipient.name || recipient.email)} — ${escapeHtml(recipient.phone)}</div>`);
         } catch (err) {

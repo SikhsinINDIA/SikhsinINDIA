@@ -27,7 +27,9 @@
  *    messages (as opposed to a reply within 24h of the user messaging
  *    first) can only ever be a pre-approved message *template* — never
  *    free-form text — so the caller sends a template name + an ordered
- *    list of body variables, not a message string. See
+ *    list of body variables, not a message string. Optional
+ *    headerImageUrl fills an IMAGE header for templates that have one
+ *    (public https JPEG/PNG, max 5 MB). See
  *    03-nitnem/03-06-akhand-path/firebase.js's WHATSAPP_* constants for
  *    the exact template names/wording this site currently has approved.
  *
@@ -258,7 +260,7 @@ function normalizePhone(raw) {
   return digits.startsWith("+") ? digits : "+" + digits;
 }
 
-async function sendWhatsAppTemplate(env, { to, templateName, languageCode, params }) {
+async function sendWhatsAppTemplate(env, { to, templateName, languageCode, params, headerImageUrl }) {
   if (!env.WHATSAPP_ACCESS_TOKEN || !env.WHATSAPP_PHONE_NUMBER_ID) {
     throw new Error("WhatsApp is not configured yet (missing WHATSAPP_ACCESS_TOKEN / WHATSAPP_PHONE_NUMBER_ID secrets).");
   }
@@ -267,12 +269,18 @@ async function sendWhatsAppTemplate(env, { to, templateName, languageCode, param
     name: templateName,
     language: { code: languageCode || "en_US" }
   };
+  const components = [];
+  if (headerImageUrl) {
+    if (!/^https:\/\//i.test(headerImageUrl)) throw new Error("headerImageUrl must be a public https:// link.");
+    components.push({ type: "header", parameters: [{ type: "image", image: { link: headerImageUrl } }] });
+  }
   if (Array.isArray(params) && params.length) {
-    template.components = [{
+    components.push({
       type: "body",
       parameters: params.map((p) => ({ type: "text", text: String(p == null ? "" : p) }))
-    }];
+    });
   }
+  if (components.length) template.components = components;
 
   const res = await fetch(`https://graph.facebook.com/v21.0/${env.WHATSAPP_PHONE_NUMBER_ID}/messages`, {
     method: "POST",
