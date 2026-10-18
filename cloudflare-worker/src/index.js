@@ -470,7 +470,7 @@ async function sendEmail(env, { to, subject, text, html, attachments }) {
 // i.e. ~100 uncached searches a day, so identical searches are served from
 // Cloudflare's edge cache for a few hours instead of hitting the API again.
 const YT_SEARCH_CACHE_SECONDS = 6 * 3600;
-const YT_SEARCH_SUFFIX = { lyrics: "shabad kirtan", kirtaniya: "kirtan" };
+const YT_SEARCH_SUFFIX = { lyrics: "shabad kirtan", kirtaniya: "kirtan", both: "kirtan" };
 
 // "PT7M32S" → "7:32", "PT1H2M15S" → "1:02:15", "P1DT2H" → "26:00:00".
 // Live streams report "P0D", which gives "" (no badge).
@@ -484,9 +484,16 @@ function formatIsoDuration(iso) {
   return h ? `${h}:${pad(min)}:${pad(s)}` : `${min}:${pad(s)}`;
 }
 
-async function searchYouTube(env, { q, mode, pageToken }) {
-  const query = String(q || "").trim().slice(0, 120);
+async function searchYouTube(env, { q, mode, pageToken, kirtaniya }) {
+  let query = String(q || "").trim().slice(0, 120);
   if (!query) throw Object.assign(new Error("Missing search text"), { status: 400 });
+  // "both": shabad words plus the kirtaniya's name as an exact phrase, so
+  // e.g. Harbans Singh + Thir Ghar Baiso finds his rendition specifically.
+  if (mode === "both") {
+    const name = String(kirtaniya || "").replace(/"/g, "").trim().slice(0, 60);
+    if (!name) throw Object.assign(new Error("Missing kirtaniya name"), { status: 400 });
+    query = `${query} "${name}"`;
+  }
   if (!env.YOUTUBE_API_KEY) throw new Error("Shabad search is not configured yet (missing YOUTUBE_API_KEY secret).");
 
   const params = new URLSearchParams({
