@@ -149,6 +149,144 @@
       margin-bottom: 28px;
     }
 
+    /* LIVE KIRTAN */
+    .live-section {
+      margin-bottom: 36px;
+    }
+
+    .live-heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      font-size: 26px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      color: #fff;
+      background: #c4161c;
+      border-radius: 4px;
+      padding: 4px 8px;
+      flex-shrink: 0;
+    }
+
+    .live-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #fff;
+      animation: live-pulse 1.4s ease-in-out infinite;
+    }
+
+    @keyframes live-pulse {
+      50% { opacity: 0.25; }
+    }
+
+    .live-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--navy);
+      border: 3px solid var(--gold);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .live-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Tap-to-play cover: the YouTube player only loads when asked for */
+    .live-start {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      border: 0;
+      cursor: pointer;
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      text-align: center;
+      padding: 20px;
+      background:
+        linear-gradient(rgba(13, 27, 62, 0.55), rgba(13, 27, 62, 0.85)),
+        url("../pictures/04-gurudwaras/27-punjab/amritsar/04-27-01-01-gurdwara-sri-darbar-sahib-amritsar/gurdwara-sri-darbar-sahib-amritsar-02.webp") center / cover,
+        linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    .live-play {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8830a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s;
+    }
+
+    .live-start:hover .live-play,
+    .live-start:focus-visible .live-play {
+      transform: scale(1.08);
+    }
+
+    .live-start:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: -3px;
+    }
+
+    .live-play svg {
+      width: 30px;
+      height: 30px;
+      margin-left: 4px;
+      fill: var(--navy);
+    }
+
+    .live-start-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .live-start-sub {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .live-note {
+      font-size: 12px;
+      color: #666;
+      margin-top: 10px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .live-note a {
+      color: var(--navy);
+      font-weight: 700;
+    }
+
     /* SEARCH FORM */
     .search-box {
       background: #fff;
@@ -633,6 +771,28 @@
     <!-- MAIN CONTENT WRAPPER -->
     <div class="wrapper">
 
+      <!-- LIVE KIRTAN — SGPC's official broadcast from Sri Harmandir Sahib -->
+      <section class="live-section" aria-labelledby="liveHeading">
+        <h2 class="live-heading" id="liveHeading">
+          <span class="live-badge">LIVE</span>
+          Live Kirtan from Sri Harmandir Sahib
+        </h2>
+        <div class="live-frame" id="liveFrame">
+          <button type="button" class="live-start" id="liveStartBtn">
+            <span class="live-play" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+            </span>
+            <span class="live-start-title">Watch Live Gurbani Kirtan</span>
+            <span class="live-start-sub">Sachkhand Sri Harmandir Sahib, Sri Amritsar</span>
+          </button>
+        </div>
+        <p class="live-note">
+          Official live broadcast by SGPC, Sri Amritsar. Kirtan runs through the day from early morning
+          (about 3 AM IST) until night. If it isn't live right now, the player shows when it starts next, or
+          <a href="https://www.youtube.com/@SGPCSriAmritsar/streams" target="_blank" rel="noopener">watch earlier broadcasts</a>.
+        </p>
+      </section>
+
       <h1>Search Shabad Kirtan</h1>
 
       <form class="search-box" id="searchForm" autocomplete="off">
@@ -1004,6 +1164,29 @@
       else playInPlainIframe(videoId);
       playerSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+
+    /* ---------------- LIVE KIRTAN ---------------- */
+    // SGPC, Sri Amritsar's channel. Each day's broadcast is a new video, so
+    // the channel's live_stream embed is used — it always plays whatever
+    // that channel is streaming right now. Loaded only on tap, so visitors
+    // who just want to search don't download the YouTube player.
+    var SGPC_CHANNEL_ID = 'UCYn6UEtQ771a_OWSiNBoG8w';
+    var liveFrame = document.getElementById('liveFrame');
+
+    document.getElementById('liveStartBtn').addEventListener('click', function () {
+      // Only one thing playing at a time: pause a searched shabad if any.
+      if (ytPlayerReady && ytPlayer.pauseVideo) { try { ytPlayer.pauseVideo(); } catch (e) { /* ignore */ } }
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/live_stream?channel=' + SGPC_CHANNEL_ID +
+        '&autoplay=1&rel=0&modestbranding=1&playsinline=1';
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.title = 'Live Gurbani Kirtan from Sri Harmandir Sahib';
+      liveFrame.innerHTML = '';
+      liveFrame.appendChild(iframe);
+      if (window.gtag) gtag('event', 'live_kirtan_play');
+    });
 
     document.getElementById('replayBtn').addEventListener('click', function () {
       playerEnded.hidden = true;

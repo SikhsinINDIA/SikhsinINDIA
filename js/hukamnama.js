@@ -19,6 +19,86 @@
   var MAX_VERSES_ON_CARD = 2;
   var CHAR_BUDGET = 230;
 
+  /* SGPC's own recordings of the Hukamnama from Sri Harmandir Sahib and its
+     Katha (explanation). Each day's file is named by date (DDMMYY), so the
+     audio matches the date of the text on the card; if that file is missing,
+     the player falls back to SGPC's "latest" file. */
+  var SGPC_AUDIO = {
+    hukamnama: {
+      label: 'Hukamnama',
+      dated: function (ddmmyy) { return 'https://hs.sgpc.net/hukamnamaaudio/SGPCNET' + ddmmyy + '.mp3'; },
+      latest: 'https://hs.sgpc.net/uploadhukamnama/hukamnama.mp3'
+    },
+    katha: {
+      label: 'Katha',
+      dated: function (ddmmyy) { return 'https://hs.sgpc.net/kathaaudio/katha' + ddmmyy + '.mp3'; },
+      latest: 'https://hs.sgpc.net/uploadkatha/katha.mp3'
+    }
+  };
+
+  function ddmmyy(isoDate) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate || '');
+    return m ? m[3] + m[2] + m[1].slice(2) : null;
+  }
+
+  function audioSrc(kind, d) {
+    var a = SGPC_AUDIO[kind];
+    var day = ddmmyy(d.date);
+    return day ? a.dated(day) : a.latest;
+  }
+
+  function audioHtml(d) {
+    return '<div class="hnm-audio">' +
+        '<div class="hnm-audio-top">' +
+          '<span class="hnm-audio-label">&#128266; Listen</span>' +
+          '<div class="hnm-audio-tabs" role="group" aria-label="Choose recording">' +
+            '<button type="button" class="hnm-audio-tab active" data-kind="hukamnama" aria-pressed="true">Hukamnama</button>' +
+            '<button type="button" class="hnm-audio-tab" data-kind="katha" aria-pressed="false">Katha</button>' +
+          '</div>' +
+        '</div>' +
+        '<audio class="hnm-audio-player" controls preload="none" src="' + esc(audioSrc('hukamnama', d)) + '"' +
+          ' aria-label="Today&rsquo;s Hukamnama audio from Sri Harmandir Sahib">' +
+          'Your browser can&rsquo;t play this audio.</audio>' +
+        '<div class="hnm-audio-credit">Audio: SGPC, Sri Amritsar</div>' +
+      '</div>';
+  }
+
+  function wireAudio(mount, d) {
+    var player = mount.querySelector('.hnm-audio-player');
+    var tabs = mount.querySelectorAll('.hnm-audio-tab');
+    if (!player) return;
+    var kind = 'hukamnama';
+
+    // Dated file missing (e.g. not uploaded yet): use SGPC's latest file.
+    player.addEventListener('error', function () {
+      var latest = SGPC_AUDIO[kind].latest;
+      if (player.src !== latest) {
+        player.src = latest;
+        player.play().catch(function () { /* user presses play */ });
+      }
+    });
+
+    Array.prototype.forEach.call(tabs, function (tab) {
+      tab.addEventListener('click', function () {
+        if (tab.dataset.kind === kind) return;
+        var wasPlaying = !player.paused;
+        kind = tab.dataset.kind;
+        Array.prototype.forEach.call(tabs, function (t) {
+          var on = t === tab;
+          t.classList.toggle('active', on);
+          t.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        player.src = audioSrc(kind, d);
+        player.setAttribute('aria-label', 'Today’s ' + SGPC_AUDIO[kind].label + ' audio from Sri Harmandir Sahib');
+        if (wasPlaying) player.play().catch(function () { /* user presses play */ });
+      });
+    });
+
+    player.addEventListener('play', function () {
+      if (window.gtag) window.gtag('event', 'hukamnama_audio_play', { recording: kind });
+    });
+  }
+
   function esc(s) {
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -65,6 +145,7 @@
           '<div class="hnm-date">' + esc(d.dateDisplay) + '</div>' +
         '</div>' +
         '<div class="hnm-body">' +
+          audioHtml(d) +
           '<div class="hnm-attrib">' +
             esc(d.raagEnglish) + (d.writerEnglish ? ' &middot; ' + esc(d.writerEnglish) : '') +
             ' &middot; Sri Harmandir Sahib, Amritsar' +
@@ -74,6 +155,7 @@
           '<a class="hnm-cta" href="hukamnama.html">Read Full Hukamnama &rarr;</a>' +
         '</div>' +
       '</div>';
+    wireAudio(mount, d);
   }
 
   function fail() {

@@ -766,6 +766,48 @@
   .hnm-cta:hover { background: #e8830a; }
   .hnm-none { font-size: 14px; color: #666; margin: 6px 0; }
 
+  /* Audio Hukamnama / Katha from SGPC (js/hukamnama.js) */
+  .hnm-audio {
+    background: rgba(247,148,29,0.08);
+    border: 1px solid rgba(247,148,29,0.35);
+    border-radius: 8px;
+    padding: 10px 12px 8px;
+    margin-bottom: 14px;
+  }
+  .hnm-audio-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .hnm-audio-label {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+  .hnm-audio-tabs { display: inline-flex; border-radius: 20px; background: rgba(0,43,109,0.08); padding: 3px; }
+  .hnm-audio-tab {
+    border: 0;
+    background: transparent;
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 16px;
+    padding: 6px 12px;
+    min-height: 32px;
+    cursor: pointer;
+  }
+  .hnm-audio-tab.active { background: var(--navy); color: #fff; }
+  .hnm-audio-tab:focus-visible { outline: 2px solid var(--orange); outline-offset: 1px; }
+  .hnm-audio-player { width: 100%; height: 40px; display: block; }
+  .hnm-audio-credit { font-size: 10.5px; color: #888; margin-top: 4px; }
+
   @media (max-width: 576px) {
     .hnm-head   { padding: 10px 14px; }
     .hnm-kicker { font-size: 10px; letter-spacing: 2px; }
