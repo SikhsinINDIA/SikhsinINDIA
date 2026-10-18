@@ -54,6 +54,9 @@
     .program-info { flex:1; min-width:200px; }
     .program-role { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#888; font-weight:700; margin-top:4px; }
   </style>
+  <!-- seo:jsonld -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://sikhsinindia.com/#organization","name":"Sikhs in India","url":"https://sikhsinindia.com/","logo":"https://sikhsinindia.com/sikhsinindia.png","email":"sikhsinindia@gmail.com"},{"@type":"WebSite","@id":"https://sikhsinindia.com/#website","name":"Sikhs in India","url":"https://sikhsinindia.com/","inLanguage":["en","hi","pa"],"publisher":{"@id":"https://sikhsinindia.com/#organization"}},{"@type":"WebPage","@id":"https://sikhsinindia.com/03-nitnem/03-06-akhand-path/index.html#webpage","url":"https://sikhsinindia.com/03-nitnem/03-06-akhand-path/index.html","name":"Akhand Path","inLanguage":"en","isPartOf":{"@id":"https://sikhsinindia.com/#website"},"publisher":{"@id":"https://sikhsinindia.com/#organization"},"description":"Watch and take part in the continuous 48-hour Akhand Path of Sri Guru Granth Sahib Ji, live and synchronized for every viewer.","primaryImageOfPage":{"@type":"ImageObject","url":"https://sikhsinindia.com/sikhsinindia.jpg"},"breadcrumb":{"@id":"https://sikhsinindia.com/03-nitnem/03-06-akhand-path/index.html#breadcrumb"}},{"@id":"https://sikhsinindia.com/03-nitnem/03-06-akhand-path/index.html#breadcrumb","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sikhsinindia.com/"},{"@type":"ListItem","position":2,"name":"Akhand Path","item":"https://sikhsinindia.com/03-nitnem/03-06-akhand-path/index.html"}]}]}</script>
+  <!-- /seo:jsonld -->
 </head>
 
 <body>
@@ -69,10 +72,10 @@
   <div class="poster">
     <div class="header">
       <div class="logo-wrap">
-        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+        <img loading="lazy" class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
       </div>
       <div class="hero">
-        <div class="hero-title">Akhand Path <span>Sahib Ji</span></div>
+        <h1 class="hero-title">Akhand Path <span>Sahib Ji</span></h1>
         <div class="hero-sub">The continuous, uninterrupted recitation of Sri Guru Granth Sahib Ji</div>
       </div>
     </div>
@@ -104,7 +107,7 @@
       <!-- DEDICATION BANNER — honoree name/photo/purpose, always visible -->
       <div class="dedication-banner" id="dedicationBanner" hidden>
         <div class="dedication-photo-frame">
-          <img class="dedication-photo" id="dedicationPhoto" src="" alt="Honoree photo">
+          <img loading="lazy" class="dedication-photo" id="dedicationPhoto" src="" alt="Honoree photo">
         </div>
         <div class="dedication-text">
           <div class="dedication-occasion" id="dedicationOccasion" hidden></div>
@@ -532,7 +535,7 @@ function isUserInvited(sessionData, user) {
         card.style.cursor = "pointer";
         card.innerHTML = `
           <div class="program-photo-frame">
-            <img class="program-photo" src="${escapeHtml(driveImageUrl(s.photo_url) || DEFAULT_PHOTO)}"
+            <img loading="lazy" class="program-photo" src="${escapeHtml(driveImageUrl(s.photo_url) || DEFAULT_PHOTO)}"
               style="object-position:${offsetX}% ${offsetY}%;transform:scale(${zoom});" alt="">
           </div>
           <div class="program-info">

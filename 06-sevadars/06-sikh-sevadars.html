@@ -3,7 +3,7 @@
 
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHNTFNW14H"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -566,6 +566,9 @@
       .gsb-lang-switcher { top: 4px; right: 4px; padding: 4px 8px; font-size: 10px; gap: 5px; }
     }
   </style>
+  <!-- seo:jsonld -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://sikhsinindia.com/#organization","name":"Sikhs in India","url":"https://sikhsinindia.com/","logo":"https://sikhsinindia.com/sikhsinindia.png","email":"sikhsinindia@gmail.com"},{"@type":"WebSite","@id":"https://sikhsinindia.com/#website","name":"Sikhs in India","url":"https://sikhsinindia.com/","inLanguage":["en","hi","pa"],"publisher":{"@id":"https://sikhsinindia.com/#organization"}},{"@type":"WebPage","@id":"https://sikhsinindia.com/06-sevadars/06-sikh-sevadars.html#webpage","url":"https://sikhsinindia.com/06-sevadars/06-sikh-sevadars.html","name":"Sikh Sevadars","inLanguage":"en","isPartOf":{"@id":"https://sikhsinindia.com/#website"},"publisher":{"@id":"https://sikhsinindia.com/#organization"},"description":"Meet the Sevadars of the Sikh community - the Bhaiji, Granthi and volunteers who serve the Gurdwara through kirtan, paath, langar and daily seva.","primaryImageOfPage":{"@type":"ImageObject","url":"https://sikhsinindia.com/sikhsinindia.jpg"},"breadcrumb":{"@id":"https://sikhsinindia.com/06-sevadars/06-sikh-sevadars.html#breadcrumb"}},{"@id":"https://sikhsinindia.com/06-sevadars/06-sikh-sevadars.html#breadcrumb","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sikhsinindia.com/"},{"@type":"ListItem","position":2,"name":"Sikh Sevadars","item":"https://sikhsinindia.com/06-sevadars/06-sikh-sevadars.html"}]}]}</script>
+  <!-- /seo:jsonld -->
 </head>
 
 <body>
@@ -773,7 +776,7 @@
         const card = document.createElement("div");
         card.className = "sevadar-card";
         card.innerHTML = `
-          <img src="${sevadar.Photo}" alt="${sevadar.Name}">
+          <img loading="lazy" src="${sevadar.Photo}" alt="${sevadar.Name}">
           <div class="sevadar-info">
             <span class="name">${sevadar.Name}</span>
             <span class="detail"><strong>Mobile:</strong> ${sevadar.Mobile}</span>
