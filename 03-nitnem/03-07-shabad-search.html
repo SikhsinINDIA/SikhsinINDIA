@@ -207,6 +207,9 @@
       gap: 8px;
     }
 
+    .search-row[hidden] { display: none; }
+    #kirtaniyaRow { margin-bottom: 8px; }
+
     .search-row input {
       flex: 1;
       min-width: 0;
@@ -639,6 +642,14 @@
             <input type="radio" name="mode" value="kirtaniya">
             <span>By Kirtaniya / Ragi Jatha</span>
           </label>
+          <label>
+            <input type="radio" name="mode" value="both">
+            <span>Kirtaniya + Words</span>
+          </label>
+        </div>
+        <div class="search-row" id="kirtaniyaRow" hidden>
+          <input type="search" id="kirtaniyaInput" maxlength="60"
+            placeholder="Kirtaniya, e.g. Bhai Harbans Singh" aria-label="Kirtaniya name">
         </div>
         <div class="search-row">
           <input type="search" id="searchInput" maxlength="120" required
@@ -759,7 +770,8 @@
 
     var HINTS = {
       lyrics: { text: 'Type a line of the shabad in English letters, Gurmukhi or Hindi.', placeholder: 'e.g. Tu Thakur Tum Peh Ardaas' },
-      kirtaniya: { text: 'Type the name of the ragi, kirtaniya or jatha.', placeholder: 'e.g. Bhai Harjinder Singh Srinagar Wale' }
+      kirtaniya: { text: 'Type the name of the ragi, kirtaniya or jatha.', placeholder: 'e.g. Bhai Harjinder Singh Srinagar Wale' },
+      both: { text: 'Type the kirtaniya’s name above and a line of the shabad here.', placeholder: 'Shabad words, e.g. Thir Ghar Baiso' }
     };
 
     var form = document.getElementById('searchForm');
@@ -793,17 +805,32 @@
       return new DOMParser().parseFromString(s || '', 'text/html').documentElement.textContent;
     }
 
+    var kirtaniyaRow = document.getElementById('kirtaniyaRow');
+    var kirtaniyaInput = document.getElementById('kirtaniyaInput');
+
     form.addEventListener('change', function (e) {
       if (e.target.name !== 'mode') return;
-      var h = HINTS[currentMode()];
+      var mode = currentMode();
+      var h = HINTS[mode];
       hint.textContent = h.text;
       input.placeholder = h.placeholder;
+      kirtaniyaRow.hidden = mode !== 'both';
+      kirtaniyaInput.required = mode === 'both';
+      if (mode === 'both') kirtaniyaInput.focus();
     });
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var q = input.value.trim();
-      if (q) runSearch({ q: q, mode: currentMode() }, null);
+      var mode = currentMode();
+      if (!q) return;
+      if (mode === 'both') {
+        var k = kirtaniyaInput.value.trim();
+        if (!k) { kirtaniyaInput.focus(); return; }
+        runSearch({ q: q, mode: mode, kirtaniya: k }, null);
+      } else {
+        runSearch({ q: q, mode: mode }, null);
+      }
     });
 
     loadMoreBtn.addEventListener('click', function () {
@@ -821,7 +848,7 @@
       fetch(WORKER_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'youtube_search', q: query.q, mode: query.mode, pageToken: pageToken || undefined })
+        body: JSON.stringify({ action: 'youtube_search', q: query.q, mode: query.mode, kirtaniya: query.kirtaniya, pageToken: pageToken || undefined })
       })
         .then(function (res) {
           return res.json().catch(function () { return {}; }).then(function (body) {
@@ -894,17 +921,33 @@
     // channel (rel: 0) and an overlay over YouTube's end screen.
     var ytPlayer = null;
     var ytPlayerReady = false;
-    var plainIframe = false; // true once we've fallen back to a plain embed
-    var pendingVideoId = null;
+    var ytApiReady = false;
 
     var ytTag = document.createElement('script');
     ytTag.src = 'https://www.youtube.com/iframe_api';
     document.head.appendChild(ytTag);
+    window.onYouTubeIframeAPIReady = function () { ytApiReady = true; };
 
-    window.onYouTubeIframeAPIReady = function () {
-      if (plainIframe) return;
-      ytPlayer = new YT.Player('shabadPlayer', {
+    // A fresh #shabadPlayer placeholder for each video. The player is
+    // always built with the video already in its embed URL: an empty player
+    // switched later via loadVideoById() relies on postMessage, which the
+    // privacy-enhanced (youtube-nocookie) host often drops, leaving it black.
+    function freshPlaceholder() {
+      if (ytPlayer) { try { ytPlayer.destroy(); } catch (e) { /* already gone */ } }
+      ytPlayer = null;
+      ytPlayerReady = false;
+      var current = document.getElementById('shabadPlayer');
+      var div = document.createElement('div');
+      div.id = 'shabadPlayer';
+      if (current) current.parentNode.replaceChild(div, current);
+      else document.querySelector('.player-frame').insertBefore(div, playerEnded);
+      return div;
+    }
+
+    function createApiPlayer(videoId) {
+      ytPlayer = new YT.Player(freshPlaceholder(), {
         host: 'https://www.youtube-nocookie.com',
+        videoId: videoId,
         height: '100%',
         width: '100%',
         playerVars: {
@@ -912,10 +955,7 @@
           iv_load_policy: 3, enablejsapi: 1, origin: window.location.origin
         },
         events: {
-          onReady: function () {
-            ytPlayerReady = true;
-            if (pendingVideoId) ytPlayer.loadVideoById(pendingVideoId);
-          },
+          onReady: function () { ytPlayerReady = true; },
           onStateChange: function (e) {
             playerEnded.hidden = e.data !== YT.PlayerState.ENDED;
           },
@@ -928,12 +968,12 @@
           }
         }
       });
-    };
+    }
 
-    // If YouTube's player script is blocked (usually an ad blocker), fall
-    // back to a plain privacy-enhanced embed, like the Akhand Path page does.
+    // If YouTube's player script hasn't loaded (usually an ad blocker), use
+    // a plain privacy-enhanced embed, like the Akhand Path page does.
     function playInPlainIframe(videoId) {
-      plainIframe = true;
+      freshPlaceholder();
       var iframe = document.createElement('iframe');
       iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(videoId) +
         '?autoplay=1&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3';
@@ -957,18 +997,8 @@
         card.classList.toggle('playing', card.dataset.videoId === videoId);
       });
 
-      if (ytPlayerReady) {
-        ytPlayer.loadVideoById(videoId);
-      } else if (plainIframe) {
-        playInPlainIframe(videoId);
-      } else {
-        // Player still loading: it picks this up in onReady, or, if it
-        // never gets ready, the plain embed takes over.
-        pendingVideoId = videoId;
-        setTimeout(function () {
-          if (!ytPlayerReady && pendingVideoId === videoId) playInPlainIframe(videoId);
-        }, 5000);
-      }
+      if (ytApiReady) createApiPlayer(videoId);
+      else playInPlainIframe(videoId);
       playerSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
@@ -978,7 +1008,8 @@
         ytPlayer.seekTo(0, true);
         ytPlayer.playVideo();
       } else if (currentVideoId) {
-        playInPlainIframe(currentVideoId);
+        if (ytApiReady) createApiPlayer(currentVideoId);
+        else playInPlainIframe(currentVideoId);
       }
     });
   })();
