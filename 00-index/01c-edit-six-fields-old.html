@@ -841,8 +841,8 @@
           rowError = 'duplicate email/mobile number';
         } else if (!email || !name || !mobile) {
           rowError = 'missing required field(s)';
-        } else if (mobile.length < 9) {
-          rowError = 'mobile number must have at least 9 digits';
+        } else if (mobile.length < 8) {
+          rowError = 'mobile number must have at least 8 digits';
         }
 
         if (rowError) {
@@ -938,8 +938,8 @@
         alert("Mandatory input mismatch. Email, Name and Mobile are absolutely required fields.");
         return;
       }
-      if (mobile.length < 9) {
-        alert("Validation error rule tracking. Mobile number must possess at least 9 or more explicit digit markers.");
+      if (mobile.length < 8) {
+        alert("Validation error rule tracking. Mobile number must possess at least 8 or more explicit digit markers.");
         return;
       }
 

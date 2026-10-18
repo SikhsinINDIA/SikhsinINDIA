@@ -557,7 +557,7 @@
 
             <div class="form-group">
               <label for="mobile">Primary Mobile Connection <span class="required">*</span></label>
-              <input type="tel" id="mobile" pattern="[0-9]{9,}" placeholder="9 digits minimum length validation" required />
+              <input type="tel" id="mobile" pattern="[0-9]{8,}" placeholder="8 digits minimum length validation" required />
             </div>
 
             <div class="form-group">
@@ -823,8 +823,8 @@
         alert("Mandatory input mismatch. Email, Name, Password and Mobile are absolutely required fields.");
         return;
       }
-      if (mobile.length < 9) {
-        alert("Validation error rule tracking. Mobile number must possess at least 9 or more explicit digit markers.");
+      if (mobile.length < 8) {
+        alert("Validation error rule tracking. Mobile number must possess at least 8 or more explicit digit markers.");
         return;
       }
 

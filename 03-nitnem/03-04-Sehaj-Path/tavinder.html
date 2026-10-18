@@ -269,7 +269,7 @@
         </div>
         <div class="form-row">
           <label for="mobile">Mobile Number: <span style="color: #f00;">*</span></label>
-          <input type="tel" id="mobile" placeholder="Mobile number (9 digits or more)" required />
+          <input type="tel" id="mobile" placeholder="Mobile number (8 digits or more)" required />
         </div>
         <div class="form-row">
           <label for="age">Age:</label>
@@ -409,7 +409,7 @@
       // Front-End Verification Data Engine Bounds Check
       if (!validateEmail(email)) { alert("Email format standard processing match validation failure."); return; }
       if (!validatePassword(password)) { alert("Password validation schema mismatch. Minimum 8 characters with letters and numbers."); return; }
-      if (!/^\d{9,}$/.test(mobile)) { alert("Mobile verification requires 9 numerical characters or more."); return; }
+      if (!/^\d{8,}$/.test(mobile)) { alert("Mobile verification requires 8 numerical characters or more."); return; }
       
       if (ageVal) {
         const checkAge = Number(ageVal);
