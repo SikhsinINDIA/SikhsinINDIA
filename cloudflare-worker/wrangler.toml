@@ -26,3 +26,11 @@ ADMIN_EMAILS = "tpsarora@gmail.com,sikhsinindia@gmail.com"
 # form) may reach.
 ADMIN_NOTIFY_EMAIL = "sikhsinindia@gmail.com"
 ADMIN_NOTIFY_WHATSAPP = "+971521821108"
+
+# Per-message WhatsApp delivery status (sent/delivered/read/failed + reason),
+# written by POST /whatsapp-webhook and read by the broadcast page's
+# Delivery Report. Created with `wrangler kv namespace create WA_STATUS`.
+# Also needs secrets WHATSAPP_APP_SECRET and WHATSAPP_WEBHOOK_VERIFY_TOKEN.
+[[kv_namespaces]]
+binding = "WA_STATUS"
+id = "18ccfcd5226744e6a90d6a0df77e9980"

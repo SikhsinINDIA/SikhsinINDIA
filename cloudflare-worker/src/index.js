@@ -59,6 +59,13 @@
  *                            itself), from the same app's API Setup page
  *   YOUTUBE_API_KEY        — a Google Cloud API key with the YouTube Data
  *                            API v3 enabled, used only for shabad search
+ *   WHATSAPP_APP_SECRET    — the Meta app's App Secret (App settings >
+ *                            Basic), used to verify delivery-status webhooks
+ *   WHATSAPP_WEBHOOK_VERIFY_TOKEN — any random string, also typed into the
+ *                            Meta app's WhatsApp > Configuration > Webhook
+ * Optional KV binding WA_STATUS (wrangler.toml) stores per-message delivery
+ * status; POST /whatsapp-webhook receives Meta's status updates and the
+ * admin-only action "whatsapp_statuses" lists them.
  *
  * AUTH. Every request is one of three callers:
  *   - "server": a scripts/ job presenting X-App-Secret. Full access.
@@ -297,7 +304,111 @@ async function sendWhatsAppTemplate(env, { to, templateName, languageCode, param
   });
   const resBody = await res.text();
   if (!res.ok) throw new Error("WhatsApp API error: " + resBody);
+  await recordWhatsAppSend(env, { to, templateName }, resBody);
   return resBody;
+}
+
+/* ---------------- WHATSAPP DELIVERY TRACKING ----------------
+   Meta's send API only says a message was *accepted*; whether it reached
+   the phone arrives later as a webhook status (sent / delivered / read /
+   failed + reason). Each sent message is kept in the WA_STATUS KV
+   namespace as an empty value whose metadata holds the status, so one
+   list() call returns everything the broadcast page's Delivery Report
+   needs without a read per key. Optional: if WA_STATUS isn't bound,
+   sending works exactly as before, just untracked. */
+const WA_STATUS_TTL_SECONDS = 45 * 24 * 3600;
+const WA_STATUS_RANK = { accepted: 0, sent: 1, delivered: 2, read: 3, failed: 4 };
+
+async function recordWhatsAppSend(env, { to, templateName }, resBody) {
+  if (!env.WA_STATUS) return;
+  try {
+    const id = JSON.parse(resBody).messages[0].id;
+    await env.WA_STATUS.put(`msg:${id}`, "", {
+      expirationTtl: WA_STATUS_TTL_SECONDS,
+      metadata: { to: normalizePhone(to), t: templateName, at: Date.now(), s: "accepted" }
+    });
+  } catch (_) { /* tracking must never fail a send */ }
+}
+
+function hexFromBuffer(buf) {
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+// Meta signs every webhook POST with the app secret (X-Hub-Signature-256),
+// which is what stops anyone else from posting fake statuses here.
+async function isValidMetaSignature(env, rawBody, header) {
+  if (!env.WHATSAPP_APP_SECRET || !header || !header.startsWith("sha256=")) return false;
+  const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(env.WHATSAPP_APP_SECRET),
+    { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const expected = hexFromBuffer(await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(rawBody)));
+  const given = header.slice("sha256=".length).toLowerCase();
+  if (given.length !== expected.length) return false;
+  let diff = 0;
+  for (let i = 0; i < expected.length; i++) diff |= expected.charCodeAt(i) ^ given.charCodeAt(i);
+  return diff === 0;
+}
+
+async function handleWhatsAppWebhook(request, env) {
+  const url = new URL(request.url);
+  // One-time subscription check from Meta's app dashboard.
+  if (request.method === "GET") {
+    const ok = url.searchParams.get("hub.mode") === "subscribe"
+      && env.WHATSAPP_WEBHOOK_VERIFY_TOKEN
+      && url.searchParams.get("hub.verify_token") === env.WHATSAPP_WEBHOOK_VERIFY_TOKEN;
+    return ok ? new Response(url.searchParams.get("hub.challenge") || "", { status: 200 }) : new Response("Forbidden", { status: 403 });
+  }
+  if (request.method !== "POST") return new Response("Method not allowed", { status: 405 });
+
+  const rawBody = await request.text();
+  if (!(await isValidMetaSignature(env, rawBody, request.headers.get("X-Hub-Signature-256")))) {
+    return new Response("Invalid signature", { status: 401 });
+  }
+  if (!env.WA_STATUS) return new Response("OK", { status: 200 });
+
+  let body;
+  try { body = JSON.parse(rawBody); } catch (_) { return new Response("OK", { status: 200 }); }
+  const statuses = [];
+  for (const entry of body.entry || []) {
+    for (const change of entry.changes || []) {
+      for (const st of (change.value && change.value.statuses) || []) statuses.push(st);
+    }
+  }
+  for (const st of statuses) {
+    if (!st.id || !(st.status in WA_STATUS_RANK)) continue;
+    const key = `msg:${st.id}`;
+    const existing = await env.WA_STATUS.getWithMetadata(key);
+    const meta = (existing && existing.metadata) || { to: normalizePhone(st.recipient_id), t: "", at: Number(st.timestamp) * 1000 || Date.now(), s: "accepted" };
+    // Statuses can arrive out of order (read before delivered) — never step back.
+    if (WA_STATUS_RANK[st.status] < (WA_STATUS_RANK[meta.s] || 0)) continue;
+    meta.s = st.status;
+    meta.u = Number(st.timestamp) * 1000 || Date.now();
+    if (st.status === "failed" && Array.isArray(st.errors) && st.errors[0]) {
+      const e = st.errors[0];
+      const detail = (e.error_data && e.error_data.details) || e.message || e.title || "";
+      meta.e = `${e.code || ""} ${e.title || ""}${detail && detail !== e.title ? " — " + detail : ""}`.trim().slice(0, 300);
+    }
+    await env.WA_STATUS.put(key, "", { expirationTtl: WA_STATUS_TTL_SECONDS, metadata: meta });
+  }
+  return new Response("OK", { status: 200 });
+}
+
+// Admin-only: every tracked message (optionally one template's, sent
+// after `since` ms), for the broadcast page's Delivery Report.
+async function listWhatsAppStatuses(env, { templateName, since }) {
+  if (!env.WA_STATUS) throw new Error("Delivery tracking isn't set up yet (no WA_STATUS KV namespace bound to the Worker).");
+  const rows = [];
+  let cursor;
+  do {
+    const page = await env.WA_STATUS.list({ prefix: "msg:", cursor });
+    for (const k of page.keys) {
+      const m = k.metadata || {};
+      if (templateName && m.t !== templateName) continue;
+      if (since && (m.at || 0) < since) continue;
+      rows.push({ id: k.name.slice(4), ...m });
+    }
+    cursor = page.list_complete ? null : page.cursor;
+  } while (cursor && rows.length < 20000);
+  return rows;
 }
 
 // Turns a Uint8Array into a base64 string without blowing the call stack on
@@ -441,6 +552,10 @@ export default {
     };
     const json = (body, status) => new Response(JSON.stringify(body), { status, headers: { ...corsHeaders, "Content-Type": "application/json" } });
 
+    // Meta's delivery-status webhook (its own path; authenticated by Meta's
+    // signature rather than the caller check below).
+    if (new URL(request.url).pathname === "/whatsapp-webhook") return handleWhatsAppWebhook(request, env);
+
     if (request.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
     if (request.method !== "POST") return json({ error: "Method not allowed" }, 405);
 
@@ -480,6 +595,14 @@ export default {
       try {
         const result = await sendWhatsAppTemplate(env, payload);
         return new Response(result, { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      } catch (err) {
+        return json({ error: String(err.message || err) }, 502);
+      }
+    }
+
+    if (payload.action === "whatsapp_statuses") {
+      try {
+        return json({ rows: await listWhatsAppStatuses(env, payload) }, 200);
       } catch (err) {
         return json({ error: String(err.message || err) }, 502);
       }
