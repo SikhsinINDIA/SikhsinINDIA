@@ -8,7 +8,7 @@
    the Mass Mailer admin page at 100-misc/01-mass-mailers), and emails
    every registered member (sikhdatabaseindia) that exact format —
    personalized the same way the Mass Mailer's own manual send is:
-   GreetingName, else Name, else "Sangat Ji".
+   GName, else GreetingName, else Name, else "Sangat Ji".
 
    No client page can do this - it has to fire on a wall-clock
    schedule whether or not anyone has the site open - so like the
@@ -62,11 +62,11 @@ function isSameIndiaDate(date, target) {
   return d.year === target.year && d.month === target.month && d.day === target.day;
 }
 
-// Same {{name}}/{{email}} convention as the Mass Mailer's own personalize().
+// Same {{name}}/{{GName}}/{{email}} convention as the Mass Mailer's own personalize().
 function personalize(str, recipient) {
   const name = recipient.name || 'Sangat Ji';
   return String(str || '')
-    .replace(/\{\{\s*name\s*\}\}/gi, name)
+    .replace(/\{\{\s*(name|gname)\s*\}\}/gi, name)
     .replace(/\{\{\s*email\s*\}\}/gi, recipient.email);
 }
 
@@ -115,9 +115,9 @@ async function fetchRecipients(db) {
     const d = doc.data();
     const email = String(d.Email || doc.id || '').trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
-    // GreetingName, else Name, else "Sangat Ji" (personalize() applies the
-    // "Sangat Ji" fallback when name comes through empty).
-    recipients.push({ email, name: d.GreetingName || d.Name || '' });
+    // GName, else GreetingName, else Name, else "Sangat Ji" (personalize()
+    // applies the "Sangat Ji" fallback when name comes through empty).
+    recipients.push({ email, name: d.GName || d.GreetingName || d.Name || '' });
   });
   return recipients;
 }

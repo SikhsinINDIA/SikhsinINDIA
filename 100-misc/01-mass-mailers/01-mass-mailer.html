@@ -122,14 +122,37 @@
 
             <div class="form-row">
               <label>Message Body</label>
-              <p class="muted" style="margin-bottom: 8px;">Use <code>{{name}}</code> anywhere (subject or body) to
-                greet each member by name automatically when sending.</p>
+              <p class="muted" style="margin-bottom: 8px;">Use <code>{{name}}</code> or <code>{{GName}}</code> anywhere
+                (subject or body) to greet each member by their GName (full name if none) automatically when sending.</p>
               <div class="rte-toolbar">
                 <button type="button" onclick="rteCmd('undo')" title="Undo">↩ Undo</button>
                 <span class="rte-sep"></span>
                 <button type="button" onclick="rteCmd('bold')"><b>B</b></button>
                 <button type="button" onclick="rteCmd('italic')"><i>I</i></button>
                 <button type="button" onclick="rteCmd('underline')"><u>U</u></button>
+                <span class="rte-sep"></span>
+                <!-- Email-safe fonts only: web fonts don't load in most email apps -->
+                <select class="rte-select" title="Font type" onchange="rteFontName(this)">
+                  <option value="">Font</option>
+                  <option value="Arial, Helvetica, sans-serif" style="font-family: Arial">Arial</option>
+                  <option value="Verdana, Geneva, sans-serif" style="font-family: Verdana">Verdana</option>
+                  <option value="Tahoma, Geneva, sans-serif" style="font-family: Tahoma">Tahoma</option>
+                  <option value="'Trebuchet MS', Helvetica, sans-serif" style="font-family: 'Trebuchet MS'">Trebuchet MS</option>
+                  <option value="Georgia, serif" style="font-family: Georgia">Georgia</option>
+                  <option value="'Times New Roman', Times, serif" style="font-family: 'Times New Roman'">Times New Roman</option>
+                  <option value="'Courier New', Courier, monospace" style="font-family: 'Courier New'">Courier New</option>
+                </select>
+                <select class="rte-select" title="Font size" onchange="rteFontSize(this)">
+                  <option value="">Size</option>
+                  <option value="12px">12</option>
+                  <option value="14px">14</option>
+                  <option value="16px">16</option>
+                  <option value="18px">18</option>
+                  <option value="20px">20</option>
+                  <option value="24px">24</option>
+                  <option value="28px">28</option>
+                  <option value="32px">32</option>
+                </select>
                 <span class="rte-sep"></span>
                 <button type="button" onclick="rteCmd('insertUnorderedList')">• List</button>
                 <button type="button" onclick="rteCmd('insertOrderedList')">1. List</button>
@@ -385,6 +408,39 @@
       bodyEditor.focus();
       document.execCommand(command, false, value || null);
     }
+
+    // Picking from a dropdown moves focus out of the editor, so both of
+    // these restore the last editor selection before applying.
+    function rteFontName(select) {
+      if (!select.value) return;
+      restoreSelection();
+      document.execCommand("styleWithCSS", false, true); // span style="font-family" rather than <font face>
+      document.execCommand("fontName", false, select.value);
+      document.execCommand("styleWithCSS", false, false);
+      saveSelection();
+      select.value = "";
+    }
+
+    // execCommand("fontSize") only knows sizes 1-7, so mark the selection
+    // with size 7 and swap those <font> tags for exact pixel-size spans.
+    function rteFontSize(select) {
+      const px = select.value;
+      if (!px) return;
+      restoreSelection();
+      document.execCommand("styleWithCSS", false, false);
+      document.execCommand("fontSize", false, "7");
+      bodyEditor.querySelectorAll('font[size="7"]').forEach((font) => {
+        const span = document.createElement("span");
+        span.style.fontSize = px;
+        span.innerHTML = font.innerHTML;
+        span.querySelectorAll("[style]").forEach((el) => { el.style.fontSize = ""; });
+        font.replaceWith(span);
+      });
+      savedRange = null;
+      select.value = "";
+    }
+    window.rteFontName = rteFontName;
+    window.rteFontSize = rteFontSize;
 
     function rteInsertLink() {
       const url = prompt("Link URL (e.g. https://sikhsinindia.com):");
@@ -685,7 +741,7 @@
         const d = doc.data();
         const email = (d.Email || doc.id || "").trim();
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return; // skip malformed/missing
-        recipients.push({ email, name: d.GreetingName || d.Name || "" });
+        recipients.push({ email, name: d.GName || d.GreetingName || d.Name || "" });
       });
       recipients.sort((a, b) => (a.name || a.email).localeCompare(b.name || b.email));
       return recipients;
@@ -765,7 +821,7 @@
     function personalize(str, recipient) {
       const name = recipient.name || "Sangat Ji";
       return String(str || "")
-        .replace(/\{\{\s*name\s*\}\}/gi, name)
+        .replace(/\{\{\s*(name|gname)\s*\}\}/gi, name)
         .replace(/\{\{\s*email\s*\}\}/gi, recipient.email);
     }
 
