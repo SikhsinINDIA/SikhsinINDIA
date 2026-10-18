@@ -90,8 +90,9 @@
         </div>
         <div class="form-row">
           <label>Body Variables — one per line, in the exact order the approved template expects (leave empty if
-            the template has no {{1}}, {{2}}, ... variables)</label>
-          <textarea id="fParams" rows="3" placeholder="(no variables for this template)"></textarea>
+            the template has no {{1}}, {{2}}, ... variables). Write <code>{name}</code> to fill in each member's own
+            full name, e.g. "Dear {name}," for sikhsinindia_introduction</label>
+          <textarea id="fParams" rows="3" placeholder="(no variables for this template)">{name}</textarea>
         </div>
       </div>
 
@@ -227,11 +228,17 @@
     window.updateHeaderPreview = updateHeaderPreview;
     updateHeaderPreview();
 
-    function getParams() {
+    // WhatsApp rejects an empty text variable, so a member with no name on
+    // file is greeted generically instead.
+    const FALLBACK_NAME = "Sangat Ji";
+
+    function getParams(name) {
+      const fullName = String(name || "").trim() || FALLBACK_NAME;
       return document.getElementById("fParams").value
         .split("\n")
         .map((s) => s.trim())
-        .filter(Boolean);
+        .filter(Boolean)
+        .map((s) => s.replace(/\{name\}/gi, fullName));
     }
 
     function escapeHtml(s) {
@@ -271,7 +278,7 @@
         const d = doc.data();
         const phone = buildPhone(d.Country_Code, d.Mobile);
         const warning = looksSuspicious(d.Country_Code, d.Mobile);
-        const entry = { email: doc.id, name: d.GreetingName || d.Name || "", phone, warning };
+        const entry = { email: doc.id, name: d.GreetingName || d.Name || "", fullName: d.Name || d.GreetingName || "", phone, warning };
         if (seenPhones.has(phone)) return; // duplicate person, skip
         seenPhones.set(phone, entry);
       });
@@ -370,10 +377,12 @@
       const templateName = document.getElementById("fTemplateName").value.trim();
       const languageCode = document.getElementById("fLanguageCode").value.trim() || "en";
       if (!templateName) { status.textContent = "Enter a template name first."; return; }
+      const testName = prompt("Name to use for {name} in this test message:", "Sidak Arora");
+      if (testName === null) return;
 
       status.textContent = "Sending test...";
       try {
-        await sendWhatsAppTemplate(testNumber.trim(), templateName, languageCode, getParams(), getHeaderImage());
+        await sendWhatsAppTemplate(testNumber.trim(), templateName, languageCode, getParams(testName), getHeaderImage());
         status.textContent = `Test sent to ${testNumber}.`;
       } catch (err) {
         status.textContent = "Test send failed: " + (err.message || err);
@@ -408,7 +417,6 @@
       closeSendConfirm();
       const templateName = document.getElementById("fTemplateName").value.trim();
       const languageCode = document.getElementById("fLanguageCode").value.trim() || "en";
-      const params = getParams();
       const headerImageUrl = getHeaderImage();
       const recipients = getSelectedRecipients();
 
@@ -428,7 +436,7 @@
         progressLabel.textContent = `Sending ${i + 1} / ${recipients.length}...`;
         progressFill.style.width = Math.round(((i + 1) / recipients.length) * 100) + "%";
         try {
-          await sendWhatsAppTemplate(recipient.phone, templateName, languageCode, params, headerImageUrl);
+          await sendWhatsAppTemplate(recipient.phone, templateName, languageCode, getParams(recipient.fullName), headerImageUrl);
           ok++;
           log.insertAdjacentHTML("beforeend", `<div class="log-ok">✅ ${escapeHtml(recipient.name || recipient.email)} — ${escapeHtml(recipient.phone)}</div>`);
         } catch (err) {
