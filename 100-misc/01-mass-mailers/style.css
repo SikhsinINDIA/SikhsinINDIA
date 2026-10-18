@@ -251,6 +251,17 @@ tr:hover { background-color: #f9f6f0; }
 }
 .rte-toolbar button:hover { background: var(--cream); }
 .rte-toolbar .rte-sep { width: 1px; background: rgba(0, 0, 0, 0.1); margin: 4px 2px; }
+.rte-toolbar .rte-select {
+  width: auto;
+  padding: 4px 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
 
 .rte-body {
   min-height: 260px;
