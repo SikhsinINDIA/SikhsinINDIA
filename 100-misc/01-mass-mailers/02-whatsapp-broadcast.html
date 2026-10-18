@@ -91,7 +91,7 @@
         <div class="form-row">
           <label>Body Variables — one per line, in the exact order the approved template expects (leave empty if
             the template has no {{1}}, {{2}}, ... variables). Write <code>{name}</code> to fill in each member's own
-            full name, e.g. "Dear {name}," for sikhsinindia_introduction</label>
+            GName (full name if none), e.g. "Dear {name}," for sikhsinindia_introduction</label>
           <textarea id="fParams" rows="3" placeholder="(no variables for this template)">{name}</textarea>
         </div>
       </div>
@@ -233,12 +233,12 @@
     const FALLBACK_NAME = "Sangat Ji";
 
     function getParams(name) {
-      const fullName = String(name || "").trim() || FALLBACK_NAME;
+      const greeting = String(name || "").trim() || FALLBACK_NAME;
       return document.getElementById("fParams").value
         .split("\n")
         .map((s) => s.trim())
         .filter(Boolean)
-        .map((s) => s.replace(/\{name\}/gi, fullName));
+        .map((s) => s.replace(/\{name\}/gi, greeting));
     }
 
     function escapeHtml(s) {
@@ -278,7 +278,7 @@
         const d = doc.data();
         const phone = buildPhone(d.Country_Code, d.Mobile);
         const warning = looksSuspicious(d.Country_Code, d.Mobile);
-        const entry = { email: doc.id, name: d.GreetingName || d.Name || "", fullName: d.Name || d.GreetingName || "", phone, warning };
+        const entry = { email: doc.id, name: d.GName || d.GreetingName || d.Name || "", phone, warning };
         if (seenPhones.has(phone)) return; // duplicate person, skip
         seenPhones.set(phone, entry);
       });
@@ -377,7 +377,7 @@
       const templateName = document.getElementById("fTemplateName").value.trim();
       const languageCode = document.getElementById("fLanguageCode").value.trim() || "en";
       if (!templateName) { status.textContent = "Enter a template name first."; return; }
-      const testName = prompt("Name to use for {name} in this test message:", "Sidak Arora");
+      const testName = prompt("GName to use for {name} in this test message:", "Sidak");
       if (testName === null) return;
 
       status.textContent = "Sending test...";
@@ -436,7 +436,7 @@
         progressLabel.textContent = `Sending ${i + 1} / ${recipients.length}...`;
         progressFill.style.width = Math.round(((i + 1) / recipients.length) * 100) + "%";
         try {
-          await sendWhatsAppTemplate(recipient.phone, templateName, languageCode, getParams(recipient.fullName), headerImageUrl);
+          await sendWhatsAppTemplate(recipient.phone, templateName, languageCode, getParams(recipient.name), headerImageUrl);
           ok++;
           log.insertAdjacentHTML("beforeend", `<div class="log-ok">✅ ${escapeHtml(recipient.name || recipient.email)} — ${escapeHtml(recipient.phone)}</div>`);
         } catch (err) {
