@@ -191,7 +191,7 @@
             <div class="send-panel">
               <div>
                 <div class="send-count"><span id="selectedCount">—</span> / <span id="recipientCount">—</span></div>
-                <div class="muted">selected of registered members</div>
+                <div class="muted">selected of registered members (<span id="emailCorrectCount">—</span> with Email_Correct)</div>
               </div>
               <button type="button" class="btn-control" onclick="refreshRecipientCount()">Refresh List</button>
               <button type="button" class="btn-control" onclick="sendTestToMyself()">Send Test to Myself</button>
@@ -200,9 +200,10 @@
             <p id="testSendStatus" class="muted" style="margin-top: 8px; min-height: 18px;"></p>
 
             <div class="form-row" style="margin-top: 14px;">
-              <label>Recipients — untick anyone you don't want to email this time</label>
+              <label>Recipients — only members with Email_Correct are ticked by default; untick or tick anyone for this send</label>
               <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap;">
                 <input type="text" id="recipientFilter" placeholder="Filter by name or email..." style="flex: 1; min-width: 180px;" oninput="renderRecipientList()">
+                <button type="button" class="btn-control" onclick="selectEmailCorrectOnly()">Email_Correct Only</button>
                 <button type="button" class="btn-control" onclick="selectAllRecipients(true)">Select All</button>
                 <button type="button" class="btn-control" onclick="selectAllRecipients(false)">Deselect All</button>
               </div>
@@ -733,6 +734,10 @@
     // they deliberately excluded. Reset only by Select All / a full page
     // reload.
     const deselectedEmails = new Set();
+    // Emails already loaded once — a member without Email_Correct is
+    // unticked by default only the first time they appear, so a later
+    // Refresh List doesn't undo the admin ticking them by hand.
+    const seenEmails = new Set();
 
     async function fetchRecipients() {
       const snap = await db.collection(MEMBERS_COLLECTION).get();
@@ -741,7 +746,11 @@
         const d = doc.data();
         const email = (d.Email || doc.id || "").trim();
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return; // skip malformed/missing
-        recipients.push({ email, name: d.GName || d.GreetingName || d.Name || "" });
+        recipients.push({
+          email,
+          name: d.GName || d.GreetingName || d.Name || "",
+          emailCorrect: d.Email_Correct === true || String(d.Email_Correct).toLowerCase() === "yes"
+        });
       });
       recipients.sort((a, b) => (a.name || a.email).localeCompare(b.name || b.email));
       return recipients;
@@ -778,6 +787,7 @@
           <span>
             <div class="r-name">${escapeHtml(r.name || r.email)}</div>
             ${r.name ? `<div class="r-email">${escapeHtml(r.email)}</div>` : ""}
+            ${r.emailCorrect ? "" : `<div class="r-warn">Email_Correct not ticked</div>`}
           </span>`;
         const checkbox = row.querySelector("input");
         checkbox.addEventListener("change", () => {
@@ -799,6 +809,14 @@
     }
     window.selectAllRecipients = selectAllRecipients;
 
+    function selectEmailCorrectOnly() {
+      deselectedEmails.clear();
+      (cachedRecipients || []).forEach((r) => { if (!r.emailCorrect) deselectedEmails.add(r.email); });
+      renderRecipientList();
+      updateSelectedCount();
+    }
+    window.selectEmailCorrectOnly = selectEmailCorrectOnly;
+
     async function refreshRecipientCount() {
       const countEl = document.getElementById("recipientCount");
       const listEl = document.getElementById("recipientList");
@@ -806,7 +824,12 @@
       listEl.innerHTML = `<div class="loading-text">Loading members...</div>`;
       try {
         cachedRecipients = await fetchRecipients();
+        cachedRecipients.forEach((r) => {
+          if (!seenEmails.has(r.email) && !r.emailCorrect) deselectedEmails.add(r.email);
+          seenEmails.add(r.email);
+        });
         countEl.textContent = cachedRecipients.length;
+        document.getElementById("emailCorrectCount").textContent = cachedRecipients.filter((r) => r.emailCorrect).length;
         renderRecipientList();
         updateSelectedCount();
       } catch (err) {
