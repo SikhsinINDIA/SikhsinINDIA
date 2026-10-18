@@ -162,6 +162,7 @@
                 <span class="rte-sep"></span>
                 <button type="button" onclick="document.getElementById('inlineImageInput').click()">🖼️ Insert Image</button>
                 <button type="button" onclick="rteCmd('removeFormat')">Clear Formatting</button>
+                <button type="button" onclick="rteRemoveIndents()" title="Remove indents from the whole message (lists keep their bullets)">⇤ Remove Indents</button>
               </div>
               <div id="bodyEditor" class="rte-body" contenteditable="true" data-placeholder="Write your message here..."></div>
               <input type="file" id="inlineImageInput" class="file-input-hidden" accept="image/*" onchange="handleInlineImage(event)">
@@ -440,6 +441,38 @@
       savedRange = null;
       select.value = "";
     }
+    // Strips the indents that pasting from Word/Gmail (or the browser's own
+    // indent command) leaves behind: margin/padding-left and text-indent
+    // styles, <blockquote> wrappers, and leading spaces/tabs on each line.
+    // Lists are left alone so their bullets/numbers keep their indent.
+    function rteRemoveIndents() {
+      bodyEditor.querySelectorAll("blockquote").forEach((bq) => {
+        const div = document.createElement("div");
+        div.innerHTML = bq.innerHTML;
+        bq.replaceWith(div);
+      });
+      bodyEditor.querySelectorAll("[style]").forEach((el) => {
+        if (el.tagName === "UL" || el.tagName === "OL") return;
+        ["margin-left", "padding-left", "text-indent", "margin-inline-start", "padding-inline-start"].forEach((p) => el.style.removeProperty(p));
+        if (!el.getAttribute("style").trim()) el.removeAttribute("style");
+      });
+      const walker = document.createTreeWalker(bodyEditor, NodeFilter.SHOW_TEXT);
+      const blocks = "P,DIV,LI,H1,H2,H3,H4,TD";
+      for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+        // Only the first text of a line: no earlier text in the same block.
+        const block = node.parentElement.closest(blocks) || bodyEditor;
+        const range = document.createRange();
+        range.setStart(block, 0);
+        // A <br> also starts a new line within the same block.
+        const brs = [...block.querySelectorAll("br")].filter((br) => br.compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING);
+        if (brs.length) range.setStartAfter(brs[brs.length - 1]);
+        range.setEnd(node, 0);
+        if (range.toString().replace(/[\s ]/g, "") !== "") continue;
+        node.textContent = node.textContent.replace(/^[\s ]+/, "");
+      }
+      savedRange = null;
+    }
+    window.rteRemoveIndents = rteRemoveIndents;
     window.rteFontName = rteFontName;
     window.rteFontSize = rteFontSize;
 
@@ -866,7 +899,10 @@
       const bodyHtml = bodyEditor.innerHTML.trim();
       if (!subject || !bodyHtml) { status.textContent = "Write a subject and message body first."; return; }
 
-      const recipient = { email: testEmail.trim(), name: "" };
+      // Greet the test exactly as that member would be greeted (their GName),
+      // so the test shows what members actually receive.
+      const member = (cachedRecipients || []).find((r) => r.email.toLowerCase() === testEmail.trim().toLowerCase());
+      const recipient = { email: testEmail.trim(), name: member ? member.name : "" };
       status.textContent = "Sending test...";
       try {
         await callMailWorker({
