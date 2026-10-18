@@ -561,8 +561,8 @@
         if (!mobileInput.value.trim()) {
           setError(mobileInput, "Mobile number is required.");
           return false;
-        } else if (digitsOnly.length < 9 || digitsOnly.length > 15) {
-          setError(mobileInput, "Mobile number must be 9–15 digits.");
+        } else if (digitsOnly.length < 8 || digitsOnly.length > 15) {
+          setError(mobileInput, "Mobile number must be 8–15 digits.");
           return false;
         }
         clearError(mobileInput);

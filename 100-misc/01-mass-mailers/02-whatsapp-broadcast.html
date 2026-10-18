@@ -46,6 +46,11 @@
   <style>
     .poster { max-width: 1100px; }
     .r-warn { color: #b32020; font-size: 11px; font-weight: 700; }
+    .st { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+    .st-read { background: #e3f0ff; color: #1a4f9c; }
+    .st-delivered { background: #e6f7ec; color: #146c3a; }
+    .st-sent, .st-accepted { background: #fff7e6; color: #8a5a00; }
+    .st-failed { background: #fdeaea; color: #a11; }
   </style>
 </head>
 
@@ -127,6 +132,28 @@
           <div class="muted" id="sendProgressLabel">Sending 0 / 0...</div>
           <div class="progress-track"><div class="progress-fill" id="sendProgressFill"></div></div>
           <div class="send-log" id="sendLog"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Delivery Report</div>
+        <p class="muted" style="margin-bottom: 10px;">"Sent" above only means Meta accepted the message. This shows what
+          actually happened on each phone, as reported back by WhatsApp: <b>Delivered</b>, <b>Read</b>, or
+          <b>Failed</b> with the reason. "Accepted" means no report has come back yet.</p>
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px;">
+          <label style="display: inline-flex; align-items: center; gap: 6px; margin: 0;">
+            <input type="checkbox" id="reportThisTemplate" checked style="width: auto;"> Only the template above
+          </label>
+          <select id="reportDays" style="width: auto;">
+            <option value="1">Last 24 hours</option>
+            <option value="7" selected>Last 7 days</option>
+            <option value="30">Last 30 days</option>
+          </select>
+          <button type="button" class="btn-control" onclick="loadDeliveryReport()">Load Delivery Report</button>
+        </div>
+        <div id="reportSummary" class="muted" style="margin-bottom: 8px;"></div>
+        <div class="table-container" style="margin-bottom: 0;">
+          <div id="reportTable" style="max-height: 420px; overflow-y: auto;"></div>
         </div>
       </div>
 
@@ -254,16 +281,24 @@
        rather than silently sending to a likely-wrong number — a member
        whose Mobile was mistyped shows up here instead of failing invisibly
        partway through the real send. */
+    // Local numbers are often saved with their national leading 0 (e.g. UAE
+    // 0554330633), which isn't dialled after the country code — +971
+    // 0554330633 is not a real number, so WhatsApp can't deliver to it.
+    function mobileDigits(mobile) {
+      return String(mobile == null ? "" : mobile).replace(/[^0-9]/g, "").replace(/^0+/, "");
+    }
+
     function buildPhone(countryCode, mobile) {
       const cc = String(countryCode || "").replace(/[^0-9+]/g, "");
-      const digits = String(mobile == null ? "" : mobile).replace(/[^0-9]/g, "");
-      return (cc.startsWith("+") ? cc : "+" + cc) + digits;
+      return (cc.startsWith("+") ? cc : "+" + cc) + mobileDigits(mobile);
     }
 
     function looksSuspicious(countryCode, mobile) {
-      const digits = String(mobile == null ? "" : mobile).replace(/[^0-9]/g, "");
+      const digits = mobileDigits(mobile);
       if (!digits) return "no mobile number on file";
       if (countryCode === "+91" && digits.length !== 10) return `${digits.length}-digit number, expected 10 for +91`;
+      // 8 is the shortest real mobile number we serve (e.g. Qatar +974).
+      if (digits.length < 8) return `${digits.length}-digit number, expected at least 8`;
       return null;
     }
 
@@ -456,6 +491,63 @@
       }
     }
     window.confirmSendBroadcast = confirmSendBroadcast;
+
+    /* ---------------- DELIVERY REPORT ----------------
+       Statuses come from Meta's delivery webhook, stored by the Worker
+       (see cloudflare-worker/src/index.js, WHATSAPP DELIVERY TRACKING). */
+    const STATUS_ORDER = { failed: 0, accepted: 1, sent: 2, delivered: 3, read: 4 };
+    const STATUS_LABEL = { failed: "Failed", accepted: "Accepted", sent: "Sent", delivered: "Delivered", read: "Read" };
+
+    async function loadDeliveryReport() {
+      const summary = document.getElementById("reportSummary");
+      const table = document.getElementById("reportTable");
+      const user = firebase.auth().currentUser;
+      if (!user) { summary.textContent = "Not signed in — log in again."; return; }
+      summary.textContent = "Loading...";
+      table.innerHTML = "";
+      const days = Number(document.getElementById("reportDays").value);
+      const templateName = document.getElementById("reportThisTemplate").checked
+        ? document.getElementById("fTemplateName").value.trim() : "";
+      try {
+        const res = await fetch(SEND_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${await user.getIdToken()}` },
+          body: JSON.stringify({ action: "whatsapp_statuses", templateName, since: Date.now() - days * 86400000 })
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+        renderDeliveryReport(data.rows || []);
+      } catch (err) {
+        summary.textContent = "Could not load the report: " + (err.message || err);
+      }
+    }
+    window.loadDeliveryReport = loadDeliveryReport;
+
+    function renderDeliveryReport(rows) {
+      const summary = document.getElementById("reportSummary");
+      const table = document.getElementById("reportTable");
+      const nameByPhone = new Map((cachedRecipients || []).map((r) => [r.phone, r.name || r.email]));
+      const counts = {};
+      rows.forEach((r) => { counts[r.s] = (counts[r.s] || 0) + 1; });
+      summary.innerHTML = rows.length
+        ? `<b>${rows.length}</b> messages — ` + Object.keys(STATUS_ORDER)
+            .filter((s) => counts[s]).map((s) => `${STATUS_LABEL[s]}: <b>${counts[s]}</b>`).join(" · ")
+        : "No tracked messages in this period (only messages sent after delivery tracking was switched on are tracked).";
+      if (!rows.length) return;
+
+      rows.sort((a, b) => (STATUS_ORDER[a.s] - STATUS_ORDER[b.s]) || ((b.at || 0) - (a.at || 0)));
+      const fmt = (ms) => ms ? new Date(ms).toLocaleString("en-GB", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }) : "";
+      table.innerHTML = `<table>
+        <thead><tr><th>Member</th><th>Phone</th><th>Status</th><th>Reason (if failed)</th><th>Sent</th><th>Last update</th></tr></thead>
+        <tbody>${rows.map((r) => `<tr>
+          <td>${escapeHtml(nameByPhone.get(r.to) || "")}</td>
+          <td>${escapeHtml(r.to || "")}</td>
+          <td><span class="st st-${escapeHtml(r.s)}">${escapeHtml(STATUS_LABEL[r.s] || r.s)}</span></td>
+          <td style="font-size: 12px;">${escapeHtml(r.e || "")}</td>
+          <td style="white-space: nowrap;">${fmt(r.at)}</td>
+          <td style="white-space: nowrap;">${fmt(r.u)}</td>
+        </tr>`).join("")}</tbody></table>`;
+    }
   </script>
 
 </body>
