@@ -277,6 +277,12 @@ tr:hover { background-color: #f9f6f0; }
 }
 .rte-body:focus { outline: none; border-color: var(--gold); }
 .rte-body img { max-width: 100%; border-radius: 4px; }
+/* The global `* { padding: 0 }` reset strips the indent lists need, which
+   pushed bullets/numbers outside the editor where they were clipped. */
+.rte-body ul, .rte-body ol { padding-left: 26px; margin: 0 0 6px; }
+.rte-body ul { list-style: disc; }
+.rte-body ol { list-style: decimal; }
+.rte-body li { margin: 0 0 2px; }
 .rte-body:empty::before { content: attr(data-placeholder); color: #999; }
 /* Each Enter press wraps a new line in its own <p> or <div> — without this,
    the browser's default paragraph margin stacks on top of the line-height
