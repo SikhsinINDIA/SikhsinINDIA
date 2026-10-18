@@ -1,0 +1,26 @@
+# Platform shortlist for sikhsinindia.com articles
+
+**Link types.** A *dofollow* link passes ranking signal. A *nofollow* or *ugc* link passes little or none, but Google treats both as hints. Nofollow links still bring real visitors, get pages crawled and indexed faster, and build the brand searches ("sikhs in india gurudwara") that help rankings. A good mix is a few dofollow links from relevant sites plus steady nofollow traffic from big platforms.
+
+The link types below were correct at the time of writing (2026). Platforms change them, so check one of your own published links: right-click it → *Inspect* and look for `rel="nofollow"` / `rel="ugc"`.
+
+| # | Platform | Link type | Account needed | Fit | Posting rules / notes |
+|---|----------|-----------|----------------|-----|-----------------------|
+| 1 | **Blogger** (blogger.com) | Dofollow in post body | Google account | High: you own the blog | Free and owned by Google. Make it a real blog ("Sikh Heritage Notes") with 5+ posts before it carries weight. Don't copy pages from sikhsinindia.com: Google indexes duplicates and may rank the copy instead. |
+| 2 | **WordPress.com** (free blog) | Usually dofollow in post body | WordPress.com account | High | Same advice as Blogger. The free plan shows ads and a `*.wordpress.com` address. Use categories and tags. |
+| 3 | **Medium** | Nofollow | Medium account (Google sign-in works) | Medium: big audience, good for traffic | Up to 5 tags. Submitting to a *publication* (e.g. travel, spirituality or culture publications) brings more readers; each publication has its own submission guidelines, so read them first. Disclose that you run the site you link to. |
+| 4 | **LinkedIn Articles** | Nofollow | LinkedIn profile | Medium: professional reach, good for seva and leadership angles | Publish from the profile of the person behind SikhsinIndia. Use a cover image (1200×644). Keep it reflective, not promotional. Share it as a post afterwards. |
+| 5 | **Quora** | Nofollow | Quora account | High for intent: people asking exactly what the site answers | Answer the question fully *in the answer itself*. Use one link at most, as "further reading". Answers that only drop links get collapsed or removed. Fill in a credential such as "Runs SikhsinIndia.com, a Sikh heritage resource". Quora Spaces (Sikh-themed) accept posts too. |
+| 6 | **Reddit: r/Sikh** | Nofollow/ugc | Reddit account with some history | Medium: valuable but strict | Read the sidebar rules before posting. Most subs remove self-promotion from new or low-karma accounts, and Reddit's guideline is that most of your activity should *not* be your own links. Comment helpfully for a few weeks first, then share one genuinely useful resource and say you built it. Similar subs: r/Punjab, r/IndiaTravel (Delhi/Amritsar gurdwara guides), r/religion. |
+| 7 | **Tumblr** | Links go through a redirect, effectively nofollow | Tumblr account | Low–medium: visual posts (Nishan Sahib, Ik Onkar, festivals) | Tag well (#sikhism #sikhi #waheguru #gurdwara). Short text with an image. |
+| 8 | **Pinterest** | Nofollow | Pinterest business account (free) | Medium: festival greetings and Gurpurab images get repinned for years | The site already has greetings pages (Gurpurab, Joti Jot, Lohri, Sikh New Year). Pin each image linking to its page. Note: pinning isn't an article, but it's the easiest steady traffic source for those pages. |
+| 9 | **Guest posts on Sikh / Punjabi community sites** | Often dofollow; varies by site | Usually none: you email an editor | Highest value | Pitch a *new* article (see `07-guest-post-pitch.md`). Look for sites that publish community contributions, such as Sikh blogs, Punjabi diaspora magazines, gurdwara committee newsletters with web editions, and Sikh student association blogs. Check each site's "Write for us / Submit" page, and confirm whether author-bio links are allowed. Never pay for links: Google treats paid links as spam. |
+| 10 | **Guest posts on Indian travel blogs** | Often dofollow; varies | Usually none (email pitch) | High: the 720 gurudwara pages are travel content | Pitch "Gurudwaras to visit in Delhi" or "A first-timer's guide to visiting a gurudwara" to travel blogs that accept guest posts (search `"write for us" travel India`, `"guest post" Punjab travel`). |
+| 11 | **Local listings & resource pages** | Mixed | Varies | Medium | Ask the welfare organisations featured in `05-sikh-welfare/` (Ram Dass Blood Donation Society, Prabh Aasra, etc.) whether they would link to their profile page on sikhsinindia.com. These are relevant, natural links you have already earned. |
+
+## Avoid
+
+- Paid link schemes, PBNs, "100 backlinks for $5" gigs, and article-spinning sites. They risk a manual penalty.
+- Wikipedia/SikhiWiki self-linking. Their external links are nofollow, and adding your own site is a conflict of interest that editors revert.
+- Posting the same article on several platforms. Write each one fresh (as these drafts are), or use the platform's *canonical URL* setting where it exists (Medium's "Import a story" sets it automatically).
+- Exact-match anchor text everywhere ("best gurudwaras in India"). Vary anchors: page titles, the brand name, natural phrases.
