@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 170" width="220" height="170">
+  <rect width="220" height="170" fill="#0d1b3e"/>
+  <!-- open saroop on a palki cloth -->
+  <path d="M30 128 Q110 150 190 128 L190 138 Q110 160 30 138 Z" fill="#F7941D" opacity="0.85"/>
+  <path d="M110 46 Q80 34 40 40 L40 122 Q80 116 110 128 Z" fill="#f5f0e8"/>
+  <path d="M110 46 Q140 34 180 40 L180 122 Q140 116 110 128 Z" fill="#ffffff"/>
+  <line x1="110" y1="46" x2="110" y2="128" stroke="#c9b88f" stroke-width="2"/>
+  <text x="75" y="92" text-anchor="middle" font-family="Raavi, 'Noto Sans Gurmukhi', serif" font-size="34" fill="#0d1b3e">ੴ</text>
+  <g stroke="#0d1b3e" stroke-width="2.5" stroke-linecap="round" opacity="0.55">
+    <line x1="124" y1="64" x2="168" y2="62"/>
+    <line x1="124" y1="76" x2="168" y2="74"/>
+    <line x1="124" y1="88" x2="168" y2="86"/>
+    <line x1="124" y1="100" x2="160" y2="99"/>
+  </g>
+</svg>
