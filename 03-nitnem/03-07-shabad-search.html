@@ -150,8 +150,8 @@
     }
 
     /* LIVE KIRTAN */
-    .live-section {
-      margin-bottom: 36px;
+    .live-wrapper {
+      padding-bottom: 24px;
     }
 
     .live-heading {
@@ -763,13 +763,8 @@
       </div>
     </div>
 
-    <!-- INTRO BAR -->
-    <div class="intro">
-      Find a Shabad by Its Words or by the Kirtaniya, and Listen Right Here
-    </div>
-
     <!-- MAIN CONTENT WRAPPER -->
-    <div class="wrapper">
+    <div class="wrapper live-wrapper">
 
       <!-- LIVE KIRTAN — SGPC's official broadcast from Sri Harmandir Sahib -->
       <section class="live-section" aria-labelledby="liveHeading">
@@ -788,10 +783,20 @@
         </div>
         <p class="live-note">
           Official live broadcast by SGPC, Sri Amritsar. Kirtan runs through the day from early morning
-          (about 3 AM IST) until night. If it isn't live right now, the player shows when it starts next, or
+          (about 3 AM IST) until night. Can't hear it? Tap the speaker icon on the player and check your
+          device's volume. If it isn't live right now, the player shows when it starts next, or
           <a href="https://www.youtube.com/@SGPCSriAmritsar/streams" target="_blank" rel="noopener">watch earlier broadcasts</a>.
         </p>
       </section>
+
+    </div>
+
+    <!-- INTRO BAR -->
+    <div class="intro">
+      Find a Shabad by Its Words or by the Kirtaniya, and Listen Right Here
+    </div>
+
+    <div class="wrapper">
 
       <h1>Search Shabad Kirtan</h1>
 
@@ -1151,6 +1156,7 @@
 
     function playVideo(videoId, title, channel) {
       currentVideoId = videoId;
+      if (livePlayer && livePlayer.pauseVideo) { try { livePlayer.pauseVideo(); } catch (e) { /* ignore */ } }
       playerSection.hidden = false;
       playerEnded.hidden = true;
       nowPlaying.textContent = title;
@@ -1172,19 +1178,56 @@
     // who just want to search don't download the YouTube player.
     var SGPC_CHANNEL_ID = 'UCYn6UEtQ771a_OWSiNBoG8w';
     var liveFrame = document.getElementById('liveFrame');
+    var livePlayer = null;
 
-    document.getElementById('liveStartBtn').addEventListener('click', function () {
-      // Only one thing playing at a time: pause a searched shabad if any.
-      if (ytPlayerReady && ytPlayer.pauseVideo) { try { ytPlayer.pauseVideo(); } catch (e) { /* ignore */ } }
+    // Browsers often start an auto-playing embedded video MUTED. Starting it
+    // through the IFrame API lets us unmute it from the visitor's own tap,
+    // so the kirtan is heard straight away.
+    function startLiveWithApi() {
+      var mount = document.createElement('div');
+      liveFrame.innerHTML = '';
+      liveFrame.appendChild(mount);
+      livePlayer = new YT.Player(mount, {
+        videoId: 'live_stream',
+        height: '100%',
+        width: '100%',
+        playerVars: {
+          channel: SGPC_CHANNEL_ID, autoplay: 1, mute: 0, rel: 0, modestbranding: 1,
+          playsinline: 1, enablejsapi: 1, origin: window.location.origin
+        },
+        events: {
+          onReady: function (e) {
+            e.target.unMute();
+            e.target.setVolume(100);
+            e.target.playVideo();
+          },
+          onStateChange: function (e) {
+            // Some browsers still force-mute the first play; undo it.
+            if (e.data === YT.PlayerState.PLAYING && e.target.isMuted()) e.target.unMute();
+          }
+        }
+      });
+    }
+
+    // If YouTube's player script didn't load (e.g. an ad blocker), use a
+    // plain embed; the visitor may then need to tap the speaker icon.
+    function startLivePlain() {
       var iframe = document.createElement('iframe');
       iframe.src = 'https://www.youtube.com/embed/live_stream?channel=' + SGPC_CHANNEL_ID +
-        '&autoplay=1&rel=0&modestbranding=1&playsinline=1';
+        '&autoplay=1&mute=0&rel=0&modestbranding=1&playsinline=1';
       iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
       iframe.allowFullscreen = true;
       iframe.referrerPolicy = 'strict-origin-when-cross-origin';
       iframe.title = 'Live Gurbani Kirtan from Sri Harmandir Sahib';
       liveFrame.innerHTML = '';
       liveFrame.appendChild(iframe);
+    }
+
+    document.getElementById('liveStartBtn').addEventListener('click', function () {
+      // Only one thing playing at a time: pause a searched shabad if any.
+      if (ytPlayerReady && ytPlayer.pauseVideo) { try { ytPlayer.pauseVideo(); } catch (e) { /* ignore */ } }
+      if (ytApiReady) startLiveWithApi();
+      else startLivePlain();
       if (window.gtag) gtag('event', 'live_kirtan_play');
     });
 
