@@ -1,52 +1,56 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-10-18",
-  "dateDisplay": "18 October 2026",
-  "ang": 632,
+  "date": "2026-10-19",
+  "dateDisplay": "19 October 2026",
+  "ang": 656,
   "raagGurmukhi": "ਰਾਗੁ ਸੋਰਠਿ",
   "raagEnglish": "Raag Sorath",
-  "writerEnglish": "Guru Tegh Bahaadur Ji",
-  "titleGurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੯ ॥",
-  "titleEnglish": "Sorat'h, Ninth Mehla:",
-  "verseGurmukhi": "ਮਨ ਰੇ ਪ੍ਰਭ ਕੀ ਸਰਨਿ ਬਿਚਾਰੋ ॥",
-  "verseTranslation": "O mind, contemplate the Sanctuary of God.",
+  "writerEnglish": "Bhagat Kabeer Ji",
+  "titleGurmukhi": "ਸੰਤਹੁ ਮਨ ਪਵਨੈ ਸੁਖੁ ਬਨਿਆ ॥",
+  "titleEnglish": "O Saints, my windy mind has now become peaceful and still.",
+  "verseGurmukhi": "ਕਿਛੁ ਜੋਗੁ ਪਰਾਪਤਿ ਗਨਿਆ ॥ ਰਹਾਉ ॥",
+  "verseTranslation": "It seems that I have learned something of the science of Yoga. ||Pause||",
   "verses": [
     {
-      "gurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੯ ॥",
-      "translation": "Sorat'h, Ninth Mehla:"
+      "gurmukhi": "ਸੰਤਹੁ ਮਨ ਪਵਨੈ ਸੁਖੁ ਬਨਿਆ ॥",
+      "translation": "O Saints, my windy mind has now become peaceful and still."
     },
     {
-      "gurmukhi": "ਮਨ ਰੇ ਪ੍ਰਭ ਕੀ ਸਰਨਿ ਬਿਚਾਰੋ ॥",
-      "translation": "O mind, contemplate the Sanctuary of God."
+      "gurmukhi": "ਕਿਛੁ ਜੋਗੁ ਪਰਾਪਤਿ ਗਨਿਆ ॥ ਰਹਾਉ ॥",
+      "translation": "It seems that I have learned something of the science of Yoga. ||Pause||"
     },
     {
-      "gurmukhi": "ਜਿਹ ਸਿਮਰਤ ਗਨਕਾ ਸੀ ਉਧਰੀ ਤਾ ਕੋ ਜਸੁ ਉਰ ਧਾਰੋ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "Meditating on Him in remembrance, Ganika the prostitute was saved; enshrine His Praises within your heart. ||1||Pause||"
+      "gurmukhi": "ਗੁਰਿ ਦਿਖਲਾਈ ਮੋਰੀ ॥",
+      "translation": "The Guru has shown me the hole,"
     },
     {
-      "gurmukhi": "ਅਟਲ ਭਇਓ ਧ੍ਰੂਅ ਜਾ ਕੈ ਸਿਮਰਨਿ ਅਰੁ ਨਿਰਭੈ ਪਦੁ ਪਾਇਆ ॥",
-      "translation": "Meditating on Him in remembrance, Dhroo became immortal, and obtained the state of fearlessness."
+      "gurmukhi": "ਜਿਤੁ ਮਿਰਗ ਪੜਤ ਹੈ ਚੋਰੀ ॥",
+      "translation": "through which the deer carefully enters."
     },
     {
-      "gurmukhi": "ਦੁਖ ਹਰਤਾ ਇਹ ਬਿਧਿ ਕੋ ਸੁਆਮੀ ਤੈ ਕਾਹੇ ਬਿਸਰਾਇਆ ॥੧॥",
-      "translation": "The Lord and Master removes suffering in this way - why have you forgotten Him? ||1||"
+      "gurmukhi": "ਮੂੰਦਿ ਲੀਏ ਦਰਵਾਜੇ ॥",
+      "translation": "I have now closed off the doors,"
     },
     {
-      "gurmukhi": "ਜਬ ਹੀ ਸਰਨਿ ਗਹੀ ਕਿਰਪਾ ਨਿਧਿ ਗਜ ਗਰਾਹ ਤੇ ਛੂਟਾ ॥",
-      "translation": "As soon as the elephant took to the protective Sanctuary of the Lord, the ocean of mercy, he escaped from the crocodile."
+      "gurmukhi": "ਬਾਜੀਅਲੇ ਅਨਹਦ ਬਾਜੇ ॥੧॥",
+      "translation": "and the unstruck celestial sound current resounds. ||1||"
     },
     {
-      "gurmukhi": "ਮਹਮਾ ਨਾਮ ਕਹਾ ਲਉ ਬਰਨਉ ਰਾਮ ਕਹਤ ਬੰਧਨ ਤਿਹ ਤੂਟਾ ॥੨॥",
-      "translation": "How much can I describe the Glorious Praises of the Naam? Whoever chants the Lord's Name, his bonds are broken. ||2||"
+      "gurmukhi": "ਕੁੰਭ ਕਮਲੁ ਜਲਿ ਭਰਿਆ ॥",
+      "translation": "The pitcher of my heart-lotus is filled with water;"
     },
     {
-      "gurmukhi": "ਅਜਾਮਲੁ ਪਾਪੀ ਜਗੁ ਜਾਨੇ ਨਿਮਖ ਮਾਹਿ ਨਿਸਤਾਰਾ ॥",
-      "translation": "Ajaamal, known throughout the world as a sinner, was redeemed in an instant."
+      "gurmukhi": "ਜਲੁ ਮੇਟਿਆ ਊਭਾ ਕਰਿਆ ॥",
+      "translation": "I have spilled out the water, and set it upright."
     },
     {
-      "gurmukhi": "ਨਾਨਕ ਕਹਤ ਚੇਤ ਚਿੰਤਾਮਨਿ ਤੈ ਭੀ ਉਤਰਹਿ ਪਾਰਾ ॥੩॥੪॥",
-      "translation": "Says Nanak, remember the Chintaamani, the jewel which fulfills all desires, and you too shall be carried across and saved. ||3||4||"
+      "gurmukhi": "ਕਹੁ ਕਬੀਰ ਜਨ ਜਾਨਿਆ ॥",
+      "translation": "Says Kabeer, the Lord's humble servant, this I know."
+    },
+    {
+      "gurmukhi": "ਜਉ ਜਾਨਿਆ ਤਉ ਮਨੁ ਮਾਨਿਆ ॥੨॥੧੦॥",
+      "translation": "Now that I know this, my mind is pleased and appeased. ||2||10||"
     }
   ],
-  "updated": "2026-10-18T06:11:56.893Z"
+  "updated": "2026-10-19T06:30:31.571Z"
 };
