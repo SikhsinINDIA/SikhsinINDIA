@@ -58,7 +58,7 @@
   <title>Sikhs in India | Sikh History, Gurus, Gurbani &amp; Gurudwaras</title>
 
 <link href="./css/bootstrap-home.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gurmukhi:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="./fonts/noto-sans-gurmukhi-gurmukhi.woff2" as="font" type="font/woff2" crossorigin>
 
 <style>
   :root {
@@ -746,6 +746,18 @@
      this is what actually fills the card instead of empty space. */
   .hnm-verse { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(247,148,29,0.18); }
   .hnm-verse:last-of-type { border-bottom: none; margin-bottom: 4px; padding-bottom: 0; }
+  /* Noto Sans Gurmukhi (SIL Open Font License), served from this site instead
+     of Google Fonts: no extra connections, and the Gurmukhi file is preloaded
+     above. One variable-weight file covers 400-700; spaces and Latin
+     characters in the verse fall back to Arial, so no second file is needed. */
+  @font-face {
+    font-family: 'Noto Sans Gurmukhi';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url(./fonts/noto-sans-gurmukhi-gurmukhi.woff2) format('woff2');
+    unicode-range: U+0951-0952, U+0964-0965, U+0A01-0A76, U+200C-200D, U+20B9, U+25CC, U+262C, U+A830-A839;
+  }
   .hnm-gurmukhi {
     font-family: 'Noto Sans Gurmukhi', Arial, sans-serif;
     font-size: 23px;
