@@ -229,7 +229,7 @@ for (const p of pages) {
   if (t) titleByRel.set(p.rel, shortTitle(t));
 }
 
-const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, icons: 0, alts: 0, zoom: 0, hreflang: 0, changedFiles: 0 };
+const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, icons: 0, alts: 0, zoom: 0, hreflang: 0, homeLinks: 0, titles: 0, changedFiles: 0 };
 const DEFAULT_IMAGE = `${SITE}/sikhsinindia.jpg`;
 const indexable = [];
 
@@ -287,6 +287,23 @@ for (const p of pages) {
       return next === content ? m : a + next + z;
     });
     if (fixedViewport !== h) { h = fixedViewport; stats.zoom++; }
+  }
+
+  // 13. Links to the home page use "/" rather than ".../index.html", so crawlers
+  // only ever see https://sikhsinindia.com/ (its canonical and hreflang URL).
+  // A second address for the same page shows up as an hreflang conflict.
+  {
+    const dir = path.posix.dirname(rel);
+    const toRoot = h.replace(/(<a\b[^>]*\shref=["'])([^"']+)(["'])/gi, (m, a, href, z) => {
+      if (/^[a-z]+:|^#|^\/\//i.test(href) && !href.startsWith(SITE + "/")) return m;
+      const [pathPart, ...rest] = href.split(/(?=[?#])/);
+      let target;
+      if (pathPart.startsWith(SITE + "/")) target = pathPart.slice(SITE.length + 1);
+      else if (pathPart.startsWith("/")) target = pathPart.slice(1);
+      else target = path.posix.normalize(path.posix.join(dir, pathPart));
+      return target === "index.html" ? a + "/" + rest.join("") + z : m;
+    });
+    if (toRoot !== h) { h = toRoot; stats.homeLinks++; }
   }
 
   // 1. Google tag placeholder id
@@ -449,4 +466,6 @@ console.log(`  Favicon links added:      ${stats.icons}`);
 console.log(`  Lightbox alt text added:  ${stats.alts}`);
 console.log(`  Pinch-zoom re-enabled:    ${stats.zoom}`);
 console.log(`  hreflang sets updated:    ${stats.hreflang}`);
+console.log(`  Home links set to "/":   ${stats.homeLinks}`);
+console.log(`  Long titles shortened:    ${stats.titles}`);
 console.log(`  Sitemap URLs:             ${indexable.length}`);
