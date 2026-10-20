@@ -155,6 +155,11 @@
     overflow: hidden;
     position: relative;
     width: 100%;
+    /* Reserve the loaded height: the event pills are taller than the
+       "Loading..." text, and the bar growing pushed everything below down. */
+    min-height: 37px;
+    display: flex;
+    align-items: center;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
   }
