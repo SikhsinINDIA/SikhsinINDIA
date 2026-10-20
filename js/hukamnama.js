@@ -141,7 +141,7 @@
     mount.innerHTML =
       '<div class="hnm-card">' +
         '<div class="hnm-head">' +
-          '<div class="hnm-kicker">&#128591; Today&rsquo;s Hukamnama</div>' +
+          '<h2 class="hnm-kicker">&#128591; Today&rsquo;s Hukamnama</h2>' +
           '<div class="hnm-date">' + esc(d.dateDisplay) + '</div>' +
         '</div>' +
         '<div class="hnm-body">' +
@@ -163,7 +163,7 @@
     if (!mount) return;
     mount.innerHTML =
       '<div class="hnm-card"><div class="hnm-head">' +
-      '<div class="hnm-kicker">&#128591; Today&rsquo;s Hukamnama</div></div>' +
+      '<h2 class="hnm-kicker">&#128591; Today&rsquo;s Hukamnama</h2></div>' +
       '<div class="hnm-body"><p class="hnm-none">This feature is briefly unavailable.</p></div></div>';
   }
 
