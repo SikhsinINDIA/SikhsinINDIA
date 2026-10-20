@@ -195,7 +195,7 @@ for (const p of pages) {
   if (t) titleByRel.set(p.rel, shortTitle(t));
 }
 
-const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, icons: 0, changedFiles: 0 };
+const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, icons: 0, alts: 0, changedFiles: 0 };
 const DEFAULT_IMAGE = `${SITE}/sikhsinindia.jpg`;
 const indexable = [];
 
@@ -230,6 +230,18 @@ for (const p of pages) {
       ? withIcons.replace(/<!-- seo:icons -->[\s\S]*?<!-- \/seo:icons -->/, () => icons)
       : withIcons.replace(/<\/head>/i, () => `  ${icons}${eol}</head>`);
     if (withIcons !== h) { h = withIcons; stats.icons++; }
+  }
+
+  // 10. Gallery lightbox: <img id="lightbox-img" src="" alt=""> is filled in by
+  // JavaScript when a photo is opened, but SEO checkers read the empty alt as
+  // missing. Give it a description in the page's language.
+  {
+    const lang = rel.startsWith("hi/") ? "hi" : rel.startsWith("pa/") ? "pa" : "en";
+    const altText = { en: "Enlarged view of the selected picture", hi: "चुनी गई तस्वीर का बड़ा दृश्य", pa: "ਚੁਣੀ ਹੋਈ ਤਸਵੀਰ ਦਾ ਵੱਡਾ ਦ੍ਰਿਸ਼" }[lang];
+    const withAlt = h.replace(/<img\b[^>]*\bid=["']lightbox-img["'][^>]*>/gi, (tag) =>
+      /\balt\s*=\s*(["'])\s*\1/i.test(tag) ? tag.replace(/\balt\s*=\s*(["'])\s*\1/i, `alt="${altText}"`)
+        : /\balt\s*=/i.test(tag) ? tag : tag.replace(/<img\b/i, `<img alt="${altText}"`));
+    if (withAlt !== h) { h = withAlt; stats.alts++; }
   }
 
   // 1. Google tag placeholder id
@@ -355,4 +367,5 @@ console.log(`  Pages set to noindex:     ${stats.noindex}`);
 console.log(`  Page URLs fixed:          ${stats.urls}`);
 console.log(`  Share images fixed:       ${stats.images}`);
 console.log(`  Favicon links added:      ${stats.icons}`);
+console.log(`  Lightbox alt text added:  ${stats.alts}`);
 console.log(`  Sitemap URLs:             ${indexable.length}`);

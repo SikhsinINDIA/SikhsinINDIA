@@ -505,7 +505,7 @@
       try {
         const driveUrl = await uploadToDrive(file, getTimestampFolder("MassMailer"));
         restoreSelection();
-        document.execCommand("insertHTML", false, `<img src="${driveImageUrl(driveUrl)}" alt="">`);
+        document.execCommand("insertHTML", false, `<img src="${driveImageUrl(driveUrl)}" alt="Image from Sikhs in India">`);
         status.textContent = "Image inserted.";
       } catch (err) {
         status.textContent = "Could not upload image: " + (err.message || err);
@@ -525,7 +525,7 @@
         chip.className = "chip";
         const isImage = /\.(png|jpe?g|gif|webp)$/i.test(att.filename);
         chip.innerHTML = isImage
-          ? `<img src="${driveImageUrl(att.driveUrl)}" alt="">`
+          ? `<img src="${driveImageUrl(att.driveUrl)}" alt="Attachment preview">`
           : `<span class="chip-icon">📎</span>`;
         const label = document.createElement("span");
         label.textContent = att.filename;

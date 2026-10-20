@@ -70,7 +70,7 @@
 
   <!-- MARQUEE — always-visible top-right ticker -->
   <!-- <div class="akhand-marquee" id="marquee" hidden>
-    <img id="marqueePhoto" src="" alt="">
+    <img id="marqueePhoto" src="" alt="Akhand Path photo">
     <div class="akhand-marquee-track">
       <span id="marqueeText">Akhand Path</span>
     </div>
@@ -543,7 +543,7 @@ function isUserInvited(sessionData, user) {
         card.innerHTML = `
           <div class="program-photo-frame">
             <img loading="lazy" class="program-photo" src="${escapeHtml(driveImageUrl(s.photo_url) || DEFAULT_PHOTO)}"
-              style="object-position:${offsetX}% ${offsetY}%;transform:scale(${zoom});" alt="">
+              style="object-position:${offsetX}% ${offsetY}%;transform:scale(${zoom});" alt="Photo for ${escapeHtml(s.name || "Akhand Path")}">
           </div>
           <div class="program-info">
             <div class="card-title">${escapeHtml(s.name || "Untitled")} — ${escapeHtml(s.purpose || "")}</div>
