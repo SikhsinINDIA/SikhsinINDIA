@@ -34,7 +34,8 @@ const SKIP_DIRS = new Set([".git", ".claude", ".cursor", ".vscode", ".github", "
 
 // Pages that must never be indexed: backups, copies, tests, drafts, and the
 // short share-link copies under "99 Shortcuts".
-const NOINDEX_RE = /(^|\/)old\/| - copy\.html$|-old\d*\.html$|(^|\/)test\d*\.html$|workinprogress|^99 shortcuts\//i;
+// Also the unlinked home-page drafts in 100-misc (index1.html, sikhs-in-india-posterN.html).
+const NOINDEX_RE = /(^|\/)old\/| - copy\.html$|-old\d*\.html$|(^|\/)test\d*\.html$|workinprogress|^99 shortcuts\/|^100-misc\/(index\d+|sikhs-in-india-poster\d*)\.html$/i;
 // Google Search Console verification files must stay byte-for-byte as issued.
 const UNTOUCHED_RE = /^google[0-9a-f]+.*\.html$/i;
 
@@ -255,10 +256,18 @@ for (const p of pages) {
   if (cleaned !== h) { h = cleaned; stats.desc++; }
 
   if (!noindex) {
-    // 2. <div class="hero-title"> -> <h1 class="hero-title"> when the page has no <h1>
-    if (!/<h1[\s>]/i.test(h) && /<div class="hero-title">[\s\S]*?<\/div>/.test(h)) {
-      h = h.replace(/<div class="hero-title">([\s\S]*?)<\/div>/, '<h1 class="hero-title">$1</h1>');
-      stats.h1++;
+    // 2. <div class="hero-title"> -> <h1 class="hero-title"> when the page has no
+    // <h1>. Only real markup counts: an "<h1" inside a comment or script must
+    // not stop this, and a hero-title inside a comment is never converted.
+    const visible = h.replace(/<!--[\s\S]*?-->/g, "").replace(/<script\b[\s\S]*?<\/script>/gi, "");
+    if (!/<h1[\s>]/i.test(visible)) {
+      const comments = [...h.matchAll(/<!--[\s\S]*?-->/g)].map((m) => [m.index, m.index + m[0].length]);
+      const inComment = (i) => comments.some(([a, b]) => i >= a && i < b);
+      const hero = [...h.matchAll(/<div class="hero-title">([\s\S]*?)<\/div>/g)].find((m) => !inComment(m.index));
+      if (hero) {
+        h = h.slice(0, hero.index) + `<h1 class="hero-title">${hero[1]}</h1>` + h.slice(hero.index + hero[0].length);
+        stats.h1++;
+      }
     }
 
     // 5. loading="lazy" for every image after the first
