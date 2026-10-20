@@ -138,10 +138,13 @@
         '</div>';
     }).join('');
 
+    /* The data file is refreshed each morning by a GitHub Action. If that run
+       is late or fails, don't call an older Hukamnama "today's". */
+    var kicker = d.date === indiaToday() ? 'Today&rsquo;s Hukamnama' : 'Latest Hukamnama';
     mount.innerHTML =
       '<div class="hnm-card">' +
         '<div class="hnm-head">' +
-          '<h2 class="hnm-kicker">&#128591; Today&rsquo;s Hukamnama</h2>' +
+          '<h2 class="hnm-kicker">&#128591; ' + kicker + '</h2>' +
           '<div class="hnm-date">' + esc(d.dateDisplay) + '</div>' +
         '</div>' +
         '<div class="hnm-body">' +
@@ -156,6 +159,15 @@
         '</div>' +
       '</div>';
     wireAudio(mount, d);
+  }
+
+  // Today's date in India as YYYY-MM-DD (the same form as d.date).
+  function indiaToday() {
+    try {
+      return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(new Date());
+    } catch (e) {
+      return '';
+    }
   }
 
   function fail() {
