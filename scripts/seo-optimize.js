@@ -35,7 +35,21 @@ const SKIP_DIRS = new Set([".git", ".claude", ".cursor", ".vscode", ".github", "
 // Pages that must never be indexed: backups, copies, tests, drafts, and the
 // short share-link copies under "99 Shortcuts".
 // Also the unlinked home-page drafts in 100-misc (index1.html, sikhs-in-india-posterN.html).
-const NOINDEX_RE = /(^|\/)old\/| - copy\.html$|-old\d*\.html$|(^|\/)test\d*\.html$|workinprogress|^99 shortcuts\/|^100-misc\/(index\d+|sikhs-in-india-poster\d*)\.html$/i;
+const NOINDEX_BASE_RE = /(^|\/)old\/| - copy\.html$|-old\d*\.html$|(^|\/)test\d*\.html$|workinprogress|^99 shortcuts\/|^100-misc\/(index\d+|sikhs-in-india-poster\d*)\.html$/i;
+// Older copies that nothing links to any more (in every language), each
+// superseded by the page named in its comment, plus the Drive photo-upload tool.
+const SUPERSEDED = [
+  "01-about-sikhism/01-01-sikh-gurus.html", // -> 01-01-sikh-gurus/01-01-sikh-gurus.html
+  "01-about-sikhism/01-01-sikh-gurus/01-01-06-guru-har-gobind-ji/01-01-06-05-guru-hargobind-sahib-ji-jyoti-jot-diwas-greetings.html", // -> ...-joti-jot-diwas-greetings.html
+  "01-about-sikhism/01-06-sikh-legends/01-06-03-baba-banda-singh-bahadur-ji/01-06-03-baba-banda-singh-bahadur-ji-shaheedi-diwas.html", // -> 01-06-03-01-baba-banda-singh-bahadur-ji-shaheedi-diwas.html
+  "02-sikh-heritage/02-02-discover-culture/02-11-sikh-greetings/02-11-06-inspirational.html", // -> 02-11-06-gyan.html
+  "02-sikh-heritage/02-02-discover-culture/02-11-sikh-greetings/02-11-04-inspirational/02-11-04-01-inspirational.html", // -> 02-11-04-sabr.html
+  "01-about-sikhism/01-01-sikh-gurus/01-01-11-guru-granth-sahib-ji/01-01-11-02-guru-granth-sahib-ji-first-prakash.html", // hi/pa only -> ...-first-prakash-greetings.html
+  "100-misc/Photo Upload.html"
+].map((p) => p.toLowerCase());
+const NOINDEX_RE = {
+  test: (rel) => NOINDEX_BASE_RE.test(rel) || SUPERSEDED.includes(rel.replace(/^(hi|pa)\//, "").toLowerCase())
+};
 // Google Search Console verification files must stay byte-for-byte as issued.
 const UNTOUCHED_RE = /^google[0-9a-f]+.*\.html$/i;
 
@@ -114,8 +128,12 @@ function breadcrumbs(rel, pageName, titleByRel) {
   const trail = [{ name: "Home", url: `${SITE}/` }];
   const start = lang ? 1 : 0;
   for (let i = start; i < parts.length - 1; i++) {
-    const candidate = [...parts.slice(0, i), parts[i] + ".html"].join("/");
-    if (candidate !== rel && titleByRel.has(candidate)) trail.push({ name: titleByRel.get(candidate), url: pageUrl(candidate) });
+    // Prefer "<folder>/<folder>.html" (the section index the site links to),
+    // then "<folder>.html" beside it; never a noindex page.
+    const inside = [...parts.slice(0, i + 1), parts[i] + ".html"].join("/");
+    const beside = [...parts.slice(0, i), parts[i] + ".html"].join("/");
+    const candidate = [inside, beside].find((c) => c !== rel && titleByRel.has(c) && !NOINDEX_RE.test(c));
+    if (candidate) trail.push({ name: titleByRel.get(candidate), url: pageUrl(candidate) });
   }
   trail.push({ name: pageName, url: pageUrl(rel) });
   return {
