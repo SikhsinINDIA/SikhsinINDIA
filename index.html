@@ -861,6 +861,25 @@
     .gsb-btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
     .gsb-share-btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
 
+/* ── RESERVED SPACE FOR THE "TODAY" CARDS ──
+     Both cards are filled in by JavaScript after the page loads. Reserving
+     roughly their usual height stops everything below from jumping down
+     (layout shift) when they appear. Slightly under the typical height, so
+     a long Hukamnama only grows a little and short days leave no big gap. */
+  #todayHukamnama, #todaySikhHistory { min-height: 560px; }
+  @media (max-width: 900px) {
+    #todayHukamnama { min-height: 540px; }
+    #todaySikhHistory { min-height: 380px; }
+  }
+  @media (max-width: 576px) {
+    #todayHukamnama { min-height: 580px; }
+    #todaySikhHistory { min-height: 480px; }
+  }
+  /* Images keep their CSS size; the width/height attributes only set the shape. */
+  img { height: auto; }
+  .logo-img, .join-community-img { width: auto; }
+
+
   /* ── MOBILE READABILITY & TAP TARGETS ──
      Phones: no text below ~12px, and anything tappable at least 44px tall
      (Google / WCAG guidance). Placed last so it overrides the rules above. */
@@ -919,13 +938,13 @@
 <nav class="navbar">
   <div class="container">
     <div class="d-flex align-items-center w-100">
-      <img class="logo-img" src="./pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      <img width="1244" height="1122" class="logo-img" src="./pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
       <div class="hero">
         <h1>Preserving Heritage • Inspiring Future<br><span>Discovering &amp; Living the Spirit of Sikhism</span></h1>
         <p>Your trusted source for Sikh History, Heritage, Culture &amp; Community</p>
       </div>
       <a href="./00-index/01-add-record.html" title="Become a Member" class="join-community-link">
-        <img loading="lazy" class="join-community-img" src="./pictures/00-index/Join Community.jpg" alt="Join Community">
+        <img width="678" height="650" loading="lazy" class="join-community-img" src="./pictures/00-index/Join Community.jpg" alt="Join Community">
       </a>
     </div>
   </div>
@@ -973,7 +992,7 @@
     <div class="row g-2">
       <div class="col-4 col-md-4">
         <a href="./01-about-sikhism/01-about-sikhism.html" class="feature-card">
-          <div class="img-wrap"><img loading="lazy" src="./pictures/00-index/01-ek-onkar.png" alt="About Sikhism"></div>
+          <div class="img-wrap"><img width="640" height="360" loading="lazy" src="./pictures/00-index/01-ek-onkar.png" alt="About Sikhism"></div>
           <div class="text-wrap">
             <h4>About Sikhism</h4>
             <p>Sikh Gurus and their Teachings</p>
@@ -983,7 +1002,7 @@
 
       <div class="col-4 col-md-4">
         <a href="./02-sikh-heritage/02-00-sikh-heritage/02-sikh-heritage.html" class="feature-card">
-          <div class="img-wrap"><img loading="lazy" src="./pictures/00-index/02-sikh-heritage.png" alt="Sikh Heritage"></div>
+          <div class="img-wrap"><img width="221" height="247" loading="lazy" src="./pictures/00-index/02-sikh-heritage.png" alt="Sikh Heritage"></div>
           <div class="text-wrap">
             <h4>Sikh Heritage & Traditions</h4>
             <p>Core Values & Philosophy</p>
@@ -993,7 +1012,7 @@
 
       <div class="col-4 col-md-4">
         <a href="./04-gurudwaras/04-gurudwaras-in-india.html" class="feature-card">
-          <div class="img-wrap"><img loading="lazy" src="./pictures/00-index/03-gurudwaras.png" alt="Gurudwaras"></div>
+          <div class="img-wrap"><img width="250" height="198" loading="lazy" src="./pictures/00-index/03-gurudwaras.png" alt="Gurudwaras"></div>
           <div class="text-wrap">
             <h4>Gurudwaras of India</h4>
             <p>Gateway to the Guru</p>
@@ -1003,7 +1022,7 @@
 
       <div class="col-4 col-md-4">
         <a href="./03-nitnem/03-nitnem-path.html" class="feature-card">
-          <div class="img-wrap"><img loading="lazy" src="./pictures/00-index/04-nitnem.png" alt="Nitnem"></div>
+          <div class="img-wrap"><img width="437" height="232" loading="lazy" src="./pictures/00-index/04-nitnem.png" alt="Nitnem"></div>
           <div class="text-wrap">
             <h4>Nitnem</h4>
             <p>Daily Sikh Prayers</p>
@@ -1013,7 +1032,7 @@
 
       <div class="col-4 col-md-4">
         <a href="./06-sevadars/06-sikh-sevadars.html" class="feature-card">
-          <div class="img-wrap"><img loading="lazy" src="./pictures/00-index/05-sikh-sevadar.png" alt="Sikh Sevadars"></div>
+          <div class="img-wrap"><img width="266" height="226" loading="lazy" src="./pictures/00-index/05-sikh-sevadar.png" alt="Sikh Sevadars"></div>
           <div class="text-wrap">
             <h4>Sikh Sevadars</h4>
             <p>Bhai Ji / Granthi Ji / Pathi Ji / Kirtani Ji</p>
@@ -1023,7 +1042,7 @@
 
       <div class="col-4 col-md-4">
         <a href="./05-sikh-welfare/05-sikh-welfare.html" class="feature-card">
-          <div class="img-wrap"><img loading="lazy" src="./pictures/00-index/06-khanda.png" alt="Welfare Organizations"></div>
+          <div class="img-wrap"><img width="167" height="198" loading="lazy" src="./pictures/00-index/06-khanda.png" alt="Welfare Organizations"></div>
           <div class="text-wrap">
             <h4>Sikh Welfare Organizations</h4>
             <p>Nishkam Sikh Sewa Societies</p>
@@ -1033,7 +1052,7 @@
 
       <div class="col-4 col-md-4">
         <a href="./07-sikh-section-for-kids/07-sikh-section-for-kids.html" class="feature-card">
-          <div class="img-wrap"><img loading="lazy" src="./pictures/00-index/07-sikh-section-for-kids.png" alt="Sikh Education"></div>
+          <div class="img-wrap"><img width="276" height="276" loading="lazy" src="./pictures/00-index/07-sikh-section-for-kids.png" alt="Sikh Education"></div>
           <div class="text-wrap">
             <h4>Sikh Education for Kids</h4>
             <p>Interactive Learning & Engagement</p>
@@ -1043,7 +1062,7 @@
 
       <div class="col-4 col-md-4">
         <a href="./08-sikh-matrimonials/08-sikh-matrimonials.html" class="feature-card">
-          <div class="img-wrap"><img loading="lazy" src="./pictures/00-index/08-sikh-matrimonials.jpg" alt="Sikh Matrimonials"></div>
+          <div class="img-wrap"><img width="230" height="236" loading="lazy" src="./pictures/00-index/08-sikh-matrimonials.jpg" alt="Sikh Matrimonials"></div>
           <div class="text-wrap">
             <h4>Sikh Matrimonials</h4>
             <p>Find your Sikh Soulmate</p>
@@ -1053,7 +1072,7 @@
 
       <div class="col-4 col-md-4">
         <a href="./09-purpose-of-life/09-purpose-of-life.html" class="feature-card">
-          <div class="img-wrap"><img loading="lazy" src="./pictures/00-index/09-purpose-of-life.png" alt="Purpose of Life"></div>
+          <div class="img-wrap"><img width="103" height="126" loading="lazy" src="./pictures/00-index/09-purpose-of-life.png" alt="Purpose of Life"></div>
           <div class="text-wrap">
             <h4>Find your Purpose of Life</h4>
             <p>Live a Fulfilling Life</p>
@@ -1072,7 +1091,7 @@
         <div class="community-card">
           <h3 style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;">
             <a href="./00-index/01-add-record.html">
-              <img loading="lazy" src="./pictures/00-index/15-become-a-member.png" alt="Become a member" style="width:140px;height:auto;flex-shrink:0;">
+              <img width="596" height="283" loading="lazy" src="./pictures/00-index/15-become-a-member.png" alt="Become a member" style="width:140px;height:auto;flex-shrink:0;">
             </a>
             <a href="./00-index/01-add-record.html" style="text-decoration:none;color:inherit;">
               <p>Join the Sikhs In India community and stay connected with the global Sangat</p>
@@ -1085,7 +1104,7 @@
         <div class="community-card">
           <h3 style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;">
             <a href="./100-misc/10-feedback.html">
-              <img loading="lazy" src="./pictures/00-index/16-feedback.png" alt="Feedback" style="width:140px;height:auto;flex-shrink:0;">
+              <img width="571" height="253" loading="lazy" src="./pictures/00-index/16-feedback.png" alt="Feedback" style="width:140px;height:auto;flex-shrink:0;">
             </a>
             <a href="./100-misc/10-feedback.html" style="text-decoration:none;color:inherit;">
               <p>Help us improve the website and share your suggestions with the team</p>
@@ -1098,7 +1117,7 @@
         <div class="community-card">
           <h3 style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;">
             <a href="./100-misc/09-contact-us.html">
-              <img loading="lazy" src="./pictures/00-index/17-contact-us.png" alt="Contact us" style="width:140px;height:auto;flex-shrink:0;">
+              <img width="594" height="263" loading="lazy" src="./pictures/00-index/17-contact-us.png" alt="Contact us" style="width:140px;height:auto;flex-shrink:0;">
             </a>
             <a href="./100-misc/09-contact-us.html" style="text-decoration:none;color:inherit;">
               <p>Questions or suggestions? We'd love to hear from you. Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh!</p>
