@@ -162,6 +162,13 @@ function fixPageUrls(h, rel) {
   const fixHref = (href) => {
     if (rel === "index.html" && /^https:\/\/sikhsinindia\.com\/(index\.html)?$/.test(href)) return own;
     if (samePage(href, own)) return own;
+    // A canonical (or og:url) pointing at a page that no longer exists
+    // (renamed or removed) falls back to this page's own address.
+    if (href.startsWith(SITE + "/")) {
+      let target; try { target = decodeURI(href.slice(SITE.length + 1)) || "index.html"; } catch { return own; }
+      if (target.endsWith("/")) target += "index.html";
+      if (!fs.existsSync(path.join(ROOT, target.split("#")[0].split("?")[0]))) return own;
+    }
     return href;
   };
   let out = h.replace(/(<link[^>]+rel=["']canonical["'][^>]*href=["'])([^"']+)(["'])/i, (m, a, href, z) => {
@@ -290,6 +297,12 @@ for (const p of pages) {
     // 7. Canonical / og:url / hreflang addresses
     const fixedUrls = fixPageUrls(h, rel);
     if (fixedUrls !== h) { h = fixedUrls; stats.urls++; }
+  } else {
+    // Hidden (noindex) pages still need valid canonical/og:url addresses.
+    const fixedUrls = fixPageUrls(h, rel);
+    if (fixedUrls !== h) { h = fixedUrls; stats.urls++; }
+  }
+  if (!noindex) {
 
     // 8. Share images (og:image / twitter:image) that point at a file this
     // site doesn't have, or at a web page, fall back to the site's default
