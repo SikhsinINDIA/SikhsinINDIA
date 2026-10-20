@@ -359,6 +359,32 @@ for (const p of pages) {
     });
     if (fixedImages !== h) { h = fixedImages; stats.images++; }
 
+    // 14. Titles over 70 characters (search results cut them off): drop the
+    // " | SikhsInIndia.com" ending (Google shows the site name anyway); if
+    // still too long, "Name, Town | District, State" -> "Name, Town, State".
+    // og:title / twitter:title follow when they matched the old title.
+    {
+      const m = h.match(/<title>([\s\S]*?)<\/title>/i);
+      if (m) {
+        const oldTitle = m[1];
+        const len = (s) => [...decodeEntities(s).replace(/\s+/g, " ").trim()].length;
+        let next = oldTitle;
+        if (len(next) > 70) next = next.replace(/\s*[|–-]\s*SikhsInIndia\.com\s*$/i, "");
+        if (len(next) > 70) {
+          const parts = next.match(/^(.*),\s*([^,|]+?)\s*\|\s*([^,|]+?),\s*([^,|]+)$/);
+          if (parts) next = `${parts[1]}, ${parts[2]}, ${parts[4]}`;
+        }
+        if (next !== oldTitle) {
+          h = h.replace(m[0], `<title>${next}</title>`);
+          for (const key of ["og:title", "twitter:title"]) {
+            h = h.replace(new RegExp(`(<meta[^>]+(?:property|name)=["']${key}["'][^>]*content=["'])([^"']*)(["'])`, "i"),
+              (mm, a, val, z) => (val === oldTitle ? a + next + z : mm));
+          }
+          stats.titles++;
+        }
+      }
+    }
+
     // 12. hreflang alternates (replaces any existing set)
     {
       const links = hreflangLinks(rel);
