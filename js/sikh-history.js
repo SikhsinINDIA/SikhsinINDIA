@@ -75,11 +75,16 @@
     viewDate = d;
     var mount = document.getElementById(MOUNT_ID);
     if (!mount) return;
+    var isToday = keyOf(d) === todayKey && d.toDateString() === new Date().toDateString();
+    mount.innerHTML = cardHtml(d, lookup(d), isToday);
+  }
 
-    var rec = lookup(d);
+  /* The card's markup for date d and its record. Also used by
+     scripts/update-homepage-today.js, which writes today's card straight
+     into index.html each morning so it is in the page without JavaScript. */
+  function cardHtml(d, rec, isToday) {
     var prev = new Date(d.getTime()); prev.setDate(prev.getDate() - 1);
     var next = new Date(d.getTime()); next.setDate(next.getDate() + 1);
-    var isToday = keyOf(d) === todayKey && d.toDateString() === new Date().toDateString();
 
     var body;
     if (!rec) {
@@ -131,8 +136,7 @@
         more;
     }
 
-    mount.innerHTML =
-      '<div class="tsh-card">' +
+    return '<div class="tsh-card" data-key="' + keyOf(d) + '">' +
         '<div class="tsh-head">' +
           '<h2 class="tsh-kicker">&#128220; Today in Sikh History</h2>' +
           '<div class="tsh-date">' + esc(longDate(d)) +
@@ -159,7 +163,7 @@
 
   function onClick(e) {
     var b = e.target.closest ? e.target.closest('[data-tsh]') : null;
-    if (!b) return;
+    if (!b || !records) return; // day data still loading (the built-in card shows today)
     var what = b.getAttribute('data-tsh');
     if (what === 'prev') shiftDay(-1);
     else if (what === 'next') shiftDay(1);
@@ -172,6 +176,12 @@
     var now = new Date();
     todayKey = keyOf(now);
     render(now);
+  }
+
+  // In Node (scripts/update-homepage-today.js) only the markup builder is needed.
+  if (typeof module === 'object' && module.exports) {
+    module.exports = { cardHtml: cardHtml, keyOf: keyOf };
+    return;
   }
 
   function start() {
@@ -204,6 +214,8 @@
       .then(use)
       .catch(function (err) {
         console.error('Today in Sikh History: could not load ' + DATA_URL, err);
+        // Keep today's card if it is already in the page; only the day buttons need the data.
+        if (mount.querySelector('.tsh-card[data-key="' + keyOf(new Date()) + '"]')) return;
         mount.innerHTML =
           '<div class="tsh-card"><div class="tsh-head">' +
           '<h2 class="tsh-kicker">&#128220; Today in Sikh History</h2></div>' +

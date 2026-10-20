@@ -20,7 +20,14 @@ jobs:
           node-version: '20'
 
       - name: Fetch today's Hukamnama, rewrite data/hukamnama.* and the homepage card
+        id: hukamnama
+        continue-on-error: true
         run: node scripts/update-hukamnama.js
+
+      # Runs even if the Hukamnama fetch failed, so the events bar and the
+      # Sikh History card still move on to the new day.
+      - name: Write this month's events and today's Sikh History into the homepage
+        run: node scripts/update-homepage-today.js
 
       - name: Commit and push if the data changed
         run: |
@@ -29,3 +36,9 @@ jobs:
           git add data/hukamnama.json data/hukamnama.js index.html
           git diff --staged --quiet || git commit -m "Update daily Hukamnama"
           git push
+
+      # Keep the run marked as failed when the Hukamnama could not be fetched,
+      # so it still shows up in the Actions tab.
+      - name: Report a failed Hukamnama fetch
+        if: steps.hukamnama.outcome == 'failure'
+        run: exit 1
