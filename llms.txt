@@ -1,0 +1,47 @@
+# Sikhs in India
+
+> SikhsInIndia.com is a free, non-commercial resource on Sikh heritage in India: the ten Gurus and Sri Guru Granth Sahib Ji, Gurbani and Nitnem, 700+ Gurudwaras across India, Sikh festivals and history, and community services (sevadars, welfare organisations, matrimonials). Content is in English, Hindi (/hi/) and Punjabi (/pa/).
+
+Most pages have Hindi and Punjabi versions at the same path under /hi/ and /pa/, e.g. https://sikhsinindia.com/hi/03-nitnem/03-nitnem-path.html. Dates follow the India calendar (Asia/Kolkata).
+
+## Sikhism
+
+- [About Sikhism](https://sikhsinindia.com/01-about-sikhism/01-about-sikhism.html): Introduction to Sikhi, its beliefs and practices
+- [The Ten Sikh Gurus](https://sikhsinindia.com/01-about-sikhism/01-01-sikh-gurus.html): Guru Nanak Dev Ji to Guru Gobind Singh Ji, and the eternal Guruship of Sri Guru Granth Sahib Ji
+- [Discover Sikhi](https://sikhsinindia.com/02-sikh-heritage/02-01-discover-sikhi/02-01-discover-sikhi.html): Sikh concepts, institutions and articles of faith
+- [Sikh Terminology Dictionary](https://sikhsinindia.com/02-sikh-heritage/02-01-discover-sikhi/02-01-05-discover-sikhi/02-01-100-sikhism-dictionary.html): Glossary of Sikh terms and their meanings
+- [Purpose of Life](https://sikhsinindia.com/09-purpose-of-life/09-purpose-of-life.html): Reflective essays on living by Gurbani
+
+## Gurbani and prayer
+
+- [Sri Guru Granth Sahib Ji](https://sikhsinindia.com/03-nitnem/03-08-sri-guru-granth-sahib.html): Read Ang 1-1430 with English, Punjabi and Hindi meaning; search Gurbani by first letters, words or meaning
+- [Today's Hukamnama](https://sikhsinindia.com/hukamnama.html): Daily Hukamnama from Sri Harmandir Sahib, Amritsar, with translation
+- [Nitnem Path](https://sikhsinindia.com/03-nitnem/03-nitnem-path.html): Daily Banis (Japji Sahib, Jaap Sahib, Rehras Sahib and more) and Paath reminders
+- [Shabad Kirtan Search](https://sikhsinindia.com/03-nitnem/03-07-shabad-search.html): Find a shabad by its words or kirtaniya and listen
+- [Sehaj Path](https://sikhsinindia.com/03-nitnem/03-04-Sehaj-Path/03-04-sehaj-path.html): Complete devotional reading of Sri Guru Granth Sahib Ji
+- [Akhand Path Sahib Ji](https://sikhsinindia.com/03-nitnem/03-06-akhand-path/03-06-akhand-path.html): Sponsor or join an Akhand Path
+
+## Heritage, history and festivals
+
+- [Sikh Heritage](https://sikhsinindia.com/02-sikh-heritage/02-00-sikh-heritage/02-sikh-heritage.html): Sikh culture, art and service traditions
+- [Sikh History - 365 Days](https://sikhsinindia.com/sikh-history.html): What happened on each day of the year in Sikh history
+- [Sikh Festivals](https://sikhsinindia.com/02-sikh-heritage/02-02-discover-culture/02-02-01-sikh-festivals/02-02-01-sikh-festivals.html): Vaisakhi, Bandi Chhor Divas, Hola Mohalla, Khalsa Darbar and Dussehra, Gurpurabs and more
+- [The Sikh Calendar](https://sikhsinindia.com/02-sikh-heritage/02-02-discover-culture/02-02-04-sikh-calendar.html): Gurpurabs and Sikh observances through the year
+
+## Gurudwaras
+
+- [Gurudwaras in India](https://sikhsinindia.com/04-gurudwaras/04-gurudwaras-in-india.html): State-by-state directory of 700+ Gurudwaras with history, photos and addresses
+
+## Community
+
+- [Sikh Sevadars](https://sikhsinindia.com/06-sevadars/06-sikh-sevadars.html): Directory of Granthis, Ragis, Kathavachaks and other sevadars
+- [Sikh Welfare Organisations](https://sikhsinindia.com/05-sikh-welfare/05-sikh-welfare.html): Sikh charities and welfare organisations
+- [Sikh Matrimonials](https://sikhsinindia.com/08-sikh-matrimonials/08-sikh-matrimonials.html): Matrimonial profiles for the Sikh community
+- [Sikh Section for Kids](https://sikhsinindia.com/07-sikh-section-for-kids/07-sikh-section-for-kids.html): Sakhis and quizzes for children
+- [Contact Us](https://sikhsinindia.com/100-misc/09-contact-us.html): Reach the SikhsInIndia.com team (sikhsinindia@gmail.com)
+
+## Optional
+
+- [Sikh Stories (Sakhis)](https://sikhsinindia.com/07-sikh-section-for-kids/07-01-sikh-stories/07-sikh-stories.html): Short stories from the lives of the Gurus
+- [Quiz for Kids](https://sikhsinindia.com/07-sikh-section-for-kids/07-02-quiz-for-kids/07-02-quiz-for-kids.html): Quizzes on the Gurus, Panj Pyare and Panj Takhts
+- [Sitemap](https://sikhsinindia.com/sitemap.xml): Full list of indexable pages with Hindi and Punjabi alternates
