@@ -336,6 +336,22 @@
     justify-content: space-between;
   }
 
+
+  .community-pill {
+    display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0;
+    background: var(--navy); color: var(--white) !important; text-decoration: none;
+    border-radius: 999px; padding: 6px 16px 6px 6px; min-height: 44px;
+    font-size: 14px; font-weight: 600; white-space: nowrap;
+    transition: background .15s;
+  }
+  .community-pill:hover, .community-pill:focus-visible { background: #004494; }
+  .community-pill-icon {
+    width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+    background: var(--orange); color: var(--navy);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .community-pill-icon svg { width: 18px; height: 18px; }
+
   .community-card p {
     font-size: 12px;
     margin: 0;
@@ -428,9 +444,7 @@
     .feature-card p {
       font-size: 10px;
     }
-    .community-card .community-link img {
-      width: 110px !important;
-    }
+    .community-pill { font-size: 13px; padding-right: 12px; }
     .community-card p {
       font-size: 11px;
     }
@@ -908,7 +922,7 @@
     .hnm-audio-tab { font-size: 12.5px; min-height: 44px; }
     .hnm-cta { min-height: 44px; display: inline-flex; align-items: center; }
     .gsb-share-btn { font-size: 13px; min-height: 44px; padding: 10px 16px; }
-    .community-card .community-link a { display: inline-block; padding: 10px 0; }
+    .community-card .community-link a:not(.community-pill) { display: inline-block; padding: 10px 0; }
     .community-card .community-link a p { font-size: 13px; }
     .feature-card .text-wrap h3 { font-size: 13px; line-height: 1.2; }
     .feature-card .text-wrap p { font-size: 12px; line-height: 1.3; }
@@ -1095,9 +1109,7 @@
       <div class="col-12 col-md-4">
         <div class="community-card">
           <div class="community-link" style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;margin-bottom:.5rem;font-weight:500;line-height:1.2;">
-            <a href="./00-index/01-add-record.html">
-              <img width="280" height="133" loading="lazy" src="./pictures/00-index/web/15-become-a-member.webp" alt="Become a member" style="width:140px;height:auto;flex-shrink:0;">
-            </a>
+            <a href="./00-index/01-add-record.html" class="community-pill"><span class="community-pill-icon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 11h6M19 8v6"/></svg></span>Become a member</a>
             <a href="./00-index/01-add-record.html" style="text-decoration:none;color:inherit;">
               <p>Join the Sikhs In India community and stay connected with the global Sangat</p>
             </a>
@@ -1108,9 +1120,7 @@
       <div class="col-12 col-md-4">
         <div class="community-card">
           <div class="community-link" style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;margin-bottom:.5rem;font-weight:500;line-height:1.2;">
-            <a href="./100-misc/10-feedback.html">
-              <img width="280" height="124" loading="lazy" src="./pictures/00-index/web/16-feedback.webp" alt="Feedback" style="width:140px;height:auto;flex-shrink:0;">
-            </a>
+            <a href="./100-misc/10-feedback.html" class="community-pill"><span class="community-pill-icon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9h8M8 13h6"/><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-5l-5 3v-3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z"/></svg></span>Share feedback</a>
             <a href="./100-misc/10-feedback.html" style="text-decoration:none;color:inherit;">
               <p>Help us improve the website and share your suggestions with the team</p>
             </a>
@@ -1121,9 +1131,7 @@
       <div class="col-12 col-md-4">
         <div class="community-card">
           <div class="community-link" style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;margin-bottom:.5rem;font-weight:500;line-height:1.2;">
-            <a href="./100-misc/09-contact-us.html">
-              <img width="280" height="124" loading="lazy" src="./pictures/00-index/web/17-contact-us.webp" alt="Contact us" style="width:140px;height:auto;flex-shrink:0;">
-            </a>
+            <a href="./100-misc/09-contact-us.html" class="community-pill"><span class="community-pill-icon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span>Contact us</a>
             <a href="./100-misc/09-contact-us.html" style="text-decoration:none;color:inherit;">
               <p>Questions or suggestions? We'd love to hear from you. Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh!</p>
             </a>
