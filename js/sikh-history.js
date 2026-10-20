@@ -177,7 +177,10 @@
   function start() {
     var mount = document.getElementById(MOUNT_ID);
     if (!mount) return;
-    mount.addEventListener('click', onClick);
+    if (!mount.hasAttribute('data-tsh-ready')) {
+      mount.setAttribute('data-tsh-ready', '');
+      mount.addEventListener('click', onClick);
+    }
 
     /* data/sikh-history.js sets this. Using it avoids fetch(), which browsers
        block when the page is opened straight from disk (file://). */
@@ -186,7 +189,13 @@
       return;
     }
 
-    /* no data script on the page - fall back to fetching the JSON */
+    /* no data script on the page - fetch the JSON. It holds all 365 days
+       (the card can step to any day), so it waits until the page has
+       loaded rather than competing with the Hukamnama text above it. */
+    if (document.readyState !== 'complete') {
+      window.addEventListener('load', function () { setTimeout(start, 0); }, { once: true });
+      return;
+    }
     fetch(DATA_URL, { cache: 'no-cache' })
       .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
