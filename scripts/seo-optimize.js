@@ -196,7 +196,7 @@ for (const p of pages) {
   if (t) titleByRel.set(p.rel, shortTitle(t));
 }
 
-const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, icons: 0, alts: 0, changedFiles: 0 };
+const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, icons: 0, alts: 0, zoom: 0, changedFiles: 0 };
 const DEFAULT_IMAGE = `${SITE}/sikhsinindia.jpg`;
 const indexable = [];
 
@@ -243,6 +243,17 @@ for (const p of pages) {
       /\balt\s*=\s*(["'])\s*\1/i.test(tag) ? tag.replace(/\balt\s*=\s*(["'])\s*\1/i, `alt="${altText}"`)
         : /\balt\s*=/i.test(tag) ? tag : tag.replace(/<img\b/i, `<img alt="${altText}"`));
     if (withAlt !== h) { h = withAlt; stats.alts++; }
+  }
+
+  // 11. Viewport: never block pinch-zoom. "maximum-scale=1, user-scalable=no"
+  // stops people enlarging small text, and mobile-friendliness checks flag it.
+  {
+    const fixedViewport = h.replace(/(<meta[^>]+name=["']viewport["'][^>]*content=["'])([^"']*)(["'])/i, (m, a, content, z) => {
+      const kept = content.split(",").map((s) => s.trim()).filter((s) => s && !/^(maximum-scale|minimum-scale|user-scalable)\s*=/i.test(s));
+      const next = kept.join(", ");
+      return next === content ? m : a + next + z;
+    });
+    if (fixedViewport !== h) { h = fixedViewport; stats.zoom++; }
   }
 
   // 1. Google tag placeholder id
@@ -377,4 +388,5 @@ console.log(`  Page URLs fixed:          ${stats.urls}`);
 console.log(`  Share images fixed:       ${stats.images}`);
 console.log(`  Favicon links added:      ${stats.icons}`);
 console.log(`  Lightbox alt text added:  ${stats.alts}`);
+console.log(`  Pinch-zoom re-enabled:    ${stats.zoom}`);
 console.log(`  Sitemap URLs:             ${indexable.length}`);
