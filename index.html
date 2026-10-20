@@ -243,6 +243,8 @@
 
   /* ── CRISP FAST-BLINKING EVENT STYLE ── */
   .marquee-item.blinking-event {
+    display: inline-block;
+    will-change: opacity;
     animation: fast-blink 0.4s linear infinite alternate;
     border: 1px solid #FFD700;
     background: #b30000;
@@ -256,15 +258,12 @@
     font-weight: 900;
   }
 
+  /* Opacity only: the browser runs this on the GPU. Animating the
+     background colour too made it restyle the page on every frame, which
+     slowed the whole homepage down on phones. */
   @keyframes fast-blink {
-    from {
-      opacity: 1;
-      background: #b30000;
-    }
-    to {
-      opacity: 0.35;
-      background: #001538;
-    }
+    from { opacity: 1; }
+    to   { opacity: 0.35; }
   }
 
   /* ── FEATURE GRID ── */
