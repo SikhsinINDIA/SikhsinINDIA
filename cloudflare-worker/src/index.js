@@ -442,17 +442,57 @@ async function resolveAttachment(att) {
   return { filename: att.filename, content: bytesToBase64(bytes) };
 }
 
+// Pictures inserted into a Mass Mailer body are Google Drive links
+// (drive.google.com/thumbnail?id=..., which 302-redirects to
+// lh3.googleusercontent.com). They show in a browser, but mail apps fetch
+// remote images through their own proxies, and those often get nothing back
+// from Drive - so the reader saw the logo (hosted on sikhsinindia.com) but
+// not the picture. Each Drive image is therefore fetched here and sent INSIDE
+// the email as an inline (cid:) attachment, so nothing is fetched from Drive
+// when the mail is opened. An image that can't be fetched keeps its original
+// link rather than failing the send.
+const DRIVE_IMG_RE = /(<img\b[^>]*?\bsrc=)(["'])(https:\/\/(?:drive\.google\.com|lh3\.googleusercontent\.com|docs\.google\.com)\/[^"']+)\2/gi;
+const IMAGE_EXT = { "image/jpeg": "jpg", "image/png": "png", "image/gif": "gif", "image/webp": "webp" };
+
+async function inlineDriveImages(html) {
+  if (!html) return { html, inline: [] };
+  const urls = [...new Set([...html.matchAll(DRIVE_IMG_RE)].map((m) => m[3]))];
+  const cids = new Map();
+  const inline = [];
+  for (const [i, src] of urls.entries()) {
+    try {
+      const res = await fetch(src.replace(/&amp;/g, "&"), { redirect: "follow" });
+      const type = (res.headers.get("content-type") || "").split(";")[0].trim().toLowerCase();
+      if (!res.ok || !type.startsWith("image/")) continue;
+      const cid = `img${i + 1}@sikhsinindia.com`;
+      inline.push({
+        filename: `image-${i + 1}.${IMAGE_EXT[type] || "jpg"}`,
+        content: bytesToBase64(new Uint8Array(await res.arrayBuffer())),
+        content_type: type,
+        content_id: cid
+      });
+      cids.set(src, cid);
+    } catch (_) { /* leave this image as a remote link */ }
+  }
+  return {
+    html: html.replace(DRIVE_IMG_RE, (m, pre, q, src) => (cids.has(src) ? `${pre}${q}cid:${cids.get(src)}${q}` : m)),
+    inline
+  };
+}
+
 async function sendEmail(env, { to, subject, text, html, attachments }) {
+  const inlined = await inlineDriveImages(html);
   const body = {
     from: env.FROM_ADDRESS || "SikhsinIndia <onboarding@resend.dev>",
     to: [to],
     subject,
     text,
-    html
+    html: inlined.html
   };
-  if (Array.isArray(attachments) && attachments.length) {
-    body.attachments = await Promise.all(attachments.map(resolveAttachment));
-  }
+  const files = Array.isArray(attachments) && attachments.length
+    ? await Promise.all(attachments.map(resolveAttachment))
+    : [];
+  if (files.length || inlined.inline.length) body.attachments = [...files, ...inlined.inline];
   const resendRes = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
