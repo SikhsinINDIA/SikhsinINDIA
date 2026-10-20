@@ -59,6 +59,7 @@
 
 <link href="./css/bootstrap-home.css" rel="stylesheet">
 <link rel="preload" href="./fonts/noto-sans-gurmukhi-gurmukhi.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com">
 
 <style>
   :root {
@@ -1215,7 +1216,10 @@
   async function queryCalendar(start, end) {
       const res = await fetch(FIRESTORE_QUERY_URL, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          // text/plain keeps this a "simple" cross-origin request, so the
+          // browser skips a separate OPTIONS round trip first (Firestore
+          // reads the JSON body either way).
+          headers: { "Content-Type": "text/plain;charset=UTF-8" },
           body: JSON.stringify({
               structuredQuery: {
                   from: [{ collectionId: "Calendar" }],
