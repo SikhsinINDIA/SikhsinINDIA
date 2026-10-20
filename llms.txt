@@ -7,7 +7,7 @@ Most pages have Hindi and Punjabi versions at the same path under /hi/ and /pa/,
 ## Sikhism
 
 - [About Sikhism](https://sikhsinindia.com/01-about-sikhism/01-about-sikhism.html): Introduction to Sikhi, its beliefs and practices
-- [The Ten Sikh Gurus](https://sikhsinindia.com/01-about-sikhism/01-01-sikh-gurus.html): Guru Nanak Dev Ji to Guru Gobind Singh Ji, and the eternal Guruship of Sri Guru Granth Sahib Ji
+- [The Ten Sikh Gurus](https://sikhsinindia.com/01-about-sikhism/01-01-sikh-gurus/01-01-sikh-gurus.html): Guru Nanak Dev Ji to Guru Gobind Singh Ji, and the eternal Guruship of Sri Guru Granth Sahib Ji
 - [Discover Sikhi](https://sikhsinindia.com/02-sikh-heritage/02-01-discover-sikhi/02-01-discover-sikhi.html): Sikh concepts, institutions and articles of faith
 - [Sikh Terminology Dictionary](https://sikhsinindia.com/02-sikh-heritage/02-01-discover-sikhi/02-01-05-discover-sikhi/02-01-100-sikhism-dictionary.html): Glossary of Sikh terms and their meanings
 - [Purpose of Life](https://sikhsinindia.com/09-purpose-of-life/09-purpose-of-life.html): Reflective essays on living by Gurbani
