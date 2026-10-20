@@ -1,56 +1,52 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-10-19",
-  "dateDisplay": "19 October 2026",
-  "ang": 656,
+  "date": "2026-10-20",
+  "dateDisplay": "20 October 2026",
+  "ang": 633,
   "raagGurmukhi": "ਰਾਗੁ ਸੋਰਠਿ",
   "raagEnglish": "Raag Sorath",
-  "writerEnglish": "Bhagat Kabeer Ji",
-  "titleGurmukhi": "ਸੰਤਹੁ ਮਨ ਪਵਨੈ ਸੁਖੁ ਬਨਿਆ ॥",
-  "titleEnglish": "O Saints, my windy mind has now become peaceful and still.",
-  "verseGurmukhi": "ਕਿਛੁ ਜੋਗੁ ਪਰਾਪਤਿ ਗਨਿਆ ॥ ਰਹਾਉ ॥",
-  "verseTranslation": "It seems that I have learned something of the science of Yoga. ||Pause||",
+  "writerEnglish": "Guru Tegh Bahaadur Ji",
+  "titleGurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੯ ॥",
+  "titleEnglish": "Sorat'h, Ninth Mehla:",
+  "verseGurmukhi": "ਇਹ ਜਗਿ ਮੀਤੁ ਨ ਦੇਖਿਓ ਕੋਈ ॥",
+  "verseTranslation": "In this world, I have not found any true friend.",
   "verses": [
     {
-      "gurmukhi": "ਸੰਤਹੁ ਮਨ ਪਵਨੈ ਸੁਖੁ ਬਨਿਆ ॥",
-      "translation": "O Saints, my windy mind has now become peaceful and still."
+      "gurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੯ ॥",
+      "translation": "Sorat'h, Ninth Mehla:"
     },
     {
-      "gurmukhi": "ਕਿਛੁ ਜੋਗੁ ਪਰਾਪਤਿ ਗਨਿਆ ॥ ਰਹਾਉ ॥",
-      "translation": "It seems that I have learned something of the science of Yoga. ||Pause||"
+      "gurmukhi": "ਇਹ ਜਗਿ ਮੀਤੁ ਨ ਦੇਖਿਓ ਕੋਈ ॥",
+      "translation": "In this world, I have not found any true friend."
     },
     {
-      "gurmukhi": "ਗੁਰਿ ਦਿਖਲਾਈ ਮੋਰੀ ॥",
-      "translation": "The Guru has shown me the hole,"
+      "gurmukhi": "ਸਗਲ ਜਗਤੁ ਅਪਨੈ ਸੁਖਿ ਲਾਗਿਓ ਦੁਖ ਮੈ ਸੰਗਿ ਨ ਹੋਈ ॥੧॥ ਰਹਾਉ ॥",
+      "translation": "The whole world is attached to its own pleasures, and when trouble comes, no one is with you. ||1||Pause||"
     },
     {
-      "gurmukhi": "ਜਿਤੁ ਮਿਰਗ ਪੜਤ ਹੈ ਚੋਰੀ ॥",
-      "translation": "through which the deer carefully enters."
+      "gurmukhi": "ਦਾਰਾ ਮੀਤ ਪੂਤ ਸਨਬੰਧੀ ਸਗਰੇ ਧਨ ਸਿਉ ਲਾਗੇ ॥",
+      "translation": "Wives, friends, children and relatives - all are attached to wealth."
     },
     {
-      "gurmukhi": "ਮੂੰਦਿ ਲੀਏ ਦਰਵਾਜੇ ॥",
-      "translation": "I have now closed off the doors,"
+      "gurmukhi": "ਜਬ ਹੀ ਨਿਰਧਨ ਦੇਖਿਓ ਨਰ ਕਉ ਸੰਗੁ ਛਾਡਿ ਸਭ ਭਾਗੇ ॥੧॥",
+      "translation": "When they see a poor man, they all forsake his company and run away. ||1||"
     },
     {
-      "gurmukhi": "ਬਾਜੀਅਲੇ ਅਨਹਦ ਬਾਜੇ ॥੧॥",
-      "translation": "and the unstruck celestial sound current resounds. ||1||"
+      "gurmukhi": "ਕਹਂਉ ਕਹਾ ਯਿਆ ਮਨ ਬਉਰੇ ਕਉ ਇਨ ਸਿਉ ਨੇਹੁ ਲਗਾਇਓ ॥",
+      "translation": "So what should I say to this crazy mind, which is affectionately attached to them?"
     },
     {
-      "gurmukhi": "ਕੁੰਭ ਕਮਲੁ ਜਲਿ ਭਰਿਆ ॥",
-      "translation": "The pitcher of my heart-lotus is filled with water;"
+      "gurmukhi": "ਦੀਨਾ ਨਾਥ ਸਕਲ ਭੈ ਭੰਜਨ ਜਸੁ ਤਾ ਕੋ ਬਿਸਰਾਇਓ ॥੨॥",
+      "translation": "The Lord is the Master of the meek, the Destroyer of all fears, and I have forgotten to praise Him. ||2||"
     },
     {
-      "gurmukhi": "ਜਲੁ ਮੇਟਿਆ ਊਭਾ ਕਰਿਆ ॥",
-      "translation": "I have spilled out the water, and set it upright."
+      "gurmukhi": "ਸੁਆਨ ਪੂਛ ਜਿਉ ਭਇਓ ਨ ਸੂਧਉ ਬਹੁਤੁ ਜਤਨੁ ਮੈ ਕੀਨਉ ॥",
+      "translation": "Like a dog's tail, which will never straighten out, the mind will not change, no matter how many things are tried."
     },
     {
-      "gurmukhi": "ਕਹੁ ਕਬੀਰ ਜਨ ਜਾਨਿਆ ॥",
-      "translation": "Says Kabeer, the Lord's humble servant, this I know."
-    },
-    {
-      "gurmukhi": "ਜਉ ਜਾਨਿਆ ਤਉ ਮਨੁ ਮਾਨਿਆ ॥੨॥੧੦॥",
-      "translation": "Now that I know this, my mind is pleased and appeased. ||2||10||"
+      "gurmukhi": "ਨਾਨਕ ਲਾਜ ਬਿਰਦ ਕੀ ਰਾਖਹੁ ਨਾਮੁ ਤੁਹਾਰਉ ਲੀਨਉ ॥੩॥੯॥",
+      "translation": "Says Nanak, please, Lord, uphold the honor of Your innate nature; I chant Your Name. ||3||9||"
     }
   ],
-  "updated": "2026-10-19T06:30:31.571Z"
+  "updated": "2026-10-20T06:14:17.242Z"
 };
