@@ -195,7 +195,7 @@ for (const p of pages) {
   if (t) titleByRel.set(p.rel, shortTitle(t));
 }
 
-const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, changedFiles: 0 };
+const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, icons: 0, changedFiles: 0 };
 const DEFAULT_IMAGE = `${SITE}/sikhsinindia.jpg`;
 const indexable = [];
 
@@ -210,6 +210,27 @@ for (const p of pages) {
     stats.noindex++;
   }
   const noindex = /<meta[^>]+name=["']robots["'][^>]*noindex/i.test(h);
+
+  // 9. Favicon links (every page, indexable or not, so every browser tab shows
+  // the logo). Root-relative paths work on any page of sikhsinindia.com.
+  // Old hand-written icon links are replaced by this one block.
+  {
+    const eol = p.html.includes("\r\n") ? "\r\n" : "\n";
+    const icons = [
+      "<!-- seo:icons -->",
+      '  <link rel="icon" href="/favicon.ico" sizes="any">',
+      '  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">',
+      '  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">',
+      '  <link rel="apple-touch-icon" href="/apple-touch-icon.png">',
+      '  <link rel="manifest" href="/site.webmanifest">',
+      "  <!-- /seo:icons -->"
+    ].join(eol);
+    let withIcons = h.replace(/[ \t]*<link[^>]+rel=["'](?:shortcut )?icon["'][^>]*>\r?\n?/gi, (tag) => (/seo:icons/.test(h) ? tag : ""));
+    withIcons = /<!-- seo:icons -->[\s\S]*?<!-- \/seo:icons -->/.test(withIcons)
+      ? withIcons.replace(/<!-- seo:icons -->[\s\S]*?<!-- \/seo:icons -->/, () => icons)
+      : withIcons.replace(/<\/head>/i, () => `  ${icons}${eol}</head>`);
+    if (withIcons !== h) { h = withIcons; stats.icons++; }
+  }
 
   // 1. Google tag placeholder id
   if (h.includes("gtag/js?id=G-XXXXXXXXXX")) {
@@ -333,4 +354,5 @@ console.log(`  Pages with lazy images:   ${stats.lazy}`);
 console.log(`  Pages set to noindex:     ${stats.noindex}`);
 console.log(`  Page URLs fixed:          ${stats.urls}`);
 console.log(`  Share images fixed:       ${stats.images}`);
+console.log(`  Favicon links added:      ${stats.icons}`);
 console.log(`  Sitemap URLs:             ${indexable.length}`);
