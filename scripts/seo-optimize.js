@@ -197,13 +197,39 @@ const today = new Date().toISOString().slice(0, 10);
 const files = listHtml(ROOT).filter((f) => !UNTOUCHED_RE.test(relPath(f)));
 const pages = files.map((file) => ({ file, rel: relPath(file), html: fs.readFileSync(file, "utf8") }));
 
+// Pages that are (or will be) noindex, and each page's <html lang>, for the
+// hreflang step: only indexable language versions are listed as alternates.
+const noindexRels = new Set(pages.filter((p) => NOINDEX_RE.test(p.rel) || /<meta[^>]+name=["']robots["'][^>]*noindex/i.test(p.html)).map((p) => p.rel));
+const relSet = new Set(pages.map((p) => p.rel));
+const langOf = new Map(pages.map((p) => [p.rel, ((p.html.match(/<html[^>]+lang=["']([^"']+)["']/i) || [])[1] || "").toLowerCase()]));
+
+// 12. hreflang: the page's English / Hindi / Punjabi versions (whichever exist
+// and are indexable, always including the page itself) plus x-default =
+// the English version, or this page when there is none.
+function hreflangLinks(rel) {
+  const base = rel.replace(/^(hi|pa)\//, "");
+  const variants = [];
+  for (const [prefix, fallback] of [["", "en"], ["hi/", "hi"], ["pa/", "pa"]]) {
+    const r = prefix + base;
+    if (!relSet.has(r) || (noindexRels.has(r) && r !== rel)) continue;
+    // English-folder pages use their own <html lang> (a few are in Punjabi);
+    // hi/ and pa/ pages are always hi / pa.
+    const lang = prefix ? fallback : (langOf.get(r) || "en").split("-")[0];
+    if (variants.some((v) => v.lang === lang)) continue;
+    variants.push({ lang, url: r === "index.html" ? `${SITE}/` : pageUrl(r) });
+  }
+  if (!variants.some((v) => v.url === pageUrl(rel) || (rel === "index.html" && v.url === `${SITE}/`))) return null;
+  const xDefault = relSet.has(base) && !noindexRels.has(base) ? (base === "index.html" ? `${SITE}/` : pageUrl(base)) : (rel === "index.html" ? `${SITE}/` : pageUrl(rel));
+  return [...variants.map((v) => ({ lang: v.lang, url: v.url })), { lang: "x-default", url: xDefault }];
+}
+
 const titleByRel = new Map();
 for (const p of pages) {
   const t = (p.html.match(/<title>([\s\S]*?)<\/title>/i) || [])[1];
   if (t) titleByRel.set(p.rel, shortTitle(t));
 }
 
-const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, icons: 0, alts: 0, zoom: 0, changedFiles: 0 };
+const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, icons: 0, alts: 0, zoom: 0, hreflang: 0, changedFiles: 0 };
 const DEFAULT_IMAGE = `${SITE}/sikhsinindia.jpg`;
 const indexable = [];
 
@@ -316,6 +342,26 @@ for (const p of pages) {
     });
     if (fixedImages !== h) { h = fixedImages; stats.images++; }
 
+    // 12. hreflang alternates (replaces any existing set)
+    {
+      const links = hreflangLinks(rel);
+      if (links) {
+        const eol = p.html.includes("\r\n") ? "\r\n" : "\n";
+        const block = links.map((l) => `  <link rel="alternate" hreflang="${l.lang}" href="${escAttr(l.url)}">`).join(eol);
+        const existing = /[ \t]*<link[^>]+hreflang=["'][^"']+["'][^>]*>[ \t]*(\r?\n)?/gi;
+        let withLang;
+        if (existing.test(h)) {
+          let first = true;
+          withLang = h.replace(existing, () => { if (first) { first = false; return block + eol; } return ""; });
+        } else if (/<link[^>]+rel=["']canonical["'][^>]*>/i.test(h)) {
+          withLang = h.replace(/(<link[^>]+rel=["']canonical["'][^>]*>)/i, (m) => m + eol + block);
+        } else {
+          withLang = h.replace(/<\/head>/i, () => block + eol + "</head>");
+        }
+        if (withLang !== h) { h = withLang; stats.hreflang++; }
+      }
+    }
+
     // 3. JSON-LD structured data
     const head = (h.match(/<head[\s\S]*?<\/head>/i) || [""])[0];
     const title = (head.match(/<title>([\s\S]*?)<\/title>/i) || [])[1] || "";
@@ -402,4 +448,5 @@ console.log(`  Share images fixed:       ${stats.images}`);
 console.log(`  Favicon links added:      ${stats.icons}`);
 console.log(`  Lightbox alt text added:  ${stats.alts}`);
 console.log(`  Pinch-zoom re-enabled:    ${stats.zoom}`);
+console.log(`  hreflang sets updated:    ${stats.hreflang}`);
 console.log(`  Sitemap URLs:             ${indexable.length}`);
