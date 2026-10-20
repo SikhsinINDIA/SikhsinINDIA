@@ -42,9 +42,27 @@ const ORG = {
   "@type": "Organization",
   "@id": `${SITE}/#organization`,
   name: "Sikhs in India",
+  alternateName: "SikhsInIndia.com",
   url: `${SITE}/`,
-  logo: `${SITE}/sikhsinindia.png`,
-  email: "sikhsinindia@gmail.com"
+  logo: {
+    "@type": "ImageObject",
+    "@id": `${SITE}/#logo`,
+    url: `${SITE}/sikhsinindia.png`,
+    contentUrl: `${SITE}/sikhsinindia.png`,
+    width: 1244,
+    height: 1122,
+    caption: "Sikhs in India"
+  },
+  image: { "@id": `${SITE}/#logo` },
+  email: "sikhsinindia@gmail.com",
+  description: "Sikhs in India preserves and shares Sikh heritage: the Gurus, Gurbani, Gurudwaras across India, festivals, Nitnem and community services.",
+  // The site's own social links (home page footer).
+  sameAs: [
+    "https://www.youtube.com/@SikhsInIndia",
+    "https://www.instagram.com/sikhs_in_india",
+    "https://www.facebook.com/groups/1472776657526407",
+    "https://www.linkedin.com/groups/18803017/"
+  ]
 };
 const WEBSITE = {
   "@type": "WebSite",
@@ -69,6 +87,7 @@ function listHtml(dir, out = []) {
 
 const relPath = (file) => path.relative(ROOT, file).split(path.sep).join("/");
 const pageUrl = (rel) => `${SITE}/${rel === "index.html" ? "" : encodeURI(rel)}`;
+const escAttr = (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 const decodeEntities = (s) => s.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 const stripTags = (s) => decodeEntities(s.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
 
@@ -122,7 +141,50 @@ function lastCommitDates() {
   return dates;
 }
 
+// Same page, written differently? Compares two URLs on this site after
+// decoding, so "Photo Upload.html" and "Photo%20Upload.html" match.
+function samePage(a, b) {
+  const norm = (u) => { try { return decodeURI(u); } catch { return u; } };
+  return norm(a) === norm(b);
+}
+
+// 7. Self-referencing URLs (canonical, og:url, hreflang) must be valid,
+// consistent addresses:
+//   - percent-encode file names with spaces or unusual characters;
+//   - the home page is https://sikhsinindia.com/ (not /index.html);
+//   - a hi/ or pa/ translation is its own canonical page. Pointing it at the
+//     English page while also listing it as an hreflang alternate gives
+//     Google conflicting signals.
+function fixPageUrls(h, rel) {
+  const own = pageUrl(rel);
+  const english = rel.startsWith("hi/") || rel.startsWith("pa/") ? pageUrl(rel.slice(3)) : null;
+  const fixHref = (href) => {
+    if (rel === "index.html" && /^https:\/\/sikhsinindia\.com\/(index\.html)?$/.test(href)) return own;
+    if (samePage(href, own)) return own;
+    return href;
+  };
+  let out = h.replace(/(<link[^>]+rel=["']canonical["'][^>]*href=["'])([^"']+)(["'])/i, (m, a, href, z) => {
+    let next = fixHref(decodeEntities(href));
+    if (english && samePage(next, english)) next = own;
+    return a + escAttr(next) + z;
+  });
+  out = out.replace(/(<meta[^>]+property=["']og:url["'][^>]*content=["'])([^"']+)(["'])/i,
+    (m, a, href, z) => a + escAttr(fixHref(decodeEntities(href))) + z);
+  // hreflang alternates: re-encode links whose file names have odd characters.
+  out = out.replace(/(<link[^>]+hreflang=["'][^"']+["'][^>]*href=["'])([^"']+)(["'])/gi, (m, a, rawHref, z) => {
+    const href = decodeEntities(rawHref);
+    if (!href.startsWith(SITE + "/")) return m;
+    const target = href.slice(SITE.length + 1) || "index.html";
+    let decoded; try { decoded = decodeURI(target); } catch { return m; }
+    return a + escAttr(decoded === "index.html" ? `${SITE}/` : pageUrl(decoded)) + z;
+  });
+  return out;
+}
+
 /* ───────────── main ───────────── */
+
+const dates = lastCommitDates();
+const today = new Date().toISOString().slice(0, 10);
 
 const files = listHtml(ROOT).filter((f) => !UNTOUCHED_RE.test(relPath(f)));
 const pages = files.map((file) => ({ file, rel: relPath(file), html: fs.readFileSync(file, "utf8") }));
@@ -133,7 +195,8 @@ for (const p of pages) {
   if (t) titleByRel.set(p.rel, shortTitle(t));
 }
 
-const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, changedFiles: 0 };
+const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, changedFiles: 0 };
+const DEFAULT_IMAGE = `${SITE}/sikhsinindia.jpg`;
 const indexable = [];
 
 for (const p of pages) {
@@ -171,12 +234,29 @@ for (const p of pages) {
       imgIndex++ === 0 || /\bloading=/i.test(attrs) ? tag : `<img loading="lazy"${attrs}>`);
     if (lazied !== h) { h = lazied; stats.lazy++; }
 
+    // 7. Canonical / og:url / hreflang addresses
+    const fixedUrls = fixPageUrls(h, rel);
+    if (fixedUrls !== h) { h = fixedUrls; stats.urls++; }
+
+    // 8. Share images (og:image / twitter:image) that point at a file this
+    // site doesn't have, or at a web page, fall back to the site's default
+    // share image. A broken image breaks link previews and structured data.
+    const fixedImages = h.replace(/(<meta[^>]+(?:property|name)=["'](?:og:image|twitter:image)["'][^>]*content=["'])([^"']+)(["'])/gi, (m, a, src, z) => {
+      const url = decodeEntities(src);
+      if (!url.startsWith(SITE + "/")) return m;
+      let file; try { file = decodeURI(url.slice(SITE.length + 1)); } catch { return m; }
+      const isImage = /\.(png|jpe?g|webp|gif|svg)$/i.test(file);
+      return isImage && fs.existsSync(path.join(ROOT, file)) ? m : a + DEFAULT_IMAGE + z;
+    });
+    if (fixedImages !== h) { h = fixedImages; stats.images++; }
+
     // 3. JSON-LD structured data
     const head = (h.match(/<head[\s\S]*?<\/head>/i) || [""])[0];
     const title = (head.match(/<title>([\s\S]*?)<\/title>/i) || [])[1] || "";
     const name = shortTitle(title) || prettyName(path.basename(rel));
     const description = decodeEntities(metaContent(head, "name", "description"));
-    const image = metaContent(head, "property", "og:image");
+    // Attribute values are HTML-escaped ("&amp;"); JSON-LD needs the real URL.
+    const image = decodeEntities(metaContent(head, "property", "og:image"));
     const lang = (h.match(/<html[^>]+lang=["']([^"']+)["']/i) || [])[1] || (rel.startsWith("hi/") ? "hi" : rel.startsWith("pa/") ? "pa" : "en");
     const url = pageUrl(rel);
     const isHome = rel === "index.html" || rel === "hi/index.html" || rel === "pa/index.html";
@@ -191,8 +271,7 @@ for (const p of pages) {
       publisher: { "@id": `${SITE}/#organization` }
     };
     if (description) webPage.description = description;
-    if (image) webPage.primaryImageOfPage = { "@type": "ImageObject", url: image };
-    const graph = [ORG, WEBSITE, webPage];
+    if (image) webPage.primaryImageOfPage = { "@type": "ImageObject", url: image };    const graph = [ORG, WEBSITE, webPage];
     if (!isHome) {
       const crumbs = { "@id": `${url}#breadcrumb`, ...breadcrumbs(rel, name, titleByRel) };
       webPage.breadcrumb = { "@id": crumbs["@id"] };
@@ -220,8 +299,6 @@ for (const p of pages) {
 
 /* ───────────── sitemap.xml ───────────── */
 
-const dates = lastCommitDates();
-const today = new Date().toISOString().slice(0, 10);
 const indexableSet = new Set(indexable);
 
 // en page <-> hi/pa page pairs, read from each English page's hreflang links.
@@ -254,4 +331,6 @@ console.log(`  JSON-LD added/updated:    ${stats.jsonld}`);
 console.log(`  Descriptions cleaned:     ${stats.desc}`);
 console.log(`  Pages with lazy images:   ${stats.lazy}`);
 console.log(`  Pages set to noindex:     ${stats.noindex}`);
+console.log(`  Page URLs fixed:          ${stats.urls}`);
+console.log(`  Share images fixed:       ${stats.images}`);
 console.log(`  Sitemap URLs:             ${indexable.length}`);
