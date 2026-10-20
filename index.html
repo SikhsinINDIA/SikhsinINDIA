@@ -2,14 +2,23 @@
 <html lang="en">
 <head>
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHNTFNW14H"></script>
+  <!-- Google tag (gtag.js): loaded after the page has finished loading, so
+       its 160 KB script doesn't compete with the page itself. Calls made
+       before then wait in dataLayer and are sent once it arrives. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-LHNTFNW14H');
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-LHNTFNW14H';
+        document.head.appendChild(s);
+      }, 0);
+    });
   </script>
 
   <!-- Meta description -->
