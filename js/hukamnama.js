@@ -126,10 +126,10 @@
     return picked;
   }
 
-  function render(d) {
-    var mount = document.getElementById(MOUNT_ID);
-    if (!mount) return;
-
+  /* The card's markup. Also used by scripts/update-hukamnama.js, which
+     writes it straight into index.html each morning so the Gurbani shows
+     without waiting for any script (it is the page's largest element). */
+  function cardHtml(d, kicker) {
     var verses = pickVerses(d);
     var versesHtml = verses.map(function (v) {
       return '<div class="hnm-verse">' +
@@ -138,11 +138,7 @@
         '</div>';
     }).join('');
 
-    /* The data file is refreshed each morning by a GitHub Action. If that run
-       is late or fails, don't call an older Hukamnama "today's". */
-    var kicker = d.date === indiaToday() ? 'Today&rsquo;s Hukamnama' : 'Latest Hukamnama';
-    mount.innerHTML =
-      '<div class="hnm-card">' +
+    return '<div class="hnm-card" data-date="' + esc(d.date) + '">' +
         '<div class="hnm-head">' +
           '<h2 class="hnm-kicker">&#128591; ' + kicker + '</h2>' +
           '<div class="hnm-date">' + esc(d.dateDisplay) + '</div>' +
@@ -158,6 +154,17 @@
           '<a class="hnm-cta" href="hukamnama.html">Read Full Hukamnama &rarr;</a>' +
         '</div>' +
       '</div>';
+  }
+
+  var TODAY = 'Today&rsquo;s Hukamnama';
+  var LATEST = 'Latest Hukamnama';
+
+  function render(d) {
+    var mount = document.getElementById(MOUNT_ID);
+    if (!mount) return;
+    /* The data file is refreshed each morning by a GitHub Action. If that run
+       is late or fails, don't call an older Hukamnama "today's". */
+    mount.innerHTML = cardHtml(d, d.date === indiaToday() ? TODAY : LATEST);
     wireAudio(mount, d);
   }
 
@@ -179,9 +186,29 @@
       '<div class="hnm-body"><p class="hnm-none">This feature is briefly unavailable.</p></div></div>';
   }
 
+  // In Node (scripts/update-hukamnama.js) only the markup builder is needed.
+  if (typeof module === 'object' && module.exports) {
+    module.exports = { cardHtml: cardHtml, TODAY: TODAY };
+    return;
+  }
+
   function start() {
     var mount = document.getElementById(MOUNT_ID);
     if (!mount) return;
+
+    /* The card is already in the page (written into index.html with the
+       day's data): keep it, so nothing is redrawn, and just wire up the
+       audio - and relabel it if that day has passed. */
+    var d = window.HUKAMNAMA;
+    var built = mount.querySelector('.hnm-card[data-date]');
+    if (built && d && built.getAttribute('data-date') === d.date) {
+      if (d.date !== indiaToday()) {
+        var kicker = built.querySelector('.hnm-kicker');
+        if (kicker) kicker.innerHTML = '&#128591; ' + LATEST;
+      }
+      wireAudio(mount, d);
+      return;
+    }
 
     /* data/hukamnama.js sets this. Using it avoids fetch(), which browsers
        block when the page is opened straight from disk (file://). */

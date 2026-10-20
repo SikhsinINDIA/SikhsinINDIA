@@ -89,9 +89,32 @@ async function main() {
     'utf8');
 
   console.log('Wrote', OUT_JSON, 'and', OUT_JS, 'for', dateIso);
+  writeHomepage(out);
 }
 
-main().catch(function (err) {
+/* Writes the day's Hukamnama card straight into index.html, so the Gurbani
+   (the homepage's largest element) is in the HTML itself and shows without
+   waiting for js/hukamnama.js. The markup comes from that same file, so the
+   two always match; the script then only wires up the audio player. */
+const INDEX = path.join(__dirname, '..', 'index.html');
+const MOUNT_RE = /(<div id="todayHukamnama">)(?:<!-- hukamnama:start -->[\s\S]*?<!-- hukamnama:end -->)?(<\/div>)/;
+
+function writeHomepage(out) {
+  const { cardHtml, TODAY } = require('../js/hukamnama.js');
+  const html = fs.readFileSync(INDEX, 'utf8');
+  if (!MOUNT_RE.test(html)) throw new Error('index.html: <div id="todayHukamnama"> not found');
+  const next = html.replace(MOUNT_RE, (m, open, close) =>
+    open + '<!-- hukamnama:start -->' + cardHtml(out, TODAY) + '<!-- hukamnama:end -->' + close);
+  if (next !== html) fs.writeFileSync(INDEX, next, 'utf8');
+  console.log('Wrote the Hukamnama card into', INDEX);
+}
+
+// --homepage-only: rebuild the homepage card from the saved data (no API call).
+const run = process.argv.includes('--homepage-only')
+  ? async () => writeHomepage(JSON.parse(fs.readFileSync(OUT_JSON, 'utf8')))
+  : main;
+
+run().catch(function (err) {
   console.error('update-hukamnama failed:', err.message);
   process.exit(1);
 });
