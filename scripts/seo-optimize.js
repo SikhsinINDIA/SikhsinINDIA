@@ -132,7 +132,9 @@ function breadcrumbs(rel, pageName, titleByRel) {
     // then "<folder>.html" beside it; never a noindex page.
     const inside = [...parts.slice(0, i + 1), parts[i] + ".html"].join("/");
     const beside = [...parts.slice(0, i), parts[i] + ".html"].join("/");
-    const candidate = [inside, beside].find((c) => c !== rel && titleByRel.has(c) && !NOINDEX_RE.test(c));
+    // noindexRels also covers pages marked noindex in their own HTML, such as
+    // the redirect pages left at old addresses.
+    const candidate = [inside, beside].find((c) => c !== rel && titleByRel.has(c) && !noindexRels.has(c));
     if (candidate) trail.push({ name: titleByRel.get(candidate), url: pageUrl(candidate) });
   }
   trail.push({ name: pageName, url: pageUrl(rel) });
