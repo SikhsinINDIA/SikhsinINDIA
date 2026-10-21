@@ -164,16 +164,21 @@
     -webkit-transform: translateZ(0);
   }
 
+  /* One copy of the events, entering from the right edge (the 100% left
+     padding is the bar's width) and leaving on the left, then repeating.
+     A second copy for a gapless loop made the list appear twice to
+     search engines and screen readers. */
   .marquee-wrapper {
     display: flex;
     width: max-content;
+    padding-left: 100%;
     will-change: transform;
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    animation: marquee-scroll 25s linear infinite;
-    -webkit-animation: marquee-scroll 25s linear infinite;
+    animation: marquee-scroll 40s linear infinite;
+    -webkit-animation: marquee-scroll 40s linear infinite;
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -185,12 +190,12 @@
 
   @keyframes marquee-scroll {
     0%   { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(-50%, 0, 0); }
+    100% { transform: translate3d(-100%, 0, 0); }
   }
 
   @-webkit-keyframes marquee-scroll {
     0%   { -webkit-transform: translate3d(0, 0, 0); }
-    100% { -webkit-transform: translate3d(-50%, 0, 0); }
+    100% { -webkit-transform: translate3d(-100%, 0, 0); }
   }
 
   .marquee-block {
@@ -1015,7 +1020,7 @@
 
 <!-- ── CONTINUOUS SEAMLESS MARQUEE ── -->
 <div class="marquee-bar">
-  <div class="marquee-wrapper" id="marqueeWrapper"><!-- events:start --><div class="marquee-block"><span class="marquee-header">October Events</span><span class="marquee-item"><span class="item-date">October 23, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Prakash Purab</span> &nbsp;-&nbsp; Pyare Bhai Dharam Singh Ji</span><span class="marquee-item"><span class="item-date">October 23, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Prakash Purab</span> &nbsp;-&nbsp; Baba Budha Ji</span><span class="marquee-item"><span class="item-date">October 23, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Historical</span> &nbsp;-&nbsp; Passing of Jassa Singh Ahluwalia</span><span class="marquee-item"><span class="item-date">October 27, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Prakash Purab</span> &nbsp;-&nbsp; Guru Ram Das Ji</span><span class="marquee-item"><span class="item-date">October 1, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Gurgaddi Diwas</span> &nbsp;-&nbsp; Guru Angad Dev Ji</span><span class="marquee-item"><span class="item-date">October 5, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Joti Jot Diwas</span> &nbsp;-&nbsp; Guru Nanak Dev Ji</span><span class="marquee-item"><span class="item-date">October 6, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Historical</span> &nbsp;-&nbsp; Jorh Mela (Retirement) – Baba Budha Ji</span><span class="marquee-item"><span class="item-date">October 10, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Prakash Purab</span> &nbsp;-&nbsp; Bhai Taru Singh Ji</span><span class="marquee-item"><span class="item-date">October 20, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Celebration</span> &nbsp;-&nbsp; Darbar Khalsa (Dussehra)</span></div><div class="marquee-block"><span class="marquee-header">October Events</span><span class="marquee-item"><span class="item-date">October 23, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Prakash Purab</span> &nbsp;-&nbsp; Pyare Bhai Dharam Singh Ji</span><span class="marquee-item"><span class="item-date">October 23, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Prakash Purab</span> &nbsp;-&nbsp; Baba Budha Ji</span><span class="marquee-item"><span class="item-date">October 23, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Historical</span> &nbsp;-&nbsp; Passing of Jassa Singh Ahluwalia</span><span class="marquee-item"><span class="item-date">October 27, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Prakash Purab</span> &nbsp;-&nbsp; Guru Ram Das Ji</span><span class="marquee-item"><span class="item-date">October 1, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Gurgaddi Diwas</span> &nbsp;-&nbsp; Guru Angad Dev Ji</span><span class="marquee-item"><span class="item-date">October 5, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Joti Jot Diwas</span> &nbsp;-&nbsp; Guru Nanak Dev Ji</span><span class="marquee-item"><span class="item-date">October 6, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Historical</span> &nbsp;-&nbsp; Jorh Mela (Retirement) – Baba Budha Ji</span><span class="marquee-item"><span class="item-date">October 10, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Prakash Purab</span> &nbsp;-&nbsp; Bhai Taru Singh Ji</span><span class="marquee-item"><span class="item-date">October 20, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Celebration</span> &nbsp;-&nbsp; Darbar Khalsa (Dussehra)</span></div><!-- events:end --></div>
+  <div class="marquee-wrapper" id="marqueeWrapper"><!-- events:start --><div class="marquee-block"><span class="marquee-header">October Events</span><span class="marquee-item"><span class="item-date">October 23, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Prakash Purab</span> &nbsp;-&nbsp; Pyare Bhai Dharam Singh Ji</span><span class="marquee-item"><span class="item-date">October 23, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Prakash Purab</span> &nbsp;-&nbsp; Baba Budha Ji</span><span class="marquee-item"><span class="item-date">October 23, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Historical</span> &nbsp;-&nbsp; Passing of Jassa Singh Ahluwalia</span><span class="marquee-item"><span class="item-date">October 27, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Prakash Purab</span> &nbsp;-&nbsp; Guru Ram Das Ji</span><span class="marquee-item"><span class="item-date">October 1, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Gurgaddi Diwas</span> &nbsp;-&nbsp; Guru Angad Dev Ji</span><span class="marquee-item"><span class="item-date">October 5, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Joti Jot Diwas</span> &nbsp;-&nbsp; Guru Nanak Dev Ji</span><span class="marquee-item"><span class="item-date">October 6, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Historical</span> &nbsp;-&nbsp; Jorh Mela (Retirement) – Baba Budha Ji</span><span class="marquee-item"><span class="item-date">October 10, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Prakash Purab</span> &nbsp;-&nbsp; Bhai Taru Singh Ji</span><span class="marquee-item"><span class="item-date">October 20, 2026</span> &nbsp;-&nbsp; <span class="item-cat">Celebration</span> &nbsp;-&nbsp; Darbar Khalsa (Dussehra)</span></div><!-- events:end --></div>
 </div>
 
 
@@ -1353,19 +1358,21 @@
               });
           }
 
-          marqueeWrapper.innerHTML = `
-              <div class="marquee-block">${eventsHTML}</div>
-              <div class="marquee-block">${eventsHTML}</div>
-          `;
+          marqueeWrapper.innerHTML = `<div class="marquee-block">${eventsHTML}</div>`;
 
-          // Force animation restart after dynamic content loads
+          // Restart the scroll for the new content, at a steady reading speed
+          // (~70px a second) however long this month's list is.
           marqueeWrapper.style.animation = 'none';
           marqueeWrapper.style.webkitAnimation = 'none';
 
           void marqueeWrapper.offsetWidth;
 
-          marqueeWrapper.style.animation = 'marquee-scroll 25s linear infinite';
-          marqueeWrapper.style.webkitAnimation = 'marquee-scroll 25s linear infinite';
+          const seconds = Math.max(15, Math.round(marqueeWrapper.scrollWidth / 70));
+          // Start with the list already at the left edge, not entering from
+          // the right, so the bar isn't empty when the page opens.
+          const lead = (marqueeWrapper.parentElement.clientWidth / marqueeWrapper.scrollWidth) * seconds;
+          marqueeWrapper.style.animation = `marquee-scroll ${seconds}s linear -${lead.toFixed(2)}s infinite`;
+          marqueeWrapper.style.webkitAnimation = marqueeWrapper.style.animation;
 
       } catch (error) {
           console.error("Error fetching Calendar records: ", error);

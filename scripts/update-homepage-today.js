@@ -82,7 +82,9 @@ async function eventsHtml(today) {
         `<span class="item-cat">${esc(e.category)}</span> &nbsp;-&nbsp; ${esc(e.description)}</span>`;
     }
   }
-  return `<div class="marquee-block">${items}</div><div class="marquee-block">${items}</div>`;
+  // One copy only (the page scrolls it in from the right edge); a second
+  // copy made the events appear twice to search engines and screen readers.
+  return `<div class="marquee-block">${items}</div>`;
 }
 
 /* ── Today in Sikh History card ── */
