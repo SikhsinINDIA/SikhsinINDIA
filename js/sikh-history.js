@@ -155,8 +155,10 @@
             esc(shortDate(next)) + ' &rarr;</button>' +
         '</div>' +
         '<div class="tsh-explore">' +
-          '<a class="tsh-explore-link" href="sikh-history.html?date=' + keyOf(d) + '">' +
-            'Explore all 365 days &rarr;</a>' +
+          /* each day has its own page, built by scripts/build-sikh-history-pages.js */
+          '<a class="tsh-explore-link" href="sikh-history/' + MONTH_NAMES[d.getMonth()].toLowerCase() +
+            '-' + d.getDate() + '.html">Read ' + esc(shortDate(d)) + ' in full &rarr;</a>' +
+          ' &middot; <a class="tsh-explore-link" href="sikh-history.html">All 365 days</a>' +
         '</div>' +
       '</div>';
   }
