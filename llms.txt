@@ -16,6 +16,7 @@ Most pages have Hindi and Punjabi versions at the same path under /hi/ and /pa/,
 
 - [Sri Guru Granth Sahib Ji](https://sikhsinindia.com/03-nitnem/03-08-sri-guru-granth-sahib.html): Read Ang 1-1430 with English, Punjabi and Hindi meaning; search Gurbani by first letters, words or meaning
 - [Today's Hukamnama](https://sikhsinindia.com/hukamnama.html): Daily Hukamnama from Sri Harmandir Sahib, Amritsar, with translation
+- [Hukamnama Archive](https://sikhsinindia.com/hukamnama/archive.html): Every saved daily Hukamnama, one page per date (hukamnama/YYYY-MM-DD.html)
 - [Nitnem Path](https://sikhsinindia.com/03-nitnem/03-nitnem-path.html): Daily Banis (Japji Sahib, Jaap Sahib, Rehras Sahib and more) and Paath reminders
 - [Shabad Kirtan Search](https://sikhsinindia.com/03-nitnem/03-07-shabad-search.html): Find a shabad by its words or kirtaniya and listen
 - [Sehaj Path](https://sikhsinindia.com/03-nitnem/03-04-Sehaj-Path/03-04-sehaj-path.html): Complete devotional reading of Sri Guru Granth Sahib Ji
@@ -25,6 +26,7 @@ Most pages have Hindi and Punjabi versions at the same path under /hi/ and /pa/,
 
 - [Sikh Heritage](https://sikhsinindia.com/02-sikh-heritage/02-00-sikh-heritage/02-sikh-heritage.html): Sikh culture, art and service traditions
 - [Sikh History - 365 Days](https://sikhsinindia.com/sikh-history.html): What happened on each day of the year in Sikh history
+- [Sikh History by day](https://sikhsinindia.com/sikh-history/april-14.html): One page per day of the year, e.g. sikh-history/april-14.html (Vaisakhi)
 - [Sikh Festivals](https://sikhsinindia.com/02-sikh-heritage/02-02-discover-culture/02-02-01-sikh-festivals/02-02-01-sikh-festivals.html): Vaisakhi, Bandi Chhor Divas, Hola Mohalla, Khalsa Darbar and Dussehra, Gurpurabs and more
 - [The Sikh Calendar](https://sikhsinindia.com/02-sikh-heritage/02-02-discover-culture/02-02-04-sikh-calendar.html): Gurpurabs and Sikh observances through the year
 
