@@ -113,8 +113,9 @@ function prettyName(slug) {
 }
 
 function metaContent(head, attr, name) {
-  const re = new RegExp(`<meta[^>]+${attr}=["']${name}["'][^>]*content=["']([^"']*)["']`, "i");
-  return (head.match(re) || [])[1] || "";
+  // Up to the matching quote, so an apostrophe ("Mother's Day") doesn't cut it short.
+  const re = new RegExp(`<meta[^>]+${attr}=["']${name}["'][^>]*content=(["'])(.*?)\\1`, "i");
+  return (head.match(re) || [])[2] || "";
 }
 
 // Breadcrumb trail: Home > section pages that exist as "<folder>.html" next
@@ -249,7 +250,7 @@ for (const p of pages) {
   if (t) titleByRel.set(p.rel, shortTitle(t));
 }
 
-const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, icons: 0, alts: 0, zoom: 0, hreflang: 0, homeLinks: 0, titles: 0, changedFiles: 0 };
+const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, icons: 0, alts: 0, zoom: 0, hreflang: 0, homeLinks: 0, titles: 0, social: 0, changedFiles: 0 };
 const DEFAULT_IMAGE = `${SITE}/sikhsinindia.jpg`;
 const indexable = [];
 
@@ -405,6 +406,86 @@ for (const p of pages) {
       }
     }
 
+    // 15. Social sharing tags (WhatsApp, Facebook, LinkedIn, X): every page
+    // gets og:site_name, og:locale, a valid og:type, og:title/description/url,
+    // og:image with alt text, and the twitter: equivalents - filled from the
+    // page's own title, description and address where missing. Pages that
+    // only share the default logo use their own main photo instead (the
+    // first sizeable JPG/PNG on the page; WebP isn't shown by every app).
+    {
+      const before = h;
+      const eol = p.html.includes("\r\n") ? "\r\n" : "\n";
+      // A tag written twice by hand: keep the first, drop the rest.
+      {
+        const [headPart, ...rest] = h.split(/(?=<\/head>)/i);
+        const seen = new Set();
+        const deduped = headPart.replace(/[ \t]*<meta[^>]+(?:property|name)=["']((?:og|twitter):[^"']+)["'][^>]*>[ \t]*\r?\n?/gi,
+          (m, key) => { const k = key.toLowerCase(); if (seen.has(k)) return ""; seen.add(k); return m; });
+        h = deduped + rest.join("");
+      }
+      const headNow = (h.match(/<head[\s\S]*?<\/head>/i) || [""])[0];
+      // The value runs to the matching quote, so "Mother's Day" stays whole.
+      const get = (attr, key) => {
+        const m = headNow.match(new RegExp(`<meta[^>]+${attr}=["']${key}["'][^>]*content=(["'])(.*?)\\1`, "i"));
+        return m ? m[2] : null;
+      };
+      const setTag = (attr, key, value, overwrite) => {
+        const re = new RegExp(`(<meta[^>]+${attr}=["']${key}["'][^>]*content=(["']))(.*?)(\\2[^>]*>)`, "i");
+        if (re.test(h)) { if (overwrite) h = h.replace(re, (m, a, q, v, z) => (v === value ? m : a + value + z)); return; }
+        const tag = `<meta ${attr}="${key}" content="${value}">`;
+        // After the last og:/twitter: tag, else before the structured data / </head>.
+        const all = [...h.split(/<\/head>/i)[0].matchAll(/[ \t]*<meta[^>]+(?:property|name)=["'](?:og|twitter):[^"']+["'][^>]*>/gi)];
+        if (all.length) {
+          const last = all[all.length - 1];
+          const at = last.index + last[0].length;
+          h = h.slice(0, at) + eol + "  " + tag + h.slice(at);
+        } else {
+          h = h.replace(/([ \t]*)(<!-- seo:jsonld -->|<\/head>)/i, (m, ind, what) => `  ${tag}${eol}${ind}${what}`);
+        }
+      };
+
+      const pageTitle = (headNow.match(/<title>([\s\S]*?)<\/title>/i) || [])[1] || "";
+      const pageDesc = metaContent(headNow, "name", "description");
+      const lang = rel.startsWith("hi/") ? "hi" : rel.startsWith("pa/") ? "pa" : "en";
+
+      // The page's own main photo, as an absolute URL, or null.
+      const pagePhoto = () => {
+        const body = h.split(/<body[^>]*>/i)[1] || "";
+        for (const m of body.matchAll(/<img\b[^>]*\bsrc=["']([^"']+)["']/gi)) {
+          const src = decodeEntities(m[1]);
+          if (/^(data:|https?:\/\/(?!sikhsinindia\.com))/i.test(src)) continue;
+          let file = src.startsWith(SITE + "/") ? src.slice(SITE.length + 1)
+            : src.startsWith("/") ? src.slice(1) : path.posix.normalize(path.posix.join(path.posix.dirname(rel), src));
+          try { file = decodeURI(file.split(/[?#]/)[0]); } catch { continue; }
+          if (!/\.(jpe?g|png)$/i.test(file) || /(^|\/)00-index\/|logo|icon|favicon|clicktoview/i.test(file)) continue;
+          const abs = path.join(ROOT, file);
+          if (!fs.existsSync(abs) || fs.statSync(abs).size < 20000) continue;
+          return `${SITE}/${file.split("/").map(encodeURIComponent).join("/")}`;
+        }
+        return null;
+      };
+
+      const ogImageNow = get("property", "og:image");
+      let image = ogImageNow;
+      if (!image || decodeEntities(image) === DEFAULT_IMAGE) image = escAttr(pagePhoto() || decodeEntities(image || DEFAULT_IMAGE));
+      setTag("property", "og:image", image, true);
+      const twImage = get("name", "twitter:image");
+      setTag("name", "twitter:image", image, !twImage || twImage === ogImageNow);
+
+      const type = get("property", "og:type");
+      setTag("property", "og:type", type === "article" ? "article" : "website", true);
+      setTag("property", "og:site_name", "Sikhs in India", false);
+      setTag("property", "og:locale", { en: "en_IN", hi: "hi_IN", pa: "pa_IN" }[lang], false);
+      setTag("property", "og:title", pageTitle, false);
+      setTag("property", "og:description", pageDesc, false);
+      setTag("property", "og:url", escAttr(pageUrl(rel)), false);
+      setTag("property", "og:image:alt", escAttr(shortTitle(pageTitle)), true);
+      setTag("name", "twitter:card", "summary_large_image", false);
+      setTag("name", "twitter:title", get("property", "og:title") || pageTitle, false);
+      setTag("name", "twitter:description", get("property", "og:description") || pageDesc, false);
+      if (h !== before) stats.social++;
+    }
+
     // 12. hreflang alternates (replaces any existing set)
     {
       const links = hreflangLinks(rel);
@@ -468,6 +549,7 @@ for (const p of pages) {
 
   if (h !== p.html) {
     stats.changedFiles++;
+    if (process.argv.includes("--list")) console.log("  changes: " + rel);
     if (!DRY) fs.writeFileSync(p.file, h);
   }
 }
@@ -514,4 +596,5 @@ console.log(`  Pinch-zoom re-enabled:    ${stats.zoom}`);
 console.log(`  hreflang sets updated:    ${stats.hreflang}`);
 console.log(`  Home links set to "/":   ${stats.homeLinks}`);
 console.log(`  Long titles shortened:    ${stats.titles}`);
+console.log(`  Social tags completed:    ${stats.social}`);
 console.log(`  Sitemap URLs:             ${indexable.length}`);
