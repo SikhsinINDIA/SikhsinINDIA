@@ -1,0 +1,26 @@
+{
+ "date": "2026-10-05",
+ "dateDisplay": "5 October 2026",
+ "ang": 577,
+ "raagGurmukhi": "ਰਾਗੁ ਵਡਹੰਸੁ",
+ "raagEnglish": "Raag Vadhans",
+ "writerEnglish": "Guru Arjan Dev Ji",
+ "titleGurmukhi": "ਸਲੋਕੁ ॥",
+ "titleEnglish": "Shalok:",
+ "verseGurmukhi": "ਕਿਆ ਸੁਣੇਦੋ ਕੂੜੁ ਵੰਞਨਿ ਪਵਣ ਝੁਲਾਰਿਆ ॥",
+ "verseTranslation": "Why do you listen to falsehood? It shall vanish like a gust of wind.",
+ "verses": [
+  {
+   "gurmukhi": "ਸਲੋਕੁ ॥",
+   "translation": "Shalok:"
+  },
+  {
+   "gurmukhi": "ਕਿਆ ਸੁਣੇਦੋ ਕੂੜੁ ਵੰਞਨਿ ਪਵਣ ਝੁਲਾਰਿਆ ॥",
+   "translation": "Why do you listen to falsehood? It shall vanish like a gust of wind."
+  },
+  {
+   "gurmukhi": "ਨਾਨਕ ਸੁਣੀਅਰ ਤੇ ਪਰਵਾਣੁ ਜੋ ਸੁਣੇਦੇ ਸਚੁ ਧਣੀ ॥੧॥",
+   "translation": "O Nanak, those ears are acceptable, which listen to the True Master. ||1||"
+  }
+ ]
+}

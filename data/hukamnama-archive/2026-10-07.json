@@ -1,0 +1,26 @@
+{
+ "date": "2026-10-07",
+ "dateDisplay": "7 October 2026",
+ "ang": 956,
+ "raagGurmukhi": "ਰਾਗੁ ਰਾਮਕਲੀ",
+ "raagEnglish": "Raag Raamkalee",
+ "writerEnglish": "Guru Amar Daas Ji",
+ "titleGurmukhi": "ਸਲੋਕ ਮਃ ੩ ॥",
+ "titleEnglish": "Shalok, Third Mehla:",
+ "verseGurmukhi": "ਆਸਾ ਅੰਦਰਿ ਸਭੁ ਕੋ ਕੋਇ ਨਿਰਾਸਾ ਹੋਇ ॥",
+ "verseTranslation": "Everyone is filled with hope; hardly anyone is free of hope.",
+ "verses": [
+  {
+   "gurmukhi": "ਸਲੋਕ ਮਃ ੩ ॥",
+   "translation": "Shalok, Third Mehla:"
+  },
+  {
+   "gurmukhi": "ਆਸਾ ਅੰਦਰਿ ਸਭੁ ਕੋ ਕੋਇ ਨਿਰਾਸਾ ਹੋਇ ॥",
+   "translation": "Everyone is filled with hope; hardly anyone is free of hope."
+  },
+  {
+   "gurmukhi": "ਨਾਨਕ ਜੋ ਮਰਿ ਜੀਵਿਆ ਸਹਿਲਾ ਆਇਆ ਸੋਇ ॥੧॥",
+   "translation": "O Nanak, blessed is the birth of one, who remains dead while yet alive. ||1||"
+  }
+ ]
+}

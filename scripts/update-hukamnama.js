@@ -34,11 +34,54 @@ function pickPreviewVerse(verses) {
   return verses[1] || verses[0];
 }
 
-async function main() {
-  const res = await fetch(API_URL, { headers: { 'Accept': 'application/json' } });
+async function fetchRecord(url) {
+  const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
   if (!res.ok) throw new Error('BaniDB request failed: HTTP ' + res.status);
-  const data = await res.json();
+  return toRecord(await res.json());
+}
 
+async function main() {
+  const out = await fetchRecord(API_URL);
+
+  fs.mkdirSync(path.dirname(OUT_JSON), { recursive: true });
+  fs.writeFileSync(OUT_JSON, JSON.stringify(out, null, 2) + '\n', 'utf8');
+  fs.writeFileSync(OUT_JS,
+    '/* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */\n' +
+    'window.HUKAMNAMA = ' + JSON.stringify(out, null, 2) + ';\n',
+    'utf8');
+
+  console.log('Wrote', OUT_JSON, 'and', OUT_JS, 'for', out.date);
+  writeHomepage(out);
+  // Permanent page for the day, the archive, and hukamnama.html itself.
+  const r = require('./hukamnama-pages.js').publish(out);
+  console.log('Hukamnama pages:', r.days, 'days,', r.written, 'files written');
+}
+
+/* --backfill N: save the N days before today as archive pages (BaniDB keeps
+   past Hukamnamas by date). Leaves today's data files as they are. */
+async function backfill(days) {
+  const pages = require('./hukamnama-pages.js');
+  const today = new Date(new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(new Date()));
+  for (let i = days; i >= 1; i--) {
+    const d = new Date(today);
+    d.setUTCDate(d.getUTCDate() - i);
+    const url = `https://api.banidb.com/v2/hukamnamas/${d.getUTCFullYear()}/${d.getUTCMonth() + 1}/${d.getUTCDate()}`;
+    try {
+      const rec = await fetchRecord(url);
+      const { updated, ...keep } = rec;
+      fs.mkdirSync(path.join(__dirname, '..', 'data', 'hukamnama-archive'), { recursive: true });
+      fs.writeFileSync(path.join(__dirname, '..', 'data', 'hukamnama-archive', rec.date + '.json'),
+        JSON.stringify(keep, null, 1) + '\n', 'utf8');
+      console.log('saved', rec.date);
+    } catch (e) {
+      console.log('skipped', url, '-', e.message);
+    }
+  }
+  const r = pages.build();
+  console.log('Hukamnama pages:', r.days, 'days,', r.written, 'files written');
+}
+
+function toRecord(data) {
   const shabad = data.shabads && data.shabads[0];
   if (!shabad || !shabad.verses || !shabad.verses.length) {
     throw new Error('Unexpected BaniDB response shape (no shabad/verses)');
@@ -80,16 +123,7 @@ async function main() {
     verses: verses,
     updated: new Date().toISOString()
   };
-
-  fs.mkdirSync(path.dirname(OUT_JSON), { recursive: true });
-  fs.writeFileSync(OUT_JSON, JSON.stringify(out, null, 2) + '\n', 'utf8');
-  fs.writeFileSync(OUT_JS,
-    '/* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */\n' +
-    'window.HUKAMNAMA = ' + JSON.stringify(out, null, 2) + ';\n',
-    'utf8');
-
-  console.log('Wrote', OUT_JSON, 'and', OUT_JS, 'for', dateIso);
-  writeHomepage(out);
+  return out;
 }
 
 /* Writes the day's Hukamnama card straight into index.html, so the Gurbani
@@ -110,8 +144,11 @@ function writeHomepage(out) {
 }
 
 // --homepage-only: rebuild the homepage card from the saved data (no API call).
+// --backfill N:   save archive pages for the N days before today.
+const bf = process.argv.indexOf('--backfill');
 const run = process.argv.includes('--homepage-only')
   ? async () => writeHomepage(JSON.parse(fs.readFileSync(OUT_JSON, 'utf8')))
+  : bf > -1 ? () => backfill(parseInt(process.argv[bf + 1], 10) || 30)
   : main;
 
 run().catch(function (err) {
