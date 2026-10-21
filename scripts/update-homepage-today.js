@@ -18,7 +18,7 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 const INDEX = path.join(ROOT, 'index.html');
-const FIRESTORE_QUERY_URL = 'https://firestore.googleapis.com/v1/projects/sikhsinindia-67a6b/databases/(default)/documents:runQuery?key=AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU';
+const FIRESTORE_QUERY_URL = 'https://firestore.googleapis.com/v1/projects/sikhsinindia-67a6b/databases/(default)/documents:runQuery';
 const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'];
 
