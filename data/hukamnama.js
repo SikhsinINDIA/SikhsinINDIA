@@ -1,52 +1,104 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-10-20",
-  "dateDisplay": "20 October 2026",
-  "ang": 633,
-  "raagGurmukhi": "ਰਾਗੁ ਸੋਰਠਿ",
-  "raagEnglish": "Raag Sorath",
-  "writerEnglish": "Guru Tegh Bahaadur Ji",
-  "titleGurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੯ ॥",
-  "titleEnglish": "Sorat'h, Ninth Mehla:",
-  "verseGurmukhi": "ਇਹ ਜਗਿ ਮੀਤੁ ਨ ਦੇਖਿਓ ਕੋਈ ॥",
-  "verseTranslation": "In this world, I have not found any true friend.",
+  "date": "2026-10-21",
+  "dateDisplay": "21 October 2026",
+  "ang": 686,
+  "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
+  "raagEnglish": "Raag Dhanaasree",
+  "writerEnglish": "Guru Arjan Dev Ji",
+  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਃ ੫ ਘਰੁ ੬ ਅਸਟਪਦੀ",
+  "titleEnglish": "Dhanaasaree, Fifth Mehla, Sixth House, Ashtapadee:",
+  "verseGurmukhi": "ਜੋ ਜੋ ਜੂਨੀ ਆਇਓ ਤਿਹ ਤਿਹ ਉਰਝਾਇਓ ਮਾਣਸ ਜਨਮੁ ਸੰਜੋਗਿ ਪਾਇਆ ॥",
+  "verseTranslation": "Whoever is born into the world, is entangled in it; human birth is obtained only by good destiny.",
   "verses": [
     {
-      "gurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੯ ॥",
-      "translation": "Sorat'h, Ninth Mehla:"
+      "gurmukhi": "ਧਨਾਸਰੀ ਮਃ ੫ ਘਰੁ ੬ ਅਸਟਪਦੀ",
+      "translation": "Dhanaasaree, Fifth Mehla, Sixth House, Ashtapadee:"
     },
     {
-      "gurmukhi": "ਇਹ ਜਗਿ ਮੀਤੁ ਨ ਦੇਖਿਓ ਕੋਈ ॥",
-      "translation": "In this world, I have not found any true friend."
+      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
     },
     {
-      "gurmukhi": "ਸਗਲ ਜਗਤੁ ਅਪਨੈ ਸੁਖਿ ਲਾਗਿਓ ਦੁਖ ਮੈ ਸੰਗਿ ਨ ਹੋਈ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "The whole world is attached to its own pleasures, and when trouble comes, no one is with you. ||1||Pause||"
+      "gurmukhi": "ਜੋ ਜੋ ਜੂਨੀ ਆਇਓ ਤਿਹ ਤਿਹ ਉਰਝਾਇਓ ਮਾਣਸ ਜਨਮੁ ਸੰਜੋਗਿ ਪਾਇਆ ॥",
+      "translation": "Whoever is born into the world, is entangled in it; human birth is obtained only by good destiny."
     },
     {
-      "gurmukhi": "ਦਾਰਾ ਮੀਤ ਪੂਤ ਸਨਬੰਧੀ ਸਗਰੇ ਧਨ ਸਿਉ ਲਾਗੇ ॥",
-      "translation": "Wives, friends, children and relatives - all are attached to wealth."
+      "gurmukhi": "ਤਾਕੀ ਹੈ ਓਟ ਸਾਧ ਰਾਖਹੁ ਦੇ ਕਰਿ ਹਾਥ ਕਰਿ ਕਿਰਪਾ ਮੇਲਹੁ ਹਰਿ ਰਾਇਆ ॥੧॥",
+      "translation": "I look to Your support, O Holy Saint; give me Your hand, and protect me. By Your Grace, let me meet the Lord, my King. ||1||"
     },
     {
-      "gurmukhi": "ਜਬ ਹੀ ਨਿਰਧਨ ਦੇਖਿਓ ਨਰ ਕਉ ਸੰਗੁ ਛਾਡਿ ਸਭ ਭਾਗੇ ॥੧॥",
-      "translation": "When they see a poor man, they all forsake his company and run away. ||1||"
+      "gurmukhi": "ਅਨਿਕ ਜਨਮ ਭ੍ਰਮਿ ਥਿਤਿ ਨਹੀ ਪਾਈ ॥",
+      "translation": "I wandered through countless incarnations, but I did not find stability anywhere."
     },
     {
-      "gurmukhi": "ਕਹਂਉ ਕਹਾ ਯਿਆ ਮਨ ਬਉਰੇ ਕਉ ਇਨ ਸਿਉ ਨੇਹੁ ਲਗਾਇਓ ॥",
-      "translation": "So what should I say to this crazy mind, which is affectionately attached to them?"
+      "gurmukhi": "ਕਰਉ ਸੇਵਾ ਗੁਰ ਲਾਗਉ ਚਰਨ ਗੋਵਿੰਦ ਜੀ ਕਾ ਮਾਰਗੁ ਦੇਹੁ ਜੀ ਬਤਾਈ ॥੧॥ ਰਹਾਉ ॥",
+      "translation": "I serve the Guru, and I fall at His feet, praying, \"\"O Dear Lord of the Universe, please, show me the way.\"\"||1||Pause||"
     },
     {
-      "gurmukhi": "ਦੀਨਾ ਨਾਥ ਸਕਲ ਭੈ ਭੰਜਨ ਜਸੁ ਤਾ ਕੋ ਬਿਸਰਾਇਓ ॥੨॥",
-      "translation": "The Lord is the Master of the meek, the Destroyer of all fears, and I have forgotten to praise Him. ||2||"
+      "gurmukhi": "ਅਨਿਕ ਉਪਾਵ ਕਰਉ ਮਾਇਆ ਕਉ ਬਚਿਤਿ ਧਰਉ ਮੇਰੀ ਮੇਰੀ ਕਰਤ ਸਦ ਹੀ ਵਿਹਾਵੈ ॥",
+      "translation": "I have tried so many things to acquire the wealth of Maya, and to cherish it in my mind; I have passed my life constantly crying out, \"\"Mine, mine!\"\""
     },
     {
-      "gurmukhi": "ਸੁਆਨ ਪੂਛ ਜਿਉ ਭਇਓ ਨ ਸੂਧਉ ਬਹੁਤੁ ਜਤਨੁ ਮੈ ਕੀਨਉ ॥",
-      "translation": "Like a dog's tail, which will never straighten out, the mind will not change, no matter how many things are tried."
+      "gurmukhi": "ਕੋਈ ਐਸੋ ਰੇ ਭੇਟੈ ਸੰਤੁ ਮੇਰੀ ਲਾਹੈ ਸਗਲ ਚਿੰਤ ਠਾਕੁਰ ਸਿਉ ਮੇਰਾ ਰੰਗੁ ਲਾਵੈ ॥੨॥",
+      "translation": "Is there any such Saint, who would meet with me, take away my anxiety, and lead me to enshrine love for my Lord and Master. ||2||"
     },
     {
-      "gurmukhi": "ਨਾਨਕ ਲਾਜ ਬਿਰਦ ਕੀ ਰਾਖਹੁ ਨਾਮੁ ਤੁਹਾਰਉ ਲੀਨਉ ॥੩॥੯॥",
-      "translation": "Says Nanak, please, Lord, uphold the honor of Your innate nature; I chant Your Name. ||3||9||"
+      "gurmukhi": "ਪੜੇ ਰੇ ਸਗਲ ਬੇਦ ਨਹ ਚੂਕੈ ਮਨ ਭੇਦ ਇਕੁ ਖਿਨੁ ਨ ਧੀਰਹਿ ਮੇਰੇ ਘਰ ਕੇ ਪੰਚਾ ॥",
+      "translation": "I have read all the Vedas, and yet the sense of separation in my mind still has not been removed; the five thieves of my house are not quieted, even for an instant."
+    },
+    {
+      "gurmukhi": "ਕੋਈ ਐਸੋ ਰੇ ਭਗਤੁ ਜੁ ਮਾਇਆ ਤੇ ਰਹਤੁ ਇਕੁ ਅੰਮ੍ਰਿਤ ਨਾਮੁ ਮੇਰੈ ਰਿਦੈ ਸਿੰਚਾ ॥੩॥",
+      "translation": "Is there any devotee, who is unattached to Maya, who may irrigate my mind with the Ambrosial Naam, the Name of the One Lord? ||3||"
+    },
+    {
+      "gurmukhi": "ਜੇਤੇ ਰੇ ਤੀਰਥ ਨਾਏ ਅਹੰਬੁਧਿ ਮੈਲੁ ਲਾਏ ਘਰ ਕੋ ਠਾਕੁਰੁ ਇਕੁ ਤਿਲੁ ਨ ਮਾਨੈ ॥",
+      "translation": "In spite of the many places of pilgrimage for people to bathe in, their minds are still stained by their stubborn ego; the Lord Master is not pleased by this at all."
+    },
+    {
+      "gurmukhi": "ਕਦਿ ਪਾਵਉ ਸਾਧਸੰਗੁ ਹਰਿ ਹਰਿ ਸਦਾ ਆਨੰਦੁ ਗਿਆਨ ਅੰਜਨਿ ਮੇਰਾ ਮਨੁ ਇਸਨਾਨੈ ॥੪॥",
+      "translation": "When will I find the Saadh Sangat, the Company of the Holy? There, I shall be always in the ecstasy of the Lord, Har, Har, and my mind shall take its cleansing bath in the healing ointment of spiritual wisdom. ||4||"
+    },
+    {
+      "gurmukhi": "ਸਗਲ ਅਸ੍ਰਮ ਕੀਨੇ ਮਨੂਆ ਨਹ ਪਤੀਨੇ ਬਿਬੇਕਹੀਨ ਦੇਹੀ ਧੋਏ ॥",
+      "translation": "I have followed the four stages of life, but my mind is not satisfied; I wash my body, but it is totally lacking in understanding."
+    },
+    {
+      "gurmukhi": "ਕੋਈ ਪਾਈਐ ਰੇ ਪੁਰਖੁ ਬਿਧਾਤਾ ਪਾਰਬ੍ਰਹਮ ਕੈ ਰੰਗਿ ਰਾਤਾ ਮੇਰੇ ਮਨ ਕੀ ਦੁਰਮਤਿ ਮਲੁ ਖੋਏ ॥੫॥",
+      "translation": "If only I could meet some devotee of the Supreme Lord God, imbued with the Lord's Love, who could eradicate the filthy evil-mindedness from my mind. ||5||"
+    },
+    {
+      "gurmukhi": "ਕਰਮ ਧਰਮ ਜੁਗਤਾ ਨਿਮਖ ਨ ਹੇਤੁ ਕਰਤਾ ਗਰਬਿ ਗਰਬਿ ਪੜੈ ਕਹੀ ਨ ਲੇਖੈ ॥",
+      "translation": "One who is attached to religious rituals, does not love the Lord, even for an instant; he is filled with pride, and he is of no account."
+    },
+    {
+      "gurmukhi": "ਜਿਸੁ ਭੇਟੀਐ ਸਫਲ ਮੂਰਤਿ ਕਰੈ ਸਦਾ ਕੀਰਤਿ ਗੁਰ ਪਰਸਾਦਿ ਕੋਊ ਨੇਤ੍ਰਹੁ ਪੇਖੈ ॥੬॥",
+      "translation": "One who meets with the rewarding personality of the Guru, continually sings the Kirtan of the Lord's Praises. By Guru's Grace, such a rare one beholds the Lord with his eyes. ||6||"
+    },
+    {
+      "gurmukhi": "ਮਨਹਠਿ ਜੋ ਕਮਾਵੈ ਤਿਲੁ ਨ ਲੇਖੈ ਪਾਵੈ ਬਗੁਲ ਜਿਉ ਧਿਆਨੁ ਲਾਵੈ ਮਾਇਆ ਰੇ ਧਾਰੀ ॥",
+      "translation": "One who acts through stubbornness is of no account at all; like a crane, he pretends to meditate, but he is still stuck in Maya."
+    },
+    {
+      "gurmukhi": "ਕੋਈ ਐਸੋ ਰੇ ਸੁਖਹ ਦਾਈ ਪ੍ਰਭ ਕੀ ਕਥਾ ਸੁਨਾਈ ਤਿਸੁ ਭੇਟੇ ਗਤਿ ਹੋਇ ਹਮਾਰੀ ॥੭॥",
+      "translation": "Is there any such Giver of peace, who can recite to me the sermon of God? Meeting him, I would be emancipated. ||7||"
+    },
+    {
+      "gurmukhi": "ਸੁਪ੍ਰਸੰਨ ਗੋਪਾਲ ਰਾਇ ਕਾਟੈ ਰੇ ਬੰਧਨ ਮਾਇ ਗੁਰ ਕੈ ਸਬਦਿ ਮੇਰਾ ਮਨੁ ਰਾਤਾ ॥",
+      "translation": "When the Lord, my King, is totally pleased with me, He will break the bonds of Maya for me; my mind is imbued with the Word of the Guru's Shabad."
+    },
+    {
+      "gurmukhi": "ਸਦਾ ਸਦਾ ਆਨੰਦੁ ਭੇਟਿਓ ਨਿਰਭੈ ਗੋਬਿੰਦੁ ਸੁਖ ਨਾਨਕ ਲਾਧੇ ਹਰਿ ਚਰਨ ਪਰਾਤਾ ॥੮॥",
+      "translation": "I am in ecstasy, forever and ever, meeting the Fearless Lord, the Lord of the Universe. Falling at the Lord's Feet, Nanak has found peace. ||8||"
+    },
+    {
+      "gurmukhi": "ਸਫਲ ਸਫਲ ਭਈ ਸਫਲ ਜਾਤ੍ਰਾ ॥",
+      "translation": "My Yatra, my life pilgrimage, has become fruitful, fruitful, fruitful."
+    },
+    {
+      "gurmukhi": "ਆਵਣ ਜਾਣ ਰਹੇ ਮਿਲੇ ਸਾਧਾ ॥੧॥ ਰਹਾਉ ਦੂਜਾ ॥੧॥੩॥",
+      "translation": "My comings and goings have ended, since I met the Holy Saint. ||1||Second Pause||1||3||"
     }
   ],
-  "updated": "2026-10-20T06:14:17.242Z"
+  "updated": "2026-10-21T06:12:36.170Z"
 };
