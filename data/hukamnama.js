@@ -1,104 +1,100 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-10-21",
-  "dateDisplay": "21 October 2026",
-  "ang": 686,
-  "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
-  "raagEnglish": "Raag Dhanaasree",
-  "writerEnglish": "Guru Arjan Dev Ji",
-  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਃ ੫ ਘਰੁ ੬ ਅਸਟਪਦੀ",
-  "titleEnglish": "Dhanaasaree, Fifth Mehla, Sixth House, Ashtapadee:",
-  "verseGurmukhi": "ਜੋ ਜੋ ਜੂਨੀ ਆਇਓ ਤਿਹ ਤਿਹ ਉਰਝਾਇਓ ਮਾਣਸ ਜਨਮੁ ਸੰਜੋਗਿ ਪਾਇਆ ॥",
-  "verseTranslation": "Whoever is born into the world, is entangled in it; human birth is obtained only by good destiny.",
+  "date": "2026-10-22",
+  "dateDisplay": "22 October 2026",
+  "ang": 722,
+  "raagGurmukhi": "ਰਾਗੁ ਤਿਲੰਗ",
+  "raagEnglish": "Raag Tilang",
+  "writerEnglish": "Guru Nanak Dev Ji",
+  "titleGurmukhi": "ਤਿਲੰਗ ਮਃ ੧ ॥",
+  "titleEnglish": "Tilang, First Mehla:",
+  "verseGurmukhi": "ਇਆਨੜੀਏ ਮਾਨੜਾ ਕਾਇ ਕਰੇਹਿ ॥",
+  "verseTranslation": "O foolish and ignorant soul-bride, why are you so proud?",
   "verses": [
     {
-      "gurmukhi": "ਧਨਾਸਰੀ ਮਃ ੫ ਘਰੁ ੬ ਅਸਟਪਦੀ",
-      "translation": "Dhanaasaree, Fifth Mehla, Sixth House, Ashtapadee:"
+      "gurmukhi": "ਤਿਲੰਗ ਮਃ ੧ ॥",
+      "translation": "Tilang, First Mehla:"
     },
     {
-      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
-      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
+      "gurmukhi": "ਇਆਨੜੀਏ ਮਾਨੜਾ ਕਾਇ ਕਰੇਹਿ ॥",
+      "translation": "O foolish and ignorant soul-bride, why are you so proud?"
     },
     {
-      "gurmukhi": "ਜੋ ਜੋ ਜੂਨੀ ਆਇਓ ਤਿਹ ਤਿਹ ਉਰਝਾਇਓ ਮਾਣਸ ਜਨਮੁ ਸੰਜੋਗਿ ਪਾਇਆ ॥",
-      "translation": "Whoever is born into the world, is entangled in it; human birth is obtained only by good destiny."
+      "gurmukhi": "ਆਪਨੜੈ ਘਰਿ ਹਰਿ ਰੰਗੋ ਕੀ ਨ ਮਾਣੇਹਿ ॥",
+      "translation": "Within the home of your own self, why do you not enjoy the Love of your Lord?"
     },
     {
-      "gurmukhi": "ਤਾਕੀ ਹੈ ਓਟ ਸਾਧ ਰਾਖਹੁ ਦੇ ਕਰਿ ਹਾਥ ਕਰਿ ਕਿਰਪਾ ਮੇਲਹੁ ਹਰਿ ਰਾਇਆ ॥੧॥",
-      "translation": "I look to Your support, O Holy Saint; give me Your hand, and protect me. By Your Grace, let me meet the Lord, my King. ||1||"
+      "gurmukhi": "ਸਹੁ ਨੇੜੈ ਧਨ ਕੰਮਲੀਏ ਬਾਹਰੁ ਕਿਆ ਢੂਢੇਹਿ ॥",
+      "translation": "Your Husband Lord is so very near, O foolish bride; why do you search for Him outside?"
     },
     {
-      "gurmukhi": "ਅਨਿਕ ਜਨਮ ਭ੍ਰਮਿ ਥਿਤਿ ਨਹੀ ਪਾਈ ॥",
-      "translation": "I wandered through countless incarnations, but I did not find stability anywhere."
+      "gurmukhi": "ਭੈ ਕੀਆ ਦੇਹਿ ਸਲਾਈਆ ਨੈਣੀ ਭਾਵ ਕਾ ਕਰਿ ਸੀਗਾਰੋ ॥",
+      "translation": "Apply the Fear of God as the maascara to adorn your eyes, and make the Love of the Lord your ornament."
     },
     {
-      "gurmukhi": "ਕਰਉ ਸੇਵਾ ਗੁਰ ਲਾਗਉ ਚਰਨ ਗੋਵਿੰਦ ਜੀ ਕਾ ਮਾਰਗੁ ਦੇਹੁ ਜੀ ਬਤਾਈ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "I serve the Guru, and I fall at His feet, praying, \"\"O Dear Lord of the Universe, please, show me the way.\"\"||1||Pause||"
+      "gurmukhi": "ਤਾ ਸੋਹਾਗਣਿ ਜਾਣੀਐ ਲਾਗੀ ਜਾ ਸਹੁ ਧਰੇ ਪਿਆਰੋ ॥੧॥",
+      "translation": "Then, you shall be known as a devoted and committed soul-bride, when you enshrine love for your Husband Lord. ||1||"
     },
     {
-      "gurmukhi": "ਅਨਿਕ ਉਪਾਵ ਕਰਉ ਮਾਇਆ ਕਉ ਬਚਿਤਿ ਧਰਉ ਮੇਰੀ ਮੇਰੀ ਕਰਤ ਸਦ ਹੀ ਵਿਹਾਵੈ ॥",
-      "translation": "I have tried so many things to acquire the wealth of Maya, and to cherish it in my mind; I have passed my life constantly crying out, \"\"Mine, mine!\"\""
+      "gurmukhi": "ਇਆਣੀ ਬਾਲੀ ਕਿਆ ਕਰੇ ਜਾ ਧਨ ਕੰਤ ਨ ਭਾਵੈ ॥",
+      "translation": "What can the silly young bride do, if she is not pleasing to her Husband Lord?"
     },
     {
-      "gurmukhi": "ਕੋਈ ਐਸੋ ਰੇ ਭੇਟੈ ਸੰਤੁ ਮੇਰੀ ਲਾਹੈ ਸਗਲ ਚਿੰਤ ਠਾਕੁਰ ਸਿਉ ਮੇਰਾ ਰੰਗੁ ਲਾਵੈ ॥੨॥",
-      "translation": "Is there any such Saint, who would meet with me, take away my anxiety, and lead me to enshrine love for my Lord and Master. ||2||"
+      "gurmukhi": "ਕਰਣ ਪਲਾਹ ਕਰੇ ਬਹੁਤੇਰੇ ਸਾ ਧਨ ਮਹਲੁ ਨ ਪਾਵੈ ॥",
+      "translation": "She may plead and implore so many times, but still, such a bride shall not obtain the Mansion of the Lord's Presence."
     },
     {
-      "gurmukhi": "ਪੜੇ ਰੇ ਸਗਲ ਬੇਦ ਨਹ ਚੂਕੈ ਮਨ ਭੇਦ ਇਕੁ ਖਿਨੁ ਨ ਧੀਰਹਿ ਮੇਰੇ ਘਰ ਕੇ ਪੰਚਾ ॥",
-      "translation": "I have read all the Vedas, and yet the sense of separation in my mind still has not been removed; the five thieves of my house are not quieted, even for an instant."
+      "gurmukhi": "ਵਿਣੁ ਕਰਮਾ ਕਿਛੁ ਪਾਈਐ ਨਾਹੀ ਜੇ ਬਹੁਤੇਰਾ ਧਾਵੈ ॥",
+      "translation": "Without the karma of good deeds, nothing is obtained, although she may run around frantically."
     },
     {
-      "gurmukhi": "ਕੋਈ ਐਸੋ ਰੇ ਭਗਤੁ ਜੁ ਮਾਇਆ ਤੇ ਰਹਤੁ ਇਕੁ ਅੰਮ੍ਰਿਤ ਨਾਮੁ ਮੇਰੈ ਰਿਦੈ ਸਿੰਚਾ ॥੩॥",
-      "translation": "Is there any devotee, who is unattached to Maya, who may irrigate my mind with the Ambrosial Naam, the Name of the One Lord? ||3||"
+      "gurmukhi": "ਲਬ ਲੋਭ ਅਹੰਕਾਰ ਕੀ ਮਾਤੀ ਮਾਇਆ ਮਾਹਿ ਸਮਾਣੀ ॥",
+      "translation": "She is intoxicated with greed, pride and egotism, and engrossed in Maya."
     },
     {
-      "gurmukhi": "ਜੇਤੇ ਰੇ ਤੀਰਥ ਨਾਏ ਅਹੰਬੁਧਿ ਮੈਲੁ ਲਾਏ ਘਰ ਕੋ ਠਾਕੁਰੁ ਇਕੁ ਤਿਲੁ ਨ ਮਾਨੈ ॥",
-      "translation": "In spite of the many places of pilgrimage for people to bathe in, their minds are still stained by their stubborn ego; the Lord Master is not pleased by this at all."
+      "gurmukhi": "ਇਨੀ ਬਾਤੀ ਸਹੁ ਪਾਈਐ ਨਾਹੀ ਭਈ ਕਾਮਣਿ ਇਆਣੀ ॥੨॥",
+      "translation": "She cannot obtain her Husband Lord in these ways; the young bride is so foolish! ||2||"
     },
     {
-      "gurmukhi": "ਕਦਿ ਪਾਵਉ ਸਾਧਸੰਗੁ ਹਰਿ ਹਰਿ ਸਦਾ ਆਨੰਦੁ ਗਿਆਨ ਅੰਜਨਿ ਮੇਰਾ ਮਨੁ ਇਸਨਾਨੈ ॥੪॥",
-      "translation": "When will I find the Saadh Sangat, the Company of the Holy? There, I shall be always in the ecstasy of the Lord, Har, Har, and my mind shall take its cleansing bath in the healing ointment of spiritual wisdom. ||4||"
+      "gurmukhi": "ਜਾਇ ਪੁਛਹੁ ਸੋਹਾਗਣੀ ਵਾਹੈ ਕਿਨੀ ਬਾਤੀ ਸਹੁ ਪਾਈਐ ॥",
+      "translation": "Go and ask the happy, pure soul-brides, how did they obtain their Husband Lord?"
     },
     {
-      "gurmukhi": "ਸਗਲ ਅਸ੍ਰਮ ਕੀਨੇ ਮਨੂਆ ਨਹ ਪਤੀਨੇ ਬਿਬੇਕਹੀਨ ਦੇਹੀ ਧੋਏ ॥",
-      "translation": "I have followed the four stages of life, but my mind is not satisfied; I wash my body, but it is totally lacking in understanding."
+      "gurmukhi": "ਜੋ ਕਿਛੁ ਕਰੇ ਸੋ ਭਲਾ ਕਰਿ ਮਾਨੀਐ ਹਿਕਮਤਿ ਹੁਕਮੁ ਚੁਕਾਈਐ ॥",
+      "translation": "Whatever the Lord does, accept that as good; do away with your own cleverness and self-will."
     },
     {
-      "gurmukhi": "ਕੋਈ ਪਾਈਐ ਰੇ ਪੁਰਖੁ ਬਿਧਾਤਾ ਪਾਰਬ੍ਰਹਮ ਕੈ ਰੰਗਿ ਰਾਤਾ ਮੇਰੇ ਮਨ ਕੀ ਦੁਰਮਤਿ ਮਲੁ ਖੋਏ ॥੫॥",
-      "translation": "If only I could meet some devotee of the Supreme Lord God, imbued with the Lord's Love, who could eradicate the filthy evil-mindedness from my mind. ||5||"
+      "gurmukhi": "ਜਾ ਕੈ ਪ੍ਰੇਮਿ ਪਦਾਰਥੁ ਪਾਈਐ ਤਉ ਚਰਣੀ ਚਿਤੁ ਲਾਈਐ ॥",
+      "translation": "By His Love, true wealth is obtained; link your consciousness to His lotus feet."
     },
     {
-      "gurmukhi": "ਕਰਮ ਧਰਮ ਜੁਗਤਾ ਨਿਮਖ ਨ ਹੇਤੁ ਕਰਤਾ ਗਰਬਿ ਗਰਬਿ ਪੜੈ ਕਹੀ ਨ ਲੇਖੈ ॥",
-      "translation": "One who is attached to religious rituals, does not love the Lord, even for an instant; he is filled with pride, and he is of no account."
+      "gurmukhi": "ਸਹੁ ਕਹੈ ਸੋ ਕੀਜੈ ਤਨੁ ਮਨੋ ਦੀਜੈ ਐਸਾ ਪਰਮਲੁ ਲਾਈਐ ॥",
+      "translation": "As your Husband Lord directs, so you must act; surrender your body and mind to Him, and apply this perfume to yourself."
     },
     {
-      "gurmukhi": "ਜਿਸੁ ਭੇਟੀਐ ਸਫਲ ਮੂਰਤਿ ਕਰੈ ਸਦਾ ਕੀਰਤਿ ਗੁਰ ਪਰਸਾਦਿ ਕੋਊ ਨੇਤ੍ਰਹੁ ਪੇਖੈ ॥੬॥",
-      "translation": "One who meets with the rewarding personality of the Guru, continually sings the Kirtan of the Lord's Praises. By Guru's Grace, such a rare one beholds the Lord with his eyes. ||6||"
+      "gurmukhi": "ਏਵ ਕਹਹਿ ਸੋਹਾਗਣੀ ਭੈਣੇ ਇਨੀ ਬਾਤੀ ਸਹੁ ਪਾਈਐ ॥੩॥",
+      "translation": "So speaks the happy soul-bride, O sister; in this way, the Husband Lord is obtained. ||3||"
     },
     {
-      "gurmukhi": "ਮਨਹਠਿ ਜੋ ਕਮਾਵੈ ਤਿਲੁ ਨ ਲੇਖੈ ਪਾਵੈ ਬਗੁਲ ਜਿਉ ਧਿਆਨੁ ਲਾਵੈ ਮਾਇਆ ਰੇ ਧਾਰੀ ॥",
-      "translation": "One who acts through stubbornness is of no account at all; like a crane, he pretends to meditate, but he is still stuck in Maya."
+      "gurmukhi": "ਆਪੁ ਗਵਾਈਐ ਤਾ ਸਹੁ ਪਾਈਐ ਅਉਰੁ ਕੈਸੀ ਚਤੁਰਾਈ ॥",
+      "translation": "Give up your selfhood, and so obtain your Husband Lord; what other clever tricks are of any use?"
     },
     {
-      "gurmukhi": "ਕੋਈ ਐਸੋ ਰੇ ਸੁਖਹ ਦਾਈ ਪ੍ਰਭ ਕੀ ਕਥਾ ਸੁਨਾਈ ਤਿਸੁ ਭੇਟੇ ਗਤਿ ਹੋਇ ਹਮਾਰੀ ॥੭॥",
-      "translation": "Is there any such Giver of peace, who can recite to me the sermon of God? Meeting him, I would be emancipated. ||7||"
+      "gurmukhi": "ਸਹੁ ਨਦਰਿ ਕਰਿ ਦੇਖੈ ਸੋ ਦਿਨੁ ਲੇਖੈ ਕਾਮਣਿ ਨਉ ਨਿਧਿ ਪਾਈ ॥",
+      "translation": "When the Husband Lord looks upon the soul-bride with His Gracious Glance, that day is historic - the bride obtains the nine treasures."
     },
     {
-      "gurmukhi": "ਸੁਪ੍ਰਸੰਨ ਗੋਪਾਲ ਰਾਇ ਕਾਟੈ ਰੇ ਬੰਧਨ ਮਾਇ ਗੁਰ ਕੈ ਸਬਦਿ ਮੇਰਾ ਮਨੁ ਰਾਤਾ ॥",
-      "translation": "When the Lord, my King, is totally pleased with me, He will break the bonds of Maya for me; my mind is imbued with the Word of the Guru's Shabad."
+      "gurmukhi": "ਆਪਣੇ ਕੰਤ ਪਿਆਰੀ ਸਾ ਸੋਹਾਗਣਿ ਨਾਨਕ ਸਾ ਸਭਰਾਈ ॥",
+      "translation": "She who is loved by her Husband Lord, is the true soul-bride; O Nanak, she is the queen of all."
     },
     {
-      "gurmukhi": "ਸਦਾ ਸਦਾ ਆਨੰਦੁ ਭੇਟਿਓ ਨਿਰਭੈ ਗੋਬਿੰਦੁ ਸੁਖ ਨਾਨਕ ਲਾਧੇ ਹਰਿ ਚਰਨ ਪਰਾਤਾ ॥੮॥",
-      "translation": "I am in ecstasy, forever and ever, meeting the Fearless Lord, the Lord of the Universe. Falling at the Lord's Feet, Nanak has found peace. ||8||"
+      "gurmukhi": "ਐਸੈ ਰੰਗਿ ਰਾਤੀ ਸਹਜ ਕੀ ਮਾਤੀ ਅਹਿਨਿਸਿ ਭਾਇ ਸਮਾਣੀ ॥",
+      "translation": "Thus she is imbued with His Love, intoxicated with delight; day and night, she is absorbed in His Love."
     },
     {
-      "gurmukhi": "ਸਫਲ ਸਫਲ ਭਈ ਸਫਲ ਜਾਤ੍ਰਾ ॥",
-      "translation": "My Yatra, my life pilgrimage, has become fruitful, fruitful, fruitful."
-    },
-    {
-      "gurmukhi": "ਆਵਣ ਜਾਣ ਰਹੇ ਮਿਲੇ ਸਾਧਾ ॥੧॥ ਰਹਾਉ ਦੂਜਾ ॥੧॥੩॥",
-      "translation": "My comings and goings have ended, since I met the Holy Saint. ||1||Second Pause||1||3||"
+      "gurmukhi": "ਸੁੰਦਰਿ ਸਾਇ ਸਰੂਪ ਬਿਚਖਣਿ ਕਹੀਐ ਸਾ ਸਿਆਣੀ ॥੪॥੨॥੪॥",
+      "translation": "She is beautiful, glorious and brilliant; she is known as truly wise. ||4||2||4||"
     }
   ],
-  "updated": "2026-10-21T06:12:36.170Z"
+  "updated": "2026-10-22T06:17:24.894Z"
 };
