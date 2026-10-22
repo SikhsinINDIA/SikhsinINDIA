@@ -3,6 +3,8 @@ main = "src/index.js"
 compatibility_date = "2026-09-01"
 
 # Secrets — set these with `wrangler secret put <NAME>`, never commit them here:
+#   BREVO_API_KEY      Brevo API key (Restricted, Transactional email: All);
+#                      mail goes via Brevo first, Resend when Brevo refuses
 #   RESEND_API_KEY     the API key from your Resend dashboard
 #   APP_SHARED_SECRET  a random string ONLY the server-side scripts/ jobs send
 #                      (X-App-Secret header); also stored as the
@@ -16,6 +18,9 @@ compatibility_date = "2026-09-01"
 # 2026-09-28), so sending is no longer restricted to the account's own
 # signup address, and no longer needs the mail. subdomain either.
 FROM_ADDRESS = "SikhsinIndia <noreply@sikhsinindia.com>"
+# noreply@ has no mailbox; replies go here instead. sikhsinindia.com is also
+# authenticated in Brevo (DKIM brevo1/brevo2, 2026-10-22).
+REPLY_TO = "sikhsinindia@gmail.com"
 
 # Firebase accounts allowed to use the privileged actions (email to any
 # recipient, send_whatsapp to anyone, reset_password). Comma-separated; the

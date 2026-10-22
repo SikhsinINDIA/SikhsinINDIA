@@ -1,7 +1,8 @@
 /*
  * Cloudflare Worker for the SikhsinIndia static site. Four jobs:
  *
- * 1. Send email via the Resend API. Exists because none of the client-side
+ * 1. Send email via the Brevo API, falling back to Resend (see sendEmail
+ *    for which goes first). Exists because none of the client-side
  *    form backends tried (EmailJS free tier, SnapitForms, FormSubmit,
  *    Formspree) can send to an arbitrary, dynamically-chosen recipient for
  *    free — this Worker is a thin authenticated proxy that can, since the
@@ -40,6 +41,9 @@
  *
  * Deploy: see cloudflare-worker's own docs / wrangler.toml comments.
  * Requires these secrets, set via `wrangler secret put <NAME>`:
+ *   BREVO_API_KEY         — from Brevo: SMTP & API → API keys, Restricted,
+ *                            "Transactional email: All". Optional; without
+ *                            it all mail goes via Resend.
  *   RESEND_API_KEY        — from the Resend dashboard
  *   APP_SHARED_SECRET     — random string used ONLY by the server-side
  *                            GitHub Actions scripts in scripts/ (stored there
@@ -480,19 +484,43 @@ async function inlineDriveImages(html) {
   };
 }
 
+// Two providers, each free up to a daily cap: Brevo (300/day) and Resend
+// (100/day). Mail goes via Brevo, falling back to Resend when Brevo refuses
+// it (daily cap reached, outage). Mail with Drive pictures sent inline goes
+// the other way round, because only Resend supports inline (cid:) images -
+// if Resend is out, Brevo sends it with the pictures as ordinary links.
+// Without a BREVO_API_KEY secret everything goes via Resend, as before.
 async function sendEmail(env, { to, subject, text, html, attachments }) {
   const inlined = await inlineDriveImages(html);
-  const body = {
-    from: env.FROM_ADDRESS || "SikhsinIndia <onboarding@resend.dev>",
-    to: [to],
-    subject,
-    text,
-    html: inlined.html
-  };
   const files = Array.isArray(attachments) && attachments.length
     ? await Promise.all(attachments.map(resolveAttachment))
     : [];
-  if (files.length || inlined.inline.length) body.attachments = [...files, ...inlined.inline];
+  const mail = { to, subject, text, files };
+  const viaResend = () => sendViaResend(env, { ...mail, html: inlined.html, inline: inlined.inline });
+  const viaBrevo = () => sendViaBrevo(env, { ...mail, html });
+  if (!env.BREVO_API_KEY) return viaResend();
+  const [first, second] = inlined.inline.length ? [viaResend, viaBrevo] : [viaBrevo, viaResend];
+  // Logged so `wrangler tail` shows which provider sent each mail.
+  try {
+    const sent = await first();
+    console.log(`email to ${to}: sent via ${first === viaBrevo ? "Brevo" : "Resend"}`);
+    return sent;
+  } catch (firstErr) {
+    console.log(`email to ${to}: ${firstErr.message} - trying ${second === viaBrevo ? "Brevo" : "Resend"}`);
+    try {
+      return await second();
+    } catch (secondErr) {
+      throw new Error(`${firstErr.message} | ${secondErr.message}`);
+    }
+  }
+}
+
+const fromAddress = (env) => env.FROM_ADDRESS || "SikhsinIndia <onboarding@resend.dev>";
+
+async function sendViaResend(env, { to, subject, text, html, files, inline }) {
+  const body = { from: fromAddress(env), to: [to], subject, text, html };
+  if (env.REPLY_TO) body.reply_to = env.REPLY_TO;
+  if (files.length || inline.length) body.attachments = [...files, ...inline];
   const resendRes = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -504,6 +532,32 @@ async function sendEmail(env, { to, subject, text, html, attachments }) {
   const resendBody = await resendRes.text();
   if (!resendRes.ok) throw new Error("Resend API error: " + resendBody);
   return resendBody;
+}
+
+async function sendViaBrevo(env, { to, subject, text, html, files }) {
+  // "SikhsinIndia <noreply@sikhsinindia.com>" -> { name, email }
+  const m = fromAddress(env).match(/^\s*(.*?)\s*<([^>]+)>\s*$/);
+  const body = {
+    sender: m ? { name: m[1], email: m[2] } : { email: fromAddress(env) },
+    to: [{ email: to }],
+    subject
+  };
+  if (html) body.htmlContent = html;
+  if (text) body.textContent = text;
+  if (env.REPLY_TO) body.replyTo = { email: env.REPLY_TO };
+  if (files.length) body.attachment = files.map((f) => ({ name: f.filename, content: f.content }));
+  const brevoRes = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: {
+      "api-key": env.BREVO_API_KEY,
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify(body)
+  });
+  const brevoBody = await brevoRes.text();
+  if (!brevoRes.ok) throw new Error("Brevo API error: " + brevoBody);
+  return brevoBody;
 }
 
 // YouTube's search.list costs 100 of the default 10,000 daily quota units,
