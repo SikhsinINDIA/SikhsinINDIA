@@ -11,7 +11,8 @@
 
    Run after editing data/sikh-history.json:
      node scripts/build-sikh-history-pages.js
-   then node scripts/seo-optimize.js (structured data, sitemap).
+   then node scripts/seo-optimize.js (structured data, sitemap)
+   and  node scripts/related-links.js (related reading).
    ────────────────────────────────────────────────────────────── */
 const fs = require('fs');
 const path = require('path');
@@ -221,9 +222,11 @@ for (const r of records) {
   const file = path.join(OUT_DIR, slug(r.date) + '.html');
   const html = dayPage(r);
   const old = fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : '';
-  // Keep what seo-optimize.js adds (JSON-LD, favicons) when nothing else changed.
-  if (old.replace(/\s*<!-- seo:[a-z]+ -->[\s\S]*?<!-- \/seo:[a-z]+ -->/g, '').replace(/\r\n/g, '\n') !==
-      html.replace(/\r\n/g, '\n')) {
+  // Keep what seo-optimize.js and related-links.js add (JSON-LD, favicons,
+  // social tags, related reading) when nothing else changed.
+  const bare = (s) => s.replace(/\s*<!-- seo:[a-z]+ -->[\s\S]*?<!-- \/seo:[a-z]+ -->/g, '')
+    .replace(/[ \t]*<meta (?:property|name)="(?:og|twitter):[^"]+"[^>]*>\r?\n/g, '').replace(/\r\n/g, '\n');
+  if (bare(old) !== bare(html)) {
     fs.writeFileSync(file, html);
     written++;
   }
