@@ -1,0 +1,46 @@
+name: Daily Calendar-Event Push Notifications
+
+# Uses the SAME FIREBASE_SERVICE_ACCOUNT_JSON secret as the email and
+# WhatsApp jobs - nothing new to configure. Push notifications are free.
+# Run it by hand (Actions > this workflow > Run workflow) with a message to
+# send that message to every subscriber instead of today's events.
+
+on:
+  schedule:
+    # 01:00 UTC = 06:30 IST year-round (India has no daylight saving).
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Send this message to every subscriber now (leave empty to send today''s events)'
+        required: false
+        default: ''
+      title:
+        description: 'Title for that message (default: SikhsInIndia)'
+        required: false
+        default: ''
+      link:
+        description: 'Page it opens (default: the homepage)'
+        required: false
+        default: ''
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --omit=dev firebase-admin
+
+      - name: Send today's push notifications
+        env:
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+          PUSH_MESSAGE: ${{ github.event.inputs.message }}
+          PUSH_TITLE: ${{ github.event.inputs.title }}
+          PUSH_LINK: ${{ github.event.inputs.link }}
+        run: node scripts/send-daily-event-push.js
