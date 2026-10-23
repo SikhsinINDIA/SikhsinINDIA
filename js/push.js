@@ -60,7 +60,19 @@ async function start() {
   const app = initializeApp(firebaseConfig, 'push');
   const messaging = getMessaging(app);
   const db = getFirestore(app);
-  const registration = () => navigator.serviceWorker.register('/firebase-messaging-sw.js');
+  // Subscribing needs an ACTIVE service worker; on a first visit it is
+  // still installing when register() resolves, so wait for it.
+  const registration = async () => {
+    const reg = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+    const sw = reg.installing || reg.waiting;
+    if (!reg.active && sw) {
+      await new Promise((resolve) => {
+        sw.addEventListener('statechange', () => { if (sw.state === 'activated' || sw.state === 'redundant') resolve(); });
+        setTimeout(resolve, 10000);
+      });
+    }
+    return reg;
+  };
   const tokenOptions = async () => ({ serviceWorkerRegistration: await registration(), ...(VAPID_KEY ? { vapidKey: VAPID_KEY } : {}) });
 
   const save = (token) => setDoc(doc(db, COLLECTION, token), {
