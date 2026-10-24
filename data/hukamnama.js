@@ -1,144 +1,72 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-10-23",
-  "dateDisplay": "23 October 2026",
-  "ang": 690,
-  "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
-  "raagEnglish": "Raag Dhanaasree",
-  "writerEnglish": "Guru Raam Daas Ji",
-  "titleGurmukhi": "ਧਨਾਸਰੀ ਛੰਤ ਮਹਲਾ ੪ ਘਰੁ ੧",
-  "titleEnglish": "Dhanaasaree, Chhant, Fourth Mehla, First House:",
-  "verseGurmukhi": "ਹਰਿ ਜੀਉ ਕ੍ਰਿਪਾ ਕਰੇ ਤਾ ਨਾਮੁ ਧਿਆਈਐ ਜੀਉ ॥",
-  "verseTranslation": "When the Dear Lord grants His Grace, one meditates on the Naam, the Name of the Lord.",
+  "date": "2026-10-24",
+  "dateDisplay": "24 October 2026",
+  "ang": 718,
+  "raagGurmukhi": "ਰਾਗੁ ਟੋਡੀ",
+  "raagEnglish": "Raag Todee",
+  "writerEnglish": "Bhagat Naam Dev Ji",
+  "titleGurmukhi": "ਟੋਡੀ ਬਾਣੀ ਭਗਤਾਂ ਕੀ",
+  "titleEnglish": "Todee, The Word Of The Devotees:",
+  "verseGurmukhi": "ਕੋਈ ਬੋਲੈ ਨਿਰਵਾ ਕੋਈ ਬੋਲੈ ਦੂਰਿ ॥",
+  "verseTranslation": "Some say that He is near, and others say that He is far away.",
   "verses": [
     {
-      "gurmukhi": "ਧਨਾਸਰੀ ਛੰਤ ਮਹਲਾ ੪ ਘਰੁ ੧",
-      "translation": "Dhanaasaree, Chhant, Fourth Mehla, First House:"
+      "gurmukhi": "ਟੋਡੀ ਬਾਣੀ ਭਗਤਾਂ ਕੀ",
+      "translation": "Todee, The Word Of The Devotees:"
     },
     {
       "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
       "translation": "One Universal Creator God. By The Grace Of The True Guru:"
     },
     {
-      "gurmukhi": "ਹਰਿ ਜੀਉ ਕ੍ਰਿਪਾ ਕਰੇ ਤਾ ਨਾਮੁ ਧਿਆਈਐ ਜੀਉ ॥",
-      "translation": "When the Dear Lord grants His Grace, one meditates on the Naam, the Name of the Lord."
+      "gurmukhi": "ਕੋਈ ਬੋਲੈ ਨਿਰਵਾ ਕੋਈ ਬੋਲੈ ਦੂਰਿ ॥",
+      "translation": "Some say that He is near, and others say that He is far away."
     },
     {
-      "gurmukhi": "ਸਤਿਗੁਰੁ ਮਿਲੈ ਸੁਭਾਇ ਸਹਜਿ ਗੁਣ ਗਾਈਐ ਜੀਉ ॥",
-      "translation": "Meeting the True Guru, through loving faith and devotion, one intuitively sings the Glorious Praises of the Lord."
+      "gurmukhi": "ਜਲ ਕੀ ਮਾਛੁਲੀ ਚਰੈ ਖਜੂਰਿ ॥੧॥",
+      "translation": "We might just as well say that the fish climbs out of the water, up the tree. ||1||"
     },
     {
-      "gurmukhi": "ਗੁਣ ਗਾਇ ਵਿਗਸੈ ਸਦਾ ਅਨਦਿਨੁ ਜਾ ਆਪਿ ਸਾਚੇ ਭਾਵਏ ॥",
-      "translation": "Singing His Glorious Praises continually, night and day, one blossoms forth, when it is pleasing to the True Lord."
+      "gurmukhi": "ਕਾਂਇ ਰੇ ਬਕਬਾਦੁ ਲਾਇਓ ॥",
+      "translation": "Why do you speak such nonsense?"
     },
     {
-      "gurmukhi": "ਅਹੰਕਾਰੁ ਹਉਮੈ ਤਜੈ ਮਾਇਆ ਸਹਜਿ ਨਾਮਿ ਸਮਾਵਏ ॥",
-      "translation": "Egotism, self-conceit and Maya are forsaken, and he is intuitively absorbed into the Naam."
+      "gurmukhi": "ਜਿਨਿ ਹਰਿ ਪਾਇਓ ਤਿਨਹਿ ਛਪਾਇਓ ॥੧॥ ਰਹਾਉ ॥",
+      "translation": "One who has found the Lord, keeps quiet about it. ||1||Pause||"
     },
     {
-      "gurmukhi": "ਆਪਿ ਕਰਤਾ ਕਰੇ ਸੋਈ ਆਪਿ ਦੇਇ ਤ ਪਾਈਐ ॥",
-      "translation": "The Creator Himself acts; when He gives, then we receive."
+      "gurmukhi": "ਪੰਡਿਤੁ ਹੋਇ ਕੈ ਬੇਦੁ ਬਖਾਨੈ ॥",
+      "translation": "Those who become Pandits, religious scholars, recite the Vedas,"
     },
     {
-      "gurmukhi": "ਹਰਿ ਜੀਉ ਕ੍ਰਿਪਾ ਕਰੇ ਤਾ ਨਾਮੁ ਧਿਆਈਐ ਜੀਉ ॥੧॥",
-      "translation": "When the Dear Lord grants His Grace, we meditate on the Naam. ||1||"
+      "gurmukhi": "ਮੂਰਖੁ ਨਾਮਦੇਉ ਰਾਮਹਿ ਜਾਨੈ ॥੨॥੧॥",
+      "translation": "but foolish Naam Dayv knows only the Lord. ||2||1||"
     },
     {
-      "gurmukhi": "ਅੰਦਰਿ ਸਾਚਾ ਨੇਹੁ ਪੂਰੇ ਸਤਿਗੁਰੈ ਜੀਉ ॥",
-      "translation": "Deep within, I feel true love for the Perfect True Guru."
+      "gurmukhi": "ਕਉਨ ਕੋ ਕਲੰਕੁ ਰਹਿਓ ਰਾਮ ਨਾਮੁ ਲੇਤ ਹੀ ॥",
+      "translation": "Whose blemishes remain, when one chants the Lord's Name?"
     },
     {
-      "gurmukhi": "ਹਉ ਤਿਸੁ ਸੇਵੀ ਦਿਨੁ ਰਾਤਿ ਮੈ ਕਦੇ ਨ ਵੀਸਰੈ ਜੀਉ ॥",
-      "translation": "I serve Him day and night; I never forget Him."
+      "gurmukhi": "ਪਤਿਤ ਪਵਿਤ ਭਏ ਰਾਮੁ ਕਹਤ ਹੀ ॥੧॥ ਰਹਾਉ ॥",
+      "translation": "Sinners become pure, chanting the Lord's Name. ||1||Pause||"
     },
     {
-      "gurmukhi": "ਕਦੇ ਨ ਵਿਸਾਰੀ ਅਨਦਿਨੁ ਸਮੑਾਰੀ ਜਾ ਨਾਮੁ ਲਈ ਤਾ ਜੀਵਾ ॥",
-      "translation": "I never forget Him; I remember Him night and day. When I chant the Naam, then I live."
+      "gurmukhi": "ਰਾਮ ਸੰਗਿ ਨਾਮਦੇਵ ਜਨ ਕਉ ਪ੍ਰਤਗਿਆ ਆਈ ॥",
+      "translation": "With the Lord, servant Naam Dayv has come to have faith."
     },
     {
-      "gurmukhi": "ਸ੍ਰਵਣੀ ਸੁਣੀ ਤ ਇਹੁ ਮਨੁ ਤ੍ਰਿਪਤੈ ਗੁਰਮੁਖਿ ਅੰਮ੍ਰਿਤੁ ਪੀਵਾ ॥",
-      "translation": "With my ears, I hear about Him, and my mind is satisfied. As Gurmukh, I drink in the Ambrosial Nectar."
+      "gurmukhi": "ਏਕਾਦਸੀ ਬ੍ਰਤੁ ਰਹੈ ਕਾਹੇ ਕਉ ਤੀਰਥ ਜਾੲਂੀ ॥੧॥",
+      "translation": "I have stopped fasting on the eleventh day of each month; why should I bother to go on pilgrimages to sacred shrines? ||1||"
     },
     {
-      "gurmukhi": "ਨਦਰਿ ਕਰੇ ਤਾ ਸਤਿਗੁਰੁ ਮੇਲੇ ਅਨਦਿਨੁ ਬਿਬੇਕ ਬੁਧਿ ਬਿਚਰੈ ॥",
-      "translation": "If He bestows His Glance of Grace, then I shall meet the True Guru; my discriminating intellect would contemplate Him, night and day."
+      "gurmukhi": "ਭਨਤਿ ਨਾਮਦੇਉ ਸੁਕ੍ਰਿਤ ਸੁਮਤਿ ਭਏ ॥",
+      "translation": "Prays Naam Dayv, I have become a man of good deeds and good thoughts."
     },
     {
-      "gurmukhi": "ਅੰਦਰਿ ਸਾਚਾ ਨੇਹੁ ਪੂਰੇ ਸਤਿਗੁਰੈ ॥੨॥",
-      "translation": "Deep within, I feel true love for the Perfect True Guru. ||2||"
-    },
-    {
-      "gurmukhi": "ਸਤਸੰਗਤਿ ਮਿਲੈ ਵਡਭਾਗਿ ਤਾ ਹਰਿ ਰਸੁ ਆਵਏ ਜੀਉ ॥",
-      "translation": "By great good fortune, one joins the Sat Sangat, the True Congregation; then, one comes to savor the subtle essence of the Lord."
-    },
-    {
-      "gurmukhi": "ਅਨਦਿਨੁ ਰਹੈ ਲਿਵ ਲਾਇ ਤ ਸਹਜਿ ਸਮਾਵਏ ਜੀਉ ॥",
-      "translation": "Night and day, he remains lovingly focused on the Lord; he merges in celestial peace."
-    },
-    {
-      "gurmukhi": "ਸਹਜਿ ਸਮਾਵੈ ਤਾ ਹਰਿ ਮਨਿ ਭਾਵੈ ਸਦਾ ਅਤੀਤੁ ਬੈਰਾਗੀ ॥",
-      "translation": "Merging in celestial peace, he becomes pleasing to the Lord's Mind; he remains forever unattached and untouched."
-    },
-    {
-      "gurmukhi": "ਹਲਤਿ ਪਲਤਿ ਸੋਭਾ ਜਗ ਅੰਤਰਿ ਰਾਮ ਨਾਮਿ ਲਿਵ ਲਾਗੀ ॥",
-      "translation": "He receives honor in this world and the next, lovingly focused on the Lord's Name."
-    },
-    {
-      "gurmukhi": "ਹਰਖ ਸੋਗ ਦੁਹਾ ਤੇ ਮੁਕਤਾ ਜੋ ਪ੍ਰਭੁ ਕਰੇ ਸੁ ਭਾਵਏ ॥",
-      "translation": "He is liberated from both pleasure and pain; he is pleased by whatever God does."
-    },
-    {
-      "gurmukhi": "ਸਤਸੰਗਤਿ ਮਿਲੈ ਵਡਭਾਗਿ ਤਾ ਹਰਿ ਰਸੁ ਆਵਏ ਜੀਉ ॥੩॥",
-      "translation": "By great good fortune, one joins the Sat Sangat, the True Congregation, and then, one comes to savor the subtle essence of the Lord. ||3||"
-    },
-    {
-      "gurmukhi": "ਦੂਜੈ ਭਾਇ ਦੁਖੁ ਹੋਇ ਮਨਮੁਖ ਜਮਿ ਜੋਹਿਆ ਜੀਉ ॥",
-      "translation": "In the love of duality, there is pain and suffering; the Messenger of Death eyes the self-willed manmukhs."
-    },
-    {
-      "gurmukhi": "ਹਾਇ ਹਾਇ ਕਰੇ ਦਿਨੁ ਰਾਤਿ ਮਾਇਆ ਦੁਖਿ ਮੋਹਿਆ ਜੀਉ ॥",
-      "translation": "They cry and howl, day and night, caught by the pain of Maya."
-    },
-    {
-      "gurmukhi": "ਮਾਇਆ ਦੁਖਿ ਮੋਹਿਆ ਹਉਮੈ ਰੋਹਿਆ ਮੇਰੀ ਮੇਰੀ ਕਰਤ ਵਿਹਾਵਏ ॥",
-      "translation": "Caught by the pain of Maya, provoked by his ego, he passes his life crying out, \"\"Mine, mine!\"\"."
-    },
-    {
-      "gurmukhi": "ਜੋ ਪ੍ਰਭੁ ਦੇਇ ਤਿਸੁ ਚੇਤੈ ਨਾਹੀ ਅੰਤਿ ਗਇਆ ਪਛੁਤਾਵਏ ॥",
-      "translation": "He does not remember God, the Giver, and in the end, he departs regretting and repenting."
-    },
-    {
-      "gurmukhi": "ਬਿਨੁ ਨਾਵੈ ਕੋ ਸਾਥਿ ਨ ਚਾਲੈ ਪੁਤ੍ਰ ਕਲਤ੍ਰ ਮਾਇਆ ਧੋਹਿਆ ॥",
-      "translation": "Without the Name, nothing shall go along with him; not his children, spouse or the enticements of Maya."
-    },
-    {
-      "gurmukhi": "ਦੂਜੈ ਭਾਇ ਦੁਖੁ ਹੋਇ ਮਨਮੁਖਿ ਜਮਿ ਜੋਹਿਆ ਜੀਉ ॥੪॥",
-      "translation": "In the love of duality, there is pain and suffering; the Messenger of Death eyes the self-willed manmukhs. ||4||"
-    },
-    {
-      "gurmukhi": "ਕਰਿ ਕਿਰਪਾ ਲੇਹੁ ਮਿਲਾਇ ਮਹਲੁ ਹਰਿ ਪਾਇਆ ਜੀਉ ॥",
-      "translation": "Granting His Grace, the Lord has merged me with Himself; I have found the Mansion of the Lord's Presence."
-    },
-    {
-      "gurmukhi": "ਸਦਾ ਰਹੈ ਕਰ ਜੋੜਿ ਪ੍ਰਭੁ ਮਨਿ ਭਾਇਆ ਜੀਉ ॥",
-      "translation": "I remain standing with my palms pressed together; I have become pleasing to God's Mind."
-    },
-    {
-      "gurmukhi": "ਪ੍ਰਭੁ ਮਨਿ ਭਾਵੈ ਤਾ ਹੁਕਮਿ ਸਮਾਵੈ ਹੁਕਮੁ ਮੰਨਿ ਸੁਖੁ ਪਾਇਆ ॥",
-      "translation": "When one is pleasing to God's Mind, then he merges in the Hukam of the Lord's Command; surrendering to His Hukam, he finds peace."
-    },
-    {
-      "gurmukhi": "ਅਨਦਿਨੁ ਜਪਤ ਰਹੈ ਦਿਨੁ ਰਾਤੀ ਸਹਜੇ ਨਾਮੁ ਧਿਆਇਆ ॥",
-      "translation": "Night and day, he chants the Lord's Name, day and night; intuitively, naturally, he meditates on the Naam, the Name of the Lord."
-    },
-    {
-      "gurmukhi": "ਨਾਮੋ ਨਾਮੁ ਮਿਲੀ ਵਡਿਆਈ ਨਾਨਕ ਨਾਮੁ ਮਨਿ ਭਾਵਏ ॥",
-      "translation": "Through the Naam, the glorious greatness of the Naam is obtained; the Naam is pleasing to Nanak's mind."
-    },
-    {
-      "gurmukhi": "ਕਰਿ ਕਿਰਪਾ ਲੇਹੁ ਮਿਲਾਇ ਮਹਲੁ ਹਰਿ ਪਾਵਏ ਜੀਉ ॥੫॥੧॥",
-      "translation": "Granting His Grace, the Lord has merged me with Himself; I have found the Mansion of the Lord's Presence. ||5||1||"
+      "gurmukhi": "ਗੁਰਮਤਿ ਰਾਮੁ ਕਹਿ ਕੋ ਕੋ ਨ ਬੈਕੁੰਠਿ ਗਏ ॥੨॥੨॥",
+      "translation": "Chanting the Lord's Name, under Guru's Instructions, who has not gone to heaven? ||2||2||"
     }
   ],
-  "updated": "2026-10-23T06:10:50.404Z"
+  "updated": "2026-10-24T06:06:17.140Z"
 };
