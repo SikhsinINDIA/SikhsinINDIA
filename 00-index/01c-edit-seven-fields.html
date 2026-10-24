@@ -331,6 +331,18 @@
       color: #fff;
     }
 
+    .btn-action.delete-btn {
+      background: #fff;
+      border-color: #d93838;
+      color: #d93838;
+    }
+
+    .btn-action.delete-btn:hover {
+      background: #d93838;
+      border-color: #d93838;
+      color: #fff;
+    }
+
     /* LIVE Email_Correct / Mobile_Correct TALLY */
     .counts-bar {
       text-align: center;
@@ -558,7 +570,7 @@
           Back
         </a>
         <div class="footer-note">
-          <strong>Security Protocol Instruction Warning Notice:</strong> The gold highlighted top row adds a brand-new record via its own Add Record button. Every other row is an existing record, directly editable. Email and Mobile are checked for duplicates live as you type &mdash; not only when you press Save. Use the single Save All Changes button beneath the table to push every edited row to the cloud in one go; it updates only Name, GName, Country_Code, Mobile, Mobile_Correct, Email and Email_Correct, leaving all other stored fields untouched.
+          <strong>Security Protocol Instruction Warning Notice:</strong> The gold highlighted top row adds a brand-new record via its own Add Record button. Every other row is an existing record, directly editable. Email and Mobile are checked for duplicates live as you type &mdash; not only when you press Save. Use the single Save All Changes button beneath the table to push every edited row to the cloud in one go; it updates only Name, GName, Country_Code, Mobile, Mobile_Correct, Email and Email_Correct, leaving all other stored fields untouched. A row's Delete button removes that record permanently, after you confirm.
         </div>
       </div>
     </div>
@@ -747,6 +759,12 @@
       tr.appendChild(mobileCorrectCell.td);
 
       const tdAction = document.createElement('td');
+      const deleteBtn = document.createElement('button');
+      deleteBtn.type = 'button';
+      deleteBtn.className = 'btn-action delete-btn';
+      deleteBtn.textContent = 'Delete';
+      deleteBtn.addEventListener('click', () => deleteRecord(tr, deleteBtn));
+      tdAction.appendChild(deleteBtn);
       tr.appendChild(tdAction);
 
       tr._fields = {
@@ -923,6 +941,42 @@
           return batch.commit();
         });
       }, Promise.resolve());
+    }
+
+    // Deletes one member record from Firestore, then drops its row in place so
+    // unsaved edits in other rows are kept (no reload).
+    function deleteRecord(tr, btn) {
+      const docId = tr.dataset.docId;
+      const rec = recordsCache.get(docId) || {};
+      const label = `${rec.Name || '(no name)'} — ${rec.Email || docId}`;
+      if (!confirm(`Delete this record permanently?\n\n${label}\n\nThis cannot be undone.`)) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Deleting...';
+
+      db.collection("sikhdatabaseindia").doc(docId).delete()
+        .then(() => {
+          recordsCache.delete(docId);
+          tr.remove();
+          renumberRows();
+          updateCorrectCounts();
+          const statusEl = document.getElementById('bulkStatus');
+          statusEl.style.color = '#1e8a3c';
+          statusEl.textContent = `Deleted ${label}.`;
+        })
+        .catch(error => {
+          console.error("Error deleting record:", error);
+          alert(`Error deleting record: ${error.message}`);
+          btn.disabled = false;
+          btn.textContent = 'Delete';
+        });
+    }
+
+    function renumberRows() {
+      let serialNo = 1;
+      document.querySelectorAll('#recordsTableBody tr[data-doc-id] td.sno-cell').forEach(td => {
+        td.innerHTML = `<strong>${serialNo++}</strong>`;
+      });
     }
 
     function addNewRecord(fields, btn) {
