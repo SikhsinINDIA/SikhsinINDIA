@@ -1,72 +1,56 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-10-24",
-  "dateDisplay": "24 October 2026",
-  "ang": 718,
-  "raagGurmukhi": "ਰਾਗੁ ਟੋਡੀ",
-  "raagEnglish": "Raag Todee",
-  "writerEnglish": "Bhagat Naam Dev Ji",
-  "titleGurmukhi": "ਟੋਡੀ ਬਾਣੀ ਭਗਤਾਂ ਕੀ",
-  "titleEnglish": "Todee, The Word Of The Devotees:",
-  "verseGurmukhi": "ਕੋਈ ਬੋਲੈ ਨਿਰਵਾ ਕੋਈ ਬੋਲੈ ਦੂਰਿ ॥",
-  "verseTranslation": "Some say that He is near, and others say that He is far away.",
+  "date": "2026-10-25",
+  "dateDisplay": "25 October 2026",
+  "ang": 678,
+  "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
+  "raagEnglish": "Raag Dhanaasree",
+  "writerEnglish": "Guru Arjan Dev Ji",
+  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ਘਰੁ ੬",
+  "titleEnglish": "Dhanaasaree, Fifth Mehla, Sixth House:",
+  "verseGurmukhi": "ਸੁਨਹੁ ਸੰਤ ਪਿਆਰੇ ਬਿਨਉ ਹਮਾਰੇ ਜੀਉ ॥",
+  "verseTranslation": "Listen, O Dear Beloved Saints, to my prayer.",
   "verses": [
     {
-      "gurmukhi": "ਟੋਡੀ ਬਾਣੀ ਭਗਤਾਂ ਕੀ",
-      "translation": "Todee, The Word Of The Devotees:"
+      "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ਘਰੁ ੬",
+      "translation": "Dhanaasaree, Fifth Mehla, Sixth House:"
     },
     {
       "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
       "translation": "One Universal Creator God. By The Grace Of The True Guru:"
     },
     {
-      "gurmukhi": "ਕੋਈ ਬੋਲੈ ਨਿਰਵਾ ਕੋਈ ਬੋਲੈ ਦੂਰਿ ॥",
-      "translation": "Some say that He is near, and others say that He is far away."
+      "gurmukhi": "ਸੁਨਹੁ ਸੰਤ ਪਿਆਰੇ ਬਿਨਉ ਹਮਾਰੇ ਜੀਉ ॥",
+      "translation": "Listen, O Dear Beloved Saints, to my prayer."
     },
     {
-      "gurmukhi": "ਜਲ ਕੀ ਮਾਛੁਲੀ ਚਰੈ ਖਜੂਰਿ ॥੧॥",
-      "translation": "We might just as well say that the fish climbs out of the water, up the tree. ||1||"
+      "gurmukhi": "ਹਰਿ ਬਿਨੁ ਮੁਕਤਿ ਨ ਕਾਹੂ ਜੀਉ ॥ ਰਹਾਉ ॥",
+      "translation": "Without the Lord, no one is liberated. ||Pause||"
     },
     {
-      "gurmukhi": "ਕਾਂਇ ਰੇ ਬਕਬਾਦੁ ਲਾਇਓ ॥",
-      "translation": "Why do you speak such nonsense?"
+      "gurmukhi": "ਮਨ ਨਿਰਮਲ ਕਰਮ ਕਰਿ ਤਾਰਨ ਤਰਨ ਹਰਿ ਅਵਰਿ ਜੰਜਾਲ ਤੇਰੈ ਕਾਹੂ ਨ ਕਾਮ ਜੀਉ ॥",
+      "translation": "O mind, do only deeds of purity; the Lord is the only boat to carry you across. Other entanglements shall be of no use to you."
     },
     {
-      "gurmukhi": "ਜਿਨਿ ਹਰਿ ਪਾਇਓ ਤਿਨਹਿ ਛਪਾਇਓ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "One who has found the Lord, keeps quiet about it. ||1||Pause||"
+      "gurmukhi": "ਜੀਵਨ ਦੇਵਾ ਪਾਰਬ੍ਰਹਮ ਸੇਵਾ ਇਹੁ ਉਪਦੇਸੁ ਮੋ ਕਉ ਗੁਰਿ ਦੀਨਾ ਜੀਉ ॥੧॥",
+      "translation": "True living is serving the Divine, Supreme Lord God; the Guru has imparted this teaching to me. ||1||"
     },
     {
-      "gurmukhi": "ਪੰਡਿਤੁ ਹੋਇ ਕੈ ਬੇਦੁ ਬਖਾਨੈ ॥",
-      "translation": "Those who become Pandits, religious scholars, recite the Vedas,"
+      "gurmukhi": "ਤਿਸੁ ਸਿਉ ਨ ਲਾਈਐ ਹੀਤੁ ਜਾ ਕੋ ਕਿਛੁ ਨਾਹੀ ਬੀਤੁ ਅੰਤ ਕੀ ਬਾਰ ਓਹੁ ਸੰਗਿ ਨ ਚਾਲੈ ॥",
+      "translation": "Do not fall in love with trivial things; in the end, they shall not go along with you."
     },
     {
-      "gurmukhi": "ਮੂਰਖੁ ਨਾਮਦੇਉ ਰਾਮਹਿ ਜਾਨੈ ॥੨॥੧॥",
-      "translation": "but foolish Naam Dayv knows only the Lord. ||2||1||"
+      "gurmukhi": "ਮਨਿ ਤਨਿ ਤੂ ਆਰਾਧ ਹਰਿ ਕੇ ਪ੍ਰੀਤਮ ਸਾਧ ਜਾ ਕੈ ਸੰਗਿ ਤੇਰੇ ਬੰਧਨ ਛੂਟੈ ॥੨॥",
+      "translation": "Worship and adore the Lord with your mind and body, O Beloved Saint of the Lord; in the Saadh Sangat, the Company of the Holy, you shall be released from bondage. ||2||"
     },
     {
-      "gurmukhi": "ਕਉਨ ਕੋ ਕਲੰਕੁ ਰਹਿਓ ਰਾਮ ਨਾਮੁ ਲੇਤ ਹੀ ॥",
-      "translation": "Whose blemishes remain, when one chants the Lord's Name?"
+      "gurmukhi": "ਗਹੁ ਪਾਰਬ੍ਰਹਮ ਸਰਨ ਹਿਰਦੈ ਕਮਲ ਚਰਨ ਅਵਰ ਆਸ ਕਛੁ ਪਟਲੁ ਨ ਕੀਜੈ ॥",
+      "translation": "In your heart, hold fast to the Sanctuary of the lotus feet of the Supreme Lord God; do not place your hopes in any other support."
     },
     {
-      "gurmukhi": "ਪਤਿਤ ਪਵਿਤ ਭਏ ਰਾਮੁ ਕਹਤ ਹੀ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "Sinners become pure, chanting the Lord's Name. ||1||Pause||"
-    },
-    {
-      "gurmukhi": "ਰਾਮ ਸੰਗਿ ਨਾਮਦੇਵ ਜਨ ਕਉ ਪ੍ਰਤਗਿਆ ਆਈ ॥",
-      "translation": "With the Lord, servant Naam Dayv has come to have faith."
-    },
-    {
-      "gurmukhi": "ਏਕਾਦਸੀ ਬ੍ਰਤੁ ਰਹੈ ਕਾਹੇ ਕਉ ਤੀਰਥ ਜਾੲਂੀ ॥੧॥",
-      "translation": "I have stopped fasting on the eleventh day of each month; why should I bother to go on pilgrimages to sacred shrines? ||1||"
-    },
-    {
-      "gurmukhi": "ਭਨਤਿ ਨਾਮਦੇਉ ਸੁਕ੍ਰਿਤ ਸੁਮਤਿ ਭਏ ॥",
-      "translation": "Prays Naam Dayv, I have become a man of good deeds and good thoughts."
-    },
-    {
-      "gurmukhi": "ਗੁਰਮਤਿ ਰਾਮੁ ਕਹਿ ਕੋ ਕੋ ਨ ਬੈਕੁੰਠਿ ਗਏ ॥੨॥੨॥",
-      "translation": "Chanting the Lord's Name, under Guru's Instructions, who has not gone to heaven? ||2||2||"
+      "gurmukhi": "ਸੋਈ ਭਗਤੁ ਗਿਆਨੀ ਧਿਆਨੀ ਤਪਾ ਸੋਈ ਨਾਨਕ ਜਾ ਕਉ ਕਿਰਪਾ ਕੀਜੈ ॥੩॥੧॥੨੯॥",
+      "translation": "He alone is a devotee, spiritually wise, a meditator, and a penitent, O Nanak, who is blessed by the Lord's Mercy. ||3||1||29||"
     }
   ],
-  "updated": "2026-10-24T06:06:17.140Z"
+  "updated": "2026-10-25T06:26:17.334Z"
 };
