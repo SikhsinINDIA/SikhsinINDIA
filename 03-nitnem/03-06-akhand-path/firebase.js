@@ -408,6 +408,20 @@ With blessings from {{5}} — Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh!"
    2026, 6:00 AM for the Samapti sample instead). */
 export const WHATSAPP_REMINDER_END_TEMPLATE = "akhand_path_reminder_end";
 
+/* Approved 24 Oct 2026 (Utility, English) — sent by
+   scripts/send-akhand-path-reminders.js ~1 hour before the Madh (Ang 705,
+   27h 56m 54s after the start). Body (6 variables):
+   "Reminder: Akhand Path Sahib Ji reaches the Madh (Ang 705) in about 1 hour.
+Dedicated to: {{1}}
+Occasion: {{2}}
+Madh: {{3}}
+Venue/Session link: {{4}}
+Watch Ang 705: {{5}}
+With blessings from {{6}} — Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh!"
+   Sample values: as the start reminder, plus
+   https://youtu.be/rhFmz9Iw2N4?t=81 for {{5}}. */
+export const WHATSAPP_REMINDER_MADH_TEMPLATE = "akhand_path_reminder_madh";
+
 export const WHATSAPP_TEMPLATE_LANGUAGES = {
   akhand_path_invite_v5: "en",
   akhand_path_invite_v7: "en",
@@ -415,7 +429,8 @@ export const WHATSAPP_TEMPLATE_LANGUAGES = {
   akhand_path_invite_v6: "en",
   akhand_path_rejected: "en",
   akhand_path_reminder_start: "en",
-  akhand_path_reminder_end: "en"
+  akhand_path_reminder_end: "en",
+  akhand_path_reminder_madh: "en"
 };
 export const WHATSAPP_LANGUAGE_CODE = "en"; // fallback for any template not listed above
 

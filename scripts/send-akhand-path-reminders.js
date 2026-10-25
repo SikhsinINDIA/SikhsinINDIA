@@ -3,7 +3,8 @@
    Runs on a schedule (.github/workflows/akhand-path-reminders.yml,
    every 15 minutes) and sends a "starts in about an hour" reminder to
    the admin, sponsor and every consenting invitee ~60 minutes before
-   an approved program's start time, and a matching "concludes in
+   an approved program's start time, a "reaches the Madh (Ang 705)"
+   reminder ~60 minutes before the Madh, and a matching "concludes in
    about an hour" reminder ~60 minutes before its Samapti (start +
    duration_hours).
 
@@ -22,7 +23,7 @@
    reminder-sent flag from being written.
 
    Idempotency: each session doc gets start_reminder_sent /
-   end_reminder_sent set to true right after that reminder goes out,
+   madh_reminder_sent / end_reminder_sent set to true right after that reminder goes out,
    so re-running this (or the next scheduled run finding the same
    session still in the time window) never double-sends.
    ────────────────────────────────────────────────────────────── */
@@ -42,6 +43,33 @@ const DEFAULT_DURATION_HOURS = 54.47;
 
 const WHATSAPP_REMINDER_START_TEMPLATE = 'akhand_path_reminder_start';
 const WHATSAPP_REMINDER_END_TEMPLATE = 'akhand_path_reminder_end';
+const WHATSAPP_REMINDER_MADH_TEMPLATE = 'akhand_path_reminder_madh';
+
+// The Madh (Ang 705) is 1:21 into Video 43 (youtubeId rhFmz9Iw2N4) of
+// index.html's VIDEO_SEQUENCE. Videos 1-42 hold 150,840s of content, so at
+// PLAYBACK_SPEED 1.5 it is reached (150840 + 81) / 1.5 = 100,614s
+// (27h 56m 54s) after the start. Update it if VIDEO_SEQUENCE changes.
+const MADH_OFFSET_MS = ((150840 + 81) / 1.5) * 1000;
+const MADH_VIDEO_LINK = 'https://youtu.be/rhFmz9Iw2N4?t=81';
+
+// What each reminder says, and the session flag that marks it as sent.
+const KINDS = {
+  start: { flag: 'start_reminder_sent', label: 'Start', happens: 'begins', subject: 'begins in about 1 hour', template: WHATSAPP_REMINDER_START_TEMPLATE },
+  madh: { flag: 'madh_reminder_sent', label: 'Madh (Ang 705)', happens: 'reaches the Madh (Ang 705)', subject: 'reaches the Madh (Ang 705) in about 1 hour', template: WHATSAPP_REMINDER_MADH_TEMPLATE },
+  end: { flag: 'end_reminder_sent', label: 'Samapti', happens: 'concludes (Samapti)', subject: 'concludes in about 1 hour', template: WHATSAPP_REMINDER_END_TEMPLATE }
+};
+
+// Start, Madh and Samapti times of a session (null without a start time).
+function sessionTimes(session) {
+  const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : null;
+  if (!start) return null;
+  const durationHours = session.duration_hours || DEFAULT_DURATION_HOURS;
+  return {
+    start,
+    madh: new Date(start.getTime() + MADH_OFFSET_MS),
+    end: new Date(start.getTime() + durationHours * 3600 * 1000)
+  };
+}
 const WHATSAPP_LANGUAGE_CODE = 'en';
 
 // The cron runs every 15 min; a ±10 min window around the 60-min mark
@@ -104,42 +132,44 @@ async function safe(label, fn) {
 async function sendReminderForSession(db, doc, kind) {
   const session = doc.data();
   const sessionId = doc.id;
-  const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : null;
-  if (!start) return;
-  const durationHours = session.duration_hours || DEFAULT_DURATION_HOURS;
-  const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
-  const eventTime = kind === 'start' ? start : samapti;
+  const times = sessionTimes(session);
+  if (!times) return;
+  const k = KINDS[kind];
+  const eventTime = times[kind];
   const link = sessionLinkFor(sessionId);
 
-  const emailSubjectStart = `Reminder: Akhand Path begins in about 1 hour — ${session.name || ''}`;
-  const emailSubjectEnd = `Reminder: Akhand Path concludes in about 1 hour — ${session.name || ''}`;
+  const emailSubject = `Reminder: Akhand Path ${k.subject} — ${session.name || ''}`;
   const emailBody = (greeting) => `Dear ${greeting},
 
 Sat Sri Akaal!
 Waheguru ji ka Khalsa, Waheguru ji ki Fateh!
 
-This is a reminder that the Akhand Path Sahib Ji dedicated to ${session.name || ''}${session.purpose ? ' on occasion of ' + session.purpose : ''}, sponsored by ${session.sponsor || ''}, ${kind === 'start' ? 'begins' : 'concludes (Samapti)'} in about 1 hour:
+This is a reminder that the Akhand Path Sahib Ji dedicated to ${session.name || ''}${session.purpose ? ' on occasion of ' + session.purpose : ''}, sponsored by ${session.sponsor || ''}, ${k.happens} in about 1 hour:
 
-${kind === 'start' ? 'Start' : 'Samapti'}: ${formatFullDateTime(eventTime)}
+${k.label}: ${formatFullDateTime(eventTime)}
 
 Session Link: ${link}
-
+${kind === 'madh' ? `Watch Ang 705: ${MADH_VIDEO_LINK}
+` : ''}
 Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh!
 Team – SikhsinIndia.com
 Email: ${ADMIN_EMAIL}`;
 
-  const waTemplate = kind === 'start' ? WHATSAPP_REMINDER_START_TEMPLATE : WHATSAPP_REMINDER_END_TEMPLATE;
-  const waParams = [session.name || '', session.purpose || '', formatFullDateTime(eventTime), link, 'Sikhs In India'];
+  const waTemplate = k.template;
+  // akhand_path_reminder_madh has one more variable, {{5}}, the Ang 705 video link.
+  const waParams = kind === 'madh'
+    ? [session.name || '', session.purpose || '', formatFullDateTime(eventTime), link, MADH_VIDEO_LINK, 'Sikhs In India']
+    : [session.name || '', session.purpose || '', formatFullDateTime(eventTime), link, 'Sikhs In India'];
 
   console.log(`Sending ${kind} reminder for session ${sessionId} (${session.name || 'untitled'})`);
 
   // Admin
-  await safe('admin email', () => sendEmail(ADMIN_EMAIL, kind === 'start' ? emailSubjectStart : emailSubjectEnd, emailBody('Admin')));
+  await safe('admin email', () => sendEmail(ADMIN_EMAIL, emailSubject, emailBody('Admin')));
   await safe('admin WhatsApp', () => sendWhatsApp(ADMIN_WHATSAPP_NUMBER, waTemplate, waParams));
 
   // Sponsor
   if (session.email) {
-    await safe('sponsor email', () => sendEmail(session.email, kind === 'start' ? emailSubjectStart : emailSubjectEnd, emailBody(session.sponsor || 'Sponsor')));
+    await safe('sponsor email', () => sendEmail(session.email, emailSubject, emailBody(session.sponsor || 'Sponsor')));
   }
   if (session.mobie) {
     await safe('sponsor WhatsApp', () => sendWhatsApp(session.mobie, waTemplate, waParams));
@@ -150,7 +180,7 @@ Email: ${ADMIN_EMAIL}`;
   for (const inviteeDoc of inviteesSnap.docs) {
     const inv = inviteeDoc.data();
     if (inv.mail) {
-      await safe(`invitee email (${inv.mail})`, () => sendEmail(inv.mail, kind === 'start' ? emailSubjectStart : emailSubjectEnd, emailBody(inv.gname || inv.name || 'Sangat Ji')));
+      await safe(`invitee email (${inv.mail})`, () => sendEmail(inv.mail, emailSubject, emailBody(inv.gname || inv.name || 'Sangat Ji')));
     }
     if (inv.phone && inv.wa_consent) {
       await safe(`invitee WhatsApp (${inv.mail || inviteeDoc.id})`, () => sendWhatsApp(inv.phone, waTemplate, waParams));
@@ -158,7 +188,7 @@ Email: ${ADMIN_EMAIL}`;
   }
 
   await db.collection(SESSIONS_COLLECTION).doc(sessionId).update({
-    [kind === 'start' ? 'start_reminder_sent' : 'end_reminder_sent']: true
+    [k.flag]: true
   });
 }
 
@@ -177,16 +207,15 @@ async function main() {
 
   for (const doc of snap.docs) {
     const session = doc.data();
-    const start = session.start_at && session.start_at.toDate ? session.start_at.toDate() : null;
-    if (!start) continue;
-    const durationHours = session.duration_hours || DEFAULT_DURATION_HOURS;
-    const samapti = new Date(start.getTime() + durationHours * 3600 * 1000);
+    const times = sessionTimes(session);
+    if (!times) continue;
 
-    if (!session.start_reminder_sent && withinReminderWindow(start, now)) {
-      await sendReminderForSession(db, doc, 'start');
-    }
-    if (!session.end_reminder_sent && withinReminderWindow(samapti, now)) {
-      await sendReminderForSession(db, doc, 'end');
+    for (const kind of ['start', 'madh', 'end']) {
+      // A program shortened below the Madh never reaches it.
+      if (kind === 'madh' && times.madh >= times.end) continue;
+      if (!session[KINDS[kind].flag] && withinReminderWindow(times[kind], now)) {
+        await sendReminderForSession(db, doc, kind);
+      }
     }
   }
 
