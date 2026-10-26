@@ -13,24 +13,26 @@
   const NAVY = '#0d1b3e', TEXT = '#2b2b2b', BORDER = '#e3dccd';
   const font = 'Arial,Helvetica,sans-serif';
   const items = [
-    ['notify.png', 'Get notified', 'Tap <b>Get notified</b> at the bottom of any page on SikhsinIndia.com for free notifications on your phone or computer.', 'https://sikhsinindia.com/'],
+    ['notify.png', 'Get notified', 'Tap the bell on any page', 'https://sikhsinindia.com/'],
     ['website.png', 'Website', 'SikhsinIndia.com', 'https://sikhsinindia.com/'],
     ['email.png', 'Email', 'sikhsinindia@gmail.com', 'mailto:sikhsinindia@gmail.com'],
     ['whatsapp.png', 'WhatsApp Channel', 'SikhsinIndia.com channel', 'https://whatsapp.com/channel/0029VbE1JrUIyPtUz3qlSd0N'],
+    ['facebook.png', 'Facebook', 'Sikhs in India', 'https://www.facebook.com/profile.php?id=61594681240659'],
     ['instagram.png', 'Instagram', '@sikhs_in_india', 'https://www.instagram.com/sikhs_in_india'],
     ['x.png', 'X (Twitter)', '@SikhsinIndiacom', 'https://x.com/SikhsinIndiacom'],
     ['linkedin.png', 'LinkedIn', 'SikhsinIndia.com', 'https://www.linkedin.com/in/sikhsinindia-dot-com-preserving-heritage-inspiring-future-580912446']
   ];
-  const tile = ([icon, label, value, href], wide) =>
-    `<td ${wide ? 'colspan="2"' : 'width="50%"'} valign="top" style="padding:4px;">` +
-    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid ${BORDER};border-radius:8px;"><tr>` +
+  // Eight tiles of one size, two per row.
+  const tile = ([icon, label, value, href]) =>
+    `<td width="50%" valign="top" style="padding:4px;">` +
+    `<table role="presentation" width="100%" height="58" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid ${BORDER};border-radius:8px;height:58px;"><tr>` +
     `<td width="40" valign="middle" style="padding:10px 0 10px 10px;"><a href="${href}"><img src="${ICONS}${icon}" alt="${label}" width="36" height="36" style="display:block;width:36px;height:36px;border:0;"></a></td>` +
     `<td valign="middle" style="padding:8px 10px;font-family:${font};">` +
     `<a href="${href}" style="font-size:14px;font-weight:bold;color:${NAVY};text-decoration:none;">${label}</a><br>` +
-    `<span style="font-size:12.5px;line-height:1.4;color:${TEXT};">${wide ? value : `<a href="${href}" style="color:${NAVY};text-decoration:underline;">${value}</a>`}</span>` +
+    `<span style="font-size:12.5px;line-height:1.4;color:${TEXT};"><a href="${href}" style="color:${NAVY};text-decoration:underline;">${value}</a></span>` +
     `</td></tr></table></td>`;
-  const rows = [`<tr>${tile(items[0], true)}</tr>`];
-  for (let i = 1; i < items.length; i += 2) rows.push(`<tr>${tile(items[i])}${tile(items[i + 1])}</tr>`);
+  const rows = [];
+  for (let i = 0; i < items.length; i += 2) rows.push(`<tr>${tile(items[i])}${tile(items[i + 1])}</tr>`);
 
   const html =
     '<!-- stay-connected -->' +
