@@ -1,7 +1,7 @@
 /* ──────────────────────────────────────────────────────────────
    "Get notified" - free push notifications (Firebase Cloud Messaging)
-   Include on a page with:
-     <script type="module" src="/js/push.js"></script>
+   scripts/seo-optimize.js adds it to every indexable page (seo:push):
+     <script type="module" src="/js/push.js?v=N"></script>
    Adds a small bell button (bottom left). Tapping it asks the browser for
    permission, registers /firebase-messaging-sw.js and saves this browser's
    push token in Firestore (push_subscribers/{token}); tapping again turns
@@ -84,7 +84,7 @@ async function start() {
   btn.className = 'sii-push-btn';
   const style = document.createElement('style');
   style.textContent = `
-    .sii-push-btn{position:fixed;left:16px;bottom:16px;z-index:9999;display:flex;align-items:center;gap:6px;
+    .sii-push-btn{position:fixed;left:16px;bottom:16px;z-index:900;display:flex;align-items:center;gap:6px;
       padding:9px 14px;border:0;border-radius:999px;background:#0d1b3e;color:#fff;font:600 14px/1.2 Lato,Arial,sans-serif;
       box-shadow:0 4px 14px rgba(0,0,0,.25);cursor:pointer}
     .sii-push-btn:hover{background:#e8830a}

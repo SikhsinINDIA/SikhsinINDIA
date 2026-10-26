@@ -250,7 +250,9 @@ for (const p of pages) {
   if (t) titleByRel.set(p.rel, shortTitle(t));
 }
 
-const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, icons: 0, alts: 0, zoom: 0, hreflang: 0, homeLinks: 0, titles: 0, social: 0, changedFiles: 0 };
+const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, icons: 0, alts: 0, zoom: 0, hreflang: 0, homeLinks: 0, titles: 0, social: 0, push: 0, changedFiles: 0 };
+// Bump when js/push.js changes, so browsers fetch the new copy.
+const PUSH_VERSION = 3;
 const DEFAULT_IMAGE = `${SITE}/sikhsinindia.jpg`;
 const indexable = [];
 
@@ -541,6 +543,25 @@ for (const p of pages) {
       : h.replace(/<\/head>/i, () => `  ${block}${eol}</head>`);
     if (withLd !== h) { h = withLd; stats.jsonld++; }
 
+    // 16. "Get notified" push-notification bell (js/push.js) at the end of
+    // the body, inside seo:push so build-sikh-history-pages.js keeps it. It
+    // goes before the whitespace that precedes </body>, with its own line
+    // break in front, because that check strips a block with the whitespace
+    // before it - so removing it gives back the page exactly.
+    {
+      let withPush = h.replace(/\r?\n?<!-- seo:push -->[\s\S]*?<!-- \/seo:push -->/g, "")
+        .replace(/[ \t]*<script type="module" src="\/js\/push\.js[^"]*"><\/script>[ \t]*\r?\n?/g, "");
+      const end = withPush.lastIndexOf("</body>");
+      if (end >= 0) {
+        const at = withPush.slice(0, end).trimEnd().length;
+        withPush = withPush.slice(0, at) +
+          `\n<!-- seo:push --><script type="module" src="/js/push.js?v=${PUSH_VERSION}"></script><!-- /seo:push -->` +
+          withPush.slice(at);
+      }
+      if (withPush.replace(/\r\n/g, "\n") !== h.replace(/\r\n/g, "\n")) stats.push++;
+      h = withPush;
+    }
+
     indexable.push(rel);
   }
 
@@ -597,4 +618,5 @@ console.log(`  hreflang sets updated:    ${stats.hreflang}`);
 console.log(`  Home links set to "/":   ${stats.homeLinks}`);
 console.log(`  Long titles shortened:    ${stats.titles}`);
 console.log(`  Social tags completed:    ${stats.social}`);
+console.log(`  Get notified bell added:  ${stats.push}`);
 console.log(`  Sitemap URLs:             ${indexable.length}`);
