@@ -3,7 +3,8 @@
    One copy of the footer, used by 01-mass-mailer.html (it starts every new
    message) and by scripts that update the saved templates. Email-safe HTML:
    tables, inline styles, and icons loaded from sikhsinindia.com
-   (pictures/00-index/icons). It sits between <!-- stay-connected --> and
+   (pictures/00-index/icons), ending with the "Scan to visit" QR card
+   (pictures/00-index/qr-card.jpg). It sits between <!-- stay-connected --> and
    <!-- /stay-connected -->, so it can be found and replaced later.
    ────────────────────────────────────────────────────────────── */
 (function () {
@@ -37,6 +38,8 @@
     `<p style="margin:0 4px 4px;font-family:Georgia,'Times New Roman',serif;font-size:20px;font-weight:bold;color:${NAVY};">Stay connected</p>` +
     `<p style="margin:0 4px 10px;font-family:${font};font-size:13.5px;line-height:1.5;color:${TEXT};">Stay connected with SikhsinIndia.com and let the light of Gurbani, the blessings of our Gurus, and the joy of every Gurpurab remain with you and your family.</p>` +
     `<table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rows.join('')}</table>` +
+    // QR card: scan to open the website (pictures/00-index/qr-card.jpg)
+    `<p style="margin:14px 0 4px;text-align:center;"><a href="${SITE}"><img src="${SITE}pictures/00-index/qr-card.jpg" alt="Scan to visit sikhsinindia.com" width="320" style="display:inline-block;width:320px;max-width:100%;height:auto;border:0;border-radius:10px;"></a></p>` +
     '</div>' +
     '<!-- /stay-connected -->';
 
