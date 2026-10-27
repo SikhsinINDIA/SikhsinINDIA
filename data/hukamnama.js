@@ -52,5 +52,5 @@ window.HUKAMNAMA = {
       "translation": "Says Kabeer, those humble people become pure - they become Khalsa - who know the Lord's loving devotional worship. ||4||3||"
     }
   ],
-  "updated": "2026-10-27T05:35:03.745Z"
+  "updated": "2026-10-27T06:31:08.197Z"
 };
