@@ -1,48 +1,56 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-10-26",
-  "dateDisplay": "26 October 2026",
-  "ang": 694,
-  "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
-  "raagEnglish": "Raag Dhanaasree",
-  "writerEnglish": "Bhagat Ravi Daas Ji",
-  "titleGurmukhi": "ਧਨਾਸਰੀ ਭਗਤ ਰਵਿਦਾਸ ਜੀ ਕੀ",
-  "titleEnglish": "Dhanaasaree, Devotee Ravi Daas Jee:",
-  "verseGurmukhi": "ਹਮ ਸਰਿ ਦੀਨੁ ਦਇਆਲੁ ਨ ਤੁਮ ਸਰਿ ਅਬ ਪਤੀਆਰੁ ਕਿਆ ਕੀਜੈ ॥",
-  "verseTranslation": "There is none as forlorn as I am, and none as Compassionate as You; what need is there to test us now?",
+  "date": "2026-10-27",
+  "dateDisplay": "27 October 2026",
+  "ang": 654,
+  "raagGurmukhi": "ਰਾਗੁ ਸੋਰਠਿ",
+  "raagEnglish": "Raag Sorath",
+  "writerEnglish": "Bhagat Kabeer Ji",
+  "titleGurmukhi": "ਬੇਦ ਪੁਰਾਨ ਸਭੈ ਮਤ ਸੁਨਿ ਕੈ ਕਰੀ ਕਰਮ ਕੀ ਆਸਾ ॥",
+  "titleEnglish": "Listening to all the teachings of the Vedas and the Puraanas, I wanted to perform the religious rituals.",
+  "verseGurmukhi": "ਕਾਲ ਗ੍ਰਸਤ ਸਭ ਲੋਗ ਸਿਆਨੇ ਉਠਿ ਪੰਡਿਤ ਪੈ ਚਲੇ ਨਿਰਾਸਾ ॥੧॥",
+  "verseTranslation": "But seeing all the wise men caught by Death, I arose and left the Pandits; now I am free of this desire. ||1||",
   "verses": [
     {
-      "gurmukhi": "ਧਨਾਸਰੀ ਭਗਤ ਰਵਿਦਾਸ ਜੀ ਕੀ",
-      "translation": "Dhanaasaree, Devotee Ravi Daas Jee:"
+      "gurmukhi": "ਬੇਦ ਪੁਰਾਨ ਸਭੈ ਮਤ ਸੁਨਿ ਕੈ ਕਰੀ ਕਰਮ ਕੀ ਆਸਾ ॥",
+      "translation": "Listening to all the teachings of the Vedas and the Puraanas, I wanted to perform the religious rituals."
     },
     {
-      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
-      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
+      "gurmukhi": "ਕਾਲ ਗ੍ਰਸਤ ਸਭ ਲੋਗ ਸਿਆਨੇ ਉਠਿ ਪੰਡਿਤ ਪੈ ਚਲੇ ਨਿਰਾਸਾ ॥੧॥",
+      "translation": "But seeing all the wise men caught by Death, I arose and left the Pandits; now I am free of this desire. ||1||"
     },
     {
-      "gurmukhi": "ਹਮ ਸਰਿ ਦੀਨੁ ਦਇਆਲੁ ਨ ਤੁਮ ਸਰਿ ਅਬ ਪਤੀਆਰੁ ਕਿਆ ਕੀਜੈ ॥",
-      "translation": "There is none as forlorn as I am, and none as Compassionate as You; what need is there to test us now?"
+      "gurmukhi": "ਮਨ ਰੇ ਸਰਿਓ ਨ ਏਕੈ ਕਾਜਾ ॥",
+      "translation": "O mind, you have not completed the only task you were given;"
     },
     {
-      "gurmukhi": "ਬਚਨੀ ਤੋਰ ਮੋਰ ਮਨੁ ਮਾਨੈ ਜਨ ਕਉ ਪੂਰਨੁ ਦੀਜੈ ॥੧॥",
-      "translation": "May my mind surrender to Your Word; please, bless Your humble servant with this perfection. ||1||"
+      "gurmukhi": "ਭਜਿਓ ਨ ਰਘੁਪਤਿ ਰਾਜਾ ॥੧॥ ਰਹਾਉ ॥",
+      "translation": "you have not meditated on the Lord, your King. ||1||Pause||"
     },
     {
-      "gurmukhi": "ਹਉ ਬਲਿ ਬਲਿ ਜਾਉ ਰਮਈਆ ਕਾਰਨੇ ॥",
-      "translation": "I am a sacrifice, a sacrifice to the Lord."
+      "gurmukhi": "ਬਨ ਖੰਡ ਜਾਇ ਜੋਗੁ ਤਪੁ ਕੀਨੋ ਕੰਦ ਮੂਲੁ ਚੁਨਿ ਖਾਇਆ ॥",
+      "translation": "Going to the forests, they practice Yoga and deep, austere meditation; they live on roots and the fruits they gather."
     },
     {
-      "gurmukhi": "ਕਾਰਨ ਕਵਨ ਅਬੋਲ ॥ ਰਹਾਉ ॥",
-      "translation": "O Lord, why are You silent? ||Pause||"
+      "gurmukhi": "ਨਾਦੀ ਬੇਦੀ ਸਬਦੀ ਮੋਨੀ ਜਮ ਕੇ ਪਟੈ ਲਿਖਾਇਆ ॥੨॥",
+      "translation": "The musicians, the Vedic scholars, the chanters of one word and the men of silence, all are listed on the Register of Death. ||2||"
     },
     {
-      "gurmukhi": "ਬਹੁਤ ਜਨਮ ਬਿਛੁਰੇ ਥੇ ਮਾਧਉ ਇਹੁ ਜਨਮੁ ਤੁਮੑਾਰੇ ਲੇਖੇ ॥",
-      "translation": "For so many incarnations, I have been separated from You, Lord; I dedicate this life to You."
+      "gurmukhi": "ਭਗਤਿ ਨਾਰਦੀ ਰਿਦੈ ਨ ਆਈ ਕਾਛਿ ਕੂਛਿ ਤਨੁ ਦੀਨਾ ॥",
+      "translation": "Loving devotional worship does not enter into your heart; pampering and adorning your body, you must still give it up."
     },
     {
-      "gurmukhi": "ਕਹਿ ਰਵਿਦਾਸ ਆਸ ਲਗਿ ਜੀਵਉ ਚਿਰ ਭਇਓ ਦਰਸਨੁ ਦੇਖੇ ॥੨॥੧॥",
-      "translation": "Says Ravi Daas: placing my hopes in You, I live; it is so long since I have gazed upon the Blessed Vision of Your Darshan. ||2||1||"
+      "gurmukhi": "ਰਾਗ ਰਾਗਨੀ ਡਿੰਭ ਹੋਇ ਬੈਠਾ ਉਨਿ ਹਰਿ ਪਹਿ ਕਿਆ ਲੀਨਾ ॥੩॥",
+      "translation": "You sit and play music, but you are still a hypocrite; what do you expect to receive from the Lord? ||3||"
+    },
+    {
+      "gurmukhi": "ਪਰਿਓ ਕਾਲੁ ਸਭੈ ਜਗ ਊਪਰ ਮਾਹਿ ਲਿਖੇ ਭ੍ਰਮ ਗਿਆਨੀ ॥",
+      "translation": "Death has fallen on the whole world; the doubting religious scholars are also listed on the Register of Death."
+    },
+    {
+      "gurmukhi": "ਕਹੁ ਕਬੀਰ ਜਨ ਭਏ ਖਾਲਸੇ ਪ੍ਰੇਮ ਭਗਤਿ ਜਿਹ ਜਾਨੀ ॥੪॥੩॥",
+      "translation": "Says Kabeer, those humble people become pure - they become Khalsa - who know the Lord's loving devotional worship. ||4||3||"
     }
   ],
-  "updated": "2026-10-26T06:35:45.937Z"
+  "updated": "2026-10-27T05:35:03.745Z"
 };
