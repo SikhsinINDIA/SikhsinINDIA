@@ -569,9 +569,10 @@ for (const p of pages) {
     }
 
     // 17. "Sikhs in World" button linking to the sister site sikhsinworld.com:
-    // fixed at the bottom right (the bell from step 16 sits bottom left), so it
-    // never changes a page's own layout. Same seo:world markers and whitespace
-    // rule as the bell. z-index matches the bell, so lightboxes still cover it.
+    // fixed at the top right, just below the EN | हिन्दी | ਪੰਜਾਬੀ switcher
+    // (top:10px), so it never changes a page's own layout. Same seo:world
+    // markers and whitespace rule as the bell. z-index sits below the
+    // switcher and the lightboxes (9999+), so they still cover it.
     {
       const lang = /^(hi|pa)\//.test(rel) ? rel.slice(0, 2) : "en";
       const text = WORLD_TEXT[lang];
@@ -579,9 +580,10 @@ for (const p of pages) {
       const at = withWorld.indexOf("\n<!-- seo:push -->");
       if (at >= 0) {
         withWorld = withWorld.slice(0, at) +
-          `\n<!-- seo:world --><a href="https://sikhsinworld.com/" title="Sikhs in World: ${text}" ` +
-          `style="position:fixed;right:16px;bottom:16px;z-index:900;background:#0d1b3e;color:#ffffff;border:1px solid #F7941D;` +
-          `border-radius:999px;padding:8px 14px;font:bold 13px/1.2 Arial,sans-serif;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.25);">` +
+          `\n<!-- seo:world --><style>@media (max-width:600px){.siw-world{font-size:12px!important;padding:6px 10px!important}}</style>` +
+          `<a class="siw-world" href="https://sikhsinworld.com/" title="Sikhs in World: ${text}" ` +
+          `style="position:fixed;right:10px;top:52px;z-index:9990;background:#F7941D;color:#0d1b3e;border:2px solid #ffffff;` +
+          `border-radius:999px;padding:8px 14px;font:bold 14px/1.2 Arial,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.3);">` +
           `&#127757; Sikhs in World</a><!-- /seo:world -->` +
           withWorld.slice(at);
       }
