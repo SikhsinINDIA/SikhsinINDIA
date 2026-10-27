@@ -250,9 +250,15 @@ for (const p of pages) {
   if (t) titleByRel.set(p.rel, shortTitle(t));
 }
 
-const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, icons: 0, alts: 0, zoom: 0, hreflang: 0, homeLinks: 0, titles: 0, social: 0, push: 0, changedFiles: 0 };
+const stats = { gtag: 0, h1: 0, jsonld: 0, desc: 0, lazy: 0, noindex: 0, urls: 0, images: 0, icons: 0, alts: 0, zoom: 0, hreflang: 0, homeLinks: 0, titles: 0, social: 0, push: 0, world: 0, changedFiles: 0 };
 // Bump when js/push.js changes, so browsers fetch the new copy.
 const PUSH_VERSION = 3;
+// Line under the "Sikhs in World" link at the bottom of every page (step 17)
+const WORLD_TEXT = {
+  en: "Sikh communities in every country",
+  hi: "दुनिया भर के सिख समुदाय",
+  pa: "ਦੁਨੀਆ ਭਰ ਦੇ ਸਿੱਖ ਭਾਈਚਾਰੇ"
+};
 const DEFAULT_IMAGE = `${SITE}/sikhsinindia.jpg`;
 const indexable = [];
 
@@ -562,6 +568,27 @@ for (const p of pages) {
       h = withPush;
     }
 
+    // 17. "Sikhs in World" button linking to the sister site sikhsinworld.com:
+    // fixed at the bottom right (the bell from step 16 sits bottom left), so it
+    // never changes a page's own layout. Same seo:world markers and whitespace
+    // rule as the bell. z-index matches the bell, so lightboxes still cover it.
+    {
+      const lang = /^(hi|pa)\//.test(rel) ? rel.slice(0, 2) : "en";
+      const text = WORLD_TEXT[lang];
+      let withWorld = h.replace(/\r?\n?<!-- seo:world -->[\s\S]*?<!-- \/seo:world -->/g, "");
+      const at = withWorld.indexOf("\n<!-- seo:push -->");
+      if (at >= 0) {
+        withWorld = withWorld.slice(0, at) +
+          `\n<!-- seo:world --><a href="https://sikhsinworld.com/" title="Sikhs in World: ${text}" ` +
+          `style="position:fixed;right:16px;bottom:16px;z-index:900;background:#0d1b3e;color:#ffffff;border:1px solid #F7941D;` +
+          `border-radius:999px;padding:8px 14px;font:bold 13px/1.2 Arial,sans-serif;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.25);">` +
+          `&#127757; Sikhs in World</a><!-- /seo:world -->` +
+          withWorld.slice(at);
+      }
+      if (withWorld.replace(/\r\n/g, "\n") !== h.replace(/\r\n/g, "\n")) stats.world++;
+      h = withWorld;
+    }
+
     indexable.push(rel);
   }
 
@@ -619,4 +646,5 @@ console.log(`  Home links set to "/":   ${stats.homeLinks}`);
 console.log(`  Long titles shortened:    ${stats.titles}`);
 console.log(`  Social tags completed:    ${stats.social}`);
 console.log(`  Get notified bell added:  ${stats.push}`);
+console.log(`  Sikhs in World link:      ${stats.world}`);
 console.log(`  Sitemap URLs:             ${indexable.length}`);
