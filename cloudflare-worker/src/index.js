@@ -488,7 +488,8 @@ async function inlineDriveImages(html) {
 // (100/day). Mail goes via Brevo, falling back to Resend when Brevo refuses
 // it (daily cap reached, outage). Mail with Drive pictures sent inline goes
 // the other way round, because only Resend supports inline (cid:) images -
-// if Resend is out, Brevo sends it with the pictures as ordinary links.
+// but only up to RESEND_DAILY_SOFT_LIMIT a day; after that, and if Resend
+// is out, Brevo sends it with the pictures as ordinary links.
 // Without a BREVO_API_KEY secret everything goes via Resend, as before.
 async function sendEmail(env, { to, subject, text, html, attachments }) {
   const inlined = await inlineDriveImages(html);
@@ -496,10 +497,17 @@ async function sendEmail(env, { to, subject, text, html, attachments }) {
     ? await Promise.all(attachments.map(resolveAttachment))
     : [];
   const mail = { to, subject, text, files };
-  const viaResend = () => sendViaResend(env, { ...mail, html: inlined.html, inline: inlined.inline });
+  const viaResend = async () => {
+    const sent = await sendViaResend(env, { ...mail, html: inlined.html, inline: inlined.inline });
+    await countResendSend(env);
+    return sent;
+  };
   const viaBrevo = () => sendViaBrevo(env, { ...mail, html });
   if (!env.BREVO_API_KEY) return viaResend();
-  const [first, second] = inlined.inline.length ? [viaResend, viaBrevo] : [viaBrevo, viaResend];
+  // Resend first only for inline pictures, and only while today's Resend
+  // count is under RESEND_DAILY_SOFT_LIMIT - after that Brevo takes them.
+  const resendFirst = inlined.inline.length && (await resendSentToday(env)) < RESEND_DAILY_SOFT_LIMIT;
+  const [first, second] = resendFirst ? [viaResend, viaBrevo] : [viaBrevo, viaResend];
   // Logged so `wrangler tail` shows which provider sent each mail.
   try {
     const sent = await first();
@@ -513,6 +521,25 @@ async function sendEmail(env, { to, subject, text, html, attachments }) {
       throw new Error(`${firstErr.message} | ${secondErr.message}`);
     }
   }
+}
+
+// Resend's free plan allows 100 emails a day (UTC) and emails warnings at 80%,
+// so it is used for at most 75; the count lives in the WA_STATUS KV namespace
+// under "resend-count:<UTC date>" (kept two days). KV is eventually
+// consistent, so the count can lag by a send or two - hence the margin.
+const RESEND_DAILY_SOFT_LIMIT = 75;
+const resendCountKey = () => "resend-count:" + new Date().toISOString().slice(0, 10);
+
+async function resendSentToday(env) {
+  if (!env.WA_STATUS) return 0;
+  return parseInt((await env.WA_STATUS.get(resendCountKey())) || "0", 10) || 0;
+}
+
+async function countResendSend(env) {
+  if (!env.WA_STATUS) return;
+  const key = resendCountKey();
+  const n = (parseInt((await env.WA_STATUS.get(key)) || "0", 10) || 0) + 1;
+  await env.WA_STATUS.put(key, String(n), { expirationTtl: 2 * 86400 });
 }
 
 const fromAddress = (env) => env.FROM_ADDRESS || "SikhsinIndia <onboarding@resend.dev>";
