@@ -217,6 +217,21 @@
       border: 0;
     }
 
+    /* Night-time notice: the stream stays on but kirtan has stopped */
+    .live-quiet {
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: #fff4e3;
+      border: 1px solid var(--gold);
+      border-left: 5px solid var(--gold);
+      border-radius: 8px;
+      color: var(--navy);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .live-quiet strong { display: block; margin-bottom: 2px; }
+    .live-quiet[hidden] { display: none; }
+
     /* Tap-to-play cover: the YouTube player only loads when asked for */
     .live-start {
       position: absolute;
@@ -793,6 +808,10 @@
             <span class="live-start-sub">Sachkhand Sri Harmandir Sahib, Sri Amritsar</span>
           </button>
         </div>
+        <div class="live-quiet" id="liveQuiet" hidden>
+          <strong>&#128591; Kirtan has finished for tonight at Sri Harmandir Sahib.</strong>
+          <span id="liveQuietWhen"></span>
+        </div>
         <p class="live-note">
           Official live broadcast by SGPC, Sri Amritsar. Kirtan runs through the day from early morning
           (about 3 AM IST) until night. Can't hear it? Tap the speaker icon on the player and check your
@@ -1256,6 +1275,32 @@
       liveFrame.innerHTML = '';
       liveFrame.appendChild(iframe);
     }
+
+    // Kirtan at Sri Harmandir Sahib ends for the night after Kirtan Sohila and Sukhasan
+    // (about 10 PM India time) and starts again with Asa di Var (about 3 AM). In between,
+    // SGPC's camera stays on but there is nothing to hear, so say so, in the visitor's own time.
+    (function () {
+      var box = document.getElementById('liveQuiet');
+      var when = document.getElementById('liveQuietWhen');
+      var IST = 330, STOP = 22 * 60, RESUME = 3 * 60; // minutes: UTC+5:30, 10 PM, 3 AM
+      function update() {
+        var now = new Date();
+        var ist = (now.getUTCHours() * 60 + now.getUTCMinutes() + IST) % 1440;
+        var quiet = ist >= STOP || ist < RESUME;
+        box.hidden = !quiet;
+        if (!quiet) return;
+        var mins = (RESUME - ist + 1440) % 1440;
+        var resume = new Date(now.getTime() + mins * 60000);
+        var local = resume.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+        var wait = (mins >= 60 ? Math.floor(mins / 60) + ' h ' : '') + (mins % 60) + ' min';
+        var inIndia = -now.getTimezoneOffset() === IST;
+        when.textContent = 'It usually resumes at about 3:00 AM India time' +
+          (inIndia ? '' : ', which is ' + local + ' your time') +
+          ' (in ' + wait + '). The camera stays on until then, but there is no kirtan to hear.';
+      }
+      update();
+      setInterval(update, 60000);
+    })();
 
     document.getElementById('liveStartBtn').addEventListener('click', function () {
       // Only one thing playing at a time: pause a searched shabad if any.
