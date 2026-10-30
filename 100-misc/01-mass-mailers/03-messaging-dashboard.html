@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHNTFNW14H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Messaging Dashboard | Admin | SikhsInIndia.com</title>
+
+  <meta name="description" content="Every email and WhatsApp message the site has sent and has scheduled.">
+  <meta name="author" content="Sikhs in India">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="canonical" href="https://sikhsinindia.com/100-misc/01-mass-mailers/03-messaging-dashboard.html">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Firebase (compat SDK — same project/pattern used by every other admin tool on the site) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+  <style>
+    .poster { max-width: 1200px; }
+    .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+    .tile { background: var(--cream, #faf6ee); border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 8px; padding: 12px 14px; }
+    .tile-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #666; }
+    .tile-value { font-size: 28px; font-weight: 700; color: var(--navy, #1d2a54); line-height: 1.2; margin-top: 4px; }
+    .tile-sub { font-size: 12px; color: #555; margin-top: 2px; }
+    .toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+    .toolbar input[type="text"] { flex: 1; min-width: 180px; }
+    .toolbar select { width: auto; }
+    .scroll { max-height: 460px; overflow-y: auto; }
+    table td, table th { font-size: 13px; vertical-align: top; }
+    .nowrap { white-space: nowrap; }
+    .st { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+    .st-ok, .st-delivered { background: #e6f7ec; color: #146c3a; }
+    .st-read { background: #e3f0ff; color: #1a4f9c; }
+    .st-sent, .st-accepted, .st-planned { background: #fff7e6; color: #8a5a00; }
+    .st-failed, .st-warn { background: #fdeaea; color: #a11; }
+    .st-none { background: #eee; color: #666; }
+    .ch { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 11px; font-weight: 700; margin: 0 4px 2px 0; }
+    .ch-email { background: #eef0fb; color: #2b3a8f; }
+    .ch-wa { background: #e7f8ee; color: #136c38; }
+    .ch-push { background: #f3eefb; color: #5b2b8f; }
+    .warn { color: #a11; font-size: 12px; font-weight: 700; }
+    .small { font-size: 12px; color: #666; }
+  </style>
+  <!-- seo:icons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <!-- /seo:icons -->
+</head>
+
+<body>
+
+  <div class="poster">
+
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">Messaging <span>Dashboard</span></div>
+        <div class="hero-sub">Every Email &amp; WhatsApp Message — Sent and Planned</div>
+      </div>
+    </div>
+
+    <div class="wrapper">
+
+      <div class="card">
+        <div class="card-title">Overview</div>
+        <div class="tiles" id="tiles"><div class="loading-text">Loading...</div></div>
+        <p class="small" style="margin-top: 10px;">All times are India time (IST). The Email and WhatsApp logs below
+          keep 45 days and include every message the site sends (Mass Mailer, WhatsApp Broadcast, Akhand Path,
+          daily jobs). The email log starts from when it was switched on, so older emails show only in the
+          Automatic Sends history.</p>
+        <button type="button" class="btn-control" onclick="loadAll()">Refresh</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Planned</div>
+        <p class="muted" style="margin-bottom: 10px;">Automatic sends that are scheduled and not yet sent: Calendar
+          events with a mail format and/or WhatsApp template, and Akhand Path reminders (1 hour before Start, Madh and
+          Samapti). Calendar sends run each morning from about 5:00 AM IST; GitHub sometimes starts them a few hours
+          late. Manual Mass Mailer or Broadcast sends aren't scheduled, so they never appear here.</p>
+        <div class="toolbar">
+          <select id="planDays" onchange="renderPlanned()">
+            <option value="7">Next 7 days</option>
+            <option value="30" selected>Next 30 days</option>
+            <option value="90">Next 90 days</option>
+            <option value="400">Next 12 months</option>
+          </select>
+        </div>
+        <div class="table-container" style="margin-bottom: 0;"><div class="scroll" id="plannedTable"></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Automatic Sends — History</div>
+        <p class="muted" style="margin-bottom: 10px;">What the daily Calendar jobs actually sent, as recorded on each
+          event (kept permanently, not just 45 days).</p>
+        <div class="toolbar">
+          <select id="histDays" onchange="renderHistory()">
+            <option value="30">Last 30 days</option>
+            <option value="90" selected>Last 90 days</option>
+            <option value="400">Last 12 months</option>
+          </select>
+        </div>
+        <div class="table-container" style="margin-bottom: 0;"><div class="scroll" id="historyTable"></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Email Log</div>
+        <div class="toolbar">
+          <input type="text" id="emailFilter" placeholder="Filter by name, email or subject..." oninput="renderEmailLog()">
+          <select id="emailDays" onchange="renderEmailLog()">
+            <option value="1">Last 24 hours</option>
+            <option value="7" selected>Last 7 days</option>
+            <option value="45">Last 45 days</option>
+          </select>
+          <label style="display: inline-flex; align-items: center; gap: 6px; margin: 0;">
+            <input type="checkbox" id="emailFailedOnly" style="width: auto;" onchange="renderEmailLog()"> Failed only
+          </label>
+        </div>
+        <div id="emailSummary" class="muted" style="margin-bottom: 8px;"></div>
+        <div class="table-container" style="margin-bottom: 0;"><div class="scroll" id="emailTable"></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">WhatsApp Log</div>
+        <p class="muted" style="margin-bottom: 10px;"><b>Accepted</b> means Meta took the message but no delivery
+          report has come back yet. <b>Delivered</b>/<b>Read</b>/<b>Failed</b> are reported by WhatsApp itself.</p>
+        <div class="toolbar">
+          <input type="text" id="waFilter" placeholder="Filter by name, phone or template..." oninput="renderWaLog()">
+          <select id="waDays" onchange="renderWaLog()">
+            <option value="1">Last 24 hours</option>
+            <option value="7" selected>Last 7 days</option>
+            <option value="45">Last 45 days</option>
+          </select>
+          <label style="display: inline-flex; align-items: center; gap: 6px; margin: 0;">
+            <input type="checkbox" id="waFailedOnly" style="width: auto;" onchange="renderWaLog()"> Failed only
+          </label>
+        </div>
+        <div id="waSummary" class="muted" style="margin-bottom: 8px;"></div>
+        <div class="table-container" style="margin-bottom: 0;"><div class="scroll" id="waTable"></div></div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-content">
+        <a href="./01-mass-mailer.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          Back
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage &amp; Unity</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    firebase.initializeApp({
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b",
+      measurementId: "G-LHNTFNW14H"
+    });
+    const db = firebase.firestore();
+    const SEND_ENDPOINT = "https://sikhsinindia-email.sikhsinindia.workers.dev";
+
+    /* Same admin gate as 02-whatsapp-broadcast.html: the Worker only returns
+       the email/WhatsApp logs for a signed-in ADMIN_EMAILS account's ID
+       token, so this redirect is just UX. */
+    const ADMIN_EMAILS = ["tpsarora@gmail.com", "sikhsinindia@gmail.com"];
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user || !ADMIN_EMAILS.includes((user.email || "").toLowerCase())) {
+        window.location.href = "./01a-password-mass-mailer.html?next=03-messaging-dashboard.html";
+        return;
+      }
+      loadAll();
+    });
+
+    /* Mirrors scripts/send-akhand-path-reminders.js — keep in sync if that
+       changes: reminders go 1 hour before each moment; the Madh (Ang 705) is
+       (150840 + 81) / 1.5 seconds after the start; a program with no saved
+       duration is treated as DEFAULT_DURATION_HOURS. */
+    const REMINDER_LEAD_MS = 60 * 60 * 1000;
+    const MADH_OFFSET_MS = ((150840 + 81) / 1.5) * 1000;
+    const DEFAULT_DURATION_HOURS = 54.47;
+    const ADMIN_EMAIL = "sikhsinindia@gmail.com";
+    const ADMIN_WHATSAPP_NUMBER = "+971521821108";
+    const DAY_MS = 86400000;
+
+    let members = { emailCount: 0, phoneCount: 0, nameByEmail: new Map(), nameByPhone: new Map() };
+    let calendarRows = [];
+    let templateByNumber = new Map();
+    let reminderRows = [];
+    let emailRows = null, emailError = "";
+    let waRows = null, waError = "";
+
+    function escapeHtml(s) {
+      return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+    const fmt = (ms) => ms ? new Date(ms).toLocaleString("en-GB", {
+      timeZone: "Asia/Kolkata", day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit"
+    }) : "";
+    const fmtDay = (ms) => new Date(ms).toLocaleDateString("en-GB", {
+      timeZone: "Asia/Kolkata", weekday: "short", day: "2-digit", month: "short", year: "numeric"
+    });
+    // Midnight IST of the India calendar day containing ms.
+    function istDayStart(ms) {
+      const d = new Date(ms + 5.5 * 3600 * 1000);
+      return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) - 5.5 * 3600 * 1000;
+    }
+    const tsMs = (v) => v && v.toDate ? v.toDate().getTime() : null;
+
+    // Same phone rules as 02-whatsapp-broadcast.html, so names match its recipients.
+    function mobileDigits(mobile) {
+      return String(mobile == null ? "" : mobile).replace(/[^0-9]/g, "").replace(/^0+/, "");
+    }
+    function buildPhone(countryCode, mobile) {
+      const cc = String(countryCode || "").replace(/[^0-9+]/g, "");
+      return (cc.startsWith("+") ? cc : "+" + cc) + mobileDigits(mobile);
+    }
+    const normPhone = (p) => { const d = String(p || "").replace(/[^0-9+]/g, ""); return d.startsWith("+") ? d : "+" + d; };
+
+    async function workerAction(body) {
+      const user = firebase.auth().currentUser;
+      if (!user) throw new Error("Not signed in — log in again.");
+      const res = await fetch(SEND_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${await user.getIdToken()}` },
+        body: JSON.stringify(body)
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+      return data.rows || [];
+    }
+
+    async function loadMembers() {
+      const snap = await db.collection("sikhdatabaseindia").get();
+      const nameByEmail = new Map(), nameByPhone = new Map();
+      let emailCount = 0;
+      snap.forEach((doc) => {
+        const d = doc.data();
+        const name = d.GName || d.GreetingName || d.Name || "";
+        const email = String(d.Email || doc.id || "").trim().toLowerCase();
+        // Same email rule as scripts/send-daily-event-mailer.js's fetchRecipients.
+        if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { emailCount++; nameByEmail.set(email, name); }
+        if (d.Mobile_Correct === true && mobileDigits(d.Mobile)) nameByPhone.set(buildPhone(d.Country_Code, d.Mobile), name);
+      });
+      members = { emailCount, phoneCount: nameByPhone.size, nameByEmail, nameByPhone };
+    }
+
+    async function loadCalendar() {
+      const [cal, tpl] = await Promise.all([
+        db.collection("Calendar").get(),
+        db.collection("mass_mailer_templates").get()
+      ]);
+      templateByNumber = new Map();
+      tpl.forEach((doc) => {
+        const t = doc.data();
+        if (t.template_number != null) templateByNumber.set(Number(t.template_number), t);
+      });
+      calendarRows = cal.docs.map((doc) => ({ id: doc.id, ...doc.data(), at: tsMs(doc.data().Date) }))
+        .filter((r) => r.at);
+    }
+
+    /* One row per Akhand Path reminder still to come (scheduled programs
+       only — that's all the reminders job looks at), plus the sent flags. */
+    async function loadReminders() {
+      const snap = await db.collection("akhand_path").where("status", "==", "scheduled").get();
+      const rows = [];
+      for (const doc of snap.docs) {
+        const s = doc.data();
+        const start = tsMs(s.start_at);
+        if (!start) continue;
+        const end = start + (s.duration_hours || DEFAULT_DURATION_HOURS) * 3600 * 1000;
+        const inv = await doc.ref.collection("invitees").get();
+        let invEmails = 0, invPhones = 0;
+        inv.forEach((d) => { const v = d.data(); if (v.mail) invEmails++; if (v.phone) invPhones++; });
+        const emails = 1 + (s.email ? 1 : 0) + invEmails;   // admin + sponsor + invitees
+        const phones = 1 + (s.mobie ? 1 : 0) + invPhones;
+        const kinds = [
+          { key: "start", label: "Start", at: start, flag: "start_reminder_sent" },
+          { key: "madh", label: "Madh (Ang 705)", at: start + MADH_OFFSET_MS, flag: "madh_reminder_sent" },
+          { key: "end", label: "Samapti", at: end, flag: "end_reminder_sent" }
+        ];
+        kinds.forEach((k) => {
+          if (k.key === "madh" && k.at >= end) return; // a shortened program never reaches the Madh
+          rows.push({
+            sessionId: doc.id, name: s.name || "Untitled", purpose: s.purpose || "",
+            kind: k.label, sendAt: k.at - REMINDER_LEAD_MS, eventAt: k.at, sent: !!s[k.flag], emails, phones
+          });
+        });
+      }
+      reminderRows = rows;
+    }
+
+    async function loadLogs() {
+      const since = Date.now() - 45 * DAY_MS;
+      const [mail, wa] = await Promise.allSettled([
+        workerAction({ action: "email_log", since }),
+        workerAction({ action: "whatsapp_statuses", since })
+      ]);
+      emailRows = mail.status === "fulfilled" ? mail.value : [];
+      emailError = mail.status === "rejected" ? String(mail.reason.message || mail.reason) : "";
+      waRows = wa.status === "fulfilled" ? wa.value : [];
+      waError = wa.status === "rejected" ? String(wa.reason.message || wa.reason) : "";
+    }
+
+    async function loadAll() {
+      document.getElementById("tiles").innerHTML = `<div class="loading-text">Loading...</div>`;
+      ["plannedTable", "historyTable", "emailTable", "waTable"].forEach((id) =>
+        document.getElementById(id).innerHTML = `<div class="loading-text">Loading...</div>`);
+      try {
+        await Promise.all([loadMembers(), loadCalendar(), loadReminders(), loadLogs()]);
+      } catch (err) {
+        document.getElementById("tiles").innerHTML = `<div class="no-data">Could not load data: ${escapeHtml(err.message || err)}</div>`;
+        return;
+      }
+      renderTiles();
+      renderPlanned();
+      renderHistory();
+      renderEmailLog();
+      renderWaLog();
+    }
+    window.loadAll = loadAll;
+
+    /* ---------------- PLANNED ---------------- */
+    function plannedItems(days) {
+      const now = Date.now();
+      const until = now + days * DAY_MS;
+      const today = istDayStart(now);
+      const items = [];
+      calendarRows.forEach((r) => {
+        const day = istDayStart(r.at);
+        if (day < today || day > until) return;
+        const channels = [];
+        let warn = "";
+        if (r.TemplateNumber != null && !r.mail_sent) {
+          const t = templateByNumber.get(Number(r.TemplateNumber));
+          if (!t) warn = `No saved mail format #${r.TemplateNumber} — the email will be skipped.`;
+          channels.push({ ch: "email", detail: t ? `#${r.TemplateNumber} · ${t.subject || t.name || ""}` : `#${r.TemplateNumber}`,
+            recipients: members.emailCount, attach: t && (t.attachments || []).map((a) => a.filename).join(", ") });
+        }
+        if (r.WhatsAppTemplateName && !r.whatsapp_sent) {
+          channels.push({ ch: "wa", detail: r.WhatsAppTemplateName, recipients: members.phoneCount });
+        }
+        if (!channels.length) return;
+        items.push({ at: day + 5 * 3600 * 1000, whenLabel: `${fmtDay(r.at)}, from ~5:00 AM`, what: r.Description || "(no description)",
+          source: "Calendar", channels, warn });
+      });
+      reminderRows.forEach((r) => {
+        if (r.sent || r.sendAt > until || r.sendAt < now - 20 * 60 * 1000) return;
+        items.push({ at: r.sendAt, whenLabel: fmt(r.sendAt), what: `Akhand Path reminder — ${r.kind}: ${r.name}${r.purpose ? " (" + r.purpose + ")" : ""}`,
+          source: `Akhand Path #${r.sessionId}`,
+          channels: [{ ch: "email", detail: "Reminder email", recipients: r.emails }, { ch: "wa", detail: `akhand_path_reminder_${r.kind.startsWith("Madh") ? "madh" : r.kind === "Start" ? "start" : "end"}`, recipients: r.phones }],
+          warn: "" });
+      });
+      return items.sort((a, b) => a.at - b.at);
+    }
+
+    function channelBadges(channels) {
+      return channels.map((c) => `<div><span class="ch ch-${c.ch}">${c.ch === "wa" ? "WhatsApp" : "Email"}</span>${escapeHtml(c.detail)}` +
+        `${c.attach ? ` <span class="small">📎 ${escapeHtml(c.attach)}</span>` : ""}</div>`).join("");
+    }
+
+    function renderPlanned() {
+      const items = plannedItems(Number(document.getElementById("planDays").value));
+      const el = document.getElementById("plannedTable");
+      if (!items.length) { el.innerHTML = `<div class="no-data">Nothing scheduled in this period.</div>`; return; }
+      el.innerHTML = `<table>
+        <thead><tr><th>When (IST)</th><th>What</th><th>Channels &amp; content</th><th>Recipients</th><th>Source</th></tr></thead>
+        <tbody>${items.map((i) => `<tr>
+          <td class="nowrap">${escapeHtml(i.whenLabel)}</td>
+          <td>${escapeHtml(i.what)}${i.warn ? `<div class="warn">⚠ ${escapeHtml(i.warn)}</div>` : ""}</td>
+          <td>${channelBadges(i.channels)}</td>
+          <td class="nowrap">${i.channels.map((c) => `<div>${c.ch === "wa" ? "WhatsApp" : "Email"}: ~${c.recipients}</div>`).join("")}</td>
+          <td class="small">${escapeHtml(i.source)}</td>
+        </tr>`).join("")}</tbody></table>`;
+    }
+
+    /* ---------------- AUTOMATIC SENDS HISTORY ---------------- */
+    function sentCell(sent, count, failed, sentAt) {
+      if (!sent) return `<span class="st st-none">—</span>`;
+      return `<span class="st ${failed ? "st-warn" : "st-ok"}">${count != null ? count : "?"} sent${failed ? `, ${failed} failed` : ""}</span>` +
+        (sentAt ? `<div class="small">${fmt(sentAt)}</div>` : "");
+    }
+
+    function renderHistory() {
+      const days = Number(document.getElementById("histDays").value);
+      const from = Date.now() - days * DAY_MS;
+      const rows = calendarRows
+        .filter((r) => (r.mail_sent || r.whatsapp_sent || r.push_sent) && r.at >= from && r.at <= Date.now() + DAY_MS)
+        .sort((a, b) => b.at - a.at);
+      const reminders = reminderRows.filter((r) => r.sent);
+      const el = document.getElementById("historyTable");
+      if (!rows.length && !reminders.length) { el.innerHTML = `<div class="no-data">No automatic sends recorded in this period.</div>`; return; }
+      const t = templateByNumber;
+      el.innerHTML = `<table>
+        <thead><tr><th>Date</th><th>Event</th><th>Email</th><th>WhatsApp</th><th>Push</th></tr></thead>
+        <tbody>${rows.map((r) => `<tr>
+          <td class="nowrap">${escapeHtml(fmtDay(r.at))}</td>
+          <td>${escapeHtml(r.Description || "")}<div class="small">${r.TemplateNumber != null ? `Mail #${r.TemplateNumber}${t.get(Number(r.TemplateNumber)) ? " · " + escapeHtml(t.get(Number(r.TemplateNumber)).subject || "") : ""}` : ""}${r.WhatsAppTemplateName ? ` · WA ${escapeHtml(r.WhatsAppTemplateName)}` : ""}</div></td>
+          <td>${sentCell(r.mail_sent, r.mail_sent_count, r.mail_failed_count, tsMs(r.mail_sent_at))}</td>
+          <td>${sentCell(r.whatsapp_sent, r.whatsapp_sent_count, r.whatsapp_failed_count, tsMs(r.whatsapp_sent_at))}</td>
+          <td>${sentCell(r.push_sent, r.push_sent_count, 0, tsMs(r.push_sent_at))}</td>
+        </tr>`).join("")}
+        ${reminders.map((r) => `<tr>
+          <td class="nowrap">${escapeHtml(fmt(r.sendAt))}</td>
+          <td>Akhand Path reminder — ${escapeHtml(r.kind)}: ${escapeHtml(r.name)}<div class="small">Akhand Path #${escapeHtml(r.sessionId)} (still running)</div></td>
+          <td><span class="st st-ok">sent</span></td><td><span class="st st-ok">sent</span></td><td><span class="st st-none">—</span></td>
+        </tr>`).join("")}</tbody></table>`;
+    }
+
+    /* ---------------- EMAIL LOG ---------------- */
+    function renderEmailLog() {
+      const summary = document.getElementById("emailSummary");
+      const el = document.getElementById("emailTable");
+      if (emailError) {
+        summary.textContent = "";
+        el.innerHTML = `<div class="no-data">Email log not available: ${escapeHtml(emailError)}<br>(It needs the latest Cloudflare Worker deployed: <code>npx wrangler deploy</code> in the cloudflare-worker folder.)</div>`;
+        return;
+      }
+      const from = Date.now() - Number(document.getElementById("emailDays").value) * DAY_MS;
+      const q = document.getElementById("emailFilter").value.trim().toLowerCase();
+      const failedOnly = document.getElementById("emailFailedOnly").checked;
+      const inRange = (emailRows || []).filter((r) => (r.at || 0) >= from);
+      const ok = inRange.filter((r) => !r.err).length;
+      summary.innerHTML = `<b>${inRange.length}</b> emails — Sent: <b>${ok}</b> · Failed: <b>${inRange.length - ok}</b>`;
+      const rows = inRange.filter((r) => {
+        if (failedOnly && !r.err) return false;
+        if (!q) return true;
+        const name = members.nameByEmail.get(String(r.to || "").toLowerCase()) || "";
+        return [r.to, r.sub, name].some((v) => String(v || "").toLowerCase().includes(q));
+      }).sort((a, b) => (b.at || 0) - (a.at || 0));
+      if (!rows.length) { el.innerHTML = `<div class="no-data">${inRange.length ? "No emails match." : "No emails logged in this period."}</div>`; return; }
+      el.innerHTML = `<table>
+        <thead><tr><th>Time (IST)</th><th>To</th><th>Subject</th><th>Status</th><th>Sent via</th></tr></thead>
+        <tbody>${rows.map((r) => {
+          const name = members.nameByEmail.get(String(r.to || "").toLowerCase());
+          return `<tr>
+            <td class="nowrap">${fmt(r.at)}</td>
+            <td>${name ? `${escapeHtml(name)}<div class="small">${escapeHtml(r.to)}</div>` : escapeHtml(r.to)}</td>
+            <td>${escapeHtml(r.sub)}</td>
+            <td>${r.err ? `<span class="st st-failed">Failed</span><div class="small">${escapeHtml(r.err)}</div>` : `<span class="st st-ok">Sent</span>`}</td>
+            <td class="small">${escapeHtml(r.via || "")}</td>
+          </tr>`;
+        }).join("")}</tbody></table>`;
+    }
+
+    /* ---------------- WHATSAPP LOG ---------------- */
+    const WA_LABEL = { failed: "Failed", accepted: "Accepted", sent: "Sent", delivered: "Delivered", read: "Read" };
+
+    function renderWaLog() {
+      const summary = document.getElementById("waSummary");
+      const el = document.getElementById("waTable");
+      if (waError) { summary.textContent = ""; el.innerHTML = `<div class="no-data">WhatsApp log not available: ${escapeHtml(waError)}</div>`; return; }
+      const from = Date.now() - Number(document.getElementById("waDays").value) * DAY_MS;
+      const q = document.getElementById("waFilter").value.trim().toLowerCase();
+      const failedOnly = document.getElementById("waFailedOnly").checked;
+      const nameOf = (to) => to === normPhone(ADMIN_WHATSAPP_NUMBER) ? "Admin" : (members.nameByPhone.get(normPhone(to)) || "");
+      const inRange = (waRows || []).filter((r) => (r.at || 0) >= from);
+      const counts = {};
+      inRange.forEach((r) => { counts[r.s] = (counts[r.s] || 0) + 1; });
+      summary.innerHTML = `<b>${inRange.length}</b> messages — ` +
+        ["read", "delivered", "sent", "accepted", "failed"].map((s) => `${WA_LABEL[s]}: <b>${counts[s] || 0}</b>`).join(" · ");
+      const rows = inRange.filter((r) => {
+        if (failedOnly && r.s !== "failed") return false;
+        if (!q) return true;
+        return [r.to, r.t, nameOf(r.to)].some((v) => String(v || "").toLowerCase().includes(q));
+      }).sort((a, b) => (b.at || 0) - (a.at || 0));
+      if (!rows.length) { el.innerHTML = `<div class="no-data">${inRange.length ? "No messages match." : "No WhatsApp messages logged in this period."}</div>`; return; }
+      el.innerHTML = `<table>
+        <thead><tr><th>Time (IST)</th><th>To</th><th>Template</th><th>Status</th><th>Last update</th></tr></thead>
+        <tbody>${rows.map((r) => `<tr>
+          <td class="nowrap">${fmt(r.at)}</td>
+          <td>${nameOf(r.to) ? `${escapeHtml(nameOf(r.to))}<div class="small">${escapeHtml(r.to)}</div>` : escapeHtml(r.to)}</td>
+          <td>${escapeHtml(r.t || "")}</td>
+          <td><span class="st st-${escapeHtml(r.s)}">${escapeHtml(WA_LABEL[r.s] || r.s)}</span>${r.e ? `<div class="small">${escapeHtml(r.e)}</div>` : ""}</td>
+          <td class="nowrap small">${fmt(r.u)}</td>
+        </tr>`).join("")}</tbody></table>`;
+    }
+
+    /* ---------------- OVERVIEW TILES ---------------- */
+    function renderTiles() {
+      const now = Date.now();
+      const month = now - 30 * DAY_MS;
+      const plan = plannedItems(30);
+      let planEmails = 0, planWa = 0;
+      plan.forEach((i) => i.channels.forEach((c) => { if (c.ch === "email") planEmails += c.recipients; else planWa += c.recipients; }));
+      const mail30 = (emailRows || []).filter((r) => (r.at || 0) >= month);
+      const mailFailed = mail30.filter((r) => r.err).length;
+      const wa30 = (waRows || []).filter((r) => (r.at || 0) >= month);
+      const waFailed = wa30.filter((r) => r.s === "failed").length;
+      const waDelivered = wa30.filter((r) => r.s === "delivered" || r.s === "read").length;
+      const warnings = plan.filter((i) => i.warn).length;
+      const tile = (label, value, sub) => `<div class="tile"><div class="tile-label">${label}</div><div class="tile-value">${value}</div><div class="tile-sub">${sub}</div></div>`;
+      document.getElementById("tiles").innerHTML = [
+        tile("Planned · next 30 days", plan.length, `${warnings ? `<span class="warn">⚠ ${warnings} need attention</span>` : "scheduled sends"}`),
+        tile("Emails planned", `~${planEmails}`, "next 30 days"),
+        tile("WhatsApp planned", `~${planWa}`, "next 30 days"),
+        tile("Emails sent · 30 days", emailError ? "—" : mail30.length - mailFailed, emailError ? "log not available yet" : `${mailFailed} failed`),
+        tile("WhatsApp sent · 30 days", waError ? "—" : wa30.length - waFailed, waError ? "log not available" : `${waDelivered} delivered/read · ${waFailed} failed`),
+        tile("Members reachable", members.emailCount, `email · ${members.phoneCount} on WhatsApp`)
+      ].join("");
+    }
+  </script>
+
+</body>
+
+</html>

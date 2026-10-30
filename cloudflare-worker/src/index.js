@@ -69,7 +69,9 @@
  *                            Meta app's WhatsApp > Configuration > Webhook
  * Optional KV binding WA_STATUS (wrangler.toml) stores per-message delivery
  * status; POST /whatsapp-webhook receives Meta's status updates and the
- * admin-only action "whatsapp_statuses" lists them.
+ * admin-only action "whatsapp_statuses" lists them. The same namespace also
+ * logs every email this Worker sends or fails to send ("mail:" keys), which
+ * the admin-only action "email_log" lists for the messaging dashboard.
  *
  * AUTH. Every request is one of three callers:
  *   - "server": a scripts/ job presenting X-App-Secret. Full access.
@@ -491,7 +493,54 @@ async function inlineDriveImages(html) {
 // but only up to RESEND_DAILY_SOFT_LIMIT a day; after that, and if Resend
 // is out, Brevo sends it with the pictures as ordinary links.
 // Without a BREVO_API_KEY secret everything goes via Resend, as before.
-async function sendEmail(env, { to, subject, text, html, attachments }) {
+/* ---------------- EMAIL LOG ----------------
+   One "mail:" key per email (sent or failed), kept 45 days like the
+   WhatsApp statuses, so the messaging dashboard
+   (100-misc/01-mass-mailers/03-messaging-dashboard.html) can show every
+   email from every page and scripts/ job, whichever provider sent it.
+   Everything lives in metadata (max 1024 bytes), so subject and error are
+   trimmed. Logging must never fail or delay a send beyond one KV write. */
+async function recordEmail(env, { to, subject }, via, error) {
+  if (!env.WA_STATUS) return;
+  try {
+    const at = Date.now();
+    const meta = { to: String(to).slice(0, 120), sub: String(subject || "").slice(0, 150), at, via: via || "" };
+    if (error) meta.err = String(error).slice(0, 300);
+    await env.WA_STATUS.put(`mail:${at}-${Math.random().toString(36).slice(2, 8)}`, "", {
+      expirationTtl: WA_STATUS_TTL_SECONDS,
+      metadata: meta
+    });
+  } catch (_) { /* logging must never fail a send */ }
+}
+
+async function listEmailLog(env, { since }) {
+  if (!env.WA_STATUS) throw new Error("Email logging isn't set up (no WA_STATUS KV namespace bound to the Worker).");
+  const rows = [];
+  let cursor;
+  do {
+    const page = await env.WA_STATUS.list({ prefix: "mail:", cursor });
+    for (const k of page.keys) {
+      const m = k.metadata || {};
+      if (since && (m.at || 0) < since) continue;
+      rows.push(m);
+    }
+    cursor = page.list_complete ? null : page.cursor;
+  } while (cursor && rows.length < 20000);
+  return rows;
+}
+
+async function sendEmail(env, mail) {
+  try {
+    const { body, via } = await deliverEmail(env, mail);
+    await recordEmail(env, mail, via);
+    return body;
+  } catch (err) {
+    await recordEmail(env, mail, "", err.message || err);
+    throw err;
+  }
+}
+
+async function deliverEmail(env, { to, subject, text, html, attachments }) {
   const inlined = await inlineDriveImages(html);
   const files = Array.isArray(attachments) && attachments.length
     ? await Promise.all(attachments.map(resolveAttachment))
@@ -503,7 +552,8 @@ async function sendEmail(env, { to, subject, text, html, attachments }) {
     return sent;
   };
   const viaBrevo = () => sendViaBrevo(env, { ...mail, html });
-  if (!env.BREVO_API_KEY) return viaResend();
+  const name = (fn) => (fn === viaBrevo ? "Brevo" : "Resend");
+  if (!env.BREVO_API_KEY) return { body: await viaResend(), via: "Resend" };
   // Resend first only for inline pictures, and only while today's Resend
   // count is under RESEND_DAILY_SOFT_LIMIT - after that Brevo takes them.
   const resendFirst = inlined.inline.length && (await resendSentToday(env)) < RESEND_DAILY_SOFT_LIMIT;
@@ -511,12 +561,12 @@ async function sendEmail(env, { to, subject, text, html, attachments }) {
   // Logged so `wrangler tail` shows which provider sent each mail.
   try {
     const sent = await first();
-    console.log(`email to ${to}: sent via ${first === viaBrevo ? "Brevo" : "Resend"}`);
-    return sent;
+    console.log(`email to ${to}: sent via ${name(first)}`);
+    return { body: sent, via: name(first) };
   } catch (firstErr) {
-    console.log(`email to ${to}: ${firstErr.message} - trying ${second === viaBrevo ? "Brevo" : "Resend"}`);
+    console.log(`email to ${to}: ${firstErr.message} - trying ${name(second)}`);
     try {
-      return await second();
+      return { body: await second(), via: name(second) };
     } catch (secondErr) {
       throw new Error(`${firstErr.message} | ${secondErr.message}`);
     }
@@ -731,6 +781,14 @@ export default {
     if (payload.action === "whatsapp_statuses") {
       try {
         return json({ rows: await listWhatsAppStatuses(env, payload) }, 200);
+      } catch (err) {
+        return json({ error: String(err.message || err) }, 502);
+      }
+    }
+
+    if (payload.action === "email_log") {
+      try {
+        return json({ rows: await listEmailLog(env, payload) }, 200);
       } catch (err) {
         return json({ error: String(err.message || err) }, 502);
       }
