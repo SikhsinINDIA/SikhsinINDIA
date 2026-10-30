@@ -103,6 +103,8 @@
             </div>
           </div>
           <button type="button" class="btn-action" onclick="newTemplate()">+ New Blank Format</button>
+          <button type="button" class="btn-control" style="margin-top: 8px;" onclick="updateAllFooters()">Update footer in all saved formats</button>
+          <p id="footerUpdateStatus" class="muted" style="margin-top: 6px; min-height: 18px;"></p>
         </div>
 
         <!-- ═══════════ COMPOSER ═══════════ -->
@@ -647,6 +649,43 @@
       if (!confirm(`Delete the saved format "${name}"? This cannot be undone.`)) return;
       await db.collection(TEMPLATES_COLLECTION).doc(id).delete();
       if (currentTemplateId === id) clearComposer();
+    };
+
+    // Rewrites every saved format's footer to the current stay-connected.js
+    // version (see applyLatestFooter there). Safe to run again: formats
+    // already up to date are left untouched.
+    window.updateAllFooters = async () => {
+      const status = document.getElementById("footerUpdateStatus");
+      if (!window.applyLatestFooter) { status.textContent = "Footer script didn't load — reload the page."; return; }
+      if (!confirm("Update the footer in every saved format to the latest version (including the Sikhs in World card)?")) return;
+      status.textContent = "Updating...";
+      const counts = { replaced: 0, inserted: 0, unchanged: 0, skipped: 0 };
+      const skipped = [], failed = [];
+      try {
+        const snap = await db.collection(TEMPLATES_COLLECTION).get();
+        for (const doc of snap.docs) {
+          const d = doc.data();
+          const label = d.template_number != null ? `#${d.template_number} ${d.name || ""}` : (d.name || doc.id);
+          const result = window.applyLatestFooter(d.bodyHtml);
+          counts[result.status]++;
+          if (result.status === "skipped") { skipped.push(label); continue; }
+          if (result.status === "unchanged") continue;
+          try {
+            await db.collection(TEMPLATES_COLLECTION).doc(doc.id).update({
+              bodyHtml: result.html,
+              updated_at: firebase.firestore.FieldValue.serverTimestamp()
+            });
+          } catch (err) {
+            failed.push(`${label}: ${err.message || err}`);
+          }
+          status.textContent = `Updating... ${counts.replaced + counts.inserted} done`;
+        }
+        status.textContent = `Done: ${counts.replaced + counts.inserted - failed.length} updated, ${counts.unchanged} already up to date` +
+          (skipped.length ? `, ${skipped.length} without a footer (not changed): ${skipped.join(", ")}` : "") +
+          (failed.length ? `. FAILED: ${failed.join("; ")}` : ".");
+      } catch (err) {
+        status.textContent = "Could not update: " + (err.message || err);
+      }
     };
 
     async function saveTemplate(forceNew) {
