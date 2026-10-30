@@ -1,79 +1,59 @@
 {
-  "date": "2026-10-29",
-  "dateDisplay": "29 October 2026",
-  "ang": 796,
-  "raagGurmukhi": "ਰਾਗੁ ਬਿਲਾਵਲ",
-  "raagEnglish": "Raag Bilaaval",
-  "writerEnglish": "Guru Amar Daas Ji",
-  "titleGurmukhi": "ਬਿਲਾਵਲੁ ਮਹਲਾ ੩ ਘਰੁ ੧",
-  "titleEnglish": "Bilaaval, Third Mehla, First House:",
-  "verseGurmukhi": "ਧ੍ਰਿਗੁ ਧ੍ਰਿਗੁ ਖਾਇਆ ਧ੍ਰਿਗੁ ਧ੍ਰਿਗੁ ਸੋਇਆ ਧ੍ਰਿਗੁ ਧ੍ਰਿਗੁ ਕਾਪੜੁ ਅੰਗਿ ਚੜਾਇਆ ॥",
-  "verseTranslation": "Cursed, cursed is the food; cursed, cursed is the sleep; cursed, cursed are the clothes worn on the body.",
+  "date": "2026-10-30",
+  "dateDisplay": "30 October 2026",
+  "ang": 670,
+  "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
+  "raagEnglish": "Raag Dhanaasree",
+  "writerEnglish": "Guru Raam Daas Ji",
+  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੪ ॥",
+  "titleEnglish": "Dhanaasaree, Fourth Mehla:",
+  "verseGurmukhi": "ਮੇਰੇ ਸਾਹਾ ਮੈ ਹਰਿ ਦਰਸਨ ਸੁਖੁ ਹੋਇ ॥",
+  "verseTranslation": "O my King, beholding the Blessed Vision of the Lord's Darshan, I am at peace.",
   "verses": [
     {
-      "gurmukhi": "ਬਿਲਾਵਲੁ ਮਹਲਾ ੩ ਘਰੁ ੧",
-      "translation": "Bilaaval, Third Mehla, First House:"
+      "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੪ ॥",
+      "translation": "Dhanaasaree, Fourth Mehla:"
     },
     {
-      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
-      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
+      "gurmukhi": "ਮੇਰੇ ਸਾਹਾ ਮੈ ਹਰਿ ਦਰਸਨ ਸੁਖੁ ਹੋਇ ॥",
+      "translation": "O my King, beholding the Blessed Vision of the Lord's Darshan, I am at peace."
     },
     {
-      "gurmukhi": "ਧ੍ਰਿਗੁ ਧ੍ਰਿਗੁ ਖਾਇਆ ਧ੍ਰਿਗੁ ਧ੍ਰਿਗੁ ਸੋਇਆ ਧ੍ਰਿਗੁ ਧ੍ਰਿਗੁ ਕਾਪੜੁ ਅੰਗਿ ਚੜਾਇਆ ॥",
-      "translation": "Cursed, cursed is the food; cursed, cursed is the sleep; cursed, cursed are the clothes worn on the body."
+      "gurmukhi": "ਹਮਰੀ ਬੇਦਨਿ ਤੂ ਜਾਨਤਾ ਸਾਹਾ ਅਵਰੁ ਕਿਆ ਜਾਨੈ ਕੋਇ ॥ ਰਹਾਉ ॥",
+      "translation": "You alone know my inner pain, O King; what can anyone else know? ||Pause||"
     },
     {
-      "gurmukhi": "ਧ੍ਰਿਗੁ ਸਰੀਰੁ ਕੁਟੰਬ ਸਹਿਤ ਸਿਉ ਜਿਤੁ ਹੁਣਿ ਖਸਮੁ ਨ ਪਾਇਆ ॥",
-      "translation": "Cursed is the body, along with family and friends, when one does not find his Lord and Master in this life."
+      "gurmukhi": "ਸਾਚਾ ਸਾਹਿਬੁ ਸਚੁ ਤੂ ਮੇਰੇ ਸਾਹਾ ਤੇਰਾ ਕੀਆ ਸਚੁ ਸਭੁ ਹੋਇ ॥",
+      "translation": "O True Lord and Master, You are truly my King; whatever You do, all that is True."
     },
     {
-      "gurmukhi": "ਪਉੜੀ ਛੁੜਕੀ ਫਿਰਿ ਹਾਥਿ ਨ ਆਵੈ ਅਹਿਲਾ ਜਨਮੁ ਗਵਾਇਆ ॥੧॥",
-      "translation": "He misses the step of the ladder, and this opportunity will not come into his hands again; his life is wasted, uselessly. ||1||"
+      "gurmukhi": "ਝੂਠਾ ਕਿਸ ਕਉ ਆਖੀਐ ਸਾਹਾ ਦੂਜਾ ਨਾਹੀ ਕੋਇ ॥੧॥",
+      "translation": "Who should I call a liar? There is no other than You, O King. ||1||"
     },
     {
-      "gurmukhi": "ਦੂਜਾ ਭਾਉ ਨ ਦੇਈ ਲਿਵ ਲਾਗਣਿ ਜਿਨਿ ਹਰਿ ਕੇ ਚਰਣ ਵਿਸਾਰੇ ॥",
-      "translation": "The love of duality does not allow him to lovingly focus his attention on the Lord; he forgets the Feet of the Lord."
+      "gurmukhi": "ਸਭਨਾ ਵਿਚਿ ਤੂ ਵਰਤਦਾ ਸਾਹਾ ਸਭਿ ਤੁਝਹਿ ਧਿਆਵਹਿ ਦਿਨੁ ਰਾਤਿ ॥",
+      "translation": "You are pervading and permeating in all; O King, everyone meditates on You, day and night."
     },
     {
-      "gurmukhi": "ਜਗਜੀਵਨ ਦਾਤਾ ਜਨ ਸੇਵਕ ਤੇਰੇ ਤਿਨ ਕੇ ਤੈ ਦੂਖ ਨਿਵਾਰੇ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "O Life of the World, O Great Giver, you eradicate the sorrows of your humble servants. ||1||Pause||"
+      "gurmukhi": "ਸਭਿ ਤੁਝ ਹੀ ਥਾਵਹੁ ਮੰਗਦੇ ਮੇਰੇ ਸਾਹਾ ਤੂ ਸਭਨਾ ਕਰਹਿ ਇਕ ਦਾਤਿ ॥੨॥",
+      "translation": "Everyone begs of You, O my King; You alone give gifts to all. ||2||"
     },
     {
-      "gurmukhi": "ਤੂ ਦਇਆਲੁ ਦਇਆਪਤਿ ਦਾਤਾ ਕਿਆ ਏਹਿ ਜੰਤ ਵਿਚਾਰੇ ॥",
-      "translation": "You are Merciful, O Great Giver of Mercy; what are these poor beings?"
+      "gurmukhi": "ਸਭੁ ਕੋ ਤੁਝ ਹੀ ਵਿਚਿ ਹੈ ਮੇਰੇ ਸਾਹਾ ਤੁਝ ਤੇ ਬਾਹਰਿ ਕੋਈ ਨਾਹਿ ॥",
+      "translation": "All are under Your Power, O my King; none at all are beyond You."
     },
     {
-      "gurmukhi": "ਮੁਕਤ ਬੰਧ ਸਭਿ ਤੁਝ ਤੇ ਹੋਏ ਐਸਾ ਆਖਿ ਵਖਾਣੇ ॥",
-      "translation": "All are liberated or placed into bondage by You; this is all one can say."
+      "gurmukhi": "ਸਭਿ ਜੀਅ ਤੇਰੇ ਤੂ ਸਭਸ ਦਾ ਮੇਰੇ ਸਾਹਾ ਸਭਿ ਤੁਝ ਹੀ ਮਾਹਿ ਸਮਾਹਿ ॥੩॥",
+      "translation": "All beings are Yours-You belong to all, O my King. All shall merge and be absorbed in You. ||3||"
     },
     {
-      "gurmukhi": "ਗੁਰਮੁਖਿ ਹੋਵੈ ਸੋ ਮੁਕਤੁ ਕਹੀਐ ਮਨਮੁਖ ਬੰਧ ਵਿਚਾਰੇ ॥੨॥",
-      "translation": "One who becomes Gurmukh is said to be liberated, while the poor self-willed manmukhs are in bondage. ||2||"
+      "gurmukhi": "ਸਭਨਾ ਕੀ ਤੂ ਆਸ ਹੈ ਮੇਰੇ ਪਿਆਰੇ ਸਭਿ ਤੁਝਹਿ ਧਿਆਵਹਿ ਮੇਰੇ ਸਾਹ ॥",
+      "translation": "You are the hope of all, O my Beloved; all meditate on You, O my King."
     },
     {
-      "gurmukhi": "ਸੋ ਜਨੁ ਮੁਕਤੁ ਜਿਸੁ ਏਕ ਲਿਵ ਲਾਗੀ ਸਦਾ ਰਹੈ ਹਰਿ ਨਾਲੇ ॥",
-      "translation": "He alone is liberated, who lovingly focuses his attention on the One Lord, always dwelling with the Lord."
-    },
-    {
-      "gurmukhi": "ਤਿਨ ਕੀ ਗਹਣ ਗਤਿ ਕਹੀ ਨ ਜਾਈ ਸਚੈ ਆਪਿ ਸਵਾਰੇ ॥",
-      "translation": "His depth and condition cannot be described. The True Lord Himself embellishes him."
-    },
-    {
-      "gurmukhi": "ਭਰਮਿ ਭੁਲਾਣੇ ਸਿ ਮਨਮੁਖ ਕਹੀਅਹਿ ਨਾ ਉਰਵਾਰਿ ਨ ਪਾਰੇ ॥੩॥",
-      "translation": "Those who wander around, deluded by doubt, are called manmukhs; they are neither on this side, nor on the other side. ||3||"
-    },
-    {
-      "gurmukhi": "ਜਿਸ ਨੋ ਨਦਰਿ ਕਰੇ ਸੋਈ ਜਨੁ ਪਾਏ ਗੁਰ ਕਾ ਸਬਦੁ ਸਮੑਾਲੇ ॥",
-      "translation": "That humble being, who is blessed by the Lord's Glance of Grace obtains Him, and contemplates the Word of the Guru's Shabad."
-    },
-    {
-      "gurmukhi": "ਹਰਿ ਜਨ ਮਾਇਆ ਮਾਹਿ ਨਿਸਤਾਰੇ ॥",
-      "translation": "In the midst of Maya, the Lord's servant is emancipated."
-    },
-    {
-      "gurmukhi": "ਨਾਨਕ ਭਾਗੁ ਹੋਵੈ ਜਿਸੁ ਮਸਤਕਿ ਕਾਲਹਿ ਮਾਰਿ ਬਿਦਾਰੇ ॥੪॥੧॥",
-      "translation": "O Nanak, one who has such destiny inscribed upon his forehead, conquers and destroys death. ||4||1||"
+      "gurmukhi": "ਜਿਉ ਭਾਵੈ ਤਿਉ ਰਖੁ ਤੂ ਮੇਰੇ ਪਿਆਰੇ ਸਚੁ ਨਾਨਕ ਕੇ ਪਾਤਿਸਾਹ ॥੪॥੭॥੧੩॥",
+      "translation": "As it pleases You, protect and preserve me, O my Beloved; You are the True King of Nanak. ||4||7||13||"
     }
   ],
-  "updated": "2026-10-29T07:22:19.254Z"
+  "updated": "2026-10-30T07:24:40.661Z"
 }
