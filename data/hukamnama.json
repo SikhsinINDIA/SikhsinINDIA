@@ -1,59 +1,51 @@
 {
-  "date": "2026-10-30",
-  "dateDisplay": "30 October 2026",
-  "ang": 670,
+  "date": "2026-10-31",
+  "dateDisplay": "31 October 2026",
+  "ang": 676,
   "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
   "raagEnglish": "Raag Dhanaasree",
-  "writerEnglish": "Guru Raam Daas Ji",
-  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੪ ॥",
-  "titleEnglish": "Dhanaasaree, Fourth Mehla:",
-  "verseGurmukhi": "ਮੇਰੇ ਸਾਹਾ ਮੈ ਹਰਿ ਦਰਸਨ ਸੁਖੁ ਹੋਇ ॥",
-  "verseTranslation": "O my King, beholding the Blessed Vision of the Lord's Darshan, I am at peace.",
+  "writerEnglish": "Guru Arjan Dev Ji",
+  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
+  "titleEnglish": "Dhanaasaree, Fifth Mehla:",
+  "verseGurmukhi": "ਫਿਰਤ ਫਿਰਤ ਭੇਟੇ ਜਨ ਸਾਧੂ ਪੂਰੈ ਗੁਰਿ ਸਮਝਾਇਆ ॥",
+  "verseTranslation": "Wandering and roaming around, I met the Holy Perfect Guru, who has taught me.",
   "verses": [
     {
-      "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੪ ॥",
-      "translation": "Dhanaasaree, Fourth Mehla:"
+      "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
+      "translation": "Dhanaasaree, Fifth Mehla:"
     },
     {
-      "gurmukhi": "ਮੇਰੇ ਸਾਹਾ ਮੈ ਹਰਿ ਦਰਸਨ ਸੁਖੁ ਹੋਇ ॥",
-      "translation": "O my King, beholding the Blessed Vision of the Lord's Darshan, I am at peace."
+      "gurmukhi": "ਫਿਰਤ ਫਿਰਤ ਭੇਟੇ ਜਨ ਸਾਧੂ ਪੂਰੈ ਗੁਰਿ ਸਮਝਾਇਆ ॥",
+      "translation": "Wandering and roaming around, I met the Holy Perfect Guru, who has taught me."
     },
     {
-      "gurmukhi": "ਹਮਰੀ ਬੇਦਨਿ ਤੂ ਜਾਨਤਾ ਸਾਹਾ ਅਵਰੁ ਕਿਆ ਜਾਨੈ ਕੋਇ ॥ ਰਹਾਉ ॥",
-      "translation": "You alone know my inner pain, O King; what can anyone else know? ||Pause||"
+      "gurmukhi": "ਆਨ ਸਗਲ ਬਿਧਿ ਕਾਂਮਿ ਨ ਆਵੈ ਹਰਿ ਹਰਿ ਨਾਮੁ ਧਿਆਇਆ ॥੧॥",
+      "translation": "All other devices did not work, so I meditate on the Name of the Lord, Har, Har. ||1||"
     },
     {
-      "gurmukhi": "ਸਾਚਾ ਸਾਹਿਬੁ ਸਚੁ ਤੂ ਮੇਰੇ ਸਾਹਾ ਤੇਰਾ ਕੀਆ ਸਚੁ ਸਭੁ ਹੋਇ ॥",
-      "translation": "O True Lord and Master, You are truly my King; whatever You do, all that is True."
+      "gurmukhi": "ਤਾ ਤੇ ਮੋਹਿ ਧਾਰੀ ਓਟ ਗੋਪਾਲ ॥",
+      "translation": "For this reason, I sought the Protection and Support of my Lord, the Cherisher of the Universe."
     },
     {
-      "gurmukhi": "ਝੂਠਾ ਕਿਸ ਕਉ ਆਖੀਐ ਸਾਹਾ ਦੂਜਾ ਨਾਹੀ ਕੋਇ ॥੧॥",
-      "translation": "Who should I call a liar? There is no other than You, O King. ||1||"
+      "gurmukhi": "ਸਰਨਿ ਪਰਿਓ ਪੂਰਨ ਪਰਮੇਸੁਰ ਬਿਨਸੇ ਸਗਲ ਜੰਜਾਲ ॥ ਰਹਾਉ ॥",
+      "translation": "I sought the Sanctuary of the Perfect Transcendent Lord, and all my entanglements were dissolved. ||Pause||"
     },
     {
-      "gurmukhi": "ਸਭਨਾ ਵਿਚਿ ਤੂ ਵਰਤਦਾ ਸਾਹਾ ਸਭਿ ਤੁਝਹਿ ਧਿਆਵਹਿ ਦਿਨੁ ਰਾਤਿ ॥",
-      "translation": "You are pervading and permeating in all; O King, everyone meditates on You, day and night."
+      "gurmukhi": "ਸੁਰਗ ਮਿਰਤ ਪਇਆਲ ਭੂ ਮੰਡਲ ਸਗਲ ਬਿਆਪੇ ਮਾਇ ॥",
+      "translation": "Paradise, the earth, the nether regions of the underworld, and the globe of the world - all are engrossed in Maya."
     },
     {
-      "gurmukhi": "ਸਭਿ ਤੁਝ ਹੀ ਥਾਵਹੁ ਮੰਗਦੇ ਮੇਰੇ ਸਾਹਾ ਤੂ ਸਭਨਾ ਕਰਹਿ ਇਕ ਦਾਤਿ ॥੨॥",
-      "translation": "Everyone begs of You, O my King; You alone give gifts to all. ||2||"
+      "gurmukhi": "ਜੀਅ ਉਧਾਰਨ ਸਭ ਕੁਲ ਤਾਰਨ ਹਰਿ ਹਰਿ ਨਾਮੁ ਧਿਆਇ ॥੨॥",
+      "translation": "To save your soul, and liberate all your ancestors, meditate on the Name of the Lord, Har, Har. ||2||"
     },
     {
-      "gurmukhi": "ਸਭੁ ਕੋ ਤੁਝ ਹੀ ਵਿਚਿ ਹੈ ਮੇਰੇ ਸਾਹਾ ਤੁਝ ਤੇ ਬਾਹਰਿ ਕੋਈ ਨਾਹਿ ॥",
-      "translation": "All are under Your Power, O my King; none at all are beyond You."
+      "gurmukhi": "ਨਾਨਕ ਨਾਮੁ ਨਿਰੰਜਨੁ ਗਾਈਐ ਪਾਈਐ ਸਰਬ ਨਿਧਾਨਾ ॥",
+      "translation": "O Nanak, singing the Naam, the Name of the Immaculate Lord, all treasures are obtained."
     },
     {
-      "gurmukhi": "ਸਭਿ ਜੀਅ ਤੇਰੇ ਤੂ ਸਭਸ ਦਾ ਮੇਰੇ ਸਾਹਾ ਸਭਿ ਤੁਝ ਹੀ ਮਾਹਿ ਸਮਾਹਿ ॥੩॥",
-      "translation": "All beings are Yours-You belong to all, O my King. All shall merge and be absorbed in You. ||3||"
-    },
-    {
-      "gurmukhi": "ਸਭਨਾ ਕੀ ਤੂ ਆਸ ਹੈ ਮੇਰੇ ਪਿਆਰੇ ਸਭਿ ਤੁਝਹਿ ਧਿਆਵਹਿ ਮੇਰੇ ਸਾਹ ॥",
-      "translation": "You are the hope of all, O my Beloved; all meditate on You, O my King."
-    },
-    {
-      "gurmukhi": "ਜਿਉ ਭਾਵੈ ਤਿਉ ਰਖੁ ਤੂ ਮੇਰੇ ਪਿਆਰੇ ਸਚੁ ਨਾਨਕ ਕੇ ਪਾਤਿਸਾਹ ॥੪॥੭॥੧੩॥",
-      "translation": "As it pleases You, protect and preserve me, O my Beloved; You are the True King of Nanak. ||4||7||13||"
+      "gurmukhi": "ਕਰਿ ਕਿਰਪਾ ਜਿਸੁ ਦੇਇ ਸੁਆਮੀ ਬਿਰਲੇ ਕਾਹੂ ਜਾਨਾ ॥੩॥੩॥੨੧॥",
+      "translation": "Only that rare person, whom the Lord and Master blesses with His Grace, comes to know this. ||3||3||21||"
     }
   ],
-  "updated": "2026-10-30T07:24:40.661Z"
+  "updated": "2026-10-31T07:12:33.285Z"
 }
