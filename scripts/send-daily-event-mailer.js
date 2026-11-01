@@ -32,6 +32,8 @@
    script can work around.
    ────────────────────────────────────────────────────────────── */
 const admin = require('firebase-admin');
+// Attachments go out as download links (see withAttachmentLinks there).
+const { withAttachmentLinks } = require('../100-misc/01-mass-mailers/stay-connected.js');
 
 const CALENDAR_COLLECTION = 'Calendar';
 const TEMPLATES_COLLECTION = 'mass_mailer_templates';
@@ -81,21 +83,6 @@ function htmlToPlainText(html) {
     .trim();
 }
 
-// Same Drive "view" URL -> raw-download URL conversion as driveDownloadUrl()
-// in 01-mass-mailer.html, so a template's saved attachments resolve the
-// same way here as they do for a manual send.
-function driveDownloadUrl(url) {
-  if (!url) return url;
-  const match = String(url).match(/drive\.google\.com\/file\/d\/([^/]+)/);
-  if (!match) return url;
-  return `https://drive.google.com/uc?export=download&id=${match[1]}`;
-}
-
-function buildAttachmentPayload(template) {
-  const attachments = Array.isArray(template.attachments) ? template.attachments : [];
-  return attachments.map((a) => ({ filename: a.filename, url: driveDownloadUrl(a.driveUrl) }));
-}
-
 async function callMailWorker(payload) {
   const res = await fetch(SEND_ENDPOINT, {
     method: 'POST',
@@ -125,19 +112,18 @@ async function fetchRecipients(db) {
 async function sendEventMailer(db, eventDoc, template, recipients) {
   const subject = template.subject || '';
   const bodyHtml = template.bodyHtml || '';
-  const attachmentPayload = buildAttachmentPayload(template);
 
   let sent = 0;
   const failed = [];
   for (let i = 0; i < recipients.length; i++) {
     const recipient = recipients[i];
     try {
+      const mail = withAttachmentLinks(personalize(bodyHtml, recipient), personalize(htmlToPlainText(bodyHtml), recipient), template.attachments);
       await callMailWorker({
         to: recipient.email,
         subject: personalize(subject, recipient),
-        html: personalize(bodyHtml, recipient),
-        text: personalize(htmlToPlainText(bodyHtml), recipient),
-        attachments: attachmentPayload
+        html: mail.html,
+        text: mail.text
       });
       sent++;
     } catch (err) {

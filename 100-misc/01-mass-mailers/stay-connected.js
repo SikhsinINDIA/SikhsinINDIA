@@ -1,5 +1,6 @@
 /* ──────────────────────────────────────────────────────────────
-   "Stay connected" footer for every Mass Mailer email
+   "Stay connected" footer for every Mass Mailer email (and the
+   attachments-as-links box, withAttachmentLinks below)
    One copy of the footer, used by 01-mass-mailer.html (it starts every new
    message) and by scripts that update the saved templates. Email-safe HTML:
    tables, inline styles, and icons loaded from sikhsinindia.com
@@ -85,6 +86,32 @@
     return { html: out, status: out === h ? 'unchanged' : status };
   }
 
-  if (typeof module !== 'undefined' && module.exports) module.exports = { html, worldBlock, applyLatestFooter };
-  else { window.STAY_CONNECTED_HTML = html; window.applyLatestFooter = applyLatestFooter; }
+  /* A saved format's attachments ([{filename, driveUrl}], files in Drive) go
+     out as download buttons in the email, not as real attachments: the
+     Worker fetching a 2.5 MB PDF from Drive and re-encoding it for every
+     member got cut off mid-send (1 Nov 2026 newsletter: 58 sent, 219
+     failed). The box goes just above the footer (the stay-connected block,
+     else the Sikhs in World card), or at the end. Returns { html, text }
+     with the links added to both. */
+  const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  function withAttachmentLinks(bodyHtml, text, attachments) {
+    const files = (Array.isArray(attachments) ? attachments : []).filter((a) => a && a.driveUrl);
+    if (!files.length) return { html: bodyHtml, text };
+    const box =
+      '<!-- attachment-links -->' +
+      `<div style="max-width:600px;margin:20px auto 14px;padding:14px 16px;background:#fff7ec;border:1px solid #f3c98b;border-radius:8px;font-family:${font};">` +
+      `<p style="margin:0 0 6px;font-size:15px;font-weight:bold;color:${NAVY};">&#128206; ${files.length > 1 ? 'Files' : 'File'} with this email</p>` +
+      files.map((a) => `<a href="${esc(a.driveUrl)}" style="display:inline-block;margin:4px 6px 4px 0;padding:9px 16px;background:#F7941D;color:${NAVY};font-size:14px;font-weight:bold;text-decoration:none;border-radius:999px;">&#128196; Open ${esc(a.filename || 'file')}</a>`).join('') +
+      `<p style="margin:6px 0 0;font-size:12px;color:#6b6b6b;">Tap to open or download.</p>` +
+      '</div><!-- /attachment-links -->';
+    const h = String(bodyHtml || '');
+    const at = [h.indexOf('<!-- stay-connected -->'), h.indexOf('<!-- sikhsinworld -->')].find((i) => i >= 0);
+    return {
+      html: at != null ? h.slice(0, at) + box + h.slice(at) : h + box,
+      text: String(text || '') + '\n\n' + files.map((a) => `${a.filename || 'File'}: ${a.driveUrl}`).join('\n')
+    };
+  }
+
+  if (typeof module !== 'undefined' && module.exports) module.exports = { html, worldBlock, applyLatestFooter, withAttachmentLinks };
+  else { window.STAY_CONNECTED_HTML = html; window.applyLatestFooter = applyLatestFooter; window.withAttachmentLinks = withAttachmentLinks; }
 })();

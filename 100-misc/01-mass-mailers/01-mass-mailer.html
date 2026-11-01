@@ -183,8 +183,9 @@
 
             <div class="form-row">
               <label>Attachments</label>
-              <p class="muted" style="margin-bottom: 8px;">Files attached to the email (not shown inline) — photos,
-                PDFs, flyers, anything. Kept with the saved format for reuse.</p>
+              <p class="muted" style="margin-bottom: 8px;">Files sent with the email — photos,
+                PDFs, flyers, anything. Each one appears in the email as an "Open" button (a download link), so
+                large files never slow down or break a send. Kept with the saved format for reuse.</p>
               <button type="button" class="btn-control" onclick="document.getElementById('attachmentInput').click()">+ Attach File</button>
               <input type="file" id="attachmentInput" class="file-input-hidden" multiple onchange="handleAttachmentFiles(event)">
               <div class="chip-list" id="attachmentChips"></div>
@@ -362,16 +363,6 @@
       return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`;
     }
 
-    // Drive's /uc?export=download endpoint serves the raw original file for
-    // ANY file type (not just images) — what the Worker fetches server-side
-    // to build a real Resend attachment for files ATTACHED to the email.
-    function driveDownloadUrl(url) {
-      if (!url) return url;
-      const match = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
-      if (!match) return url;
-      return `https://drive.google.com/uc?export=download&id=${match[1]}`;
-    }
-
     async function callMailWorker(payload) {
       const user = firebase.auth().currentUser;
       if (!user) throw new Error("Not signed in — log in again.");
@@ -518,8 +509,8 @@
     }
 
     /* ---------------- ATTACHMENTS ---------------- */
-    // { filename, driveUrl } — driveUrl is Drive's "view" URL; converted to a
-    // download URL only at send time (see driveDownloadUrl above).
+    // { filename, driveUrl } — driveUrl is Drive's "view" URL, which the
+    // email links to (see buildMail below).
     let attachments = [];
 
     function renderAttachmentChips() {
@@ -938,8 +929,11 @@
       return tmp.innerText || tmp.textContent || "";
     }
 
-    function buildAttachmentPayload() {
-      return attachments.map((a) => ({ filename: a.filename, url: driveDownloadUrl(a.driveUrl) }));
+    // Attachments go out as download links in the email (withAttachmentLinks
+    // in stay-connected.js), not as real attachments - see the note there.
+    function buildMail(subject, bodyHtml, recipient) {
+      const mail = withAttachmentLinks(personalize(bodyHtml, recipient), personalize(htmlToPlainText(bodyHtml), recipient), attachments);
+      return { to: recipient.email, subject: personalize(subject, recipient), html: mail.html, text: mail.text };
     }
 
     async function sendTestToMyself() {
@@ -956,13 +950,8 @@
       const recipient = { email: testEmail.trim(), name: member ? member.name : "" };
       status.textContent = "Sending test...";
       try {
-        await callMailWorker({
-          to: recipient.email,
-          subject: "[TEST] " + personalize(subject, recipient),
-          html: personalize(bodyHtml, recipient),
-          text: personalize(htmlToPlainText(bodyHtml), recipient),
-          attachments: buildAttachmentPayload()
-        });
+        const mail = buildMail(subject, bodyHtml, recipient);
+        await callMailWorker({ ...mail, subject: "[TEST] " + mail.subject });
         status.textContent = `Test sent to ${recipient.email}.`;
       } catch (err) {
         status.textContent = "Test send failed: " + (err.message || err);
@@ -999,7 +988,6 @@
       closeSendConfirm();
       const subject = document.getElementById("fSubject").value.trim();
       const bodyHtml = bodyEditor.innerHTML.trim();
-      const attachmentPayload = buildAttachmentPayload();
       const recipients = getSelectedRecipients();
 
       const sendBtn = document.querySelector('button[onclick="openSendConfirm()"]');
@@ -1018,13 +1006,7 @@
         progressLabel.textContent = `Sending ${i + 1} / ${recipients.length}...`;
         progressFill.style.width = Math.round(((i + 1) / recipients.length) * 100) + "%";
         try {
-          await callMailWorker({
-            to: recipient.email,
-            subject: personalize(subject, recipient),
-            html: personalize(bodyHtml, recipient),
-            text: personalize(htmlToPlainText(bodyHtml), recipient),
-            attachments: attachmentPayload
-          });
+          await callMailWorker(buildMail(subject, bodyHtml, recipient));
           ok++;
           log.insertAdjacentHTML("beforeend", `<div class="log-ok">✅ ${escapeHtml(recipient.email)}</div>`);
         } catch (err) {

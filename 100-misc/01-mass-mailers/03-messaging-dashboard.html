@@ -30,6 +30,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="./stay-connected.js"></script>
 
   <style>
     .poster { max-width: 1200px; }
@@ -112,7 +113,9 @@
       <div class="card">
         <div class="card-title">Automatic Sends — History</div>
         <p class="muted" style="margin-bottom: 10px;">What the daily Calendar jobs actually sent, as recorded on each
-          event (kept permanently, not just 45 days).</p>
+          event (kept permanently, not just 45 days). Where some emails failed, <b>Resend to those who missed
+          it</b> sends that format again only to members the Email Log doesn't show as having received it.</p>
+        <div id="resendStatus" class="small" style="margin-bottom: 8px;"></div>
         <div class="toolbar">
           <select id="histDays" onchange="renderHistory()">
             <option value="30">Last 30 days</option>
@@ -428,7 +431,8 @@
         <tbody>${rows.map((r) => `<tr>
           <td class="nowrap">${escapeHtml(fmtDay(r.at))}</td>
           <td>${escapeHtml(r.Description || "")}<div class="small">${r.TemplateNumber != null ? `Mail #${r.TemplateNumber}${t.get(Number(r.TemplateNumber)) ? " · " + escapeHtml(t.get(Number(r.TemplateNumber)).subject || "") : ""}` : ""}${r.WhatsAppTemplateName ? ` · WA ${escapeHtml(r.WhatsAppTemplateName)}` : ""}</div></td>
-          <td>${sentCell(r.mail_sent, r.mail_sent_count, r.mail_failed_count, tsMs(r.mail_sent_at))}</td>
+          <td>${sentCell(r.mail_sent, r.mail_sent_count, r.mail_failed_count, tsMs(r.mail_sent_at))}${r.mail_failed_count > 0 && t.get(Number(r.TemplateNumber)) && !emailError && (tsMs(r.mail_sent_at) || 0) > Date.now() - 3 * DAY_MS
+            ? `<div><button type="button" class="btn-control" style="margin-top: 6px;" onclick="resendMissed('${escapeHtml(r.id)}')">Resend to those who missed it</button></div>` : ""}</td>
           <td>${sentCell(r.whatsapp_sent, r.whatsapp_sent_count, r.whatsapp_failed_count, tsMs(r.whatsapp_sent_at))}</td>
           <td>${sentCell(r.push_sent, r.push_sent_count, 0, tsMs(r.push_sent_at))}</td>
         </tr>`).join("")}
@@ -438,6 +442,86 @@
           <td><span class="st st-ok">sent</span></td><td><span class="st st-ok">sent</span></td><td><span class="st st-none">—</span></td>
         </tr>`).join("")}</tbody></table>`;
     }
+
+    /* ---------------- RESEND TO THOSE WHO MISSED IT ----------------
+       For a Calendar send where some emails failed. The job doesn't keep
+       who failed, and a send the Worker was cut off on never reaches the
+       Email Log, so "missed" = every member (same list and greeting as
+       scripts/send-daily-event-mailer.js) minus those the Email Log shows
+       as sent this format's subject since that day. Sends one by one with
+       the same pacing, then adds the result to the event's counts. */
+    const RESEND_DELAY_MS = 350;
+    let resending = false;
+
+    function personalize(str, recipient) {
+      const name = recipient.name || "Sangat Ji";
+      return String(str || "")
+        .replace(/\{\{\s*(name|gname)\s*\}\}/gi, name)
+        .replace(/\{\{\s*email\s*\}\}/gi, recipient.email);
+    }
+    function htmlToPlainText(html) {
+      const tmp = document.createElement("div");
+      tmp.innerHTML = html;
+      return (tmp.innerText || tmp.textContent || "").trim();
+    }
+
+    async function resendMissed(calendarId) {
+      if (resending) return;
+      const status = document.getElementById("resendStatus");
+      const ev = calendarRows.find((r) => r.id === calendarId);
+      const template = ev && templateByNumber.get(Number(ev.TemplateNumber));
+      if (!template) { status.textContent = "That event's mail format can't be found."; return; }
+      const since = istDayStart(tsMs(ev.mail_sent_at) || ev.at);
+      const received = new Set((emailRows || [])
+        .filter((m) => !m.err && (m.at || 0) >= since)
+        .filter((m) => {
+          const to = String(m.to || "").toLowerCase();
+          // The Worker logs subjects trimmed to 150 characters (recordEmail).
+          return m.sub === personalize(template.subject, { email: to, name: members.nameByEmail.get(to) || "" }).slice(0, 150);
+        })
+        .map((m) => String(m.to || "").toLowerCase()));
+      const missed = [...members.nameByEmail.entries()]
+        .filter(([email]) => !received.has(email))
+        .map(([email, name]) => ({ email, name }));
+      if (!missed.length) { status.textContent = `Everyone has received "${template.subject}" — nothing to resend.`; return; }
+      if (!confirm(`"${template.subject}"\n\n${received.size} member(s) already received it (from the Email Log).\n` +
+        `Send it now to the other ${missed.length}?` +
+        ((template.attachments || []).length ? "\n\nAttached files go as download links in the email." : ""))) return;
+
+      resending = true;
+      const subject = template.subject || "", bodyHtml = template.bodyHtml || "";
+      let ok = 0;
+      const failed = [];
+      for (let i = 0; i < missed.length; i++) {
+        const recipient = missed[i];
+        status.textContent = `Sending ${i + 1} / ${missed.length}... (${ok} sent, ${failed.length} failed) — keep this page open.`;
+        try {
+          const mail = withAttachmentLinks(personalize(bodyHtml, recipient), personalize(htmlToPlainText(bodyHtml), recipient), template.attachments);
+          await workerAction({ to: recipient.email, subject: personalize(subject, recipient), html: mail.html, text: mail.text });
+          ok++;
+        } catch (err) {
+          failed.push(`${recipient.email}: ${err.message || err}`);
+        }
+        if (i < missed.length - 1) await new Promise((r) => setTimeout(r, RESEND_DELAY_MS));
+      }
+      try {
+        await db.collection("Calendar").doc(calendarId).update({
+          mail_sent_count: received.size + ok,
+          mail_failed_count: failed.length,
+          mail_resent_at: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      } catch (err) {
+        failed.push(`(could not update the event's counts: ${err.message || err})`);
+      }
+      resending = false;
+      status.innerHTML = `Resend done: <b>${ok}</b> sent, <b>${failed.length}</b> failed.` +
+        (failed.length ? `<div class="warn">${failed.slice(0, 10).map(escapeHtml).join("<br>")}${failed.length > 10 ? `<br>...and ${failed.length - 10} more.` : ""}</div>` : "");
+      await Promise.all([loadCalendar(), loadLogs()]);
+      renderHistory();
+      renderEmailLog();
+      renderTiles();
+    }
+    window.resendMissed = resendMissed;
 
     /* ---------------- EMAIL LOG ---------------- */
     function renderEmailLog() {
