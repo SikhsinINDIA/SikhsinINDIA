@@ -243,7 +243,9 @@
       const res = await fetch(SEND_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${await user.getIdToken()}` },
-        body: JSON.stringify({ action: "send_whatsapp", to, templateName, languageCode, params, headerImageUrl: headerImageUrl || undefined, headerDocument: headerDocument || undefined })
+        // marketing: Marketing templates go via Meta's Marketing Messages API
+        // (the Worker falls back to the normal route for anything else).
+        body: JSON.stringify({ action: "send_whatsapp", to, templateName, languageCode, params, headerImageUrl: headerImageUrl || undefined, headerDocument: headerDocument || undefined, marketing: true })
       });
       const bodyText = await res.text();
       if (!res.ok) {

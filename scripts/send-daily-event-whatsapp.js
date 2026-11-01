@@ -146,6 +146,9 @@ async function sendEventWhatsApp(db, eventDoc, templateName, recipients, documen
     languageCode: v.languageCode,
     headerImageUrl: v.headerImageUrl,
     headerDocument: v.headerDocument,
+    // Festival greetings are Marketing templates: sent via Meta's Marketing
+    // Messages API (the Worker falls back to the normal route otherwise).
+    marketing: true,
     params: [recipient.name || 'Sangat Ji']
   });
 

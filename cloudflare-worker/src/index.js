@@ -274,7 +274,7 @@ function normalizePhone(raw) {
   return digits.startsWith("+") ? digits : "+" + digits;
 }
 
-async function sendWhatsAppTemplate(env, { to, templateName, languageCode, params, headerImageUrl, headerDocument }) {
+async function sendWhatsAppTemplate(env, { to, templateName, languageCode, params, headerImageUrl, headerDocument, marketing }) {
   if (!env.WHATSAPP_ACCESS_TOKEN || !env.WHATSAPP_PHONE_NUMBER_ID) {
     throw new Error("WhatsApp is not configured yet (missing WHATSAPP_ACCESS_TOKEN / WHATSAPP_PHONE_NUMBER_ID secrets).");
   }
@@ -303,21 +303,34 @@ async function sendWhatsAppTemplate(env, { to, templateName, languageCode, param
   }
   if (components.length) template.components = components;
 
-  const res = await fetch(`https://graph.facebook.com/v21.0/${env.WHATSAPP_PHONE_NUMBER_ID}/messages`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${env.WHATSAPP_ACCESS_TOKEN}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      messaging_product: "whatsapp",
-      to: normalizePhone(to),
-      type: "template",
-      template
-    })
+  const body = JSON.stringify({
+    messaging_product: "whatsapp",
+    to: normalizePhone(to),
+    type: "template",
+    template
   });
+  const post = (path, version) => fetch(`https://graph.facebook.com/${version}/${env.WHATSAPP_PHONE_NUMBER_ID}/${path}`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${env.WHATSAPP_ACCESS_TOKEN}`, "Content-Type": "application/json" },
+    body
+  });
+
+  // Marketing templates sent through the normal /messages endpoint were
+  // accepted but never delivered (1 Nov 2026: nov_events and
+  // sikhsinindia_introduction stuck at "accepted"; Utility templates
+  // arrived). Callers sending a Marketing template pass marketing: true to
+  // use Meta's Marketing Messages API (/marketing_messages, needs the one-time
+  // opt-in in WhatsApp Manager) instead. If it refuses - not opted in yet,
+  // or the template isn't Marketing - nothing was sent, so the same message
+  // goes through /messages as before.
+  let res = null, marketingErr = "";
+  if (marketing) {
+    res = await post("marketing_messages", "v23.0");
+    if (!res.ok) { marketingErr = await res.text(); res = null; }
+  }
+  if (!res) res = await post("messages", "v21.0");
   const resBody = await res.text();
-  if (!res.ok) throw new Error("WhatsApp API error: " + resBody);
+  if (!res.ok) throw new Error("WhatsApp API error: " + resBody + (marketingErr ? " | Marketing Messages API: " + marketingErr : ""));
   await recordWhatsAppSend(env, { to, templateName }, resBody);
   return resBody;
 }
