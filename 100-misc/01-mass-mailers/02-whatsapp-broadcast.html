@@ -97,6 +97,11 @@
           <img id="headerPreview" alt="Header image preview" style="display: none; max-width: 180px; margin-top: 8px; border-radius: 6px; border: 2px solid var(--gold);">
         </div>
         <div class="form-row">
+          <label>Header PDF — only for templates created with a Document header: a Google Drive link (shared "Anyone with the link") or a public https PDF link. Clear the Header Image above when using this.</label>
+          <input type="url" id="fHeaderDocument" placeholder="https://drive.google.com/file/d/.../view">
+          <input type="text" id="fHeaderDocumentName" placeholder="File name shown in WhatsApp, e.g. SikhsinIndia-News-November-2026.pdf" style="margin-top: 6px;">
+        </div>
+        <div class="form-row">
           <label>Language Code</label>
           <input type="text" id="fLanguageCode" value="en" style="max-width: 160px;">
         </div>
@@ -232,13 +237,13 @@
       }
     });
 
-    async function sendWhatsAppTemplate(to, templateName, languageCode, params, headerImageUrl) {
+    async function sendWhatsAppTemplate(to, templateName, languageCode, params, headerImageUrl, headerDocument) {
       const user = firebase.auth().currentUser;
       if (!user) throw new Error("Not signed in — log in again.");
       const res = await fetch(SEND_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${await user.getIdToken()}` },
-        body: JSON.stringify({ action: "send_whatsapp", to, templateName, languageCode, params, headerImageUrl: headerImageUrl || undefined })
+        body: JSON.stringify({ action: "send_whatsapp", to, templateName, languageCode, params, headerImageUrl: headerImageUrl || undefined, headerDocument: headerDocument || undefined })
       });
       const bodyText = await res.text();
       if (!res.ok) {
@@ -251,6 +256,17 @@
 
     function getHeaderImage() {
       return document.getElementById("fHeaderImage").value.trim();
+    }
+
+    // { link, filename } for a Document header, or null. A Drive "view" link
+    // becomes its direct-download link, which Meta can fetch.
+    function getHeaderDocument() {
+      const url = document.getElementById("fHeaderDocument").value.trim();
+      if (!url) return null;
+      const m = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+      const link = m ? `https://drive.google.com/uc?export=download&id=${m[1]}` : url;
+      const filename = document.getElementById("fHeaderDocumentName").value.trim() || "document.pdf";
+      return { link, filename };
     }
 
     function updateHeaderPreview() {
@@ -424,7 +440,7 @@
 
       status.textContent = "Sending test...";
       try {
-        await sendWhatsAppTemplate(testNumber.trim(), templateName, languageCode, getParams(testName), getHeaderImage());
+        await sendWhatsAppTemplate(testNumber.trim(), templateName, languageCode, getParams(testName), getHeaderImage(), getHeaderDocument());
         status.textContent = `Test sent to ${testNumber}.`;
       } catch (err) {
         status.textContent = "Test send failed: " + (err.message || err);
@@ -440,7 +456,7 @@
       if (!selected.length) { alert("No recipients are selected — tick at least one member (or click Select All) first."); return; }
       document.getElementById("confirmCount").textContent = selected.length;
       document.getElementById("confirmTemplate").textContent = templateName;
-      document.getElementById("confirmImageNote").textContent = getHeaderImage() ? " (with header image)" : "";
+      document.getElementById("confirmImageNote").textContent = getHeaderImage() ? " (with header image)" : getHeaderDocument() ? " (with header PDF)" : "";
       document.getElementById("sendConfirmModal").hidden = false;
     }
     window.openSendConfirm = openSendConfirm;
@@ -460,6 +476,7 @@
       const templateName = document.getElementById("fTemplateName").value.trim();
       const languageCode = document.getElementById("fLanguageCode").value.trim() || "en";
       const headerImageUrl = getHeaderImage();
+      const headerDocument = getHeaderDocument();
       const recipients = getSelectedRecipients();
 
       const sendBtn = document.querySelector('button[onclick="openSendConfirm()"]');
@@ -478,7 +495,7 @@
         progressLabel.textContent = `Sending ${i + 1} / ${recipients.length}...`;
         progressFill.style.width = Math.round(((i + 1) / recipients.length) * 100) + "%";
         try {
-          await sendWhatsAppTemplate(recipient.phone, templateName, languageCode, getParams(recipient.name), headerImageUrl);
+          await sendWhatsAppTemplate(recipient.phone, templateName, languageCode, getParams(recipient.name), headerImageUrl, headerDocument);
           ok++;
           log.insertAdjacentHTML("beforeend", `<div class="log-ok">✅ ${escapeHtml(recipient.name || recipient.email)} — ${escapeHtml(recipient.phone)}</div>`);
         } catch (err) {

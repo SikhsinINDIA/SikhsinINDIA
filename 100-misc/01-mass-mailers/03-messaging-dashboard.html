@@ -433,7 +433,7 @@
           <td>${escapeHtml(r.Description || "")}<div class="small">${r.TemplateNumber != null ? `Mail #${r.TemplateNumber}${t.get(Number(r.TemplateNumber)) ? " · " + escapeHtml(t.get(Number(r.TemplateNumber)).subject || "") : ""}` : ""}${r.WhatsAppTemplateName ? ` · WA ${escapeHtml(r.WhatsAppTemplateName)}` : ""}</div></td>
           <td>${sentCell(r.mail_sent, r.mail_sent_count, r.mail_failed_count, tsMs(r.mail_sent_at))}${r.mail_failed_count > 0 && t.get(Number(r.TemplateNumber)) && !emailError && (tsMs(r.mail_sent_at) || 0) > Date.now() - 3 * DAY_MS
             ? `<div><button type="button" class="btn-control" style="margin-top: 6px;" onclick="resendMissed('${escapeHtml(r.id)}')">Resend to those who missed it</button></div>` : ""}</td>
-          <td>${sentCell(r.whatsapp_sent, r.whatsapp_sent_count, r.whatsapp_failed_count, tsMs(r.whatsapp_sent_at))}</td>
+          <td>${sentCell(r.whatsapp_sent, r.whatsapp_sent_count, r.whatsapp_failed_count, tsMs(r.whatsapp_sent_at))}${r.whatsapp_variant ? `<div class="small">Sent as: ${escapeHtml(r.whatsapp_variant)}</div>` : ""}${r.whatsapp_error ? `<div class="small warn" style="max-width: 260px; overflow-wrap: anywhere;">${escapeHtml(String(r.whatsapp_error).replace(/\\+"/g, '"').slice(0, 220))}</div>` : ""}</td>
           <td>${sentCell(r.push_sent, r.push_sent_count, 0, tsMs(r.push_sent_at))}</td>
         </tr>`).join("")}
         ${reminders.map((r) => `<tr>

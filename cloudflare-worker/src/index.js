@@ -30,7 +30,8 @@
  *    free-form text — so the caller sends a template name + an ordered
  *    list of body variables, not a message string. Optional
  *    headerImageUrl fills an IMAGE header for templates that have one
- *    (public https JPEG/PNG, max 5 MB). See
+ *    (public https JPEG/PNG, max 5 MB); optional headerDocument
+ *    { link, filename } fills a DOCUMENT header (public https PDF). See
  *    03-nitnem/03-06-akhand-path/firebase.js's WHATSAPP_* constants for
  *    the exact template names/wording this site currently has approved.
  *
@@ -273,7 +274,7 @@ function normalizePhone(raw) {
   return digits.startsWith("+") ? digits : "+" + digits;
 }
 
-async function sendWhatsAppTemplate(env, { to, templateName, languageCode, params, headerImageUrl }) {
+async function sendWhatsAppTemplate(env, { to, templateName, languageCode, params, headerImageUrl, headerDocument }) {
   if (!env.WHATSAPP_ACCESS_TOKEN || !env.WHATSAPP_PHONE_NUMBER_ID) {
     throw new Error("WhatsApp is not configured yet (missing WHATSAPP_ACCESS_TOKEN / WHATSAPP_PHONE_NUMBER_ID secrets).");
   }
@@ -286,6 +287,13 @@ async function sendWhatsAppTemplate(env, { to, templateName, languageCode, param
   if (headerImageUrl) {
     if (!/^https:\/\//i.test(headerImageUrl)) throw new Error("headerImageUrl must be a public https:// link.");
     components.push({ type: "header", parameters: [{ type: "image", image: { link: headerImageUrl } }] });
+  } else if (headerDocument && headerDocument.link) {
+    // For templates created with a Document header: Meta downloads the PDF
+    // from this public link at send time and shows it under filename.
+    if (!/^https:\/\//i.test(headerDocument.link)) throw new Error("headerDocument.link must be a public https:// link.");
+    const document = { link: headerDocument.link };
+    if (headerDocument.filename) document.filename = String(headerDocument.filename).slice(0, 240);
+    components.push({ type: "header", parameters: [{ type: "document", document }] });
   }
   if (Array.isArray(params) && params.length) {
     components.push({
