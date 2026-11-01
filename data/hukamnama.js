@@ -1,52 +1,60 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-10-31",
-  "dateDisplay": "31 October 2026",
-  "ang": 676,
+  "date": "2026-11-01",
+  "dateDisplay": "1 November 2026",
+  "ang": 684,
   "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
   "raagEnglish": "Raag Dhanaasree",
   "writerEnglish": "Guru Arjan Dev Ji",
   "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
   "titleEnglish": "Dhanaasaree, Fifth Mehla:",
-  "verseGurmukhi": "ਫਿਰਤ ਫਿਰਤ ਭੇਟੇ ਜਨ ਸਾਧੂ ਪੂਰੈ ਗੁਰਿ ਸਮਝਾਇਆ ॥",
-  "verseTranslation": "Wandering and roaming around, I met the Holy Perfect Guru, who has taught me.",
+  "verseGurmukhi": "ਤ੍ਰਿਪਤਿ ਭਈ ਸਚੁ ਭੋਜਨੁ ਖਾਇਆ ॥",
+  "verseTranslation": "I am satisfied and satiated, eating the food of Truth.",
   "verses": [
     {
       "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
       "translation": "Dhanaasaree, Fifth Mehla:"
     },
     {
-      "gurmukhi": "ਫਿਰਤ ਫਿਰਤ ਭੇਟੇ ਜਨ ਸਾਧੂ ਪੂਰੈ ਗੁਰਿ ਸਮਝਾਇਆ ॥",
-      "translation": "Wandering and roaming around, I met the Holy Perfect Guru, who has taught me."
+      "gurmukhi": "ਤ੍ਰਿਪਤਿ ਭਈ ਸਚੁ ਭੋਜਨੁ ਖਾਇਆ ॥",
+      "translation": "I am satisfied and satiated, eating the food of Truth."
     },
     {
-      "gurmukhi": "ਆਨ ਸਗਲ ਬਿਧਿ ਕਾਂਮਿ ਨ ਆਵੈ ਹਰਿ ਹਰਿ ਨਾਮੁ ਧਿਆਇਆ ॥੧॥",
-      "translation": "All other devices did not work, so I meditate on the Name of the Lord, Har, Har. ||1||"
+      "gurmukhi": "ਮਨਿ ਤਨਿ ਰਸਨਾ ਨਾਮੁ ਧਿਆਇਆ ॥੧॥",
+      "translation": "With my mind, body and tongue, I meditate on the Naam, the Name of the Lord. ||1||"
     },
     {
-      "gurmukhi": "ਤਾ ਤੇ ਮੋਹਿ ਧਾਰੀ ਓਟ ਗੋਪਾਲ ॥",
-      "translation": "For this reason, I sought the Protection and Support of my Lord, the Cherisher of the Universe."
+      "gurmukhi": "ਜੀਵਨਾ ਹਰਿ ਜੀਵਨਾ ॥",
+      "translation": "Life, spiritual life, is in the Lord."
     },
     {
-      "gurmukhi": "ਸਰਨਿ ਪਰਿਓ ਪੂਰਨ ਪਰਮੇਸੁਰ ਬਿਨਸੇ ਸਗਲ ਜੰਜਾਲ ॥ ਰਹਾਉ ॥",
-      "translation": "I sought the Sanctuary of the Perfect Transcendent Lord, and all my entanglements were dissolved. ||Pause||"
+      "gurmukhi": "ਜੀਵਨੁ ਹਰਿ ਜਪਿ ਸਾਧਸੰਗਿ ॥੧॥ ਰਹਾਉ ॥",
+      "translation": "Spiritual life consists of chanting the Lord's Name in the Saadh Sangat, the Company of the Holy. ||1||Pause||"
     },
     {
-      "gurmukhi": "ਸੁਰਗ ਮਿਰਤ ਪਇਆਲ ਭੂ ਮੰਡਲ ਸਗਲ ਬਿਆਪੇ ਮਾਇ ॥",
-      "translation": "Paradise, the earth, the nether regions of the underworld, and the globe of the world - all are engrossed in Maya."
+      "gurmukhi": "ਅਨਿਕ ਪ੍ਰਕਾਰੀ ਬਸਤ੍ਰ ਓਢਾਏ ॥",
+      "translation": "He is dressed in robes of all sorts,"
     },
     {
-      "gurmukhi": "ਜੀਅ ਉਧਾਰਨ ਸਭ ਕੁਲ ਤਾਰਨ ਹਰਿ ਹਰਿ ਨਾਮੁ ਧਿਆਇ ॥੨॥",
-      "translation": "To save your soul, and liberate all your ancestors, meditate on the Name of the Lord, Har, Har. ||2||"
+      "gurmukhi": "ਅਨਦਿਨੁ ਕੀਰਤਨੁ ਹਰਿ ਗੁਨ ਗਾਏ ॥੨॥",
+      "translation": "if he sings the Kirtan of the Lord's Glorious Praises, day and night. ||2||"
     },
     {
-      "gurmukhi": "ਨਾਨਕ ਨਾਮੁ ਨਿਰੰਜਨੁ ਗਾਈਐ ਪਾਈਐ ਸਰਬ ਨਿਧਾਨਾ ॥",
-      "translation": "O Nanak, singing the Naam, the Name of the Immaculate Lord, all treasures are obtained."
+      "gurmukhi": "ਹਸਤੀ ਰਥ ਅਸੁ ਅਸਵਾਰੀ ॥",
+      "translation": "He rides upon elephants, chariots and horses,"
     },
     {
-      "gurmukhi": "ਕਰਿ ਕਿਰਪਾ ਜਿਸੁ ਦੇਇ ਸੁਆਮੀ ਬਿਰਲੇ ਕਾਹੂ ਜਾਨਾ ॥੩॥੩॥੨੧॥",
-      "translation": "Only that rare person, whom the Lord and Master blesses with His Grace, comes to know this. ||3||3||21||"
+      "gurmukhi": "ਹਰਿ ਕਾ ਮਾਰਗੁ ਰਿਦੈ ਨਿਹਾਰੀ ॥੩॥",
+      "translation": "if he sees the Lord's Path within his own heart. ||3||"
+    },
+    {
+      "gurmukhi": "ਮਨ ਤਨ ਅੰਤਰਿ ਚਰਨ ਧਿਆਇਆ ॥",
+      "translation": "Meditating on the Lord's Feet, deep within his mind and body,"
+    },
+    {
+      "gurmukhi": "ਹਰਿ ਸੁਖ ਨਿਧਾਨ ਨਾਨਕ ਦਾਸਿ ਪਾਇਆ ॥੪॥੨॥੫੬॥",
+      "translation": "slave Nanak has found the Lord, the treasure of peace. ||4||2||56||"
     }
   ],
-  "updated": "2026-10-31T07:12:33.285Z"
+  "updated": "2026-11-01T07:45:08.739Z"
 };
