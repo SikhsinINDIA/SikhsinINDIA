@@ -3,8 +3,10 @@ main = "src/index.js"
 compatibility_date = "2026-09-01"
 
 # Secrets — set these with `wrangler secret put <NAME>`, never commit them here:
+#   SENDER_API_KEY     Sender.net API access token; mail goes via Sender
+#                      first (no daily cap), then Brevo, then Resend
 #   BREVO_API_KEY      Brevo API key (Restricted, Transactional email: All);
-#                      mail goes via Brevo first, Resend when Brevo refuses
+#                      mail goes via Brevo next, Resend when Brevo refuses
 #   RESEND_API_KEY     the API key from your Resend dashboard
 #   APP_SHARED_SECRET  a random string ONLY the server-side scripts/ jobs send
 #                      (X-App-Secret header); also stored as the
