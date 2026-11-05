@@ -11,7 +11,8 @@
  *   2. Main heading: pages with no <h1> get their <div class="hero-title">
  *      turned into <h1 class="hero-title"> (same class, so same look).
  *   3. Structured data: adds a JSON-LD block (WebPage + BreadcrumbList, plus
- *      Organization + WebSite on the home page) between
+ *      Organization + WebSite on the home page, plus a PlaceOfWorship with
+ *      address and phone on Gurudwara pages) between
  *      <!-- seo:jsonld --> markers, regenerated on every run.
  *   4. Descriptions: strips folder-number prefixes such as
  *      "From the 01 01 Sikh Gurus collection" -> "From the Sikh Gurus collection".
@@ -143,6 +144,33 @@ function breadcrumbs(rel, pageName, titleByRel) {
     "@type": "BreadcrumbList",
     itemListElement: trail.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: c.url }))
   };
+}
+
+// Gurudwara pages: a PlaceOfWorship with the name, address and phone from the
+// page's facts panel, plus the other names people search for it by (the
+// "aka" list in data/seo-keywords.json). Listing pages have no address and
+// get none.
+const KEYWORDS = (() => {
+  try { return JSON.parse(fs.readFileSync(path.join(ROOT, "data", "seo-keywords.json"), "utf8")).pages; } catch { return {}; }
+})();
+function gurudwaraPlace(h, rel, url, image) {
+  const lang = rel.startsWith("hi/") ? "hi" : rel.startsWith("pa/") ? "pa" : "en";
+  const base = lang === "en" ? rel : rel.slice(3);
+  if (!base.startsWith("04-gurudwaras/")) return null;
+  const facts = {};
+  for (const m of h.matchAll(/class="fact-label">([^<]*)<\/div>\s*<div class="fact-value">([\s\S]*?)<\/div>/g)) facts[stripTags(m[1])] = stripTags(m[2]);
+  const address = facts.Address || facts["पता"] || facts["ਪਤਾ"];
+  const nameHtml = (h.match(/<div class="guru-name-heading"><span>([\s\S]*?)<\/span>/) || [])[1];
+  if (!address || !nameHtml) return null;
+  const phone = ["Phone", "Phone Number", "फ़ोन", "फ़ोन नंबर", "ਫ਼ੋਨ", "ਫ਼ੋਨ ਨੰਬਰ"].map((l) => facts[l]).find(Boolean);
+  const aka = ((KEYWORDS[base] || {})[lang] || {}).aka;
+  const place = { "@type": "PlaceOfWorship", "@id": `${url}#place`, name: stripTags(nameHtml), url };
+  if (aka && aka.length) place.alternateName = aka;
+  place.address = { "@type": "PostalAddress", streetAddress: address, addressCountry: "IN" };
+  // Several numbers ("0512-2501390, 98..."): the first one.
+  if (phone && /\d{5}/.test(phone.replace(/\D/g, ""))) place.telephone = phone.split(/\s*[,/;]\s*/)[0];
+  if (image) place.image = image;
+  return place;
 }
 
 // Short page name for breadcrumbs: the title without the " | SikhsInIndia.com" suffix.
@@ -541,6 +569,8 @@ for (const p of pages) {
       webPage.breadcrumb = { "@id": crumbs["@id"] };
       graph.push(crumbs);
     }
+    const place = gurudwaraPlace(h, rel, url, image);
+    if (place) { webPage.about = { "@id": place["@id"] }; graph.push(place); }
 
     const eol = p.html.includes("\r\n") ? "\r\n" : "\n";
     const block = `<!-- seo:jsonld -->${eol}  <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/</g, "\\u003c")}</script>${eol}  <!-- /seo:jsonld -->`;

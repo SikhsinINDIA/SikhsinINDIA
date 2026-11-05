@@ -1,0 +1,279 @@
+{
+  "_about": "Search Console keyword overrides, applied by scripts/seo-search-keywords.js. Each key is the English page path; the same entry covers its hi/ and pa/ copies. Per language: title (about 60 characters, main search words first), description (150-160 characters), aka (other names / spellings people search, shown under the heading). Leave a field out to keep the page's own. Source: Search Console export of 5 Nov 2026 (last 28 days).",
+  "pages": {
+    "04-gurudwaras/13-haryana/02-f/04-13-02-02-gurudwara-sri-guru-singh-sabha-sector-15-faridabad.html": {
+      "en": {
+        "title": "Gurudwara Sri Guru Singh Sabha, Sector 15, Faridabad",
+        "description": "Gurudwara Sri Guru Singh Sabha, Sector 15, Faridabad (Haryana): address, phone number and photos. Known for its peaceful darbar hall and regular kirtan, katha.",
+        "aka": ["Sector 15 Gurudwara, Faridabad", "Singh Sabha Gurudwara Faridabad"]
+      },
+      "hi": { "aka": ["सेक्टर 15 गुरुद्वारा, फरीदाबाद", "Sector 15 Gurudwara Faridabad"] },
+      "pa": { "aka": ["ਸੈਕਟਰ 15 ਗੁਰਦੁਆਰਾ, ਫਰੀਦਾਬਾਦ", "Sector 15 Gurudwara Faridabad"] }
+    },
+    "04-gurudwaras/13-haryana/02-f/04-13-02-01-santo-ka-gurudwara-faridabad.html": {
+      "en": {
+        "title": "Santo Ka Gurudwara Sahib Ji, NIT 1, Faridabad",
+        "description": "Santo Ka Gurudwara (Santon Ka Gurudwara), Block K, NIT-1 Faridabad: address, phone number and photos of this well-known Gurudwara visited for peace and prayer.",
+        "aka": ["Santon Ka Gurudwara", "Santo Ka Gurudwara NIT 1"]
+      },
+      "hi": { "aka": ["संतों का गुरुद्वारा", "Santo Ka Gurudwara, Faridabad"] },
+      "pa": { "aka": ["ਸੰਤਾਂ ਦਾ ਗੁਰਦੁਆਰਾ", "Santo Ka Gurudwara, Faridabad"] }
+    },
+    "04-gurudwaras/13-haryana/03-g/04-13-03-01-gurudwara-sadh-sangat-sahib-south-city-1-gurugram.html": {
+      "en": {
+        "title": "Gurudwara Sadh Sangat Sahib, South City 1, Gurugram",
+        "description": "Gurudwara Sadh Sangat Sahib, I Block, South City 1, Gurugram (Gurgaon), near HUDA City Centre metro station: address and photos of the South City Gurudwara.",
+        "aka": ["South City Gurudwara", "I Block Gurudwara, near HUDA City Centre"]
+      },
+      "hi": { "aka": ["साउथ सिटी गुरुद्वारा", "South City 1 Gurudwara, Gurgaon"] },
+      "pa": { "aka": ["ਸਾਊਥ ਸਿਟੀ ਗੁਰਦੁਆਰਾ", "South City 1 Gurudwara, Gurgaon"] }
+    },
+    "04-gurudwaras/13-haryana/03-g/04-13-03-03-gurudwara-sri-guru-singh-sabha-dlf-city-phase-i-gurugram.html": {
+      "en": {
+        "title": "Sri Guru Singh Sabha Gurudwara, DLF Phase 1, Gurugram",
+        "description": "Sri Guru Singh Sabha Gurudwara, H Block, DLF City Phase 1, Sector 26, Gurugram (Gurgaon): address and photos. Built by Sri Guru Singh Sabha, opened in 2009.",
+        "aka": ["DLF Phase 1 Gurudwara, Gurgaon", "H Block Gurudwara"]
+      },
+      "hi": { "aka": ["डीएलएफ फेज़ 1 गुरुद्वारा, गुड़गांव", "DLF Phase 1 Gurudwara, Gurgaon"] },
+      "pa": { "aka": ["ਡੀਐਲਐਫ ਫੇਜ਼ 1 ਗੁਰਦੁਆਰਾ, ਗੁੜਗਾਉਂ", "DLF Phase 1 Gurudwara, Gurgaon"] }
+    },
+    "04-gurudwaras/13-haryana/03-g/04-13-03-02-gurudwara-shri-guru-singh-sabha-new-colony-sector-7-gurugram.html": {
+      "en": {
+        "description": "Gurudwara Shri Guru Singh Sabha, New Colony, Sector 7, Gurugram (Gurgaon): address and photos. Known locally as the New Colony Gurudwara, with langar and seva.",
+        "aka": ["New Colony Gurudwara", "Sector 7 Gurudwara, Gurgaon"]
+      },
+      "hi": { "aka": ["न्यू कॉलोनी गुरुद्वारा", "New Colony Gurudwara, Gurgaon"] },
+      "pa": { "aka": ["ਨਿਊ ਕਲੋਨੀ ਗੁਰਦੁਆਰਾ", "New Colony Gurudwara, Gurgaon"] }
+    },
+    "04-gurudwaras/20-maharashtra/01-m/04-20-06-01-gurudwara-sri-guru-singh-sabha-dadar-mumbai.html": {
+      "en": {
+        "title": "Dadar Gurudwara: Sri Guru Singh Sabha, Dadar East, Mumbai",
+        "description": "Gurudwara Sri Guru Singh Sabha, Dadar East, Mumbai: address opposite Chitra Cinema, phone number, photos. Founded in 1920 at Bori Bunder, later moved to Dadar.",
+        "aka": ["Dadar Gurudwara", "Gurudwara Dadar East"]
+      },
+      "hi": { "aka": ["दादर गुरुद्वारा", "Dadar Gurudwara, Mumbai"] },
+      "pa": { "aka": ["ਦਾਦਰ ਗੁਰਦੁਆਰਾ", "Dadar Gurudwara, Mumbai"] }
+    },
+    "04-gurudwaras/20-maharashtra/01-m/04-20-06-03-gurudwara-sri-guru-nanak-darbar-andheri-mumbai.html": {
+      "en": {
+        "description": "Gurudwara Sri Guru Nanak Darbar, Mumbai: address and photos. Founded by the Guru Nanak Punjabi Sabha; construction began in 1956 and was completed in 1957.",
+        "aka": ["Sri Gurunanak Darbar", "Shri Guru Nanak Darbar Gurudwara"]
+      },
+      "hi": { "aka": ["श्री गुरु नानक दरबार", "Sri Guru Nanak Darbar, Mumbai"] },
+      "pa": { "aka": ["ਸ੍ਰੀ ਗੁਰੂ ਨਾਨਕ ਦਰਬਾਰ", "Sri Guru Nanak Darbar, Mumbai"] }
+    },
+    "04-gurudwaras/20-maharashtra/03-p/04-20-11-02-gurudwara-sri-guru-singh-sabha-pune.html": {
+      "en": {
+        "title": "Gurudwara Sri Guru Singh Sabha, Ganesh Peth, Pune",
+        "aka": ["Ganesh Peth Gurudwara", "Gurdwara Singh Sabha, Ganesh Peth"]
+      },
+      "hi": { "aka": ["गणेश पेठ गुरुद्वारा", "Ganesh Peth Gurudwara, Pune"] },
+      "pa": { "aka": ["ਗਣੇਸ਼ ਪੇਠ ਗੁਰਦੁਆਰਾ", "Ganesh Peth Gurudwara, Pune"] }
+    },
+    "04-gurudwaras/06-chandigarh/04-06-03-gurudwara-shri-santsar-sahib-sector-38-west-chandigarh.html": {
+      "en": {
+        "title": "Gurudwara Santsar Sahib, Sector 38 West, Chandigarh",
+        "description": "Gurudwara Shri Santsar Sahib Ji, Paschim Marg, Sector 38 West, Chandigarh: address and photos of the Sector 38 Gurudwara and its charitable, educational seva.",
+        "aka": ["Sector 38 Gurudwara, Chandigarh", "Santsar Sahib"]
+      },
+      "hi": { "aka": ["सेक्टर 38 गुरुद्वारा, चंडीगढ़", "Sector 38 Gurudwara, Chandigarh"] },
+      "pa": { "aka": ["ਸੈਕਟਰ 38 ਗੁਰਦੁਆਰਾ, ਚੰਡੀਗੜ੍ਹ", "Sector 38 Gurudwara, Chandigarh"] }
+    },
+    "04-gurudwaras/10-goa/04-10-03-gurudwara-3mtr-aquem‑baixo-south-goa.html": {
+      "en": {
+        "title": "Gurudwara 3 MTR, Aquem-Baixo, Margao, South Goa",
+        "description": "Gurudwara 3 MTR, Aquem-Baixo, Margao (Madgaon), South Goa 403729: address and photos of this Gurudwara, the sangat's place of prayer in South Goa.",
+        "aka": ["Gurudwara 3 MTR", "Margao Gurudwara"]
+      },
+      "hi": { "aka": ["मडगांव गुरुद्वारा", "Gurudwara 3 MTR, Goa"] },
+      "pa": { "aka": ["ਮਡਗਾਓਂ ਗੁਰਦੁਆਰਾ", "Gurudwara 3 MTR, Goa"] }
+    },
+    "04-gurudwaras/27-punjab/08-t/04-27-15-16-chaapri-sahib.html": {
+      "en": {
+        "title": "Gurdwara Chapri Sahib (Chaapri), Tarn Taran, Punjab",
+        "description": "Gurdwara Sri Chaapri Sahib (Chapri Sahib), Chapri, Tarn Taran: history, address and photos. Commemorates Sri Guru Angad Dev Ji; linked to five Gurus.",
+        "aka": ["Chapri Sahib", "Chapri Sahib Gurudwara, Tarn Taran"]
+      },
+      "hi": { "aka": ["छपरी साहिब", "Chapri Sahib Gurudwara"] },
+      "pa": { "aka": ["ਛਪਰੀ ਸਾਹਿਬ", "Chapri Sahib Gurudwara"] }
+    },
+    "04-gurudwaras/27-punjab/02-b/04-27-02-06-paka-gurusar-sahib.html": {
+      "en": {
+        "title": "Gurdwara Pakka Gurusar Sahib, Handiaya, Barnala",
+        "description": "Gurdwara Sri Pakka Gurusar Sahib (Gurusar Pakka Sahib), Handiaya, Barnala: history, address and photos. Marks Guru Tegh Bahadur Ji's stay at Handiaya.",
+        "aka": ["Gurusar Pakka Sahib", "Pakka Gurusar Sahib Patshahi 9, Handiaya"]
+      },
+      "hi": { "aka": ["गुरुसर पक्का साहिब", "Pakka Gurusar Sahib, Handiaya"] },
+      "pa": { "aka": ["ਗੁਰੂਸਰ ਪੱਕਾ ਸਾਹਿਬ", "Pakka Gurusar Sahib, Handiaya"] }
+    },
+    "04-gurudwaras/27-punjab/13-k/04-27-11-11-tahli-sahib-balehar-khanpur.html": {
+      "en": {
+        "description": "Gurdwara Sri Tahli Sahib, Balehar Khanpur, Kapurthala district, Punjab: address, photos and location of the Tahli Sahib Gurudwara at Balehar Khanpur.",
+        "aka": ["Tahli Sahib Gurudwara, Kapurthala"]
+      }
+    },
+    "04-gurudwaras/34-uttar-pradesh/03-l/04-34-14-01-gurudwara-alambagh-kendriya-singh-sabha-lucknow.html": {
+      "en": {
+        "description": "Gurudwara Alambagh (Kendriya Singh Sabha), Lucknow: address and photos of the Alambagh Gurudwara, established in 1952 by Sant Baba Mohan Singh Ji Kanpur Wale.",
+        "aka": ["Alambagh Gurudwara", "Alambagh Gurudwara Lucknow"]
+      },
+      "hi": { "aka": ["आलमबाग गुरुद्वारा", "Alambagh Gurudwara, Lucknow"] },
+      "pa": { "aka": ["ਆਲਮਬਾਗ ਗੁਰਦੁਆਰਾ", "Alambagh Gurudwara, Lucknow"] }
+    },
+    "04-gurudwaras/14-jharkhand/04-14-08-01-gurudwara-saheb-sakchi-jamshedpur-jharkhand.html": {
+      "en": {
+        "title": "Sakchi Gurudwara (Gurudwara Saheb), Jamshedpur",
+        "description": "Sakchi Gurudwara (Gurdwara Saheb Sakchi), Sakchi Gol Chakkar, Jamshedpur 831001, Jharkhand: address and photos of the Gurudwara at Sakchi Gol Chakkar.",
+        "aka": ["Sakchi Gurudwara", "Gurudwara Sakchi"]
+      },
+      "hi": { "aka": ["साकची गुरुद्वारा", "Sakchi Gurudwara, Jamshedpur"] },
+      "pa": { "aka": ["ਸਾਕਚੀ ਗੁਰਦੁਆਰਾ", "Sakchi Gurudwara, Jamshedpur"] }
+    },
+    "04-gurudwaras/34-uttar-pradesh/01-gn/04-34-12-01-gurudwara-shri-guru-kalgidhar-singh-sabha-greater-noida.html": {
+      "en": {
+        "title": "Gurudwara in Greater Noida: Shri Guru Kalgidhar Singh Sabha",
+        "aka": ["Greater Noida Gurudwara", "Knowledge Park 3 Gurudwara"]
+      },
+      "hi": { "aka": ["ग्रेटर नोएडा गुरुद्वारा", "Greater Noida Gurudwara"] },
+      "pa": { "aka": ["ਗ੍ਰੇਟਰ ਨੋਇਡਾ ਗੁਰਦੁਆਰਾ", "Greater Noida Gurudwara"] }
+    },
+    "04-gurudwaras/34-uttar-pradesh/02-k/04-34-13-04-gurudwara-pandu-nagar.html": {
+      "en": { "aka": ["Pandu Nagar Gurudwara, Kanpur"] },
+      "hi": { "aka": ["पांडु नगर गुरुद्वारा", "Pandu Nagar Gurudwara, Kanpur"] },
+      "pa": { "aka": ["ਪਾਂਡੂ ਨਗਰ ਗੁਰਦੁਆਰਾ", "Pandu Nagar Gurudwara, Kanpur"] }
+    },
+    "04-gurudwaras/29-rajasthan/02-u/04-29-13-01-gurudwara-sachkhand-darbar-udaipur.html": {
+      "en": {
+        "title": "Gurudwara Sachkhand Darbar (Sikh Colony), Udaipur",
+        "description": "Gurudwara Sachkhand Darbar Sahib Ji, Sikh Colony, near Kumharon Ka Bhatta, Udaipur: address and photos of probably the city's most popular Gurudwara.",
+        "aka": ["Sikh Colony Gurudwara, Udaipur", "Kumharon Ka Bhatta Gurudwara"]
+      },
+      "hi": { "aka": ["सिख कॉलोनी गुरुद्वारा, उदयपुर", "Sikh Colony Gurudwara, Udaipur"] },
+      "pa": { "aka": ["ਸਿੱਖ ਕਲੋਨੀ ਗੁਰਦੁਆਰਾ, ਉਦੈਪੁਰ", "Sikh Colony Gurudwara, Udaipur"] }
+    },
+    "04-gurudwaras/15-jammu-kashmir/04-15-15-03-gurudwara-shaheed-bunga-sahib-baghat-srinagar.html": {
+      "en": {
+        "title": "Gurudwara Shaheed Bunga Sahib, Baghat Barzulla, Srinagar",
+        "description": "Gurudwara Shaheed Bunga Sahib, Baghat Barzulla, Srinagar, Kashmir: address and photos. Built in memory of Sikh soldiers from the era of Sikh rule in Kashmir."
+      }
+    },
+    "04-gurudwaras/16-karnataka/01-ban/04-16-03-04-gurudwara-sadh-sangat.html": {
+      "en": {
+        "title": "Gurudwara Sadh Sangat Ji, Jalahalli West, Bangalore",
+        "aka": ["Jalahalli Gurudwara", "Gurdwara Sadh Sangat, Jalahalli West"]
+      },
+      "hi": { "aka": ["जालहल्ली गुरुद्वारा", "Jalahalli Gurudwara, Bangalore"] },
+      "pa": { "aka": ["ਜਾਲਹੱਲੀ ਗੁਰਦੁਆਰਾ", "Jalahalli Gurudwara, Bangalore"] }
+    },
+    "04-gurudwaras/16-karnataka/01-ban/04-16-03-01-sri-guru-singh-sabha-gurudwara.html": {
+      "en": {
+        "title": "Sri Guru Singh Sabha Gurudwara, Ulsoor, Bangalore",
+        "description": "Sri Guru Singh Sabha Gurudwara near Ulsoor Lake, Gurudwara Road, Bangalore: address and photos. Built in 1943, it is the largest Sikh shrine in Bengaluru.",
+        "aka": ["Ulsoor Gurudwara", "Gurudwara Bangalore (Bengaluru)"]
+      },
+      "hi": { "aka": ["अलसूर गुरुद्वारा", "Ulsoor Gurudwara, Bangalore"] },
+      "pa": { "aka": ["ਅਲਸੂਰ ਗੁਰਦੁਆਰਾ", "Ulsoor Gurudwara, Bangalore"] }
+    },
+    "04-gurudwaras/02-andhra-pradesh/01-v/04-02-12-gurudwaras-in-visakhapatnam-andhra-pradesh.html": {
+      "en": {
+        "title": "Gurudwara in Vizag: Gurudwaras of Visakhapatnam, AP",
+        "description": "Gurudwaras in Vizag (Visakhapatnam), Andhra Pradesh: Gurudwara Sadh Sangat Ji, Seethammadhara and Gurudwara Nanak Darbar Ji, Hindustan Shipyard, with photos.",
+        "aka": ["Gurudwara Vizag", "Vizag Gurudwara"]
+      },
+      "hi": { "aka": ["वाइज़ैग गुरुद्वारा", "Gurudwara Vizag"] },
+      "pa": { "aka": ["ਵਾਈਜ਼ੈਗ ਗੁਰਦੁਆਰਾ", "Gurudwara Vizag"] }
+    },
+    "04-gurudwaras/04-assam/04-04-07-gurudwaras-in-guwahati-assam.html": {
+      "en": {
+        "title": "Gurudwara in Guwahati: Lakhtokia, Beltola, Maligaon, Ulubari"
+      }
+    },
+    "04-gurudwaras/16-karnataka/01-ban/04-16-03-gurudwaras-in-bangalore.html": {
+      "en": {
+        "title": "Gurudwara in Bangalore: Ulsoor, Ejipura, Jalahalli & More",
+        "aka": ["Gurudwaras in Bengaluru"]
+      }
+    },
+    "04-gurudwaras/10-goa/04-10-gurudwaras-in-goa.html": {
+      "en": {
+        "title": "Gurudwara in Goa: Betim (Panaji), Vasco da Gama, Margao"
+      }
+    },
+    "04-gurudwaras/29-rajasthan/02-u/04-29-13-gurudwaras-in-udaipur.html": {
+      "en": {
+        "title": "Gurudwara in Udaipur: Sachkhand Darbar (Sikh Colony) & More"
+      }
+    },
+    "05-sikh-welfare/05-06-tera-hi-tera-mission-chandigarh.html": {
+      "en": {
+        "title": "Tera Hi Tera Mission Hospital, Sector 45, Chandigarh",
+        "description": "Tera Hi Tera Mission Hospital, Chandigarh (SCO 138, Sector 45): contact numbers, medicines at just ₹13, and low-cost MRI, CT scan, X-ray and lab tests.",
+        "aka": ["Tera Hi Tera Hospital", "Tera Tera Mission Chandigarh"]
+      },
+      "hi": { "aka": ["तेरा ही तेरा मिशन हॉस्पिटल", "Tera Hi Tera Mission Hospital, Sector 45"] },
+      "pa": { "aka": ["ਤੇਰਾ ਹੀ ਤੇਰਾ ਮਿਸ਼ਨ ਹਸਪਤਾਲ", "Tera Hi Tera Mission Hospital, Sector 45"] }
+    },
+    "01-about-sikhism/01-01-sikh-gurus/01-01-08-guru-har-krishan-ji/01-01-08-04-guru-harkrishan-ji-gurgaddi-diwas.html": {
+      "en": {
+        "title": "Guru Harkrishan Ji Gurgaddi Diwas: Images & Greetings",
+        "description": "Gurgaddi Diwas of Guru Harkrishan Ji, the eighth Sikh Guru: the day he received the Guruship. Images and greetings to download and share with family.",
+        "aka": ["Gurgaddi Divas", "Guru Har Krishan Sahib Ji Gurgaddi Purab"]
+      },
+      "hi": {
+        "title": "गुरु हरकृष्ण जी गुरगद्दी दिवस: चित्र और शुभकामनाएँ",
+        "description": "गुरु हरकृष्ण जी (आठवें सिख गुरु) का गुरगद्दी दिवस — जिस दिन उन्हें गुरुगद्दी मिली। चित्र और शुभकामना संदेश डाउनलोड करें और परिवार के साथ साझा करें।",
+        "aka": ["Gurgaddi Diwas Guru Harkrishan Ji", "Gurgaddi Divas"]
+      },
+      "pa": {
+        "title": "ਗੁਰੂ ਹਰਿਕ੍ਰਿਸ਼ਨ ਜੀ ਗੁਰਗੱਦੀ ਦਿਵਸ: ਤਸਵੀਰਾਂ ਅਤੇ ਵਧਾਈਆਂ",
+        "description": "ਗੁਰੂ ਹਰਿਕ੍ਰਿਸ਼ਨ ਜੀ (ਅੱਠਵੇਂ ਸਿੱਖ ਗੁਰੂ) ਦਾ ਗੁਰਗੱਦੀ ਦਿਵਸ — ਜਿਸ ਦਿਨ ਉਨ੍ਹਾਂ ਨੂੰ ਗੁਰਗੱਦੀ ਮਿਲੀ। ਤਸਵੀਰਾਂ ਅਤੇ ਵਧਾਈ ਸੁਨੇਹੇ ਡਾਊਨਲੋਡ ਕਰੋ ਅਤੇ ਪਰਿਵਾਰ ਨਾਲ ਸਾਂਝੇ ਕਰੋ।",
+        "aka": ["ਗੁਰਗੱਦੀ ਦਿਹਾੜਾ", "Gurgaddi Diwas Guru Harkrishan Ji"]
+      }
+    },
+    "01-about-sikhism/01-01-sikh-gurus/01-01-10-guru-gobind-singh-ji/01-01-10-06-guru-gobind-ji-jyoti-jot-diwas.html": {
+      "en": {
+        "title": "Guru Gobind Singh Ji Jyoti Jot Diwas (Joti Jot), Nanded",
+        "description": "Jyoti Jot Diwas (Joti Jot Purab) of Sri Guru Gobind Singh Ji, when the Tenth Guru merged into the Eternal Light at Takht Sri Hazur Sahib, Nanded, in 1708.",
+        "aka": ["Joti Jot Diwas", "Jyoti Jyot Guru Gobind Singh Ji"]
+      },
+      "hi": { "aka": ["जोती जोत दिवस", "Jyoti Jot Diwas Guru Gobind Singh Ji"] },
+      "pa": { "aka": ["ਜੋਤੀ ਜੋਤਿ ਦਿਹਾੜਾ", "Jyoti Jot Diwas Guru Gobind Singh Ji"] }
+    },
+    "01-about-sikhism/01-01-sikh-gurus/01-01-10-guru-gobind-singh-ji/01-01-10-08-mata-sahib-kaur-ji-gurpurab.html": {
+      "en": {
+        "title": "Mata Sahib Kaur Ji Gurpurab: Images & Greetings",
+        "description": "Mata Sahib Kaur Ji Gurpurab (Gurpurb): images and greetings to download and share, honouring the Mother of the Khalsa Panth, wife of Guru Gobind Singh Ji.",
+        "aka": ["Mata Sahib Kaur Gurpurb", "Mata Sahib Devan Ji"]
+      },
+      "hi": { "aka": ["माता साहिब कौर गुरपुरब", "Mata Sahib Kaur Ji Gurpurab"] },
+      "pa": { "aka": ["ਮਾਤਾ ਸਾਹਿਬ ਕੌਰ ਗੁਰਪੁਰਬ", "Mata Sahib Kaur Ji Gurpurab"] }
+    },
+    "02-sikh-heritage/02-02-discover-culture/02-02-01-sikh-festivals/02-02-01-06-bandi-chhor-diwas.html": {
+      "en": {
+        "title": "Bandi Chhor Divas (Diwas): Images, Greetings & History",
+        "description": "Bandi Chhor Divas (Bandi Chhor Diwas): images and greetings to share, and the story of Guru Hargobind Sahib Ji's release from Gwalior Fort with 52 Rajas.",
+        "aka": ["Bandi Chhor Divas", "Bandi Chhod Diwas"]
+      },
+      "hi": {
+        "description": "बंदी छोड़ दिवस: चित्र और शुभकामनाएँ साझा करें, और जानें गुरु हरगोबिंद साहिब जी के 52 राजाओं के साथ ग्वालियर किले से रिहा होने का इतिहास।",
+        "aka": ["Bandi Chhor Divas", "Bandi Chhod Diwas"]
+      },
+      "pa": {
+        "description": "ਬੰਦੀ ਛੋੜ ਦਿਵਸ: ਤਸਵੀਰਾਂ ਅਤੇ ਵਧਾਈਆਂ ਸਾਂਝੀਆਂ ਕਰੋ, ਅਤੇ ਜਾਣੋ ਗੁਰੂ ਹਰਿਗੋਬਿੰਦ ਸਾਹਿਬ ਜੀ ਦੇ 52 ਰਾਜਿਆਂ ਸਮੇਤ ਗਵਾਲੀਅਰ ਦੇ ਕਿਲ੍ਹੇ ਤੋਂ ਰਿਹਾਈ ਦਾ ਇਤਿਹਾਸ।",
+        "aka": ["ਬੰਦੀ ਛੋੜ ਦਿਹਾੜਾ", "Bandi Chhor Divas"]
+      }
+    },
+    "02-sikh-heritage/02-02-discover-culture/02-02-04-sikh-calendar.html": {
+      "en": {
+        "title": "Sikh Calendar 2026 (Nanakshahi): Sikh Months and Dates",
+        "description": "The Nanakshahi Sikh calendar explained: the 12 Sikh months from Chet to Phagan with their 2026 start dates, the Baramaha, and how Gurpurab dates are set."
+      }
+    },
+    "sikh-history.html": {
+      "en": {
+        "title": "Today in Sikh History: Sikh Events for Every Day of the Year",
+        "description": "Today in Sikh History: what happened on this day, with Gurpurabs, Shaheedi Diwas, battles and morchas for all 365 days, plus their Nanakshahi dates."
+      }
+    }
+  }
+}

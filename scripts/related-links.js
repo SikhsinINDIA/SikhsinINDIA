@@ -54,7 +54,12 @@ function page(rel) {
     const robots = (head.match(/<meta[^>]+name=["']robots["'][^>]*content=["']([^"']*)/i) || [])[1] || '';
     const title = decode(((head.match(/<title>([^<]*)<\/title>/i) || [])[1] || '').trim())
       .replace(/\s+[|]\s+.*$/, '').replace(/\s+-\s+Sikh Festivals$/, '').trim();
-    const desc = decode((head.match(/<meta[^>]+name=["']description["'][^>]*content=(["'])(.*?)\1/i) || [])[2] || '');
+    // The Gurus a page is about are looked for in its description and, on
+    // Gurudwara pages, the intro under the photo (descriptions get cut to
+    // 160 characters, so a Guru named near the end can drop out of them).
+    const meta = decode((head.match(/<meta[^>]+name=["']description["'][^>]*content=(["'])(.*?)\1/i) || [])[2] || '');
+    const intro = decode(((html.match(/<div class="intro-banner">[\s\S]*?<p>([\s\S]*?)<\/p>/) || [])[1] || '').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
+    const desc = intro && !meta.includes(intro) ? meta + ' ' + intro : meta;
     p = { rel, html, title: tidy(title), desc, indexable: !/noindex/i.test(robots) };
   }
   pageCache.set(rel, p);
