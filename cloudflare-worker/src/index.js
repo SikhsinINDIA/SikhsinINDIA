@@ -42,6 +42,9 @@
  *
  * Deploy: see cloudflare-worker's own docs / wrangler.toml comments.
  * Requires these secrets, set via `wrangler secret put <NAME>`:
+ *   SENDER_API_KEY        — from Sender.net: Account settings → API access
+ *                            tokens (validity "Forever"). Optional; tried
+ *                            first when set (see deliverEmail).
  *   BREVO_API_KEY         — from Brevo: SMTP & API → API keys, Restricted,
  *                            "Transactional email: All". Optional; without
  *                            it all mail goes via Resend.
@@ -507,13 +510,15 @@ async function inlineDriveImages(html) {
   };
 }
 
-// Two providers, each free up to a daily cap: Brevo (300/day) and Resend
-// (100/day). Mail goes via Brevo, falling back to Resend when Brevo refuses
-// it (daily cap reached, outage). Mail with Drive pictures sent inline goes
-// the other way round, because only Resend supports inline (cid:) images -
-// but only up to RESEND_DAILY_SOFT_LIMIT a day; after that, and if Resend
-// is out, Brevo sends it with the pictures as ordinary links.
-// Without a BREVO_API_KEY secret everything goes via Resend, as before.
+// Three free providers, tried in order until one takes the mail: Sender.net
+// (15,000/month, no daily cap), Brevo (300/day) and Resend (100/day). Sender
+// comes first because Brevo doesn't refuse mail over its daily cap - it
+// accepts it and holds it until the next day (3 Nov 2026: 831 emails, the
+// third greeting arrived on 4 Nov). Mail with Drive pictures sent inline
+// goes via Resend first, because only Resend supports inline (cid:) images -
+// but only up to RESEND_DAILY_SOFT_LIMIT a day; after that the others send
+// it with the pictures as ordinary links. A provider without its API key
+// secret (SENDER_API_KEY, BREVO_API_KEY) is skipped.
 /* ---------------- EMAIL LOG ----------------
    One "mail:" key per email (sent or failed), kept 45 days like the
    WhatsApp statuses, so the messaging dashboard
@@ -567,31 +572,36 @@ async function deliverEmail(env, { to, subject, text, html, attachments }) {
     ? await Promise.all(attachments.map(resolveAttachment))
     : [];
   const mail = { to, subject, text, files };
-  const viaResend = async () => {
+  const resend = { name: "Resend", send: async () => {
     const sent = await sendViaResend(env, { ...mail, html: inlined.html, inline: inlined.inline });
     await countResendSend(env);
     return sent;
-  };
-  const viaBrevo = () => sendViaBrevo(env, { ...mail, html });
-  const name = (fn) => (fn === viaBrevo ? "Brevo" : "Resend");
-  if (!env.BREVO_API_KEY) return { body: await viaResend(), via: "Resend" };
+  } };
+  const brevo = { name: "Brevo", send: () => sendViaBrevo(env, { ...mail, html }) };
+  // Sender takes attachments only as links, so mail carrying file content skips it.
+  const sender = { name: "Sender", send: () => sendViaSender(env, { ...mail, html }) };
+  const chain = [];
+  if (env.SENDER_API_KEY && !files.length) chain.push(sender);
+  if (env.BREVO_API_KEY) chain.push(brevo);
+  chain.push(resend);
   // Resend first only for inline pictures, and only while today's Resend
-  // count is under RESEND_DAILY_SOFT_LIMIT - after that Brevo takes them.
-  const resendFirst = inlined.inline.length && (await resendSentToday(env)) < RESEND_DAILY_SOFT_LIMIT;
-  const [first, second] = resendFirst ? [viaResend, viaBrevo] : [viaBrevo, viaResend];
+  // count is under RESEND_DAILY_SOFT_LIMIT - after that the others take them.
+  if (inlined.inline.length && chain.length > 1 && (await resendSentToday(env)) < RESEND_DAILY_SOFT_LIMIT) {
+    chain.unshift(chain.pop());
+  }
   // Logged so `wrangler tail` shows which provider sent each mail.
-  try {
-    const sent = await first();
-    console.log(`email to ${to}: sent via ${name(first)}`);
-    return { body: sent, via: name(first) };
-  } catch (firstErr) {
-    console.log(`email to ${to}: ${firstErr.message} - trying ${name(second)}`);
+  const errors = [];
+  for (const p of chain) {
     try {
-      return { body: await second(), via: name(second) };
-    } catch (secondErr) {
-      throw new Error(`${firstErr.message} | ${secondErr.message}`);
+      const sent = await p.send();
+      console.log(`email to ${to}: sent via ${p.name}`);
+      return { body: sent, via: p.name };
+    } catch (err) {
+      console.log(`email to ${to}: ${err.message}`);
+      errors.push(err.message);
     }
   }
+  throw new Error(errors.join(" | "));
 }
 
 // Resend's free plan allows 100 emails a day (UTC) and emails warnings at 80%,
@@ -656,6 +666,34 @@ async function sendViaBrevo(env, { to, subject, text, html, files }) {
   const brevoBody = await brevoRes.text();
   if (!brevoRes.ok) throw new Error("Brevo API error: " + brevoBody);
   return brevoBody;
+}
+
+// Sender.net transactional API (api.sender.net/v2/message/send). The from
+// address's domain must be verified in the Sender account.
+async function sendViaSender(env, { to, subject, text, html }) {
+  const m = fromAddress(env).match(/^\s*(.*?)\s*<([^>]+)>\s*$/);
+  const body = {
+    from: m ? { name: m[1], email: m[2] } : { email: fromAddress(env), name: "SikhsinIndia" },
+    to: { email: to },
+    subject
+  };
+  if (html) body.html = html;
+  if (text) body.text = text;
+  if (env.REPLY_TO) body.headers = { "Reply-To": env.REPLY_TO };
+  const senderRes = await fetch("https://api.sender.net/v2/message/send", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${env.SENDER_API_KEY}`,
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify(body)
+  });
+  const senderBody = await senderRes.text();
+  let ok = senderRes.ok;
+  try { if (JSON.parse(senderBody).success === false) ok = false; } catch (_) { /* non-JSON: go by status */ }
+  if (!ok) throw new Error("Sender API error: " + senderBody);
+  return senderBody;
 }
 
 // YouTube's search.list costs 100 of the default 10,000 daily quota units,
