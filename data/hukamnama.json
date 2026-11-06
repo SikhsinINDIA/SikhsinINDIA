@@ -1,51 +1,91 @@
 {
-  "date": "2026-11-05",
-  "dateDisplay": "5 November 2026",
-  "ang": 857,
-  "raagGurmukhi": "ਰਾਗੁ ਬਿਲਾਵਲ",
-  "raagEnglish": "Raag Bilaaval",
-  "writerEnglish": "Bhagat Kabeer Ji",
-  "titleGurmukhi": "ਬਿਲਾਵਲੁ ॥",
-  "titleEnglish": "Bilaaval:",
-  "verseGurmukhi": "ਜਨਮ ਮਰਨ ਕਾ ਭ੍ਰਮੁ ਗਇਆ ਗੋਬਿਦ ਲਿਵ ਲਾਗੀ ॥",
-  "verseTranslation": "The illusion of birth and death is gone; I lovingly focus on the Lord of the Universe.",
+  "date": "2026-11-06",
+  "dateDisplay": "6 November 2026",
+  "ang": 864,
+  "raagGurmukhi": "ਰਾਗੁ ਗੋਂਡ",
+  "raagEnglish": "Raag Gond",
+  "writerEnglish": "Guru Arjan Dev Ji",
+  "titleGurmukhi": "ਗੋਂਡ ਮਹਲਾ ੫ ॥",
+  "titleEnglish": "Gond, Fifth Mehla:",
+  "verseGurmukhi": "ਗੁਰੁ ਮੇਰੀ ਪੂਜਾ ਗੁਰੁ ਗੋਬਿੰਦੁ ॥",
+  "verseTranslation": "I worship and adore my Guru; the Guru is the Lord of the Universe.",
   "verses": [
     {
-      "gurmukhi": "ਬਿਲਾਵਲੁ ॥",
-      "translation": "Bilaaval:"
+      "gurmukhi": "ਗੋਂਡ ਮਹਲਾ ੫ ॥",
+      "translation": "Gond, Fifth Mehla:"
     },
     {
-      "gurmukhi": "ਜਨਮ ਮਰਨ ਕਾ ਭ੍ਰਮੁ ਗਇਆ ਗੋਬਿਦ ਲਿਵ ਲਾਗੀ ॥",
-      "translation": "The illusion of birth and death is gone; I lovingly focus on the Lord of the Universe."
+      "gurmukhi": "ਗੁਰੁ ਮੇਰੀ ਪੂਜਾ ਗੁਰੁ ਗੋਬਿੰਦੁ ॥",
+      "translation": "I worship and adore my Guru; the Guru is the Lord of the Universe."
     },
     {
-      "gurmukhi": "ਜੀਵਤ ਸੁੰਨਿ ਸਮਾਨਿਆ ਗੁਰ ਸਾਖੀ ਜਾਗੀ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "In my life, I am absorbed in deep silent meditation; the Guru's Teachings have awakened me. ||1||Pause||"
+      "gurmukhi": "ਗੁਰੁ ਮੇਰਾ ਪਾਰਬ੍ਰਹਮੁ ਗੁਰੁ ਭਗਵੰਤੁ ॥",
+      "translation": "My Guru is the Supreme Lord God; the Guru is the Lord God."
     },
     {
-      "gurmukhi": "ਕਾਸੀ ਤੇ ਧੁਨਿ ਊਪਜੈ ਧੁਨਿ ਕਾਸੀ ਜਾਈ ॥",
-      "translation": "The sound made from bronze, that sound goes into the bronze again."
+      "gurmukhi": "ਗੁਰੁ ਮੇਰਾ ਦੇਉ ਅਲਖ ਅਭੇਉ ॥",
+      "translation": "My Guru is divine, invisible and mysterious."
     },
     {
-      "gurmukhi": "ਕਾਸੀ ਫੂਟੀ ਪੰਡਿਤਾ ਧੁਨਿ ਕਹਾਂ ਸਮਾਈ ॥੧॥",
-      "translation": "But when the bronze is broken, O Pandit, O religious scholar, where does the sound go then? ||1||"
+      "gurmukhi": "ਸਰਬ ਪੂਜ ਚਰਨ ਗੁਰ ਸੇਉ ॥੧॥",
+      "translation": "I serve at the Guru's feet, which are worshipped by all. ||1||"
     },
     {
-      "gurmukhi": "ਤ੍ਰਿਕੁਟੀ ਸੰਧਿ ਮੈ ਪੇਖਿਆ ਘਟ ਹੂ ਘਟ ਜਾਗੀ ॥",
-      "translation": "I gaze upon the world, the confluence of the three qualities; God is awake and aware in each and every heart."
+      "gurmukhi": "ਗੁਰ ਬਿਨੁ ਅਵਰੁ ਨਾਹੀ ਮੈ ਥਾਉ ॥",
+      "translation": "Without the Guru, I have no other place at all."
     },
     {
-      "gurmukhi": "ਐਸੀ ਬੁਧਿ ਸਮਾਚਰੀ ਘਟ ਮਾਹਿ ਤਿਆਗੀ ॥੨॥",
-      "translation": "Such is the understanding revealed to me; within my heart, I have become a detached renunciate. ||2||"
+      "gurmukhi": "ਅਨਦਿਨੁ ਜਪਉ ਗੁਰੂ ਗੁਰ ਨਾਉ ॥੧॥ ਰਹਾਉ ॥",
+      "translation": "Night and day, I chant the Name of Guru, Guru. ||1||Pause||"
     },
     {
-      "gurmukhi": "ਆਪੁ ਆਪ ਤੇ ਜਾਨਿਆ ਤੇਜ ਤੇਜੁ ਸਮਾਨਾ ॥",
-      "translation": "I have come to know my own self, and my light has merged in the Light."
+      "gurmukhi": "ਗੁਰੁ ਮੇਰਾ ਗਿਆਨੁ ਗੁਰੁ ਰਿਦੈ ਧਿਆਨੁ ॥",
+      "translation": "The Guru is my spiritual wisdom, the Guru is the meditation within my heart."
     },
     {
-      "gurmukhi": "ਕਹੁ ਕਬੀਰ ਅਬ ਜਾਨਿਆ ਗੋਬਿਦ ਮਨੁ ਮਾਨਾ ॥੩॥੧੧॥",
-      "translation": "Says Kabeer, now I know the Lord of the Universe, and my mind is satisfied. ||3||11||"
+      "gurmukhi": "ਗੁਰੁ ਗੋਪਾਲੁ ਪੁਰਖੁ ਭਗਵਾਨੁ ॥",
+      "translation": "The Guru is the Lord of the World, the Primal Being, the Lord God."
+    },
+    {
+      "gurmukhi": "ਗੁਰ ਕੀ ਸਰਣਿ ਰਹਉ ਕਰ ਜੋਰਿ ॥",
+      "translation": "With my palms pressed together, I remain in the Guru's Sanctuary."
+    },
+    {
+      "gurmukhi": "ਗੁਰੂ ਬਿਨਾ ਮੈ ਨਾਹੀ ਹੋਰੁ ॥੨॥",
+      "translation": "Without the Guru, I have no other at all. ||2||"
+    },
+    {
+      "gurmukhi": "ਗੁਰੁ ਬੋਹਿਥੁ ਤਾਰੇ ਭਵ ਪਾਰਿ ॥",
+      "translation": "The Guru is the boat to cross over the terrifying world-ocean."
+    },
+    {
+      "gurmukhi": "ਗੁਰ ਸੇਵਾ ਜਮ ਤੇ ਛੁਟਕਾਰਿ ॥",
+      "translation": "Serving the Guru, one is released from the Messenger of Death."
+    },
+    {
+      "gurmukhi": "ਅੰਧਕਾਰ ਮਹਿ ਗੁਰ ਮੰਤ੍ਰੁ ਉਜਾਰਾ ॥",
+      "translation": "In the darkness, the Guru's Mantra shines forth."
+    },
+    {
+      "gurmukhi": "ਗੁਰ ਕੈ ਸੰਗਿ ਸਗਲ ਨਿਸਤਾਰਾ ॥੩॥",
+      "translation": "With the Guru, all are saved. ||3||"
+    },
+    {
+      "gurmukhi": "ਗੁਰੁ ਪੂਰਾ ਪਾਈਐ ਵਡਭਾਗੀ ॥",
+      "translation": "The Perfect Guru is found, by great good fortune."
+    },
+    {
+      "gurmukhi": "ਗੁਰ ਕੀ ਸੇਵਾ ਦੂਖੁ ਨ ਲਾਗੀ ॥",
+      "translation": "Serving the Guru, pain does not afflict anyone."
+    },
+    {
+      "gurmukhi": "ਗੁਰ ਕਾ ਸਬਦੁ ਨ ਮੇਟੈ ਕੋਇ ॥",
+      "translation": "No one can erase the Word of the Guru's Shabad."
+    },
+    {
+      "gurmukhi": "ਗੁਰੁ ਨਾਨਕੁ ਨਾਨਕੁ ਹਰਿ ਸੋਇ ॥੪॥੭॥੯॥",
+      "translation": "Nanak is the Guru; Nanak is the Lord Himself. ||4||7||9||"
     }
   ],
-  "updated": "2026-11-05T08:04:39.021Z"
+  "updated": "2026-11-06T08:08:41.616Z"
 }
