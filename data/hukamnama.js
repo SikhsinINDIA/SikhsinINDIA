@@ -1,92 +1,64 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-11-06",
-  "dateDisplay": "6 November 2026",
-  "ang": 864,
-  "raagGurmukhi": "ਰਾਗੁ ਗੋਂਡ",
-  "raagEnglish": "Raag Gond",
-  "writerEnglish": "Guru Arjan Dev Ji",
-  "titleGurmukhi": "ਗੋਂਡ ਮਹਲਾ ੫ ॥",
-  "titleEnglish": "Gond, Fifth Mehla:",
-  "verseGurmukhi": "ਗੁਰੁ ਮੇਰੀ ਪੂਜਾ ਗੁਰੁ ਗੋਬਿੰਦੁ ॥",
-  "verseTranslation": "I worship and adore my Guru; the Guru is the Lord of the Universe.",
+  "date": "2026-11-07",
+  "dateDisplay": "7 November 2026",
+  "ang": 946,
+  "raagGurmukhi": "ਰਾਗੁ ਰਾਮਕਲੀ",
+  "raagEnglish": "Raag Raamkalee",
+  "writerEnglish": "Guru Nanak Dev Ji",
+  "titleGurmukhi": "ਕਿਤੁ ਕਿਤੁ ਬਿਧਿ ਜਗੁ ਉਪਜੈ ਪੁਰਖਾ ਕਿਤੁ ਕਿਤੁ ਦੁਖਿ ਬਿਨਸਿ ਜਾਈ ॥",
+  "titleEnglish": "\"How, in what way, was the world formed, O man? And what disaster will end it?\"",
+  "verseGurmukhi": "ਹਉਮੈ ਵਿਚਿ ਜਗੁ ਉਪਜੈ ਪੁਰਖਾ ਨਾਮਿ ਵਿਸਰਿਐ ਦੁਖੁ ਪਾਈ ॥",
+  "verseTranslation": "In egotism, the world was formed, O man; forgetting the Naam, it suffers and dies.",
   "verses": [
     {
-      "gurmukhi": "ਗੋਂਡ ਮਹਲਾ ੫ ॥",
-      "translation": "Gond, Fifth Mehla:"
+      "gurmukhi": "ਕਿਤੁ ਕਿਤੁ ਬਿਧਿ ਜਗੁ ਉਪਜੈ ਪੁਰਖਾ ਕਿਤੁ ਕਿਤੁ ਦੁਖਿ ਬਿਨਸਿ ਜਾਈ ॥",
+      "translation": "\"How, in what way, was the world formed, O man? And what disaster will end it?\""
     },
     {
-      "gurmukhi": "ਗੁਰੁ ਮੇਰੀ ਪੂਜਾ ਗੁਰੁ ਗੋਬਿੰਦੁ ॥",
-      "translation": "I worship and adore my Guru; the Guru is the Lord of the Universe."
+      "gurmukhi": "ਹਉਮੈ ਵਿਚਿ ਜਗੁ ਉਪਜੈ ਪੁਰਖਾ ਨਾਮਿ ਵਿਸਰਿਐ ਦੁਖੁ ਪਾਈ ॥",
+      "translation": "In egotism, the world was formed, O man; forgetting the Naam, it suffers and dies."
     },
     {
-      "gurmukhi": "ਗੁਰੁ ਮੇਰਾ ਪਾਰਬ੍ਰਹਮੁ ਗੁਰੁ ਭਗਵੰਤੁ ॥",
-      "translation": "My Guru is the Supreme Lord God; the Guru is the Lord God."
+      "gurmukhi": "ਗੁਰਮੁਖਿ ਹੋਵੈ ਸੁ ਗਿਆਨੁ ਤਤੁ ਬੀਚਾਰੈ ਹਉਮੈ ਸਬਦਿ ਜਲਾਏ ॥",
+      "translation": "One who becomes Gurmukh contemplates the essence of spiritual wisdom; through the Shabad, he burns away his egotism."
     },
     {
-      "gurmukhi": "ਗੁਰੁ ਮੇਰਾ ਦੇਉ ਅਲਖ ਅਭੇਉ ॥",
-      "translation": "My Guru is divine, invisible and mysterious."
+      "gurmukhi": "ਤਨੁ ਮਨੁ ਨਿਰਮਲੁ ਨਿਰਮਲ ਬਾਣੀ ਸਾਚੈ ਰਹੈ ਸਮਾਏ ॥",
+      "translation": "His body and mind become immaculate, through the Immaculate Bani of the Word. He remains absorbed in Truth."
     },
     {
-      "gurmukhi": "ਸਰਬ ਪੂਜ ਚਰਨ ਗੁਰ ਸੇਉ ॥੧॥",
-      "translation": "I serve at the Guru's feet, which are worshipped by all. ||1||"
+      "gurmukhi": "ਨਾਮੇ ਨਾਮਿ ਰਹੈ ਬੈਰਾਗੀ ਸਾਚੁ ਰਖਿਆ ਉਰਿ ਧਾਰੇ ॥",
+      "translation": "Through the Naam, the Name of the Lord, he remains detached; he enshrines the True Name in his heart."
     },
     {
-      "gurmukhi": "ਗੁਰ ਬਿਨੁ ਅਵਰੁ ਨਾਹੀ ਮੈ ਥਾਉ ॥",
-      "translation": "Without the Guru, I have no other place at all."
+      "gurmukhi": "ਨਾਨਕ ਬਿਨੁ ਨਾਵੈ ਜੋਗੁ ਕਦੇ ਨ ਹੋਵੈ ਦੇਖਹੁ ਰਿਦੈ ਬੀਚਾਰੇ ॥੬੮॥",
+      "translation": "O Nanak, without the Name, Yoga is never attained; reflect upon this in your heart, and see. ||68||"
     },
     {
-      "gurmukhi": "ਅਨਦਿਨੁ ਜਪਉ ਗੁਰੂ ਗੁਰ ਨਾਉ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "Night and day, I chant the Name of Guru, Guru. ||1||Pause||"
+      "gurmukhi": "ਗੁਰਮੁਖਿ ਸਾਚੁ ਸਬਦੁ ਬੀਚਾਰੈ ਕੋਇ ॥",
+      "translation": "The Gurmukh is one who reflects upon the True Word of the Shabad."
     },
     {
-      "gurmukhi": "ਗੁਰੁ ਮੇਰਾ ਗਿਆਨੁ ਗੁਰੁ ਰਿਦੈ ਧਿਆਨੁ ॥",
-      "translation": "The Guru is my spiritual wisdom, the Guru is the meditation within my heart."
+      "gurmukhi": "ਗੁਰਮੁਖਿ ਸਚੁ ਬਾਣੀ ਪਰਗਟੁ ਹੋਇ ॥",
+      "translation": "The True Bani is revealed to the Gurmukh."
     },
     {
-      "gurmukhi": "ਗੁਰੁ ਗੋਪਾਲੁ ਪੁਰਖੁ ਭਗਵਾਨੁ ॥",
-      "translation": "The Guru is the Lord of the World, the Primal Being, the Lord God."
+      "gurmukhi": "ਗੁਰਮੁਖਿ ਮਨੁ ਭੀਜੈ ਵਿਰਲਾ ਬੂਝੈ ਕੋਇ ॥",
+      "translation": "The mind of the Gurmukh is drenched with the Lord's Love, but how rare are those who understand this."
     },
     {
-      "gurmukhi": "ਗੁਰ ਕੀ ਸਰਣਿ ਰਹਉ ਕਰ ਜੋਰਿ ॥",
-      "translation": "With my palms pressed together, I remain in the Guru's Sanctuary."
+      "gurmukhi": "ਗੁਰਮੁਖਿ ਨਿਜ ਘਰਿ ਵਾਸਾ ਹੋਇ ॥",
+      "translation": "The Gurmukh dwells in the home of the self, deep within."
     },
     {
-      "gurmukhi": "ਗੁਰੂ ਬਿਨਾ ਮੈ ਨਾਹੀ ਹੋਰੁ ॥੨॥",
-      "translation": "Without the Guru, I have no other at all. ||2||"
+      "gurmukhi": "ਗੁਰਮੁਖਿ ਜੋਗੀ ਜੁਗਤਿ ਪਛਾਣੈ ॥",
+      "translation": "The Gurmukh realizes the Way of Yoga."
     },
     {
-      "gurmukhi": "ਗੁਰੁ ਬੋਹਿਥੁ ਤਾਰੇ ਭਵ ਪਾਰਿ ॥",
-      "translation": "The Guru is the boat to cross over the terrifying world-ocean."
-    },
-    {
-      "gurmukhi": "ਗੁਰ ਸੇਵਾ ਜਮ ਤੇ ਛੁਟਕਾਰਿ ॥",
-      "translation": "Serving the Guru, one is released from the Messenger of Death."
-    },
-    {
-      "gurmukhi": "ਅੰਧਕਾਰ ਮਹਿ ਗੁਰ ਮੰਤ੍ਰੁ ਉਜਾਰਾ ॥",
-      "translation": "In the darkness, the Guru's Mantra shines forth."
-    },
-    {
-      "gurmukhi": "ਗੁਰ ਕੈ ਸੰਗਿ ਸਗਲ ਨਿਸਤਾਰਾ ॥੩॥",
-      "translation": "With the Guru, all are saved. ||3||"
-    },
-    {
-      "gurmukhi": "ਗੁਰੁ ਪੂਰਾ ਪਾਈਐ ਵਡਭਾਗੀ ॥",
-      "translation": "The Perfect Guru is found, by great good fortune."
-    },
-    {
-      "gurmukhi": "ਗੁਰ ਕੀ ਸੇਵਾ ਦੂਖੁ ਨ ਲਾਗੀ ॥",
-      "translation": "Serving the Guru, pain does not afflict anyone."
-    },
-    {
-      "gurmukhi": "ਗੁਰ ਕਾ ਸਬਦੁ ਨ ਮੇਟੈ ਕੋਇ ॥",
-      "translation": "No one can erase the Word of the Guru's Shabad."
-    },
-    {
-      "gurmukhi": "ਗੁਰੁ ਨਾਨਕੁ ਨਾਨਕੁ ਹਰਿ ਸੋਇ ॥੪॥੭॥੯॥",
-      "translation": "Nanak is the Guru; Nanak is the Lord Himself. ||4||7||9||"
+      "gurmukhi": "ਗੁਰਮੁਖਿ ਨਾਨਕ ਏਕੋ ਜਾਣੈ ॥੬੯॥",
+      "translation": "O Nanak, the Gurmukh knows the One Lord alone. ||69||"
     }
   ],
-  "updated": "2026-11-06T08:08:41.616Z"
+  "updated": "2026-11-07T07:27:29.747Z"
 };
