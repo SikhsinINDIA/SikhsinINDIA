@@ -1,63 +1,55 @@
 {
-  "date": "2026-11-07",
-  "dateDisplay": "7 November 2026",
-  "ang": 946,
-  "raagGurmukhi": "ਰਾਗੁ ਰਾਮਕਲੀ",
-  "raagEnglish": "Raag Raamkalee",
-  "writerEnglish": "Guru Nanak Dev Ji",
-  "titleGurmukhi": "ਕਿਤੁ ਕਿਤੁ ਬਿਧਿ ਜਗੁ ਉਪਜੈ ਪੁਰਖਾ ਕਿਤੁ ਕਿਤੁ ਦੁਖਿ ਬਿਨਸਿ ਜਾਈ ॥",
-  "titleEnglish": "\"How, in what way, was the world formed, O man? And what disaster will end it?\"",
-  "verseGurmukhi": "ਹਉਮੈ ਵਿਚਿ ਜਗੁ ਉਪਜੈ ਪੁਰਖਾ ਨਾਮਿ ਵਿਸਰਿਐ ਦੁਖੁ ਪਾਈ ॥",
-  "verseTranslation": "In egotism, the world was formed, O man; forgetting the Naam, it suffers and dies.",
+  "date": "2026-11-08",
+  "dateDisplay": "8 November 2026",
+  "ang": 678,
+  "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
+  "raagEnglish": "Raag Dhanaasree",
+  "writerEnglish": "Guru Arjan Dev Ji",
+  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ਘਰੁ ੬",
+  "titleEnglish": "Dhanaasaree, Fifth Mehla, Sixth House:",
+  "verseGurmukhi": "ਸੁਨਹੁ ਸੰਤ ਪਿਆਰੇ ਬਿਨਉ ਹਮਾਰੇ ਜੀਉ ॥",
+  "verseTranslation": "Listen, O Dear Beloved Saints, to my prayer.",
   "verses": [
     {
-      "gurmukhi": "ਕਿਤੁ ਕਿਤੁ ਬਿਧਿ ਜਗੁ ਉਪਜੈ ਪੁਰਖਾ ਕਿਤੁ ਕਿਤੁ ਦੁਖਿ ਬਿਨਸਿ ਜਾਈ ॥",
-      "translation": "\"How, in what way, was the world formed, O man? And what disaster will end it?\""
+      "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ਘਰੁ ੬",
+      "translation": "Dhanaasaree, Fifth Mehla, Sixth House:"
     },
     {
-      "gurmukhi": "ਹਉਮੈ ਵਿਚਿ ਜਗੁ ਉਪਜੈ ਪੁਰਖਾ ਨਾਮਿ ਵਿਸਰਿਐ ਦੁਖੁ ਪਾਈ ॥",
-      "translation": "In egotism, the world was formed, O man; forgetting the Naam, it suffers and dies."
+      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
     },
     {
-      "gurmukhi": "ਗੁਰਮੁਖਿ ਹੋਵੈ ਸੁ ਗਿਆਨੁ ਤਤੁ ਬੀਚਾਰੈ ਹਉਮੈ ਸਬਦਿ ਜਲਾਏ ॥",
-      "translation": "One who becomes Gurmukh contemplates the essence of spiritual wisdom; through the Shabad, he burns away his egotism."
+      "gurmukhi": "ਸੁਨਹੁ ਸੰਤ ਪਿਆਰੇ ਬਿਨਉ ਹਮਾਰੇ ਜੀਉ ॥",
+      "translation": "Listen, O Dear Beloved Saints, to my prayer."
     },
     {
-      "gurmukhi": "ਤਨੁ ਮਨੁ ਨਿਰਮਲੁ ਨਿਰਮਲ ਬਾਣੀ ਸਾਚੈ ਰਹੈ ਸਮਾਏ ॥",
-      "translation": "His body and mind become immaculate, through the Immaculate Bani of the Word. He remains absorbed in Truth."
+      "gurmukhi": "ਹਰਿ ਬਿਨੁ ਮੁਕਤਿ ਨ ਕਾਹੂ ਜੀਉ ॥ ਰਹਾਉ ॥",
+      "translation": "Without the Lord, no one is liberated. ||Pause||"
     },
     {
-      "gurmukhi": "ਨਾਮੇ ਨਾਮਿ ਰਹੈ ਬੈਰਾਗੀ ਸਾਚੁ ਰਖਿਆ ਉਰਿ ਧਾਰੇ ॥",
-      "translation": "Through the Naam, the Name of the Lord, he remains detached; he enshrines the True Name in his heart."
+      "gurmukhi": "ਮਨ ਨਿਰਮਲ ਕਰਮ ਕਰਿ ਤਾਰਨ ਤਰਨ ਹਰਿ ਅਵਰਿ ਜੰਜਾਲ ਤੇਰੈ ਕਾਹੂ ਨ ਕਾਮ ਜੀਉ ॥",
+      "translation": "O mind, do only deeds of purity; the Lord is the only boat to carry you across. Other entanglements shall be of no use to you."
     },
     {
-      "gurmukhi": "ਨਾਨਕ ਬਿਨੁ ਨਾਵੈ ਜੋਗੁ ਕਦੇ ਨ ਹੋਵੈ ਦੇਖਹੁ ਰਿਦੈ ਬੀਚਾਰੇ ॥੬੮॥",
-      "translation": "O Nanak, without the Name, Yoga is never attained; reflect upon this in your heart, and see. ||68||"
+      "gurmukhi": "ਜੀਵਨ ਦੇਵਾ ਪਾਰਬ੍ਰਹਮ ਸੇਵਾ ਇਹੁ ਉਪਦੇਸੁ ਮੋ ਕਉ ਗੁਰਿ ਦੀਨਾ ਜੀਉ ॥੧॥",
+      "translation": "True living is serving the Divine, Supreme Lord God; the Guru has imparted this teaching to me. ||1||"
     },
     {
-      "gurmukhi": "ਗੁਰਮੁਖਿ ਸਾਚੁ ਸਬਦੁ ਬੀਚਾਰੈ ਕੋਇ ॥",
-      "translation": "The Gurmukh is one who reflects upon the True Word of the Shabad."
+      "gurmukhi": "ਤਿਸੁ ਸਿਉ ਨ ਲਾਈਐ ਹੀਤੁ ਜਾ ਕੋ ਕਿਛੁ ਨਾਹੀ ਬੀਤੁ ਅੰਤ ਕੀ ਬਾਰ ਓਹੁ ਸੰਗਿ ਨ ਚਾਲੈ ॥",
+      "translation": "Do not fall in love with trivial things; in the end, they shall not go along with you."
     },
     {
-      "gurmukhi": "ਗੁਰਮੁਖਿ ਸਚੁ ਬਾਣੀ ਪਰਗਟੁ ਹੋਇ ॥",
-      "translation": "The True Bani is revealed to the Gurmukh."
+      "gurmukhi": "ਮਨਿ ਤਨਿ ਤੂ ਆਰਾਧ ਹਰਿ ਕੇ ਪ੍ਰੀਤਮ ਸਾਧ ਜਾ ਕੈ ਸੰਗਿ ਤੇਰੇ ਬੰਧਨ ਛੂਟੈ ॥੨॥",
+      "translation": "Worship and adore the Lord with your mind and body, O Beloved Saint of the Lord; in the Saadh Sangat, the Company of the Holy, you shall be released from bondage. ||2||"
     },
     {
-      "gurmukhi": "ਗੁਰਮੁਖਿ ਮਨੁ ਭੀਜੈ ਵਿਰਲਾ ਬੂਝੈ ਕੋਇ ॥",
-      "translation": "The mind of the Gurmukh is drenched with the Lord's Love, but how rare are those who understand this."
+      "gurmukhi": "ਗਹੁ ਪਾਰਬ੍ਰਹਮ ਸਰਨ ਹਿਰਦੈ ਕਮਲ ਚਰਨ ਅਵਰ ਆਸ ਕਛੁ ਪਟਲੁ ਨ ਕੀਜੈ ॥",
+      "translation": "In your heart, hold fast to the Sanctuary of the lotus feet of the Supreme Lord God; do not place your hopes in any other support."
     },
     {
-      "gurmukhi": "ਗੁਰਮੁਖਿ ਨਿਜ ਘਰਿ ਵਾਸਾ ਹੋਇ ॥",
-      "translation": "The Gurmukh dwells in the home of the self, deep within."
-    },
-    {
-      "gurmukhi": "ਗੁਰਮੁਖਿ ਜੋਗੀ ਜੁਗਤਿ ਪਛਾਣੈ ॥",
-      "translation": "The Gurmukh realizes the Way of Yoga."
-    },
-    {
-      "gurmukhi": "ਗੁਰਮੁਖਿ ਨਾਨਕ ਏਕੋ ਜਾਣੈ ॥੬੯॥",
-      "translation": "O Nanak, the Gurmukh knows the One Lord alone. ||69||"
+      "gurmukhi": "ਸੋਈ ਭਗਤੁ ਗਿਆਨੀ ਧਿਆਨੀ ਤਪਾ ਸੋਈ ਨਾਨਕ ਜਾ ਕਉ ਕਿਰਪਾ ਕੀਜੈ ॥੩॥੧॥੨੯॥",
+      "translation": "He alone is a devotee, spiritually wise, a meditator, and a penitent, O Nanak, who is blessed by the Lord's Mercy. ||3||1||29||"
     }
   ],
-  "updated": "2026-11-07T07:27:29.747Z"
+  "updated": "2026-11-08T07:38:04.487Z"
 }
