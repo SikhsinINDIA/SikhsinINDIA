@@ -1,60 +1,60 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-11-09",
-  "dateDisplay": "9 November 2026",
-  "ang": 673,
+  "date": "2026-11-10",
+  "dateDisplay": "10 November 2026",
+  "ang": 678,
   "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
   "raagEnglish": "Raag Dhanaasree",
   "writerEnglish": "Guru Arjan Dev Ji",
   "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
   "titleEnglish": "Dhanaasaree, Fifth Mehla:",
-  "verseGurmukhi": "ਪਾਨੀ ਪਖਾ ਪੀਸਉ ਸੰਤ ਆਗੈ ਗੁਣ ਗੋਵਿੰਦ ਜਸੁ ਗਾਈ ॥",
-  "verseTranslation": "I carry the water, wave the fan, and grind the corn for the Saints; I sing the Glorious Praises of the Lord of the Universe.",
+  "verseGurmukhi": "ਜਿਨਿ ਤੁਮ ਭੇਜੇ ਤਿਨਹਿ ਬੁਲਾਏ ਸੁਖ ਸਹਜ ਸੇਤੀ ਘਰਿ ਆਉ ॥",
+  "verseTranslation": "The One who sent you, has now recalled you; return to your home now in peace and pleasure.",
   "verses": [
     {
       "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
       "translation": "Dhanaasaree, Fifth Mehla:"
     },
     {
-      "gurmukhi": "ਪਾਨੀ ਪਖਾ ਪੀਸਉ ਸੰਤ ਆਗੈ ਗੁਣ ਗੋਵਿੰਦ ਜਸੁ ਗਾਈ ॥",
-      "translation": "I carry the water, wave the fan, and grind the corn for the Saints; I sing the Glorious Praises of the Lord of the Universe."
+      "gurmukhi": "ਜਿਨਿ ਤੁਮ ਭੇਜੇ ਤਿਨਹਿ ਬੁਲਾਏ ਸੁਖ ਸਹਜ ਸੇਤੀ ਘਰਿ ਆਉ ॥",
+      "translation": "The One who sent you, has now recalled you; return to your home now in peace and pleasure."
     },
     {
-      "gurmukhi": "ਸਾਸਿ ਸਾਸਿ ਮਨੁ ਨਾਮੁ ਸਮੑਾਰੈ ਇਹੁ ਬਿਸ੍ਰਾਮ ਨਿਧਿ ਪਾਈ ॥੧॥",
-      "translation": "With each and every breath, my mind remembers the Naam, the Name of the Lord; in this way, it finds the treasure of peace. ||1||"
+      "gurmukhi": "ਅਨਦ ਮੰਗਲ ਗੁਨ ਗਾਉ ਸਹਜ ਧੁਨਿ ਨਿਹਚਲ ਰਾਜੁ ਕਮਾਉ ॥੧॥",
+      "translation": "In bliss and ecstasy, sing His Glorious Praises; by this celestial tune, you shall acquire your everlasting kingdom. ||1||"
     },
     {
-      "gurmukhi": "ਤੁਮੑ ਕਰਹੁ ਦਇਆ ਮੇਰੇ ਸਾਈ ॥",
-      "translation": "Have pity on me, O my Lord and Master."
+      "gurmukhi": "ਤੁਮ ਘਰਿ ਆਵਹੁ ਮੇਰੇ ਮੀਤ ॥",
+      "translation": "Come back to your home, O my friend."
     },
     {
-      "gurmukhi": "ਐਸੀ ਮਤਿ ਦੀਜੈ ਮੇਰੇ ਠਾਕੁਰ ਸਦਾ ਸਦਾ ਤੁਧੁ ਧਿਆਈ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "Bless me with such understanding, O my Lord and Master, that I may forever and ever meditate on You. ||1||Pause||"
+      "gurmukhi": "ਤੁਮਰੇ ਦੋਖੀ ਹਰਿ ਆਪਿ ਨਿਵਾਰੇ ਅਪਦਾ ਭਈ ਬਿਤੀਤ ॥ ਰਹਾਉ ॥",
+      "translation": "The Lord Himself has eliminated your enemies, and your misfortunes are past. ||Pause||"
     },
     {
-      "gurmukhi": "ਤੁਮੑਰੀ ਕ੍ਰਿਪਾ ਤੇ ਮੋਹੁ ਮਾਨੁ ਛੂਟੈ ਬਿਨਸਿ ਜਾਇ ਭਰਮਾਈ ॥",
-      "translation": "By Your Grace, emotional attachment and egotism are eradicated, and doubt is dispelled."
+      "gurmukhi": "ਪ੍ਰਗਟ ਕੀਨੇ ਪ੍ਰਭ ਕਰਨੇਹਾਰੇ ਨਾਸਨ ਭਾਜਨ ਥਾਕੇ ॥",
+      "translation": "God, the Creator Lord, has glorified you, and your running and rushing around has ended."
     },
     {
-      "gurmukhi": "ਅਨਦ ਰੂਪੁ ਰਵਿਓ ਸਭ ਮਧੇ ਜਤ ਕਤ ਪੇਖਉ ਜਾਈ ॥੨॥",
-      "translation": "The Lord, the embodiment of bliss, is pervading and permeating in all; wherever I go, there I see Him. ||2||"
+      "gurmukhi": "ਘਰਿ ਮੰਗਲ ਵਾਜਹਿ ਨਿਤ ਵਾਜੇ ਅਪੁਨੈ ਖਸਮਿ ਨਿਵਾਜੇ ॥੨॥",
+      "translation": "In your home, there is rejoicing; the musical instruments continually play, and your Husband Lord has exalted you. ||2||"
     },
     {
-      "gurmukhi": "ਤੁਮੑ ਦਇਆਲ ਕਿਰਪਾਲ ਕ੍ਰਿਪਾ ਨਿਧਿ ਪਤਿਤ ਪਾਵਨ ਗੋਸਾਈ ॥",
-      "translation": "You are kind and compassionate, the treasure of mercy, the Purifier of sinners, Lord of the world."
+      "gurmukhi": "ਅਸਥਿਰ ਰਹਹੁ ਡੋਲਹੁ ਮਤ ਕਬਹੂ ਗੁਰ ਕੈ ਬਚਨਿ ਅਧਾਰਿ ॥",
+      "translation": "Remain firm and steady, and do not ever waver; take the Guru's Word as your Support."
     },
     {
-      "gurmukhi": "ਕੋਟਿ ਸੂਖ ਆਨੰਦ ਰਾਜ ਪਾਏ ਮੁਖ ਤੇ ਨਿਮਖ ਬੁਲਾਈ ॥੩॥",
-      "translation": "I obtain millions of joys, comforts and kingdoms, if You inspire me to chant Your Name with my mouth, even for an instant. ||3||"
+      "gurmukhi": "ਜੈ ਜੈ ਕਾਰੁ ਸਗਲ ਭੂ ਮੰਡਲ ਮੁਖ ਊਜਲ ਦਰਬਾਰ ॥੩॥",
+      "translation": "You shall be applauded and congratulated all over the world, and your face shall be radiant in the Court of the Lord. ||3||"
     },
     {
-      "gurmukhi": "ਜਾਪ ਤਾਪ ਭਗਤਿ ਸਾ ਪੂਰੀ ਜੋ ਪ੍ਰਭ ਕੈ ਮਨਿ ਭਾਈ ॥",
-      "translation": "That alone is perfect (chanting, meditation, penance, and devotional worship service) which is pleasing to God's Mind."
+      "gurmukhi": "ਜਿਨ ਕੇ ਜੀਅ ਤਿਨੈ ਹੀ ਫੇਰੇ ਆਪੇ ਭਇਆ ਸਹਾਈ ॥",
+      "translation": "All beings belong to Him; He Himself transforms them, and He Himself becomes their help and support."
     },
     {
-      "gurmukhi": "ਨਾਮੁ ਜਪਤ ਤ੍ਰਿਸਨਾ ਸਭ ਬੁਝੀ ਹੈ ਨਾਨਕ ਤ੍ਰਿਪਤਿ ਅਘਾਈ ॥੪॥੧੦॥",
-      "translation": "Chanting the Naam, all thirst and desire is satisfied; Nanak is satisfied and fulfilled. ||4||10||"
+      "gurmukhi": "ਅਚਰਜੁ ਕੀਆ ਕਰਨੈਹਾਰੈ ਨਾਨਕ ਸਚੁ ਵਡਿਆਈ ॥੪॥੪॥੨੮॥",
+      "translation": "The Creator Lord has worked a wondrous miracle; O Nanak, His glorious greatness is true. ||4||4||28||"
     }
   ],
-  "updated": "2026-11-09T08:16:32.406Z"
+  "updated": "2026-11-10T08:35:15.615Z"
 };
