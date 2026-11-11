@@ -1,60 +1,44 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-11-10",
-  "dateDisplay": "10 November 2026",
-  "ang": 678,
+  "date": "2026-11-11",
+  "dateDisplay": "11 November 2026",
+  "ang": 680,
   "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
   "raagEnglish": "Raag Dhanaasree",
   "writerEnglish": "Guru Arjan Dev Ji",
   "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
   "titleEnglish": "Dhanaasaree, Fifth Mehla:",
-  "verseGurmukhi": "ਜਿਨਿ ਤੁਮ ਭੇਜੇ ਤਿਨਹਿ ਬੁਲਾਏ ਸੁਖ ਸਹਜ ਸੇਤੀ ਘਰਿ ਆਉ ॥",
-  "verseTranslation": "The One who sent you, has now recalled you; return to your home now in peace and pleasure.",
+  "verseGurmukhi": "ਜਤਨ ਕਰੈ ਮਾਨੁਖ ਡਹਕਾਵੈ ਓਹੁ ਅੰਤਰਜਾਮੀ ਜਾਨੈ ॥",
+  "verseTranslation": "People try to deceive others, but the Inner-knower, the Searcher of hearts, knows everything.",
   "verses": [
     {
       "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
       "translation": "Dhanaasaree, Fifth Mehla:"
     },
     {
-      "gurmukhi": "ਜਿਨਿ ਤੁਮ ਭੇਜੇ ਤਿਨਹਿ ਬੁਲਾਏ ਸੁਖ ਸਹਜ ਸੇਤੀ ਘਰਿ ਆਉ ॥",
-      "translation": "The One who sent you, has now recalled you; return to your home now in peace and pleasure."
+      "gurmukhi": "ਜਤਨ ਕਰੈ ਮਾਨੁਖ ਡਹਕਾਵੈ ਓਹੁ ਅੰਤਰਜਾਮੀ ਜਾਨੈ ॥",
+      "translation": "People try to deceive others, but the Inner-knower, the Searcher of hearts, knows everything."
     },
     {
-      "gurmukhi": "ਅਨਦ ਮੰਗਲ ਗੁਨ ਗਾਉ ਸਹਜ ਧੁਨਿ ਨਿਹਚਲ ਰਾਜੁ ਕਮਾਉ ॥੧॥",
-      "translation": "In bliss and ecstasy, sing His Glorious Praises; by this celestial tune, you shall acquire your everlasting kingdom. ||1||"
+      "gurmukhi": "ਪਾਪ ਕਰੇ ਕਰਿ ਮੂਕਰਿ ਪਾਵੈ ਭੇਖ ਕਰੈ ਨਿਰਬਾਨੈ ॥੧॥",
+      "translation": "They commit sins, and then deny them, while they pretend to be in Nirvaanaa. ||1||"
     },
     {
-      "gurmukhi": "ਤੁਮ ਘਰਿ ਆਵਹੁ ਮੇਰੇ ਮੀਤ ॥",
-      "translation": "Come back to your home, O my friend."
+      "gurmukhi": "ਜਾਨਤ ਦੂਰਿ ਤੁਮਹਿ ਪ੍ਰਭ ਨੇਰਿ ॥",
+      "translation": "They believe that You are far away, but You, O God, are near at hand."
     },
     {
-      "gurmukhi": "ਤੁਮਰੇ ਦੋਖੀ ਹਰਿ ਆਪਿ ਨਿਵਾਰੇ ਅਪਦਾ ਭਈ ਬਿਤੀਤ ॥ ਰਹਾਉ ॥",
-      "translation": "The Lord Himself has eliminated your enemies, and your misfortunes are past. ||Pause||"
+      "gurmukhi": "ਉਤ ਤਾਕੈ ਉਤ ਤੇ ਉਤ ਪੇਖੈ ਆਵੈ ਲੋਭੀ ਫੇਰਿ ॥ ਰਹਾਉ ॥",
+      "translation": "Looking around, this way and that, the greedy people come and go. ||Pause||"
     },
     {
-      "gurmukhi": "ਪ੍ਰਗਟ ਕੀਨੇ ਪ੍ਰਭ ਕਰਨੇਹਾਰੇ ਨਾਸਨ ਭਾਜਨ ਥਾਕੇ ॥",
-      "translation": "God, the Creator Lord, has glorified you, and your running and rushing around has ended."
+      "gurmukhi": "ਜਬ ਲਗੁ ਤੁਟੈ ਨਾਹੀ ਮਨ ਭਰਮਾ ਤਬ ਲਗੁ ਮੁਕਤੁ ਨ ਕੋਈ ॥",
+      "translation": "As long as the doubts of the mind are not removed, liberation is not found."
     },
     {
-      "gurmukhi": "ਘਰਿ ਮੰਗਲ ਵਾਜਹਿ ਨਿਤ ਵਾਜੇ ਅਪੁਨੈ ਖਸਮਿ ਨਿਵਾਜੇ ॥੨॥",
-      "translation": "In your home, there is rejoicing; the musical instruments continually play, and your Husband Lord has exalted you. ||2||"
-    },
-    {
-      "gurmukhi": "ਅਸਥਿਰ ਰਹਹੁ ਡੋਲਹੁ ਮਤ ਕਬਹੂ ਗੁਰ ਕੈ ਬਚਨਿ ਅਧਾਰਿ ॥",
-      "translation": "Remain firm and steady, and do not ever waver; take the Guru's Word as your Support."
-    },
-    {
-      "gurmukhi": "ਜੈ ਜੈ ਕਾਰੁ ਸਗਲ ਭੂ ਮੰਡਲ ਮੁਖ ਊਜਲ ਦਰਬਾਰ ॥੩॥",
-      "translation": "You shall be applauded and congratulated all over the world, and your face shall be radiant in the Court of the Lord. ||3||"
-    },
-    {
-      "gurmukhi": "ਜਿਨ ਕੇ ਜੀਅ ਤਿਨੈ ਹੀ ਫੇਰੇ ਆਪੇ ਭਇਆ ਸਹਾਈ ॥",
-      "translation": "All beings belong to Him; He Himself transforms them, and He Himself becomes their help and support."
-    },
-    {
-      "gurmukhi": "ਅਚਰਜੁ ਕੀਆ ਕਰਨੈਹਾਰੈ ਨਾਨਕ ਸਚੁ ਵਡਿਆਈ ॥੪॥੪॥੨੮॥",
-      "translation": "The Creator Lord has worked a wondrous miracle; O Nanak, His glorious greatness is true. ||4||4||28||"
+      "gurmukhi": "ਕਹੁ ਨਾਨਕ ਦਇਆਲ ਸੁਆਮੀ ਸੰਤੁ ਭਗਤੁ ਜਨੁ ਸੋਈ ॥੨॥੫॥੩੬॥",
+      "translation": "Says Nanak, he alone is a Saint, a devotee, and a humble servant of the Lord, to whom the Lord and Master is merciful. ||2||5||36||"
     }
   ],
-  "updated": "2026-11-10T08:35:15.615Z"
+  "updated": "2026-11-11T07:56:10.279Z"
 };
