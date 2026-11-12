@@ -1,44 +1,44 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-11-11",
-  "dateDisplay": "11 November 2026",
-  "ang": 680,
+  "date": "2026-11-12",
+  "dateDisplay": "12 November 2026",
+  "ang": 682,
   "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
   "raagEnglish": "Raag Dhanaasree",
   "writerEnglish": "Guru Arjan Dev Ji",
   "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
   "titleEnglish": "Dhanaasaree, Fifth Mehla:",
-  "verseGurmukhi": "ਜਤਨ ਕਰੈ ਮਾਨੁਖ ਡਹਕਾਵੈ ਓਹੁ ਅੰਤਰਜਾਮੀ ਜਾਨੈ ॥",
-  "verseTranslation": "People try to deceive others, but the Inner-knower, the Searcher of hearts, knows everything.",
+  "verseGurmukhi": "ਜਿਸ ਕਉ ਬਿਸਰੈ ਪ੍ਰਾਨਪਤਿ ਦਾਤਾ ਸੋਈ ਗਨਹੁ ਅਭਾਗਾ ॥",
+  "verseTranslation": "One who forgets the Lord of life, the Great Giver - know that he is most unfortunate.",
   "verses": [
     {
       "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
       "translation": "Dhanaasaree, Fifth Mehla:"
     },
     {
-      "gurmukhi": "ਜਤਨ ਕਰੈ ਮਾਨੁਖ ਡਹਕਾਵੈ ਓਹੁ ਅੰਤਰਜਾਮੀ ਜਾਨੈ ॥",
-      "translation": "People try to deceive others, but the Inner-knower, the Searcher of hearts, knows everything."
+      "gurmukhi": "ਜਿਸ ਕਉ ਬਿਸਰੈ ਪ੍ਰਾਨਪਤਿ ਦਾਤਾ ਸੋਈ ਗਨਹੁ ਅਭਾਗਾ ॥",
+      "translation": "One who forgets the Lord of life, the Great Giver - know that he is most unfortunate."
     },
     {
-      "gurmukhi": "ਪਾਪ ਕਰੇ ਕਰਿ ਮੂਕਰਿ ਪਾਵੈ ਭੇਖ ਕਰੈ ਨਿਰਬਾਨੈ ॥੧॥",
-      "translation": "They commit sins, and then deny them, while they pretend to be in Nirvaanaa. ||1||"
+      "gurmukhi": "ਚਰਨ ਕਮਲ ਜਾ ਕਾ ਮਨੁ ਰਾਗਿਓ ਅਮਿਅ ਸਰੋਵਰ ਪਾਗਾ ॥੧॥",
+      "translation": "One whose mind is in love with the Lord's lotus feet, obtains the pool of ambrosial nectar. ||1||"
     },
     {
-      "gurmukhi": "ਜਾਨਤ ਦੂਰਿ ਤੁਮਹਿ ਪ੍ਰਭ ਨੇਰਿ ॥",
-      "translation": "They believe that You are far away, but You, O God, are near at hand."
+      "gurmukhi": "ਤੇਰਾ ਜਨੁ ਰਾਮ ਨਾਮ ਰੰਗਿ ਜਾਗਾ ॥",
+      "translation": "Your humble servant awakes in the Love of the Lord's Name."
     },
     {
-      "gurmukhi": "ਉਤ ਤਾਕੈ ਉਤ ਤੇ ਉਤ ਪੇਖੈ ਆਵੈ ਲੋਭੀ ਫੇਰਿ ॥ ਰਹਾਉ ॥",
-      "translation": "Looking around, this way and that, the greedy people come and go. ||Pause||"
+      "gurmukhi": "ਆਲਸੁ ਛੀਜਿ ਗਇਆ ਸਭੁ ਤਨ ਤੇ ਪ੍ਰੀਤਮ ਸਿਉ ਮਨੁ ਲਾਗਾ ॥ ਰਹਾਉ ॥",
+      "translation": "All laziness has departed from his body, and his mind is attached to the Beloved Lord. ||Pause||"
     },
     {
-      "gurmukhi": "ਜਬ ਲਗੁ ਤੁਟੈ ਨਾਹੀ ਮਨ ਭਰਮਾ ਤਬ ਲਗੁ ਮੁਕਤੁ ਨ ਕੋਈ ॥",
-      "translation": "As long as the doubts of the mind are not removed, liberation is not found."
+      "gurmukhi": "ਜਹ ਜਹ ਪੇਖਉ ਤਹ ਨਾਰਾਇਣ ਸਗਲ ਘਟਾ ਮਹਿ ਤਾਗਾ ॥",
+      "translation": "Wherever I look, the Lord is there; He is the string, upon which all hearts are strung."
     },
     {
-      "gurmukhi": "ਕਹੁ ਨਾਨਕ ਦਇਆਲ ਸੁਆਮੀ ਸੰਤੁ ਭਗਤੁ ਜਨੁ ਸੋਈ ॥੨॥੫॥੩੬॥",
-      "translation": "Says Nanak, he alone is a Saint, a devotee, and a humble servant of the Lord, to whom the Lord and Master is merciful. ||2||5||36||"
+      "gurmukhi": "ਨਾਮ ਉਦਕੁ ਪੀਵਤ ਜਨ ਨਾਨਕ ਤਿਆਗੇ ਸਭਿ ਅਨੁਰਾਗਾ ॥੨॥੧੬॥੪੭॥",
+      "translation": "Drinking in the water of the Naam, servant Nanak has renounced all other loves. ||2||16||47||"
     }
   ],
-  "updated": "2026-11-11T07:56:10.279Z"
+  "updated": "2026-11-12T08:33:42.061Z"
 };
