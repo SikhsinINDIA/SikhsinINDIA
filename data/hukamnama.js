@@ -1,7 +1,7 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-11-12",
-  "dateDisplay": "12 November 2026",
+  "date": "2026-11-13",
+  "dateDisplay": "13 November 2026",
   "ang": 682,
   "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
   "raagEnglish": "Raag Dhanaasree",
@@ -40,5 +40,5 @@ window.HUKAMNAMA = {
       "translation": "Drinking in the water of the Naam, servant Nanak has renounced all other loves. ||2||16||47||"
     }
   ],
-  "updated": "2026-11-12T08:33:42.061Z"
+  "updated": "2026-11-13T08:20:18.123Z"
 };
