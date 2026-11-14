@@ -1,43 +1,39 @@
 {
-  "date": "2026-11-13",
-  "dateDisplay": "13 November 2026",
-  "ang": 682,
+  "date": "2026-11-14",
+  "dateDisplay": "14 November 2026",
+  "ang": 692,
   "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
   "raagEnglish": "Raag Dhanaasree",
-  "writerEnglish": "Guru Arjan Dev Ji",
-  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
-  "titleEnglish": "Dhanaasaree, Fifth Mehla:",
-  "verseGurmukhi": "ਜਿਸ ਕਉ ਬਿਸਰੈ ਪ੍ਰਾਨਪਤਿ ਦਾਤਾ ਸੋਈ ਗਨਹੁ ਅਭਾਗਾ ॥",
-  "verseTranslation": "One who forgets the Lord of life, the Great Giver - know that he is most unfortunate.",
+  "writerEnglish": "Bhagat Kabeer Ji",
+  "titleGurmukhi": "ਜੋ ਜਨੁ ਭਾਉ ਭਗਤਿ ਕਛੁ ਜਾਨੈ ਤਾ ਕਉ ਅਚਰਜੁ ਕਾਹੋ ॥",
+  "titleEnglish": "That humble being, who knows even a little about loving devotional worship - what surprises are there for him?",
+  "verseGurmukhi": "ਜਿਉ ਜਲੁ ਜਲ ਮਹਿ ਪੈਸਿ ਨ ਨਿਕਸੈ ਤਿਉ ਢੁਰਿ ਮਿਲਿਓ ਜੁਲਾਹੋ ॥੧॥",
+  "verseTranslation": "Like water, dripping into water, which cannot be separated out again, so is the weaver Kabeer, with softened heart, merged into the Lord. ||1||",
   "verses": [
     {
-      "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
-      "translation": "Dhanaasaree, Fifth Mehla:"
+      "gurmukhi": "ਜੋ ਜਨੁ ਭਾਉ ਭਗਤਿ ਕਛੁ ਜਾਨੈ ਤਾ ਕਉ ਅਚਰਜੁ ਕਾਹੋ ॥",
+      "translation": "That humble being, who knows even a little about loving devotional worship - what surprises are there for him?"
     },
     {
-      "gurmukhi": "ਜਿਸ ਕਉ ਬਿਸਰੈ ਪ੍ਰਾਨਪਤਿ ਦਾਤਾ ਸੋਈ ਗਨਹੁ ਅਭਾਗਾ ॥",
-      "translation": "One who forgets the Lord of life, the Great Giver - know that he is most unfortunate."
+      "gurmukhi": "ਜਿਉ ਜਲੁ ਜਲ ਮਹਿ ਪੈਸਿ ਨ ਨਿਕਸੈ ਤਿਉ ਢੁਰਿ ਮਿਲਿਓ ਜੁਲਾਹੋ ॥੧॥",
+      "translation": "Like water, dripping into water, which cannot be separated out again, so is the weaver Kabeer, with softened heart, merged into the Lord. ||1||"
     },
     {
-      "gurmukhi": "ਚਰਨ ਕਮਲ ਜਾ ਕਾ ਮਨੁ ਰਾਗਿਓ ਅਮਿਅ ਸਰੋਵਰ ਪਾਗਾ ॥੧॥",
-      "translation": "One whose mind is in love with the Lord's lotus feet, obtains the pool of ambrosial nectar. ||1||"
+      "gurmukhi": "ਹਰਿ ਕੇ ਲੋਗਾ ਮੈ ਤਉ ਮਤਿ ਕਾ ਭੋਰਾ ॥",
+      "translation": "O people of the Lord, I am just a simple-minded fool."
     },
     {
-      "gurmukhi": "ਤੇਰਾ ਜਨੁ ਰਾਮ ਨਾਮ ਰੰਗਿ ਜਾਗਾ ॥",
-      "translation": "Your humble servant awakes in the Love of the Lord's Name."
+      "gurmukhi": "ਜਉ ਤਨੁ ਕਾਸੀ ਤਜਹਿ ਕਬੀਰਾ ਰਮਈਐ ਕਹਾ ਨਿਹੋਰਾ ॥੧॥ ਰਹਾਉ ॥",
+      "translation": "If Kabeer were to leave his body at Benares, and so liberate himself, what obligation would he have to the Lord? ||1||Pause||"
     },
     {
-      "gurmukhi": "ਆਲਸੁ ਛੀਜਿ ਗਇਆ ਸਭੁ ਤਨ ਤੇ ਪ੍ਰੀਤਮ ਸਿਉ ਮਨੁ ਲਾਗਾ ॥ ਰਹਾਉ ॥",
-      "translation": "All laziness has departed from his body, and his mind is attached to the Beloved Lord. ||Pause||"
+      "gurmukhi": "ਕਹਤੁ ਕਬੀਰੁ ਸੁਨਹੁ ਰੇ ਲੋਈ ਭਰਮਿ ਨ ਭੂਲਹੁ ਕੋਈ ॥",
+      "translation": "Says Kabeer, listen, O people - do not be deluded by doubt."
     },
     {
-      "gurmukhi": "ਜਹ ਜਹ ਪੇਖਉ ਤਹ ਨਾਰਾਇਣ ਸਗਲ ਘਟਾ ਮਹਿ ਤਾਗਾ ॥",
-      "translation": "Wherever I look, the Lord is there; He is the string, upon which all hearts are strung."
-    },
-    {
-      "gurmukhi": "ਨਾਮ ਉਦਕੁ ਪੀਵਤ ਜਨ ਨਾਨਕ ਤਿਆਗੇ ਸਭਿ ਅਨੁਰਾਗਾ ॥੨॥੧੬॥੪੭॥",
-      "translation": "Drinking in the water of the Naam, servant Nanak has renounced all other loves. ||2||16||47||"
+      "gurmukhi": "ਕਿਆ ਕਾਸੀ ਕਿਆ ਊਖਰੁ ਮਗਹਰੁ ਰਾਮੁ ਰਿਦੈ ਜਉ ਹੋਈ ॥੨॥੩॥",
+      "translation": "What is the difference between Benares and the barren land of Maghar, if the Lord is within one's heart? ||2||3||"
     }
   ],
-  "updated": "2026-11-13T08:20:18.123Z"
+  "updated": "2026-11-14T07:45:19.697Z"
 }
