@@ -1,40 +1,44 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-11-14",
-  "dateDisplay": "14 November 2026",
-  "ang": 692,
+  "date": "2026-11-16",
+  "dateDisplay": "16 November 2026",
+  "ang": 680,
   "raagGurmukhi": "ਰਾਗੁ ਧਨਾਸਰੀ",
   "raagEnglish": "Raag Dhanaasree",
-  "writerEnglish": "Bhagat Kabeer Ji",
-  "titleGurmukhi": "ਜੋ ਜਨੁ ਭਾਉ ਭਗਤਿ ਕਛੁ ਜਾਨੈ ਤਾ ਕਉ ਅਚਰਜੁ ਕਾਹੋ ॥",
-  "titleEnglish": "That humble being, who knows even a little about loving devotional worship - what surprises are there for him?",
-  "verseGurmukhi": "ਜਿਉ ਜਲੁ ਜਲ ਮਹਿ ਪੈਸਿ ਨ ਨਿਕਸੈ ਤਿਉ ਢੁਰਿ ਮਿਲਿਓ ਜੁਲਾਹੋ ॥੧॥",
-  "verseTranslation": "Like water, dripping into water, which cannot be separated out again, so is the weaver Kabeer, with softened heart, merged into the Lord. ||1||",
+  "writerEnglish": "Guru Arjan Dev Ji",
+  "titleGurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
+  "titleEnglish": "Dhanaasaree, Fifth Mehla:",
+  "verseGurmukhi": "ਜਤਨ ਕਰੈ ਮਾਨੁਖ ਡਹਕਾਵੈ ਓਹੁ ਅੰਤਰਜਾਮੀ ਜਾਨੈ ॥",
+  "verseTranslation": "People try to deceive others, but the Inner-knower, the Searcher of hearts, knows everything.",
   "verses": [
     {
-      "gurmukhi": "ਜੋ ਜਨੁ ਭਾਉ ਭਗਤਿ ਕਛੁ ਜਾਨੈ ਤਾ ਕਉ ਅਚਰਜੁ ਕਾਹੋ ॥",
-      "translation": "That humble being, who knows even a little about loving devotional worship - what surprises are there for him?"
+      "gurmukhi": "ਧਨਾਸਰੀ ਮਹਲਾ ੫ ॥",
+      "translation": "Dhanaasaree, Fifth Mehla:"
     },
     {
-      "gurmukhi": "ਜਿਉ ਜਲੁ ਜਲ ਮਹਿ ਪੈਸਿ ਨ ਨਿਕਸੈ ਤਿਉ ਢੁਰਿ ਮਿਲਿਓ ਜੁਲਾਹੋ ॥੧॥",
-      "translation": "Like water, dripping into water, which cannot be separated out again, so is the weaver Kabeer, with softened heart, merged into the Lord. ||1||"
+      "gurmukhi": "ਜਤਨ ਕਰੈ ਮਾਨੁਖ ਡਹਕਾਵੈ ਓਹੁ ਅੰਤਰਜਾਮੀ ਜਾਨੈ ॥",
+      "translation": "People try to deceive others, but the Inner-knower, the Searcher of hearts, knows everything."
     },
     {
-      "gurmukhi": "ਹਰਿ ਕੇ ਲੋਗਾ ਮੈ ਤਉ ਮਤਿ ਕਾ ਭੋਰਾ ॥",
-      "translation": "O people of the Lord, I am just a simple-minded fool."
+      "gurmukhi": "ਪਾਪ ਕਰੇ ਕਰਿ ਮੂਕਰਿ ਪਾਵੈ ਭੇਖ ਕਰੈ ਨਿਰਬਾਨੈ ॥੧॥",
+      "translation": "They commit sins, and then deny them, while they pretend to be in Nirvaanaa. ||1||"
     },
     {
-      "gurmukhi": "ਜਉ ਤਨੁ ਕਾਸੀ ਤਜਹਿ ਕਬੀਰਾ ਰਮਈਐ ਕਹਾ ਨਿਹੋਰਾ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "If Kabeer were to leave his body at Benares, and so liberate himself, what obligation would he have to the Lord? ||1||Pause||"
+      "gurmukhi": "ਜਾਨਤ ਦੂਰਿ ਤੁਮਹਿ ਪ੍ਰਭ ਨੇਰਿ ॥",
+      "translation": "They believe that You are far away, but You, O God, are near at hand."
     },
     {
-      "gurmukhi": "ਕਹਤੁ ਕਬੀਰੁ ਸੁਨਹੁ ਰੇ ਲੋਈ ਭਰਮਿ ਨ ਭੂਲਹੁ ਕੋਈ ॥",
-      "translation": "Says Kabeer, listen, O people - do not be deluded by doubt."
+      "gurmukhi": "ਉਤ ਤਾਕੈ ਉਤ ਤੇ ਉਤ ਪੇਖੈ ਆਵੈ ਲੋਭੀ ਫੇਰਿ ॥ ਰਹਾਉ ॥",
+      "translation": "Looking around, this way and that, the greedy people come and go. ||Pause||"
     },
     {
-      "gurmukhi": "ਕਿਆ ਕਾਸੀ ਕਿਆ ਊਖਰੁ ਮਗਹਰੁ ਰਾਮੁ ਰਿਦੈ ਜਉ ਹੋਈ ॥੨॥੩॥",
-      "translation": "What is the difference between Benares and the barren land of Maghar, if the Lord is within one's heart? ||2||3||"
+      "gurmukhi": "ਜਬ ਲਗੁ ਤੁਟੈ ਨਾਹੀ ਮਨ ਭਰਮਾ ਤਬ ਲਗੁ ਮੁਕਤੁ ਨ ਕੋਈ ॥",
+      "translation": "As long as the doubts of the mind are not removed, liberation is not found."
+    },
+    {
+      "gurmukhi": "ਕਹੁ ਨਾਨਕ ਦਇਆਲ ਸੁਆਮੀ ਸੰਤੁ ਭਗਤੁ ਜਨੁ ਸੋਈ ॥੨॥੫॥੩੬॥",
+      "translation": "Says Nanak, he alone is a Saint, a devotee, and a humble servant of the Lord, to whom the Lord and Master is merciful. ||2||5||36||"
     }
   ],
-  "updated": "2026-11-15T08:02:06.972Z"
+  "updated": "2026-11-16T08:11:40.636Z"
 };
