@@ -1,80 +1,60 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-11-17",
-  "dateDisplay": "17 November 2026",
-  "ang": 604,
+  "date": "2026-11-18",
+  "dateDisplay": "18 November 2026",
+  "ang": 609,
   "raagGurmukhi": "ਰਾਗੁ ਸੋਰਠਿ",
   "raagEnglish": "Raag Sorath",
-  "writerEnglish": "Guru Raam Daas Ji",
-  "titleGurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੪ ਘਰੁ ੧",
-  "titleEnglish": "Sorat'h, Fourth Mehla, First House:",
-  "verseGurmukhi": "ਆਪੇ ਆਪਿ ਵਰਤਦਾ ਪਿਆਰਾ ਆਪੇ ਆਪਿ ਅਪਾਹੁ ॥",
-  "verseTranslation": "My Beloved Lord Himself pervades and permeates all; He Himself is, all by Himself.",
+  "writerEnglish": "Guru Arjan Dev Ji",
+  "titleGurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੫ ॥",
+  "titleEnglish": "Sorat'h, Fifth Mehla:",
+  "verseGurmukhi": "ਗੁਰੁ ਪੂਰਾ ਭੇਟਿਓ ਵਡਭਾਗੀ ਮਨਹਿ ਭਇਆ ਪਰਗਾਸਾ ॥",
+  "verseTranslation": "I met the perfect Guru, by great good fortune, and my mind has been enlightened.",
   "verses": [
     {
-      "gurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੪ ਘਰੁ ੧",
-      "translation": "Sorat'h, Fourth Mehla, First House:"
+      "gurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੫ ॥",
+      "translation": "Sorat'h, Fifth Mehla:"
     },
     {
-      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
-      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
+      "gurmukhi": "ਗੁਰੁ ਪੂਰਾ ਭੇਟਿਓ ਵਡਭਾਗੀ ਮਨਹਿ ਭਇਆ ਪਰਗਾਸਾ ॥",
+      "translation": "I met the perfect Guru, by great good fortune, and my mind has been enlightened."
     },
     {
-      "gurmukhi": "ਆਪੇ ਆਪਿ ਵਰਤਦਾ ਪਿਆਰਾ ਆਪੇ ਆਪਿ ਅਪਾਹੁ ॥",
-      "translation": "My Beloved Lord Himself pervades and permeates all; He Himself is, all by Himself."
+      "gurmukhi": "ਕੋਇ ਨ ਪਹੁਚਨਹਾਰਾ ਦੂਜਾ ਅਪੁਨੇ ਸਾਹਿਬ ਕਾ ਭਰਵਾਸਾ ॥੧॥",
+      "translation": "No one else can equal me, because I have the loving support of my Lord and Master. ||1||"
     },
     {
-      "gurmukhi": "ਵਣਜਾਰਾ ਜਗੁ ਆਪਿ ਹੈ ਪਿਆਰਾ ਆਪੇ ਸਾਚਾ ਸਾਹੁ ॥",
-      "translation": "My Beloved Himself is the trader in this world; He Himself is the true banker."
+      "gurmukhi": "ਅਪੁਨੇ ਸਤਿਗੁਰ ਕੈ ਬਲਿਹਾਰੈ ॥",
+      "translation": "I am a sacrifice to my True Guru."
     },
     {
-      "gurmukhi": "ਆਪੇ ਵਣਜੁ ਵਾਪਾਰੀਆ ਪਿਆਰਾ ਆਪੇ ਸਚੁ ਵੇਸਾਹੁ ॥੧॥",
-      "translation": "My Beloved Himself is the trade and the trader; He Himself is the true credit. ||1||"
+      "gurmukhi": "ਆਗੈ ਸੁਖੁ ਪਾਛੈ ਸੁਖ ਸਹਜਾ ਘਰਿ ਆਨੰਦੁ ਹਮਾਰੈ ॥ ਰਹਾਉ ॥",
+      "translation": "I am at peace in this world, and I shall be in celestial peace in the next; my home is filled with bliss. ||Pause||"
     },
     {
-      "gurmukhi": "ਜਪਿ ਮਨ ਹਰਿ ਹਰਿ ਨਾਮੁ ਸਲਾਹ ॥",
-      "translation": "O mind, meditate on the Lord, Har, Har, and praise His Name."
+      "gurmukhi": "ਅੰਤਰਜਾਮੀ ਕਰਣੈਹਾਰਾ ਸੋਈ ਖਸਮੁ ਹਮਾਰਾ ॥",
+      "translation": "He is the Inner-knower, the Searcher of hearts, the Creator, my Lord and Master."
     },
     {
-      "gurmukhi": "ਗੁਰ ਕਿਰਪਾ ਤੇ ਪਾਈਐ ਪਿਆਰਾ ਅੰਮ੍ਰਿਤੁ ਅਗਮ ਅਥਾਹ ॥ ਰਹਾਉ ॥",
-      "translation": "By Guru's Grace, the Beloved, Ambrosial, unapproachable and unfathomable Lord is obtained. ||Pause||"
+      "gurmukhi": "ਨਿਰਭਉ ਭਏ ਗੁਰ ਚਰਣੀ ਲਾਗੇ ਇਕ ਰਾਮ ਨਾਮ ਆਧਾਰਾ ॥੨॥",
+      "translation": "Attached to the Guru's feet, I have become fearless. I take the Support of the Name of the One Lord. ||2||"
     },
     {
-      "gurmukhi": "ਆਪੇ ਸੁਣਿ ਸਭ ਵੇਖਦਾ ਪਿਆਰਾ ਮੁਖਿ ਬੋਲੇ ਆਪਿ ਮੁਹਾਹੁ ॥",
-      "translation": "The Beloved Himself sees and hears everything; He Himself speaks through the mouths of all beings."
+      "gurmukhi": "ਸਫਲ ਦਰਸਨੁ ਅਕਾਲ ਮੂਰਤਿ ਪ੍ਰਭੁ ਹੈ ਭੀ ਹੋਵਨਹਾਰਾ ॥",
+      "translation": "Fruitful is the Blessed Vision of His Darshan; the Form of God is deathless; He is and shall always be."
     },
     {
-      "gurmukhi": "ਆਪੇ ਉਝੜਿ ਪਾਇਦਾ ਪਿਆਰਾ ਆਪਿ ਵਿਖਾਲੇ ਰਾਹੁ ॥",
-      "translation": "The Beloved Himself leads us into the wilderness, and He Himself shows us the Way."
+      "gurmukhi": "ਕੰਠਿ ਲਗਾਇ ਅਪੁਨੇ ਜਨ ਰਾਖੇ ਅਪੁਨੀ ਪ੍ਰੀਤਿ ਪਿਆਰਾ ॥੩॥",
+      "translation": "He holds His humble servants close, and protects and preserves them; their love for Him is sweet to Him. ||3||"
     },
     {
-      "gurmukhi": "ਆਪੇ ਹੀ ਸਭੁ ਆਪਿ ਹੈ ਪਿਆਰਾ ਆਪੇ ਵੇਪਰਵਾਹੁ ॥੨॥",
-      "translation": "The Beloved Himself is Himself all-in-all; He Himself is carefree. ||2||"
+      "gurmukhi": "ਵਡੀ ਵਡਿਆਈ ਅਚਰਜ ਸੋਭਾ ਕਾਰਜੁ ਆਇਆ ਰਾਸੇ ॥",
+      "translation": "Great is His glorious greatness, and wondrous is His magnificence; through Him, all affairs are resolved."
     },
     {
-      "gurmukhi": "ਆਪੇ ਆਪਿ ਉਪਾਇਦਾ ਪਿਆਰਾ ਸਿਰਿ ਆਪੇ ਧੰਧੜੈ ਲਾਹੁ ॥",
-      "translation": "The Beloved Himself, all by Himself, created everything; He Himself links all to their tasks."
-    },
-    {
-      "gurmukhi": "ਆਪਿ ਕਰਾਏ ਸਾਖਤੀ ਪਿਆਰਾ ਆਪਿ ਮਾਰੇ ਮਰਿ ਜਾਹੁ ॥",
-      "translation": "The Beloved Himself creates the Creation, and He Himself destroys it."
-    },
-    {
-      "gurmukhi": "ਆਪੇ ਪਤਣੁ ਪਾਤਣੀ ਪਿਆਰਾ ਆਪੇ ਪਾਰਿ ਲੰਘਾਹੁ ॥੩॥",
-      "translation": "He Himself is the wharf, and He Himself is the ferryman, who ferries us across. ||3||"
-    },
-    {
-      "gurmukhi": "ਆਪੇ ਸਾਗਰੁ ਬੋਹਿਥਾ ਪਿਆਰਾ ਗੁਰੁ ਖੇਵਟੁ ਆਪਿ ਚਲਾਹੁ ॥",
-      "translation": "The Beloved Himself is the ocean, and the boat; He Himself is the Guru, the boatman who steers it"
-    },
-    {
-      "gurmukhi": "ਆਪੇ ਹੀ ਚੜਿ ਲੰਘਦਾ ਪਿਆਰਾ ਕਰਿ ਚੋਜ ਵੇਖੈ ਪਾਤਿਸਾਹੁ ॥",
-      "translation": ". The Beloved Himself sets sail and crosses over; He, the King, beholds His wondrous play."
-    },
-    {
-      "gurmukhi": "ਆਪੇ ਆਪਿ ਦਇਆਲੁ ਹੈ ਪਿਆਰਾ ਜਨ ਨਾਨਕ ਬਖਸਿ ਮਿਲਾਹੁ ॥੪॥੧॥",
-      "translation": "The Beloved Himself is the Merciful Master; O servant Nanak, He forgives and blends with Himself. ||4||1||"
+      "gurmukhi": "ਨਾਨਕ ਕਉ ਗੁਰੁ ਪੂਰਾ ਭੇਟਿਓ ਸਗਲੇ ਦੂਖ ਬਿਨਾਸੇ ॥੪॥੫॥",
+      "translation": "Nanak has met with the Perfect Guru; all his sorrows have been dispelled. ||4||5||"
     }
   ],
-  "updated": "2026-11-17T09:26:17.977Z"
+  "updated": "2026-11-18T08:44:28.583Z"
 };
