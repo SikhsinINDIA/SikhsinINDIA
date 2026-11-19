@@ -265,6 +265,9 @@
       color: var(--navy);
     }
 
+    .welfare-info a.name { text-decoration: none; }
+    .welfare-info a.name:hover { color: var(--gold); }
+
     .welfare-info .name {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
@@ -644,6 +647,7 @@
     <div class="intro">
       Explore and connect with Sikh Welfare Societies, Trusts, and Organizations across India
     </div>
+    <p class="intro">Inspired by the Sikh tradition of seva (selfless service), these Sikh-run societies and trusts serve people of every background: blood donation drives, free medical aid and low-cost hospitals, homes for disabled and abandoned people, and rural development. Use the filters to find an organisation by state, city or type, or share details of one we have not listed yet.</p>
 
     <div class="wrapper">
 
@@ -658,7 +662,71 @@
           <input type="text" id="nameFilter" placeholder="Search by Name" />
         </div>
         <button type="button" class="btn-clear" id="clearFilters">Clear Filters</button>
-        <div id="records-container" aria-live="polite"></div>
+        <div id="records-container" aria-live="polite">
+          <div class="welfare-card">
+            <div class="welfare-info">
+              <a class="name" href="./05-01-ram-dass-blood-amritsar.html">Shri Guru Ram Dass Blood Donation Sewa Society</a>
+              <span class="detail">Amritsar</span>
+              <span class="detail">Founded in 2008 and registered in 2009, this volunteer-run non-profit in Amritsar organises blood donation seva across the region.</span>
+            </div>
+          </div>
+          <div class="welfare-card">
+            <div class="welfare-info">
+              <a class="name" href="./05-02-gurunanak-medical-sewa-foundation-kanpur.html">Gurunanak Medical Sewa Foundation</a>
+              <span class="detail">Kanpur</span>
+              <span class="detail">The Gurunanak Medical Sewa Foundation provides medical seva from its registered office at Gumti No. 5, Kaushpuri, Kanpur, Uttar Pradesh.</span>
+            </div>
+          </div>
+          <div class="welfare-card">
+            <div class="welfare-info">
+              <a class="name" href="./05-03-jagjit-welfare-trust-faridabad.html">Jagjit Welfare Trust</a>
+              <span class="detail">Faridabad</span>
+              <span class="detail">The Jagjit Welfare Trust in Faridabad provides medical aids to patients at zero rent, free of charge, as an act of seva.</span>
+            </div>
+          </div>
+          <div class="welfare-card">
+            <div class="welfare-info">
+              <a class="name" href="./05-04-manukhta-di-sewa-ludhiana.html">Manukhta Di Sewa Society</a>
+              <span class="detail">Ludhiana</span>
+              <span class="detail">Manukhta Di Sewa Society (MDSS) in Ludhiana provides medical care to mentally, emotionally and physically sick persons.</span>
+            </div>
+          </div>
+          <div class="welfare-card">
+            <div class="welfare-info">
+              <a class="name" href="./05-05-prabh-aasra-sas-nagar.html">Prabh Aasra</a>
+              <span class="detail">SAS Nagar</span>
+              <span class="detail">Prabh Aasra, the Universal Disabled Caretaker Social Welfare Society at SAS Nagar, is a home for helpless and disabled people deprived of rehabilitation.</span>
+            </div>
+          </div>
+          <div class="welfare-card">
+            <div class="welfare-info">
+              <a class="name" href="./05-06-tera-hi-tera-mission-chandigarh.html">Tera Hi Tera Mission Hospital, Sector 45</a>
+              <span class="detail">Chandigarh</span>
+              <span class="detail">Tera Hi Tera Mission Hospital, Chandigarh (SCO 138, Sector 45): contact numbers, medicines at just ₹13, and low-cost MRI, CT scan, X-ray and lab tests.</span>
+            </div>
+          </div>
+          <div class="welfare-card">
+            <div class="welfare-info">
+              <a class="name" href="./05-07-gur-aasra-trust-mohali.html">Gur Aasra Trust</a>
+              <span class="detail">Mohali</span>
+              <span class="detail">Gur Aasra Trust in Mohali provides care and nourishment to children spurned by their families, giving them a home and a future.</span>
+            </div>
+          </div>
+          <div class="welfare-card">
+            <div class="welfare-info">
+              <a class="name" href="./05-08-sarbat-da-bhala-patiala.html">Sarbat Da Bhala Charitable Trust</a>
+              <span class="detail">Patiala</span>
+              <span class="detail">Sarbat Da Bhala Charitable Trust works for the social and economic transformation of rural and remote India, focusing on the weaker sections of society.</span>
+            </div>
+          </div>
+          <div class="welfare-card">
+            <div class="welfare-info">
+              <a class="name" href="./05-09-sikhs4all-jammu.html">Sikhs 4 All Foundation</a>
+              <span class="detail">Jammu</span>
+              <span class="detail">Sikhs 4 All Foundation is a non-profit, non-political charitable organisation in Jammu committed to reaching out to those in need.</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- SELF-UPLOAD FORM -->
@@ -785,7 +853,6 @@
     let allRecords = [];
 
     async function fetchData() {
-      container.innerHTML = "";
       try {
         const querySnapshot = await welfareCollection.get();
         allRecords = [];
@@ -801,12 +868,13 @@
           if (data.Type) typeSet.add(data.Type);
         });
 
+        if (!allRecords.length) return; // keep the built-in list
         populateFilterOptions(stateFilter, Array.from(stateSet).sort(), "State");
         populateFilterOptions(cityFilter, Array.from(citySet).sort(), "City");
         populateFilterOptions(typeFilter, Array.from(typeSet).sort(), "Type");
         displayRecords(allRecords);
       } catch (error) {
-        container.innerHTML = `<p class="no-results">Error loading records. Check console for details.</p>`;
+        // Keep the built-in list visible if the live data can't load.
         console.error("Error fetching documents: ", error);
       }
     }
@@ -825,7 +893,7 @@
       container.innerHTML = "";
 
       if (!records.length) {
-        container.innerHTML = "<p class='no-results'>No organizations found matching these filters.</p>";
+        container.innerHTML = "<p class='no-results'>No organizations match these filters. Try clearing them.</p>";
         return;
       }
 
