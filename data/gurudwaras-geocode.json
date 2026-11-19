@@ -1,0 +1,2999 @@
+{
+ "04-gurudwaras/01-andaman-nicobar/04-01-01-gurudwara-dr.-diwan-singh-shaheed.html|Gurudwara Lane, Aberdeen Bazar (Biggie Line), Port Blair, South Andaman, Andaman & Nicobar Islands - 744101, India": {
+  "lat": 11.67133,
+  "lng": 92.74056,
+  "precision": "locality",
+  "source": "address: Aberdeen Bazar, Port Blair, South Andaman, Andaman & Nicobar Islands, Andaman and Nicobar Islands"
+ },
+ "04-gurudwaras/01-andaman-nicobar/04-01-02-gurudwara-singh-sabha.html|Minnie Bay, Sri Vijaya Puram, Port Blair, Andaman & Nicobar Islands, PIN 744103, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/02-andhra-pradesh/01-v/04-02-12-01-gurudwara-sadh-sangat-visakhapatnam-andhra-pradesh.html|2 Gurudwara Road (Gurunanak Marg), TPT Colony, Balayya Sastri Layout, Visakhapatnam": {
+  "lat": 17.73907,
+  "lng": 83.31172,
+  "precision": "locality",
+  "source": "address: TPT Colony, Balayya Sastri Layout, Visakhapatnam, Andhra Pradesh"
+ },
+ "04-gurudwaras/02-andhra-pradesh/01-v/04-02-12-02-gurudwara-nanak-darbar-hindustan-shipyard-visakhapatnam-andhra-pradesh.html|Hindustan Shipyard Colony, near Gandhigram, Visakhapatnam": {
+  "lat": 17.68471,
+  "lng": 83.26096,
+  "precision": "locality",
+  "source": "address: Gandhigram, Visakhapatnam, Andhra Pradesh"
+ },
+ "04-gurudwaras/04-assam/04-04-07-01-gurudwara-sri-guru-singh-sabha-lakhtokia-guwahati-assam.html|SS Road, Lakhtokia, Fancy Bazaar, Guwahati, Assam 781001": {
+  "lat": 26.18175,
+  "lng": 91.74068,
+  "precision": "street",
+  "source": "address: Lakhtokia, Fancy Bazaar, Guwahati, Assam 781001"
+ },
+ "04-gurudwaras/04-assam/04-04-07-02-gurudwara-sri-guru-singh-sabha-beltola-guwahati-assam.html|Beltola - Basistha Chariali, opposite the Indian Oil petrol pump, near Megha Plaza, Guwahati, Assam 781029": {
+  "reason": "\"Beltola\" not found on the map; only \"Guwahati, Assam\" was"
+ },
+ "04-gurudwaras/04-assam/04-04-07-03-gurudwara-sri-guru-singh-sabha-maligaon-guwahati-assam.html|PNGB Road, NV Area, Maligaon, Guwahati, Assam": {
+  "lat": 26.16005,
+  "lng": 91.69581,
+  "precision": "locality",
+  "source": "address: Maligaon, Guwahati, Assam"
+ },
+ "04-gurudwaras/04-assam/04-04-07-04-gurudwara-gopinath-nagar-ulubari-guwahati-assam.html|Bishnu Rabha Nagar, Ulubari suburb, Guwahati, Assam": {
+  "lat": 26.16712,
+  "lng": 91.7498,
+  "precision": "exact",
+  "source": "osm node/13523382582"
+ },
+ "04-gurudwaras/05-bihar/04-05-09-01-harmandir-sahib-patna.html|Patna City, Bihar - on the banks of the Ganges River": {
+  "lat": 25.60932,
+  "lng": 85.12353,
+  "precision": "locality",
+  "source": "address: Patna City, Bihar"
+ },
+ "04-gurudwaras/05-bihar/04-05-09-02-bal-leela-sahib-patna.html|Patna City, Bihar - behind Takht Sri Patna Sahib": {
+  "lat": 25.60932,
+  "lng": 85.12353,
+  "precision": "locality",
+  "source": "address: Patna City, Bihar"
+ },
+ "04-gurudwaras/05-bihar/04-05-09-03-gau-ghat-sahib-patna.html|Alamganj, near Ashok Rajpath, Patna City, Bihar": {
+  "reason": "\"Alamganj\" not found on the map; only \"Patna City, Bihar\" was"
+ },
+ "04-gurudwaras/05-bihar/04-05-09-04-guru-ka-bagh-sahib-patna.html|Dhaulpura, Patna City, Bihar": {
+  "reason": "\"Dhaulpura\" not found on the map; only \"Patna City, Bihar\" was"
+ },
+ "04-gurudwaras/05-bihar/04-05-09-05-handi-sahib-danapur.html|Danapur, Patna City, Bihar - about 20 km from Patna Sahib": {
+  "lat": 25.63589,
+  "lng": 85.0474,
+  "precision": "locality",
+  "source": "address: Danapur, Bihar"
+ },
+ "04-gurudwaras/05-bihar/04-05-09-06-kangan-ghat-sahib-patna.html|Patna City, Bihar - near Takht Sri Harmandir Ji Patna Sahib": {
+  "lat": 25.60932,
+  "lng": 85.12353,
+  "precision": "locality",
+  "source": "address: Patna City, Bihar"
+ },
+ "04-gurudwaras/05-bihar/04-05-09-07-sunar-toli-sahib-patna.html|Patna City, Bihar - near Takht Sri Harmandir Ji Patna Sahib": {
+  "lat": 25.60932,
+  "lng": 85.12353,
+  "precision": "locality",
+  "source": "address: Patna City, Bihar"
+ },
+ "04-gurudwaras/05-bihar/04-05-12-01-chacha-phagumal-sahib-sasaram.html|Gurudwara Road, Jani Bazar, Sasaram, Rohtas District, Bihar": {
+  "reason": "only the city \"Sasaram, Rohtas, Bihar\" was found, not \"Gurudwara Road, Jani Bazar\""
+ },
+ "04-gurudwaras/06-chandigarh/04-06-01-gurudwara-sri-guru-teg-bahadur-sahib-sector-34-chandigarh.html|Sector 34 C, Chandigarh 160034": {
+  "lat": 30.71992,
+  "lng": 76.76521,
+  "precision": "locality",
+  "source": "address: Sector 34 C, Chandigarh 160034"
+ },
+ "04-gurudwaras/06-chandigarh/04-06-02-gurudwara-gurudwara-nanaksar-sahib-sector-28-chandigarh.html|Market Road, Sector 28 B, Chandigarh 160101": {
+  "lat": 30.71719,
+  "lng": 76.80372,
+  "precision": "locality",
+  "source": "address: Sector 28 B, Chandigarh 160101"
+ },
+ "04-gurudwaras/06-chandigarh/04-06-03-gurudwara-shri-santsar-sahib-sector-38-west-chandigarh.html|Paschim Marg, Sector 38 W, Chandigarh": {
+  "lat": 30.74582,
+  "lng": 76.73876,
+  "precision": "exact",
+  "source": "osm node/12597039125"
+ },
+ "04-gurudwaras/06-chandigarh/04-06-04-gurudwara-khooni-sahib-manimajra-chandigarh.html|Bhainsa Tiba village, Manimajra, Chandigarh (near Mansa Devi Temple)": {
+  "lat": 30.71275,
+  "lng": 76.83294,
+  "precision": "street",
+  "source": "address: Manimajra, Chandigarh"
+ },
+ "04-gurudwaras/06-chandigarh/04-06-05-gurudwara-patshahi-dasvin-sector-8c-chandigarh.html|1101, Madhya Marg, Sector 8C, Chandigarh – 160008": {
+  "lat": 30.73746,
+  "lng": 76.7937,
+  "precision": "street",
+  "source": "address: Madhya Marg, Sector 8C, Chandigarh – 160008"
+ },
+ "04-gurudwaras/06-chandigarh/04-06-06-gurudwara-nada-sahib-panchkula-chandigarh.html|On NH 73, near Panchkula IT Park, Sector 22, Panchkula, Haryana 134109.": {
+  "lat": 30.6942,
+  "lng": 76.8809,
+  "precision": "exact",
+  "source": "osm way/696661513"
+ },
+ "04-gurudwaras/06-chandigarh/04-06-07-gurudwara-dehra-sahib-manimajra-chandigarh.html|Manimajra, Chandigarh (UT)": {
+  "lat": 30.71275,
+  "lng": 76.83294,
+  "precision": "street",
+  "source": "address: Manimajra, Chandigarh"
+ },
+ "04-gurudwaras/06-chandigarh/04-06-08-gurudwara-manji-sahib-manimajra-chandigarh.html|Manimajra, Chandigarh (UT)": {
+  "lat": 30.71275,
+  "lng": 76.83294,
+  "precision": "street",
+  "source": "address: Manimajra, Chandigarh"
+ },
+ "04-gurudwaras/06-chandigarh/04-06-09-gurudwara-shaheedi-baag-sahib-chandigarh.html|Sector 44 A, Chandigarh (UT)": {
+  "lat": 30.71619,
+  "lng": 76.75364,
+  "precision": "exact",
+  "source": "osm node/11143992565 (only one of that name in Chandigarh)"
+ },
+ "04-gurudwaras/07-chhattisgarh/04-07-14-01-gurudwara-sri-guru-singh-sabha-raipur-chhattisgarh.html|Station Road, Moudhapara & Devpuri branch": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/09-delhi/04-09-01-gurudwara-bangla-sahib-delhi.html|1, Ashoka Rd, Area, New Delhi - 110001": {
+  "lat": 28.62646,
+  "lng": 77.20883,
+  "precision": "exact",
+  "source": "osm way/839844482"
+ },
+ "04-gurudwaras/09-delhi/04-09-02-gurudwara-sis-ganj-sahib-delhi.html|Chandni Chowk Rd, Maliwara, Chatta Pratap, Chandni Chowk, Delhi - 110006": {
+  "lat": 28.65596,
+  "lng": 77.23242,
+  "precision": "exact",
+  "source": "osm way/265824668"
+ },
+ "04-gurudwaras/09-delhi/04-09-03-gurudwara-rakab-ganj-sahib-delhi.html|Guru Gobind Singh Bhawan, Pandit Pant Marg, New Delhi - 110001": {
+  "lat": 28.61904,
+  "lng": 77.20469,
+  "precision": "exact",
+  "source": "osm way/111696900"
+ },
+ "04-gurudwaras/09-delhi/04-09-04-bala-sahib-delhi.html|Outer Ring Road, Sidharth Nagar, NH2, Delhi": {
+  "lat": 28.58068,
+  "lng": 77.26142,
+  "precision": "exact",
+  "source": "osm way/294119564"
+ },
+ "04-gurudwaras/09-delhi/04-09-05-damdama-sahib-delhi.html|Bharat Scouts and Guides Marg, near Humayun’s Tomb, Delhi": {
+  "lat": 28.59478,
+  "lng": 77.25254,
+  "precision": "exact",
+  "source": "osm node/2295090140"
+ },
+ "04-gurudwaras/09-delhi/04-09-06-shahidi-asthan-baba-banda-singh-bahadur-delhi.html|Village Mehrauli, behind Qutub Minar area, Delhi": {
+  "lat": 28.53859,
+  "lng": 77.26195,
+  "precision": "exact",
+  "source": "osm node/4352676294"
+ },
+ "04-gurudwaras/09-delhi/04-09-07-mata-sundari-ji-delhi.html|Deen Dayal Upadhyaya Marg, Delhi": {
+  "lat": 28.63446,
+  "lng": 77.23382,
+  "precision": "exact",
+  "source": "osm way/289883322 (only one of that name in Delhi)"
+ },
+ "04-gurudwaras/09-delhi/04-09-08-nanak-piao-sahib-delhi.html|NH1 (GT Road), near Sabzi Mandi, Delhi": {
+  "lat": 28.61963,
+  "lng": 77.13728,
+  "precision": "street",
+  "source": "address: Sabzi Mandi, Delhi"
+ },
+ "04-gurudwaras/09-delhi/04-09-09-moti-bagh-sahib-delhi.html|Ring Road, near Dhaula Kuan, Delhi": {
+  "lat": 28.58602,
+  "lng": 77.17123,
+  "precision": "exact",
+  "source": "osm node/1740891891"
+ },
+ "04-gurudwaras/09-delhi/04-09-10-majnu-ka-tilla-sahib-delhi.html|Outer Ring Road, on the bank of the River Yamuna, Delhi": {
+  "lat": 28.69586,
+  "lng": 77.22808,
+  "precision": "exact",
+  "source": "osm way/167843077"
+ },
+ "04-gurudwaras/10-goa/04-10-01-gurudwara-shri-guru-singh-sabha-betim-goa.html|Opposite R.N.D. Workshop, Betim, Bardez, Goa 403101": {
+  "lat": 15.5063,
+  "lng": 73.82834,
+  "precision": "locality",
+  "source": "address: Betim, Bardez, Goa"
+ },
+ "04-gurudwaras/10-goa/04-10-02-gurudwara-singh-sabha-vasco-da-gama-goa.html|Mangor Hill, Vasco da Gama, Goa – 403802": {
+  "reason": "\"Mangor Hill\" not found on the map; only \"Vasco da Gama, Goa\" was"
+ },
+ "04-gurudwaras/10-goa/04-10-03-gurudwara-3mtr-aquem‑baixo-south-goa.html|Aquem‑Baixo (Margão), Goa 403729": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/11-gujarat/01-a/04-11-01-01-gurudwara-shri-guru-singh-sabha-dudheshwar-ahmedabad.html|Sri Guru Tegh Bahadur Marg, opposite Ravi Estate, Dudheshwar, Ahmedabad": {
+  "lat": 23.05595,
+  "lng": 72.58414,
+  "precision": "locality",
+  "source": "address: Dudheshwar, Ahmedabad, Gujarat"
+ },
+ "04-gurudwaras/11-gujarat/02-b/04-11-04-01-gurudwara-shri-chadar-sahib-bharuch.html|Maktampur, old Bharuch city, Gujarat - on the Narmada bank": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/11-gujarat/03-v/04-11-20-01-gurudwara-nanakwadi-sahib-vadodara.html|E‑9/636, Tamboli / Sultanpura area, Vadodara 390010, Gujarat": {
+  "reason": "only the city \"Vadodara, Gujarat\" was found, not \"E-9/636, Tamboli / Sultanpura area\""
+ },
+ "04-gurudwaras/11-gujarat/04-bh/04-11-06-01-gurudwara-nanak-darbar-sahib-lakhpat.html|Village Lakhpat, Kutch District, Gujarat (about 135 km from Bhuj)": {
+  "lat": 23.82689,
+  "lng": 68.77516,
+  "precision": "locality",
+  "source": "address: Lakhpat, Kutch District, Gujarat"
+ },
+ "04-gurudwaras/11-gujarat/05-d/04-11-07-01-gurudwara-guru-nanak-dev-ji-bhai-mohkam-singh-ji-beyt-dwarka.html|Beyt Dwarka, Dwarka District, Gujarat": {
+  "lat": 22.24294,
+  "lng": 68.96059,
+  "precision": "street",
+  "source": "address: Dwarka District, Gujarat"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-01-01-gurudwara-sehra-sahib-bassi-himachal-pradesh.html|Guru Ka Lahore Road, Bassi, Himachal Pradesh 174002": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-02-01-gurudwara-guru-ni-narhi-bilaspur-himachal-pradesh.html|Near Bilaspur Town, Bilaspur District, Himachal Pradesh": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-02-02-gurudwara-paur-sahib-basantpur-bilaspur.html|Village Basantpur, Bilaspur District, Himachal Pradesh": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-02-03-gurudwara-triveni-sahib-basantpur-bilaspur.html|Village Basantpur, Bilaspur District, Himachal Pradesh": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-02-04-gurudwara-guru-ka-lahore-sahib-basantpur-bilaspur.html|Village Basantpur, Bilaspur District, Himachal Pradesh": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-02-05-gurudwara-bhuda-sahib-bilaspur.html|Bilaspur City, Himachal Pradesh": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-05-01-gurudwara-patshahi-dasvin-nadaun-hamirpur-himachal-pradesh.html|Nadaun, Hamirpur District, Himachal Pradesh; by River Beas": {
+  "lat": 31.78194,
+  "lng": 76.34348,
+  "precision": "locality",
+  "source": "address: Nadaun, Himachal Pradesh"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-07-01-gurudwara-manikaran-sahib-manali.html|Manikaran, near Kasol, about 3 hours' drive from Manali": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-08-01-gurudwara-rawalsar-sahib-mandi.html|Perched on a hillside above Rewalsar Lake in Mandi district, Himachal Pradesh, about 15–25 km west of Mandi town": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-08-02-gurudwara-guru-gobind-singh-ji-sahib-mandi.html|Mandi–Kullu Road, Mandi City, Himachal Pradesh": {
+  "reason": "only the city \"Mandi City, Himachal Pradesh\" was found, not \"Mandi-Kullu Road\""
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-08-03-gurudwara-damdama-sahib-mandi.html|Tarna Road, Mandi Town, Himachal Pradesh": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-08-04-gurudwara-gurukotha-sahib-mandi.html|Village Guru Kotha, Sundernagar–Rawalsar Road, Mandi District, Himachal Pradesh": {
+  "reason": "\"Guru Kotha\" not found on the map; only \"Mandi, Himachal Pradesh\" was"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-12-01-gurudwara-paonta-sahib-sirmaur.html|Court Road, Devinagar, Paonta Sahib, Sirmaur District, Himachal Pradesh 173025, India": {
+  "lat": 30.43518,
+  "lng": 77.62197,
+  "precision": "exact",
+  "source": "osm way/352005110"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-12-02-gurudwara-toka-sahib-sirmaur.html|Nestled in village Toka, Sirmaur district, Himachal Pradesh, about 20 km from Naraingarh, Haryana, and just across the Roong River": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-12-03-gurudwara-dashmesh-asthan-sahib-nahan-sirmaur.html|Nahan City, Sirmaur District, Himachal Pradesh": {
+  "lat": 30.56018,
+  "lng": 77.29236,
+  "precision": "locality",
+  "source": "address: Nahan, Himachal Pradesh"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-12-04-gurudwara-dastaar-asthan-sahib-paonta-sirmaur.html|Adjoining Gurudwara Sri Paonta Sahib, Paonta Sahib, Sirmaur District, Himachal Pradesh": {
+  "reason": "\"Adjoining Gurudwara Sri Paonta Sahib\" not found on the map; only \"Paonta Sahib, Sirmaur, Himachal Pradesh\" was"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-12-05-gurudwara-shergaah-sahib-paonta-sirmaur.html|Near Paonta Sahib, Sirmaur District, Himachal Pradesh": {
+  "lat": 30.43844,
+  "lng": 77.62118,
+  "precision": "locality",
+  "source": "address: Paonta Sahib, Sirmaur District, Himachal Pradesh"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-12-06-gurudwara-teer-garhi-sahib-bhangani-sirmaur.html|Near Village Bhangani, Paonta Sahib, Sirmaur District, Himachal Pradesh": {
+  "lat": 30.49894,
+  "lng": 77.72505,
+  "precision": "locality",
+  "source": "address: Bhangani, Paonta Sahib, Sirmaur District, Himachal Pradesh"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-12-07-gurudwara-bhangani-sahib-bhangani-sirmaur.html|Village Bhangani, Paonta Sahib, Sirmaur District, Himachal Pradesh": {
+  "lat": 30.49894,
+  "lng": 77.72505,
+  "precision": "locality",
+  "source": "address: Bhangani, Paonta Sahib, Sirmaur District, Himachal Pradesh"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-12-08-gurudwara-chauni-sahib-akalgarh-sirmaur.html|Village Akalgarh, Tehsil Paonta Sahib, Sirmaur District, Himachal Pradesh": {
+  "lat": 30.47407,
+  "lng": 77.66843,
+  "precision": "exact",
+  "source": "osm node/2075864407 (only one of that name in Akalgarh, Sirmaur — Himachal Pradesh)"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-12-09-gurudwara-rantham-sahib-bhangani-sirmaur.html|Village Bhangani, Tehsil Paonta Sahib, Sirmaur District, Himachal Pradesh": {
+  "lat": 30.49894,
+  "lng": 77.72505,
+  "precision": "locality",
+  "source": "address: Bhangani, Himachal Pradesh"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-15-01-gurudwara-gurplaha-sahib-baathu-una.html|Village Baathu, Tehsil Una, Una District, Himachal Pradesh": {
+  "reason": "\"Baathu\" not found on the map; only \"Una, Himachal Pradesh\" was"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-15-02-gurudwara-patshahi-dasvin-sahib-saluri-una.html|Village Saluri, Una District, Himachal Pradesh": {
+  "reason": "\"Saluri\" not found on the map; only \"Una, Himachal Pradesh\" was"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-15-03-gurudwara-damdama-sahib-nangnoli-una.html|Village Nangnoli, Una District, Himachal Pradesh": {
+  "reason": "\"Nangnoli\" not found on the map; only \"Una, Himachal Pradesh\" was"
+ },
+ "04-gurudwaras/12-himachal-pradesh/04-12-15-04-gurudwara-damdama-sahib-una.html|Una–Nangal Road, Una City, Himachal Pradesh": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/13-haryana/01-a/04-13-01-01-gurudwara-sri-manji-sahib-ambala.html|Ambala City, Haryana on NH 1 / GT Road, near the first bus stop approaching from Punjab": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/13-haryana/01-a/04-13-01-02-badshahi-baag.html|Ambala, Ambala, Haryana, India": {
+  "lat": 30.38437,
+  "lng": 76.77042,
+  "precision": "locality",
+  "source": "address: Ambala, Ambala, Haryana"
+ },
+ "04-gurudwaras/13-haryana/01-a/04-13-01-03-gendsar-sahib.html|Bhanokheri, Ambala, Haryana, India": {
+  "reason": "\"Bhanokheri\" not found on the map; only \"Ambala, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/01-a/04-13-01-04-gobind-pura-sahib.html|Ambala City, Haryana, India": {
+  "lat": 30.37807,
+  "lng": 76.76464,
+  "precision": "street",
+  "source": "address: Ambala City, Haryana"
+ },
+ "04-gurudwaras/13-haryana/01-a/04-13-01-05-lakhnaur-sahib.html|Lakhnaur Sahib, Ambala, Haryana 134003, India": {
+  "reason": "\"Lakhnaur Sahib\" not found on the map; only \"Ambala, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/01-a/04-13-01-06-mardon-sahib.html|Mardon, Ambala, Haryana, India": {
+  "reason": "\"Mardon\" not found on the map; only \"Ambala, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/01-a/04-13-01-07-panjokhra-sahib-ambala.html|Panjokhara, Ambala, Haryana, India": {
+  "lat": 30.40578,
+  "lng": 76.84455,
+  "precision": "locality",
+  "source": "address: Panjokhara, Ambala, Haryana"
+ },
+ "04-gurudwaras/13-haryana/01-a/04-13-01-08-patshahi-nauvin-sahib-langar-channi.html|Langar Chhani, Ambala, Haryana, India": {
+  "reason": "\"Langar Chhani\" not found on the map; only \"Ambala, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/01-a/04-13-01-09-sheesh-ganj-sahib.html|Ambala, Ambala, Haryana, India": {
+  "lat": 30.38437,
+  "lng": 76.77042,
+  "precision": "locality",
+  "source": "address: Ambala, Ambala, Haryana"
+ },
+ "04-gurudwaras/13-haryana/01-a/04-13-01-10-satsang-sahib.html|Ambala, Ambala, Haryana, India": {
+  "lat": 30.38437,
+  "lng": 76.77042,
+  "precision": "locality",
+  "source": "address: Ambala, Ambala, Haryana"
+ },
+ "04-gurudwaras/13-haryana/02-f/04-13-02-01-santo-ka-gurudwara-faridabad.html|New Industrial Township (NIT‑1), Block K, Faridabad - 121001, Haryana": {
+  "lat": 28.49391,
+  "lng": 77.2903,
+  "precision": "locality",
+  "source": "address: Block K, Faridabad 121001, Haryana"
+ },
+ "04-gurudwaras/13-haryana/02-f/04-13-02-02-gurudwara-sri-guru-singh-sabha-sector-15-faridabad.html|98VC+PPV, Sector 15, Faridabad - 121007, Haryana": {
+  "lat": 28.39436,
+  "lng": 77.3218,
+  "precision": "exact",
+  "source": "plus code 98VC+PPV"
+ },
+ "04-gurudwaras/13-haryana/03-g/04-13-03-01-gurudwara-sadh-sangat-sahib-south-city-1-gurugram.html|I Block, South City I, Sector 41, Gurugram, Haryana 122001": {
+  "lat": 28.45388,
+  "lng": 77.06269,
+  "precision": "locality",
+  "source": "address: I Block, South City I, Sector 41, Gurugram, Haryana 122001"
+ },
+ "04-gurudwaras/13-haryana/03-g/04-13-03-02-gurudwara-shri-guru-singh-sabha-new-colony-sector-7-gurugram.html|149 B, Gurdwara Street, New Colony, Sector 7, Gurugram, Haryana 122001": {
+  "lat": 28.46579,
+  "lng": 77.01998,
+  "precision": "street",
+  "source": "address: New Colony, Sector 7, Gurugram, Haryana 122001"
+ },
+ "04-gurudwaras/13-haryana/03-g/04-13-03-03-gurudwara-sri-guru-singh-sabha-dlf-city-phase-i-gurugram.html|1501 1502, H Block, DLF City Phase I, Sector 26, Gurugram, Haryana 122002": {
+  "lat": 28.47794,
+  "lng": 77.10324,
+  "precision": "locality",
+  "source": "address: Sector 26, Gurugram, Haryana 122002"
+ },
+ "04-gurudwaras/13-haryana/04-j/04-13-04-01-guru-teg-bahadur-sahib-dhamtaan.html|Dhamtaan, Jind, Haryana, India": {
+  "lat": 29.31199,
+  "lng": 76.31948,
+  "precision": "exact",
+  "source": "osm node/10657549220"
+ },
+ "04-gurudwaras/13-haryana/04-j/04-13-04-02-guru-tegbahadur-sahib-jind.html|Jind, Jind, Haryana, India": {
+  "lat": 29.31199,
+  "lng": 76.31948,
+  "precision": "exact",
+  "source": "osm node/10657549220"
+ },
+ "04-gurudwaras/13-haryana/04-j/04-13-04-03-guru-tegbahadur-sahib-khatkar.html|Khatkar Kalan, Jind, Haryana, India": {
+  "lat": 29.31199,
+  "lng": 76.31948,
+  "precision": "exact",
+  "source": "osm node/10657549220"
+ },
+ "04-gurudwaras/13-haryana/04-j/04-13-04-04-guru-tegbahadur-sahib-kharak-bhura.html|Kharakbhura, Jind, Haryana, India": {
+  "lat": 29.31199,
+  "lng": 76.31948,
+  "precision": "exact",
+  "source": "osm node/10657549220"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-05-01-garhi-sahib-garhi-nazeer.html|Garhi Nazeer, Kaithal, Haryana, India": {
+  "reason": "\"Garhi Nazeer\" not found on the map; only \"Kaithal, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-05-02-manji-sahib-kaithal.html|Old City, Kaithal, Haryana, India": {
+  "reason": "\"Old City\" not found on the map; only \"Kaithal, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-05-03-nimm-sahib-kaithal.html|Kaithal, Kaithal, Haryana, India": {
+  "lat": 29.79966,
+  "lng": 76.39899,
+  "precision": "locality",
+  "source": "address: Kaithal, Kaithal, Haryana"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-05-04-patshahi-shevin-ate-nauvin.html|Cheeka, Kaithal, Haryana, India": {
+  "lat": 30.0481,
+  "lng": 76.33386,
+  "precision": "locality",
+  "source": "address: Cheeka, Kaithal, Haryana"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-06-01-guru-tegbahadur-sahib-khatkar.html|Old Sarafa Bazaar, Karnal, Haryana, India": {
+  "reason": "only the city \"Karnal, Haryana\" was found, not \"Old Sarafa Bazaar\""
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-06-02-sheeshganj-sahib-traori.html|Tarori, Karnal, Haryana, India": {
+  "reason": "\"Tarori\" not found on the map; only \"Karnal, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-01-baoli-sahib-pehowa.html|Pehowa, Kurukshetra, Haryana 136128, India": {
+  "lat": 29.97837,
+  "lng": 76.58324,
+  "precision": "locality",
+  "source": "address: Pehowa, Kurukshetra, Haryana 136128"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-02-damdama-sahib.html|Siana Sayyadan, Kurukshetra, Haryana, India": {
+  "reason": "\"Siana Sayyadan\" not found on the map; only \"Kurukshetra, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-03-jora-sahib.html|Siana Sayyadan, Kurukshetra, Haryana, India": {
+  "reason": "\"Siana Sayyadan\" not found on the map; only \"Kurukshetra, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-04-karah-sahib.html|Karah, Kurukshetra, Haryana, India": {
+  "reason": "only the city \"Kurukshetra, Haryana\" was found, not \"Karah\""
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-05-manji-sahib-muniarpur.html|Muniarpur, Kurukshetra, Haryana, India": {
+  "reason": "\"Muniarpur\" not found on the map; only \"Kurukshetra, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-06-manji-sahib-shahbad.html|Shahabad Markanda, Haryana 136135, India": {
+  "lat": 30.16589,
+  "lng": 76.86167,
+  "precision": "street",
+  "source": "address: Shahabad Markanda, Haryana 136135"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-07-patshahi-chevin.html|Pehowa, Kurukshetra, Haryana 136128, India": {
+  "lat": 29.97837,
+  "lng": 76.58324,
+  "precision": "locality",
+  "source": "address: Pehowa, Kurukshetra, Haryana 136128"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-08-patshahi-nauvin.html|Pehowa, Kurukshetra, Haryana 136128, India": {
+  "lat": 29.97837,
+  "lng": 76.58324,
+  "precision": "locality",
+  "source": "address: Pehowa, Kurukshetra, Haryana 136128"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-09-patshahi-nauvin-sahib-bani-badarpur.html|Bani Badarpur, Kurukshetra, Haryana, India": {
+  "reason": "\"Bani Badarpur\" not found on the map; only \"Kurukshetra, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-10-guru-tegbahadur-sahib-barna.html|Barna, Kurukshetra, Haryana 136119, India": {
+  "lat": 29.90865,
+  "lng": 76.72967,
+  "precision": "locality",
+  "source": "address: Barna, Kurukshetra, Haryana 136119"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-11-patshahi-nauvin-sahib-duddi.html|Duddi, Kurukshetra, Haryana, India": {
+  "reason": "\"Duddi\" not found on the map; only \"Kurukshetra, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-12-patshahi-teesari-satvin-ate-athavin.html|Pehowa, Kurukshetra, Haryana 136128, India": {
+  "lat": 29.97837,
+  "lng": 76.58324,
+  "precision": "locality",
+  "source": "address: Pehowa, Kurukshetra, Haryana 136128"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-13-pata-sahib.html|Kurukshetra, Kurukshetra, Haryana, India": {
+  "lat": 29.96937,
+  "lng": 76.84828,
+  "precision": "locality",
+  "source": "address: Kurukshetra, Kurukshetra, Haryana"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-14-patshahi-dasvin.html|Kurukshetra, Kurukshetra, Haryana, India": {
+  "lat": 29.96937,
+  "lng": 76.84828,
+  "precision": "locality",
+  "source": "address: Kurukshetra, Kurukshetra, Haryana"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-15-sheesh-mahal-pehowa.html|Pehowa, Kurukshetra, Haryana, India": {
+  "lat": 29.97837,
+  "lng": 76.58324,
+  "precision": "locality",
+  "source": "address: Pehowa, Kurukshetra, Haryana"
+ },
+ "04-gurudwaras/13-haryana/05-k/04-13-07-16-sidh-vati-patshahi-pehli.html|Kurukshetra, Haryana, India": {
+  "lat": 29.96937,
+  "lng": 76.84828,
+  "precision": "locality",
+  "source": "address: Kurukshetra, Haryana"
+ },
+ "04-gurudwaras/13-haryana/06-p/04-13-08-01-baoli-sahib.html|Panchkula, Panchkula, Haryana, India": {
+  "lat": 30.69754,
+  "lng": 76.85511,
+  "precision": "locality",
+  "source": "address: Panchkula, Panchkula, Haryana"
+ },
+ "04-gurudwaras/13-haryana/06-p/04-13-08-02-manak-tabraan.html|Parwala Road, Manak Tabra, Raipur Rani, Panchkula, Haryana 134204, India": {
+  "lat": 30.58555,
+  "lng": 77.02077,
+  "precision": "locality",
+  "source": "address: Raipur Rani, Panchkula, Haryana"
+ },
+ "04-gurudwaras/13-haryana/06-p/04-13-08-03-manji-sahib-pinjour.html|Pinjour, Panchkula, Haryana, India": {
+  "reason": "\"Pinjour\" not found on the map; only \"Panchkula, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/06-p/04-13-08-04-nada-sahib.html|Panchkula, Panchkula, Haryana, India": {
+  "lat": 30.6942,
+  "lng": 76.8809,
+  "precision": "exact",
+  "source": "osm way/696661513"
+ },
+ "04-gurudwaras/13-haryana/06-p/04-13-08-05-patshahi-dasvin-sahib-raipur-rani.html|Raipur Rani, Panchkula, Haryana, India": {
+  "lat": 30.58555,
+  "lng": 77.02077,
+  "precision": "locality",
+  "source": "address: Raipur Rani, Panchkula, Haryana"
+ },
+ "04-gurudwaras/13-haryana/06-p/04-13-08-06-dakra-sahib.html|Dakra, Panchkula, Haryana, India": {
+  "reason": "\"Dakra\" not found on the map; only \"Panchkula, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/06-p/04-13-09-01-pehli-patshahi-sahib-panipat.html|Panipat, Panipat, Haryana, India": {
+  "lat": 29.39127,
+  "lng": 76.97717,
+  "precision": "locality",
+  "source": "address: Panipat, Panipat, Haryana"
+ },
+ "04-gurudwaras/13-haryana/07-r/04-13-10-01-guru-tegbahadur-sahib-laakhan-majra.html|Laakhan Majra, Rohtak, Haryana, India": {
+  "reason": "\"Laakhan Majra\" not found on the map; only \"Rohtak, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/07-r/04-13-10-02-guru-tegbahadur-sahib-rohtak.html|Rohtak, Rohtak, Haryana, India": {
+  "lat": 28.90109,
+  "lng": 76.58019,
+  "precision": "locality",
+  "source": "address: Rohtak, Rohtak, Haryana"
+ },
+ "04-gurudwaras/13-haryana/08-s/04-13-11-01-chilla-sahib-sirsa.html|Sirsa, Sirsa, Haryana, India": {
+  "lat": 29.53728,
+  "lng": 75.03776,
+  "precision": "locality",
+  "source": "address: Sirsa, Sirsa, Haryana"
+ },
+ "04-gurudwaras/13-haryana/08-s/04-13-11-02-patshahi-dasvin-sirsa.html|Ambala City, Haryana, India": {
+  "lat": 30.37807,
+  "lng": 76.76464,
+  "precision": "street",
+  "source": "address: Ambala City, Haryana"
+ },
+ "04-gurudwaras/13-haryana/08-s/04-13-11-03-patshahi-dasvin-sahib-madho-singhana.html|Madho Singhana, Sirsa, Haryana, India": {
+  "reason": "\"Madho Singhana\" not found on the map; only \"Sirsa, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/09-y/04-13-12-01-kopal-mochan-sahib.html|Kapal Mochan, Yamunanagar, Haryana, India": {
+  "reason": "\"Kapal Mochan\" not found on the map; only \"Yamunanagar, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/09-y/04-13-12-02-janam-asthan-pir-budu-shah.html|Sadhora, Yamunanagar, Haryana, India": {
+  "reason": "\"Sadhora\" not found on the map; only \"Yamunanagar, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/09-y/04-13-12-03-patshahi-dasvin-sahib-jagadhri.html|Jagadhari, Yamunanagar, Haryana, India": {
+  "lat": 30.1689,
+  "lng": 77.3019,
+  "precision": "locality",
+  "source": "address: Jagadhari, Yamunanagar, Haryana"
+ },
+ "04-gurudwaras/13-haryana/09-y/04-13-12-04-tambu-sahib-kapal-mochan.html|Kapal Mochan, Yamunanagar, Haryana, India": {
+  "reason": "\"Kapal Mochan\" not found on the map; only \"Yamunanagar, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/09-y/04-13-12-05-thada-sahib-jhiver-heri.html|Jhiver Heri, Yamunanagar, Haryana, India": {
+  "reason": "\"Jhiver Heri\" not found on the map; only \"Yamunanagar, Haryana\" was"
+ },
+ "04-gurudwaras/13-haryana/09-y/04-13-12-06-patshahi-dasvin-sahib-balachaur.html|Balachaur, Yamunanagar, Haryana, India": {
+  "reason": "\"Balachaur\" not found on the map; only \"Yamunanagar, Haryana\" was"
+ },
+ "04-gurudwaras/14-jharkhand/04-14-08-01-gurudwara-saheb-sakchi-jamshedpur-jharkhand.html|Sakchi Gol Chakkar, Jamshedpur, Jharkhand (831001)": {
+  "reason": "\"Sakchi Gol Chakkar\" not found on the map; only \"Jamshedpur, Jharkhand\" was"
+ },
+ "04-gurudwaras/14-jharkhand/04-14-08-02-telco-gurudwara-telco-colony-jamshedpur-jharkhand.html|Telco Colony, G‑Road, near New Market, Jamshedpur, Jharkhand–831004": {
+  "reason": "only the city \"Jamshedpur, Jharkhand\" was found, not \"Telco Colony, G-Road, New Market\""
+ },
+ "04-gurudwaras/15-jammu-kashmir/04-15-01-01-mattan-sahib-anantnag.html|Village Mattan, Anantnag–Pahalgam Road, Anantnag District, Jammu & Kashmir": {
+  "lat": 34.54866,
+  "lng": 74.23882,
+  "precision": "locality",
+  "source": "address: Jammu & Kashmir, Jammu and Kashmir"
+ },
+ "04-gurudwaras/15-jammu-kashmir/04-15-01-02-guru-nanak-dev-ji-sahib-bijbihara.html|Anantnag–Srinagar Road, Bijbihara, Anantnag District, Jammu & Kashmir": {
+  "lat": 34.54866,
+  "lng": 74.23882,
+  "precision": "locality",
+  "source": "address: Jammu & Kashmir, Jammu and Kashmir"
+ },
+ "04-gurudwaras/15-jammu-kashmir/04-15-02-01-chevin-patshahi-sahib-baramulla.html|Baramulla City, Baramulla District, Jammu & Kashmir": {
+  "lat": 34.20869,
+  "lng": 74.3435,
+  "precision": "locality",
+  "source": "address: Baramulla City, Baramulla District, Jammu & Kashmir, Jammu and Kashmir"
+ },
+ "04-gurudwaras/15-jammu-kashmir/04-15-02-02-thada-sahib-singhpura.html|Village Singhpura, Baramulla District, Jammu & Kashmir": {
+  "lat": 34.54866,
+  "lng": 74.23882,
+  "precision": "locality",
+  "source": "address: Jammu & Kashmir, Jammu and Kashmir"
+ },
+ "04-gurudwaras/15-jammu-kashmir/04-15-02-03-chatti-patshahi-sahib-parampilla-uri.html|Village Parampilla, Baramulla–Uri Road, Uri, Baramulla District, Jammu & Kashmir": {
+  "reason": "\"Parampilla\" not found on the map; only \"Uri, Baramulla, Jammu & Kashmir\" was"
+ },
+ "04-gurudwaras/15-jammu-kashmir/04-15-06-01-gurudwara-shri-guru-nanak-sahib-jammu.html|Moti Bazaar area near Mubarak Mandi Palace, Jammu": {
+  "lat": 32.68681,
+  "lng": 74.86172,
+  "precision": "exact",
+  "source": "osm node/7798371262"
+ },
+ "04-gurudwaras/15-jammu-kashmir/04-15-06-02-gurudwara-shri-tahli-sahib-(talab-tillo)-jammu.html|Talab Tillo area, Jammu": {
+  "lat": 32.68681,
+  "lng": 74.86172,
+  "precision": "exact",
+  "source": "osm node/7798371262"
+ },
+ "04-gurudwaras/15-jammu-kashmir/04-15-06-03-gurudwara-guru-ka-bagh-(channi-himmat)-jammu.html|Channi Himmat locality of Jammu": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/15-jammu-kashmir/04-15-06-04-gurudwara-bahu-fort-jammu.html|Near Bahu Fort, about 1 km from Jammu Railway Station, Jammu": {
+  "lat": 32.7262,
+  "lng": 74.88027,
+  "precision": "street",
+  "source": "address: Bahu Fort, Jammu, Jammu and Kashmir"
+ },
+ "04-gurudwaras/15-jammu-kashmir/04-15-09-01-chatti-patshahi-sahib-shadimarg-pulwama.html|Village Shadimarg (Shah Ji Marg), Pulwama District, Jammu & Kashmir": {
+  "lat": 33.80468,
+  "lng": 74.82498,
+  "precision": "locality",
+  "source": "address: Shadimarg, Pulwama District, Jammu & Kashmir, Jammu and Kashmir"
+ },
+ "04-gurudwaras/15-jammu-kashmir/04-15-15-01-gurudwara-chatti-patshahi-rainawari-srinagar.html|Kathi Darwaza, Rainawari area, near the southern gate of Hari Parbat Fort, Srinagar.": {
+  "lat": 34.10285,
+  "lng": 74.82203,
+  "precision": "exact",
+  "source": "osm way/680716364"
+ },
+ "04-gurudwaras/15-jammu-kashmir/04-15-15-02-gurudwara-guru-nanak-dev-ji-hari-parbat-srinagar.html|At the base/foothill of Hari Parbat Hill, Srinagar.": {
+  "reason": "\"Hari Parbat Hill\" not found on the map; only \"Srinagar.\" was"
+ },
+ "04-gurudwaras/15-jammu-kashmir/04-15-15-03-gurudwara-shaheed-bunga-sahib-baghat-srinagar.html|Baghat Barzulla area, Srinagar.": {
+  "lat": 34.04198,
+  "lng": 74.80241,
+  "precision": "exact",
+  "source": "osm node/5952955455"
+ },
+ "04-gurudwaras/16-karnataka/01-ban/04-16-03-01-sri-guru-singh-sabha-gurudwara.html|Near Ulsoor Lake, along Gurudwara Road": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/16-karnataka/01-ban/04-16-03-02-gurudwara-sahib-ejipura-cantonment.html|Agram, Bengaluru, Karnataka 560007, India": {
+  "lat": 12.96532,
+  "lng": 77.61769,
+  "precision": "street",
+  "source": "address: Agram, Bengaluru, Karnataka"
+ },
+ "04-gurudwaras/16-karnataka/01-ban/04-16-03-03-gurudwara-sahib-armane-nagar.html|G2nd Cross Road, 1st Block, RMV 2nd Stage, Ashwath Nagar, Armane Nagar, Bengaluru, Karnataka 560006, India": {
+  "lat": 12.96196,
+  "lng": 77.69889,
+  "precision": "locality",
+  "source": "address: Ashwath Nagar, Karnataka"
+ },
+ "04-gurudwaras/16-karnataka/01-ban/04-16-03-04-gurudwara-sadh-sangat.html|C.P.R.I Bus Stand": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/16-karnataka/02-bidar/04-16-04-01-gurudwara-nanak-jhira-bidar.html|Shiva Nagar, Bidar, Karnataka 585402, India": {
+  "lat": 17.92854,
+  "lng": 77.50783,
+  "precision": "exact",
+  "source": "osm way/1228449058"
+ },
+ "04-gurudwaras/16-karnataka/02-bidar/04-16-04-02-gurudwara-mai-bhago-ji-janwada-bidar.html|Village Janwada, Bidar–Degloor Road, Bidar District, Karnataka": {
+  "lat": 17.91494,
+  "lng": 77.48805,
+  "precision": "locality",
+  "source": "address: Bidar, Karnataka"
+ },
+ "04-gurudwaras/17-kerala/04-17-06-06-gurudwara-sri-guru-singh-sabha-kochi-kerala.html|Gurudwara Road, Perumanoor (near Thevara), Kochi, Kerala 682015, India": {
+  "lat": 9.94986,
+  "lng": 76.294,
+  "precision": "street",
+  "source": "address: Gurudwara Road, Perumanoor, Kochi, Kerala"
+ },
+ "04-gurudwaras/18-ladakh/04-18-01-gurudwara-pathar-sahib-leh-ladakh.html|About 40 km (25 miles) south of Leh, along NH 1D toward Kargil in Phey village, Ladakh": {
+  "lat": 34.19167,
+  "lng": 77.37588,
+  "precision": "exact",
+  "source": "osm way/183827408 (only one of that name in Ladakh)"
+ },
+ "04-gurudwaras/18-ladakh/04-18-02-gurudwara-charan-kamal-sahib-ji-ladakh.html|Situated on the outskirts of Kargil town, near Iqbal Bridge, along the Suru River’s bank in Ladakh": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/18-ladakh/04-18-03-gurudwara-datun-sahib-ji-ladakh.html|Located in Leh’s main bazaar, behind the Jama Masjid and very close to the Leh Palace, Ladakh": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/20-maharashtra/01-m/04-20-06-01-gurudwara-sri-guru-singh-sabha-dadar-mumbai.html|Dr Baba Saheb Ambedkar Road (Old BDD Chawl), opposite Chitra Cinema, Dadar East, Mumbai 400014; •": {
+  "lat": 19.01625,
+  "lng": 72.85223,
+  "precision": "street",
+  "source": "address: Dadar East, Mumbai ; •, Maharashtra"
+ },
+ "04-gurudwaras/20-maharashtra/01-m/04-20-06-02-gurudwara-khalsa-sabha-santacruz-mumbai.html|24 G Tank Rd, City Light, Shivaji Park, Mumbai 400016": {
+  "lat": 19.03084,
+  "lng": 72.84073,
+  "precision": "exact",
+  "source": "osm way/150466934"
+ },
+ "04-gurudwaras/20-maharashtra/01-m/04-20-06-03-gurudwara-sri-guru-nanak-darbar-andheri-mumbai.html|24 G Tank Rd, City Light, Shivaji Park, Mumbai 400016": {
+  "lat": 19.04164,
+  "lng": 72.86141,
+  "precision": "exact",
+  "source": "osm way/357112850"
+ },
+ "04-gurudwaras/20-maharashtra/02-n/04-20-08-01-gurudwara-hazur-sahib-nanded.html|Gurudwara Road & Yatri Niwas Road, Shradha Nagar, Nanded – 431601, Maharashtra, India, +91 2462 243 559, +91 82977 82977": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/20-maharashtra/02-n/04-20-08-02-gurudwara-bandaghaat-sahib-nanded.html|Nanded City, Nanded District, Maharashtra": {
+  "lat": 19.16934,
+  "lng": 77.31101,
+  "precision": "locality",
+  "source": "address: Nanded City, Nanded District, Maharashtra"
+ },
+ "04-gurudwaras/20-maharashtra/02-n/04-20-08-03-gurudwara-bhai-daya-singh-bhai-dharam-singh-nanded.html|Nanded City, Nanded District, Maharashtra": {
+  "lat": 19.16934,
+  "lng": 77.31101,
+  "precision": "locality",
+  "source": "address: Nanded City, Nanded District, Maharashtra"
+ },
+ "04-gurudwaras/20-maharashtra/02-n/04-20-08-04-gurudwara-chandan-sahib-nanded.html|Nanded City, Nanded District, Maharashtra": {
+  "lat": 19.16934,
+  "lng": 77.31101,
+  "precision": "locality",
+  "source": "address: Nanded City, Nanded District, Maharashtra"
+ },
+ "04-gurudwaras/20-maharashtra/02-n/04-20-08-05-gurudwara-gobind-baag-sahib-nanded.html|Nanded City, Nanded District, Maharashtra": {
+  "lat": 19.16934,
+  "lng": 77.31101,
+  "precision": "locality",
+  "source": "address: Nanded City, Nanded District, Maharashtra"
+ },
+ "04-gurudwaras/20-maharashtra/02-n/04-20-08-06-gurudwara-hiraghaat-sahib-nanded.html|Village Bahmanvaada, Nanded District, Maharashtra": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/20-maharashtra/02-n/04-20-08-07-gurudwara-maaltekri-sahib-nanded.html|Nanded–Akola Road, Nanded District, Maharashtra": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/20-maharashtra/02-n/04-20-08-08-gurudwara-mata-sahib-devaan-ji-nanded.html|Village Bahmanvaada, Nanded District, Maharashtra": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/20-maharashtra/02-n/04-20-08-09-gurudwara-naginaghaat-sahib-nanded.html|Nanded City, Nanded District, Maharashtra": {
+  "lat": 19.16934,
+  "lng": 77.31101,
+  "precision": "locality",
+  "source": "address: Nanded City, Nanded District, Maharashtra"
+ },
+ "04-gurudwaras/20-maharashtra/02-n/04-20-08-10-gurudwara-nanakpuri-sahib-nanded.html|Nanded, Nanded District, Maharashtra": {
+  "lat": 19.16934,
+  "lng": 77.31101,
+  "precision": "locality",
+  "source": "address: Nanded, Nanded District, Maharashtra"
+ },
+ "04-gurudwaras/20-maharashtra/02-n/04-20-08-11-gurudwara-nanaksar-sahib-nanded.html|Nanded, Nanded District, Maharashtra": {
+  "lat": 19.16934,
+  "lng": 77.31101,
+  "precision": "locality",
+  "source": "address: Nanded, Nanded District, Maharashtra"
+ },
+ "04-gurudwaras/20-maharashtra/02-n/04-20-08-12-gurudwara-ratangarh-sahib-nanded.html|Ratnagiri Hills, Nanded District, Maharashtra": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/20-maharashtra/02-n/04-20-08-13-gurudwara-sangat-sahib-nanded.html|Nanded City, Nanded District, Maharashtra": {
+  "lat": 19.16934,
+  "lng": 77.31101,
+  "precision": "locality",
+  "source": "address: Nanded City, Nanded District, Maharashtra"
+ },
+ "04-gurudwaras/20-maharashtra/02-n/04-20-08-14-gurudwara-shikarghaat-sahib-nanded.html|Punegaon, Nanded District, Maharashtra": {
+  "lat": 19.13349,
+  "lng": 77.40468,
+  "precision": "locality",
+  "source": "address: Punegaon, Nanded District, Maharashtra"
+ },
+ "04-gurudwaras/20-maharashtra/03-p/04-20-11-01-gurudwara-guru-nanak-darbar-pune.html|Pattinson Road, Camp area, Pune": {
+  "lat": 18.51263,
+  "lng": 73.88579,
+  "precision": "exact",
+  "source": "osm way/108098246"
+ },
+ "04-gurudwaras/20-maharashtra/03-p/04-20-11-02-gurudwara-sri-guru-singh-sabha-pune.html|Maharana Pratap Rd, Ganesh Peth, Pune": {
+  "lat": 18.51784,
+  "lng": 73.86188,
+  "precision": "exact",
+  "source": "osm way/282961100"
+ },
+ "04-gurudwaras/20-maharashtra/04-bn/01-gurudwara-damdama-sahib-basmath-nagar.html|Basmath Nagar, Parbhani District, Maharashtra": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/20-maharashtra/05-nn/01-gurudwara-janam-asthan-bhagat-namdev-ji-narsi-namdev.html|Village Narsi Namdev, Hingoli District, Maharashtra": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/21-meghalaya/04-21-01-gurudwara-guru-nanak-darbar-shillong.html|Punjabi Lane (Them Iew Mawlong), Bara Bazar, Shillong, Meghalaya 793001; Contact: +91 90893 00707": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/22-manipur/04-22-01-gurudwara-sri-guru-singh-sabha-imphal-manipur.html|Imphal, Manipur, India, specifically in Thangal Bazar, with postal code 795001": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/22-manipur/04-22-02-gurdwara-singh-sabha-moreh-manipur.html|Located in Moreh, a prominent border town in Tengnoupal district, Manipur, situated on Indo–Myanmar Road": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/23-madhya-pradesh/01-i/04-23-05-01-gurudwara-shri-imli-sahib-indore.html|Prince Yashwant Road (Jawahar Marg) in the Rajwada area, Nihalpura, Indore, Madhya Pradesh 452001, India ; Contact: +91 731‑2343502 / 2340950": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/23-madhya-pradesh/01-i/04-23-05-02-gurudwara-sri-betma-sahib-indore.html|Located in Betma, a town ~30 km south of Indore on NH‑59 (Ratlam Road), Madhya Pradesh, PIN 453001; Contact": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/23-madhya-pradesh/02-b/04-23-01-01-gurudwara-nanaksar-bhopal.html|7-B, Hamidia Rd, Near Gurudwara, Near Bus Stand, Hamidia Rd, Near Gurudwara, Near Bus Stand, Ghora Nakkas, Peer Gate Area, Bhopal, Madhya Pradesh 462001": {
+  "lat": 23.26529,
+  "lng": 77.40533,
+  "precision": "street",
+  "source": "address: Bus Stand, Ghora Nakkas, Peer Gate Area, Bhopal, Madhya Pradesh"
+ },
+ "04-gurudwaras/23-madhya-pradesh/02-b/04-23-01-02-gurudwara-tekri-sahib-bhopal.html|7-B, Hamidia Rd, Near Gurudwara, Near Bus Stand, Hamidia Rd, Near Gurudwara, Near Bus Stand, Ghora Nakkas, Peer Gate Area, Bhopal, Madhya Pradesh 462001": {
+  "lat": 23.26529,
+  "lng": 77.40533,
+  "precision": "street",
+  "source": "address: Bus Stand, Ghora Nakkas, Peer Gate Area, Bhopal, Madhya Pradesh"
+ },
+ "04-gurudwaras/23-madhya-pradesh/02-b/04-23-01-03-gurudwara-singh-sabha-bhopal.html|7-B, Hamidia Rd, Near Gurudwara, Near Bus Stand, Hamidia Rd, Near Gurudwara, Near Bus Stand, Ghora Nakkas, Peer Gate Area, Bhopal, Madhya Pradesh 462001": {
+  "lat": 23.26529,
+  "lng": 77.40533,
+  "precision": "street",
+  "source": "address: Bus Stand, Ghora Nakkas, Peer Gate Area, Bhopal, Madhya Pradesh"
+ },
+ "04-gurudwaras/23-madhya-pradesh/02-b/04-23-01-04-gurudwara-baoli-sahib-bhopal.html|Niyamatpura, Idgah Hills, Bhopal City, Madhya Pradesh": {
+  "lat": 23.26884,
+  "lng": 77.39061,
+  "precision": "locality",
+  "source": "address: Niyamatpura, Madhya Pradesh"
+ },
+ "04-gurudwaras/23-madhya-pradesh/03-bu/01-badi-sangat-patshahi-dasvin-sahib-burhanpur.html|Burhanpur City, Burhanpur District, Madhya Pradesh": {
+  "lat": 21.32354,
+  "lng": 76.22925,
+  "precision": "exact",
+  "source": "osm node/11528276869"
+ },
+ "04-gurudwaras/23-madhya-pradesh/03-bu/02-charan-kamal-patshahi-dasvin-sahib-burhanpur.html|Village Jaisinghpura, Burhanpur District, Madhya Pradesh": {
+  "reason": "\"Jaisinghpura\" not found on the map; only \"Burhanpur, Madhya Pradesh\" was"
+ },
+ "04-gurudwaras/23-madhya-pradesh/03-bu/03-rajghat-patshahi-pehli-sahib-burhanpur.html|Sanjay Nagar, Burhanpur City, Burhanpur District, Madhya Pradesh": {
+  "reason": "\"Sanjay Nagar\" not found on the map; only \"Burhanpur City, Burhanpur, Madhya Pradesh\" was"
+ },
+ "04-gurudwaras/23-madhya-pradesh/04-g/01-data-bandi-chod-sahib-gwalior.html|Gwalior Fort, Gwalior District, Madhya Pradesh": {
+  "lat": 26.22038,
+  "lng": 78.16711,
+  "precision": "exact",
+  "source": "osm node/5469001921"
+ },
+ "04-gurudwaras/24-mizoram/04-24-01-gurudwara-pushpak-gurudwara-aizawl-mizoram.html|7MMJPPQR+RQ , Tlangnuam, near Heritage Lounge and close to Aizawl Municipal Corporation Town Hall, Postal Code: 796017; Contact number: +91 82589 43163": {
+  "lat": 23.73956,
+  "lng": 92.74194,
+  "precision": "exact",
+  "source": "plus code 7MMJPPQR+RQ"
+ },
+ "04-gurudwaras/24-mizoram/04-24-02-cijws-gurudwara-sahib-vairengte-mizoram.html|Vairengte, Kolasib District, Mizoram, India, Post Code: 788120 (Vairengte)": {
+  "lat": 24.49566,
+  "lng": 92.76049,
+  "precision": "locality",
+  "source": "address: Vairengte, Mizoram"
+ },
+ "04-gurudwaras/25-nagaland/04-25-01-gurudwara-sri-guru-singh-sabha-dimapur-nagaland.html|7MMJPPQR+RQ , Tlangnuam, near Heritage Lounge and close to Aizawl Municipal Corporation Town Hall, Postal Code: 796017; Contact number: +91 82589 43163": {
+  "reason": "plus code 7MMJPPQR+RQ is in Mizoram, not Nagaland"
+ },
+ "04-gurudwaras/25-nagaland/04-25-02-gurudwara-mokokchung-nagaland.html|7MMJPPQR+RQ , Tlangnuam, near Heritage Lounge and close to Aizawl Municipal Corporation Town Hall, Postal Code: 796017; Contact number: +91 82589 43163": {
+  "reason": "plus code 7MMJPPQR+RQ is in Mizoram, not Nagaland"
+ },
+ "04-gurudwaras/26-orissa/04-26-06-01-gurudwara-sri-guru-singh-sabha-bhubaneswar-orissa.html|Jan Path (Unit 3), opposite Epari Plaza, Kharvela Nagar, Bhubaneswar, Odisha 751001/751003": {
+  "lat": 20.27319,
+  "lng": 85.84274,
+  "precision": "street",
+  "source": "address: Jan Path, Odisha"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-01-gurudwara-sri-darbar-sahib-ji.html|Atta Mandi, Katra Ahluwalia, Amritsar - 143006, Punjab - India": {
+  "reason": "\"Atta Mandi\" not found on the map; only \"Amritsar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-02-gurudwara-baba-deep-singh-ji-shaheedan-sahib.html|Moni Chowk, Chattiwind Gate on Taran Taaran road, Amritsar": {
+  "lat": 31.61911,
+  "lng": 74.87644,
+  "precision": "exact",
+  "source": "osm node/2488970177"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-03-gurudwara-ramsar-sahib-amritsar.html|Near Sahida Sahib Gurudwara, Karori Chowk, Katra Ahluwalia, Sahida Sahib, Amritsar-143001, Punjab": {
+  "lat": 31.61369,
+  "lng": 74.88092,
+  "precision": "exact",
+  "source": "osm way/297232672"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-04-gurudwara-baba-bota-singh-garja-singh.html|Gurdwara Shaheed Baba Deep Singh Complex, Chattiwind Gate, Amritsar - 143006, Punjab - India": {
+  "reason": "\"Gurdwara Shaheed Baba Deep Singh Complex\" not found on the map; only \"Amritsar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-05-gurudwara-manji-sahib-amritsar.html|Atta Mandi, Katra Ahluwalia, Amritsar - 143006, Punjab - India": {
+  "lat": 31.45169,
+  "lng": 74.92515,
+  "precision": "exact",
+  "source": "osm node/10554562690 (only one of that name in Amritsar — Punjab)"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-06-gurudwara-guru-ki-kothri.html|GVadali Guru, a village near Amritsar, Punjab - India": {
+  "lat": 31.95024,
+  "lng": 74.88685,
+  "precision": "locality",
+  "source": "address: a near Amritsar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-07-gurudwara-gurusar-satlani.html|Khur Manian, Amritsar - 143107, Punjab - India": {
+  "lat": 31.64561,
+  "lng": 74.71725,
+  "precision": "street",
+  "source": "address: Khur Manian, Amritsar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-08-gurudwara-pipli-sahib.html|Gurudawara Pipli Sahib Road, Railway, Phatak Rd, Putligarh, Amritsar-143002, Punjab - India": {
+  "reason": "\"Railway\" not found on the map; only \"Amritsar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-09-gurudwara-janam-asthaan-shri-guru-amar-das-ji.html|Baserke Gillan, Amritsar - 143105, Punjab - India": {
+  "reason": "\"Baserke Gillan\" not found on the map; only \"Amritsar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-10-gurudwara-shri-janam-asthan-baba-budha-ji-sahib.html|Baba Budha Sahib Road, Kathu Nangal, Amritsar - 143504, Punjab - India": {
+  "lat": 31.61911,
+  "lng": 74.87644,
+  "precision": "exact",
+  "source": "osm node/2488970177"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-11-gurudwara-patshahi-6-dhand.html|Dhand Village, Amritsar - 143006, Punjab - India": {
+  "reason": "\"Dhand\" not found on the map; only \"Amritsar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-12-gurudwara-shri-atari-sahib.html|Sultanvind village, Amritsar - 143006, Punjab - India": {
+  "reason": "\"Sultanvind\" not found on the map; only \"Amritsar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-13-gurudwara-kaulsar-sahib-amritsar.html|Near Golden Temple, Atta Mandi, Katra Ahluwalia, Amritsar - 143001, Punjab - India": {
+  "lat": 31.61823,
+  "lng": 74.87592,
+  "precision": "exact",
+  "source": "osm node/7806906690"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-14-gurudwara-baba-bakala-sahib-amritsar.html|Situated in Baba Bakala village, Amritsar district, Punjab, India, along Gurdaspur Road, approximately 42 km east of Amritsar and 46 km from Jalandhar": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-15-gurudwara-guru-ka-mahal-amritsar.html|24 Guru Bazar Road, Shastri Market, Katra Ahluwalia, Amritsar Cantt, Punjab 143006, approx. 1.5 km west of the Golden Temple across Guru Bazaar": {
+  "lat": 31.63321,
+  "lng": 74.86714,
+  "precision": "street",
+  "source": "address: Amritsar Cantt, Punjab"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-16-gurudwara-baba-atal-sahib-amritsar.html|Situated close to the Golden Temple complex, approximately 185–200 m southeast of Sarai Guru Ram Das": {
+  "lat": 31.61733,
+  "lng": 74.87714,
+  "precision": "exact",
+  "source": "osm node/332084940 (only one of that name in Amritsar — Punjab)"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-17-akal-takhat-sahib-amritsar.html|Amritsar, Amritsar, Punjab, India": {
+  "lat": 31.6207,
+  "lng": 74.87539,
+  "precision": "exact",
+  "source": "osm way/845155418"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-18-baba-deep-singh-ji-shaheed-antim-sanskaar.html|Chattiwind Gate, Amritsar City, Punjab, India": {
+  "lat": 31.45117,
+  "lng": 74.92172,
+  "precision": "exact",
+  "source": "osm node/10554534707 (only one of that name in Amritsar — Amritsar, Punjab)"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-19-harimandir-sahib-amritsar.html|Amritsar, Amritsar, Punjab, India": {
+  "lat": 31.63567,
+  "lng": 74.87875,
+  "precision": "locality",
+  "source": "address: Amritsar, Amritsar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-20-kila-shri-lohgarh-sahib-amritsar.html|Amritsar, Amritsar, Punjab, India": {
+  "lat": 31.63567,
+  "lng": 74.87875,
+  "precision": "locality",
+  "source": "address: Amritsar, Amritsar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-21-cheharta-sahib-amritsar.html|Guru Ki Wadali, Amritsar, Punjab, India": {
+  "lat": 31.6128,
+  "lng": 74.79945,
+  "precision": "street",
+  "source": "address: Guru Ki Wadali, Amritsar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-22-santokhsar-sahib.html|Amritsar, Amritsar, Punjab, India": {
+  "lat": 31.62493,
+  "lng": 74.87675,
+  "precision": "exact",
+  "source": "osm node/6622512173"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-23-toot-sahib.html|Jaspal Nagar, Amritsar, Punjab 143006, India": {
+  "lat": 31.60871,
+  "lng": 74.89278,
+  "precision": "exact",
+  "source": "osm node/12528685801"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-24-thada-sahib-amritsar.html|Golden Temple Road, Amritsar City, Punjab 143006, India": {
+  "reason": "only the city \"Amritsar City, Punjab\" was found, not \"Golden Temple Road\""
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-25-darshani-deori-amritsar.html|Guru Ka Bazar Road, Amritsar City, Punjab 143006, India": {
+  "lat": 31.62038,
+  "lng": 74.87585,
+  "precision": "exact",
+  "source": "osm node/2847447301"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-26-dukh-bhanjani-beri-amritsar.html|Golden Temple Road, Amritsar City, Punjab 143006, India": {
+  "lat": 31.61973,
+  "lng": 74.87733,
+  "precision": "exact",
+  "source": "osm node/2488965780"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-27-plaaha-sahib.html|Khairabad, Amritsar, Punjab, India": {
+  "lat": 31.67044,
+  "lng": 74.82226,
+  "precision": "locality",
+  "source": "address: Khairabad, Amritsar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-28-sangraana-sahib.html|Chabba, Amritsar, Punjab 143022, India": {
+  "lat": 31.55638,
+  "lng": 74.88483,
+  "precision": "locality",
+  "source": "address: Chabba, Amritsar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-29-bibeksar-sahib.html|Chattiwind Gate, Amritsar City, Punjab, India": {
+  "lat": 31.61515,
+  "lng": 74.88106,
+  "precision": "exact",
+  "source": "osm way/297232670"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-30-bhai-shalo-da-tobha.html|Shastri Market, Katra Ahluwalia, Amritsar City, Punjab, India": {
+  "reason": "\"Katra Ahluwalia\" not found on the map; only \"Amritsar City, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-31-manji-sahib-guru-arjan-dev-ji-darbar-sahib.html|Amritsar, Amritsar, Punjab, India": {
+  "lat": 31.45169,
+  "lng": 74.92515,
+  "precision": "exact",
+  "source": "osm node/10554562690 (only one of that name in Amritsar — Amritsar, Punjab)"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-32-mata-kaulsar-sahib.html|Golden Temple Road, Amritsar City, Punjab 143006, India": {
+  "lat": 31.61823,
+  "lng": 74.87592,
+  "precision": "exact",
+  "source": "osm node/7806906690"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-33-ramsar-sahib.html|Amritsar, Amritsar, Punjab, India": {
+  "lat": 31.63567,
+  "lng": 74.87875,
+  "precision": "locality",
+  "source": "address: Amritsar, Amritsar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-34-laachi-ber-sahib.html|Amritsar, Amritsar, Punjab, India": {
+  "lat": 31.63567,
+  "lng": 74.87875,
+  "precision": "locality",
+  "source": "address: Amritsar, Amritsar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-35-damdama-sahib-amritsar.html|Guru Ki Wadali, Amritsar, Punjab, India": {
+  "lat": 31.6128,
+  "lng": 74.79945,
+  "precision": "street",
+  "source": "address: Guru Ki Wadali, Amritsar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-36-adalat-sahib-khairabad.html|Amritsar, Amritsar, Punjab, India": {
+  "lat": 31.63567,
+  "lng": 74.87875,
+  "precision": "locality",
+  "source": "address: Amritsar, Amritsar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/01-a/04-27-01-37-churasti-attari-sahib.html|Amritsar, Amritsar, Punjab, India": {
+  "lat": 31.63567,
+  "lng": 74.87875,
+  "precision": "locality",
+  "source": "address: Amritsar, Amritsar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-01-arisar-sahib-dhaula.html|Between Dhaula and Handiaya, Barnala, Punjab 148107, India": {
+  "reason": "\"Between Dhaula and Handiaya\" not found on the map; only \"Barnala, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-02-gurusar-sahib-patshahi-nauvin-kattu.html|Village Kattu, Barnala, Punjab, India": {
+  "lat": 30.33766,
+  "lng": 75.38886,
+  "precision": "exact",
+  "source": "osm node/8879191009 (only one of that name in Kattu — Barnala, Punjab)"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-03-patshahi-chevin-sahib-mehal-kalan.html|Mehal Kalan Sehjra Link Road, Mehal Kalan, Punjab 148104, India": {
+  "lat": 30.52939,
+  "lng": 75.56539,
+  "precision": "locality",
+  "source": "address: Mehal Kalan, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-04-patshahi-nauvin-sahib-sekha.html|Village Sekha, Barnala, Punjab, India": {
+  "lat": 30.33766,
+  "lng": 75.38886,
+  "precision": "exact",
+  "source": "osm node/8879191009 (only one of that name in Sekha — Barnala, Punjab)"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-05-kacha-gurusar-sahib.html|Handiaya, 6 km south-west of Barnala, Punjab, India": {
+  "lat": 30.32664,
+  "lng": 75.50275,
+  "precision": "locality",
+  "source": "address: Handiaya, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-06-paka-gurusar-sahib.html|Handiaya, 6 km south-west of Barnala, Punjab, India": {
+  "lat": 30.32664,
+  "lng": 75.50275,
+  "precision": "locality",
+  "source": "address: Handiaya, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-07-patshahi-nauvin-sahib-dhilwaan.html|Village Dhilwan, Barnala, Punjab, India": {
+  "lat": 30.33766,
+  "lng": 75.38886,
+  "precision": "exact",
+  "source": "osm node/8879191009"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-08-sapnisar-patshahi-dasvin-bhadour.html|Bhadaur, Barnala, Punjab, India": {
+  "lat": 30.47594,
+  "lng": 75.3279,
+  "precision": "exact",
+  "source": "osm node/12113910043"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-09-sohiana-sahib-patshahi-nauvin.html|Near Khudi Kurd, Barnala, Punjab, India": {
+  "reason": "\"Khudi Kurd\" not found on the map; only \"Barnala, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-10-bairooni-sahib-patshahi-6.html|Bhadaur, Barnala, Punjab, India": {
+  "lat": 30.4763,
+  "lng": 75.32982,
+  "precision": "locality",
+  "source": "address: Bhadaur, Barnala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-11-jandsar-sahib-thuliwal.html|Village Thuliwal, Barnala, Punjab, India": {
+  "reason": "\"Thuliwal\" not found on the map; only \"Barnala, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-12-patshahi-nauvin-sahib-pharwahi.html|Village Pharwahi, 5 km south-east of Barnala, Punjab, India": {
+  "lat": 30.33766,
+  "lng": 75.38886,
+  "precision": "exact",
+  "source": "osm node/8879191009 (only one of that name in Pharwahi — Barnala, Punjab)"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-13-baba-gurditta-ji-daraj.html|Village Daraj, Barnala, Punjab, India": {
+  "lat": 30.31011,
+  "lng": 75.34431,
+  "precision": "locality",
+  "source": "address: Daraj, Barnala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-14-dulamsar-patshahi-nauvin-sahib.html|Village Mauran, Barnala, Punjab, India": {
+  "lat": 30.36976,
+  "lng": 75.38271,
+  "precision": "locality",
+  "source": "address: Mauran, Barnala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-15-patshahi-chevin-sahib-gehal.html|Village Gehal, Barnala, Punjab, India": {
+  "lat": 30.54831,
+  "lng": 75.44533,
+  "precision": "locality",
+  "source": "address: Gehal, Barnala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-16-kailon-sahib-dhilwaan.html|Village Dhilwan, Barnala, Punjab, India": {
+  "lat": 30.33766,
+  "lng": 75.38886,
+  "precision": "exact",
+  "source": "osm node/8879191009"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-17-patshahi-nauvin-sahib-pandher.html|Village Pandher, Barnala, Punjab, India": {
+  "lat": 30.33766,
+  "lng": 75.38886,
+  "precision": "exact",
+  "source": "osm node/8879191009 (only one of that name in Pandher — Barnala, Punjab)"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-02-18-patshahi-chevin-kharak-singhwala.html|Village Kharak Singhwala, Barnala, Punjab, India": {
+  "reason": "\"Kharak Singhwala\" not found on the map; only \"Barnala, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-01-gurudwara-damdama-sahib-bhatinda.html|Near Sangat - Talwandi Rd, Talwandi Sabo, Punjab 151302, India": {
+  "lat": 30.09064,
+  "lng": 74.83543,
+  "precision": "street",
+  "source": "address: Sangat, Talwandi Sabo, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-02-baba-bir-singh-ji-bhai-dhir-singh-ji.html|Talwandi Sabo, Bhatinda, Punjab, India": {
+  "lat": 29.98382,
+  "lng": 75.08177,
+  "precision": "locality",
+  "source": "address: Talwandi Sabo, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-03-damdama-sahib-talwandi-sabo.html|Talwandi Sabo, Bathinda, Punjab, India": {
+  "lat": 29.98699,
+  "lng": 75.07861,
+  "precision": "exact",
+  "source": "osm node/11971191271"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-04-gurusar-sarovar-sahib-talwandi.html|Talwandi Sabo, Bathinda, Punjab, India": {
+  "lat": 29.98382,
+  "lng": 75.08177,
+  "precision": "locality",
+  "source": "address: Talwandi Sabo, Bathinda, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-05-jandsar-sahib-talwandi-sabo.html|Talwandi Sabo, Bathinda, Punjab, India": {
+  "lat": 29.99226,
+  "lng": 75.07959,
+  "precision": "exact",
+  "source": "osm way/1457103663"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-06-likhansar-sahib.html|Talwandi Sabo, Bathinda, Punjab, India": {
+  "lat": 29.98382,
+  "lng": 75.08177,
+  "precision": "locality",
+  "source": "address: Talwandi Sabo, Bathinda, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-07-mata-sahib-kaur-ji-ate-sunder-kaur-ji.html|Talwandi Sabo, Bathinda, Punjab, India": {
+  "lat": 29.98382,
+  "lng": 75.08177,
+  "precision": "locality",
+  "source": "address: Talwandi Sabo, Bathinda, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-08-mhalsar-sahib.html|Talwandi Sabo, Bhatinda, Punjab, India": {
+  "lat": 29.98382,
+  "lng": 75.08177,
+  "precision": "locality",
+  "source": "address: Talwandi Sabo, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-09-patshahi-pehli-talwandi-sabo.html|(approximate location) Talwandi Sabo, Bathinda, Punjab, India": {
+  "lat": 29.98382,
+  "lng": 75.08177,
+  "precision": "locality",
+  "source": "address: Talwandi Sabo, Bathinda, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-10-jhotasar-sahib-bangehar.html|Bangher, Bhatinda, Punjab, India": {
+  "lat": 30.04888,
+  "lng": 75.09591,
+  "precision": "locality",
+  "source": "address: Bangher, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-11-haaji-ratan-sahib.html|Bathinda, Bhatinda, Punjab, India": {
+  "lat": 30.20679,
+  "lng": 74.94637,
+  "precision": "locality",
+  "source": "address: Bathinda, Bhatinda, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-12-killa-sahib-bathinda.html|Bathinda, Bhatinda, Punjab, India": {
+  "lat": 30.20679,
+  "lng": 74.94637,
+  "precision": "locality",
+  "source": "address: Bathinda, Bhatinda, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-13-bagsar-sahib-jassi-bagwali.html|Jassi Bagsar, Bhatinda, Punjab, India": {
+  "reason": "\"Jassi Bagsar\" not found on the map; only \"Bhatinda, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-14-gurusar-sahib-mehraaj.html|Mehraj, Bathinda, Punjab, India": {
+  "lat": 30.31703,
+  "lng": 75.1918,
+  "precision": "locality",
+  "source": "address: Mehraj, Bathinda, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-15-chota-gurusar-sahib-mehraj.html|Mehraj, Bathinda, Punjab, India": {
+  "lat": 30.31703,
+  "lng": 75.1918,
+  "precision": "locality",
+  "source": "address: Mehraj, Bathinda, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-16-ramsar-sahib-mehraj.html|Mehraj, Bathinda, Punjab, India": {
+  "lat": 30.31703,
+  "lng": 75.1918,
+  "precision": "locality",
+  "source": "address: Mehraj, Bathinda, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-17-patshahi-chevin-sahib-mehraj.html|Mehraj, Bathinda, Punjab, India": {
+  "lat": 30.31703,
+  "lng": 75.1918,
+  "precision": "locality",
+  "source": "address: Mehraj, Bathinda, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-18-gobind-singh-ji-chak-fateh-singh-wala.html|Chak Fateh, Bhatinda, Punjab, India": {
+  "lat": 30.18499,
+  "lng": 75.09854,
+  "precision": "locality",
+  "source": "address: Chak Fateh, Bhatinda, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-19-burj-sahib-chak-fateh-singh-wala.html|(approximate location) Chak Fateh Singh Wala, Bathinda, Punjab, India": {
+  "reason": "\"Chak Fateh Singh Wala\" not found on the map; only \"Bathinda, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-20-gurusar-sahib-patshahi-chevin-nathana.html|Nathana, Bathinda, Punjab, India": {
+  "lat": 30.3159,
+  "lng": 75.09308,
+  "precision": "locality",
+  "source": "address: Nathana, Bathinda, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-21-gungsar-sahib-kotha-guru-ka.html|Kotha Guru ka, Bhatinda, Punjab, India": {
+  "reason": "\"Kotha Guru ka\" not found on the map; only \"Bhatinda, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-22-patshahi-dasvin-kotguru.html|Kotguru, Bhatinda, Punjab, India": {
+  "reason": "\"Kotguru\" not found on the map; only \"Bhatinda, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-23-gurusar-sahib-bhundar.html|Bhundar, Muktsar, Punjab, India": {
+  "lat": 30.31976,
+  "lng": 74.53077,
+  "precision": "street",
+  "source": "address: Bhundar, Muktsar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-24-jand-sahib.html|Kotha Guru, Bhatinda, Punjab, India": {
+  "lat": 30.44201,
+  "lng": 75.09413,
+  "precision": "locality",
+  "source": "address: Kotha Guru, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-25-zafarnaama-sahib-dyalpur-bhai-ka.html|Gaunspura Road, Dyalpura Bhai Ka, Bathinda, Punjab, India": {
+  "reason": "\"Dyalpura Bhai Ka\" not found on the map; only \"Bathinda, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-26-taruana-sahib-maluka.html|Maluka, Bhatinda, Punjab, India": {
+  "lat": 30.42909,
+  "lng": 75.05345,
+  "precision": "locality",
+  "source": "address: Maluka, Punjab"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-27-titarsar-sahib.html|Maiserkhana, Bathinda, Punjab, India": {
+  "reason": "\"Maiserkhana\" not found on the map; only \"Bathinda, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/02-b/04-27-03-28-patshahi-chevin-kangar.html|(approximate location) Patna, Bihar, India": {
+  "lat": 25.5802,
+  "lng": 85.08324,
+  "precision": "street",
+  "source": "address: Patna, Bihar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/03-c/04-27-03-01-gurudwara-sri-katalgarh-sahib-chamkaur-sahib.html|Gurdwara Shri Katalgarh Sahib Rd, Chamkaur Sahib, Rupnagar (Ropar) district, Punjab 140112": {
+  "lat": 30.8981,
+  "lng": 76.41285,
+  "precision": "exact",
+  "source": "osm way/366390453"
+ },
+ "04-gurudwaras/27-punjab/03-c/04-27-03-02-gurudwara-sri-garhi-sahib-chamkaur-sahib.html|Gurudwara Garhi Sahib Rd, Chamkaur Sahib, Rupnagar District, Punjab 140112": {
+  "lat": 30.8976,
+  "lng": 76.41402,
+  "precision": "exact",
+  "source": "osm node/11802513079"
+ },
+ "04-gurudwaras/27-punjab/03-c/04-27-03-03-gurudwara-sri-damdama-sahib-chamkaur-sahib.html|main bazaar of Chamkaur Sahib, along Garhi Sahib Road, in the heart of the town - 140112": {
+  "lat": 30.87987,
+  "lng": 76.41324,
+  "precision": "pin",
+  "source": "address: PIN 140112"
+ },
+ "04-gurudwaras/27-punjab/03-c/04-27-03-04-gurudwara-sri-ranjitgarh-sahib-chamkaur-sahib.html|200 yards east of Chamkaur Sahib town, near the eastern outskirts on the banks of the Sirhind Canal, Chamkaur Sahib": {
+  "reason": "\"the eastern outskirts on the banks of the Sirhind Canal\" not found on the map; only \"Chamkaur Sahib\" was"
+ },
+ "04-gurudwaras/27-punjab/03-c/04-27-03-05-gurudwara-sri-tarri-sahib-chamkaur-sahib.html|The shrine stands on a small mound about two furlongs (≈400 yards) west of Gurdwara Katalgarh Sahib, Chamkaur Sahib": {
+  "reason": "\"The shrine stands on a small mound about two furlongs west of Gurdwara Katalgarh Sahib\" not found on the map; only \"Chamkaur Sahib\" was"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-01-gurudwara-degsar-sahib-ludhiana.html|Katana village, Sirhind Canal, Ludhiana district": {
+  "lat": 30.57644,
+  "lng": 76.06895,
+  "precision": "locality",
+  "source": "address: Sirhind Canal, Ludhiana district, Punjab"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-02-gurudwara-charan-kanwal-sahib-machhiwara-ludhiana.html|The gurdwara stands in Machhiwara town, along Charan Kanwal Road, near the Machhiwara bus stand in Ludhiana district (PIN 141115)": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-03-chaubara-sahib.html|Machhiwara, Ludhiana, Punjab, India": {
+  "lat": 30.91546,
+  "lng": 76.19929,
+  "precision": "locality",
+  "source": "address: Machhiwara, Ludhiana, Punjab"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-04-gani-khan-nabi-khan.html|Machiwara, Ludhiana, Punjab, India": {
+  "lat": 30.91415,
+  "lng": 76.20067,
+  "precision": "exact",
+  "source": "osm node/12062387631 (only one of that name in Machiwara — Ludhiana, Punjab)"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-05-kirpan-bheta-sahib.html|Machiwara, Ludhiana, Punjab, India": {
+  "lat": 30.9571,
+  "lng": 76.28322,
+  "precision": "locality",
+  "source": "address: Machiwara, Ludhiana, Punjab"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-06-damdama-sahib-sahnewal.html|Sahnewal, Ludhiana, Punjab, India": {
+  "lat": 30.84089,
+  "lng": 75.98861,
+  "precision": "exact",
+  "source": "osm node/11807438567"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-07-ghera-sahib-patshahi-dasvin-sahnewal.html|Sahnewal, Ludhiana, Punjab, India": {
+  "lat": 30.83931,
+  "lng": 75.98918,
+  "precision": "exact",
+  "source": "osm node/11928361769"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-08-chola-sahib-ghudaani-kalaan.html|Ghudani Kalan, Ludhiana, Punjab, India": {
+  "reason": "\"Ghudani Kalan\" not found on the map; only \"Ludhiana, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-09-haveli-sahib.html|(approximate location) Ghudani Kalan, Ludhiana, Punjab, India": {
+  "reason": "\"Ghudani Kalan\" not found on the map; only \"Ludhiana, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-10-nimsar-sahib-ghudaani-kalaan.html|Ghudani Kalan, Ludhiana, Punjab 141419, India": {
+  "reason": "\"Ghudani Kalan\" not found on the map; only \"Ludhiana, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-11-damdama-sahib-ghudaani-kalaan.html|Ghudani Kalan, Ludhiana, Punjab, India": {
+  "reason": "\"Ghudani Kalan\" not found on the map; only \"Ludhiana, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-12-damdama-sahib-dehlon.html|NH11, Ludhiana Malerkotla Road, Dehlon, Ludhiana, Punjab, India": {
+  "lat": 30.84089,
+  "lng": 75.98861,
+  "precision": "exact",
+  "source": "osm node/11807438567 (only one of that name in Dehlon — Ludhiana, Punjab)"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-13-degsar-sahib.html|Katana, Ludhiana, Punjab, India": {
+  "lat": 30.83343,
+  "lng": 76.07274,
+  "precision": "exact",
+  "source": "osm node/2907517401"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-14-flahi-sahib-patshahi-dasvin-duley.html|Duley, Ludhiana, Punjab, India": {
+  "reason": "\"Duley\" not found on the map; only \"Ludhiana, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-15-atari-sahib-ghungrali.html|Gunghrali Sikhan, Ludhiana, Punjab, India": {
+  "reason": "\"Gunghrali Sikhan\" not found on the map; only \"Ludhiana, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-16-gau-ghat-sahib-ludhiana.html|Buddha Nala, Gau Shala Road, Division Number 3, Ludhiana City, Punjab, India": {
+  "reason": "\"Buddha Nala\" not found on the map; only \"Ludhiana City, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-17-guru-gobind-singh-ji-ghulal.html|Ghulal, Ludhiana, Punjab 141124, India": {
+  "lat": 30.84324,
+  "lng": 76.12782,
+  "precision": "locality",
+  "source": "address: Ghulal, Ludhiana, Punjab"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-18-guru-gobind-singh-ji-kamalpura.html|Kamalpura, Ludhiana, Punjab, India": {
+  "lat": 30.70871,
+  "lng": 75.52599,
+  "precision": "locality",
+  "source": "address: Kamalpura, Ludhiana, Punjab"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-19-gurusar-sahib-patshahi-chevin-sahib-siarah.html|Siarah, Ludhiana, Punjab, India": {
+  "reason": "\"Siarah\" not found on the map; only \"Ludhiana, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-20-patshahi-chevin-sahib-ikolaha.html|Ikolaha, Ludhiana, Punjab, India": {
+  "lat": 30.69011,
+  "lng": 76.16864,
+  "precision": "locality",
+  "source": "address: Ikolaha, Ludhiana, Punjab"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-21-guru-hargobind-sahib-ji-jattpura.html|Lamma Jatpura, Ludhiana, Punjab 142034, India": {
+  "lat": 30.67592,
+  "lng": 75.49926,
+  "precision": "street",
+  "source": "address: Lamma Jatpura, Ludhiana, Punjab"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-22-hargobind-sahib-ji-sidhwaan-kalan.html|Sidhwan Kalan, Punjab 142024, India": {
+  "lat": 30.82885,
+  "lng": 75.53762,
+  "precision": "locality",
+  "source": "address: Sidhwan Kalan, Punjab"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-23-guru-hargobind-sahib-gurusar-sudhar.html|Sudhar Link Rd, Sudhar, Ludhiana, Punjab 141104, India": {
+  "lat": 30.77231,
+  "lng": 75.64277,
+  "precision": "street",
+  "source": "address: Sudhar Link Rd, Sudhar, Ludhiana, Punjab"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-24-damdama-sahib-patshahi-chevin-raqba.html|Raqba, Ludhiana, Punjab, India": {
+  "lat": 30.8138,
+  "lng": 75.64794,
+  "precision": "locality",
+  "source": "address: Raqba, Ludhiana, Punjab"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-25-patshahi-chevin-sahib-heran.html|Heran, Ludhiana, Punjab, India": {
+  "lat": 30.74157,
+  "lng": 75.57992,
+  "precision": "locality",
+  "source": "address: Heran, Ludhiana, Punjab"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-26-kaimba-sahib-dhaliaan.html|Dhalian, Ludhiana, Punjab, India": {
+  "lat": 30.69584,
+  "lng": 75.67685,
+  "precision": "locality",
+  "source": "address: Dhalian, Ludhiana, Punjab"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-27-jhad-sahib-puat.html|Puat, Ludhiana, Punjab, India": {
+  "reason": "\"Puat\" not found on the map; only \"Ludhiana, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-28-langar-sahib-sidhwaan-kalan.html|Sidhwan Kalan, Punjab 142024, India": {
+  "lat": 30.82885,
+  "lng": 75.53762,
+  "precision": "locality",
+  "source": "address: Sidhwan Kalan, Punjab"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-29-manji-sahib-kot.html|Kot, Ludhiana, Punjab, India": {
+  "lat": 30.83128,
+  "lng": 76.00777,
+  "precision": "exact",
+  "source": "osm node/12067386711 (only one of that name in Kot — Ludhiana, Punjab)"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-30-karir-sahib-litran.html|Littran, Ludhiana, Punjab, India": {
+  "reason": "\"Littran\" not found on the map; only \"Ludhiana, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/04-l/04-27-10-31-manji-sahib-patshahi-dasvin-kanech.html|Kanech, Ludhiana, Punjab, India": {
+  "lat": 30.83128,
+  "lng": 76.00777,
+  "precision": "exact",
+  "source": "osm node/12067386711"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-12-01-gurudwara-sri-nabha-sahib-mohali.html|Near Zirakpur, on Chandigarh–Patiala Highway (~15 km from Chandigarh)": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-12-02-amb-sahib.html|Phase 8, Mohali, Punjab, India": {
+  "lat": 30.71781,
+  "lng": 76.69851,
+  "precision": "locality",
+  "source": "address: Phase 8, Mohali, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-12-03-akalgarh-sahib-gharuan.html|Gharuan, Ropar, Punjab, India": {
+  "reason": "\"Gharuan\" not found on the map; only \"Ropar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-12-04-nabha-sahib-zirakpur.html|Zirakpur, Mohali, Punjab, India": {
+  "lat": 30.65847,
+  "lng": 76.82965,
+  "precision": "street",
+  "source": "address: Zirakpur, Mohali, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-12-05-baoli-sahib-zirakpur.html|Zirakpur, Mohali, Punjab, India": {
+  "lat": 30.65847,
+  "lng": 76.82965,
+  "precision": "street",
+  "source": "address: Zirakpur, Mohali, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-12-06-banda-singh-bahadur-ji.html|Chapar Chidi, Mohali, Punjab, India": {
+  "reason": "\"Chapar Chidi\" not found on the map; only \"Mohali, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-12-07-patshahi-nauvin-dasvin.html|Tasimbli, Mohali, Punjab, India": {
+  "lat": 30.42525,
+  "lng": 76.87305,
+  "precision": "street",
+  "source": "address: Tasimbli, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-12-08-patshahi-satvin-sahib-gharuan.html|Gharuan, Ropar, Punjab 140413, India": {
+  "reason": "\"Gharuan\" not found on the map; only \"Ropar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-12-09-damdama-sahib-khizrabad.html|Khizrabad, Mohali, Punjab, India": {
+  "lat": 30.87832,
+  "lng": 76.65689,
+  "precision": "locality",
+  "source": "address: Khizrabad, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-12-10-zorawar-singh-khizrabad.html|Khizrabad, Mohali, Punjab, India": {
+  "lat": 30.87832,
+  "lng": 76.65689,
+  "precision": "locality",
+  "source": "address: Khizrabad, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-12-11-mata-sundar-kaur-mohali.html|Sector 70, Mohali, Punjab, India": {
+  "lat": 30.69756,
+  "lng": 76.71487,
+  "precision": "locality",
+  "source": "address: Sector 70, Mohali, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-13-01-guru-teg-bahadur-sahib-ji-bhupal.html|Bhupal, Mansa, Punjab, India": {
+  "lat": 30.09225,
+  "lng": 75.45598,
+  "precision": "locality",
+  "source": "address: Bhupal, Mansa, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-13-02-patshahi-nauvin-sahib-bhikhi.html|Bhikhi, Mansa, Punjab, India": {
+  "lat": 30.05911,
+  "lng": 75.53468,
+  "precision": "locality",
+  "source": "address: Bhikhi, Mansa, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-13-03-patshahi-nauvin-sahib-ji-bhupal.html|Bhupal, Mansa, Punjab, India": {
+  "lat": 30.09225,
+  "lng": 75.45598,
+  "precision": "locality",
+  "source": "address: Bhupal, Mansa, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-13-04-guru-teg-bahadur-sahib-bareh.html|Bareh, Mansa, Punjab, India": {
+  "lat": 29.89976,
+  "lng": 75.49376,
+  "precision": "locality",
+  "source": "address: Bareh, Mansa, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-13-05-patshahi-nauvin-sahib-joga.html|Joga, Mansa, Punjab, India": {
+  "lat": 30.33766,
+  "lng": 75.38886,
+  "precision": "exact",
+  "source": "osm node/8879191009 (only one of that name in Joga — Mansa, Punjab)"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-13-06-sulisar-sahib-kot-dharmu.html|Kot Dharmu, Mansa, Punjab, India": {
+  "lat": 29.89858,
+  "lng": 75.35475,
+  "precision": "exact",
+  "source": "osm node/9110516299 (only one of that name in Kot Dharmu — Mansa, Punjab)"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-14-01-angeetha-mata-damodari-ji.html|Moga Ferozepur Road, Daroli Bhai Ki, Moga, Punjab, India": {
+  "lat": 30.81716,
+  "lng": 75.04924,
+  "precision": "exact",
+  "source": "osm node/7160227442"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-14-02-guru-ka-mahal-ataari-sahib.html|Daroli Bhai, Moga, Punjab, India": {
+  "lat": 30.81042,
+  "lng": 75.0452,
+  "precision": "locality",
+  "source": "address: Daroli Bhai, Moga, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-14-03-gurusar-sahib-pato-hira-singh.html|Patto Hira Singh, Moga, Punjab, India": {
+  "lat": 30.59472,
+  "lng": 75.24302,
+  "precision": "exact",
+  "source": "osm node/7187113273 (named, 0.4 km from the address)"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-14-04-janam-asthaan-baba-gurditta-ji.html|Daroli Bhai Ki, Moga, Punjab, India": {
+  "reason": "\"Daroli Bhai Ki\" not found on the map; only \"Moga, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-14-05-lohgarh-sahib-patshahi-dasvin-dina.html|Dina, Moga, Punjab, India": {
+  "lat": 30.51784,
+  "lng": 75.23612,
+  "precision": "exact",
+  "source": "osm way/769658397"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-14-06-mehdiana-sahib.html|Mehtiaana, Moga, Punjab, India": {
+  "reason": "\"Mehtiaana\" not found on the map; only \"Moga, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-14-07-takhtupura-sahib.html|Takhatupura, Moga, Punjab, India": {
+  "reason": "\"Takhatupura\" not found on the map; only \"Moga, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-14-08-patshahi-chevinate-satvin.html|Moga Ferozepur Road, Daroli Bhai Ki, Moga, Punjab, India": {
+  "reason": "\"Daroli Bhai Ki\" not found on the map; only \"Moga, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-14-09-patshahi-dasvin-wander.html|Ajitgarh Wander, Moga, Punjab, India": {
+  "reason": "\"Ajitgarh Wander\" not found on the map; only \"Moga, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-14-10-patshahi-chevin-himatpura.html|Himatpura, Moga, Punjab, India": {
+  "reason": "\"Himatpura\" not found on the map; only \"Moga, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-16-01-datansar-sahib.html|Muktsar City, Punjab, India": {
+  "lat": 30.4692,
+  "lng": 74.5182,
+  "precision": "locality",
+  "source": "address: Muktsar City, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-16-02-janam-asthan-shri-angad-dev-ji.html|Sarai Nagaan, Sri Muktsar Sahib, Punjab, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-16-03-patshahi-pahli-dasvin.html|Sarai Nagaan, Sri Muktsar Sahib, Punjab, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-16-04-rakabsar-sahib.html|Muktsar City, Punjab, India": {
+  "lat": 30.4692,
+  "lng": 74.5182,
+  "precision": "locality",
+  "source": "address: Muktsar City, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-16-05-shaheed-ganj-sahib.html|Mukatsar, Sri Muktsar Sahib, Punjab, India": {
+  "lat": 30.4692,
+  "lng": 74.5182,
+  "precision": "locality",
+  "source": "address: Mukatsar, Sri Muktsar Sahib, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-16-06-taran-taaran-sahib-mukatsar.html|Mukatsar, Sri Muktsar Sahib, Punjab, India": {
+  "lat": 30.4692,
+  "lng": 74.5182,
+  "precision": "locality",
+  "source": "address: Mukatsar, Sri Muktsar Sahib, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-16-07-tibi-sahib.html|Mukatsar, Sri Muktsar Sahib, Punjab, India": {
+  "lat": 30.4692,
+  "lng": 74.5182,
+  "precision": "locality",
+  "source": "address: Mukatsar, Sri Muktsar Sahib, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-16-08-tambu-sahib.html|Muktsar City, Punjab, India": {
+  "lat": 30.4692,
+  "lng": 74.5182,
+  "precision": "locality",
+  "source": "address: Muktsar City, Punjab"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-16-09-tuti-gandi-sahib.html|Muktsar City, Punjab, India": {
+  "lat": 30.47331,
+  "lng": 74.51539,
+  "precision": "exact",
+  "source": "osm way/400687410"
+ },
+ "04-gurudwaras/27-punjab/05-m/04-27-16-10-theri-sahib.html|Theri, Sri Muktsar Sahib, Punjab, India": {
+  "lat": 30.20765,
+  "lng": 74.5847,
+  "precision": "exact",
+  "source": "osm node/11836267637"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-01-gurudwara-dukh-nivaran-sahib-patiala-punjab.html|Sirhind - Patiala Rd, Factory Area, Upkar Nagar, Patiala, Punjab 147004": {
+  "lat": 30.347,
+  "lng": 76.39657,
+  "precision": "exact",
+  "source": "osm way/332516383"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-02-behar-sahib.html|Patiala, Patiala, Punjab, India": {
+  "lat": 30.3302,
+  "lng": 76.40077,
+  "precision": "locality",
+  "source": "address: Patiala, Patiala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-03-baoli-sahib-gharam.html|Gharam, Patiala, Punjab, India": {
+  "reason": "\"Gharam\" not found on the map; only \"Patiala, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-04-charan-kamal-sahib.html|(approximate location) Karhali Sahib, Patiala, Punjab, India": {
+  "reason": "\"Karhali Sahib\" not found on the map; only \"Patiala, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-05-chaubara-sahib-cheetanwala.html|Cheetanwala, Patiala, Punjab, India": {
+  "reason": "\"Cheetanwala\" not found on the map; only \"Patiala, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-06-dukh-niwaran-sahib.html|Patiala, Patiala, Punjab, India": {
+  "lat": 30.347,
+  "lng": 76.39657,
+  "precision": "exact",
+  "source": "osm way/332516383 (named, 1.9 km from the address)"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-07-khichri-sahib-balbera.html|Balbera, Patiala, Punjab, India": {
+  "reason": "\"Balbera\" not found on the map; only \"Patiala, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-08-magar-sahib.html|Maggar, Patiala, Punjab, India": {
+  "reason": "\"Maggar\" not found on the map; only \"Patiala, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-09-manji-sahib-harpalpur.html|Harpalpur, Patiala, Punjab, India": {
+  "lat": 30.35704,
+  "lng": 76.48023,
+  "precision": "exact",
+  "source": "osm node/10595844859 (only one of that name in Harpalpur — Patiala, Punjab)"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-10-moti-baag-sahib.html|Patiala, Patiala, Punjab, India": {
+  "lat": 30.31077,
+  "lng": 76.38944,
+  "precision": "exact",
+  "source": "osm node/4687188486"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-11-nathana-sahib-mangoli.html|Jand Mangoli, Patiala, Punjab, India": {
+  "lat": 30.3629,
+  "lng": 76.67924,
+  "precision": "street",
+  "source": "address: Jand Mangoli, Patiala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-12-nim-sahib-akar.html|Akar, Patiala, Punjab, India": {
+  "lat": 30.44732,
+  "lng": 76.47124,
+  "precision": "locality",
+  "source": "address: Akar, Patiala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-13-patshahi-nauvin-sahib-dodra.html|Dodra, Patiala, Punjab, India": {
+  "lat": 30.14171,
+  "lng": 76.15182,
+  "precision": "locality",
+  "source": "address: Dodra, Patiala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-14-patshahi-nauvin-sahib-agaul.html|Agaul, Patiala, Punjab, India": {
+  "lat": 30.45456,
+  "lng": 76.19306,
+  "precision": "locality",
+  "source": "address: Agaul, Patiala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-15-patshahi-nauvin-sahib-dhangera.html|Dhangera, Patiala, Punjab, India": {
+  "reason": "\"Dhangera\" not found on the map; only \"Patiala, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-16-thada-sahib-samana.html|Samana, Patiala, Punjab, India": {
+  "lat": 30.15525,
+  "lng": 76.20243,
+  "precision": "street",
+  "source": "address: Samana, Patiala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-17-rohta-sahib-nabha.html|Nabha, Patiala, Punjab, India": {
+  "lat": 30.37399,
+  "lng": 76.15287,
+  "precision": "locality",
+  "source": "address: Nabha, Patiala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-18-patshahi-nauvin-qila-bahadur-garh.html|Bahadurgarh, Patiala, Punjab, India": {
+  "lat": 30.19974,
+  "lng": 76.23439,
+  "precision": "locality",
+  "source": "address: Bahadurgarh, Patiala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-19-teg-bahadur-sahib-ji-bahadur-garh.html|Bahadurgarh, Patiala, Punjab, India": {
+  "lat": 30.19974,
+  "lng": 76.23439,
+  "precision": "locality",
+  "source": "address: Bahadurgarh, Patiala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-20-patshahi-chevi-ate-nauvin.html|Karhali, Patiala, Punjab, India": {
+  "lat": 30.16227,
+  "lng": 76.32876,
+  "precision": "locality",
+  "source": "address: Karhali, Patiala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-21-jai-singh-khalkat-baran.html|Baran, Patiala, Punjab, India": {
+  "lat": 30.39972,
+  "lng": 76.39966,
+  "precision": "locality",
+  "source": "address: Baran, Patiala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-15-22-rajo-pujo-falo-fulloh.html|Pilkani, Patiala, Punjab, India": {
+  "reason": "\"Pilkani\" not found on the map; only \"Patiala, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-18-01-baarth-sahib.html|(approximate location) Barth, Pathankot, Gurdaspur, Punjab, India": {
+  "lat": 32.24922,
+  "lng": 75.64736,
+  "precision": "street",
+  "source": "address: Pathankot, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-18-02-patshahi-panjvi-sahib-baarth.html|Baarth, Pathankot, Punjab, India": {
+  "reason": "\"Baarth\" not found on the map; only \"Pathankot, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/06-p/04-27-18-03-partapgarh-sahib-bhatwan.html|Pathankot, Pathankot, Punjab, India": {
+  "lat": 32.26925,
+  "lng": 75.65289,
+  "precision": "locality",
+  "source": "address: Pathankot, Pathankot, Punjab"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-01-gurudwara-anandpur-sahib-rupnagar.html|National Highway 503 that links Kiratpur Sahib and Chandigarh to Nangal": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-03-bhai-jaita-ji.html|(approximate location) Anandpur Sahib, Ropar, Punjab, India": {
+  "reason": "\"Anandpur Sahib\" not found on the map; only \"Ropar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-04-bhora-sahib.html|Anandpur Sahib, Ropar, Punjab, India": {
+  "reason": "\"Anandpur Sahib\" not found on the map; only \"Ropar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-05-kesgarh-sahib.html|Anandpur Sahib, Rupnagar (Ropar), Punjab, India": {
+  "lat": 31.23506,
+  "lng": 76.49897,
+  "precision": "exact",
+  "source": "osm way/480025122"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-06-kila-anandgarh-sahib.html|Anandpur Sahib, Ropar, Punjab, India": {
+  "reason": "\"Anandpur Sahib\" not found on the map; only \"Ropar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-07-kila-fatehgarh-sahib.html|Anandpur Sahib, Ropar, Punjab, India": {
+  "reason": "\"Anandpur Sahib\" not found on the map; only \"Ropar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-08-kila-holgarh-sahib.html|Garhshankar-Nawanshahr Road, Holgarh, Anandpur Sahib, Ropar, Punjab, India": {
+  "reason": "\"Holgarh\" not found on the map; only \"Ropar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-09-kila-lohgarh-sahib.html|Lodipur Road, Anandpur Sahib, Ropar, Punjab 140118, India": {
+  "lat": 31.02248,
+  "lng": 76.56303,
+  "precision": "exact",
+  "source": "osm node/11802437116"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-10-kila-taragarh-sahib.html|Anandpur Sahib, Rupnagar (Ropar), Punjab, India": {
+  "lat": 31.22999,
+  "lng": 76.50058,
+  "precision": "street",
+  "source": "address: Anandpur Sahib, Rupnagar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-11-manji-sahib-dumaalgarh-sahib.html|Anandpur Sahib, Rupnagar (Ropar), Punjab, India": {
+  "lat": 31.22999,
+  "lng": 76.50058,
+  "precision": "street",
+  "source": "address: Anandpur Sahib, Rupnagar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-12-mata-jito-ji.html|Agampur, Anandpur Sahib, Ropar, Punjab, India": {
+  "lat": 31.23733,
+  "lng": 76.47989,
+  "precision": "street",
+  "source": "address: Agampur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-13-shahidi-bagh.html|Anandpur Sahib, Ropar, Punjab, India": {
+  "reason": "\"Anandpur Sahib\" not found on the map; only \"Ropar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-14-sheesh-ganj-sahib.html|Anandpur Sahib, Rupnagar (Ropar), Punjab, India": {
+  "lat": 31.23737,
+  "lng": 76.49814,
+  "precision": "exact",
+  "source": "osm node/4729505125"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-15-suhela-ghora-sahib.html|Anandpur Sahib, Rupnagar (Ropar), Punjab, India": {
+  "lat": 31.22999,
+  "lng": 76.50058,
+  "precision": "street",
+  "source": "address: Anandpur Sahib, Rupnagar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-16-bhai-khanya-ji.html|Anandpur Sahib, Rupnagar (Ropar), Punjab, India": {
+  "lat": 31.22999,
+  "lng": 76.50058,
+  "precision": "street",
+  "source": "address: Anandpur Sahib, Rupnagar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/07-r/04-27-15-17-bhavikhatsar-sahib.html|Sumlah, Ropar, Punjab, India": {
+  "reason": "\"Sumlah\" not found on the map; only \"Ropar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-01-gurudwara-sri-goindwal-sahib-tarn-taran.html|hadoor Sahib (Goindwal), Tarn Taran District, Punjab 143422, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-02-gurudwara-darbar-sahib-tarn-taran.html|Tarn Taran District, Punjab 143422, India": {
+  "lat": 31.35969,
+  "lng": 75.13376,
+  "precision": "pin",
+  "source": "address: PIN 143422"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-03-darbaar-sahib-khadur-sahib.html|Khadoor Sahib, Tarn Taran, Punjab, India": {
+  "lat": 31.42527,
+  "lng": 75.09913,
+  "precision": "exact",
+  "source": "osm way/1515590759"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-04-tap-asthaan-patshahi-dusri.html|Khadoor Sahib, Tarn Taran, Punjab, India": {
+  "lat": 31.42417,
+  "lng": 75.0982,
+  "precision": "locality",
+  "source": "address: Khadoor Sahib, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-05-tapiana-sahib-khadur-sahib.html|Khadoor Sahib, Tarn Taran, Punjab, India": {
+  "lat": 31.42417,
+  "lng": 75.0982,
+  "precision": "locality",
+  "source": "address: Khadoor Sahib, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-06-thada-sahib-khadur-sahib.html|Khadoor Sahib, Tarn Taran, Punjab, India": {
+  "lat": 31.42527,
+  "lng": 75.09913,
+  "precision": "exact",
+  "source": "osm way/1515590759"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-07-damdama-sahib-goindwal-sahib.html|Khadoor Sahib, Tarn Taran, Punjab, India": {
+  "lat": 31.42417,
+  "lng": 75.0982,
+  "precision": "locality",
+  "source": "address: Khadoor Sahib, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-08-mal-akhaara-sahib.html|Khadoor Sahib, Tarn Taran, Punjab, India": {
+  "lat": 31.42417,
+  "lng": 75.0982,
+  "precision": "locality",
+  "source": "address: Khadoor Sahib, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-09-mai-bharai-sahib.html|Khadoor Sahib, Tarn Taran, Punjab, India": {
+  "lat": 31.42417,
+  "lng": 75.0982,
+  "precision": "locality",
+  "source": "address: Khadoor Sahib, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-10-akaal-chalaana-sahib-bhai-gurdas-ji.html|Goindwal Sahib, Tarn Taran, Punjab, India": {
+  "lat": 31.39,
+  "lng": 75.1475,
+  "precision": "locality",
+  "source": "address: Goindwal Sahib, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-11-chaubaara-sahib-goindwal-sahib.html|(approximate location) Goindwal Sahib, Tarn Taran, Punjab, India": {
+  "lat": 31.39,
+  "lng": 75.1475,
+  "precision": "locality",
+  "source": "address: Goindwal Sahib, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-12-baoli-sahib-goindwal-sahib.html|Goindwal Sahib, Tarn Taran, Punjab, India": {
+  "lat": 31.39,
+  "lng": 75.1475,
+  "precision": "locality",
+  "source": "address: Goindwal Sahib, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-13-amb-sahib-bhairowaal.html|Bharowal, Tarn Taran, Punjab, India": {
+  "lat": 31.39475,
+  "lng": 75.07336,
+  "precision": "locality",
+  "source": "address: Bharowal, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-14-mai-bhago-ji.html|Chabal Kalan, Tarn Taran, Punjab, India": {
+  "lat": 31.48197,
+  "lng": 74.79295,
+  "precision": "locality",
+  "source": "address: Chabal Kalan, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-15-bibi-veero-ji.html|Chabal Kalan, Tarn Taran, Punjab, India": {
+  "lat": 31.48197,
+  "lng": 74.79295,
+  "precision": "locality",
+  "source": "address: Chabal Kalan, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-16-chaapri-sahib.html|Chapri, Tarn Taran, Punjab, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-17-manji-sahib-taran-taaran-sahib.html|Tarn Taran Road, Amritsar City, Punjab, India": {
+  "reason": "only the city \"Amritsar City, Punjab\" was found, not \"Tarn Taran Road\""
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-18-khooh-bibi-bhaniji.html|Tarn Taran, Punjab, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-19-guru-ka-khooh.html|Tarn Taran, Punjab, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-20-lakeer-sahib.html|Tarn Taran, Punjab, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-21-janam-asthaan-bhai-bidi-chand-ji.html|Chhina Bidhi Chand, Tarn Taran, Punjab, India": {
+  "lat": 31.4388,
+  "lng": 74.65475,
+  "precision": "locality",
+  "source": "address: Chhina Bidhi Chand, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-22-baba-adli-ji.html|Chohla Sahib, Tarn Taran, Punjab, India": {
+  "lat": 31.25644,
+  "lng": 74.99405,
+  "precision": "locality",
+  "source": "address: Chohla Sahib, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-23-chola-sahib.html|Chohla Sahib, Tarn Taran, Punjab, India": {
+  "lat": 31.25644,
+  "lng": 74.99405,
+  "precision": "locality",
+  "source": "address: Chohla Sahib, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-24-kothri-sahib-chohla.html|Chola, Tarn Taran, Punjab, India": {
+  "lat": 31.21518,
+  "lng": 75.19785,
+  "precision": "exact",
+  "source": "osm way/556725369 (only one of that name in Chola — Tarn Taran, Punjab)"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-25-hargobind-sahib-ji-sur-singh.html|Sur Singh, Tarn Taran, Punjab, India": {
+  "lat": 31.39845,
+  "lng": 74.71566,
+  "precision": "locality",
+  "source": "address: Sur Singh, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-26-angad-dev-ji-tood.html|Tarn Taran, Punjab, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-27-janam-asthaan-shaheed-bhai-jetha-ji.html|Sidhwan, Tarn Taran, Punjab, India": {
+  "lat": 31.38831,
+  "lng": 74.64671,
+  "precision": "locality",
+  "source": "address: Sidhwan, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-28-guru-teg-bahadur-sahib-khem-karan.html|Khem Karan, Tarn Taran, Punjab, India": {
+  "lat": 31.14442,
+  "lng": 74.55967,
+  "precision": "locality",
+  "source": "address: Khem Karan, Tarn Taran, Punjab"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-29-guru-nanak-dev-ji-fatehabad.html|Fatehbad, Tarn Taran, Punjab, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/08-t/04-27-15-30-janam-asthan-shaheed-baba-deep-singh-ji.html|Pahuwin, Tarn Taran, Punjab, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-04-01-akalgarh-sahib-lambwali.html|Lambwali, Faridkot, Punjab, India": {
+  "lat": 30.47405,
+  "lng": 74.99289,
+  "precision": "exact",
+  "source": "osm node/7100492906"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-04-02-chauntra-sahib-malla.html|Malla, Faridkot, Punjab, India": {
+  "lat": 30.45093,
+  "lng": 75.01089,
+  "precision": "locality",
+  "source": "address: Malla, Faridkot, Punjab"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-04-03-gangsar-sahib-patshahi-dasvin-jaito.html|Jaito, Faridkot, Punjab, India": {
+  "lat": 30.45156,
+  "lng": 74.88721,
+  "precision": "exact",
+  "source": "osm way/562420721"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-04-04-harsar-sahib-dod.html|Dod, Faridkot, Punjab, India": {
+  "lat": 30.47073,
+  "lng": 75.01592,
+  "precision": "exact",
+  "source": "osm node/12152964554"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-04-05-patshahi-dasvin-guru-ki-dhab.html|Guru Ji Dhab, Faridkot, Punjab, India": {
+  "reason": "\"Guru Ji Dhab\" not found on the map; only \"Faridkot, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-04-06-patshahi-dasvin-rameana.html|Rameana, Faridkot, Punjab, India": {
+  "lat": 30.41753,
+  "lng": 74.785,
+  "precision": "locality",
+  "source": "address: Rameana, Faridkot, Punjab"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-04-07-tibbi-sahib-jaito.html|Jaito, Faridkot, Punjab, India": {
+  "lat": 30.44854,
+  "lng": 74.88922,
+  "precision": "locality",
+  "source": "address: Jaito, Faridkot, Punjab"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-04-08-patshahi-dasvin-kotkapura.html|Kotkapura, Faridkot, Punjab, India": {
+  "reason": "\"Kotkapura\" not found on the map; only \"Faridkot, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-04-09-chulha-sahib-kotkapura.html|Kotkapura, Faridkot, Punjab, India": {
+  "reason": "\"Kotkapura\" not found on the map; only \"Faridkot, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-04-10-patshahi-dasvin-dhilwan-kalan.html|Dhilwan Kalan, Faridkot, Punjab, India": {
+  "lat": 30.5702,
+  "lng": 74.8665,
+  "precision": "locality",
+  "source": "address: Dhilwan Kalan, Faridkot, Punjab"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-05-01-bibaan-garh-sahib.html|Fatehgarh Sahib, Punjab, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-05-02-fatehgarh-sahib.html|Fatehgarh Sahib, Fatehgarh Sahib, Punjab, India": {
+  "lat": 30.65302,
+  "lng": 76.39357,
+  "precision": "exact",
+  "source": "osm way/239448731 (named, 0.5 km from the address)"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-05-03-jyoti-saroop-sahib.html|Fatehgarh Sahib, Punjab, India": {
+  "lat": 30.64255,
+  "lng": 76.40435,
+  "precision": "exact",
+  "source": "osm way/230575984 (only one of that name in Fatehgarh Sahib — Fatehgarh Sahib, Punjab)"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-05-04-shaheed-ganj-sahib.html|Fatehgarh Sahib, Punjab, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-05-05-thanda-burz.html|Fatehgarh Sahib, Punjab, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-05-06-gobind-garh-ranva.html|Ranva, Fatehgarh Sahib, Punjab, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-05-07-naulakha-sahib.html|Naulakha, Fatehgarh Sahib, Punjab 147104, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-05-08-nauvin-patshahi-mukaronpur.html|Mukarampur, Fatehgarh Sahib, Punjab, India": {
+  "lat": 30.64644,
+  "lng": 76.49944,
+  "precision": "locality",
+  "source": "address: Mukarampur, Fatehgarh Sahib, Punjab"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-05-09-patshahi-nauvin-railon.html|Railon, Fatehgarh Sahib, Punjab, India": {
+  "lat": 30.67959,
+  "lng": 76.49769,
+  "precision": "locality",
+  "source": "address: Railon, Fatehgarh Sahib, Punjab"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-05-10-pamor-sahib-pamor.html|Pamor, Fatehgarh Sahib, Punjab, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-05-11-manji-sahib-kalour.html|Kalour, Fatehgarh Sahib, Punjab, India": {
+  "lat": 30.70547,
+  "lng": 76.50399,
+  "precision": "street",
+  "source": "address: Kalour, Fatehgarh Sahib, Punjab"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-06-01-bad-tirath-sahib.html|Haripura, Fazilka, Punjab, India": {
+  "lat": 30.13688,
+  "lng": 74.0341,
+  "precision": "locality",
+  "source": "address: Haripura, Fazilka, Punjab"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-06-02-nanaksar-sahib-abohar.html|Abohar, Fazilka, Punjab, India": {
+  "lat": 30.14505,
+  "lng": 74.19566,
+  "precision": "locality",
+  "source": "address: Abohar, Fazilka, Punjab"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-06-03-akalgarh-haripura.html|Haripura, Fazilka, Punjab, India": {
+  "lat": 30.13688,
+  "lng": 74.0341,
+  "precision": "locality",
+  "source": "address: Haripura, Fazilka, Punjab"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-06-04-fatuh-samu-tahlian.html|Fazilka, Punjab, India": {
+  "lat": 30.40321,
+  "lng": 74.03106,
+  "precision": "locality",
+  "source": "address: Fazilka, Punjab"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-07-01-jaamani-sahib-bazidpur.html|Bazidpur, Ferozepur, Punjab 152004, India": {
+  "lat": 30.89805,
+  "lng": 74.66943,
+  "precision": "street",
+  "source": "address: Bazidpur, Ferozepur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-07-02-patshahi-chevin-thatha.html|Thatha, Ferozepur, Punjab, India": {
+  "lat": 30.68397,
+  "lng": 76.3594,
+  "precision": "locality",
+  "source": "address: Ferozepur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-07-03-shini-sahib-mehar-singh-wala.html|Mehar Singh Wala, Ferozepur, Punjab, India": {
+  "lat": 30.68397,
+  "lng": 76.3594,
+  "precision": "locality",
+  "source": "address: Ferozepur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/09-f/04-27-07-04-patshahi-chevin-sunehar.html|Sanher, Ferozepur, Punjab, India": {
+  "lat": 30.68397,
+  "lng": 76.3594,
+  "precision": "locality",
+  "source": "address: Ferozepur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-01-kandh-sahib.html|Batala, Gurdaspur, Punjab, India": {
+  "lat": 31.8193,
+  "lng": 75.19999,
+  "precision": "locality",
+  "source": "address: Batala, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-02-achal-sahib.html|Batala, Gurdaspur, Punjab, India": {
+  "lat": 31.8193,
+  "lng": 75.19999,
+  "precision": "locality",
+  "source": "address: Batala, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-03-dehra-sahib.html|Batala, Gurdaspur, Punjab, India": {
+  "lat": 31.8193,
+  "lng": 75.19999,
+  "precision": "locality",
+  "source": "address: Batala, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-04-satkartaaria-sahib.html|Batala, Gurdaspur, Punjab, India": {
+  "lat": 31.8193,
+  "lng": 75.19999,
+  "precision": "locality",
+  "source": "address: Batala, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-05-dera-baba-nanak-ji.html|Dera Baba Nanak, Gurdaspur, Punjab, India": {
+  "lat": 32.03179,
+  "lng": 75.02846,
+  "precision": "locality",
+  "source": "address: Dera Baba Nanak, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-06-chola-sahib.html|Dera Baba Nanak, Gurdaspur, Punjab, India": {
+  "lat": 32.03179,
+  "lng": 75.02846,
+  "precision": "locality",
+  "source": "address: Dera Baba Nanak, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-07-burz-sahib-dhariwal.html|Dhariwal, Gurdaspur, Punjab, India": {
+  "lat": 31.95207,
+  "lng": 75.32174,
+  "precision": "locality",
+  "source": "address: Dhariwal, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-08-patshahi-panjvi-sahib-dhariwal.html|Dhariwal, Gurdaspur, Punjab, India": {
+  "lat": 31.95207,
+  "lng": 75.32174,
+  "precision": "locality",
+  "source": "address: Dhariwal, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-09-damdama-sahib-hargobindpur.html|Sri Hargobindpur, Gurdaspur, Punjab, India": {
+  "lat": 31.68754,
+  "lng": 75.47844,
+  "precision": "locality",
+  "source": "address: Sri Hargobindpur, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-10-jani-shah-ji.html|(precise location unknown) Sri Hargobindpur, Gurdaspur, Punjab, India": {
+  "lat": 31.68754,
+  "lng": 75.47844,
+  "precision": "locality",
+  "source": "address: Sri Hargobindpur, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-11-granthian-sahib.html|Sri Hargobindpur, Gurdaspur, Punjab, India": {
+  "lat": 31.68754,
+  "lng": 75.47844,
+  "precision": "locality",
+  "source": "address: Sri Hargobindpur, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-12-guru-ki-maseet.html|Sri Hargobindpur, Gurdaspur, Punjab, India": {
+  "lat": 31.68754,
+  "lng": 75.47844,
+  "precision": "locality",
+  "source": "address: Sri Hargobindpur, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-13-naameana-sahib.html|Bhattiwal, Gurdaspur, Punjab, India": {
+  "lat": 31.70587,
+  "lng": 75.40037,
+  "precision": "locality",
+  "source": "address: Bhattiwal, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-14-khooh-sahib.html|Bhattiwal, Gurdaspur, Punjab, India": {
+  "lat": 31.70587,
+  "lng": 75.40037,
+  "precision": "locality",
+  "source": "address: Bhattiwal, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-15-khundi-sahib.html|Bhattiwal, Gurdaspur, Punjab, India": {
+  "lat": 31.70587,
+  "lng": 75.40037,
+  "precision": "locality",
+  "source": "address: Bhattiwal, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-16-bhagat-namdev-ji.html|Ghoman, Gurdaspur, Punjab, India": {
+  "lat": 31.69015,
+  "lng": 75.38113,
+  "precision": "locality",
+  "source": "address: Ghoman, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-17-tapiana-sahib-ghuman.html|Ghuman, Gurdaspur, Punjab, India": {
+  "lat": 31.90053,
+  "lng": 75.24621,
+  "precision": "street",
+  "source": "address: Ghuman, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-18-patshahi-panjvi-othian.html|Othian Road, Othian, Gurdaspur, Punjab, India": {
+  "reason": "\"Othian\" not found on the map; only \"Gurdaspur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/10-g/04-27-08-19-baba-banda-singh-ji-bahadur.html|Gurdas Nangal, Gurdaspur, Punjab, India": {
+  "lat": 32.0016,
+  "lng": 75.34604,
+  "precision": "locality",
+  "source": "address: Gurdas Nangal, Gurdaspur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/11-h/04-27-09-01-bhai-joga-singh-ji.html|(approximate location) New Jagatpura, Jattan Mohalla, Hoshiarpur, Punjab, India": {
+  "lat": 31.5366,
+  "lng": 75.91103,
+  "precision": "exact",
+  "source": "osm node/12390111901"
+ },
+ "04-gurudwaras/27-punjab/11-h/04-27-09-02-mata-sunder-kaur-ji.html|(approximate location) Bajwara, Hoshiarpur, Punjab, India": {
+  "lat": 31.51859,
+  "lng": 75.9535,
+  "precision": "street",
+  "source": "address: Bajwara, Hoshiarpur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/11-h/04-27-09-03-bhai-manj-ji.html|Kangmai, Hoshiarpur, Punjab, India": {
+  "reason": "\"Kangmai\" not found on the map; only \"Hoshiarpur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/11-h/04-27-09-04-hariaan-vellan.html|Bajrour, Hoshiarpur, Punjab, India": {
+  "reason": "\"Bajrour\" not found on the map; only \"Hoshiarpur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/11-h/04-27-09-05-jand-sahib.html|Lehli Kalan, Hoshiarpur, Punjab, India": {
+  "lat": 31.41471,
+  "lng": 75.98411,
+  "precision": "locality",
+  "source": "address: Lehli Kalan, Hoshiarpur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/11-h/04-27-09-06-taahli-sahib.html|Munak Khurd, Hoshiarpur, Punjab, India": {
+  "reason": "\"Munak Khurd\" not found on the map; only \"Hoshiarpur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/11-h/04-27-09-07-sahihdan-ladhewal.html|Ladhewal, Hoshiarpur, Punjab, India": {
+  "reason": "\"Ladhewal\" not found on the map; only \"Hoshiarpur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/11-h/04-27-09-08-zahara-zahoor.html|Pur Heeraan, Hoshiarpur, Punjab, India": {
+  "reason": "\"Pur Heeraan\" not found on the map; only \"Hoshiarpur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/11-h/04-27-09-09-patshahi-chevin-sahib-bharta.html|Ganeshpur Bharta, Hoshiarpur, Punjab, India": {
+  "lat": 31.33557,
+  "lng": 76.00857,
+  "precision": "locality",
+  "source": "address: Ganeshpur Bharta, Hoshiarpur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/11-h/04-27-09-10-pul-pukhta-sahib.html|Tanda, Hoshiarpur, Punjab, India": {
+  "lat": 31.66884,
+  "lng": 75.63336,
+  "precision": "locality",
+  "source": "address: Tanda, Hoshiarpur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/11-h/04-27-09-11-garna-sahib.html|Bodal, Hoshiarpur, Punjab, India": {
+  "lat": 31.77845,
+  "lng": 75.66906,
+  "precision": "locality",
+  "source": "address: Bodal, Hoshiarpur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/11-h/04-27-09-12-chukhandi-sahib.html|Bajrour, Hoshiarpur, Punjab, India": {
+  "reason": "\"Bajrour\" not found on the map; only \"Hoshiarpur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/11-h/04-27-09-13-sahibzaada-ajit-singh-ji-bassi-kalan.html|(approximate location) Bassi Kalan, Hoshiarpur, Punjab, India": {
+  "reason": "\"Bassi Kalan\" not found on the map; only \"Hoshiarpur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/11-h/04-27-09-14-patshahi-dasvin-nanowal.html|Nanowal, Hoshiarpur, Punjab, India": {
+  "reason": "\"Nanowal\" not found on the map; only \"Hoshiarpur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/11-h/04-27-09-15-shaheedganj-sahib-nanowal.html|Nanowal, Hoshiarpur, Punjab, India": {
+  "reason": "\"Nanowal\" not found on the map; only \"Hoshiarpur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/12-j/04-27-10-01-charan-kamal-sahib.html|Basti Sheikh, Jalandhar City, Punjab, India": {
+  "reason": "\"Basti Sheikh\" not found on the map; only \"Jalandhar City, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/12-j/04-27-10-02-chaubacha-sahib.html|(precise location unknown) Kartarpur, Jalandhar, Punjab, India": {
+  "lat": 31.43972,
+  "lng": 75.49891,
+  "precision": "locality",
+  "source": "address: Kartarpur, Jalandhar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/12-j/04-27-10-03-gangsar-sahib-kartarpur.html|Kartarpur, Jalandhar, Punjab, India": {
+  "lat": 31.43854,
+  "lng": 75.50459,
+  "precision": "exact",
+  "source": "osm node/5177492089"
+ },
+ "04-gurudwaras/27-punjab/12-j/04-27-10-04-arjan-dev-ji-sahib-bhangala.html|Bhangala, Jalandhar, Punjab, India": {
+  "lat": 31.14352,
+  "lng": 75.59512,
+  "precision": "locality",
+  "source": "address: Bhangala, Jalandhar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/12-j/04-27-10-05-har-rai-sahib-puwadra.html|Puwadra, Jalandhar, Punjab, India": {
+  "reason": "\"Puwadra\" not found on the map; only \"Jalandhar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/12-j/04-27-10-06-malri-sahib.html|Malari, Nakodar, Jalandhar, Punjab 144630, India": {
+  "reason": "\"Malari\" not found on the map; only \"Nakodar, Jalandhar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/12-j/04-27-10-07-mao-sahib.html|Mao Sahib, Jalandhar, Punjab, India": {
+  "reason": "\"Mao Sahib\" not found on the map; only \"Jalandhar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/12-j/04-27-10-08-pipli-sahib-bilga.html|Bilga, Jalandhar, Punjab, India": {
+  "lat": 31.04963,
+  "lng": 75.65417,
+  "precision": "locality",
+  "source": "address: Bilga, Jalandhar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/12-j/04-27-10-09-patshahi-chevin-basti-shekh.html|Jalandhar, Jalandhar, Punjab, India": {
+  "lat": 31.33238,
+  "lng": 75.57689,
+  "precision": "locality",
+  "source": "address: Jalandhar, Jalandhar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/12-j/04-27-10-10-saidrana-sahib-billi-braich.html|Billibraich, Jalandhar, Punjab, India": {
+  "reason": "\"Billibraich\" not found on the map; only \"Jalandhar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/12-j/04-27-10-11-teer-sahib-fatehpur.html|Fatehpur, Jalandhar, Punjab, India": {
+  "lat": 31.04692,
+  "lng": 75.55813,
+  "precision": "locality",
+  "source": "address: Fatehpur, Jalandhar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/12-j/04-27-10-12-tham-ji-sahib-kartarpur.html|Kartarpur, Jalandhar, Punjab, India": {
+  "lat": 31.43972,
+  "lng": 75.49891,
+  "precision": "locality",
+  "source": "address: Kartarpur, Jalandhar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/12-j/04-27-10-13-vivaah-asthaan-guru-teg-bahadur-sahib.html|Kartarpur, Jalandhar, Punjab, India": {
+  "lat": 31.43972,
+  "lng": 75.49891,
+  "precision": "locality",
+  "source": "address: Kartarpur, Jalandhar, Punjab"
+ },
+ "04-gurudwaras/27-punjab/12-j/04-27-10-14-vivah-asthan-shri-guru-arjan-dev-ji.html|Mao Sahib, Jalandhar, Punjab, India": {
+  "reason": "\"Mao Sahib\" not found on the map; only \"Jalandhar, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/13-k/04-27-11-01-antaryamta-sahib.html|Sultanpur Lodhi, Kapurthala, Punjab, India": {
+  "lat": 31.21447,
+  "lng": 75.19477,
+  "precision": "locality",
+  "source": "address: Sultanpur Lodhi, Kapurthala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/13-k/04-27-11-02-baoli-sahib-dalla.html|Dalla, Kapurthala, Punjab, India": {
+  "lat": 31.17345,
+  "lng": 75.23828,
+  "precision": "locality",
+  "source": "address: Dalla, Kapurthala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/13-k/04-27-11-03-bebe-nanaki-ji.html|Sultanpur Lodhi, Kapurthala, Punjab, India": {
+  "lat": 31.21447,
+  "lng": 75.19477,
+  "precision": "locality",
+  "source": "address: Sultanpur Lodhi, Kapurthala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/13-k/04-27-11-04-ber-sahib-sultanpur-lodhi.html|Kapurthala Road, Sultanpur Lodhi, Kapurthala, Punjab 144626, India": {
+  "lat": 31.21447,
+  "lng": 75.19477,
+  "precision": "locality",
+  "source": "address: Sultanpur Lodhi, Kapurthala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/13-k/04-27-11-05-guru-ka-baag.html|Sultanpur, Kapurthala, Punjab, India": {
+  "lat": 31.21447,
+  "lng": 75.19477,
+  "precision": "locality",
+  "source": "address: Sultanpur, Kapurthala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/13-k/04-27-11-06-hatt-sahib.html|Sultanpur Lodhi, Kapurthala, Punjab, India": {
+  "lat": 31.21447,
+  "lng": 75.19477,
+  "precision": "locality",
+  "source": "address: Sultanpur Lodhi, Kapurthala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/13-k/04-27-11-07-kothri-sahib.html|Sultanpur Lodhi, Kapurthala, Punjab, India": {
+  "lat": 31.21518,
+  "lng": 75.19785,
+  "precision": "exact",
+  "source": "osm way/556725369"
+ },
+ "04-gurudwaras/27-punjab/13-k/04-27-11-08-sant-ghaat-sahib.html|Sultanpur Lodhi, Kapurthala, Punjab, India": {
+  "lat": 31.21447,
+  "lng": 75.19477,
+  "precision": "locality",
+  "source": "address: Sultanpur Lodhi, Kapurthala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/13-k/04-27-11-09-sehra-sahib.html|Sultanpur Lodhi, Kapurthala, Punjab, India": {
+  "lat": 31.21447,
+  "lng": 75.19477,
+  "precision": "locality",
+  "source": "address: Sultanpur Lodhi, Kapurthala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/13-k/04-27-11-10-vivah-asthan-guru-hargobind-sahib-ji.html|Dalla, Kapurthala, Punjab, India": {
+  "lat": 31.17345,
+  "lng": 75.23828,
+  "precision": "locality",
+  "source": "address: Dalla, Kapurthala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/13-k/04-27-11-11-tahli-sahib-balehar-khanpur.html|Balehar Khanpur, Kapurthala, Punjab, India": {
+  "reason": "\"Balehar Khanpur\" not found on the map; only \"Kapurthala, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/13-k/04-27-11-12-sukhchainana-sahib-phagwara.html|Phagwara, Kapurthala, Punjab, India": {
+  "lat": 31.22067,
+  "lng": 75.76965,
+  "precision": "locality",
+  "source": "address: Phagwara, Kapurthala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/13-k/04-27-11-13-chaura-khooh-phagwara.html|Phagwara, Kapurthala, Punjab, India": {
+  "lat": 31.22067,
+  "lng": 75.76965,
+  "precision": "locality",
+  "source": "address: Phagwara, Kapurthala, Punjab"
+ },
+ "04-gurudwaras/27-punjab/14-n/04-27-17-01-charan-kanwal-sahib-banga.html|Jindowal, Banga Town, Nawanshahr, Punjab, India": {
+  "lat": 31.18149,
+  "lng": 76.00677,
+  "precision": "locality",
+  "source": "address: Jindowal, Punjab"
+ },
+ "04-gurudwaras/27-punjab/14-n/04-27-17-02-panj-tirath-sahib-laroya.html|Laroya, Nawanshahr, Punjab, India": {
+  "lat": 31.09846,
+  "lng": 75.97753,
+  "precision": "exact",
+  "source": "osm node/8830401110"
+ },
+ "04-gurudwaras/27-punjab/14-n/04-27-17-03-gurplaha-sahib-sotran.html|Sotran, Banga, Nawanshahr, Punjab, India": {
+  "lat": 31.23335,
+  "lng": 75.99466,
+  "precision": "exact",
+  "source": "osm way/852235193"
+ },
+ "04-gurudwaras/27-punjab/14-n/04-27-17-04-harrai-sahib-dusanjh-khurd.html|Dosanjh Khurd, Nawanshahr, Punjab, India": {
+  "lat": 31.16082,
+  "lng": 76.00556,
+  "precision": "locality",
+  "source": "address: Dosanjh Khurd, Nawanshahr, Punjab"
+ },
+ "04-gurudwaras/27-punjab/14-n/04-27-17-05-harrai-sahib-sandhwan.html|Sandhvan, Nawanshahr, Punjab, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/27-punjab/14-n/04-27-17-06-manji-sahib-nawan-shahar.html|Guru Tegh Bahadar Nagar Road, Nawanshahr City, Punjab 144514, India": {
+  "lat": 31.12369,
+  "lng": 76.11862,
+  "precision": "street",
+  "source": "address: Nawanshahr City, Punjab"
+ },
+ "04-gurudwaras/27-punjab/14-n/04-27-17-07-nanaksar-sahib-hakimpura.html|Hakimpur, Nawanshahr, Punjab, India": {
+  "lat": 31.1175,
+  "lng": 75.92406,
+  "precision": "locality",
+  "source": "address: Hakimpur, Nawanshahr, Punjab"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-01-akoi-sahib.html|Akoi Sahib Channa Road, Sangrur, Punjab 148001, India": {
+  "lat": 30.2432,
+  "lng": 75.83581,
+  "precision": "locality",
+  "source": "address: Sangrur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-02-jyotisar-sahib-khurana.html|Khuranj, Sangrur, Punjab, India": {
+  "reason": "\"Khuranj\" not found on the map; only \"Sangrur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-03-manji-sahib-alloarkh.html|Aloarkh, Sangrur, Punjab, India": {
+  "reason": "\"Aloarkh\" not found on the map; only \"Sangrur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-04-teg-bahadur-sahib-mulowal.html|Mulowal, Sangrur, Punjab, India": {
+  "lat": 30.36051,
+  "lng": 75.74318,
+  "precision": "locality",
+  "source": "address: Mulowal, Sangrur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-05-mitha-khooh-mulowal.html|Mullowal, Sangrur, Punjab 148024, India": {
+  "lat": 30.35843,
+  "lng": 75.74114,
+  "precision": "street",
+  "source": "address: Mullowal, Sangrur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-06-bistra-sahib-mulowal.html|Mulowal, Sangrur, Punjab, India": {
+  "lat": 30.36051,
+  "lng": 75.74318,
+  "precision": "locality",
+  "source": "address: Mulowal, Sangrur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-07-teg-bahadur-sahib-makorar.html|Makorar, Sangrur, Punjab, India": {
+  "reason": "\"Makorar\" not found on the map; only \"Sangrur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-08-patshahi-nauvin-sahib-phaguwal.html|SH12A, Phaguwala, Sangrur, Punjab 148026, India": {
+  "lat": 30.2489,
+  "lng": 76.00646,
+  "precision": "street",
+  "source": "address: SH12A, Phaguwala, Sangrur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-09-patshahi-pehli-sahib-sunam.html|Gurdwara Road, Kohliyan Wala Mohalla, Sunam, Sangrur, Punjab 148028, India": {
+  "reason": "\"Kohliyan Wala Mohalla\" not found on the map; only \"Sunam, Sangrur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-10-teg-bahadur-sahib-moonak.html|Moonak, Sangrur, Punjab, India": {
+  "lat": 29.82009,
+  "lng": 75.89124,
+  "precision": "locality",
+  "source": "address: Moonak, Sangrur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-11-patshahi-nauvin-sahib-rajo-majra.html|Gurdwara Sahib Road, Rajo Majra, Sangrur, Punjab, India": {
+  "reason": "\"Rajo Majra\" not found on the map; only \"Sangrur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-12-nankyana-sahib-sangrur.html|Sangrur, Sangrur, Punjab, India": {
+  "lat": 30.2432,
+  "lng": 75.83581,
+  "precision": "locality",
+  "source": "address: Sangrur, Sangrur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-13-patshahi-nauvin-bhawanigarh.html|Near Tehsil Complex, Bhawanigarh, Sangrur, Punjab 148026, India": {
+  "lat": 30.26236,
+  "lng": 76.04133,
+  "precision": "locality",
+  "source": "address: Bhawanigarh, Sangrur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-14-patshahi-chevinate-nauvin-sahib-ghanur-jataan.html|Ghanaur Jattan, Sangrur, Punjab, India": {
+  "lat": 30.17448,
+  "lng": 76.02031,
+  "precision": "locality",
+  "source": "address: Ghanaur Jattan, Sangrur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-15-patshahi-nauvin-sahib-dirba.html|Dirba, Sangrur, Punjab, India": {
+  "lat": 30.07225,
+  "lng": 75.99528,
+  "precision": "locality",
+  "source": "address: Dirba, Sangrur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-16-patshahi-nauvin-sahib-lehal-kalan.html|Mehal Kalan Sehjra Link Road, Mehal Kalan, Sangrur, Punjab 148104, India": {
+  "reason": "\"Mehal Kalan\" not found on the map; only \"Sangrur, Punjab\" was"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-17-patshahi-pehli-chevin-ate-nauvin-sahib-kamalpur.html|Kamalpur, Sangrur, Punjab, India": {
+  "lat": 30.1118,
+  "lng": 76.04676,
+  "precision": "locality",
+  "source": "address: Kamalpur, Sangrur, Punjab"
+ },
+ "04-gurudwaras/27-punjab/15-s/04-27-21-18-patshahi-pehli-kamalpur.html|Kamalpur, Sangrur, Punjab, India": {
+  "lat": 30.1118,
+  "lng": 76.04676,
+  "precision": "locality",
+  "source": "address: Kamalpur, Sangrur, Punjab"
+ },
+ "04-gurudwaras/28-puducherry/04-28-01-gurudwara-sri-guru-nanak-dev-ji-puducherry.html|Verampattinam Road, Puranankuppam, Street, behind Bharathiar Palkalaikoodam, Ariyankuppam, Puducherry 605007": {
+  "lat": 11.89487,
+  "lng": 79.80759,
+  "precision": "locality",
+  "source": "address: Ariyankuppam, Puducherry"
+ },
+ "04-gurudwaras/29-rajasthan/01-d/04-29-06-01-gurudwara-shri-sher-shikaar-sahib-dholpur.html|Situated along the Agra–Gwalior Road, in Machkund village near Dholpur, Rajasthan": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/29-rajasthan/02-u/04-29-13-01-gurudwara-sachkhand-darbar-udaipur.html|Sikh Colony, Near Kumharo ka Bhata Central Area, Udaipur": {
+  "lat": 24.57915,
+  "lng": 73.70858,
+  "precision": "exact",
+  "source": "osm way/519868381"
+ },
+ "04-gurudwaras/29-rajasthan/02-u/04-29-13-02-gurudwara-dukh-nivaran-darbar-udaipur.html|Sector 14, opposite Suhalka Bhawan, Udaipur": {
+  "lat": 24.57915,
+  "lng": 73.70858,
+  "precision": "exact",
+  "source": "osm way/519868381"
+ },
+ "04-gurudwaras/29-rajasthan/02-u/04-29-13-03-sri-guru-singh-sabha-gurudwara-udaipur.html|Delhi Gate, near Gurunanak School, Udaipur": {
+  "reason": "\"Gurunanak School\" not found on the map; only \"Udaipur\" was"
+ },
+ "04-gurudwaras/29-rajasthan/02-u/04-29-13-04-gurudwara-shri-guru-arjan-darbar-udaipur.html|Sector 11, near Alok School, Udaipur": {
+  "lat": 24.57915,
+  "lng": 73.70858,
+  "precision": "exact",
+  "source": "osm way/519868381 (only one of that name in Udaipur, Rajasthan)"
+ },
+ "04-gurudwaras/29-rajasthan/02-u/04-29-13-05-gurudwara-guru-nanak-darbar-udaipur.html|Udaipur, Rajasthan - India": {
+  "lat": 24.57915,
+  "lng": 73.70858,
+  "precision": "exact",
+  "source": "osm way/519868381"
+ },
+ "04-gurudwaras/29-rajasthan/03-a/04-29-01-01-gurdwara-sahib-pushkar.html|Pushkar, Ajmer, Rajasthan, India": {
+  "lat": 26.48765,
+  "lng": 74.55785,
+  "precision": "locality",
+  "source": "address: Pushkar, Ajmer, Rajasthan"
+ },
+ "04-gurudwaras/29-rajasthan/04-b/04-29-03-01-kalgidhar-sahib-bagor.html|Bagor, Bhilwara, Rajasthan, India": {
+  "lat": 25.3552,
+  "lng": 74.38359,
+  "precision": "locality",
+  "source": "address: Bagor, Bhilwara, Rajasthan"
+ },
+ "04-gurudwaras/29-rajasthan/04-b/04-29-04-01-patshahi-pehli-ate-dasvin-kolayat.html|Kolayat, Bikaner, Rajasthan, India": {
+  "lat": 27.83622,
+  "lng": 72.95544,
+  "precision": "street",
+  "source": "address: Kolayat, Bikaner, Rajasthan"
+ },
+ "04-gurudwaras/29-rajasthan/05-c/04-29-15-01-sahawa-sahib.html|Sahawa, Churu, Rajasthan 331302, India": {
+  "lat": 28.87156,
+  "lng": 74.85179,
+  "precision": "street",
+  "source": "address: Sahawa, Churu, Rajasthan"
+ },
+ "04-gurudwaras/29-rajasthan/05-c/04-29-15-02-nanak-tilla-sahib-sahwa.html|Sahawa, Churu, Rajasthan, India": {
+  "lat": 28.87156,
+  "lng": 74.85179,
+  "precision": "street",
+  "source": "address: Sahawa, Churu, Rajasthan"
+ },
+ "04-gurudwaras/29-rajasthan/06-g/04-29-17-01-budha-jhor-sahib.html|Dabla, Sri Ganganagar, Rajasthan, India": {
+  "lat": 29.46696,
+  "lng": 73.64598,
+  "precision": "exact",
+  "source": "osm way/113955682"
+ },
+ "04-gurudwaras/29-rajasthan/07-h/04-29-16-01-sheen-talai-nohar.html|Nohar, Hanumangarh, Rajasthan, India": {
+  "lat": 29.19224,
+  "lng": 74.77434,
+  "precision": "street",
+  "source": "address: Nohar, Hanumangarh, Rajasthan"
+ },
+ "04-gurudwaras/29-rajasthan/07-h/04-29-16-02-kabutar-sahib-nohar.html|Nohar, Ganganagar, Rajasthan, India": {
+  "lat": 25.90614,
+  "lng": 76.48155,
+  "precision": "locality",
+  "source": "address: Ganganagar, Rajasthan"
+ },
+ "04-gurudwaras/29-rajasthan/07-h/04-29-16-03-sukha-singh-mehtab-singh-hanumangarh.html|Hanumangarh, Hanumangarh, Rajasthan, India": {
+  "lat": 29.58513,
+  "lng": 74.32157,
+  "precision": "exact",
+  "source": "osm node/3066950107"
+ },
+ "04-gurudwaras/29-rajasthan/08-j/04-29-07-01-swarda-sahib.html|Sawarda, Jaipur, Rajasthan, India": {
+  "lat": 26.74568,
+  "lng": 75.2919,
+  "precision": "locality",
+  "source": "address: Sawarda, Jaipur, Rajasthan"
+ },
+ "04-gurudwaras/29-rajasthan/08-j/04-29-07-02-charan-kamal-sahib-naraina.html|Naraina, Jaipur, Rajasthan, India": {
+  "lat": 26.78191,
+  "lng": 75.20613,
+  "precision": "exact",
+  "source": "osm way/1356165412 (only one of that name in Naraina — Jaipur, Rajasthan)"
+ },
+ "04-gurudwaras/29-rajasthan/08-j/04-29-08-01-pehli-patshahi-pokhran.html|Pokhran, Jaisalmer, Rajasthan, India": {
+  "lat": 26.91988,
+  "lng": 71.91976,
+  "precision": "locality",
+  "source": "address: Pokhran, Jaisalmer, Rajasthan"
+ },
+ "04-gurudwaras/29-rajasthan/09-m/04-29-11-01-nanak-darshan-sahib-mount-abu.html|Mount Abu, Mount Abu, Rajasthan, India": {
+  "lat": 24.58873,
+  "lng": 72.71083,
+  "precision": "exact",
+  "source": "osm node/3889949281 (only one of that name in Mount Abu — Mount Abu, Rajasthan)"
+ },
+ "04-gurudwaras/29-rajasthan/10-t/04-29-18-01-dhana-bhagat-dhuan-kalan.html|Dhuan Kalan, Tonk, Rajasthan, India": {
+  "lat": 25.92972,
+  "lng": 75.67782,
+  "precision": "locality",
+  "source": "address: Dhuan Kalan, Tonk, Rajasthan"
+ },
+ "04-gurudwaras/30-sikkim/04-30-01-gurudwara-nanaklama-sahib-chungthang-north-sikkim.html|Situated in Chungthang (approx. 95 km from Gangtok), at the confluence of the Lachen and Lachung rivers—tributaries of the Teesta—at 1,700 m altitude": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/31-telangana/01-h/04-31-03-01-gurudwara-saheb-barambala-sikh-chawniat-attapur-hyderabad.html|Maharaja Ranjeet Singh Nagar, Sikh Chawniat (Sikh Chawni) Near Attapur, Hyderabad – 500048": {
+  "reason": "\"Maharaja Ranjeet Singh Nagar\" not found on the map; only \"Hyderabad\" was"
+ },
+ "04-gurudwaras/31-telangana/01-h/04-31-03-02-gurudwara-saheb-ameerpet-hyderabad.html|Gurudwara Lane, Swathi Avenue, Ameerpet, Hyderabad, Telangana, PIN 500016": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/31-telangana/01-h/04-31-03-03-central-gurudwara-saheb-gowliguda-hyderabad.html|Maharani Jhansi Rd, Gowliguda, Hyderabad 500012, Tel: 040 6663 5871": {
+  "lat": 17.37764,
+  "lng": 78.47877,
+  "precision": "locality",
+  "source": "address: Gowliguda, Telangana"
+ },
+ "04-gurudwaras/32-tamil-nadu/01-c/04-32-01-01-gurudwara-sri-guru-nanak-sat-sangh-sabha-chennai.html|127-A, G.N. Chetty Road, T. Nagar, Chennai – 600017, Tamil Nadu, India.": {
+  "lat": 13.03859,
+  "lng": 80.23358,
+  "precision": "locality",
+  "source": "address: T. Nagar, Chennai, Tamil Nadu, India."
+ },
+ "04-gurudwaras/33-tripura/04-33-01-gurudwara-sahib-agartala-tripura.html|Unnamed Road, 79 Tilla, Agartala, Tripura, India, Postcode:799006": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/33-tripura/04-33-02-gurudwara-bsf-camp-ambassa-tripura.html|Shillong‑Agartala‑Sabrum Rd, Ambassa, Tripura, India Postcode:799289": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/34-uttar-pradesh/01-gn/04-34-12-01-gurudwara-shri-guru-kalgidhar-singh-sabha-greater-noida.html|Knowledge Park 3, Fateh Singh Farm, Greater Noida, Uttar Pradesh 201310": {
+  "reason": "\"Fateh Singh Farm\" not found on the map; only \"Greater Noida, Uttar Pradesh\" was"
+ },
+ "04-gurudwaras/34-uttar-pradesh/01-gn/04-34-12-02-gurudwara-shri-inder-khel-sahib-ji-greater-noida.html|located near Knowledge Park – III / Surajpur area – Greater Noida": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/34-uttar-pradesh/02-k/04-34-13-01-gurudwara-sri-guru-tegh-bahadur-sahib.html|Dhobi Mohalla near Sarafa Chowk, Kanpur": {
+  "reason": "only the city \"Kanpur\" was found, not \"Dhobi Mohalla near Sarafa Chowk\""
+ },
+ "04-gurudwaras/34-uttar-pradesh/02-k/04-34-13-02-gurudwara-sri-kirtangarh-sahib-gumti.html|Gumti No.5 Chauraha, Ashok Nagar, Darshan Purwa, Kanpur - 208012": {
+  "lat": 26.46924,
+  "lng": 80.31704,
+  "precision": "exact",
+  "source": "osm node/1291414311"
+ },
+ "04-gurudwaras/34-uttar-pradesh/02-k/04-34-13-03-gurudwara-bhai-banno-sahib.html|Ram Krishna Nagar, Jawahar Nagar, Kanpur, Uttar Pradesh 208012": {
+  "lat": 26.4687,
+  "lng": 80.30129,
+  "precision": "locality",
+  "source": "address: Jawahar Nagar, Kanpur, Uttar Pradesh"
+ },
+ "04-gurudwaras/34-uttar-pradesh/02-k/04-34-13-04-gurudwara-pandu-nagar.html|17/H-2/114A, Pandu Nagar, Kanpur - 208005, Uttar Pradesh": {
+  "lat": 26.47252,
+  "lng": 80.30239,
+  "precision": "locality",
+  "source": "address: Pandu Nagar, Kanpur, Uttar Pradesh"
+ },
+ "04-gurudwaras/34-uttar-pradesh/03-l/04-34-14-01-gurudwara-alambagh-kendriya-singh-sabha-lucknow.html|Geeta Palli, Ramprasadkhera, Alambagh, Lucknow, Uttar Pradesh – 226005, India": {
+  "lat": 26.81401,
+  "lng": 80.90251,
+  "precision": "street",
+  "source": "address: Alambagh, Lucknow, Uttar Pradesh"
+ },
+ "04-gurudwaras/34-uttar-pradesh/03-l/04-34-14-02-gurudwara-yahiyaganj-lucknow.html|Singha, Patwa Wali Gali, Ahiyaganj Market (Yahiyaganj), Lucknow, Uttar Pradesh 226004": {
+  "reason": "\"Singha\" not found on the map; only \"Lucknow, Uttar Pradesh\" was"
+ },
+ "04-gurudwaras/34-uttar-pradesh/04-n/04-34-23-18-gurudwara-singh-sabha-sector-34-noida.html|Sector 34, Noida": {
+  "lat": 28.58372,
+  "lng": 77.36047,
+  "precision": "locality",
+  "source": "address: Sector 34, Noida, Uttar Pradesh"
+ },
+ "04-gurudwaras/34-uttar-pradesh/05-u/04-34-23-01-gurudwara-guru-singh-sabha-unnao.html|Unnao, Uttar Pradesh, India": {
+  "lat": 26.54358,
+  "lng": 80.48715,
+  "precision": "locality",
+  "source": "address: Unnao, Uttar Pradesh"
+ },
+ "04-gurudwaras/34-uttar-pradesh/06-a/04-34-01-01-gurudwara-guru-ka-taal-sahib-agra.html|Delhi–Agra Road, Agra City, Agra District, Uttar Pradesh": {
+  "lat": 27.21162,
+  "lng": 77.96763,
+  "precision": "exact",
+  "source": "osm way/304965623 (only one of that name in Agra — Uttar Pradesh)"
+ },
+ "04-gurudwaras/34-uttar-pradesh/06-a/04-34-01-02-gurudwara-dukhniwaran-sahib-agra.html|Nayabaans, near Loha Mandi, Agra City, Uttar Pradesh": {
+  "lat": 27.19413,
+  "lng": 78.01552,
+  "precision": "street",
+  "source": "address: Agra City, Uttar Pradesh"
+ },
+ "04-gurudwaras/34-uttar-pradesh/06-a/04-34-01-03-gurudwara-damdama-sahib-agra.html|Delhi Road, Agra City, Agra District, Uttar Pradesh": {
+  "lat": 27.19413,
+  "lng": 78.01552,
+  "precision": "street",
+  "source": "address: Agra City, Agra District, Uttar Pradesh"
+ },
+ "04-gurudwaras/34-uttar-pradesh/06-a/04-34-01-04-gurudwara-mai-than-sahib-agra.html|Mohalla Mai Than, Agra City, Agra District, Uttar Pradesh": {
+  "lat": 27.19413,
+  "lng": 78.01552,
+  "precision": "street",
+  "source": "address: Agra City, Agra District, Uttar Pradesh"
+ },
+ "04-gurudwaras/34-uttar-pradesh/07-p/04-34-02-01-gurudwara-pakki-sangat-sahib-allahabad.html|Mohalla Aihiyapur, Allahabad (Prayagraj), Uttar Pradesh": {
+  "reason": "\"Mohalla Aihiyapur\" not found on the map; only \"Allahabad, Uttar Pradesh\" was"
+ },
+ "04-gurudwaras/34-uttar-pradesh/08-pl/04-34-24-01-gurudwara-patshahi-chevin-sahib-pilibhit.html|Lakkar Bazar, Old City Pilibhit, Pilibhit District, Uttar Pradesh": {
+  "reason": "\"Old City Pilibhit\" not found on the map; only \"Pilibhit, Uttar Pradesh\" was"
+ },
+ "04-gurudwaras/34-uttar-pradesh/09-lk/04-34-25-01-gurudwara-kodiwala-ghat-sahib-babarpur.html|Village Babarpur, Tehsil Pallia, Lakhimpur Kheri District, Uttar Pradesh": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/34-uttar-pradesh/10-v/04-34-26-01-gurudwara-baddi-sangat-sahib-varanasi.html|Mohalla Neechi Baag, Varanasi, Uttar Pradesh": {
+  "reason": "\"Mohalla Neechi Baag\" not found on the map; only \"Varanasi, Uttar Pradesh\" was"
+ },
+ "04-gurudwaras/34-uttar-pradesh/10-v/04-34-26-02-gurudwara-guru-baag-sahib-varanasi.html|Guru Nanak Dev Ji Road, Old City, Varanasi, Uttar Pradesh": {
+  "reason": "\"Old City\" not found on the map; only \"Varanasi, Uttar Pradesh\" was"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-01-gurudwara-thara-sahib-bagheshwar-uttrakhand.html|Gurdwara is situated on the banks of the Gomti River (also spelled Gomati) in Bageshwar town, Uttarakhand, India": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-02-gurudwara-shri-hemkunt-sahib.html|Sri Hemkunt Sahib Marg, Joshimath, Chamoli District, Uttarakhand — PIN 246422": {
+  "lat": 30.55597,
+  "lng": 79.56274,
+  "precision": "exact",
+  "source": "osm way/1204687607"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-03-gurudwara-reetha-sahib-champawat-uttrakhand.html|near the village of Deyuri (also spelled Dyuri) in the Champawat district. The gurudwara stands in a small hamlet approximately 72 km from Champawat town": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-05-01-gurudwara-amar-das-ji-sahib-haridwar.html|Kankhal Area, Haridwar, Uttarakhand": {
+  "reason": "only the city \"Haridwar, Uttarakhand\" was found, not \"Kankhal Area\""
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-05-02-gurudwara-gian-godri-sahib-har-ki-pauri-haridwar.html|Har Ki Pauri, Haridwar, Uttarakhand": {
+  "lat": 29.95664,
+  "lng": 78.17086,
+  "precision": "locality",
+  "source": "address: Har Ki Pauri, Haridwar, Uttarakhand"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-05-03-gurudwara-sant-sagar-baoli-sahib-gendikhatha.html|Gaidakhatha, Haridwar-Najibabad Road, Haridwar, Uttarakhand": {
+  "reason": "\"Gaidakhatha\" not found on the map; only \"Haridwar, Uttarakhand\" was"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-07-01-gurudwara-shri-guru-singh-sabha-nainital.html|Ayarpatta, Nainital, Uttarakhand 263001, India": {
+  "reason": "\"Ayarpatta\" not found on the map; only \"Nainital, Uttarakhand\" was"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-11-02-gurudwara-baoli-sahib-nanakmatta.html|Gurudwara Sri Nanakmatta, Sitarganj Khatima Road, Udham Singh Nagar, Uttarakhand": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-11-03-gurudwara-hargobind-sahib-nanakmatta.html|Sitarganj Khatima Road, Nanakmatta, Udham Singh Nagar, Uttarakhand": {
+  "lat": 28.9464,
+  "lng": 79.81343,
+  "precision": "street",
+  "source": "address: Nanakmatta, Udham Singh Nagar, Uttarakhand"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-11-04-gurudwara-bhandara-sahib-nanakmatta.html|Gurudwara Sri Nanakmatta, Sitarganj Khatima Road, Udham Singh Nagar, Uttarakhand": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-11-05-gurudwara-dhodh-wala-khooh-sahib-nanakmatta.html|Gurudwara Sri Nanakmatta, Sitarganj Khatima Road, Udham Singh Nagar, Uttarakhand": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-11-06-gurudwara-almast-sahib-nanakmatta.html|Gurudwara Sri Nanakmatta, Sitarganj Khatima Road, Udham Singh Nagar, Uttarakhand": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-11-07-gurudwara-patshahi-chevin-sahib-nanakmatta.html|Gurudwara Sri Nanakmatta, Sitarganj Khatima Road, Udham Singh Nagar, Uttarakhand": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-11-08-gurudwara-killa-sahib-patshahi-chevin-bhidoura.html|Village Bhidoura, Sitarganj-Nanakmatta Road, Udham Singh Nagar, Uttarakhand": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-11-09-gurudwara-nanak-puri-sahib-tanda.html|Khatima, Udham Singh Nagar, Uttarakhand": {
+  "lat": 28.91972,
+  "lng": 79.97026,
+  "precision": "locality",
+  "source": "address: Khatima, Udham Singh Nagar, Uttarakhand"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-11-10-gurudwara-mar-jiwala-sahib-tanda.html|Sitarganj Khatima Road, Udham Singh Nagar, Uttarakhand": {
+  "reason": "address not found on the map"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-11-11-gurudwara-ghat-sahib-tanda.html|Khatima, Udham Singh Nagar, Uttarakhand": {
+  "lat": 28.91972,
+  "lng": 79.97026,
+  "precision": "locality",
+  "source": "address: Khatima, Udham Singh Nagar, Uttarakhand"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-11-12-gurudwara-chaki-sahib-tanda.html|Khatima, Udham Singh Nagar, Uttarakhand": {
+  "lat": 28.91972,
+  "lng": 79.97026,
+  "precision": "locality",
+  "source": "address: Khatima, Udham Singh Nagar, Uttarakhand"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-11-13-gurudwara-guru-ka-bag-sahib-tanda.html|Khatima, Udham Singh Nagar, Uttarakhand": {
+  "lat": 28.91972,
+  "lng": 79.97026,
+  "precision": "locality",
+  "source": "address: Khatima, Udham Singh Nagar, Uttarakhand"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-11-14-gurudwara-nanakana-sahib-kashipur.html|Kashipur City, Udham Singh Nagar, Uttarakhand": {
+  "lat": 29.21176,
+  "lng": 78.96173,
+  "precision": "locality",
+  "source": "address: Kashipur, Uttarakhand"
+ },
+ "04-gurudwaras/35-uttaranchal/04-35-11-gurudwara-nanak-mata-sahib-udham-singh-nagar-uttrakhand.html|Nanakmatta, Sitarganj, Udham Singh Nagar District, Uttarakhand – 262405; Contact Person: Mr. Ranjit Singh – 91‑5948‑261525": {
+  "lat": 28.9464,
+  "lng": 79.81343,
+  "precision": "street",
+  "source": "address: Nanakmatta, Sitarganj, Udham Singh Nagar District, Uttarakhand"
+ },
+ "04-gurudwaras/36-west-bengal/01-k/04-36-06-01-gurudwara-shri-guru-ravidas-gurudwara-tiljala-park circus-kolkata.html|Tiljala Road, Kustia area, Kolkata 700039—on the fringe of Park Circus": {
+  "reason": "address not found on the map"
+ }
+}

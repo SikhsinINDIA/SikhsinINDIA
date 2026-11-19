@@ -1,51 +1,51 @@
 {
-  "date": "2026-11-05",
-  "dateDisplay": "5 November 2026",
-  "ang": 857,
+  "date": "2026-11-19",
+  "dateDisplay": "19 November 2026",
+  "ang": 849,
   "raagGurmukhi": "ਰਾਗੁ ਬਿਲਾਵਲ",
   "raagEnglish": "Raag Bilaaval",
-  "writerEnglish": "Bhagat Kabeer Ji",
-  "titleGurmukhi": "ਬਿਲਾਵਲੁ ॥",
-  "titleEnglish": "Bilaaval:",
-  "verseGurmukhi": "ਜਨਮ ਮਰਨ ਕਾ ਭ੍ਰਮੁ ਗਇਆ ਗੋਬਿਦ ਲਿਵ ਲਾਗੀ ॥",
-  "verseTranslation": "The illusion of birth and death is gone; I lovingly focus on the Lord of the Universe.",
+  "writerEnglish": "Guru Raam Daas Ji",
+  "titleGurmukhi": "ਬਿਲਾਵਲੁ ਕੀ ਵਾਰ ਮਹਲਾ ੪",
+  "titleEnglish": "Vaar Of Bilaaval, Fourth Mehla:",
+  "verseGurmukhi": "ਸਲੋਕ ਮਃ ੪ ॥",
+  "verseTranslation": "Shalok, Fourth Mehla:",
   "verses": [
     {
-      "gurmukhi": "ਬਿਲਾਵਲੁ ॥",
-      "translation": "Bilaaval:"
+      "gurmukhi": "ਬਿਲਾਵਲੁ ਕੀ ਵਾਰ ਮਹਲਾ ੪",
+      "translation": "Vaar Of Bilaaval, Fourth Mehla:"
     },
     {
-      "gurmukhi": "ਜਨਮ ਮਰਨ ਕਾ ਭ੍ਰਮੁ ਗਇਆ ਗੋਬਿਦ ਲਿਵ ਲਾਗੀ ॥",
-      "translation": "The illusion of birth and death is gone; I lovingly focus on the Lord of the Universe."
+      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
     },
     {
-      "gurmukhi": "ਜੀਵਤ ਸੁੰਨਿ ਸਮਾਨਿਆ ਗੁਰ ਸਾਖੀ ਜਾਗੀ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "In my life, I am absorbed in deep silent meditation; the Guru's Teachings have awakened me. ||1||Pause||"
+      "gurmukhi": "ਸਲੋਕ ਮਃ ੪ ॥",
+      "translation": "Shalok, Fourth Mehla:"
     },
     {
-      "gurmukhi": "ਕਾਸੀ ਤੇ ਧੁਨਿ ਊਪਜੈ ਧੁਨਿ ਕਾਸੀ ਜਾਈ ॥",
-      "translation": "The sound made from bronze, that sound goes into the bronze again."
+      "gurmukhi": "ਹਰਿ ਉਤਮੁ ਹਰਿ ਪ੍ਰਭੁ ਗਾਵਿਆ ਕਰਿ ਨਾਦੁ ਬਿਲਾਵਲੁ ਰਾਗੁ ॥",
+      "translation": "I sing of the sublime Lord, the Lord God, in the melody of Raag Bilaaval."
     },
     {
-      "gurmukhi": "ਕਾਸੀ ਫੂਟੀ ਪੰਡਿਤਾ ਧੁਨਿ ਕਹਾਂ ਸਮਾਈ ॥੧॥",
-      "translation": "But when the bronze is broken, O Pandit, O religious scholar, where does the sound go then? ||1||"
+      "gurmukhi": "ਉਪਦੇਸੁ ਗੁਰੂ ਸੁਣਿ ਮੰਨਿਆ ਧੁਰਿ ਮਸਤਕਿ ਪੂਰਾ ਭਾਗੁ ॥",
+      "translation": "Hearing the Guru's Teachings, I obey them; this is the pre-ordained destiny written upon my forehead."
     },
     {
-      "gurmukhi": "ਤ੍ਰਿਕੁਟੀ ਸੰਧਿ ਮੈ ਪੇਖਿਆ ਘਟ ਹੂ ਘਟ ਜਾਗੀ ॥",
-      "translation": "I gaze upon the world, the confluence of the three qualities; God is awake and aware in each and every heart."
+      "gurmukhi": "ਸਭ ਦਿਨਸੁ ਰੈਣਿ ਗੁਣ ਉਚਰੈ ਹਰਿ ਹਰਿ ਹਰਿ ਉਰਿ ਲਿਵ ਲਾਗੁ ॥",
+      "translation": "All day and night, I chant the Glorious Praises of the Lord, Har, Har, Har; within my heart, I am lovingly attuned to Him."
     },
     {
-      "gurmukhi": "ਐਸੀ ਬੁਧਿ ਸਮਾਚਰੀ ਘਟ ਮਾਹਿ ਤਿਆਗੀ ॥੨॥",
-      "translation": "Such is the understanding revealed to me; within my heart, I have become a detached renunciate. ||2||"
+      "gurmukhi": "ਸਭੁ ਤਨੁ ਮਨੁ ਹਰਿਆ ਹੋਇਆ ਮਨੁ ਖਿੜਿਆ ਹਰਿਆ ਬਾਗੁ ॥",
+      "translation": "My body and mind are totally rejuvenated, and the garden of my mind has blossomed forth in lush abundance."
     },
     {
-      "gurmukhi": "ਆਪੁ ਆਪ ਤੇ ਜਾਨਿਆ ਤੇਜ ਤੇਜੁ ਸਮਾਨਾ ॥",
-      "translation": "I have come to know my own self, and my light has merged in the Light."
+      "gurmukhi": "ਅਗਿਆਨੁ ਅੰਧੇਰਾ ਮਿਟਿ ਗਇਆ ਗੁਰ ਚਾਨਣੁ ਗਿਆਨੁ ਚਰਾਗੁ ॥",
+      "translation": "The darkness of ignorance has been dispelled, with the light of the lamp of the Guru's wisdom. Servant Nanak lives by beholding the Lord."
     },
     {
-      "gurmukhi": "ਕਹੁ ਕਬੀਰ ਅਬ ਜਾਨਿਆ ਗੋਬਿਦ ਮਨੁ ਮਾਨਾ ॥੩॥੧੧॥",
-      "translation": "Says Kabeer, now I know the Lord of the Universe, and my mind is satisfied. ||3||11||"
+      "gurmukhi": "ਜਨੁ ਨਾਨਕੁ ਜੀਵੈ ਦੇਖਿ ਹਰਿ ਇਕ ਨਿਮਖ ਘੜੀ ਮੁਖਿ ਲਾਗੁ ॥੧॥",
+      "translation": "Let me behold Your face, for a moment, even an instant! ||1||"
     }
   ],
-  "updated": "2026-11-05T08:04:39.021Z"
+  "updated": "2026-11-19T08:59:36.665Z"
 }
