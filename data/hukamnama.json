@@ -1,59 +1,51 @@
 {
-  "date": "2026-11-18",
-  "dateDisplay": "18 November 2026",
-  "ang": 609,
-  "raagGurmukhi": "ਰਾਗੁ ਸੋਰਠਿ",
-  "raagEnglish": "Raag Sorath",
-  "writerEnglish": "Guru Arjan Dev Ji",
-  "titleGurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੫ ॥",
-  "titleEnglish": "Sorat'h, Fifth Mehla:",
-  "verseGurmukhi": "ਗੁਰੁ ਪੂਰਾ ਭੇਟਿਓ ਵਡਭਾਗੀ ਮਨਹਿ ਭਇਆ ਪਰਗਾਸਾ ॥",
-  "verseTranslation": "I met the perfect Guru, by great good fortune, and my mind has been enlightened.",
+  "date": "2026-11-19",
+  "dateDisplay": "19 November 2026",
+  "ang": 849,
+  "raagGurmukhi": "ਰਾਗੁ ਬਿਲਾਵਲ",
+  "raagEnglish": "Raag Bilaaval",
+  "writerEnglish": "Guru Raam Daas Ji",
+  "titleGurmukhi": "ਬਿਲਾਵਲੁ ਕੀ ਵਾਰ ਮਹਲਾ ੪",
+  "titleEnglish": "Vaar Of Bilaaval, Fourth Mehla:",
+  "verseGurmukhi": "ਸਲੋਕ ਮਃ ੪ ॥",
+  "verseTranslation": "Shalok, Fourth Mehla:",
   "verses": [
     {
-      "gurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੫ ॥",
-      "translation": "Sorat'h, Fifth Mehla:"
+      "gurmukhi": "ਬਿਲਾਵਲੁ ਕੀ ਵਾਰ ਮਹਲਾ ੪",
+      "translation": "Vaar Of Bilaaval, Fourth Mehla:"
     },
     {
-      "gurmukhi": "ਗੁਰੁ ਪੂਰਾ ਭੇਟਿਓ ਵਡਭਾਗੀ ਮਨਹਿ ਭਇਆ ਪਰਗਾਸਾ ॥",
-      "translation": "I met the perfect Guru, by great good fortune, and my mind has been enlightened."
+      "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+      "translation": "One Universal Creator God. By The Grace Of The True Guru:"
     },
     {
-      "gurmukhi": "ਕੋਇ ਨ ਪਹੁਚਨਹਾਰਾ ਦੂਜਾ ਅਪੁਨੇ ਸਾਹਿਬ ਕਾ ਭਰਵਾਸਾ ॥੧॥",
-      "translation": "No one else can equal me, because I have the loving support of my Lord and Master. ||1||"
+      "gurmukhi": "ਸਲੋਕ ਮਃ ੪ ॥",
+      "translation": "Shalok, Fourth Mehla:"
     },
     {
-      "gurmukhi": "ਅਪੁਨੇ ਸਤਿਗੁਰ ਕੈ ਬਲਿਹਾਰੈ ॥",
-      "translation": "I am a sacrifice to my True Guru."
+      "gurmukhi": "ਹਰਿ ਉਤਮੁ ਹਰਿ ਪ੍ਰਭੁ ਗਾਵਿਆ ਕਰਿ ਨਾਦੁ ਬਿਲਾਵਲੁ ਰਾਗੁ ॥",
+      "translation": "I sing of the sublime Lord, the Lord God, in the melody of Raag Bilaaval."
     },
     {
-      "gurmukhi": "ਆਗੈ ਸੁਖੁ ਪਾਛੈ ਸੁਖ ਸਹਜਾ ਘਰਿ ਆਨੰਦੁ ਹਮਾਰੈ ॥ ਰਹਾਉ ॥",
-      "translation": "I am at peace in this world, and I shall be in celestial peace in the next; my home is filled with bliss. ||Pause||"
+      "gurmukhi": "ਉਪਦੇਸੁ ਗੁਰੂ ਸੁਣਿ ਮੰਨਿਆ ਧੁਰਿ ਮਸਤਕਿ ਪੂਰਾ ਭਾਗੁ ॥",
+      "translation": "Hearing the Guru's Teachings, I obey them; this is the pre-ordained destiny written upon my forehead."
     },
     {
-      "gurmukhi": "ਅੰਤਰਜਾਮੀ ਕਰਣੈਹਾਰਾ ਸੋਈ ਖਸਮੁ ਹਮਾਰਾ ॥",
-      "translation": "He is the Inner-knower, the Searcher of hearts, the Creator, my Lord and Master."
+      "gurmukhi": "ਸਭ ਦਿਨਸੁ ਰੈਣਿ ਗੁਣ ਉਚਰੈ ਹਰਿ ਹਰਿ ਹਰਿ ਉਰਿ ਲਿਵ ਲਾਗੁ ॥",
+      "translation": "All day and night, I chant the Glorious Praises of the Lord, Har, Har, Har; within my heart, I am lovingly attuned to Him."
     },
     {
-      "gurmukhi": "ਨਿਰਭਉ ਭਏ ਗੁਰ ਚਰਣੀ ਲਾਗੇ ਇਕ ਰਾਮ ਨਾਮ ਆਧਾਰਾ ॥੨॥",
-      "translation": "Attached to the Guru's feet, I have become fearless. I take the Support of the Name of the One Lord. ||2||"
+      "gurmukhi": "ਸਭੁ ਤਨੁ ਮਨੁ ਹਰਿਆ ਹੋਇਆ ਮਨੁ ਖਿੜਿਆ ਹਰਿਆ ਬਾਗੁ ॥",
+      "translation": "My body and mind are totally rejuvenated, and the garden of my mind has blossomed forth in lush abundance."
     },
     {
-      "gurmukhi": "ਸਫਲ ਦਰਸਨੁ ਅਕਾਲ ਮੂਰਤਿ ਪ੍ਰਭੁ ਹੈ ਭੀ ਹੋਵਨਹਾਰਾ ॥",
-      "translation": "Fruitful is the Blessed Vision of His Darshan; the Form of God is deathless; He is and shall always be."
+      "gurmukhi": "ਅਗਿਆਨੁ ਅੰਧੇਰਾ ਮਿਟਿ ਗਇਆ ਗੁਰ ਚਾਨਣੁ ਗਿਆਨੁ ਚਰਾਗੁ ॥",
+      "translation": "The darkness of ignorance has been dispelled, with the light of the lamp of the Guru's wisdom. Servant Nanak lives by beholding the Lord."
     },
     {
-      "gurmukhi": "ਕੰਠਿ ਲਗਾਇ ਅਪੁਨੇ ਜਨ ਰਾਖੇ ਅਪੁਨੀ ਪ੍ਰੀਤਿ ਪਿਆਰਾ ॥੩॥",
-      "translation": "He holds His humble servants close, and protects and preserves them; their love for Him is sweet to Him. ||3||"
-    },
-    {
-      "gurmukhi": "ਵਡੀ ਵਡਿਆਈ ਅਚਰਜ ਸੋਭਾ ਕਾਰਜੁ ਆਇਆ ਰਾਸੇ ॥",
-      "translation": "Great is His glorious greatness, and wondrous is His magnificence; through Him, all affairs are resolved."
-    },
-    {
-      "gurmukhi": "ਨਾਨਕ ਕਉ ਗੁਰੁ ਪੂਰਾ ਭੇਟਿਓ ਸਗਲੇ ਦੂਖ ਬਿਨਾਸੇ ॥੪॥੫॥",
-      "translation": "Nanak has met with the Perfect Guru; all his sorrows have been dispelled. ||4||5||"
+      "gurmukhi": "ਜਨੁ ਨਾਨਕੁ ਜੀਵੈ ਦੇਖਿ ਹਰਿ ਇਕ ਨਿਮਖ ਘੜੀ ਮੁਖਿ ਲਾਗੁ ॥੧॥",
+      "translation": "Let me behold Your face, for a moment, even an instant! ||1||"
     }
   ],
-  "updated": "2026-11-18T08:44:28.583Z"
+  "updated": "2026-11-19T08:59:36.665Z"
 }
