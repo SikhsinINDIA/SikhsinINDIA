@@ -1,51 +1,63 @@
 {
-  "date": "2026-11-19",
-  "dateDisplay": "19 November 2026",
-  "ang": 849,
-  "raagGurmukhi": "ਰਾਗੁ ਬਿਲਾਵਲ",
-  "raagEnglish": "Raag Bilaaval",
+  "date": "2026-11-20",
+  "dateDisplay": "20 November 2026",
+  "ang": 696,
+  "raagGurmukhi": "ਰਾਗੁ ਜੈਤਸਰੀ",
+  "raagEnglish": "Raag Jaithsree",
   "writerEnglish": "Guru Raam Daas Ji",
-  "titleGurmukhi": "ਬਿਲਾਵਲੁ ਕੀ ਵਾਰ ਮਹਲਾ ੪",
-  "titleEnglish": "Vaar Of Bilaaval, Fourth Mehla:",
-  "verseGurmukhi": "ਸਲੋਕ ਮਃ ੪ ॥",
-  "verseTranslation": "Shalok, Fourth Mehla:",
+  "titleGurmukhi": "ਜੈਤਸਰੀ ਮਹਲਾ ੪ ਘਰੁ ੧ ਚਉਪਦੇ",
+  "titleEnglish": "Jaitsree, Fourth Mehla, First House, Chau-Padhay:",
+  "verseGurmukhi": "ਮੇਰੈ ਹੀਅਰੈ ਰਤਨੁ ਨਾਮੁ ਹਰਿ ਬਸਿਆ ਗੁਰਿ ਹਾਥੁ ਧਰਿਓ ਮੇਰੈ ਮਾਥਾ ॥",
+  "verseTranslation": "The Jewel of the Lord's Name abides within my heart; the Guru has placed His hand on my forehead.",
   "verses": [
     {
-      "gurmukhi": "ਬਿਲਾਵਲੁ ਕੀ ਵਾਰ ਮਹਲਾ ੪",
-      "translation": "Vaar Of Bilaaval, Fourth Mehla:"
+      "gurmukhi": "ਜੈਤਸਰੀ ਮਹਲਾ ੪ ਘਰੁ ੧ ਚਉਪਦੇ",
+      "translation": "Jaitsree, Fourth Mehla, First House, Chau-Padhay:"
     },
     {
       "gurmukhi": "ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
       "translation": "One Universal Creator God. By The Grace Of The True Guru:"
     },
     {
-      "gurmukhi": "ਸਲੋਕ ਮਃ ੪ ॥",
-      "translation": "Shalok, Fourth Mehla:"
+      "gurmukhi": "ਮੇਰੈ ਹੀਅਰੈ ਰਤਨੁ ਨਾਮੁ ਹਰਿ ਬਸਿਆ ਗੁਰਿ ਹਾਥੁ ਧਰਿਓ ਮੇਰੈ ਮਾਥਾ ॥",
+      "translation": "The Jewel of the Lord's Name abides within my heart; the Guru has placed His hand on my forehead."
     },
     {
-      "gurmukhi": "ਹਰਿ ਉਤਮੁ ਹਰਿ ਪ੍ਰਭੁ ਗਾਵਿਆ ਕਰਿ ਨਾਦੁ ਬਿਲਾਵਲੁ ਰਾਗੁ ॥",
-      "translation": "I sing of the sublime Lord, the Lord God, in the melody of Raag Bilaaval."
+      "gurmukhi": "ਜਨਮ ਜਨਮ ਕੇ ਕਿਲਬਿਖ ਦੁਖ ਉਤਰੇ ਗੁਰਿ ਨਾਮੁ ਦੀਓ ਰਿਨੁ ਲਾਥਾ ॥੧॥",
+      "translation": "The sins and pains of countless incarnations have been cast out. The Guru has blessed me with the Naam, the Name of the Lord, and my debt has been paid off. ||1||"
     },
     {
-      "gurmukhi": "ਉਪਦੇਸੁ ਗੁਰੂ ਸੁਣਿ ਮੰਨਿਆ ਧੁਰਿ ਮਸਤਕਿ ਪੂਰਾ ਭਾਗੁ ॥",
-      "translation": "Hearing the Guru's Teachings, I obey them; this is the pre-ordained destiny written upon my forehead."
+      "gurmukhi": "ਮੇਰੇ ਮਨ ਭਜੁ ਰਾਮ ਨਾਮੁ ਸਭਿ ਅਰਥਾ ॥",
+      "translation": "O my mind, vibrate the Lord's Name, and all your affairs shall be resolved."
     },
     {
-      "gurmukhi": "ਸਭ ਦਿਨਸੁ ਰੈਣਿ ਗੁਣ ਉਚਰੈ ਹਰਿ ਹਰਿ ਹਰਿ ਉਰਿ ਲਿਵ ਲਾਗੁ ॥",
-      "translation": "All day and night, I chant the Glorious Praises of the Lord, Har, Har, Har; within my heart, I am lovingly attuned to Him."
+      "gurmukhi": "ਗੁਰਿ ਪੂਰੈ ਹਰਿ ਨਾਮੁ ਦ੍ਰਿੜਾਇਆ ਬਿਨੁ ਨਾਵੈ ਜੀਵਨੁ ਬਿਰਥਾ ॥ ਰਹਾਉ ॥",
+      "translation": "The Perfect Guru has implanted the Lord's Name within me; without the Name, life is useless. ||Pause||"
     },
     {
-      "gurmukhi": "ਸਭੁ ਤਨੁ ਮਨੁ ਹਰਿਆ ਹੋਇਆ ਮਨੁ ਖਿੜਿਆ ਹਰਿਆ ਬਾਗੁ ॥",
-      "translation": "My body and mind are totally rejuvenated, and the garden of my mind has blossomed forth in lush abundance."
+      "gurmukhi": "ਬਿਨੁ ਗੁਰ ਮੂੜ ਭਏ ਹੈ ਮਨਮੁਖ ਤੇ ਮੋਹ ਮਾਇਆ ਨਿਤ ਫਾਥਾ ॥",
+      "translation": "Without the Guru, the self-willed manmukhs are foolish and ignorant; they are forever entangled in emotional attachment to Maya."
     },
     {
-      "gurmukhi": "ਅਗਿਆਨੁ ਅੰਧੇਰਾ ਮਿਟਿ ਗਇਆ ਗੁਰ ਚਾਨਣੁ ਗਿਆਨੁ ਚਰਾਗੁ ॥",
-      "translation": "The darkness of ignorance has been dispelled, with the light of the lamp of the Guru's wisdom. Servant Nanak lives by beholding the Lord."
+      "gurmukhi": "ਤਿਨ ਸਾਧੂ ਚਰਣ ਨ ਸੇਵੇ ਕਬਹੂ ਤਿਨ ਸਭੁ ਜਨਮੁ ਅਕਾਥਾ ॥੨॥",
+      "translation": "They never serve the feet of the Holy; their lives are totally useless. ||2||"
     },
     {
-      "gurmukhi": "ਜਨੁ ਨਾਨਕੁ ਜੀਵੈ ਦੇਖਿ ਹਰਿ ਇਕ ਨਿਮਖ ਘੜੀ ਮੁਖਿ ਲਾਗੁ ॥੧॥",
-      "translation": "Let me behold Your face, for a moment, even an instant! ||1||"
+      "gurmukhi": "ਜਿਨ ਸਾਧੂ ਚਰਣ ਸਾਧ ਪਗ ਸੇਵੇ ਤਿਨ ਸਫਲਿਓ ਜਨਮੁ ਸਨਾਥਾ ॥",
+      "translation": "Those who serve at the feet of the Holy, the feet of the Holy, their lives are made fruitful, and they belong to the Lord."
+    },
+    {
+      "gurmukhi": "ਮੋ ਕਉ ਕੀਜੈ ਦਾਸੁ ਦਾਸ ਦਾਸਨ ਕੋ ਹਰਿ ਦਇਆ ਧਾਰਿ ਜਗੰਨਾਥਾ ॥੩॥",
+      "translation": "Make me the slave of the slave of the slaves of the Lord; bless me with Your Mercy, O Lord of the Universe. ||3||"
+    },
+    {
+      "gurmukhi": "ਹਮ ਅੰਧੁਲੇ ਗਿਆਨਹੀਨ ਅਗਿਆਨੀ ਕਿਉ ਚਾਲਹ ਮਾਰਗਿ ਪੰਥਾ ॥",
+      "translation": "I am blind, ignorant and totally without wisdom; how can I walk on the Path?"
+    },
+    {
+      "gurmukhi": "ਹਮ ਅੰਧੁਲੇ ਕਉ ਗੁਰ ਅੰਚਲੁ ਦੀਜੈ ਜਨ ਨਾਨਕ ਚਲਹ ਮਿਲੰਥਾ ॥੪॥੧॥",
+      "translation": "I am blind - O Guru, please let me grasp the hem of Your robe, so that servant Nanak may walk in harmony with You. ||4||1||"
     }
   ],
-  "updated": "2026-11-19T08:59:36.665Z"
+  "updated": "2026-11-20T08:46:23.746Z"
 }
