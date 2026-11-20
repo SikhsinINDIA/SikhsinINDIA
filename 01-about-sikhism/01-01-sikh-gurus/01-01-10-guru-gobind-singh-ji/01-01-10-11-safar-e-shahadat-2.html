@@ -561,14 +561,14 @@
 
   <script>
     const shahadatPhotos = [
-      { id: "1uOV8wVxpVv5CoRsf12lKKOfFIWFxTOfn", caption: "Safar-e-Shahadat - Image 1" },
-      { id: "1UDAoGvFk7Jc6c0LocVdiMfEZdjuapl8G", caption: "Safar-e-Shahadat - Image 2" },
-      { id: "1ddOVb_d7x6QtEeoPEfp-iUv5B4ZESEY-", caption: "Safar-e-Shahadat - Image 3" },
-      { id: "1CpV8KKRySz5j8sn8c8jXzzUOMOv7PBj4", caption: "Safar-e-Shahadat - Image 4" },
-      { id: "11j6sKLoUvLBjgTXoq33ESjPiQS6WOeQ-", caption: "Safar-e-Shahadat - Image 5" },
-      { id: "1EpwM9fFrPA1-2OmIBy54BtSLTj4JGuZt", caption: "Safar-e-Shahadat - Image 6" },
-      { id: "1Ju4pndJCBZoNMk1EQKZguou5CVfFrqQz", caption: "Safar-e-Shahadat - Image 7" },
-      { id: "1QERgvB-MgDXRfk5TM4cAxKKH-R2H8SYD", caption: "Safar-e-Shahadat - Image 8" }
+      { id: "1uOV8wVxpVv5CoRsf12lKKOfFIWFxTOfn", src: "/pictures/01-about-sikhism/01-01-sikh-gurus/01-01-10-guru-gobind-singh-ji/safar-e-shahadat-2/safar-e-shahadat-2-01.jpg", caption: "Safar-e-Shahadat - Image 1" },
+      { id: "1UDAoGvFk7Jc6c0LocVdiMfEZdjuapl8G", src: "/pictures/01-about-sikhism/01-01-sikh-gurus/01-01-10-guru-gobind-singh-ji/safar-e-shahadat-2/safar-e-shahadat-2-02.jpg", caption: "Safar-e-Shahadat - Image 2" },
+      { id: "1ddOVb_d7x6QtEeoPEfp-iUv5B4ZESEY-", src: "/pictures/01-about-sikhism/01-01-sikh-gurus/01-01-10-guru-gobind-singh-ji/safar-e-shahadat-2/safar-e-shahadat-2-03.jpg", caption: "Safar-e-Shahadat - Image 3" },
+      { id: "1CpV8KKRySz5j8sn8c8jXzzUOMOv7PBj4", src: "/pictures/01-about-sikhism/01-01-sikh-gurus/01-01-10-guru-gobind-singh-ji/safar-e-shahadat-2/safar-e-shahadat-2-04.jpg", caption: "Safar-e-Shahadat - Image 4" },
+      { id: "11j6sKLoUvLBjgTXoq33ESjPiQS6WOeQ-", src: "/pictures/01-about-sikhism/01-01-sikh-gurus/01-01-10-guru-gobind-singh-ji/safar-e-shahadat-2/safar-e-shahadat-2-05.jpg", caption: "Safar-e-Shahadat - Image 5" },
+      { id: "1EpwM9fFrPA1-2OmIBy54BtSLTj4JGuZt", src: "/pictures/01-about-sikhism/01-01-sikh-gurus/01-01-10-guru-gobind-singh-ji/safar-e-shahadat-2/safar-e-shahadat-2-06.jpg", caption: "Safar-e-Shahadat - Image 6" },
+      { id: "1Ju4pndJCBZoNMk1EQKZguou5CVfFrqQz", src: "/pictures/01-about-sikhism/01-01-sikh-gurus/01-01-10-guru-gobind-singh-ji/safar-e-shahadat-2/safar-e-shahadat-2-07.jpg", caption: "Safar-e-Shahadat - Image 7" },
+      { id: "1QERgvB-MgDXRfk5TM4cAxKKH-R2H8SYD", src: "/pictures/01-about-sikhism/01-01-sikh-gurus/01-01-10-guru-gobind-singh-ji/safar-e-shahadat-2/safar-e-shahadat-2-08.jpg", caption: "Safar-e-Shahadat - Image 8" }
     ];
 
     let currentIndex = 0;
@@ -576,7 +576,8 @@
     function showImage(index) {
       const photo = shahadatPhotos[index];
       const img = document.getElementById("shahadatImg");
-      img.src = `https://drive.google.com/thumbnail?id=${photo.id}&sz=w1000`;
+      img.onerror = function () { this.onerror = null; this.src = `https://drive.google.com/thumbnail?id=${photo.id}&sz=w1000`; };
+      img.src = photo.src || `https://drive.google.com/thumbnail?id=${photo.id}&sz=w1000`;
       img.alt = photo.caption;
 
       document.getElementById("shahadatCaption").textContent = photo.caption;
@@ -585,7 +586,7 @@
         (index + 1) + " / " + shahadatPhotos.length;
 
       document.getElementById("downloadLink").href =
-        `https://drive.google.com/uc?export=download&id=${photo.id}`;
+        photo.src || `https://drive.google.com/uc?export=download&id=${photo.id}`;
     }
 
     function nextImage() {
