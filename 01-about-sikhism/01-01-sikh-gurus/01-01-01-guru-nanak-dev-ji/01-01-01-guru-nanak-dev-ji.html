@@ -112,6 +112,13 @@
     .button { display: inline-block; background-color: var(--navy); color: var(--gold); border: 2px solid var(--gold); padding: 0.6rem 1.2rem; margin: 0.5rem; text-decoration: none; font-weight: bold; font-family: 'Lato', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; cursor: pointer; border-radius: 4px; }
     .button:hover { background-color: var(--gold); color: var(--navy); }
 
+    /* Infographics */
+    .infographics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 20px; }
+    .infographics a { display: block; border: 2px solid var(--gold); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25); background: var(--navy); }
+    .infographics img { width: 100%; height: auto; display: block; }
+    .infographics-note { text-align: center; font-size: 13px; margin-top: 10px; color: var(--navy); }
+    @media(max-width:768px){ .infographics { grid-template-columns: 1fr; } }
+
     @media(max-width:768px){
       .header{ flex-direction:column; align-items:center; }
       .hero{ padding:18px; }
@@ -252,6 +259,16 @@
             <button class="button" onclick="nextImage()">Next &#9654;</button>
           </div>
         </div>
+      </section>
+
+      <!-- Guru Nanak Dev Ji Infographics -->
+      <section id="guru-nanak-infographics">
+        <h2 class="guru-title">Guru Nanak Dev Ji at a Glance</h2>
+        <div class="infographics">
+          <a href="../../../pictures/01-about-sikhism/01-01-sikh-gurus/01-01-01-guru-nanak-dev-ji/guru-nanak-dev-ji/guru-nanak-dev-ji-01.jpg" target="_blank" rel="noopener"><img src="../../../pictures/01-about-sikhism/01-01-sikh-gurus/01-01-01-guru-nanak-dev-ji/guru-nanak-dev-ji/guru-nanak-dev-ji-01.jpg" alt="Dhan Dhan Guru Nanak Dev Ji, Maharaj de Maharaj (1469-1539): his life from birth at Rai Bhoi Ki Talvandi to Kartarpur Sahib, the Mool Mantar with its meaning, and the three pillars Naam Japo, Kirat Karo and Vand Chhako" width="1000" height="1500" loading="lazy"></a>
+          <a href="../../../pictures/01-about-sikhism/01-01-sikh-gurus/01-01-01-guru-nanak-dev-ji/guru-nanak-dev-ji/guru-nanak-dev-ji-02.jpg" target="_blank" rel="noopener"><img src="../../../pictures/01-about-sikhism/01-01-sikh-gurus/01-01-01-guru-nanak-dev-ji/guru-nanak-dev-ji/guru-nanak-dev-ji-02.jpg" alt="Guru Nanak Dev Ji, the First Guru and founder of Sikhi (1469-1539): birth, parents, early life, Udasis, key teachings, his message and legacy, and the lineage of the ten Gurus" width="1032" height="1524" loading="lazy"></a>
+        </div>
+        <p class="infographics-note">Tap an image to open it full size.</p>
       </section>
     </main>
       <div class="footer-content1">
