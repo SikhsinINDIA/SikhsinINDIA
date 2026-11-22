@@ -626,6 +626,35 @@
       return null;
     }
 
+    // Asks Firestore directly whether another record already uses this email or
+    // mobile number: two or three small lookups instead of reloading every record.
+    // Returns 'email', 'mobile' or null.
+    async function findDuplicateInDb(email, mobile, selfDocId) {
+      const col = db.collection("sikhdatabaseindia");
+      const e = (email || '').trim();
+      if (e) {
+        const byId = await col.doc(e).get();
+        if (byId.exists && byId.id !== selfDocId) return 'email';
+        const byField = await col.where("Email", "==", e).limit(2).get();
+        if (byField.docs.some(d => d.id !== selfDocId)) return 'email';
+      }
+      const digits = normalizeMobile(mobile);
+      if (digits) {
+        const byMobile = await col.where("Mobile", "in", [Number(digits), digits]).limit(2).get();
+        if (byMobile.docs.some(d => d.id !== selfDocId)) return 'mobile';
+      }
+      return null;
+    }
+
+    // Has this row been edited since it was loaded or last saved?
+    function rowChanged(cached, data) {
+      return Object.keys(data).some(k => {
+        const a = cached[k], b = data[k];
+        if (typeof b === 'boolean') return (a === true) !== b;
+        return String(a == null ? '' : a).trim() !== String(b == null ? '' : b).trim();
+      });
+    }
+
     function validateField(type, input, errorDiv, selfDocId) {
       const raw = input.value.trim();
       input.classList.remove('has-error');
@@ -865,6 +894,18 @@
         const docId = tr.dataset.docId;
         const f = tr._fields;
 
+        // Skip rows nobody edited, so Save All writes only what actually changed.
+        const cachedRow = recordsCache.get(docId) || {};
+        if (!rowChanged(cachedRow, {
+          Email: f.emailInput.value.trim(),
+          Email_Correct: f.emailCorrectCheckbox.checked,
+          Name: f.nameInput.value.trim(),
+          GName: f.gnameInput.value.trim(),
+          Country_Code: f.countryCodeInput.value.trim(),
+          Mobile: f.mobileInput.value.trim(),
+          Mobile_Correct: f.mobileCorrectCheckbox.checked
+        })) return;
+
         const email = f.emailInput.value.trim();
         const name = f.nameInput.value.trim();
         const gname = f.gnameInput.value.trim();
@@ -903,6 +944,12 @@
           }
         });
       });
+
+      if (errors.length === 0 && payloads.length === 0) {
+        statusEl.style.color = 'var(--gold)';
+        statusEl.textContent = 'No changes to save.';
+        return;
+      }
 
       if (errors.length > 0) {
         statusEl.style.color = '#d93838';
@@ -1045,9 +1092,9 @@
       }
 
       btn.disabled = true;
-      btn.textContent = 'Adding...';
+      btn.textContent = 'Checking...';
 
-      db.collection("sikhdatabaseindia").doc(email).set({
+      const newData = {
         Email: email,
         Email_Correct: emailCorrect,
         Name: name,
@@ -1056,9 +1103,39 @@
         Mobile: Number(mobile),
         Mobile_Correct: mobileCorrect,
         Date_created: new Date().toISOString()
-      }, { merge: true })
-        .then(() => {
-          loadAllRecords();
+      };
+
+      // Check the database itself (catches records added from other pages),
+      // then add the new row to the table here instead of reloading every record.
+      findDuplicateInDb(email, mobile, null)
+        .then(dup => {
+          if (dup) {
+            const err = dup === 'email' ? fields.emailErrorDiv : fields.mobileErrorDiv;
+            const inp = dup === 'email' ? fields.emailInput : fields.mobileInput;
+            inp.classList.add('has-error');
+            if (err) err.textContent = (dup === 'email' ? 'Duplicate email' : 'Duplicate mobile number') + ' — already used by another record.';
+            alert("Cannot add record: duplicate " + (dup === 'email' ? 'email' : 'mobile number') + " already exists in the database.");
+            btn.disabled = false;
+            btn.textContent = 'Add Record';
+            return;
+          }
+          btn.textContent = 'Adding...';
+          return db.collection("sikhdatabaseindia").doc(email).set(newData, { merge: true }).then(() => {
+            recordsCache.set(email, Object.assign({}, newData));
+            const addRow = document.querySelector('#recordsTableBody tr.add-row');
+            const newRow = buildRow(email, newData, 1);
+            if (addRow) addRow.after(newRow); else document.getElementById('recordsTableBody').prepend(newRow);
+            [fields.emailInput, fields.nameInput, fields.gnameInput, fields.countryCodeInput, fields.mobileInput].forEach(i => { i.value = ''; i.classList.remove('has-error'); });
+            fields.emailCorrectCheckbox.checked = false;
+            fields.mobileCorrectCheckbox.checked = false;
+            btn.disabled = false;
+            btn.textContent = 'Add Record';
+            renumberRows();
+            updateCorrectCounts();
+            applyNameSearch();
+            const statusEl = document.getElementById('bulkStatus');
+            if (statusEl) { statusEl.style.color = '#1e8a3c'; statusEl.textContent = `Added ${name} — ${email}.`; }
+          });
         })
         .catch(error => {
           console.error("Error adding record:", error);
