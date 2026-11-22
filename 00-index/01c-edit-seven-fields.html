@@ -46,6 +46,8 @@
 
   <!-- Firebase Legacy Compatibility SDK Infrastructure -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="/js/admin-gate.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
   <style>
@@ -142,6 +144,13 @@
       font-size: 18px;
       margin-bottom: 12px;
     }
+
+    /* NAME SEARCH BAR */
+    .search-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 16px; padding: 12px 14px; background: #fff; border: 2px solid var(--gold); border-radius: 8px; }
+    .search-bar input { flex: 1 1 260px; font-family: 'Lato', sans-serif; font-size: 16px; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; }
+    .search-bar input:focus { outline: none; border-color: var(--navy); }
+    .search-bar .search-count { font-size: 14px; color: var(--navy-mid); font-weight: 700; }
+    .search-bar .search-clear { margin-bottom: 0; }
 
     /* CONTROL PANEL BUTTON STYLES */
     .btn-alt {
@@ -522,6 +531,11 @@
 
       <!-- DATA TABLE -->
       <div id="recordsContainer">
+        <div class="search-bar">
+          <input type="search" id="nameSearch" placeholder="&#128269; Search by name or GName..." autocomplete="off" oninput="applyNameSearch()">
+          <button type="button" class="btn-alt search-clear" onclick="clearNameSearch()">Clear</button>
+          <span id="searchCount" class="search-count"></span>
+        </div>
         <h3>System Registered Operational Members &mdash; All Rows Editable In Place</h3>
         <button type="button" class="btn-alt" onclick="loadAllRecords()">Refresh Records</button>
         <div class="table-responsive">
@@ -807,6 +821,7 @@
           });
 
           updateCorrectCounts();
+          applyNameSearch();
         })
         .catch(error => {
           console.error("Error fetching records:", error);
@@ -970,6 +985,31 @@
           btn.disabled = false;
           btn.textContent = 'Delete';
         });
+    }
+
+    // Shows only the member rows whose Name or GName contains the search text.
+    // Hidden rows are kept as they are, so "Save All Changes" still saves them.
+    function applyNameSearch() {
+      const box = document.getElementById('nameSearch');
+      const countEl = document.getElementById('searchCount');
+      const q = (box ? box.value : '').trim().toLowerCase();
+      const rows = document.querySelectorAll('#recordsTableBody tr[data-doc-id]');
+      let shown = 0;
+      rows.forEach(tr => {
+        const f = tr._fields || {};
+        const text = ((f.nameInput ? f.nameInput.value : '') + ' ' + (f.gnameInput ? f.gnameInput.value : '')).toLowerCase();
+        const match = !q || text.includes(q);
+        tr.style.display = match ? '' : 'none';
+        if (match) shown++;
+      });
+      if (countEl) countEl.textContent = q ? `${shown} of ${rows.length} members match` : (rows.length ? `${rows.length} members` : '');
+    }
+
+    function clearNameSearch() {
+      const box = document.getElementById('nameSearch');
+      box.value = '';
+      applyNameSearch();
+      box.focus();
     }
 
     function renumberRows() {
