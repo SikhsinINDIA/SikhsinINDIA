@@ -131,7 +131,24 @@ async function eventDocument(db, event) {
   return pdf ? { link: driveDownloadUrl(pdf.driveUrl), filename: pdf.filename } : null;
 }
 
-function variantsFor(document) {
+// An event can carry its own message: WhatsAppParams (the template's
+// {{1}}, {{2}}... values in order; "{name}" becomes each member's name) and
+// WhatsAppHeaderImage (the header image URL). Events without them are sent
+// as before: just the member's name, trying the header variants below.
+function eventParams(event, name) {
+  const greeting = name || 'Sangat Ji';
+  if (Array.isArray(event.WhatsAppParams) && event.WhatsAppParams.length) {
+    return event.WhatsAppParams.map((p) => String(p == null ? '' : p).replace(/\{name\}/gi, greeting));
+  }
+  return [greeting];
+}
+
+function variantsFor(document, event) {
+  if (event && event.WhatsAppHeaderImage) {
+    return LANGUAGE_CODES.map((languageCode) => ({
+      languageCode, headerImageUrl: event.WhatsAppHeaderImage, label: `${languageCode}, event header image`
+    }));
+  }
   const headers = [{ label: 'no header' }];
   if (document) headers.push({ label: `document ${document.filename}`, headerDocument: document });
   headers.push({ label: 'image header', headerImageUrl: DEFAULT_HEADER_IMAGE });
@@ -139,6 +156,7 @@ function variantsFor(document) {
 }
 
 async function sendEventWhatsApp(db, eventDoc, templateName, recipients, document) {
+  const event = eventDoc.data();
   const send = (recipient, v) => callMailWorker({
     action: 'send_whatsapp',
     to: recipient.to,
@@ -149,7 +167,7 @@ async function sendEventWhatsApp(db, eventDoc, templateName, recipients, documen
     // Festival greetings are Marketing templates: sent via Meta's Marketing
     // Messages API (the Worker falls back to the normal route otherwise).
     marketing: true,
-    params: [recipient.name || 'Sangat Ji']
+    params: eventParams(event, recipient.name)
   });
 
   let sent = 0;
@@ -164,7 +182,7 @@ async function sendEventWhatsApp(db, eventDoc, templateName, recipients, documen
       } else if (i < MAX_PROBE_RECIPIENTS) {
         // Find what this template needs, using this member.
         let lastErr = null;
-        for (const v of variantsFor(document)) {
+        for (const v of variantsFor(document, event)) {
           try { await send(recipient, v); variant = v; lastErr = null; break; } catch (err) {
             lastErr = err;
             console.log(`  ${v.label}: ${String(err.message || err).slice(0, 300)}`);
@@ -251,6 +269,7 @@ async function main() {
   for (const eventDoc of dueEvents) {
     const event = eventDoc.data();
     console.log(`Event "${event.Description}" (WhatsApp template: ${event.WhatsAppTemplateName}):`);
+    if (Array.isArray(event.WhatsAppParams)) console.log(`  Custom message: ${event.WhatsAppParams.length} value(s)${event.WhatsAppHeaderImage ? ', own header image' : ''}.`);
 
     if (!recipients) {
       recipients = await fetchMobileCorrectRecipients(db);
