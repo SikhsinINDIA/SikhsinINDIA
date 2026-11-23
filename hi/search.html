@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHNTFNW14H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SikhsInIndia.com में खोजें | SikhsInIndia.com</title>
+  <meta name="description" content="SikhsInIndia.com के हर पृष्ठ को हिन्दी, अंग्रेज़ी और पंजाबी में खोजें।">
+  <meta name="author" content="Sikhs in India">
+  <!-- Search results change with every query, so keep this page out of
+       search engines (avoids "Soft 404" reports) but let them follow links. -->
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://sikhsinindia.com/hi/search.html">
+  <link rel="alternate" hreflang="en" href="https://sikhsinindia.com/search.html">
+  <link rel="alternate" hreflang="hi" href="https://sikhsinindia.com/hi/search.html">
+  <link rel="alternate" hreflang="pa" href="https://sikhsinindia.com/pa/search.html">
+  <link rel="alternate" hreflang="x-default" href="https://sikhsinindia.com/search.html">
+  <meta property="og:title" content="SikhsInIndia.com में खोजें | SikhsInIndia.com">
+  <meta property="og:description" content="SikhsInIndia.com के हर पृष्ठ को हिन्दी, अंग्रेज़ी और पंजाबी में खोजें।">
+  <meta property="og:image" content="https://sikhsinindia.com/sikhsinindia.jpg">
+  <meta property="og:url" content="https://sikhsinindia.com/hi/search.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sikhs in India">
+  <meta property="og:locale" content="hi_IN">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy: #0d1b3e; --navy-mid: #162147; --gold: #F7941D; --cream: #f5f0e8; }
+    body { font-family: 'Lato', sans-serif; background: #1a1a2e; display: flex; justify-content: center; padding: 20px 8px; }
+    .poster { width: 100%; max-width: 860px; background: var(--cream); box-shadow: 0 20px 80px rgba(0,0,0,.6); border-radius: 4px; overflow: hidden; min-height: 80vh; display: flex; flex-direction: column; }
+    .header { display: flex; background: var(--navy); }
+    .logo-wrap { padding: 16px 20px; }
+    .logo-img { height: 90px; width: auto; background: #fff; padding: 4px; border-radius: 6px; display: block; }
+    .hero { flex: 1; text-align: center; padding: 28px; background: linear-gradient(160deg, var(--navy), #1a2a5e); }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 6vw, 50px); font-weight: 900; color: #fff; }
+    .hero-title span { color: var(--gold); }
+    .hero-sub { color: rgba(255,255,255,.75); margin-top: 6px; font-style: italic; }
+    .intro { background: linear-gradient(90deg, var(--gold), #ffb347, var(--gold)); padding: 12px 20px; font-family: 'Playfair Display', serif; font-weight: 700; color: var(--navy); font-size: 14px; text-align: center; }
+    .wrapper { padding: 28px 36px; flex: 1; }
+
+    .search-box { background: #fff; border: 2px solid rgba(0,0,0,.08); border-left: 5px solid var(--gold); border-radius: 10px; padding: 18px; box-shadow: 0 4px 15px rgba(0,0,0,.04); }
+    .search-row { display: flex; gap: 8px; }
+    .search-row input { flex: 1; min-width: 0; font-family: inherit; font-size: 17px; padding: 12px 14px; border: 2px solid rgba(13,27,62,.2); border-radius: 6px; color: var(--navy); }
+    .search-row input:focus { outline: none; border-color: var(--gold); }
+    .btn-search { font-family: 'Lato', sans-serif; font-size: 13px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy); background: linear-gradient(135deg, var(--gold) 0%, #e8830a 100%); border: none; border-radius: 6px; padding: 0 22px; cursor: pointer; }
+    .scope { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 12px; font-size: 14px; color: var(--navy); font-weight: 700; }
+    .scope label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+    .scope input { accent-color: var(--navy); width: 16px; height: 16px; }
+    .hint { font-size: 12.5px; color: #666; margin-top: 10px; line-height: 1.6; }
+    .hint b { color: var(--navy); }
+
+    .status { text-align: center; color: #555; font-size: 14px; margin: 18px 0 4px; }
+    .status.error { color: #b00020; }
+    .note { margin-top: 14px; padding: 10px 14px; background: #fff4e3; border-left: 4px solid var(--gold); border-radius: 6px; font-size: 14px; color: var(--navy); }
+    .note[hidden] { display: none; }
+
+    .results { list-style: none; margin-top: 14px; }
+    .result { background: #fff; border: 1px solid rgba(0,0,0,.08); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; box-shadow: 0 3px 10px rgba(0,0,0,.03); transition: border-color .2s; }
+    .result:hover { border-color: var(--gold); }
+    .result a.r-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 18px; color: var(--navy); text-decoration: none; line-height: 1.35; }
+    .result a.r-title:hover { color: #e8830a; text-decoration: underline; }
+    .r-url { font-size: 12px; color: #1a7f37; margin-top: 3px; word-break: break-all; }
+    .r-lang { display: inline-block; font-size: 11px; font-weight: 900; color: var(--navy); background: #ffe3bf; border-radius: 3px; padding: 1px 6px; margin-right: 6px; }
+    .r-desc { font-size: 14px; color: #444; margin-top: 6px; line-height: 1.6; }
+    mark { background: #ffe08a; color: inherit; padding: 0 1px; border-radius: 2px; }
+    .more-wrap { text-align: center; margin-top: 10px; }
+    .more-wrap[hidden] { display: none; }
+    .more-wrap .btn-search { padding: 11px 26px; }
+
+    .footer { background: var(--navy-mid); padding: 16px 36px; border-top: 2px solid var(--gold); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .footer-left { font-size: 10px; color: rgba(255,255,255,.45); letter-spacing: 2px; text-transform: uppercase; }
+    .footer-right { font-size: 10px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+    .btn-back { display: inline-flex; align-items: center; gap: 7px; font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; color: var(--navy); background: linear-gradient(135deg, var(--gold) 0%, #e8830a 100%); border-radius: 5px; padding: 9px 18px; box-shadow: 0 0 0 2px #9a5800, 0 0 0 3.5px var(--gold); }
+
+    .gsb-lang-switcher { position: fixed; top: 10px; right: 10px; z-index: 9999; background: rgba(13,27,62,.92); border: 1px solid #F7941D; border-radius: 20px; padding: 6px 14px; font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; display: flex; gap: 8px; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,.3); }
+    .gsb-lang-switcher a { color: rgba(255,255,255,.75); text-decoration: none; }
+    .gsb-lang-switcher a:hover { color: #F7941D; }
+    .gsb-lang-switcher .gsb-lang-current { color: #F7941D; }
+    .gsb-lang-switcher .gsb-lang-sep { color: rgba(255,255,255,.35); }
+
+    @media (max-width: 768px) {
+      .header { flex-direction: column; align-items: center; }
+      .logo-wrap { padding: 16px 20px 4px; }
+      .hero { padding: 18px; width: 100%; }
+      .wrapper { padding: 20px 14px; }
+      .search-row { flex-direction: column; }
+      .btn-search { padding: 12px 20px; }
+      .footer { padding: 14px 12px; }
+      .footer-content { flex-direction: column; text-align: center; }
+      .gsb-lang-switcher { top: 4px; right: 4px; padding: 4px 8px; font-size: 10px; gap: 5px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="gsb-lang-switcher" id="langSwitch"><a href="/search.html" data-base="/search.html">EN</a><span class="gsb-lang-sep">|</span><span class="gsb-lang-current">हिन्दी</span><span class="gsb-lang-sep">|</span><a href="/pa/search.html" data-base="/pa/search.html">ਪੰਜਾਬੀ</a></div>
+
+  <div class="poster">
+    <div class="header">
+      <div class="logo-wrap"><a href="/hi/"><img class="logo-img" src="/pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo"></a></div>
+      <div class="hero">
+        <div class="hero-title">साइट <span>खोज</span></div>
+        <div class="hero-sub">SikhsInIndia.com का कोई भी पृष्ठ खोजें</div>
+      </div>
+    </div>
+    <div class="intro">English • हिन्दी • ਪੰਜਾਬੀ — गुरु साहिबान, गुरबाणी, गुरुद्वारे, पर्व और सिख विरासत</div>
+
+    <div class="wrapper">
+      <form class="search-box" id="searchForm" role="search" autocomplete="off">
+        <div class="search-row">
+          <input type="search" id="q" name="q" maxlength="120" placeholder="खोजें, जैसे गुरु नानक, लंगर, प्रभात फेरी" aria-label="खोजें" autofocus>
+          <button type="submit" class="btn-search">खोजें</button>
+        </div>
+        <div class="scope" role="radiogroup">
+          <label><input type="radio" name="scope" value="this" checked> हिन्दी पृष्ठ</label>
+          <label><input type="radio" name="scope" value="all"> सभी भाषाएँ</label>
+        </div>
+        <div class="hint">सुझाव: शब्द का एक हिस्सा भी काम करता है (<b>गुरप</b> से गुरपुरब मिलेगा)। किसी भी अक्षरों के लिए <b>*</b> (<b>गुरु*</b>) और एक अक्षर के लिए <b>?</b> लगाएँ। सटीक वाक्यांश के लिए शब्दों को <b>"उद्धरण चिह्नों"</b> में लिखें।</div>
+      </form>
+
+      <div class="status" id="status" role="status" aria-live="polite"></div>
+      <div class="note" id="note" hidden></div>
+      <ol class="results" id="results"></ol>
+      <div class="more-wrap" id="moreWrap" hidden><button type="button" class="btn-search" id="moreBtn">और दिखाएँ</button></div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-content">
+        <a href="/hi/" class="btn-back">&larr; होम पर वापस</a>
+        <div class="footer-left">&copy; 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage &amp; Unity</div>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function () {
+  var LANG = 'hi';
+  var T = {"loading": "खोज सूची लोड हो रही है…", "none": "कोई पृष्ठ नहीं मिला। कम या अलग शब्द, गुरु* जैसा वाइल्डकार्ड, या सभी भाषाएँ आज़माएँ।", "count": "{n} पृष्ठ मिले", "countOne": "1 पृष्ठ मिला", "fallback": "हिन्दी में कोई पृष्ठ नहीं मिला, इसलिए अन्य भाषाओं के परिणाम दिखाए जा रहे हैं।", "error": "खोज लोड नहीं हो सकी। कृपया अपना इंटरनेट कनेक्शन जाँचें और फिर से प्रयास करें।", "typeMore": "खोजने के लिए कम से कम 2 अक्षर लिखें।"};
+  var NAMES = { en: 'English', hi: 'हिन्दी', pa: 'ਪੰਜਾਬੀ' };
+  var PAGE_SIZE = 20;
+  // Field weights: title, headings, keywords, description, text, address
+  var WEIGHTS = [10, 5, 4, 3, 1, 1];
+
+  var form = document.getElementById('searchForm');
+  var input = document.getElementById('q');
+  var statusEl = document.getElementById('status');
+  var noteEl = document.getElementById('note');
+  var resultsEl = document.getElementById('results');
+  var moreWrap = document.getElementById('moreWrap');
+  var indexes = {};   // lang -> Promise of pages
+  var matches = [];
+  var shown = 0;
+  var lastTerms = [];
+  var timer = null;
+
+  // Lower-case, drop Latin accents, and treat look-alike Indic marks as the
+  // same (nukta, addak, tippi/bindi, chandrabindu/anusvara), so near-spellings match.
+  function norm(s) {
+    return String(s || '').normalize('NFKD')
+      .replace(/[̀-़਼ͯੱ]/g, '')
+      .replace(/ੰ/g, 'ਂ').replace(/ँ/g, 'ं')
+      .normalize('NFC').toLowerCase()
+      .replace(/[^\p{L}\p{M}\p{N}*?"]+/gu, ' ');
+  }
+
+  function escapeRe(s) { return s.replace(/[.+^${}()|[\]\\]/g, '\\$&'); }
+
+  // "exact phrase", wild*card and ?ingle-letter terms. A plain term matches
+  // the start of any word; * and ? may stand anywhere.
+  function parse(q) {
+    var terms = [];
+    var re = /"([^"]+)"|(\S+)/g, m;
+    var nq = norm(q);
+    while ((m = re.exec(nq))) {
+      var raw = (m[1] || m[2]).replace(/"/g, '').trim();
+      if (!raw || raw.replace(/[*?]/g, '').length === 0) continue;
+      var body = raw.split(/\s+/).map(function (w) {
+        return escapeRe(w).replace(/\*/g, '[^\\s]*').replace(/\?/g, '[^\\s]');
+      }).join('\\s+');
+      var lead = /^[*?]/.test(raw) ? '' : '(?:^|\\s)';
+      terms.push({ raw: raw, re: new RegExp(lead + body, 'u') });
+    }
+    return terms;
+  }
+
+  function load(lang) {
+    if (!indexes[lang]) {
+      indexes[lang] = fetch('/data/search-index-' + lang + '.json')
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+        .then(function (d) {
+          return d.pages.map(function (p) {
+            var addr = decodeURIComponent(p[0]).replace(/\.html?$/, '').replace(/[\/_\-.]+/g, ' ');
+            return { lang: lang, url: p[0], title: p[1], desc: p[2], text: p[5],
+              f: [p[1], p[4], p[3], p[2], p[5], addr].map(function (x) { return ' ' + norm(x) + ' '; }) };
+          });
+        })
+        .catch(function (e) { delete indexes[lang]; throw e; });
+    }
+    return indexes[lang];
+  }
+
+  function score(page, terms, phrase) {
+    var total = 0;
+    for (var i = 0; i < terms.length; i++) {
+      var best = 0;
+      for (var j = 0; j < page.f.length; j++) {
+        if (WEIGHTS[j] > best && terms[i].re.test(page.f[j])) best = WEIGHTS[j];
+      }
+      if (!best) return 0; // every term must match somewhere
+      total += best;
+    }
+    if (phrase && page.f[0].indexOf(' ' + phrase) !== -1) total += 15;
+    if (terms[0] && new RegExp('^\\s' + terms[0].re.source.replace('(?:^|\\s)', ''), 'u').test(page.f[0])) total += 3;
+    return total;
+  }
+
+  function search(langs, terms, phrase) {
+    return Promise.all(langs.map(load)).then(function (lists) {
+      var out = [];
+      lists.forEach(function (pages) {
+        pages.forEach(function (p) { var s = score(p, terms, phrase); if (s) out.push({ p: p, s: s }); });
+      });
+      out.sort(function (a, b) {
+        return b.s - a.s || (a.p.lang === LANG ? -1 : 0) - (b.p.lang === LANG ? -1 : 0) || a.p.title.length - b.p.title.length;
+      });
+      return out;
+    });
+  }
+
+  // Highlight the searched words in the original (un-normalised) text.
+  function highlight(text, terms) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    var html = div.innerHTML;
+    terms.forEach(function (t) {
+      var words = t.raw.split(/\s+/).map(function (w) {
+        return escapeRe(w).replace(/\*/g, '[^\\s<]*').replace(/\?/g, '[^\\s<]');
+      });
+      try {
+        var re = new RegExp('(' + words.join('\\s+') + ')', 'giu');
+        html = html.replace(/(^|>)([^<]+)/g, function (m, a, b) { return a + b.replace(re, '<mark>$1</mark>'); });
+      } catch (e) { /* skip */ }
+    });
+    return html;
+  }
+
+  function render() {
+    var slice = matches.slice(shown, shown + PAGE_SIZE);
+    var all = scopeAll();
+    slice.forEach(function (m) {
+      var p = m.p;
+      var li = document.createElement('li');
+      li.className = 'result';
+      var a = document.createElement('a');
+      a.className = 'r-title';
+      a.href = p.url;
+      a.innerHTML = highlight(p.title, lastTerms);
+      var url = document.createElement('div');
+      url.className = 'r-url';
+      if (all || p.lang !== LANG) {
+        var b = document.createElement('span');
+        b.className = 'r-lang';
+        b.textContent = NAMES[p.lang];
+        url.appendChild(b);
+      }
+      url.appendChild(document.createTextNode(location.host + decodeURIComponent(p.url)));
+      var d = document.createElement('div');
+      d.className = 'r-desc';
+      d.innerHTML = highlight(p.desc || p.text || '', lastTerms);
+      li.appendChild(a); li.appendChild(url); li.appendChild(d);
+      resultsEl.appendChild(li);
+    });
+    shown += slice.length;
+    moreWrap.hidden = shown >= matches.length;
+  }
+
+  function scopeAll() { return form.querySelector('input[name="scope"]:checked').value === 'all'; }
+
+  function setStatus(t, err) { statusEl.textContent = t; statusEl.className = 'status' + (err ? ' error' : ''); }
+
+  function run(push) {
+    var q = input.value.trim();
+    var all = scopeAll();
+    var params = new URLSearchParams();
+    if (q) params.set('q', q);
+    if (all) params.set('all', '1');
+    var qs = params.toString();
+    history[push ? 'pushState' : 'replaceState'](null, '', location.pathname + (qs ? '?' + qs : ''));
+    updateSwitcher(qs);
+
+    resultsEl.innerHTML = '';
+    noteEl.hidden = true;
+    moreWrap.hidden = true;
+    matches = []; shown = 0;
+    var terms = parse(q);
+    lastTerms = terms;
+    if (!terms.length) { setStatus(q ? T.typeMore : ''); return; }
+    if (terms.length === 1 && terms[0].raw.replace(/[*?]/g, '').length < 2) { setStatus(T.typeMore); return; }
+
+    var phrase = norm(q).replace(/["*?]/g, ' ').replace(/\s+/g, ' ').trim();
+    setStatus(T.loading);
+    var langs = all ? ['en', 'hi', 'pa'] : [LANG];
+    search(langs, terms, phrase).then(function (res) {
+      if (input.value.trim() !== q) return; // a newer search is running
+      if (!res.length && !all) {
+        // Nothing in this language: try the other two before giving up.
+        return search(['en', 'hi', 'pa'].filter(function (l) { return l !== LANG; }), terms, phrase).then(function (other) {
+          if (input.value.trim() !== q) return;
+          if (other.length) { noteEl.textContent = T.fallback; noteEl.hidden = false; }
+          show(other);
+        });
+      }
+      show(res);
+    }).catch(function (e) {
+      console.error('Site search failed:', e);
+      setStatus(T.error, true);
+    });
+
+    function show(res) {
+      matches = res;
+      setStatus(res.length ? (res.length === 1 ? T.countOne : T.count.replace('{n}', res.length)) : T.none);
+      if (window.gtag) gtag('event', 'search', { search_term: q, lang: LANG, results: res.length });
+      render();
+    }
+  }
+
+  function updateSwitcher(qs) {
+    Array.prototype.forEach.call(document.querySelectorAll('#langSwitch a'), function (a) {
+      a.href = a.getAttribute('data-base') + (qs ? '?' + qs : '');
+    });
+  }
+
+  form.addEventListener('submit', function (e) { e.preventDefault(); clearTimeout(timer); run(true); input.blur(); });
+  input.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(function () { run(false); }, 300); });
+  form.addEventListener('change', function (e) { if (e.target.name === 'scope') run(false); });
+  document.getElementById('moreBtn').addEventListener('click', render);
+  window.addEventListener('popstate', fromUrl);
+
+  function fromUrl() {
+    var p = new URLSearchParams(location.search);
+    input.value = p.get('q') || '';
+    form.querySelector('input[value="' + (p.get('all') === '1' ? 'all' : 'this') + '"]').checked = true;
+    if (input.value) run(false); else updateSwitcher('');
+  }
+  fromUrl();
+  load(LANG).catch(function () { /* shown when a search runs */ });
+})();
+</script>
+</body>
+
+</html>
