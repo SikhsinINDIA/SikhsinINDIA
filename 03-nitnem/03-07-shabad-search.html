@@ -254,6 +254,48 @@
         linear-gradient(160deg, var(--navy), #1a2a5e);
     }
 
+    /* Second stream's cover photo (Gurdwara Shaheed Ganj Baba Deep Singh Ji) */
+    .live-start.is-shaheed-ganj {
+      background:
+        linear-gradient(rgba(13, 27, 62, 0.55), rgba(13, 27, 62, 0.85)),
+        url("../pictures/04-gurudwaras/27-punjab/amritsar/04-27-01-02-gurudwara-baba-deep-singh-ji/gurudwara-baba-deep-singh-ji-01.jpg") center / cover,
+        linear-gradient(160deg, var(--navy), #1a2a5e);
+    }
+
+    /* Choose which Gurdwara's live kirtan to watch */
+    .live-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .live-tab {
+      flex: 1;
+      min-width: 200px;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      background: #fff;
+      border: 2px solid rgba(13, 27, 62, 0.15);
+      border-radius: 6px;
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .live-tab[aria-selected="true"] {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--gold);
+    }
+
+    .live-tab:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
     .live-play {
       width: 72px;
       height: 72px;
@@ -797,9 +839,13 @@
       <section class="live-section" aria-labelledby="liveHeading">
         <h2 class="live-heading" id="liveHeading">
           <span class="live-badge">LIVE</span>
-          Live Kirtan from Sri Harmandir Sahib
+          Live Gurbani Kirtan from Sri Amritsar
         </h2>
-        <div class="live-frame" id="liveFrame">
+        <div class="live-tabs" role="tablist" aria-label="Choose a Gurdwara">
+          <button type="button" class="live-tab" role="tab" id="liveTabHarmandir" data-stream="harmandir" aria-selected="true" aria-controls="liveFrame">Sri Harmandir Sahib</button>
+          <button type="button" class="live-tab" role="tab" id="liveTabShaheedGanj" data-stream="shaheedganj" aria-selected="false" aria-controls="liveFrame">Gurdwara Shaheed Ganj Baba Deep Singh Ji</button>
+        </div>
+        <div class="live-frame" id="liveFrame" role="tabpanel">
           <button type="button" class="live-start" id="liveStartBtn">
             <span class="live-play" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
@@ -812,7 +858,7 @@
           <strong>&#128591; Kirtan has finished for tonight at Sri Harmandir Sahib.</strong>
           <span id="liveQuietWhen"></span>
         </div>
-        <p class="live-note">
+        <p class="live-note" id="liveNote">
           Official live broadcast by SGPC, Sri Amritsar. Kirtan runs through the day from early morning
           (about 3 AM IST) until night. Can't hear it? Tap the speaker icon on the player and check your
           device's volume. If it isn't live right now, the player shows when it starts next, or
@@ -1229,8 +1275,37 @@
     // the channel's live_stream embed is used — it always plays whatever
     // that channel is streaming right now. Loaded only on tap, so visitors
     // who just want to search don't download the YouTube player.
-    var SGPC_CHANNEL_ID = 'UCYn6UEtQ771a_OWSiNBoG8w';
+    // Each Gurdwara's own official channel; live_stream always plays
+    // whatever that channel is broadcasting right now.
+    var STREAMS = {
+      harmandir: {
+        channel: 'UCYn6UEtQ771a_OWSiNBoG8w', // SGPC, Sri Amritsar
+        title: 'Live Gurbani Kirtan from Sri Harmandir Sahib',
+        coverTitle: 'Watch Live Gurbani Kirtan',
+        coverSub: 'Sachkhand Sri Harmandir Sahib, Sri Amritsar',
+        coverClass: '',
+        quietHours: true,
+        note: 'Official live broadcast by SGPC, Sri Amritsar. Kirtan runs through the day from early morning ' +
+          '(about 3 AM IST) until night. Can\u2019t hear it? Tap the speaker icon on the player and check your ' +
+          'device\u2019s volume. If it isn\u2019t live right now, the player shows when it starts next, or ',
+        pastUrl: 'https://www.youtube.com/@SGPCSriAmritsar/streams'
+      },
+      shaheedganj: {
+        channel: 'UCxWx-MPft_7mKrFtN6uOaAA', // Gurdwara Shaheed Ganj Baba Deep Singh Ji Official
+        title: 'Live Gurbani Kirtan from Gurdwara Shaheed Ganj Baba Deep Singh Ji',
+        coverTitle: 'Watch Live Gurbani Kirtan',
+        coverSub: 'Gurdwara Shaheed Ganj Baba Deep Singh Ji, Sri Amritsar',
+        coverClass: 'is-shaheed-ganj',
+        quietHours: false,
+        note: 'Official SGPC live broadcast from Gurdwara Shaheed Ganj Baba Deep Singh Ji, Sri Amritsar. ' +
+          'Can\u2019t hear it? Tap the speaker icon on the player and check your device\u2019s volume. ' +
+          'If it isn\u2019t live right now, the player shows when it starts next, or ',
+        pastUrl: 'https://www.youtube.com/@ShaheedGanjBabaDeepSinghJi/streams'
+      }
+    };
+    var currentStream = 'harmandir';
     var liveFrame = document.getElementById('liveFrame');
+    var liveNote = document.getElementById('liveNote');
     var livePlayer = null;
 
     // Browsers often start an auto-playing embedded video MUTED. Starting it
@@ -1245,7 +1320,7 @@
         height: '100%',
         width: '100%',
         playerVars: {
-          channel: SGPC_CHANNEL_ID, autoplay: 1, mute: 0, rel: 0, modestbranding: 1,
+          channel: STREAMS[currentStream].channel, autoplay: 1, mute: 0, rel: 0, modestbranding: 1,
           playsinline: 1, enablejsapi: 1, origin: window.location.origin
         },
         events: {
@@ -1266,12 +1341,12 @@
     // plain embed; the visitor may then need to tap the speaker icon.
     function startLivePlain() {
       var iframe = document.createElement('iframe');
-      iframe.src = 'https://www.youtube.com/embed/live_stream?channel=' + SGPC_CHANNEL_ID +
+      iframe.src = 'https://www.youtube.com/embed/live_stream?channel=' + STREAMS[currentStream].channel +
         '&autoplay=1&mute=0&rel=0&modestbranding=1&playsinline=1';
       iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
       iframe.allowFullscreen = true;
       iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-      iframe.title = 'Live Gurbani Kirtan from Sri Harmandir Sahib';
+      iframe.title = STREAMS[currentStream].title;
       liveFrame.innerHTML = '';
       liveFrame.appendChild(iframe);
     }
@@ -1286,7 +1361,7 @@
       function update() {
         var now = new Date();
         var ist = (now.getUTCHours() * 60 + now.getUTCMinutes() + IST) % 1440;
-        var quiet = ist >= STOP || ist < RESUME;
+        var quiet = STREAMS[currentStream].quietHours && (ist >= STOP || ist < RESUME);
         box.hidden = !quiet;
         if (!quiet) return;
         var mins = (RESUME - ist + 1440) % 1440;
@@ -1300,14 +1375,62 @@
       }
       update();
       setInterval(update, 60000);
+      window.__updateLiveQuiet = update;
     })();
 
-    document.getElementById('liveStartBtn').addEventListener('click', function () {
+    function startLive() {
       // Only one thing playing at a time: pause a searched shabad if any.
       if (ytPlayerReady && ytPlayer.pauseVideo) { try { ytPlayer.pauseVideo(); } catch (e) { /* ignore */ } }
       if (ytApiReady) startLiveWithApi();
       else startLivePlain();
-      if (window.gtag) gtag('event', 'live_kirtan_play');
+      if (window.gtag) gtag('event', 'live_kirtan_play', { stream: currentStream });
+    }
+
+    // The tap-to-play cover for the chosen Gurdwara (nothing loads until tapped).
+    function showLiveCover() {
+      var s = STREAMS[currentStream];
+      liveFrame.innerHTML = '';
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'live-start' + (s.coverClass ? ' ' + s.coverClass : '');
+      btn.id = 'liveStartBtn';
+      btn.innerHTML = '<span class="live-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>' +
+        '<span class="live-start-title"></span><span class="live-start-sub"></span>';
+      btn.querySelector('.live-start-title').textContent = s.coverTitle;
+      btn.querySelector('.live-start-sub').textContent = s.coverSub;
+      btn.addEventListener('click', startLive);
+      liveFrame.appendChild(btn);
+    }
+
+    function setLiveNote() {
+      var s = STREAMS[currentStream];
+      liveNote.textContent = s.note;
+      var a = document.createElement('a');
+      a.href = s.pastUrl;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = 'watch earlier broadcasts';
+      liveNote.appendChild(a);
+      liveNote.appendChild(document.createTextNode('.'));
+    }
+
+    document.getElementById('liveStartBtn').addEventListener('click', startLive);
+
+    Array.prototype.forEach.call(document.querySelectorAll('.live-tab'), function (tab) {
+      tab.addEventListener('click', function () {
+        var next = tab.dataset.stream;
+        if (next === currentStream) return;
+        // Was a stream already playing? Then switch straight to the other one.
+        var wasPlaying = !liveFrame.querySelector('.live-start');
+        if (livePlayer) { try { livePlayer.destroy(); } catch (e) { /* already gone */ } livePlayer = null; }
+        currentStream = next;
+        Array.prototype.forEach.call(document.querySelectorAll('.live-tab'), function (t) {
+          t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+        });
+        setLiveNote();
+        if (window.__updateLiveQuiet) window.__updateLiveQuiet();
+        if (wasPlaying) startLive(); else showLiveCover();
+      });
     });
 
     document.getElementById('replayBtn').addEventListener('click', function () {
