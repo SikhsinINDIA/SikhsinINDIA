@@ -158,3 +158,7 @@ async function start() {
 }
 
 start().catch(() => { /* push is optional - never break the page */ });
+
+// Site search button (js/site-search.js) - loaded from here because every
+// indexable page already includes this file.
+import('/js/site-search.js').catch(() => { /* search button is optional */ });
