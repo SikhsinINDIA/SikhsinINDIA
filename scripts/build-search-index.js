@@ -57,7 +57,8 @@ function pageEntry(url, html) {
     .replace(/<!--[\s\S]*?-->/g, ' ');
 
   let title = clean((html.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1]);
-  title = title.replace(/\s*[|\-–]\s*SikhsInIndia\.com\s*$/i, '').trim();
+  // Drop the site-name suffix ("| SikhsInIndia.com", "| Sikhs in India"), keep others.
+  for (let i = 0; i < 2; i++) title = title.replace(/\s*[|\-–]\s*(SikhsInIndia\.com|Sikhs in India)\s*$/i, '').trim();
 
   const headings = [];
   const seen = new Set([title.toLowerCase()]);
