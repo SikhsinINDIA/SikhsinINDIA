@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHNTFNW14H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LHNTFNW14H');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WhatsApp Test Message | Admin | SikhsInIndia.com</title>
+  <meta name="description" content="Admin tool: send one WhatsApp template message to a test number before sending it to members.">
+  <meta name="author" content="Sikhs in India">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://sikhsinindia.com/100-misc/01-mass-mailers/03-whatsapp-test.html">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+  <style>
+    .poster { max-width: 900px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) { .row2 { grid-template-columns: 1fr; } }
+    .hint { font-size: 12px; color: #666; margin-top: 6px; line-height: 1.5; }
+    .hint code, .muted code { background: #f1ece2; padding: 1px 5px; border-radius: 3px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .chip { font: 700 12px 'Lato', sans-serif; color: var(--navy); background: #fff; border: 1px solid rgba(13,27,62,.25); border-radius: 999px; padding: 5px 12px; cursor: pointer; }
+    .chip:hover { border-color: var(--gold); background: #fff7ec; }
+    .chip .x { margin-left: 6px; color: #a11; }
+    .seg { display: flex; gap: 8px; flex-wrap: wrap; }
+    .seg label { display: inline-flex; align-items: center; gap: 6px; text-transform: none; letter-spacing: 0; font-size: 14px; margin: 0; cursor: pointer;
+      background: #fff; border: 1px solid rgba(13,27,62,.2); border-radius: 6px; padding: 8px 12px; }
+    .seg input { width: auto; }
+    .vars { display: flex; flex-direction: column; gap: 8px; }
+    .var-row { display: grid; grid-template-columns: 48px 1fr 40px; gap: 8px; align-items: center; }
+    .var-num { font: 900 13px 'Lato', sans-serif; color: var(--navy); text-align: center; background: #ffe3bf; border-radius: 6px; padding: 10px 0; }
+    .var-del { height: 42px; border: 1px solid rgba(0,0,0,.15); border-radius: 6px; background: #fff; cursor: pointer; font-size: 18px; color: #a11; }
+    .preview-img { max-width: 160px; max-height: 220px; margin-top: 8px; border-radius: 6px; border: 2px solid var(--gold); display: none; }
+    .result { margin-top: 14px; padding: 14px 16px; border-radius: 8px; font-size: 14px; line-height: 1.6; }
+    .result.ok { background: #e6f7ec; border-left: 5px solid #1e8a3c; color: #0f4d22; }
+    .result.err { background: #fdeaea; border-left: 5px solid #c4161c; color: #6b0d0d; }
+    .result.info { background: #fff4e3; border-left: 5px solid var(--gold); color: var(--navy); }
+    .result details { margin-top: 8px; font-size: 12px; }
+    .result pre { white-space: pre-wrap; word-break: break-all; font-size: 11.5px; margin-top: 6px; }
+    .summary-box { background: #fff; border: 1px dashed var(--gold); border-radius: 8px; padding: 12px 14px; font-size: 13.5px; line-height: 1.7; color: var(--navy); }
+    .summary-box b { display: inline-block; min-width: 92px; }
+    table.log { width: 100%; border-collapse: collapse; font-size: 13px; background: #fff; }
+    table.log th, table.log td { border: 1px solid rgba(0,0,0,.08); padding: 7px 9px; text-align: left; vertical-align: top; }
+    table.log th { background: var(--navy); color: var(--gold); font-size: 12px; }
+    .st { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+    .st-read { background: #e3f0ff; color: #1a4f9c; }
+    .st-delivered { background: #e6f7ec; color: #146c3a; }
+    .st-sent, .st-accepted { background: #fff7e6; color: #8a5a00; }
+    .st-failed, .st-error { background: #fdeaea; color: #a11; }
+    .signed-in { font-size: 12px; color: rgba(255,255,255,.75); margin-top: 8px; }
+    .signed-in a { color: var(--gold); cursor: pointer; text-decoration: underline; }
+  </style>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+
+<body>
+  <div class="poster">
+
+    <div class="header">
+      <div class="logo-wrap">
+        <img class="logo-img" src="../../pictures/00-index/sikhsinindia.png" alt="Sikhs In India Logo">
+      </div>
+      <div class="hero">
+        <div class="hero-title">WhatsApp <span>Test</span></div>
+        <div class="hero-sub">Send one template message to a test number before it goes to members</div>
+        <div class="signed-in" id="signedIn"></div>
+      </div>
+    </div>
+
+    <div class="wrapper">
+
+      <!-- 1. TEMPLATE -->
+      <div class="card">
+        <div class="card-title">1. Template</div>
+        <div class="form-row">
+          <label for="tplSelect">WhatsApp template</label>
+          <select id="tplSelect">
+            <option value="">Loading templates…</option>
+          </select>
+          <div class="hint">Templates linked to a calendar event fill in that event's own values and header image.
+            Choose <b>Other</b> to type any approved template name exactly as it appears in WhatsApp Manager.</div>
+        </div>
+        <div class="form-row" id="otherRow" hidden>
+          <label for="tplName">Template name</label>
+          <input type="text" id="tplName" placeholder="e.g. guru_nanak_dev_gurpurab1" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="row2">
+          <div class="form-row">
+            <label for="lang">Language</label>
+            <select id="lang">
+              <option value="en">English (en)</option>
+              <option value="en_US">English US (en_US)</option>
+              <option value="hi">Hindi (hi)</option>
+              <option value="pa">Punjabi (pa)</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="testName">Name to use for <code>{name}</code></label>
+            <input type="text" id="testName" placeholder="Sangat Ji">
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. HEADER -->
+      <div class="card">
+        <div class="card-title">2. Header</div>
+        <div class="form-row">
+          <div class="seg" role="radiogroup" aria-label="Header type">
+            <label><input type="radio" name="hdr" value="none" checked> No header</label>
+            <label><input type="radio" name="hdr" value="image"> Image</label>
+            <label><input type="radio" name="hdr" value="document"> PDF document</label>
+          </div>
+          <div class="hint">Must match how the template was created in WhatsApp Manager.</div>
+        </div>
+        <div class="form-row" id="imgRow" hidden>
+          <label for="hdrImage">Header image link (public https JPEG/PNG, max 5 MB)</label>
+          <input type="url" id="hdrImage" placeholder="https://sikhsinindia.com/pictures/...jpg">
+          <img id="imgPreview" class="preview-img" alt="Header image preview">
+        </div>
+        <div id="docRow" hidden>
+          <div class="form-row">
+            <label for="hdrDoc">PDF link (Google Drive "Anyone with the link", or a public https PDF)</label>
+            <input type="url" id="hdrDoc" placeholder="https://drive.google.com/file/d/.../view">
+          </div>
+          <div class="form-row">
+            <label for="hdrDocName">File name shown in WhatsApp</label>
+            <input type="text" id="hdrDocName" placeholder="SikhsinIndia-News-November-2026.pdf">
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. VALUES -->
+      <div class="card">
+        <div class="card-title">3. Template values</div>
+        <p class="muted" style="margin-bottom: 10px;">One box per <code>{{1}}</code>, <code>{{2}}</code>… in the template, in order.
+          Type <code>{name}</code> where the member's name should go. Remove all boxes if the template has no values.</p>
+        <div class="vars" id="vars"></div>
+        <div style="margin-top: 10px;"><button type="button" class="btn-control" id="addVar">+ Add value</button></div>
+      </div>
+
+      <!-- 4. SEND -->
+      <div class="card">
+        <div class="card-title">4. Test number</div>
+        <div class="form-row">
+          <label for="phone">WhatsApp number, with country code</label>
+          <input type="tel" id="phone" placeholder="+971 52 182 1108" autocomplete="off">
+          <div class="chips" id="phoneChips"></div>
+        </div>
+
+        <div class="summary-box" id="summary"></div>
+
+        <div style="margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap;">
+          <button type="button" class="btn-action" id="sendBtn" style="width: auto;">Send Test Message</button>
+          <button type="button" class="btn-control" id="statusBtn" hidden>Check Delivery</button>
+        </div>
+        <div id="result"></div>
+      </div>
+
+      <!-- 5. LOG -->
+      <div class="card">
+        <div class="card-title">Tests sent from this page</div>
+        <div id="logWrap" class="muted">None yet.</div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-content">
+        <a href="./02-whatsapp-broadcast.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+          </svg>
+          WhatsApp Broadcast
+        </a>
+        <div class="footer-left">© 2026 Sikhs in India</div>
+        <div class="footer-right">Preserving Sikh Heritage &amp; Unity</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq35pvLrPM_HwfJq6TEBbKVJqBapaweEU",
+      authDomain: "sikhsinindia-67a6b.firebaseapp.com",
+      projectId: "sikhsinindia-67a6b",
+      storageBucket: "sikhsinindia-67a6b.appspot.com",
+      messagingSenderId: "622603668882",
+      appId: "1:622603668882:web:953c6a07864b235fdd054b",
+      measurementId: "G-LHNTFNW14H"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Same Worker and sign-in as the WhatsApp Broadcast page: the Worker only
+    // sends for a signed-in ADMIN_EMAILS account, so the redirect is just UX.
+    const SEND_ENDPOINT = "https://sikhsinindia-email.sikhsinindia.workers.dev";
+    const ADMIN_EMAILS = ["tpsarora@gmail.com", "sikhsinindia@gmail.com"];
+    const FALLBACK_NAME = "Sangat Ji";
+    const STORE = "sii-wa-test";
+
+    const $ = (id) => document.getElementById(id);
+    const els = {
+      tplSelect: $("tplSelect"), otherRow: $("otherRow"), tplName: $("tplName"), lang: $("lang"), testName: $("testName"),
+      imgRow: $("imgRow"), hdrImage: $("hdrImage"), imgPreview: $("imgPreview"), docRow: $("docRow"), hdrDoc: $("hdrDoc"),
+      hdrDocName: $("hdrDocName"), vars: $("vars"), phone: $("phone"), phoneChips: $("phoneChips"), summary: $("summary"),
+      sendBtn: $("sendBtn"), statusBtn: $("statusBtn"), result: $("result"), logWrap: $("logWrap")
+    };
+
+    let events = {};       // Calendar doc id -> data, for events with a WhatsApp template
+    let myPhone = "";      // signed-in admin's own number from the member directory
+    let lastSent = null;   // { to, templateName, at }
+    const sessionLog = [];
+
+    function escapeHtml(s) {
+      return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+
+    function store() {
+      try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch (e) { return {}; }
+    }
+    function saveStore(s) { try { localStorage.setItem(STORE, JSON.stringify(s)); } catch (e) { /* ignore */ } }
+
+    /* ---------- sign-in ---------- */
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user || !ADMIN_EMAILS.includes((user.email || "").toLowerCase())) {
+        window.location.href = "./01a-password-mass-mailer.html?next=03-whatsapp-test.html";
+        return;
+      }
+      $("signedIn").innerHTML = "Signed in as " + escapeHtml(user.email) + ' · <a id="signOut">Sign out</a>';
+      $("signOut").onclick = () => firebase.auth().signOut().then(() => location.reload());
+      loadTemplates();
+      loadMyNumber(user.email.toLowerCase());
+    });
+
+    /* ---------- templates ---------- */
+    function fmtDate(ts) {
+      const d = ts && ts.toDate ? ts.toDate() : null;
+      return d ? d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Kolkata" }) : "";
+    }
+
+    async function loadTemplates() {
+      try {
+        // Only events that have a WhatsApp template (a single-field query, so few reads).
+        const snap = await db.collection("Calendar").where("WhatsAppTemplateName", ">", "").get();
+        events = {};
+        snap.forEach((doc) => { events[doc.id] = doc.data(); });
+      } catch (err) {
+        console.error("Could not load calendar templates:", err);
+      }
+      renderTemplateOptions();
+    }
+
+    function renderTemplateOptions() {
+      const sel = els.tplSelect;
+      const prev = sel.value;
+      sel.innerHTML = '<option value="">Choose a template…</option>';
+
+      const now = Date.now() - 86400000;
+      const list = Object.entries(events).map(([id, e]) => ({ id, e, t: e.Date && e.Date.toDate ? e.Date.toDate().getTime() : 0 }));
+      const upcoming = list.filter((x) => x.t >= now).sort((a, b) => a.t - b.t);
+      const past = list.filter((x) => x.t < now).sort((a, b) => b.t - a.t);
+      const addGroup = (label, items) => {
+        if (!items.length) return;
+        const g = document.createElement("optgroup");
+        g.label = label;
+        items.forEach(({ id, e }) => {
+          const o = document.createElement("option");
+          o.value = "ev:" + id;
+          o.textContent = `${e.WhatsAppTemplateName}  —  ${e.Description || "event"} (${fmtDate(e.Date)})` +
+            (Array.isArray(e.WhatsAppParams) ? "  ★ custom message" : "");
+          g.appendChild(o);
+        });
+        sel.appendChild(g);
+      };
+      addGroup("Upcoming calendar events", upcoming);
+      addGroup("Past calendar events", past);
+
+      const recent = (store().templates || []).slice(0, 10);
+      if (recent.length) {
+        const g = document.createElement("optgroup");
+        g.label = "Recently tested";
+        recent.forEach((t) => {
+          const o = document.createElement("option");
+          o.value = "tpl:" + t.name;
+          o.textContent = t.name;
+          g.appendChild(o);
+        });
+        sel.appendChild(g);
+      }
+      const other = document.createElement("option");
+      other.value = "other";
+      other.textContent = "Other (type the template name)…";
+      sel.appendChild(other);
+
+      if (prev && [...sel.options].some((o) => o.value === prev)) sel.value = prev;
+      else if (upcoming.length) { sel.value = "ev:" + upcoming[0].id; applySelection(); }
+      updateSummary();
+    }
+
+    function setHeader(type) {
+      document.querySelector(`input[name="hdr"][value="${type}"]`).checked = true;
+      els.imgRow.hidden = type !== "image";
+      els.docRow.hidden = type !== "document";
+      updatePreview();
+    }
+
+    function setVars(values) {
+      els.vars.innerHTML = "";
+      (values || []).forEach((v) => addVar(v));
+      updateSummary();
+    }
+
+    function addVar(value) {
+      const row = document.createElement("div");
+      row.className = "var-row";
+      row.innerHTML = '<div class="var-num"></div><input type="text"><button type="button" class="var-del" title="Remove">&times;</button>';
+      row.querySelector("input").value = value || "";
+      row.querySelector("input").addEventListener("input", updateSummary);
+      row.querySelector(".var-del").addEventListener("click", () => { row.remove(); renumber(); updateSummary(); });
+      els.vars.appendChild(row);
+      renumber();
+    }
+
+    function renumber() {
+      [...els.vars.children].forEach((r, i) => { r.querySelector(".var-num").textContent = `{{${i + 1}}}`; });
+    }
+
+    // Fill the form from the chosen template / calendar event.
+    function applySelection() {
+      const v = els.tplSelect.value;
+      els.otherRow.hidden = v !== "other";
+      if (v.startsWith("ev:")) {
+        const e = events[v.slice(3)] || {};
+        if (Array.isArray(e.WhatsAppParams) && e.WhatsAppParams.length) setVars(e.WhatsAppParams);
+        else setVars(["{name}"]);
+        if (e.WhatsAppHeaderImage) { els.hdrImage.value = e.WhatsAppHeaderImage; setHeader("image"); }
+        else setHeader("none");
+        els.lang.value = "en";
+      } else if (v.startsWith("tpl:")) {
+        const t = (store().templates || []).find((x) => x.name === v.slice(4));
+        if (t) {
+          setVars(t.params || []);
+          els.lang.value = t.lang || "en";
+          els.hdrImage.value = t.image || "";
+          els.hdrDoc.value = t.doc || "";
+          els.hdrDocName.value = t.docName || "";
+          setHeader(t.header || "none");
+        }
+      } else if (v === "other") {
+        els.tplName.focus();
+      }
+      updateSummary();
+    }
+
+    function templateName() {
+      const v = els.tplSelect.value;
+      if (v.startsWith("ev:")) return (events[v.slice(3)] || {}).WhatsAppTemplateName || "";
+      if (v.startsWith("tpl:")) return v.slice(4);
+      if (v === "other") return els.tplName.value.trim();
+      return "";
+    }
+
+    function headerType() { return document.querySelector('input[name="hdr"]:checked').value; }
+
+    function driveDownloadUrl(url) {
+      const m = String(url || "").match(/drive\.google\.com\/file\/d\/([^/]+)/);
+      return m ? `https://drive.google.com/uc?export=download&id=${m[1]}` : url;
+    }
+
+    function params() {
+      const name = els.testName.value.trim() || FALLBACK_NAME;
+      return [...els.vars.querySelectorAll("input")].map((i) => i.value.replace(/\{name\}/gi, name));
+    }
+
+    function updatePreview() {
+      const url = els.hdrImage.value.trim();
+      if (headerType() === "image" && /^https:\/\//.test(url)) { els.imgPreview.src = url; els.imgPreview.style.display = "block"; }
+      else els.imgPreview.style.display = "none";
+    }
+
+    /* ---------- phone ---------- */
+    // E.164: "+", country code and number, digits only.
+    function normalizePhone(raw) {
+      let s = String(raw || "").trim().replace(/[\s\-().]/g, "");
+      if (s.startsWith("00")) s = "+" + s.slice(2);
+      if (!s.startsWith("+")) s = "+" + s;
+      return /^\+\d{8,15}$/.test(s) ? s : "";
+    }
+
+    async function loadMyNumber(email) {
+      try {
+        const doc = await db.collection("sikhdatabaseindia").doc(email).get();
+        if (doc.exists) {
+          const d = doc.data();
+          const cc = String(d.Country_Code || "").trim();
+          const mob = String(d.Mobile || "").replace(/\D/g, "");
+          myPhone = normalizePhone((cc.startsWith("+") ? cc : "+" + cc) + mob);
+          if (!els.testName.value) els.testName.value = d.GreetingName || d.GName || d.Name || "";
+        }
+      } catch (err) { /* optional */ }
+      renderPhoneChips();
+      if (!els.phone.value) {
+        const recent = (store().phones || [])[0];
+        els.phone.value = recent || myPhone || "";
+      }
+      updateSummary();
+    }
+
+    function renderPhoneChips() {
+      const phones = [...new Set([myPhone, ...(store().phones || [])].filter(Boolean))].slice(0, 6);
+      els.phoneChips.innerHTML = "";
+      phones.forEach((p) => {
+        const c = document.createElement("button");
+        c.type = "button";
+        c.className = "chip";
+        c.textContent = (p === myPhone ? "My number: " : "") + p;
+        c.onclick = () => { els.phone.value = p; updateSummary(); };
+        if (p !== myPhone) {
+          const x = document.createElement("span");
+          x.className = "x";
+          x.textContent = "×";
+          x.title = "Forget this number";
+          x.onclick = (ev) => {
+            ev.stopPropagation();
+            const s = store(); s.phones = (s.phones || []).filter((q) => q !== p); saveStore(s); renderPhoneChips();
+          };
+          c.appendChild(x);
+        }
+        els.phoneChips.appendChild(c);
+      });
+    }
+
+    /* ---------- summary ---------- */
+    function updateSummary() {
+      const name = templateName();
+      const p = params();
+      const h = headerType();
+      const hdr = h === "image" ? (els.hdrImage.value.trim() ? "Image" : "Image (no link yet!)")
+        : h === "document" ? (els.hdrDoc.value.trim() ? "PDF: " + (els.hdrDocName.value.trim() || "document.pdf") : "PDF (no link yet!)") : "None";
+      const to = normalizePhone(els.phone.value);
+      els.summary.innerHTML =
+        `<div><b>Template</b> ${name ? escapeHtml(name) : "<i>not chosen</i>"} (${escapeHtml(els.lang.value)})</div>` +
+        `<div><b>Header</b> ${escapeHtml(hdr)}</div>` +
+        `<div><b>Values</b> ${p.length ? p.map((v, i) => `{{${i + 1}}} = “${escapeHtml(v)}”`).join("<br><b></b> ") : "none"}</div>` +
+        `<div><b>To</b> ${to ? escapeHtml(to) : (els.phone.value.trim() ? "<i>not a valid number</i>" : "<i>no number yet</i>")}</div>`;
+      els.sendBtn.disabled = !(name && to);
+    }
+
+    /* ---------- send ---------- */
+    function explain(errText) {
+      const t = String(errText || "");
+      const m = t.match(/expected number of params \((\d+)\)/);
+      if (m) return { hint: `This template needs exactly ${m[1]} value(s). The value boxes have been set to ${m[1]}; fill them in and send again.`, fixVars: Number(m[1]) };
+      const h = t.match(/header: Format mismatch, expected (\w+)/i);
+      if (h) {
+        const want = h[1].toUpperCase();
+        const type = want === "IMAGE" ? "image" : want === "DOCUMENT" ? "document" : "none";
+        return { hint: `This template's header is ${want === "IMAGE" ? "an image" : want === "DOCUMENT" ? "a PDF document" : "of type " + want}. The header has been switched; add the link and send again.`, fixHeader: type };
+      }
+      if (/132001|does not exist in/.test(t)) return { hint: "Meta has no approved template with this name in this language. Check the name's spelling, or try another language (e.g. en vs en_US)." };
+      if (/132015|paused/i.test(t)) return { hint: "This template is paused by Meta (usually for low quality ratings). Check it in WhatsApp Manager." };
+      if (/132016|disabled/i.test(t)) return { hint: "This template has been disabled by Meta." };
+      if (/131026|undeliverable|not a valid WhatsApp/i.test(t)) return { hint: "That number can't receive WhatsApp messages (not on WhatsApp, or an old app version)." };
+      if (/131047|re-engagement/i.test(t)) return { hint: "More than 24 hours have passed since this person last messaged you; only an approved template can be sent." };
+      if (/131049|healthy ecosystem/i.test(t)) return { hint: "Meta held this marketing message back for this user (per-user marketing limit). Try again later or use another number." };
+      if (/Not signed in|401|403/.test(t)) return { hint: "Your admin sign-in has expired. Reload the page and sign in again." };
+      return { hint: "" };
+    }
+
+    async function send() {
+      const name = templateName();
+      const to = normalizePhone(els.phone.value);
+      if (!name || !to) { updateSummary(); return; }
+      const user = firebase.auth().currentUser;
+      if (!user) { location.reload(); return; }
+
+      const h = headerType();
+      const body = {
+        action: "send_whatsapp", to, templateName: name, languageCode: els.lang.value, params: params(),
+        headerImageUrl: h === "image" ? els.hdrImage.value.trim() || undefined : undefined,
+        headerDocument: h === "document" && els.hdrDoc.value.trim()
+          ? { link: driveDownloadUrl(els.hdrDoc.value.trim()), filename: els.hdrDocName.value.trim() || "document.pdf" } : undefined,
+        // Same as the daily job and Broadcast page: Marketing templates go via
+        // Meta's Marketing Messages API; the Worker falls back for others.
+        marketing: true
+      };
+
+      els.sendBtn.disabled = true;
+      els.sendBtn.textContent = "Sending…";
+      els.result.innerHTML = '<div class="result info">Sending…</div>';
+      const entry = { at: new Date(), to, templateName: name, ok: false, detail: "" };
+      try {
+        const res = await fetch(SEND_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${await user.getIdToken()}` },
+          body: JSON.stringify(body)
+        });
+        const text = await res.text();
+        if (!res.ok) {
+          let detail = text;
+          try { detail = JSON.parse(text).error || text; } catch (_) { /* raw */ }
+          throw new Error(detail);
+        }
+        let id = "";
+        try { id = ((JSON.parse(text).messages || [])[0] || {}).id || ""; } catch (_) { /* ignore */ }
+        entry.ok = true;
+        entry.detail = id;
+        lastSent = { to, templateName: name, at: Date.now() };
+        els.result.innerHTML = `<div class="result ok"><b>Accepted by WhatsApp.</b> The test message to ${escapeHtml(to)} should arrive in a few seconds.
+          Use <b>Check Delivery</b> to see whether it was delivered and read.${id ? `<details><summary>Message ID</summary><pre>${escapeHtml(id)}</pre></details>` : ""}</div>`;
+        els.statusBtn.hidden = false;
+        remember(name, to);
+      } catch (err) {
+        const msg = String(err.message || err);
+        const ex = explain(msg);
+        entry.detail = ex.hint || msg.slice(0, 160);
+        if (ex.fixVars != null) {
+          const cur = [...els.vars.querySelectorAll("input")].map((i) => i.value);
+          setVars(Array.from({ length: ex.fixVars }, (_, i) => cur[i] != null ? cur[i] : (i === 0 ? "{name}" : "")));
+        }
+        if (ex.fixHeader) setHeader(ex.fixHeader);
+        els.result.innerHTML = `<div class="result err"><b>Not sent.</b> ${escapeHtml(ex.hint || "WhatsApp rejected the message.")}
+          <details><summary>Full error from WhatsApp</summary><pre>${escapeHtml(msg)}</pre></details></div>`;
+      } finally {
+        els.sendBtn.textContent = "Send Test Message";
+        updateSummary();
+        sessionLog.unshift(entry);
+        renderLog();
+      }
+    }
+
+    function remember(name, to) {
+      const s = store();
+      const t = { name, lang: els.lang.value, header: headerType(), image: els.hdrImage.value.trim(), doc: els.hdrDoc.value.trim(),
+        docName: els.hdrDocName.value.trim(), params: [...els.vars.querySelectorAll("input")].map((i) => i.value) };
+      s.templates = [t, ...(s.templates || []).filter((x) => x.name !== name)].slice(0, 15);
+      if (to !== myPhone) s.phones = [to, ...(s.phones || []).filter((p) => p !== to)].slice(0, 8);
+      saveStore(s);
+      renderPhoneChips();
+    }
+
+    /* ---------- delivery status ---------- */
+    const STATUS_LABEL = { accepted: "Accepted", sent: "Sent", delivered: "Delivered", read: "Read", failed: "Failed" };
+
+    async function checkDelivery() {
+      if (!lastSent) return;
+      const user = firebase.auth().currentUser;
+      els.statusBtn.disabled = true;
+      try {
+        const res = await fetch(SEND_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${await user.getIdToken()}` },
+          body: JSON.stringify({ action: "whatsapp_statuses", templateName: lastSent.templateName, since: lastSent.at - 60000 })
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+        const digits = lastSent.to.replace(/\D/g, "");
+        const rows = (data.rows || []).filter((r) => String(r.to || "").replace(/\D/g, "") === digits)
+          .sort((a, b) => (b.at || 0) - (a.at || 0));
+        const r = rows[0];
+        const box = r
+          ? `<div class="result ${r.s === "failed" ? "err" : "ok"}"><b>Delivery status:</b> <span class="st st-${escapeHtml(r.s)}">${escapeHtml(STATUS_LABEL[r.s] || r.s)}</span>
+              ${r.e ? `<div style="margin-top:6px">${escapeHtml(r.e)}</div>` : ""}</div>`
+          : `<div class="result info">No status reported yet. WhatsApp usually reports within a minute; try again shortly.</div>`;
+        els.result.insertAdjacentHTML("beforeend", box);
+        if (r) { const e = sessionLog.find((x) => x.ok && x.to === lastSent.to); if (e) { e.status = r.s; renderLog(); } }
+      } catch (err) {
+        els.result.insertAdjacentHTML("beforeend", `<div class="result err">Could not check delivery: ${escapeHtml(err.message || err)}</div>`);
+      } finally {
+        els.statusBtn.disabled = false;
+      }
+    }
+
+    function renderLog() {
+      if (!sessionLog.length) { els.logWrap.textContent = "None yet."; return; }
+      els.logWrap.innerHTML = `<table class="log"><thead><tr><th>Time</th><th>Template</th><th>To</th><th>Result</th></tr></thead><tbody>` +
+        sessionLog.map((e) => `<tr><td style="white-space:nowrap">${e.at.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}</td>
+          <td>${escapeHtml(e.templateName)}</td><td>${escapeHtml(e.to)}</td>
+          <td>${e.ok ? `<span class="st st-${escapeHtml(e.status || "accepted")}">${escapeHtml(STATUS_LABEL[e.status] || "Accepted")}</span>`
+            : `<span class="st st-error">Not sent</span> <span style="font-size:12px">${escapeHtml(e.detail)}</span>`}</td></tr>`).join("") +
+        `</tbody></table>`;
+    }
+
+    /* ---------- wiring ---------- */
+    els.tplSelect.addEventListener("change", applySelection);
+    els.tplName.addEventListener("input", updateSummary);
+    els.lang.addEventListener("change", updateSummary);
+    els.testName.addEventListener("input", updateSummary);
+    els.phone.addEventListener("input", updateSummary);
+    els.hdrImage.addEventListener("input", () => { updatePreview(); updateSummary(); });
+    els.hdrDoc.addEventListener("input", updateSummary);
+    els.hdrDocName.addEventListener("input", updateSummary);
+    document.querySelectorAll('input[name="hdr"]').forEach((r) => r.addEventListener("change", () => { setHeader(headerType()); updateSummary(); }));
+    $("addVar").addEventListener("click", () => { addVar(""); updateSummary(); els.vars.lastElementChild.querySelector("input").focus(); });
+    els.sendBtn.addEventListener("click", send);
+    els.statusBtn.addEventListener("click", checkDelivery);
+    updateSummary();
+  </script>
+</body>
+
+</html>
