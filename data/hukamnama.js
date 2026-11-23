@@ -1,36 +1,60 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-11-21",
-  "dateDisplay": "21 November 2026",
-  "ang": 706,
-  "raagGurmukhi": "ਰਾਗੁ ਜੈਤਸਰੀ",
-  "raagEnglish": "Raag Jaithsree",
+  "date": "2026-11-23",
+  "dateDisplay": "23 November 2026",
+  "ang": 611,
+  "raagGurmukhi": "ਰਾਗੁ ਸੋਰਠਿ",
+  "raagEnglish": "Raag Sorath",
   "writerEnglish": "Guru Arjan Dev Ji",
-  "titleGurmukhi": "ਸਲੋਕ ॥",
-  "titleEnglish": "Shalok:",
-  "verseGurmukhi": "ਮਨ ਇਛਾ ਦਾਨ ਕਰਣੰ ਸਰਬਤ੍ਰ ਆਸਾ ਪੂਰਨਹ ॥",
-  "verseTranslation": "He grants our hearts' desires, and fulfills all our hopes.",
+  "titleGurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੫ ॥",
+  "titleEnglish": "Sorat'h, Fifth Mehla:",
+  "verseGurmukhi": "ਖੋਜਤ ਖੋਜਤ ਖੋਜਿ ਬੀਚਾਰਿਓ ਰਾਮ ਨਾਮੁ ਤਤੁ ਸਾਰਾ ॥",
+  "verseTranslation": "I have searched and searched and searched, and found that the Lord's Name is the most sublime reality.",
   "verses": [
     {
-      "gurmukhi": "ਸਲੋਕ ॥",
-      "translation": "Shalok:"
+      "gurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੫ ॥",
+      "translation": "Sorat'h, Fifth Mehla:"
     },
     {
-      "gurmukhi": "ਮਨ ਇਛਾ ਦਾਨ ਕਰਣੰ ਸਰਬਤ੍ਰ ਆਸਾ ਪੂਰਨਹ ॥",
-      "translation": "He grants our hearts' desires, and fulfills all our hopes."
+      "gurmukhi": "ਖੋਜਤ ਖੋਜਤ ਖੋਜਿ ਬੀਚਾਰਿਓ ਰਾਮ ਨਾਮੁ ਤਤੁ ਸਾਰਾ ॥",
+      "translation": "I have searched and searched and searched, and found that the Lord's Name is the most sublime reality."
     },
     {
-      "gurmukhi": "ਖੰਡਣੰ ਕਲਿ ਕਲੇਸਹ ਪ੍ਰਭ ਸਿਮਰਿ ਨਾਨਕ ਨਹ ਦੂਰਣਹ ॥੧॥",
-      "translation": "He destroys pain and suffering; remember God in meditation, O Nanak - He is not far away. ||1||"
+      "gurmukhi": "ਕਿਲਬਿਖ ਕਾਟੇ ਨਿਮਖ ਅਰਾਧਿਆ ਗੁਰਮੁਖਿ ਪਾਰਿ ਉਤਾਰਾ ॥੧॥",
+      "translation": "Contemplating it for even an instant, sins are erased; the Gurmukh is carried across and saved. ||1||"
     },
     {
-      "gurmukhi": "ਹਭਿ ਰੰਗ ਮਾਣਹਿ ਜਿਸੁ ਸੰਗਿ ਤੈ ਸਿਉ ਲਾਈਐ ਨੇਹੁ ॥",
-      "translation": "Love Him, with whom you enjoy all pleasures."
+      "gurmukhi": "ਹਰਿ ਰਸੁ ਪੀਵਹੁ ਪੁਰਖ ਗਿਆਨੀ ॥",
+      "translation": "Drink in the sublime essence of the Lord's Name, O man of spiritual wisdom."
     },
     {
-      "gurmukhi": "ਸੋ ਸਹੁ ਬਿੰਦ ਨ ਵਿਸਰਉ ਨਾਨਕ ਜਿਨਿ ਸੁੰਦਰੁ ਰਚਿਆ ਦੇਹੁ ॥੨॥",
-      "translation": "Do not forget that Lord, even for an instant; O Nanak, He fashioned this beautiful body. ||2||"
+      "gurmukhi": "ਸੁਣਿ ਸੁਣਿ ਮਹਾ ਤ੍ਰਿਪਤਿ ਮਨੁ ਪਾਵੈ ਸਾਧੂ ਅੰਮ੍ਰਿਤ ਬਾਨੀ ॥ ਰਹਾਉ ॥",
+      "translation": "Listening to the Ambrosial Words of the Holy Saints, the mind finds absolute fulfillment and satisfaction. ||Pause||"
+    },
+    {
+      "gurmukhi": "ਮੁਕਤਿ ਭੁਗਤਿ ਜੁਗਤਿ ਸਚੁ ਪਾਈਐ ਸਰਬ ਸੁਖਾ ਕਾ ਦਾਤਾ ॥",
+      "translation": "Liberation, pleasures, and the true way of life are obtained from the Lord, the Giver of all peace."
+    },
+    {
+      "gurmukhi": "ਅਪੁਨੇ ਦਾਸ ਕਉ ਭਗਤਿ ਦਾਨੁ ਦੇਵੈ ਪੂਰਨ ਪੁਰਖੁ ਬਿਧਾਤਾ ॥੨॥",
+      "translation": "The Perfect Lord, the Architect of Destiny, blesses His slave with the gift of devotional worship. ||2||"
+    },
+    {
+      "gurmukhi": "ਸ੍ਰਵਣੀ ਸੁਣੀਐ ਰਸਨਾ ਗਾਈਐ ਹਿਰਦੈ ਧਿਆਈਐ ਸੋਈ ॥",
+      "translation": "Hear with your ears, and sing with your tongue, and meditate within your heart on Him."
+    },
+    {
+      "gurmukhi": "ਕਰਣ ਕਾਰਣ ਸਮਰਥ ਸੁਆਮੀ ਜਾ ਤੇ ਬ੍ਰਿਥਾ ਨ ਕੋਈ ॥੩॥",
+      "translation": "The Lord and Master is all-powerful, the Cause of causes; without Him, there is nothing at all. ||3||"
+    },
+    {
+      "gurmukhi": "ਵਡੈ ਭਾਗਿ ਰਤਨ ਜਨਮੁ ਪਾਇਆ ਕਰਹੁ ਕ੍ਰਿਪਾ ਕਿਰਪਾਲਾ ॥",
+      "translation": "By great good fortune, I have obtained the jewel of human life; have mercy on me, O Merciful Lord."
+    },
+    {
+      "gurmukhi": "ਸਾਧਸੰਗਿ ਨਾਨਕੁ ਗੁਣ ਗਾਵੈ ਸਿਮਰੈ ਸਦਾ ਗੋੁਪਾਲਾ ॥੪॥੧੦॥",
+      "translation": "In the Saadh Sangat, the Company of the Holy, Nanak sings the Glorious Praises of the Lord, and contemplates Him forever in meditation. ||4||10||"
     }
   ],
-  "updated": "2026-11-21T08:29:20.807Z"
+  "updated": "2026-11-23T09:21:25.169Z"
 };
