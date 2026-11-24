@@ -18,7 +18,7 @@
     ['website.png', 'Website', 'SikhsinIndia.com', 'https://sikhsinindia.com/'],
     ['email.png', 'Email', 'sikhsinindia@gmail.com', 'mailto:sikhsinindia@gmail.com'],
     ['whatsapp.png', 'WhatsApp Channel', 'SikhsinIndia.com channel', 'https://whatsapp.com/channel/0029VbE1JrUIyPtUz3qlSd0N'],
-    ['facebook.png', 'Facebook', 'Sikhs in India', 'https://www.facebook.com/profile.php?id=61594681240659'],
+    ['facebook.png', 'Facebook', 'Sikhs in India', 'https://www.facebook.com/SikhsinWorld'],
     ['instagram.png', 'Instagram', '@sikhs_in_india', 'https://www.instagram.com/sikhs_in_india'],
     ['x.png', 'X (Twitter)', '@SikhsinIndiacom', 'https://x.com/SikhsinIndiacom'],
     ['linkedin.png', 'LinkedIn', 'SikhsinIndia.com', 'https://www.linkedin.com/in/sikhsinindia-dot-com-preserving-heritage-inspiring-future-580912446']
