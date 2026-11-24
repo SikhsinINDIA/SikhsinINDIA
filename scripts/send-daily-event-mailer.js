@@ -6,7 +6,8 @@
    TemplateNumber set, looks up the matching saved format in
    mass_mailer_templates (by its own template_number field, set from
    the Mass Mailer admin page at 100-misc/01-mass-mailers), and emails
-   every registered member (sikhdatabaseindia) that exact format —
+   every registered member (sikhdatabaseindia) marked Email_Correct =
+   true that exact format —
    personalized the same way the Mass Mailer's own manual send is:
    GName, else GreetingName, else Name, else "Sangat Ji".
 
@@ -96,7 +97,9 @@ async function callMailWorker(payload) {
 }
 
 async function fetchRecipients(db) {
-  const snap = await db.collection(MEMBERS_COLLECTION).get();
+  // Only members marked Email_Correct = true (same idea as the WhatsApp job's
+  // Mobile_Correct filter) - unverified addresses are never mailed.
+  const snap = await db.collection(MEMBERS_COLLECTION).where('Email_Correct', '==', true).get();
   const recipients = [];
   snap.forEach((doc) => {
     const d = doc.data();
@@ -206,7 +209,7 @@ async function main() {
 
     if (!recipients) {
       recipients = await fetchRecipients(db);
-      console.log(`  Loaded ${recipients.length} registered member(s).`);
+      console.log(`  Loaded ${recipients.length} member(s) with Email_Correct = true.`);
     }
     if (!recipients.length) {
       console.warn('  No registered members to send to - skipping.');
