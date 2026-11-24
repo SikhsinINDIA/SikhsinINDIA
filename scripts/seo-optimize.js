@@ -76,7 +76,7 @@ const ORG = {
   sameAs: [
     "https://www.youtube.com/@SikhsInIndia",
     "https://www.instagram.com/sikhs_in_india",
-    "https://www.facebook.com/profile.php?id=61594681240659",
+    "https://www.facebook.com/SikhsinWorld",
     "https://www.linkedin.com/groups/18803017/"
   ]
 };
