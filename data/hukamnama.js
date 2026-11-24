@@ -32,5 +32,5 @@ window.HUKAMNAMA = {
       "translation": "Nanak seeks the Sanctuary of God, who is all-powerful to save us. ||1||"
     }
   ],
-  "updated": "2026-11-24T05:20:04.538Z"
+  "updated": "2026-11-24T11:16:07.930Z"
 };
