@@ -440,6 +440,32 @@
     .sh-days a:hover { color: #c46a00; }
     .sh-days a[aria-current] { font-weight: 700; color: #c46a00; }
     .sh-days .sh-d { display: inline-block; min-width: 52px; font-weight: 700; }
+    .sh-intro { font-size: 16px; line-height: 1.7; margin: 14px 0 6px; color: #2b2b2b; }
+    .sh-photo { margin: 18px 0; }
+    .sh-photo img { width: 100%; max-height: 460px; object-fit: cover; border-radius: 10px; display: block; background: #eee; }
+    .sh-photo figcaption { font-size: 13px; color: #555; margin-top: 6px; line-height: 1.5; }
+    .sh-credit { display: block; font-size: 12px; color: #777; }
+    .sh-credit a { color: #777; }
+    .sh-section { margin-top: 26px; }
+    .sh-section-head { font-size: 19px; color: var(--navy); margin: 0 0 8px; padding-bottom: 6px; border-bottom: 2px solid rgba(247,148,29,.45); }
+    .sh-section h3 { font-size: 16px; color: var(--navy); margin: 14px 0 4px; }
+    .sh-section p { line-height: 1.7; margin: 0 0 8px; }
+    .sh-era-events { font-size: 14px; color: #444; background: rgba(0,43,109,.04); padding: 8px 10px; border-radius: 6px; }
+    .sh-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .sh-card { display: flex; gap: 10px; background: #fff; border: 1px solid rgba(0,43,109,.12); border-radius: 10px; padding: 10px; }
+    .sh-card img { width: 72px; height: 72px; object-fit: cover; border-radius: 8px; flex: 0 0 72px; }
+    .sh-card h3 { margin: 0 0 4px; font-size: 15px; }
+    .sh-card h3 a { color: var(--navy); text-decoration: none; }
+    .sh-card p { font-size: 13.5px; line-height: 1.55; margin: 0 0 4px; }
+    .sh-card-links { font-size: 12.5px !important; color: #666; }
+    .sh-card-links a { color: #c46a00; }
+    .sh-related { list-style: none; padding: 0; margin: 0; }
+    .sh-related a { display: block; padding: 7px 0; color: var(--navy); text-decoration: none; border-bottom: 1px solid rgba(0,43,109,.10); font-size: 14px; }
+    .sh-related .sh-d { display: inline-block; min-width: 110px; font-weight: 700; }
+    .sh-rel-year { color: #777; }
+    .sh-sources ul { padding-left: 18px; margin: 0 0 8px; }
+    .sh-sources li { font-size: 13.5px; line-height: 1.6; margin-bottom: 3px; }
+    .sh-src-note { font-size: 12.5px; color: #666; }
   </style>
   <!-- seo:icons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -479,7 +505,89 @@
       <h2 class="sh-detail-title">Jotti Jot, Third Patshah, Guru Amar Das Ji</h2>
       
       
+      <p class="sh-intro">6 September brings together five moments of Sikh history, from 1574 to 1966. The main event of the day is from 1574: Jotti Jot, Third Patshah, Guru Amar Das Ji. Together they span four periods, from The early Gurus (1469–1605) to The Punjabi Suba movement (1948–1966). People, places and movements connected with this day include Guru Amar Das Ji, the Singh Sabha movement, the SGPC and the Akali movement and its morchas.</p>
+      <figure class="sh-photo">
+        <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/03-guru-amar-das-ji.jpg" alt="GURU AMAR DAS JI" loading="lazy">
+        <figcaption>Guru Amar Das Ji. <span class="sh-credit">SikhsInIndia.com</span></figcaption>
+      </figure>
       <div class="sh-more"><h2 class="sh-more-head">Also on this day</h2><ul class="sh-more-list"><li><span class="sh-more-year">1901</span><span class="sh-more-body">Giani Dit Singh passed away <span class="sh-more-detail">He was the chief organiser and a prominent intellect of the Singh Sabha Movement. Giani Dit Singh was a resident of village Nandpur Kalodh, Patiala. Born in 1850, he was initially a Gulabdassi and was later influcence by the sangat of Jawahar Singh Kapur and Professor Bhani Gurmukh Singh. As a result he became a Sikh and joined the Singh Sabha movement. He was such an intellect that he won debates with the Arya Samaji Chief Dayanand.</span></span></li><li><span class="sh-more-year">1921</span><span class="sh-more-body">Gurudwara Teja Kalan, Gurdaspur, came under SGPC <span class="sh-more-detail">As the movement of non-cooperation gained momentum among Sikhs, the Akali leaders began their tour of the provinces urging the Sikhs to join the Akali Dal and rise as one man to liberate their Gurudwaras. On this day a large number of Akalis suddenly appeared at Gurudwara Teja kalan and captured it.</span></span></li><li><span class="sh-more-year">1923</span><span class="sh-more-body">SGPC appoints Second Enquiry Committee to go in to investigate the police excesses in Doaba</span></li><li><span class="sh-more-year">1966</span><span class="sh-more-body">Punjab Reorganization Bill presented in the Indian Lower House <span class="sh-more-detail">Sirdar Kapur Singh rejected it on behallf of the Sikh nation in his famous address, the betrayal of the Sikh faith, to the Indian Parliament.</span></span></li></ul></div>
+      <section class="sh-section" aria-labelledby="bg-h">
+        <h2 id="bg-h" class="sh-section-head">Historical background</h2>
+        <h3>The early Gurus (1469–1605)</h3>
+        <p>Guru Nanak Dev Ji (1469–1539) founded the Sikh faith, travelled widely and settled the first Sikh community at Kartarpur. His successors built its institutions: Guru Angad Dev Ji standardised the Gurmukhi script, Guru Amar Das Ji organised the sangat into manjis and made langar central, Guru Ram Das Ji founded the town of Ramdaspur (Amritsar), and Guru Arjan Dev Ji built Sri Harmandir Sahib and compiled the Adi Granth in 1604.</p>
+        <p class="sh-era-events">On this day in this period: <b>1574</b> Jotti Jot, Third Patshah, Guru Amar Das Ji.</p>
+        <h3>Colonial Punjab and the Singh Sabha revival (1850–1919)</h3>
+        <p>Under British rule Sikhs were recruited in large numbers into the army while new reform movements arose: the Namdhari (Kuka) movement, the Singh Sabha movement founded at Amritsar in 1873, the Chief Khalsa Diwan (1902), Khalsa College and the Anand Marriage Act (1909). The period ended with the Ghadar movement, the Komagata Maru episode (1914) and the Jallianwala Bagh massacre of 13 April 1919.</p>
+        <p class="sh-era-events">On this day in this period: <b>1901</b> Giani Dit Singh passed away.</p>
+        <h3>The Gurdwara Reform (Akali) movement (1920–1925)</h3>
+        <p>Sikhs organised the Shiromani Gurdwara Parbandhak Committee (November 1920) and the Shiromani Akali Dal (December 1920) to free historic gurdwaras from hereditary mahants backed by the government. Through non-violent morchas, including Nankana Sahib (1921), the keys agitation (1921–22), Guru ka Bagh (1922) and Jaito (1923–25), and alongside the militant Babbar Akali movement, the campaign led to the Sikh Gurdwaras Act of 1925.</p>
+        <p class="sh-era-events">On this day in this period: <b>1921</b> Gurudwara Teja Kalan, Gurdaspur, came under SGPC; <b>1923</b> SGPC appoints Second Enquiry Committee to go in to investigate the police excesses in….</p>
+        <h3>The Punjabi Suba movement (1948–1966)</h3>
+        <p>In independent India the Akali Dal campaigned for a Punjabi-speaking state, the Punjabi Suba, through repeated morchas led by Master Tara Singh and Sant Fateh Singh. The demand was met with the reorganisation of Punjab on 1 November 1966, which created present-day Punjab, Haryana and transferred hill areas to Himachal Pradesh.</p>
+        <p class="sh-era-events">On this day in this period: <b>1966</b> Punjab Reorganization Bill presented in the Indian Lower House.</p>
+      </section>
+      <section class="sh-section" aria-labelledby="pp-h">
+        <h2 id="pp-h" class="sh-section-head">People and places of this day</h2>
+        <div class="sh-cards">
+          <div class="sh-card">
+            <img src="../pictures/01-about-sikhism/01-01-sikh-gurus/03-guru-amar-das-ji.jpg" alt="Guru Amar Das Ji" loading="lazy">
+            <div class="sh-card-body">
+              <h3><a href="/01-about-sikhism/01-01-sikh-gurus/01-01-03-guru-amar-das-ji/01-01-03-guru-amar-das-ji.html">Guru Amar Das Ji</a></h3>
+              <p>The third Guru (1479–1574), who made Goindwal a centre of the faith with its baoli, organised the sangat into 22 manjis, insisted that all visitors eat together in langar and spoke against purdah and sati.</p>
+              <p class="sh-card-links"><a href="/01-about-sikhism/01-01-sikh-gurus/01-01-03-guru-amar-das-ji/01-01-03-guru-amar-das-ji.html">Read more &rarr;</a> &middot; Mentioned on 12 other days of the year</p>
+            </div>
+          </div>
+          <div class="sh-card">
+            
+            <div class="sh-card-body">
+              <h3>The Singh Sabha movement</h3>
+              <p>A Sikh revival movement begun with the founding of the Sri Guru Singh Sabha at Amritsar in 1873, followed by the Lahore Singh Sabha and the Khalsa Diwans. It promoted Sikh education, Punjabi literature and Sikh rites, led to Khalsa College, Amritsar (1892), the Chief Khalsa Diwan (1902) and the Anand Marriage Act (1909).</p>
+              <p class="sh-card-links">Mentioned on 28 other days of the year</p>
+            </div>
+          </div>
+          <div class="sh-card">
+            
+            <div class="sh-card-body">
+              <h3>The SGPC</h3>
+              <p>The Shiromani Gurdwara Parbandhak Committee, formed at a meeting at the Akal Takht in November 1920 to manage historic gurdwaras, and given legal standing by the Sikh Gurdwaras Act of 1925. It manages Sri Harmandir Sahib and gurdwaras in Punjab, Himachal Pradesh and Chandigarh.</p>
+              <p class="sh-card-links">Mentioned on 70 other days of the year</p>
+            </div>
+          </div>
+          <div class="sh-card">
+            
+            <div class="sh-card-body">
+              <h3>The Akali movement and its morchas</h3>
+              <p>The Gurdwara Reform movement of 1920–1925, in which jathas of Akali volunteers non-violently took control of historic gurdwaras from mahants. Its campaigns included the keys morcha, Guru ka Bagh and Jaito; tens of thousands were arrested and hundreds killed or injured before the Sikh Gurdwaras Act of 1925. The Shiromani Akali Dal has remained the main Sikh political party.</p>
+              <p class="sh-card-links">Mentioned on 156 other days of the year</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="sh-section" aria-labelledby="rel-h">
+        <h2 id="rel-h" class="sh-section-head">Related days in Sikh history</h2>
+        <ul class="sh-related">
+          <li><a href="march-15.html"><span class="sh-d">15 March</span>During the reign of 12 misls, the Khalsa Forces defeated the Maharattas in a… <span class="sh-rel-year">(1766)</span></a></li>
+          <li><a href="february-21.html"><span class="sh-d">21 February</span>Jaito Morcha firing <span class="sh-rel-year">(1924)</span></a></li>
+          <li><a href="march-3.html"><span class="sh-d">3 March</span>Speaking at Shaheedi Diwan, Gandhi sought to integrate the Gurudwara reform… <span class="sh-rel-year">(1921)</span></a></li>
+          <li><a href="march-5.html"><span class="sh-d">5 March</span>Marks the begining of systematic execution of 740 Sikh soliders <span class="sh-rel-year">(1716)</span></a></li>
+          <li><a href="march-29.html"><span class="sh-d">29 March</span>SGPC adopted the motion &quot;Sikhs are a Nation&quot; <span class="sh-rel-year">(1981)</span></a></li>
+          <li><a href="september-1.html"><span class="sh-d">1 September</span>First Prakash of Sri Guru Granth Sahib Ji <span class="sh-rel-year">(1604)</span></a></li>
+        </ul>
+      </section>
+      <section class="sh-section sh-sources" aria-labelledby="src-h">
+        <h2 id="src-h" class="sh-section-head">Sources and further reading</h2>
+        <ul>
+          <li>Event list: the Sikh calendar of historical dates published by AllAboutSikhs.com (Gateway to Sikhism).</li>
+          <li>Teja Singh and Ganda Singh, <i>A Short History of the Sikhs</i>, vol. 1 (1469–1765), Orient Longmans, 1950.</li>
+          <li>N. Gerald Barrier, <i>The Sikhs and their Literature</i>, Manohar, 1970; Harjot Oberoi, <i>The Construction of Religious Boundaries</i>, Oxford University Press, 1994.</li>
+          <li>Mohinder Singh, <i>The Akali Movement</i>, Macmillan, 1978; Teja Singh, <i>The Gurdwara Reform Movement and the Sikh Awakening</i>, 1922.</li>
+          <li>Ajit Singh Sarhadi, <i>Punjabi Suba: The Story of the Struggle</i>, Kapur, 1970.</li>
+          <li>Harbans Singh (ed.), <i>The Encyclopaedia of Sikhism</i>, 4 vols, Punjabi University, Patiala, 1992–1998.</li>
+          <li>Khushwant Singh, <i>A History of the Sikhs</i>, 2 vols, Oxford University Press, 1963–1966 (2nd ed. 2004).</li>
+          <li>J. S. Grewal, <i>The Sikhs of the Punjab</i>, The New Cambridge History of India, Cambridge University Press, 1990 (rev. 1998).</li>
+        </ul>
+        <p class="sh-src-note">Background sections are written by SikhsInIndia.com from the works listed. Dates in Sikh history sometimes differ between sources and between the Nanakshahi and older Bikrami calendars. To suggest a correction, write to <a href="mailto:sikhsinindia@gmail.com">sikhsinindia@gmail.com</a>.</p>
+      </section>
     </div>
     <nav class="sh-detail-nav" aria-label="Other days">
       <a class="sh-btn" href="september-5.html" rel="prev">&larr; 5 September: Sardar Pritpal Singh Ji received 100…</a>
