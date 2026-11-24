@@ -165,3 +165,6 @@ import('/js/site-search.js').catch(() => { /* search button is optional */ });
 
 // Logo → home page link (js/logo-home.js), for the same reason.
 import('/js/logo-home.js').catch(() => { /* logo link is optional */ });
+
+// "Follow us" social links bar (js/follow-bar.js), for the same reason.
+import('/js/follow-bar.js').catch(() => { /* follow bar is optional */ });

@@ -1,17 +1,16 @@
 /* ──────────────────────────────────────────────────────────────
    Logo → home page.
    Loaded from js/push.js, so it runs on every page that has push.js.
-   Wraps the SikhsInIndia.com logo in a link to the landing page:
-     /hi/...  pages → /hi/   (Hindi home page)
-     /pa/...  pages → /pa/   (Punjabi home page)
-     all other pages → /
+   Wraps the SikhsInIndia.com logo in a link to the landing page (/).
+   /hi/ and /pa/ only redirect to /, so every language links to / directly;
+   only the link's tooltip is in the page's language.
    Pages whose logo already has a link are left alone.
    ────────────────────────────────────────────────────────────── */
 (function () {
   const LOGO = /(^|\/)sikhsinindia(-logo)?\.(png|webp)(\?|#|$)/i;
   const path = location.pathname;
   const lang = /^\/(hi|pa)(\/|$)/.exec(path);
-  const home = lang ? '/' + lang[1] + '/' : '/';
+  const home = '/';
   const label = !lang ? 'SikhsInIndia.com home page'
     : lang[1] === 'hi' ? 'सिख्स इन इंडिया होम पेज' : 'ਸਿੱਖਸ ਇਨ ਇੰਡੀਆ ਹੋਮ ਪੇਜ';
 
