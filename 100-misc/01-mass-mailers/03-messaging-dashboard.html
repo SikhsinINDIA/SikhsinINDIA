@@ -273,8 +273,9 @@
         const d = doc.data();
         const name = d.GName || d.GreetingName || d.Name || "";
         const email = String(d.Email || doc.id || "").trim().toLowerCase();
-        // Same email rule as scripts/send-daily-event-mailer.js's fetchRecipients.
-        if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { emailCount++; nameByEmail.set(email, name); }
+        // Same rule as scripts/send-daily-event-mailer.js's fetchRecipients:
+        // only members marked Email_Correct = true.
+        if (d.Email_Correct === true && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { emailCount++; nameByEmail.set(email, name); }
         if (d.Mobile_Correct === true && mobileDigits(d.Mobile)) nameByPhone.set(buildPhone(d.Country_Code, d.Mobile), name);
       });
       members = { emailCount, phoneCount: nameByPhone.size, nameByEmail, nameByPhone };
@@ -446,7 +447,7 @@
     /* ---------------- RESEND TO THOSE WHO MISSED IT ----------------
        For a Calendar send where some emails failed. The job doesn't keep
        who failed, and a send the Worker was cut off on never reaches the
-       Email Log, so "missed" = every member (same list and greeting as
+       Email Log, so "missed" = every Email_Correct member (same list and greeting as
        scripts/send-daily-event-mailer.js) minus those the Email Log shows
        as sent this format's subject since that day. Sends one by one with
        the same pacing, then adds the result to the event's counts. */
