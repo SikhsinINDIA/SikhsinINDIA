@@ -440,6 +440,32 @@
     .sh-days a:hover { color: #c46a00; }
     .sh-days a[aria-current] { font-weight: 700; color: #c46a00; }
     .sh-days .sh-d { display: inline-block; min-width: 52px; font-weight: 700; }
+    .sh-intro { font-size: 16px; line-height: 1.7; margin: 14px 0 6px; color: #2b2b2b; }
+    .sh-photo { margin: 18px 0; }
+    .sh-photo img { width: 100%; max-height: 460px; object-fit: cover; border-radius: 10px; display: block; background: #eee; }
+    .sh-photo figcaption { font-size: 13px; color: #555; margin-top: 6px; line-height: 1.5; }
+    .sh-credit { display: block; font-size: 12px; color: #777; }
+    .sh-credit a { color: #777; }
+    .sh-section { margin-top: 26px; }
+    .sh-section-head { font-size: 19px; color: var(--navy); margin: 0 0 8px; padding-bottom: 6px; border-bottom: 2px solid rgba(247,148,29,.45); }
+    .sh-section h3 { font-size: 16px; color: var(--navy); margin: 14px 0 4px; }
+    .sh-section p { line-height: 1.7; margin: 0 0 8px; }
+    .sh-era-events { font-size: 14px; color: #444; background: rgba(0,43,109,.04); padding: 8px 10px; border-radius: 6px; }
+    .sh-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .sh-card { display: flex; gap: 10px; background: #fff; border: 1px solid rgba(0,43,109,.12); border-radius: 10px; padding: 10px; }
+    .sh-card img { width: 72px; height: 72px; object-fit: cover; border-radius: 8px; flex: 0 0 72px; }
+    .sh-card h3 { margin: 0 0 4px; font-size: 15px; }
+    .sh-card h3 a { color: var(--navy); text-decoration: none; }
+    .sh-card p { font-size: 13.5px; line-height: 1.55; margin: 0 0 4px; }
+    .sh-card-links { font-size: 12.5px !important; color: #666; }
+    .sh-card-links a { color: #c46a00; }
+    .sh-related { list-style: none; padding: 0; margin: 0; }
+    .sh-related a { display: block; padding: 7px 0; color: var(--navy); text-decoration: none; border-bottom: 1px solid rgba(0,43,109,.10); font-size: 14px; }
+    .sh-related .sh-d { display: inline-block; min-width: 110px; font-weight: 700; }
+    .sh-rel-year { color: #777; }
+    .sh-sources ul { padding-left: 18px; margin: 0 0 8px; }
+    .sh-sources li { font-size: 13.5px; line-height: 1.6; margin-bottom: 3px; }
+    .sh-src-note { font-size: 12.5px; color: #666; }
   </style>
   <!-- seo:icons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -479,7 +505,30 @@
       <h2 class="sh-detail-title">Punjabi University established</h2>
       
       
+      <p class="sh-intro">24 June brings together two moments of Sikh history, from 1885 to 1962. The main event of the day is from 1962: Punjabi University established. Together they span two periods, from Colonial Punjab and the Singh Sabha revival (1850–1919) to The Punjabi Suba movement (1948–1966). </p>
       <div class="sh-more"><h2 class="sh-more-head">Also on this day</h2><ul class="sh-more-list"><li><span class="sh-more-year">1885</span><span class="sh-more-body">Master Tara Singh was born on 24 June, 1885, in Haryal in Rawalpindi district of North Western Province of undivided India <span class="sh-more-detail">His mother, Moolan Devi, was a pious lady and his father, Bakshi Gopi Chand, was a patwari of the village and was a well known and respected person. Tara Singh’s original name was Nanak Chand. In 1902 Nanak Chand embraced Sikhism and came to be called Tara Singh.</span></span></li></ul></div>
+      <section class="sh-section" aria-labelledby="bg-h">
+        <h2 id="bg-h" class="sh-section-head">Historical background</h2>
+        <h3>Colonial Punjab and the Singh Sabha revival (1850–1919)</h3>
+        <p>Under British rule Sikhs were recruited in large numbers into the army while new reform movements arose: the Namdhari (Kuka) movement, the Singh Sabha movement founded at Amritsar in 1873, the Chief Khalsa Diwan (1902), Khalsa College and the Anand Marriage Act (1909). The period ended with the Ghadar movement, the Komagata Maru episode (1914) and the Jallianwala Bagh massacre of 13 April 1919.</p>
+        <p class="sh-era-events">On this day in this period: <b>1885</b> Master Tara Singh was born on 24 June, 1885, in Haryal in Rawalpindi district of North….</p>
+        <h3>The Punjabi Suba movement (1948–1966)</h3>
+        <p>In independent India the Akali Dal campaigned for a Punjabi-speaking state, the Punjabi Suba, through repeated morchas led by Master Tara Singh and Sant Fateh Singh. The demand was met with the reorganisation of Punjab on 1 November 1966, which created present-day Punjab, Haryana and transferred hill areas to Himachal Pradesh.</p>
+        <p class="sh-era-events">On this day in this period: <b>1962</b> Punjabi University established.</p>
+      </section>
+      <section class="sh-section sh-sources" aria-labelledby="src-h">
+        <h2 id="src-h" class="sh-section-head">Sources and further reading</h2>
+        <ul>
+          <li>Event list: the Sikh calendar of historical dates published by AllAboutSikhs.com (Gateway to Sikhism).</li>
+          <li>N. Gerald Barrier, <i>The Sikhs and their Literature</i>, Manohar, 1970; Harjot Oberoi, <i>The Construction of Religious Boundaries</i>, Oxford University Press, 1994.</li>
+          <li>Ajit Singh Sarhadi, <i>Punjabi Suba: The Story of the Struggle</i>, Kapur, 1970.</li>
+          <li>Harbans Singh (ed.), <i>The Encyclopaedia of Sikhism</i>, 4 vols, Punjabi University, Patiala, 1992–1998.</li>
+          <li>Khushwant Singh, <i>A History of the Sikhs</i>, 2 vols, Oxford University Press, 1963–1966 (2nd ed. 2004).</li>
+          <li>J. S. Grewal, <i>The Sikhs of the Punjab</i>, The New Cambridge History of India, Cambridge University Press, 1990 (rev. 1998).</li>
+          <li>Kahn Singh Nabha, <i>Gur Shabad Ratnakar Mahan Kosh</i>, 1930.</li>
+        </ul>
+        <p class="sh-src-note">Background sections are written by SikhsInIndia.com from the works listed. Dates in Sikh history sometimes differ between sources and between the Nanakshahi and older Bikrami calendars. To suggest a correction, write to <a href="mailto:sikhsinindia@gmail.com">sikhsinindia@gmail.com</a>.</p>
+      </section>
     </div>
     <nav class="sh-detail-nav" aria-label="Other days">
       <a class="sh-btn" href="june-23.html" rel="prev">&larr; 23 June: Indira Gandhi, then Prime Minsiter of…</a>
