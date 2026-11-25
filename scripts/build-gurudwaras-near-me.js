@@ -65,6 +65,8 @@ const T = {
       "The list covers the {n} Gurudwaras across India on SikhsInIndia.com. A Gurudwara near you missing? Write to us at sikhsinindia@gmail.com."
     ],
     browse: "Browse all Gurudwaras in India",
+    cityHeading: "Gurudwaras by <span>city</span>",
+    citySub: "History, photos and directions for the Gurudwaras of each city",
     credit: "Map positions and place search © <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener\">OpenStreetMap</a> contributors.",
     quote: "Waheguru Ji Ka Khalsa, Waheguru Ji Ki Fateh &mdash; the Khalsa belongs to the Almighty, and victory too is His.",
     quoteAttr: "&mdash; Sikh Salutation",
@@ -118,6 +120,8 @@ const T = {
       "इस सूची में SikhsInIndia.com पर दिए भारत भर के {n} गुरुद्वारे हैं। आपके पास का कोई गुरुद्वारा छूट गया हो तो हमें sikhsinindia@gmail.com पर लिखें।"
     ],
     browse: "भारत के सभी गुरुद्वारे देखें",
+    cityHeading: "शहर के अनुसार <span>गुरुद्वारे</span>",
+    citySub: "हर शहर के गुरुद्वारों का इतिहास, तस्वीरें और रास्ता",
     credit: "नक्शे की जगहें और स्थान खोज © <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener\">OpenStreetMap</a> योगदानकर्ता।",
     quote: "वाहेगुरु जी का खालसा, वाहेगुरु जी की फतह &mdash; खालसा ईश्वर का है, और विजय भी उसी की है।",
     quoteAttr: "&mdash; सिख अभिवादन",
@@ -171,6 +175,8 @@ const T = {
       "ਇਸ ਸੂਚੀ ਵਿੱਚ SikhsInIndia.com 'ਤੇ ਦਿੱਤੇ ਭਾਰਤ ਭਰ ਦੇ {n} ਗੁਰਦੁਆਰੇ ਹਨ। ਤੁਹਾਡੇ ਨੇੜੇ ਦਾ ਕੋਈ ਗੁਰਦੁਆਰਾ ਰਹਿ ਗਿਆ ਹੋਵੇ ਤਾਂ ਸਾਨੂੰ sikhsinindia@gmail.com 'ਤੇ ਲਿਖੋ।"
     ],
     browse: "ਭਾਰਤ ਦੇ ਸਾਰੇ ਗੁਰਦੁਆਰੇ ਵੇਖੋ",
+    cityHeading: "ਸ਼ਹਿਰ ਅਨੁਸਾਰ <span>ਗੁਰਦੁਆਰੇ</span>",
+    citySub: "ਹਰ ਸ਼ਹਿਰ ਦੇ ਗੁਰਦੁਆਰਿਆਂ ਦਾ ਇਤਿਹਾਸ, ਤਸਵੀਰਾਂ ਅਤੇ ਰਸਤਾ",
     credit: "ਨਕਸ਼ੇ ਦੀਆਂ ਥਾਵਾਂ ਅਤੇ ਥਾਂ ਖੋਜ © <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener\">OpenStreetMap</a> ਯੋਗਦਾਨੀ।",
     quote: "ਵਾਹਿਗੁਰੂ ਜੀ ਕਾ ਖਾਲਸਾ, ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫ਼ਤਹਿ &mdash; ਖਾਲਸਾ ਅਕਾਲ ਪੁਰਖ ਦਾ ਹੈ, ਅਤੇ ਜਿੱਤ ਵੀ ਉਸੇ ਦੀ ਹੈ।",
     quoteAttr: "&mdash; ਸਿੱਖ ਨਮਸਕਾਰ",
@@ -180,6 +186,52 @@ const T = {
     km: "ਕਿ.ਮੀ.", m: "ਮੀ."
   }
 };
+
+// Crawlable links to the city pages (paths relative to 04-gurudwaras/).
+// Link text is each page's own <title> in that language; pages missing in
+// a language are skipped.
+const CITY_PAGES = [
+  "09-delhi/04-09-gurudwaras-in-delhi.html",
+  "27-punjab/01-a/04-27-01-gurudwaras-in-amritsar.html",
+  "20-maharashtra/01-m/04-20-06-gurudwaras-in-mumbai.html",
+  "06-chandigarh/04-06-gurudwaras-in-chandigarh.html",
+  "27-punjab/04-27-historical-gurudwaras-in-punjab.html",
+  "27-punjab/04-l/04-27-10-gurudwaras-in-ludhiana.html",
+  "27-punjab/06-p/04-27-15-gurudwaras-in-patiala.html",
+  "27-punjab/07-r/04-27-15-gurudwaras-in-rupnagar.html",
+  "27-punjab/09-f/04-27-05-gurudwaras-in-fatehgarh-sahib.html",
+  "27-punjab/08-t/04-27-15-gurudwaras-in-tarn-taran.html",
+  "05-bihar/04-05-09-gurudwaras-in-patna.html",
+  "20-maharashtra/02-n/04-20-08-gurudwaras-in-nanded.html",
+  "20-maharashtra/03-p/04-20-11-gurudwaras-in-pune.html",
+  "36-west-bengal/01-k/04-36-06-gurudwaras-in-kolkata.html",
+  "16-karnataka/01-ban/04-16-03-gurudwaras-in-bangalore.html",
+  "16-karnataka/02-bidar/04-16-04-gurudwaras-in-bidar.html",
+  "31-telangana/01-h/04-31-03-gurudwaras-in-hyderabad.html",
+  "32-tamil-nadu/01-c/04-32-01-gurudwaras-in-chennai.html",
+  "29-rajasthan/08-j/04-29-07-gurudwaras-in-jaipur.html",
+  "34-uttar-pradesh/03-l/04-34-14-gurudwaras-in-lucknow.html",
+  "34-uttar-pradesh/06-a/04-34-01-gurudwaras-in-agra.html",
+  "13-haryana/03-g/04-13-03-gurudwaras-in-gurugram.html",
+  "13-haryana/02-f/04-13-02-gurudwaras-in-faridabad.html",
+  "15-jammu-kashmir/04-15-06-gurudwaras-in-jammu.html",
+  "15-jammu-kashmir/04-15-15-gurudwaras-in-srinagar.html",
+  "11-gujarat/01-a/04-11-01-gurudwaras-in-ahmedabad.html",
+  "23-madhya-pradesh/02-b/04-23-01-gurudwaras-in-bhopal.html",
+  "23-madhya-pradesh/01-i/04-23-05-gurudwaras-in-indore.html",
+  "35-uttaranchal/04-35-05-gurudwaras-in-haridwar.html"
+];
+function cityLinks(lang) {
+  const prefix = lang === "en" ? "" : `${lang}/`;
+  return CITY_PAGES.map((rel) => {
+    const file = path.join(ROOT, prefix, "04-gurudwaras", rel);
+    if (!fs.existsSync(file)) return null;
+    const m = fs.readFileSync(file, "utf8").match(/<title>([\s\S]*?)<\/title>/i);
+    if (!m) return null;
+    const text = m[1].split("|")[0].trim();
+    return `<li><a href="${rel}">${text}</a></li>`;
+  }).filter(Boolean).join("\n      ");
+}
 
 // Quick-pick cities (same order as T.*.cities): centre points, no lookup needed.
 const CITIES = [[28.6139, 77.209], [31.634, 74.8723], [19.076, 72.8777], [30.7333, 76.7794], [30.901, 75.8573], [25.5941, 85.1376], [19.1383, 77.321], [22.5726, 88.3639], [12.9716, 77.5946]];
@@ -365,6 +417,12 @@ function page(lang) {
     .btn-map { background: var(--navy); color: var(--white); box-shadow: inset 0 -2px 0 rgba(0,0,0,0.3), 0 0 0 2px var(--gold); }
     .more-row { text-align: center; margin-top: 18px; }
 
+    /* ── CITY LINKS ── */
+    .city-links-wrapper { background: var(--cream); padding: 8px 36px 18px; }
+    .city-links { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; }
+    .city-links a { display: block; background: var(--white); border: 1px solid rgba(184,145,58,0.35); border-radius: 8px; padding: 10px 12px; font-size: 13px; font-weight: 700; color: var(--navy); text-decoration: none; }
+    .city-links a:hover { border-color: var(--gold); color: #b5651d; }
+
     /* ── HOW IT WORKS ── */
     .how-wrapper { background: var(--cream); padding: 8px 36px 26px; }
     .how-list { list-style: none; display: grid; gap: 10px; counter-reset: how; }
@@ -441,6 +499,9 @@ function page(lang) {
       .result-dist { font-size: 16px; }
       .result-actions .btn-detailed { flex: 1; min-height: 44px; font-size: 10px; letter-spacing: 1px; padding: 9px 10px; }
       .how-wrapper { padding: 6px 12px 20px; }
+      .city-links-wrapper { padding: 6px 12px 14px; }
+      .city-links { grid-template-columns: 1fr 1fr; }
+      .city-links a { font-size: 12px; padding: 9px 10px; }
       .quote-panel { margin: 0 12px 20px; padding: 16px 16px 16px 20px; }
       .quote-mark { font-size: 42px; top: 14px; left: 12px; }
       .quote-text { font-size: 13px; padding-left: 20px; }
@@ -539,6 +600,15 @@ function page(lang) {
     <div class="far-note" id="gnmFar" hidden></div>
     <ol class="result-list" id="gnmList"></ol>
     <div class="more-row"><button type="button" class="btn-detailed" id="gnmMore" hidden>${t.showMore}</button></div>
+  </div>
+
+  <!-- ── CITY LINKS ── -->
+  <div class="city-links-wrapper">
+    <h2 class="section-heading">${t.cityHeading}</h2>
+    <div class="section-sub">${t.citySub}</div>
+    <ul class="city-links">
+      ${cityLinks(lang)}
+    </ul>
   </div>
 
   <!-- ── HOW IT WORKS ── -->
