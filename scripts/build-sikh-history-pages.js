@@ -236,6 +236,8 @@ const EXTRA_CSS = `
     .sh-crumbs { font-size: 13px; margin: 14px 0 0; color: #555; }
     .sh-crumbs a { color: var(--navy); }
     .sh-month { margin: 26px 0 10px; }
+    .sh-month-link { margin: 22px 0 8px; font-weight: 600; }
+    .sh-month-link a { color: var(--navy); }
     .sh-month h2 { font-size: 18px; color: var(--navy); margin-bottom: 8px; }
     .sh-days { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 2px 16px; }
     .sh-days a { display: block; padding: 7px 0; color: var(--navy); text-decoration: none;
@@ -298,9 +300,6 @@ function dayPage(r) {
       '</ul></div>'
     : '';
   const B = background(r);
-  const monthDays = records.filter((x) => monthOf(x.date) === m).map((x) =>
-    `      <li><a href="${slug(x.date)}.html"${x.date === key ? ' aria-current="page"' : ''}>` +
-    `<span class="sh-d">${SHORT[m]} ${dayOf(x.date)}</span>${esc(x.title)}</a></li>`).join('\n');
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -380,12 +379,7 @@ function dayPage(r) {
     </nav>
   </article>
 
-  <section class="sh-month" aria-labelledby="month-h">
-    <h2 id="month-h">${MONTHS[m]} in Sikh History</h2>
-    <ul class="sh-days">
-${monthDays}
-    </ul>
-  </section>
+  <p class="sh-month-link"><a href="../sikh-history.html#${MONTHS[m].toLowerCase()}">See every ${MONTHS[m]} date in Sikh history &rarr;</a></p>
 </main>
 
 <footer class="sh-footer">
@@ -412,7 +406,7 @@ function indexBlock() {
     '  <nav class="sh-index" aria-labelledby="sh-index-h">\n' +
     '    <h2 id="sh-index-h" class="sh-index-head">All 365 days</h2>\n' +
     MONTHS.map((name, m) =>
-      `    <section class="sh-month">\n      <h3>${name}</h3>\n      <ul class="sh-days">\n` +
+      `    <section class="sh-month" id="${name.toLowerCase()}">\n      <h3>${name}</h3>\n      <ul class="sh-days">\n` +
       records.filter((r) => monthOf(r.date) === m).map((r) =>
         `        <li><a href="sikh-history/${slug(r.date)}.html"><span class="sh-d">${SHORT[m]} ${dayOf(r.date)}</span>${esc(r.title)}</a></li>`
       ).join('\n') +
