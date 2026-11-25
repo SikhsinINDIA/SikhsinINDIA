@@ -484,6 +484,20 @@ async function resolveAttachment(att) {
 const DRIVE_IMG_RE = /(<img\b[^>]*?\bsrc=)(["'])(https:\/\/(?:drive\.google\.com|lh3\.googleusercontent\.com|docs\.google\.com)\/[^"']+)\2/gi;
 const IMAGE_EXT = { "image/jpeg": "jpg", "image/png": "png", "image/gif": "gif", "image/webp": "webp" };
 
+// Encoded pictures kept by this Worker instance, keyed by URL. A bulk send
+// (one request per member) mails the same pictures hundreds of times;
+// encoding them again for every email took more than the free plan's 10 ms
+// of CPU per request, and Cloudflare stopped 954 of 986 sends on 24 Nov 2026.
+const b64Cache = new Map();
+async function cachedBase64(src, res) {
+  const hit = b64Cache.get(src);
+  if (hit && Date.now() - hit.at < 1800000) return hit.v;
+  const v = bytesToBase64(new Uint8Array(await res.arrayBuffer()));
+  if (b64Cache.size >= 20) b64Cache.delete(b64Cache.keys().next().value);
+  b64Cache.set(src, { v, at: Date.now() });
+  return v;
+}
+
 async function inlineDriveImages(html) {
   if (!html) return { html, inline: [] };
   const urls = [...new Set([...html.matchAll(DRIVE_IMG_RE)].map((m) => m[3]))];
@@ -497,7 +511,7 @@ async function inlineDriveImages(html) {
       const cid = `img${i + 1}@sikhsinindia.com`;
       inline.push({
         filename: `image-${i + 1}.${IMAGE_EXT[type] || "jpg"}`,
-        content: bytesToBase64(new Uint8Array(await res.arrayBuffer())),
+        content: await cachedBase64(src, res),
         content_type: type,
         content_id: cid
       });
@@ -567,7 +581,9 @@ async function sendEmail(env, mail) {
 }
 
 async function deliverEmail(env, { to, subject, text, html, attachments }) {
-  const inlined = await inlineDriveImages(html);
+  // Pictures are embedded only while Resend (the only provider that shows
+  // them) still has room today; Sender and Brevo get the plain links.
+  const inlined = (await resendSentToday(env)) < RESEND_DAILY_SOFT_LIMIT ? await inlineDriveImages(html) : { html, inline: [] };
   const files = Array.isArray(attachments) && attachments.length
     ? await Promise.all(attachments.map(resolveAttachment))
     : [];
