@@ -59,7 +59,7 @@ const ENTITIES = CONTEXT.entities.map((e) => Object.assign({}, e, { re: new RegE
 const yearOf = (s) => { const m = /\d{4}/.exec(s || ''); return m ? parseInt(m[0], 10) : null; };
 const eraOf = (y) => (y == null ? null : CONTEXT.eras.find((e) => y >= e.from && y <= e.to));
 const SOURCE_NOTE = {
-  allaboutsikhs: 'Event list: the Sikh calendar of historical dates published by AllAboutSikhs.com (Gateway to Sikhism).',
+  allaboutsikhs: 'Event list: the Sikh calendar of historical dates published by AllAboutSikhs.com (Gateway to Sikhism), checked and copy-edited by SikhsInIndia.com.',
   nanakshahi: 'Gurpurab date: the Nanakshahi calendar as observed by the Sikh Panth.',
   verified: 'Event checked against standard histories of the period (see further reading).'
 };
