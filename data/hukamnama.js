@@ -1,44 +1,60 @@
 /* Auto-generated daily by .github/workflows/update-hukamnama.yml. Do not edit by hand. */
 window.HUKAMNAMA = {
-  "date": "2026-11-27",
-  "dateDisplay": "27 November 2026",
-  "ang": 719,
-  "raagGurmukhi": "ਰਾਗੁ ਬੈਰਾੜੀ",
-  "raagEnglish": "Raag Baihaaree",
-  "writerEnglish": "Guru Raam Daas Ji",
-  "titleGurmukhi": "ਬੈਰਾੜੀ ਮਹਲਾ ੪ ॥",
-  "titleEnglish": "Bairaaree, Fourth Mehla:",
-  "verseGurmukhi": "ਹਰਿ ਜਨੁ ਰਾਮ ਨਾਮ ਗੁਨ ਗਾਵੈ ॥",
-  "verseTranslation": "The Lord's humble servant sings the Glorious Praises of the Lord's Name.",
+  "date": "2026-11-28",
+  "dateDisplay": "28 November 2026",
+  "ang": 613,
+  "raagGurmukhi": "ਰਾਗੁ ਸੋਰਠਿ",
+  "raagEnglish": "Raag Sorath",
+  "writerEnglish": "Guru Arjan Dev Ji",
+  "titleGurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੫ ॥",
+  "titleEnglish": "Sorat'h, Fifth Mehla:",
+  "verseGurmukhi": "ਰਾਜਨ ਮਹਿ ਰਾਜਾ ਉਰਝਾਇਓ ਮਾਨਨ ਮਹਿ ਅਭਿਮਾਨੀ ॥",
+  "verseTranslation": "As the king is entangled in kingly affairs, and the egotist in his own egotism,",
   "verses": [
     {
-      "gurmukhi": "ਬੈਰਾੜੀ ਮਹਲਾ ੪ ॥",
-      "translation": "Bairaaree, Fourth Mehla:"
+      "gurmukhi": "ਸੋਰਠਿ ਮਹਲਾ ੫ ॥",
+      "translation": "Sorat'h, Fifth Mehla:"
     },
     {
-      "gurmukhi": "ਹਰਿ ਜਨੁ ਰਾਮ ਨਾਮ ਗੁਨ ਗਾਵੈ ॥",
-      "translation": "The Lord's humble servant sings the Glorious Praises of the Lord's Name."
+      "gurmukhi": "ਰਾਜਨ ਮਹਿ ਰਾਜਾ ਉਰਝਾਇਓ ਮਾਨਨ ਮਹਿ ਅਭਿਮਾਨੀ ॥",
+      "translation": "As the king is entangled in kingly affairs, and the egotist in his own egotism,"
     },
     {
-      "gurmukhi": "ਜੇ ਕੋਈ ਨਿੰਦ ਕਰੇ ਹਰਿ ਜਨ ਕੀ ਅਪੁਨਾ ਗੁਨੁ ਨ ਗਵਾਵੈ ॥੧॥ ਰਹਾਉ ॥",
-      "translation": "Even if someone slanders the Lord's humble servant, he does not give up his own goodness. ||1||Pause||"
+      "gurmukhi": "ਲੋਭਨ ਮਹਿ ਲੋਭੀ ਲੋਭਾਇਓ ਤਿਉ ਹਰਿ ਰੰਗਿ ਰਚੇ ਗਿਆਨੀ ॥੧॥",
+      "translation": "and the greedy man is enticed by greed, so is the spiritually enlightened being absorbed in the Love of the Lord. ||1||"
     },
     {
-      "gurmukhi": "ਜੋ ਕਿਛੁ ਕਰੇ ਸੁ ਆਪੇ ਸੁਆਮੀ ਹਰਿ ਆਪੇ ਕਾਰ ਕਮਾਵੈ ॥",
-      "translation": "Whatever the Lord and Master does, He does by Himself; the Lord Himself does the deeds."
+      "gurmukhi": "ਹਰਿ ਜਨ ਕਉ ਇਹੀ ਸੁਹਾਵੈ ॥",
+      "translation": "This is what befits the Lord's servant."
     },
     {
-      "gurmukhi": "ਹਰਿ ਆਪੇ ਹੀ ਮਤਿ ਦੇਵੈ ਸੁਆਮੀ ਹਰਿ ਆਪੇ ਬੋਲਿ ਬੁਲਾਵੈ ॥੧॥",
-      "translation": "The Lord and Master Himself imparts understanding; the Lord Himself inspires us to speak. ||1||"
+      "gurmukhi": "ਪੇਖਿ ਨਿਕਟਿ ਕਰਿ ਸੇਵਾ ਸਤਿਗੁਰ ਹਰਿ ਕੀਰਤਨਿ ਹੀ ਤ੍ਰਿਪਤਾਵੈ ॥ ਰਹਾਉ ॥",
+      "translation": "Beholding the Lord near at hand, he serves the True Guru, and he is satisfied through the Kirtan of the Lord's Praises. ||Pause||"
     },
     {
-      "gurmukhi": "ਹਰਿ ਆਪੇ ਪੰਚ ਤਤੁ ਬਿਸਥਾਰਾ ਵਿਚਿ ਧਾਤੂ ਪੰਚ ਆਪਿ ਪਾਵੈ ॥",
-      "translation": "The Lord Himself directs the evolution of the world of the five elements; He Himself infuses the five senses into it."
+      "gurmukhi": "ਅਮਲਨ ਸਿਉ ਅਮਲੀ ਲਪਟਾਇਓ ਭੂਮਨ ਭੂਮਿ ਪਿਆਰੀ ॥",
+      "translation": "The addict is addicted to his drug, and the landlord is in love with his land."
     },
     {
-      "gurmukhi": "ਜਨ ਨਾਨਕ ਸਤਿਗੁਰੁ ਮੇਲੇ ਆਪੇ ਹਰਿ ਆਪੇ ਝਗਰੁ ਚੁਕਾਵੈ ॥੨॥੩॥",
-      "translation": "O servant Nanak, the Lord Himself unites us with the True Guru; He Himself resolves the conflicts. ||2||3||"
+      "gurmukhi": "ਖੀਰ ਸੰਗਿ ਬਾਰਿਕੁ ਹੈ ਲੀਨਾ ਪ੍ਰਭ ਸੰਤ ਐਸੇ ਹਿਤਕਾਰੀ ॥੨॥",
+      "translation": "As the baby is attached to his milk, so the Saint is in love with God. ||2||"
+    },
+    {
+      "gurmukhi": "ਬਿਦਿਆ ਮਹਿ ਬਿਦੁਅੰਸੀ ਰਚਿਆ ਨੈਨ ਦੇਖਿ ਸੁਖੁ ਪਾਵਹਿ ॥",
+      "translation": "The scholar is absorbed in scholarship, and the eyes are happy to see."
+    },
+    {
+      "gurmukhi": "ਜੈਸੇ ਰਸਨਾ ਸਾਦਿ ਲੁਭਾਨੀ ਤਿਉ ਹਰਿ ਜਨ ਹਰਿ ਗੁਣ ਗਾਵਹਿ ॥੩॥",
+      "translation": "As the tongue savors the tastes, so does the humble servant of the Lord sing the Glorious Praises of the Lord. ||3||"
+    },
+    {
+      "gurmukhi": "ਜੈਸੀ ਭੂਖ ਤੈਸੀ ਕਾ ਪੂਰਕੁ ਸਗਲ ਘਟਾ ਕਾ ਸੁਆਮੀ ॥",
+      "translation": "As is the hunger, so is the fulfiller; He is the Lord and Master of all hearts."
+    },
+    {
+      "gurmukhi": "ਨਾਨਕ ਪਿਆਸ ਲਗੀ ਦਰਸਨ ਕੀ ਪ੍ਰਭੁ ਮਿਲਿਆ ਅੰਤਰਜਾਮੀ ॥੪॥੫॥੧੬॥",
+      "translation": "Nanak thirsts for the Blessed Vision of the Lord's Darshan; he has met God, the Inner-knower, the Searcher of hearts. ||4||5||16||"
     }
   ],
-  "updated": "2026-11-27T09:51:39.534Z"
+  "updated": "2026-11-28T09:03:41.996Z"
 };
