@@ -8,6 +8,12 @@
    introduced as history. The rest carry a theme for reflection and
    are worded as such, so the page never claims something happened on
    a day it did not.
+
+   The card also shows what the site's Sikh calendar (the Calendar
+   collection in Firestore, the same data as the homepage's events bar)
+   observes on that date this year. Gurpurabs follow the lunar calendar,
+   so they fall on different dates each year; showing them here, labelled
+   as this year's observance, keeps the card and the events bar in step.
    ────────────────────────────────────────────────────────────── */
 (function () {
   'use strict';
@@ -24,12 +30,16 @@
      some days' "detail" text runs much longer than others. */
   var MAX_DETAIL_CHARS = 150;
 
+  var FIRESTORE_QUERY_URL = 'https://firestore.googleapis.com/v1/projects/' +
+    'sikhsinindia-67a6b/databases/(default)/documents:runQuery';
+
   var MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'];
 
   var records = null;   // MM-DD -> record
   var viewDate = null;  // Date currently shown
   var todayKey = null;
+  var observances = {}; // 'YYYY-MM' -> { 'YYYY-MM-DD': [{category, description}] }, or 'loading'
 
   function pad(n) { return String(n).padStart(2, '0'); }
   function keyOf(d) { return pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
@@ -71,23 +81,115 @@
     render(d);
   }
 
+  function ymd(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+
+  /* Calendar entries that are about the site rather than the Panth
+     (the monthly newsletter) are left out of the card. */
+  function isObservance(o) { return o.description && !/newsletter/i.test(o.description); }
+
+  /* The calendar's entries for d's month, grouped by India date. Fetched
+     once per month; the card re-renders when they arrive. */
+  function loadMonth(d) {
+    var mk = d.getFullYear() + '-' + pad(d.getMonth() + 1);
+    if (observances[mk]) return;
+    observances[mk] = 'loading';
+    var y = d.getFullYear(), m = d.getMonth() + 1;
+    var last = new Date(y, m, 0).getDate();
+    var start = new Date(y + '-' + pad(m) + '-01T00:00:00+05:30');
+    var end = new Date(y + '-' + pad(m) + '-' + pad(last) + 'T23:59:59+05:30');
+    var fmt = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' });
+    fetch(FIRESTORE_QUERY_URL, {
+      method: 'POST',
+      // text/plain keeps this a "simple" request (no OPTIONS round trip first)
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+      body: JSON.stringify({ structuredQuery: {
+        from: [{ collectionId: 'Calendar' }],
+        where: { compositeFilter: { op: 'AND', filters: [
+          { fieldFilter: { field: { fieldPath: 'Date' }, op: 'GREATER_THAN_OR_EQUAL', value: { timestampValue: start.toISOString() } } },
+          { fieldFilter: { field: { fieldPath: 'Date' }, op: 'LESS_THAN_OR_EQUAL', value: { timestampValue: end.toISOString() } } }
+        ] } },
+        orderBy: [{ field: { fieldPath: 'Date' }, direction: 'ASCENDING' }]
+      } })
+    })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (rows) {
+        var byDay = {};
+        rows.forEach(function (r) {
+          var f = r.document && r.document.fields;
+          if (!f || !f.Date) return;
+          var o = {
+            category: (f.Category || {}).stringValue || '',
+            description: (f.Description || {}).stringValue || ''
+          };
+          if (!isObservance(o)) return;
+          var k = fmt.format(new Date(f.Date.timestampValue));
+          (byDay[k] = byDay[k] || []).push(o);
+        });
+        observances[mk] = byDay;
+        if (viewDate && ymd(viewDate).slice(0, 7) === mk) render(viewDate);
+      })
+      .catch(function (err) {
+        console.error('Today in Sikh History: could not load the Sikh calendar', err);
+        observances[mk] = {};
+      });
+  }
+
+  function obsFor(d) {
+    var month = observances[ymd(d).slice(0, 7)];
+    return month && month !== 'loading' ? (month[ymd(d)] || []) : null;
+  }
+
   function render(d) {
     viewDate = d;
     var mount = document.getElementById(MOUNT_ID);
     if (!mount) return;
     var isToday = keyOf(d) === todayKey && d.toDateString() === new Date().toDateString();
-    mount.innerHTML = cardHtml(d, lookup(d), isToday);
+    var obs = obsFor(d);
+    if (obs === null) {
+      loadMonth(d);
+      /* until the calendar arrives, keep today's observance if the
+         page already shows it (written in by the daily script) */
+      if (isToday) {
+        var cur = mount.querySelector('.tsh-card[data-key="' + keyOf(d) + '"][data-obs]');
+        if (cur) return;
+      }
+    }
+    mount.innerHTML = cardHtml(d, lookup(d), isToday, obs);
   }
 
   /* The card's markup for date d and its record. Also used by
      scripts/update-homepage-today.js, which writes today's card straight
      into index.html each morning so it is in the page without JavaScript. */
-  function cardHtml(d, rec, isToday) {
+  function cardHtml(d, rec, isToday, obs) {
     var prev = new Date(d.getTime()); prev.setDate(prev.getDate() - 1);
     var next = new Date(d.getTime()); next.setDate(next.getDate() + 1);
 
+    obs = (obs || []).filter(isObservance);
+    var obsLabel = (isToday ? 'Observed today' : 'Observed on this date in ' + d.getFullYear()) +
+      ' &middot; Sikh calendar';
+    function obsItems(list) {
+      return '<ul class="tsh-obs-list">' + list.map(function (o) {
+        return '<li>' + (o.category ? '<b>' + esc(o.category) + '</b> &middot; ' : '') +
+          esc(o.description) + '</li>';
+      }).join('') + '</ul>';
+    }
+
     var body;
-    if (!rec) {
+    if (obs.length && (!rec || !rec.anchored)) {
+      /* No dated event in the history records, but the calendar marks
+         the day: the observance becomes the card's main entry. */
+      body =
+        '<div class="tsh-lead-row"><span class="tsh-chip tsh-chip-' +
+          (/historical/i.test(obs[0].category) ? 'historical' : 'gurpurab') + '">' +
+          esc(obs[0].category || 'Observance') + '</span>' +
+          '<span class="tsh-lead">' + obsLabel + '</span></div>' +
+        '<h3 class="tsh-title">' + esc(obs[0].description) + '</h3>' +
+        (obs.length > 1 ? '<div class="tsh-obs">' + obsItems(obs.slice(1)) + '</div>' : '') +
+        '<p class="tsh-caveat">Sikh calendar dates follow the traditional lunar calendar, so many of them move from year to year.</p>';
+    } else if (!rec) {
       body = '<p class="tsh-none">No entry recorded for this date.</p>';
     } else {
       var chip = '<span class="tsh-chip tsh-chip-' +
@@ -127,6 +229,10 @@
       }
 
       body =
+        (obs.length
+          ? '<div class="tsh-obs"><div class="tsh-obs-head">' + obsLabel + '</div>' +
+              obsItems(obs) + '</div>'
+          : '') +
         '<div class="tsh-lead-row">' + chip + '<span class="tsh-lead">' + lead + '</span></div>' +
         '<h3 class="tsh-title">' + esc(rec.title) + '</h3>' +
         (rec.detail ? '<p class="tsh-detail">' + esc(truncate(rec.detail, MAX_DETAIL_CHARS)) + '</p>' : '') +
@@ -136,7 +242,7 @@
         more;
     }
 
-    return '<div class="tsh-card" data-key="' + keyOf(d) + '">' +
+    return '<div class="tsh-card" data-key="' + keyOf(d) + '"' + (obs.length ? ' data-obs' : '') + '>' +
         '<div class="tsh-head">' +
           '<h2 class="tsh-kicker">&#128220; Today in Sikh History</h2>' +
           '<div class="tsh-date">' + esc(longDate(d)) +

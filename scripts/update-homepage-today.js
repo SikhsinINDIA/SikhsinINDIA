@@ -11,7 +11,8 @@
 
    Runs every morning from .github/workflows/update-hukamnama.yml, right
    after the Hukamnama update. If the events query fails, the events bar
-   is left as it was and the history card is still written.
+   is left as it was and the history card is still written (without
+   today's calendar observance).
    ────────────────────────────────────────────────────────────── */
 const fs = require('fs');
 const path = require('path');
@@ -42,7 +43,7 @@ function replaceBetween(html, name, inner) {
 }
 
 /* ── Events bar ── same markup and order as loadCurrentMonthFestivals() in index.html */
-async function eventsHtml(today) {
+async function monthEvents(today) {
   const { year, month } = today;
   const daysInMonth = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
   const start = new Date(`${year}-${pad(month + 1)}-01T00:00:00+05:30`);
@@ -65,7 +66,11 @@ async function eventsHtml(today) {
     const date = new Date(f.Date.timestampValue);
     return { parts: indiaParts(date), date, category: (f.Category || {}).stringValue || '', description: (f.Description || {}).stringValue || '' };
   }).sort((a, b) => a.date - b.date);
+  return events;
+}
 
+function eventsHtml(today, events) {
+  const { month } = today;
   const monthName = MONTH_NAMES[month];
   let items = `<span class="marquee-header">${monthName} Events</span>`;
   if (!events.length) {
@@ -88,7 +93,7 @@ async function eventsHtml(today) {
 }
 
 /* ── Today in Sikh History card ── */
-function historyHtml(today) {
+function historyHtml(today, events) {
   const { cardHtml, keyOf } = require('../js/sikh-history.js');
   const list = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'sikh-history.json'), 'utf8'));
   const records = {};
@@ -97,19 +102,24 @@ function historyHtml(today) {
   const d = new Date(today.year, today.month, today.day, 12);
   let key = keyOf(d);
   if (!records[key] && key === '02-29') key = '02-28';
-  return cardHtml(d, records[key] || null, true);
+  // today's entries from the Sikh calendar, shown on the card as this year's observance
+  const obs = (events || []).filter((e) => e.parts.year === today.year && e.parts.month === today.month &&
+    e.parts.day === today.day).map((e) => ({ category: e.category, description: e.description }));
+  return cardHtml(d, records[key] || null, true, obs);
 }
 
 async function main() {
   const today = indiaParts(new Date());
   let html = fs.readFileSync(INDEX, 'utf8');
 
-  html = replaceBetween(html, 'sikh-history', historyHtml(today));
+  let events = null;
   try {
-    html = replaceBetween(html, 'events', await eventsHtml(today));
+    events = await monthEvents(today);
   } catch (err) {
     console.error('Events bar not updated:', err.message);
   }
+  html = replaceBetween(html, 'sikh-history', historyHtml(today, events));
+  if (events) html = replaceBetween(html, 'events', eventsHtml(today, events));
 
   fs.writeFileSync(INDEX, html, 'utf8');
   console.log(`Wrote today's events bar and Sikh History card into index.html (${today.year}-${pad(today.month + 1)}-${pad(today.day)})`);
